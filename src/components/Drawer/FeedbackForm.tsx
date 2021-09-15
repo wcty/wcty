@@ -1,13 +1,10 @@
 import { useState, useEffect } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import { Paper, FormControl, IconButton, InputLabel, Select, MenuItem, Typography, TextField, Button, MobileStepper, Box } from '@material-ui/core';
 import { KeyboardArrowLeft, KeyboardArrowRight, Close } from '@material-ui/icons';
-import { useUser, useFirestore } from 'reactfire';
-import { Redirect, useHistory } from 'react-router-dom'
-import { useI18n } from 'misc/hooks'
-
-//1920x1080,851x315,484x252,180x180
-//e
+import { useHistory } from 'react-router-dom'
+import { useI18n } from 'misc'
+import s from './styles.module.scss'
 
 const feedbackForm = (i18n:any)=>[
   [
@@ -34,47 +31,7 @@ const feedbackForm = (i18n:any)=>[
   ],
 ]
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    [theme.breakpoints.up('sm')]: {
-      maxWidth: 400,
-		},
-  },
-  paper:{
-    [theme.breakpoints.up('sm')]: {
-      maxWidth: 400,
-		},
-  },
-
-  MobileStepper:{
-    background: "none",
-    width:'calc(100% - 1rem)',
-  },
-
-  text:{
-    width: "calc( 100% - 2rem )",
-    margin: "1rem",
-    marginBottom: 0,
-    position: "relative"
-  },
-
-  button:{
-    margin: "0.5rem"
-  },
-
-  imageButton: {
-    position: "absolute",
-    top: "1rem",
-    left: "1rem"
-  },
-  input: {
-    display: 'none',
-  },
-  
-}));
-
 export default ()=> {
-  const classes = useStyles();
   const theme = useTheme();
   const i18n = useI18n()
   const formSteps = feedbackForm(i18n)
@@ -107,8 +64,9 @@ export default ()=> {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  const feedbackRef = useFirestore().collection('feedback')
-  const user:any = useUser()
+  
+  const feedbackRef = useFeedbackQuery()
+  const user:any = null
 
   return (<Box style={{
     backgroundColor:'white',
@@ -118,8 +76,8 @@ export default ()=> {
     zIndex: 999,
     overflowY: "auto",  
   }}>
-    <form className={classes.root} noValidate autoComplete="off" style={{textAlign:'start', padding:'1rem', margin:'auto'}} >
-      <Paper elevation={1} className={classes.paper} style={{paddingTop:'2rem', paddingBottom:'1rem', position:'relative'}} >  
+    <form className={s.feedbackForm} noValidate autoComplete="off" style={{textAlign:'start', padding:'1rem', margin:'auto'}} >
+      <Paper elevation={1} className={s.paper} style={{paddingTop:'2rem', paddingBottom:'1rem', position:'relative'}} >  
         <Typography variant="h6" style={{textAlign:'start', margin:'1rem'}}>
           {i18n('feedbackGreeting')}
         </Typography>
@@ -147,7 +105,7 @@ export default ()=> {
                     key={input.id}
                     id={input.id} 
                     label={input.label}
-                    className={classes.text}
+                    className={s.text}
                     variant="outlined"
                     multiline={input.rows? true: undefined}
                     rows={input.rows? input.rows: undefined}
@@ -163,7 +121,7 @@ export default ()=> {
                 )
               case 'select':
                 return (
-                  <FormControl variant="outlined" key={input.id} //className={classes.formControl} 
+                  <FormControl variant="outlined" key={input.id} //className={s.formControl} 
                     style={{width: 'calc(100% - 2rem)', marginLeft:'1rem', marginTop:'1rem'}}>
                     <InputLabel id={input.id} key={input.id+'lbl'} >{input.label}</InputLabel>
                     <Select
@@ -192,10 +150,10 @@ export default ()=> {
 
           variant="text"
           activeStep={activeStep}
-          className={classes.MobileStepper}
+          className={s.MobileStepper}
           nextButton={
             activeStep === (maxSteps - 1) ? (
-              <Button disabled={!valid} className={classes.button} variant="contained" size="small" onClick={async ()=>{    
+              <Button disabled={!valid} className={s.button} variant="contained" size="small" onClick={async ()=>{    
 
                 if(feedbackRef) {
                   const message = {
@@ -223,7 +181,7 @@ export default ()=> {
                 {i18n('send')}
               </Button>
             ):(
-              <Button disabled={!valid} size="small" className={classes.button} onClick={handleNext}>
+              <Button disabled={!valid} size="small" className={s.button} onClick={handleNext}>
                 {i18n('next')}
                 {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
               </Button>
@@ -231,13 +189,13 @@ export default ()=> {
           }
           backButton={
             activeStep === 0 ? (
-              <Button className={classes.button} variant="contained" size="small" onClick={()=>{
+              <Button className={s.button} variant="contained" size="small" onClick={()=>{
                 history.push('/')
               }} >
                 {i18n('cancel')}
               </Button>
             ):(
-              <Button size="small" className={classes.button} onClick={handleBack} >
+              <Button size="small" className={s.button} onClick={handleBack} >
                 {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
                 {i18n('send')}
               </Button>

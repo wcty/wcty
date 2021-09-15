@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { MobileStepper } from '@material-ui/core';
 import { v4 as uuidv4 } from 'uuid';
 import { FormProps } from './types';
@@ -8,34 +7,10 @@ import SelectInput from './Inputs/Select'
 import NoteInput from './Inputs/Note';
 import NumberInput from './Inputs/Number';
 import TextInput from './Inputs/Text';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    position: 'relative',
-    flexGrow: 1,
-    zIndex: 999,
-    minHeight: '100%',
-    [theme.breakpoints.up('sm')]: {
-      maxWidth: 400,
-		},
-  },
-  MobileStepper:{
-    background: "none",
-    width:'100%',
-    padding: 0
-  },
-  text:{
-    width: "100%",
-    marginTop: "1rem",
-    marginBottom: 0,
-    position: "relative"
-  }  
-}));
+import s from './styles.module.scss'
 
 export default ({ formGetter, nextButton, backButton, variant, floating, finished, setFinished }:FormProps)=> {
   const formSteps = formGetter()
-  const classes = useStyles()
   const maxSteps = formSteps.length
   const [ activeStep, setActiveStep ] = useState(0);
   const [ formData, setFormData ] = useState<{[prop:string]:any}>({})
@@ -60,18 +35,18 @@ export default ({ formGetter, nextButton, backButton, variant, floating, finishe
   },  [activeStep, formData])
 
 
-  return <form className={classes.root} noValidate autoComplete="off">
+  return <form className={s.root} noValidate autoComplete="off">
       {
         formSteps[activeStep].map(( input, i )=>{
           switch (input.type){
             case 'elements':
               return input.elements
             case 'text':
-              return <TextInput{...{formData, setFormData, input, classes}}/>
+              return <TextInput{...{formData, setFormData, input, classes:s}}/>
             case 'number':
-              return <NumberInput {...{formData, setFormData, input, classes}}/>
+              return <NumberInput {...{formData, setFormData, input, classes:s}}/>
             case 'note':
-              return <NoteInput {...{input, classes}}/>
+              return <NoteInput {...{input, classes: s}}/>
             case 'select':
               return <SelectInput {...{formData, setFormData, input}} />
             case 'image':
@@ -88,7 +63,7 @@ export default ({ formGetter, nextButton, backButton, variant, floating, finishe
         position="static"
         variant={ variant || undefined }
         activeStep={ activeStep }
-        className={ classes.MobileStepper }
+        className={ s.MobileStepper }
         nextButton={ nextButton && nextButton({ activeStep, setActiveStep, maxSteps, valid, formData }) }
         backButton={ backButton && backButton({ activeStep, setActiveStep, maxSteps, valid, formData }) }
       />

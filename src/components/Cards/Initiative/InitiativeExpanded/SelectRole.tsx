@@ -5,26 +5,8 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { toJSON, useI18n, atoms } from 'misc'
 import { useParams, useHistory } from 'react-router-dom'
 import { useAddInitiativeMemberMutation, useInitiativeQuery, InitiativeFieldsFragment, useInitiativePostsQuery } from 'generated'
-
-const useStyles = makeStyles((theme) => ({
-  text:{
-    width: "calc( 100% - 2rem )",
-    margin: "1rem",
-    marginBottom: 0,
-    position: "relative"
-  },
-  selectButton: {
-    width: 'calc( 50% - 0.75rem )',
-    height: '4rem',
-    color: 'black',
-    marginRight: '0.5rem',
-    marginTop: '0.5rem'
-  },
-  selectGroup:{
-    marginTop: '1rem',
-    transitionDuration: '0.3s',
-  }
-}));
+import { SelectGroup } from './styles'
+import s from './styles.module.scss'
 
 function MediaCard({ directory }:{ directory: string }) {
   // const objects = useFirestore().collection(directory)
@@ -68,7 +50,6 @@ function MediaCard({ directory }:{ directory: string }) {
 
 export default ({ initiativeID='' })=>{
   const user = useRecoilValue(atoms.user)
-  const classes = useStyles()
   const history = useHistory()
   const i18n = useI18n()
 
@@ -112,7 +93,7 @@ export default ({ initiativeID='' })=>{
       <RadioGroup aria-label="role" name="role" value={selectedRole.type} onChange={handleChange}>
 
 
-        <Box id='donate' className={classes.selectGroup}>
+        <SelectGroup>
           <FormControlLabel value="donate" control={<Radio />} label={i18n('joinDonateLabel')} />
           {selectedRole.type==="donate" && <><TextField 
             key='donate'
@@ -121,7 +102,7 @@ export default ({ initiativeID='' })=>{
             InputProps={{
               endAdornment:<InputAdornment position="end">{i18n('UAH')}</InputAdornment>
             }}
-            className={classes.text}
+            className={s.text}
             variant="outlined"
             onChange={(e)=>{ setSum(Number(e.target.value)) }}
             defaultValue={sum}
@@ -131,16 +112,16 @@ export default ({ initiativeID='' })=>{
             label={i18n('joinMonthlyPayment')}
             style={{marginLeft: '0.5rem'}}
           /></>}
-        </Box>
+        </SelectGroup>
 
 
-        <Box id='volunteer'className={classes.selectGroup} >
+        <SelectGroup>
           <FormControlLabel value="volunteer" control={<Radio />} label={i18n('joinVolunteerLabel')} />
           {selectedRole.type==="volunteer" && <TextField 
             key='volunteer'
             id='volunteer'
             label={i18n('joinVolunteerJob')}
-            className={classes.text}
+            className={s.text}
             variant="outlined"
             onChange={(e)=>{
               setJob(e.target.value)
@@ -151,10 +132,10 @@ export default ({ initiativeID='' })=>{
               maxLength: 200
             }}
           />}
-        </Box>
+        </SelectGroup>
         
 
-        <Box id='project' className={classes.selectGroup}>
+        <SelectGroup>
           <FormControlLabel value="project" control={<Radio />} label={i18n('joinContractLabel')} />
           {selectedRole.type==="project" && <div style={{paddingLeft: '1rem', justifyContent: 'space-between'}}>
             {!selectType && <>
@@ -162,7 +143,7 @@ export default ({ initiativeID='' })=>{
                 disabled
                 size="small" 
                 variant="outlined"  
-                className={classes.selectButton}
+                className={s.button}
                 onClick={async ()=>{    
                   console.log('selectProject')
                   setSelectType({type: 'selectProject'})
@@ -173,7 +154,7 @@ export default ({ initiativeID='' })=>{
                 disabled
                 size="small" 
                 variant="outlined" 
-                className={classes.selectButton}
+                className={s.button}
                 onClick={async ()=>{    
                   console.log('newProject')
                   setSelectType({type: 'newProject'})
@@ -185,7 +166,7 @@ export default ({ initiativeID='' })=>{
               <MediaCard directory={"projects"} />
             </>}
           </div>}
-        </Box>
+        </SelectGroup>
 
 
       </RadioGroup>

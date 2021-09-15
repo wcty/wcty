@@ -1,26 +1,14 @@
-import { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import { SwipeableDrawer, List, Divider, Box, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { MapOutlined, LibraryBooksOutlined, PeopleOutline, SettingsApplicationsOutlined, FeedbackOutlined, BuildOutlined, InfoOutlined } from '@material-ui/icons';
+import { MapOutlined, PeopleOutline, SettingsApplicationsOutlined, FeedbackOutlined, InfoOutlined } from '@material-ui/icons';
 import { useHistory } from 'react-router-dom';
 import LangSelect from './LangSelect'
 import { useI18n, atoms } from 'misc'
 import Header from './Header'
 import { useRecoilValue } from 'recoil';
-
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-    marginTop: '1rem'
-  },
-  fullList: {
-    width: 'auto',
-  },
-});
+import s from './styles.module.scss'
 
 export default ({ state, setState }:any)=>{
-  const classes = useStyles();
   const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
   const history = useHistory()
   const user = useRecoilValue(atoms.user)
@@ -61,11 +49,7 @@ export default ({ state, setState }:any)=>{
   const list = (anchor:any) => {
     return <>
       <Header {...{state, setState}} />
-      <div
-        className={clsx(classes.list, {
-          [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-        })}
-      >
+      <div className={clsx(s.list, {[s.fullList]: anchor === 'top' || anchor === 'bottom' })}>
         <List  
           disablePadding       
           onClick={toggleDrawer(false)}

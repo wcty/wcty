@@ -1,27 +1,16 @@
 import { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import { Box, List, ListItem, ListItemText, Button, Collapse, TextField, IconButton } from '@material-ui/core'
 import { Alert, AlertTitle } from '@material-ui/lab'
 import { SetterOrUpdater, useRecoilState, useRecoilValue } from 'recoil'
 import { getFeed, atoms, useI18n } from 'misc'
-import { useParams, Route, useHistory } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { Share, Close } from '@material-ui/icons'
 import moment from 'moment'
-
 import SelectRole from './SelectRole'
 import InitiativeForMembers from './InitiativeForMembers'
 import ImageViewer from 'react-simple-image-viewer'
 import { InitiativeFieldsFragment, useInitiativeQuery, useDeleteInitiativeMutation, useDeleteInitiativeMemberMutation } from 'generated'
-
-const useStyles = makeStyles(()=>({
-  alert: {
-    position: 'absolute',
-    top: '1rem',
-    left: '1rem',
-    zIndex: 999,
-    maxWidth: 'calc( 100% - 4rem )'
-  }
-}))
+import s from './styles.module.scss'
 
 export default ({ isViewerOpen, setIsViewerOpen, initiative }: { 
   isViewerOpen:boolean, 
@@ -29,7 +18,6 @@ export default ({ isViewerOpen, setIsViewerOpen, initiative }: {
   initiative: InitiativeFieldsFragment 
 })=>{
 
-  const classes = useStyles()
   const history = useHistory()
   const user = useRecoilValue(atoms.user)
   const i18n = useI18n()
@@ -72,7 +60,7 @@ export default ({ isViewerOpen, setIsViewerOpen, initiative }: {
 
   return <> 
     { alert && (<Collapse in={Boolean(alert)}>
-      <Alert severity="info" className={classes.alert} onClose={()=>setAlert(undefined)}>
+      <Alert severity="info" className={s.alert} onClose={()=>setAlert(undefined)}>
         <AlertTitle>Info</AlertTitle>
         {alert==='loading'?i18n('loading'):
         <>{i18n('alertLinkWasCopied')}<br/>

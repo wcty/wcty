@@ -1,46 +1,25 @@
 import { useState, useEffect, useMemo } from 'react'
 import { ReactComponent as ActiveMarker } from 'assets/images/markerActive.svg'
-import { makeStyles } from '@material-ui/core/styles'
-import { Paper, Typography, Box, Button, Card, CardActions, CardContent, CardActionArea, useTheme } from '@material-ui/core'
+import { Typography, Button, Card, CardActions, CardContent, CardActionArea, useTheme } from '@material-ui/core'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { useHistory } from 'react-router-dom'
 import { Helmet } from "react-helmet"
 import { mapboxConfig, atoms, useI18n, useGeolocation } from 'misc'
 import getDistance from "@turf/distance"
-
 import WecityGroups from 'assets/images/wecity_groups_512.png'
 import ArrowNavigation from  './ArrowNavigation'
-
-const useStyles = makeStyles((theme) => ({
-  paper:{
-    minHeight: "290px",
-    minWidth: "100%",
-    zIndex: 10,
-    [theme.breakpoints.up('sm')]: {
-      maxWidth: 400,
-		},
-  },
-  info: {
-    padding: theme.spacing(2),
-    paddingLeft: theme.spacing(4),
-    paddingRight: theme.spacing(4),
-  }
-}));
+import { ExploreInfo, ExplorePanel } from './styles'
 
 export default ()=>{
   const location = useGeolocation()
-  const classes = useStyles()
   const theme = useTheme()
   const history = useHistory()
   const i18n = useI18n()
   const lang = useRecoilValue(atoms.lang)
-
   const [ addressString, setAddress ] = useState<string>()
-
   const [ feed ] = useRecoilState(atoms.initiativeFeed)
   const [ next ] = useRecoilState(atoms.nextAtom)
   const [ slideIndex, setSlideIndex ] = useRecoilState(atoms.indexAtom)
-
   const distance = useMemo(()=>location? getDistance(next?.[0].geom.coordinates, Object.values(location)):null, [next])
 
 
@@ -61,20 +40,7 @@ export default ()=>{
   const onStart = ()=>{setSlideIndex(i=>i+1)}
   
   return <div style={{ position:"absolute", padding: '1rem', overflow: 'visible', bottom: 0, width: 'calc( 100% - 2rem )' }}>
-  <Paper 
-      className={classes.paper} 
-      style={{
-        cursor: 'pointer', 
-        borderRadius: "5px",
-        overflowY: 'visible',
-        minHeight: '250px',
-        maxHeight: '400px',
-        width: '100%',
-        bottom: "1rem",
-        right: "1rem",
-        minWidth: "calc( 100% - 2rem )"
-      }}
-    >   
+    <ExplorePanel>   
       <ArrowNavigation/>
       <div id="wrapper">
         <Helmet>
@@ -86,9 +52,7 @@ export default ()=>{
           <meta property="og:image" content={WecityGroups} />
         </Helmet>
 
-        {next.length>0 ? <Box className={classes.info} 
-          style={{position:'relative', textAlign:'center'}}
-        >
+        {next.length>0 ? <ExploreInfo>
           <Typography variant="h6">
             { location ? i18n('exploreYouAreHere') : i18n('exploreHereItStarts') }
           </Typography>
@@ -120,10 +84,8 @@ export default ()=>{
           <Button onClick={()=>history.push('/create-initiative')} variant="outlined" style={{width:'100%', marginTop:'0.2rem'}}>
             {i18n('exploreProposeNew')}
           </Button>
-        </Box> :        
-        <Box className={classes.info} 
-          style={{position:'relative', textAlign:'center'}}
-        >
+        </ExploreInfo> :        
+        <ExploreInfo>
           <Typography variant="h6">
             {i18n('exploreAddInitiative')}
           </Typography>
@@ -140,8 +102,8 @@ export default ()=>{
               </CardContent>
             </CardActionArea>
           </Card>
-        </Box>}
+        </ExploreInfo>}
       </div>
-  </Paper>
+  </ExplorePanel>
   </div>
 }

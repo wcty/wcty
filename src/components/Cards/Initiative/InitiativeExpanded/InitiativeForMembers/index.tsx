@@ -1,6 +1,6 @@
 import SwipeableViews from 'react-swipeable-views';
 import { useState } from 'react'
-import { makeStyles, withStyles, useTheme } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import { Divider, Tabs, Tab, Typography, Box} from '@material-ui/core';
 import { atoms, useI18n } from 'misc'
 import { Route } from 'react-router-dom'
@@ -8,6 +8,7 @@ import InitiativeChat from './InitiativeChat'
 import InitiativeTopic from './InitiativeChat/InitiativeTopic'
 import { InitiativeFieldsFragment } from 'generated';
 import { useRecoilValue } from 'recoil';
+import s from './styles.module.scss'
 
 function TabPanel({ children=<></> as React.ReactNode, value='' as string|number, index=0 as string|number, ...other }) {
 
@@ -33,29 +34,16 @@ function a11yProps(index:string|number) {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper,
-    width: "calc( 100% + 4rem )",
-    marginLeft: '-2rem',
-    marginTop: '1rem'
-  },
-  tab: {
-    backgroundColor: '#eeeeee',
-    boxSizing: "border-box"
-  }
-}));
-
-const AntTabs = withStyles({
+const AntTabs = (withStyles({
   root: {
     borderBottom: '1px solid #e8e8e8',
   },
   indicator: {
     backgroundColor: '#1890ff',
   },
-})(Tabs);
+}) as (v:any)=>any)(Tabs);
 
-const AntTab = withStyles((theme) => ({
+const AntTab = (withStyles((theme:any) => ({
   root: {
     textTransform: 'none',
     minWidth: 36,
@@ -86,10 +74,9 @@ const AntTab = withStyles((theme) => ({
     },
   },
   selected: {},
-}))((props:{label:string}) => <Tab {...props} />);
+})) as (v:any)=>any)((props:{label:string}) => <Tab {...props} />);
 
 export default function FullWidthTabs({initiative}:{initiative:InitiativeFieldsFragment}) {
-  const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = useState(0);
   const i18n = useI18n()
@@ -110,7 +97,7 @@ export default function FullWidthTabs({initiative}:{initiative:InitiativeFieldsF
         <InitiativeTopic initiative={initiative} />
       </Route>
     }
-    <div className={classes.root}>
+    <div className={s.root}>
       <Divider/>
       <Box>
         <AntTabs
@@ -134,10 +121,10 @@ export default function FullWidthTabs({initiative}:{initiative:InitiativeFieldsF
         onChangeIndex={handleChangeIndex}
         style={{paddingTop:0}}
       >
-        <TabPanel key={0} value={value} index={0} dir={theme.direction} className={classes.tab}>
+        <TabPanel key={0} value={value} index={0} dir={theme.direction} className={s.tab}>
             <InitiativeChat initiative={initiative}/>
         </TabPanel>
-        <TabPanel key={1} value={value} index={1} dir={theme.direction} className={classes.tab}>
+        <TabPanel key={1} value={value} index={1} dir={theme.direction} className={s.tab}>
             <Typography variant="h6"> 
               {i18n('initiativeGroupMembers')}
             </Typography>
@@ -145,7 +132,7 @@ export default function FullWidthTabs({initiative}:{initiative:InitiativeFieldsF
               In active development
             </Typography>
         </TabPanel>
-        <TabPanel key={2} value={value} index={2} dir={theme.direction} className={classes.tab}>
+        <TabPanel key={2} value={value} index={2} dir={theme.direction} className={s.tab}>
           <Typography variant="h6"> 
             {i18n('initiativeGroupProjects')}
           </Typography>
@@ -153,7 +140,7 @@ export default function FullWidthTabs({initiative}:{initiative:InitiativeFieldsF
             In active development
           </Typography>
         </TabPanel>
-        <TabPanel key={3} value={value} index={3} dir={theme.direction} className={classes.tab}>
+        <TabPanel key={3} value={value} index={3} dir={theme.direction} className={s.tab}>
           <Typography variant="h6"> 
             {i18n('initiativeGroupResources')}
           </Typography>

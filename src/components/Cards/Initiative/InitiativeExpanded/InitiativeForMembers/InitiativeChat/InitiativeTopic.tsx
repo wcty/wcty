@@ -1,63 +1,15 @@
 import { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Menu, MenuItem, ListItemSecondaryAction, Toolbar, IconButton, Button, Divider, InputAdornment, Avatar, Typography, Box, TextField, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
-import { useI18n } from 'misc/hooks'
+import { useI18n } from 'misc'
 import { useDatabase, useUser, useDatabaseListData, useFirestore, useFirestoreDocData, useDatabaseObjectData } from 'reactfire'
 import { useParams, useHistory, Route } from 'react-router-dom'
 import { ArrowBack, Send, MoreVert, ThumbUpOutlined, ThumbUp, ThumbDownOutlined, ThumbDown, ModeCommentOutlined, RefreshRounded } from '@material-ui/icons'
 import Post from './InitiativePost'
-import * as atoms from 'misc/atoms'
+import { atoms } from 'misc'
 import { useRecoilState, atom } from 'recoil'
 import {toJSON} from 'misc'
-
-const useStyles = makeStyles((theme)=>({
-
-  post:{
-    zIndex: 11,
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    maxWidth: 400,
-    top: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'white',
-    overflowY: 'auto',
-    zIndex: 30
-  },
-  small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-    fontSize: '0.65rem',
-    textAlign: 'center',
-    marginBottom:"0.5rem",
-    marginRight: "0.5rem"
-  },
-  textField: {
-    [`& fieldset`]: {
-      borderRadius: "3rem",
-      height: "3rem",
-      backgroundColor: "white",
-      zIndex: 1
-    },
-    [`& label`]: {
-      transform: 'translate(14px, 1rem) scale(1);',
-      zIndex: 2
-    },
-    [`& div`]: {
-      marginBottom: '0.5rem',
-      [`& button`]: {
-        zIndex: 3
-      },
-    },
-    [`& input`]: {
-      paddingTop: '0.75rem',
-      zIndex: 2
-    },
-    height: "3rem",
-  }
-}))
-
+import s from './styles.module.scss'
 
 const sendComment = (text, commentsRef, user, type, commentsCount)=>{
   if(text){
@@ -86,7 +38,6 @@ const sendComment = (text, commentsRef, user, type, commentsCount)=>{
 }
 
 const AddReply = ({ r, n })=>{
-  const classes = useStyles()
   const { initiativeID, postID } = useParams()
   const user = useUser()
   const i18n = useI18n()
@@ -102,7 +53,7 @@ const AddReply = ({ r, n })=>{
   return <Box key={n} style={{display: 'block', width:"100%", marginTop: '0.5rem', padding: '0.5rem', position: 'relative', boxSizing: 'border-box'}}>
       <TextField 
         variant="outlined"
-        className={classes.textField}
+        className={s.topicTextField}
         style={{width:"100%", borderRadius: "100px"}}
         label={i18n('chatWriteReply')}
         onChange={(e)=>{
@@ -132,7 +83,6 @@ const AddReply = ({ r, n })=>{
 
 const CommentBody = ({c, refDir, initiative})=>{
   const ref = useDatabase().ref(refDir)
-  const classes = useStyles()
   const { initiativeID, postID } = useParams()
   const user = useUser()
   const i18n = useI18n()
@@ -225,7 +175,6 @@ const CommentBody = ({c, refDir, initiative})=>{
 const Comment = ({initiative, m, n })=>{
 
   n = n || 0
-  const classes = useStyles()
   const { initiativeID, postID } = useParams()
   const user = useUser()
   const i18n = useI18n()
@@ -267,9 +216,8 @@ const Comment = ({initiative, m, n })=>{
 }
 
 
-export default ({initiative})=>{
-  const { initiativeID, postID } = useParams()
-  const classes = useStyles()
+export default ({initiative}:any)=>{
+  const { initiativeID, postID } = useParams<{ initiativeID?:string, postID?:string }>()
   const [showBar, setShowBar] = useRecoilState(atoms.showBarAtom)
   const history = useHistory()
   const messageRef = useDatabase().ref(`chats/${initiativeID}/messages/${postID}`)
@@ -293,8 +241,8 @@ export default ({initiative})=>{
   },[])
 
   return postID && (
-  <Box className={classes.post} >
-    <AppBar elevation={1} color="default" position="static" className={classes.appbar} >
+  <div className={s.post} >
+    <AppBar elevation={1} color="default" position="static" >
       <Toolbar style={{textAlign:"center"}}>
         <IconButton onClick={()=>{
           history.push(`/initiative/${initiativeID}`)
@@ -312,7 +260,7 @@ export default ({initiative})=>{
     <Box style={{width:"100%", marginTop: '0.5rem', padding: '0.5rem', position: 'relative', boxSizing: 'border-box'}}>
       <TextField 
         variant="outlined"
-        className={classes.textField}
+        className={s.topicTextField}
         style={{width:"100%", borderRadius: "100px"}}
         label={i18n('chatWriteYourComment')}
         onChange={(e)=>{
@@ -337,5 +285,5 @@ export default ({initiative})=>{
         }}
       />
     </Box>
-  </Box>)
+  </div>)
 }

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
-import { Paper, Button } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@material-ui/icons'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { useHistory } from 'react-router-dom'
@@ -9,38 +8,11 @@ import { useAddInitiativeMutation } from 'generated'
 import { Form, createInitiativeForm } from 'components/Forms'
 
 import MarkerActive from 'assets/images/markerActive.svg'
-import { FormButton, FormButtonProps } from 'components/Forms/types'
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 'calc( 100% - 2rem )',
-    flexGrow: 1,
-    zIndex: 999,
-    position: 'fixed',
-    bottom: "1rem",
-    right: "1rem",
-    maxHeight: 350,
-    [theme.breakpoints.up('sm')]: {
-      maxWidth: 400,
-		},
-  },
-  paper:{
-    borderRadius: "5px",
-    padding: '1rem',
-  },
-  marker: {
-    position: 'absolute',
-    top: 'calc( ( 100% - 250px ) / 2  )',
-    left: '50%',
-    transform: 'translate(-21px, -42px)',
-    zIndex: 15
-  }
-}));
+import { FormButtonProps } from 'components/Forms/types'
+import { CreateInitiativeWrapper, MarkerImg, Paper } from './styles'
 
 
 export default ({ cancel }:{ cancel: Function })=> {
-  const classes = useStyles();
-  const theme = useTheme();
   const location = useGeolocation()
   const history = useHistory()
 
@@ -73,9 +45,9 @@ export default ({ cancel }:{ cancel: Function })=> {
   }, [])
 
   return <>
-  <img alt="Marker for new initiative" src={MarkerActive} className={classes.marker} width={42} height={42} />
-  <div className={classes.root}>
-    <Paper elevation={1} className={classes.paper}>  
+  <MarkerImg alt="Marker for new initiative" src={MarkerActive} width={42} height={42} />
+  <CreateInitiativeWrapper>
+    <Paper>  
       <Form
         directory="initiatives"
         formGetter={()=>createInitiativeForm()} 
@@ -92,7 +64,7 @@ export default ({ cancel }:{ cancel: Function })=> {
             </Button>
           ):(
             <Button size="small" onClick={()=>setActiveStep((prev:number) => prev - 1)} >
-              {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+              <KeyboardArrowLeft />
               {i18n('back')}
             </Button>
           )
@@ -117,12 +89,12 @@ export default ({ cancel }:{ cancel: Function })=> {
           ):(
             <Button disabled={!valid} size="small" onClick={()=>setActiveStep((prev:number) => prev + 1)}>
               {i18n('next')}
-              {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+              <KeyboardArrowRight />
             </Button>
           )
         }
       />
     </Paper>
-  </div>
+  </CreateInitiativeWrapper>
 </>
 }

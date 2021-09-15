@@ -3,19 +3,9 @@ import { Fab } from '@material-ui/core'
 import { useRecoilState } from 'recoil'
 import { atoms, useGeolocation } from 'misc'
 import { MyLocation } from '@material-ui/icons'
-
-const useStyles = makeStyles(theme => ({
-  locateFab: {
-    position: 'absolute',
-    top: '5.5rem',
-    right: '1rem',
-    zIndex: 5,
-    background: '#ffffff'
-  }
-}))  
+import s from './styles.module.scss'
 
 export default ()=>{
-  const classes = useStyles()
   const location = useGeolocation()
   const [viewport, setViewport] = useRecoilState(atoms.viewport)
 

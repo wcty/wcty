@@ -6,25 +6,9 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { useI18n, atoms } from 'misc'
 import { AddLocation } from '@material-ui/icons'
 import { useHistory } from 'react-router-dom'
-
-const useStyles = makeStyles(theme => ({
-  InitiativeFab: {
-    position: 'absolute',
-    right: '1rem',
-    zIndex: 5,
-    background: '#ffffff'
-  },
-  alert: {
-    position: 'absolute',
-    top: '1rem',
-    left: '1rem',
-    maxWidth: '60%',
-    zIndex: 5
-  }
-}))  
+import s from './styles.module.scss'
 
 export default ({ active }:{ active: boolean })=>{
-  const classes = useStyles()
   const [alert, setAlert] = useState<{description:string}|null>(null)
   const user = useRecoilValue(atoms.user)
   const setSelected = useSetRecoilState(atoms.selectedAtom)
@@ -45,7 +29,7 @@ export default ({ active }:{ active: boolean })=>{
               setAlert({description: i18n('alertYouNeedToLogin')})
             }
           }}
-          className={classes.InitiativeFab} 
+          className={s.InitiativeFab} 
           style={{
             top: initiativeBar?'unset':'1rem',
             bottom: initiativeBar?'1rem':'unset',
@@ -59,14 +43,12 @@ export default ({ active }:{ active: boolean })=>{
       </>
     { alert && !user && (
       <Collapse in={Boolean(alert)}>
-        <Alert severity="info" className={classes.alert} onClose={() => {setAlert(null)}}>
+        <Alert severity="info" className={s.alert} onClose={() => {setAlert(null)}}>
           <AlertTitle>Info</AlertTitle>
           {alert.description}
         </Alert>
       </Collapse>
-    )
-
-    }
+    )}
     </>
   )
 }

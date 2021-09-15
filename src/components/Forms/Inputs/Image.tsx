@@ -8,26 +8,7 @@ import { useInsertFileMutation, useDeleteFilesMutation } from 'generated'
 import addImage from 'assets/images/addImage.png'
 import CSS from 'csstype'
 import { ImageProps } from '../types';
-
-const useStyles = makeStyles((theme) => ({
-  img: {
-    height: '200px',
-    maxWidth: 400,
-    display: 'block',
-    width: '100%',
-    margin: "auto",
-    objectFit: 'cover',
-    marginTop: '1rem'
-  },
-  imageButton: {
-    position: "absolute",
-    top: "1rem",
-    left: "1rem"
-  },
-  input: {
-    display: 'none',
-  }
-}));
+import s from './styles.module.scss'
 
 function CircularProgressWithLabel(props:{ value:number, style:CSS.Properties, [props:string]:any }) {
 
@@ -89,9 +70,7 @@ function CircularProgressWithoutLabel(props:{ style?:CSS.Properties, [props:stri
 type ImageInputProps = { input: ImageProps, setFormData: SetterOrUpdater<{[prop:string]: any }>, initiativeID?: string }
 
 export default function ImageInput({ input, setFormData, initiativeID }: ImageInputProps) {
-  const classes = useStyles()
   const i18n = useI18n()
-
   const fileInput = useRef<HTMLInputElement>(null)
   const user = useRecoilValue(atoms.user)
   const [ fileData, setFileData ] = useState<File | null>()
@@ -148,7 +127,7 @@ export default function ImageInput({ input, setFormData, initiativeID }: ImageIn
       handleSubmit();
     }}
   >
-    <div className={classes.img} key={input.id}>
+    <div className={s.img} key={input.id}>
       {uploadCompleted && <CircularProgressWithLabel value={uploadCompleted} style={{color: "#ffffff", visibility: uploadCompleted?"visible":"hidden"}}/> }
         <section 
           style={{
@@ -157,12 +136,12 @@ export default function ImageInput({ input, setFormData, initiativeID }: ImageIn
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat'
           }}
-          className={classes.img} 
+          className={s.img} 
           key={input.id}
         />
         <input
           accept="image/*"
-          className={classes.input}
+          className={s.input}
           type="file"
           onChange={(e) => {
             if (!e.target.files?.length) return;
@@ -172,7 +151,7 @@ export default function ImageInput({ input, setFormData, initiativeID }: ImageIn
           ref={fileInput}
         />
         <label htmlFor="contained-button-file">
-          <Button className={classes.imageButton} variant={ URL? "contained": "outlined" } component="span" size="small" disableElevation>
+          <Button className={s.imageButton} variant={ URL? "contained": "outlined" } component="span" size="small" disableElevation>
             { URL? i18n('initiativeChangePicture'): input.label }
           </Button>
         </label>

@@ -14,58 +14,10 @@ import { useI18n, atoms } from 'misc'
 import LangSelect from './LangSelectShort'
 import SwipeableViews from 'react-swipeable-views';
 import { useRecoilState } from 'recoil'
+import { Intro, Sidebar, Stepper, Wrapper } from './styles'
 
-const useStyles = makeStyles((theme) => ({
-  sidebar:{
-    borderRadius: '0',
-    overflowY: 'scroll',
-    height: `100%`,
-    width: '100%',
-    bottom: '0',
-    right: '0',
-    minHeight: "250px",
-    // overflowX: "hidden",
-    zIndex: 14,
-    position: 'fixed',
-    [theme.breakpoints.up('sm')]: {
-      maxWidth: 400,
-		},
-  },  
-  stepper:{
-    borderRadius: '0',
-    width: '100%',
-    bottom: 0,
-    right: 0,
-    overflow: "hidden",
-    minHeight: '4rem',
-    zIndex: 15,
-    position: 'fixed',
-    marginLeft: 'auto',
-    marginTop: 'auto',
-    [theme.breakpoints.up('sm')]: {
-      maxWidth: 400,
-		},
-  }, 
-  intro: {
-    width: '100%',
-    height: '100%',
-    top:0,
-    bottom: 0,
-    left:0,
-    right:0,
-    position: "absolute",
-    backgroundColor: theme.palette.primary.light,
-    zIndex: 5
-  },
-  wrapper:{
-    padding: '0 2rem',
-    textAlign:"center",
-    marginBottom: '12rem'
-  }
-}));
 
 export default ()=> {
-  const classes = useStyles()
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = 4
   const theme = useTheme()
@@ -74,8 +26,8 @@ export default ()=> {
   const history = useHistory()
 
   return <>
-      <Paper className={classes.sidebar} > 
-        <Box className={classes.intro}>
+      <Sidebar> 
+        <Intro>
           <Toolbar >
             <Logo style={{ height:"20px"}}></Logo>
             <Box style={{marginLeft: 'auto'}}><LangSelect /></Box>
@@ -86,12 +38,12 @@ export default ()=> {
             onChangeIndex={(i)=>setActiveStep(i)}
             enableMouseEvents
           >
-            <div className={classes.wrapper} key={0}>
+            <Wrapper>
               <img src={WecityGroups} style={{width:'70%', position:'relative', marginLeft:'auto', marginRight:'auto' }} alt="Networking" />
               <Typography style={{position:"relative", marginTop:'1rem'}} variant="h6">{i18n('introGreetings')}</Typography>
               <Typography style={{position:"relative"}} variant="body1">{i18n('introGreetingsDescription')}</Typography>
-            </div>
-            <div className={classes.wrapper} key={1}>
+            </Wrapper>
+            <Wrapper>
               <div style={{position:"relative", width:"100%", height: 250}}>
                 <svg width="250px" height="250px" style={{position:'absolute', marginLeft:'auto', marginRight:'auto', left:"0", right:"0", top:0}} >
                   <circle cx="125" cy="125" r="125" fill="#93CBA0" />
@@ -102,22 +54,22 @@ export default ()=> {
               </div>
               <Typography style={{position:"relative", marginTop:'1rem'}} variant="h6">{i18n('introPartners')}</Typography>
               <Typography style={{position:"relative"}} variant="body1">{i18n('introPartnersDescription')}</Typography>
-            </div>
-            <div className={classes.wrapper} key={2}>
+            </Wrapper>
+            <Wrapper>
               <img src={WecityInterfacesZoomed} style={{width:'80%', position:'relative', marginLeft:'auto', marginRight:'auto' }} alt="Interfaces" />
               <Typography style={{position:"relative", marginTop:'1rem'}} variant="h6">{i18n('introFunctions')}</Typography>
               <Typography style={{position:"relative"}} variant="body1">{i18n('introFunctionsDescription')}</Typography>
-            </div>
-            <div className={classes.wrapper} key={3}>
+            </Wrapper>
+            <Wrapper>
               <img src={WecityChat} style={{width:'80%', position:'relative', marginLeft:'auto', marginRight:'auto' }} alt="Interfaces" />
               <Typography style={{position:"relative"}} variant="h6">{i18n('introLogin')}</Typography>
               <Typography style={{position:"relative"}} variant="body1">{i18n('introLoginDescription')}</Typography>
-            </div>           
+            </Wrapper>           
           </SwipeableViews>
-        </Box>
+        </Intro>
 
-      </Paper>
-      <Box id='stepper' className={classes.stepper} >
+      </Sidebar>
+      <Stepper>
           <Divider style={{ zIndex:15, position: 'relative', opacity: 0.5 }}/>
           <MobileStepper
             steps={maxSteps}
@@ -132,7 +84,6 @@ export default ()=> {
             position="static"
             variant='dots'
             activeStep={activeStep}
-            // className={classes.MobileStepper}
             backButton={undefined}
             nextButton={ 
               <IconButton 
@@ -163,6 +114,6 @@ export default ()=> {
           >
             <svg width="24px" height="24px"></svg>
           </IconButton>
-        </Box>
+        </Stepper>
     </>
 }

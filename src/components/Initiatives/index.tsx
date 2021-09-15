@@ -5,19 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { useHistory } from 'react-router-dom'
 import { mapboxConfig, atoms, useI18n } from 'misc'
 import { useMyInitiativesQuery, Initiatives } from 'generated'
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    zIndex: 10,
-    position: 'fixed',
-    height: "100%",
-    width: "100%",
-    // overflowX: "hidden",
-    [theme.breakpoints.up('sm')]: {
-      maxWidth: 400,
-		},
-  }
-}));
+import { InitiativesContainer } from './styles'
 
 const InitiativeRow = ({initiative}:{initiative:Pick<Initiatives, "id" | "name" | "description" | "image" | "geom">})=>{
   const history = useHistory()
@@ -65,23 +53,13 @@ const InitiativeRow = ({initiative}:{initiative:Pick<Initiatives, "id" | "name" 
 }
 
 export default ()=> {
-  const classes = useStyles();
   const user = useRecoilValue(atoms.user);
   const i18n = useI18n()
   const { data } = useMyInitiativesQuery({variables:{user:user?.id}});
   const initiatives = data?.initiatives
 
   return (<>
-    <Paper elevation={1} className={classes.root} 
-      style={{
-        height: `100%`, 
-        width:'100%',
-        bottom: '0',
-        right: '0',
-        borderRadius: '0',
-        overflowY: 'scroll'
-      }}
-    >         
+    <InitiativesContainer>         
     <Typography variant="h6" style={{
       margin:'2rem',
       marginBottom: '1rem',
@@ -102,6 +80,6 @@ export default ()=> {
         }
         </List>
       </div>
-    </Paper>
+    </InitiativesContainer>
   </>)
 }

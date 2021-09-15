@@ -3,19 +3,9 @@ import { Fab } from '@material-ui/core'
 import { Layers, Terrain } from '@material-ui/icons'
 import { useRecoilState } from 'recoil'
 import { atoms } from 'misc'
-
-const useStyles = makeStyles(theme => ({
-  layersFab: {
-    position: 'absolute',
-    top: '9rem',
-    right: '1rem',
-    zIndex: 5,
-    background: '#ffffff'
-  }
-}))  
+import s from './styles.module.scss'
 
 export default ()=>{
-  const classes = useStyles()
   const [satellite,setSatellite] = useRecoilState(atoms.satellite)
 
   return ( 
@@ -23,7 +13,7 @@ export default ()=>{
       onClick={()=>{
         setSatellite(!satellite)
       }}
-      className={classes.layersFab} 
+      className={s.layersFab} 
       aria-label="satellite layer"
       size='small'
       style={{zIndex:1, position: 'absolute'}}

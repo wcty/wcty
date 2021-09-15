@@ -1,0 +1,23 @@
+
+.alert{
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 999;
+  max-width: calc( 100% - 4rem );
+}
+
+.text {
+  width: calc( 100% - 2rem );
+  margin: 1rem;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.selectButton {
+  width: calc( 50% - 0.75rem );
+  height: 4rem;
+  color: black;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+}

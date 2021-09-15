@@ -6,25 +6,9 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { atoms } from 'misc'
 import { Menu as MenuIcon } from '@material-ui/icons'
 import Drawer from '../Drawer'
-
-const useStyles = makeStyles(theme => ({
-  MenuFab: {
-    position: 'absolute',
-    left: '1rem',
-    zIndex: 12,
-    background: '#ffffff'
-  },
-  alert: {
-    position: 'absolute',
-    top: '1rem',
-    left: '1rem',
-    maxWidth: '60%',
-    zIndex: 5
-  }
-}))  
+import s from './styles.module.scss'
 
 export default ()=>{
-  const classes = useStyles()
   const [alert, setAlert] = useState<null|{description:string}>(null)
   const user = useRecoilValue(atoms.user)
   const [initiativeBar, setInitiativeBar] = useRecoilState(atoms.initiativeBarAtom)
@@ -35,7 +19,7 @@ export default ()=>{
       <>
         <Fab 
           onClick={()=>{setDrawer(!drawer)}}
-          className={classes.MenuFab} 
+          className={s.MenuFab} 
           style={{
             top: initiativeBar?'unset':'1rem',
             bottom: initiativeBar?'1rem':'unset',
@@ -49,7 +33,7 @@ export default ()=>{
       </>
     { alert && !user && (
       <Collapse in={Boolean(alert)}>
-        <Alert severity="info" className={classes.alert} onClose={() => {setAlert(null)}}>
+        <Alert severity="info" className={s.alert} onClose={() => {setAlert(null)}}>
           <AlertTitle>Info</AlertTitle>
           {alert?.description}
         </Alert>

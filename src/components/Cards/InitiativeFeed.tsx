@@ -1,9 +1,6 @@
-import { useEffect, useRef } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Box } from '@material-ui/core'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
 import { useParams, useHistory } from 'react-router-dom'
-import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
 import SwipeableViews from 'react-swipeable-views'
 import { virtualize } from 'react-swipeable-views-utils'
 import { atoms, reverseArray, getFeed, rearrangeCards, explore, querySize, useGeolocation } from 'misc'
@@ -11,49 +8,12 @@ import { useAddInitiativeVisitMutation, useInitiativesNearbyQuery, useInitiative
 import Initiative from './Initiative'
 import Explore from './Explore'
 import LoadMore from  './LoadMore'
+import { FeedSidebar, FeedWrapper } from './styles'
+import s from './styles.module.css'
 
 const EnhancedSwipeableViews = virtualize(SwipeableViews)
 
-const useStyles = makeStyles((theme) => ({
-  slide: {
-    overflow:'visible', 
-    minWidth: "100%",
-    zIndex: 10,
-    paddingTop: '-40px'
-  },
-  wrapper: {
-    position: 'absolute',
-    right: 0,
-    width: '100%',
-    height: '100%',
-    overflow: 'visible',
-    [theme.breakpoints.up("sm")]: {
-      maxWidth: '400px',
-      width: "50%",
-      overflowX:'hidden'
-    }
-  },
-  sidebar: {
-    overflow: 'visible',
-    marginTop: `100%`,
-    width: "100%",
-    maxHeight: `100%`,
-    bottom: "0",
-    right: "0",
-    minHeight: "250px",
-    zIndex: 16,
-    position: "absolute",
-    [theme.breakpoints.up("sm")]: {
-      marginTop: 0,
-      maxWidth: 400,
-      justify: "flex-end",
-      float: "right",
-    }
-  }
-}))
-
 export default () => {
-  const classes = useStyles()
   const history = useHistory()
   const location = useGeolocation()
 
@@ -286,26 +246,25 @@ export default () => {
         return <LoadMore key={key} />
       }
   }
-  return <Box className={classes.wrapper}>
-  <Box className={classes.sidebar}> 
-    <EnhancedSwipeableViews
-      overscanSlideBefore={2}
-      overscanSlideAfter={1}
-      index={slideIndex}
-      onTransitionEnd={onTransitionEnd}
-      onChangeIndex={(i)=>{
-        setSlideIndex(i)
-        if(feed.length===1){
-          console.log('reload')
-          setFeed(getFeed({last,next}))
-        }
-      }}
-      slideRenderer={slideRenderer}
-      // style={{ overflow: 'visible', bottom: 0, height:'100%' }}
-      slideClassName={classes.slide}
-      enableMouseEvents
-      resistance
-    />
-  </Box>
-  </Box>
+  return <FeedWrapper>
+    <FeedSidebar> 
+      <EnhancedSwipeableViews
+        overscanSlideBefore={2}
+        overscanSlideAfter={1}
+        index={slideIndex}
+        onTransitionEnd={onTransitionEnd}
+        onChangeIndex={(i)=>{
+          setSlideIndex(i)
+          if(feed.length===1){
+            console.log('reload')
+            setFeed(getFeed({last,next}))
+          }
+        }}
+        slideRenderer={slideRenderer}
+        slideClassName={s.feed_slide}
+        enableMouseEvents
+        resistance
+      />
+    </FeedSidebar>
+  </FeedWrapper>
 }

@@ -11,7 +11,7 @@ import { useRecoilState, atom } from 'recoil'
 import {toJSON} from 'misc'
 import s from './styles.module.scss'
 
-const sendComment = (text, commentsRef, user, type, commentsCount)=>{
+const sendComment = (text:any, commentsRef:any, user:any, type:any, commentsCount:any)=>{
   if(text){
     const commentId = commentsRef.push().getKey()
     //console.log(text, user, messageId)
@@ -38,7 +38,7 @@ const sendComment = (text, commentsRef, user, type, commentsCount)=>{
 }
 
 const AddReply = ({ r, n })=>{
-  const { initiativeID, postID } = useParams()
+  const { initiativeID, postID } = useParams<{ initiativeID:string, postID:string }>()
   const user = useUser()
   const i18n = useI18n()
   const commentsCount = useDatabase().ref(`chats/${initiativeID}/messages/${postID}/commentsCount`)
@@ -172,10 +172,10 @@ const CommentBody = ({c, refDir, initiative})=>{
   </>
 }
 
-const Comment = ({initiative, m, n })=>{
+const Comment = ({initiative, m, n }:any)=>{
 
   n = n || 0
-  const { initiativeID, postID } = useParams()
+  const { initiativeID, postID } = useParams<{ initiativeID:string, postID:string }>()
   const user = useUser()
   const i18n = useI18n()
   const [reply, setReply]= useRecoilState(atoms.replyFieldAtom)
@@ -285,5 +285,5 @@ export default ({initiative}:any)=>{
         }}
       />
     </Box>
-  </div>)
+  </div>) || null
 }

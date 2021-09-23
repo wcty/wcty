@@ -7,7 +7,7 @@ fragment InitiativeFields on initiatives {
   image
   description
   created_at
-  initiative_members {
+  members {
     user_id
   }
 }
@@ -45,7 +45,7 @@ query Initiative ($initiative_id: uuid!){
 }
 
 query MyInitiatives($user_id:uuid!) {
-  initiatives(where: {initiative_members: {user: {id: {_eq: $user_id}}}}) {
+  initiatives(where: {members: {user: {id: {_eq: $user_id}}}}) {
     ...InitiativeFields
   }
 }
@@ -54,8 +54,8 @@ query MyInitiatives($user_id:uuid!) {
 
 # Initiative threads
 
-query InitiativeThreads ($initiative_id: uuid!){
-  initiative_threads (where: {initiative_id: {_eq: $initiative_id}}) {
+query InitiativeInfo ($initiative_id: uuid!){
+  initiative_info(where:{initiative:{id: {_eq: $initiative_id}}}) {
     context
     goal
     problem
@@ -63,12 +63,13 @@ query InitiativeThreads ($initiative_id: uuid!){
 }
 
 query InitiativePosts ($initiative_id: uuid!){
-  initiative_thread_messages (where:{initiative_thread:{initiative_id: {_eq: $initiative_id}}}) {
+  initiative_thread_posts (where:{thread:{initiative: {id:{_eq: $initiative_id}}}}) {
     id
     thread_id
     created_at
-    message
-    initiative_thread_comments {
+    post
+    comments {
+      comment
       created_at
     }
     user {

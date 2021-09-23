@@ -15,16 +15,27 @@ mutation AddInitiative(
       description: $description, 
       geom: $geom, 
       image: $image, 
-      initiative_members: {
+      members: {
         data: {
           initiator: true, 
           user_id: $user_id
         }
       }, 
-      initiative_threads: {
+      infos: {
         data: {
           context: $context, 
-          goal: $goal, problem: $problem}}, initiative_visits: {data: {user_id: $user_id}}, name: $name}) {
+          goal: $goal, 
+          problem: $problem
+        }
+      }, 
+      visits: {
+        data: {
+          user_id: $user_id
+        }
+      }, 
+      name: $name
+    }
+  ){
     created_at
     description
     geom
@@ -42,8 +53,8 @@ mutation DeleteInitiative($initiative_id: uuid!){
 
 # Initiative Post mutations:
 
-mutation AddInitiativePost($initiative_id: uuid!, $user_id: uuid!, $post: String){
-  insert_initiative_thread_posts_one(object: {user_id:$user_id, post: $post, initiative_threads:{initiative_id:$initiative_id} }) {
+mutation AddInitiativePost($thread_id: Int, $user_id: uuid!, $post: String){
+  insert_initiative_thread_posts_one(object: {user_id:$user_id, post: $post, thread_id: $thread_id}) {
     id
   }
 }

@@ -8,6 +8,7 @@ export * from './style'
 export * from './hooks'
 export * from './config'
 export * from './nhost'
+export * from './components'
 
 export const cookies = new Cookies();
 

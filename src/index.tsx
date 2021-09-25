@@ -1,5 +1,6 @@
 import 'resize-observer-polyfill/dist/ResizeObserver.global'
 import './styles/index.css'
+import 'mapbox-gl/dist/mapbox-gl.css';
 import * as serviceWorker from './serviceWorker'
 
 import React from 'react'
@@ -11,6 +12,7 @@ import { createBrowserHistory } from 'history'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from "@nhost/react-apollo"
 import App from './components/App'
+import { InMemoryCache } from '@apollo/client';
 
 export const history = createBrowserHistory()
 
@@ -19,6 +21,7 @@ const AppRoot = ()=>
     <NhostAuthProvider auth={auth}>
       <NhostApolloProvider
         auth={auth}
+        cache={new InMemoryCache({ addTypename: false })}
         publicRole='anonymous'
         gqlEndpoint={`https://hasura-aws.weee.city/v1/graphql`}
       >

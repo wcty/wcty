@@ -1,5 +1,5 @@
 import 'resize-observer-polyfill/dist/ResizeObserver.global'
-import './styles/index.css'
+import './misc/style/index.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import * as serviceWorker from './serviceWorker'
 

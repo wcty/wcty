@@ -25,7 +25,7 @@ const LogIn = (props:any)=>{
       />
     </ListItem>
     :
-    <ListItem>
+    <ListItem style={{maxWidth:'100%'}}>
       <ListItemAvatar>
         <StyledAvatar
           alt={user?.display_name||undefined}

@@ -7,6 +7,7 @@ import LoadIcons from './LoadIcons'
 // import Markers from './Markers'
 import Satellite from './Satellite'
 import { useHistory, useLocation } from 'react-router-dom'
+import mapStyle from './mapStyle.json'
 
 export default ()=>{
   const [viewport, setViewport] = useRecoilState(atoms.viewport);
@@ -29,7 +30,7 @@ export default ()=>{
       <>
         <MapGL
           style={{  width: '100%', height: '100%', border:"none", outline: "none" }}
-          mapStyle="mapbox://styles/switch9/ckahu5spr0amr1ik3n1fg0fvt"
+          mapStyle={mapStyle}
           accessToken={mapboxToken}
           onViewportChange={(v:any)=>setViewport({...viewport, ...v})}
           attributionControl={false}

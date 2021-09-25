@@ -48,7 +48,9 @@ export default ({ state, setState }:any)=>{
 
   const list = (anchor:any) => {
     return <>
-      <Header {...{state, setState}} />
+      <div style={{maxWidth:'100%'}}>
+        <Header {...{state, setState}} />
+      </div>
       <div className={clsx(s.list, {[s.fullList]: anchor === 'top' || anchor === 'bottom' })}>
         <List  
           disablePadding       

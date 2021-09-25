@@ -5,12 +5,13 @@ import { SetterOrUpdater, useRecoilState, useRecoilValue } from 'recoil'
 import { getFeed, atoms, useI18n } from 'misc'
 import { useParams, useHistory } from 'react-router-dom'
 import { Share, Close } from '@material-ui/icons'
+import { InitiativeFieldsFragment, useInitiativeQuery, useDeleteInitiativeMutation, useDeleteInitiativeMemberMutation } from 'generated'
 import moment from 'moment'
-import SelectRole from './SelectRole'
+import s from './styles.module.scss'
+
+// import SelectRole from './SelectRole'
 import InitiativeForMembers from './InitiativeForMembers'
 import ImageViewer from 'react-simple-image-viewer'
-import { InitiativeFieldsFragment, useInitiativeQuery, useDeleteInitiativeMutation, useDeleteInitiativeMemberMutation } from 'generated'
-import s from './styles.module.scss'
 
 export default ({ isViewerOpen, setIsViewerOpen, initiative }: { 
   isViewerOpen:boolean, 
@@ -37,8 +38,8 @@ export default ({ isViewerOpen, setIsViewerOpen, initiative }: {
         const index = f.map(v=>v.id).indexOf(delete_initiative_members?.returning?.[0].initiative_id)
         const newArray = [...f]
         const affected = newArray[index] as InitiativeFieldsFragment
-        const newMembers = affected.initiative_members.filter(v=>v.user_id!==user?.id)
-        affected.initiative_members = newMembers
+        const newMembers = affected.members.filter(v=>v.user_id!==user?.id)
+        affected.members = newMembers
         return newArray
       })
     }
@@ -88,7 +89,9 @@ export default ({ isViewerOpen, setIsViewerOpen, initiative }: {
       />}
     </>)}
     { joining ? 
-      <Box style={{padding: '2rem', paddingTop:0}}><SelectRole {...{initiativeID}} /></Box>
+      <Box style={{padding: '2rem', paddingTop:0}}>
+        {/* <SelectRole {...{initiativeID}} /> */}
+      </Box>
       :
       <Box style={{padding: '2rem', paddingTop: 0, paddingBottom: 0 }}>
         <List key='elements' disablePadding>
@@ -154,7 +157,7 @@ export default ({ isViewerOpen, setIsViewerOpen, initiative }: {
               }}>
               <Share style={{paddingRight:"0.5rem"}} /> {i18n('initiativeShare')}
             </Button>
-          { user && initiative && !(initiative.initiative_members.find(u=>u.user_id===user.id)) && <Button 
+          { user && initiative && !(initiative.members.find(u=>u.user_id===user.id)) && <Button 
             size="small" 
             variant="contained"  
             color="secondary"
@@ -164,8 +167,8 @@ export default ({ isViewerOpen, setIsViewerOpen, initiative }: {
           }}>
             {i18n('join')}
           </Button>}
-          { user && initiative && initiative.initiative_members.find(u=>u.user_id===user.id) && (<>
-              {initiative.initiative_members.length < 2 ?
+          { user && initiative && initiative.members.find(u=>u.user_id===user.id) && (<>
+              {initiative.members.length < 2 ?
               <Button 
                 size="small" 
                 variant="outlined"  
@@ -190,7 +193,7 @@ export default ({ isViewerOpen, setIsViewerOpen, initiative }: {
                   // refetch()
                   setNext(prev=>prev.map(v=>{
                     if(v.id===initiative.id){
-                      return {...v, ...{ initiative_members: v.initiative_members.filter(m=>m.user_id!==user.id) }}
+                      return {...v, ...{ members: v.members.filter(m=>m.user_id!==user.id) }}
                     }
                     return v
                   }))
@@ -201,7 +204,7 @@ export default ({ isViewerOpen, setIsViewerOpen, initiative }: {
             </>)
           }
           </Box> 
-        { user && initiative.initiative_members.find(m=>m.user_id===user.id) && (<>
+        { user && initiative.members.find(m=>m.user_id===user.id) && (<>
             <InitiativeForMembers initiative={initiative}/>
         </>)}
       </Box>

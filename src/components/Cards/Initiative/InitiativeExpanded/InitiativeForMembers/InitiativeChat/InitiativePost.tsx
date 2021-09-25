@@ -1,3 +1,6 @@
+//@ts-nocheck
+
+
 import { useState, useEffect, ReactNode } from 'react';
 import { IconButton, ListItemSecondaryAction, Menu, MenuItem, Button, Divider, Avatar, Typography, Box, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import { useI18n, atoms } from 'misc'
@@ -17,11 +20,11 @@ const Type = (props:{children:ReactNode})=>{
 export default ({initiative, m, n}:{initiative:InitiativeFieldsFragment, m:{}, n:number})=>{
 
   n = n || 0
-  const initiativeID = initiative.properties.uid
+  const initiativeID = initiative.id
   const user = useRecoilValue(atoms.user)
   const i18n = useI18n()
   const history = useHistory()
-  const { data: messages } = useInitiativePostsQuery({variables:{initiative_id:initiativeID}})
+  const { data: messages } = useInitiativePostSubscription({variables:{initiative_id:initiativeID}})
 
   useEffect(()=>{console.log(initiative)},[initiative])
   useEffect(()=>{
@@ -30,11 +33,11 @@ export default ({initiative, m, n}:{initiative:InitiativeFieldsFragment, m:{}, n
 
   const [anchorEl, setAnchorEl] = useState();
 
-  const handleClick = (event) => {
+  const handleClick = (event:any) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (event) => {
+  const handleClose = (event:any) => {
     event.preventDefault();
     if(event.target.innerText=='Delete'){
       messages.child(m.id).remove()

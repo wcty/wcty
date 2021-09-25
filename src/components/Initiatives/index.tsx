@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Divider, List, Typography, ListItem, ListItemText } from '@material-ui/core';
 import { useRecoilValue } from 'recoil';
 import { useHistory } from 'react-router-dom'
-import { mapboxConfig, atoms, useI18n } from 'misc'
+import { mapboxToken, atoms, useI18n } from 'misc'
 import { useMyInitiativesQuery, Initiatives } from 'generated'
 import { InitiativesContainer } from './styles'
 
@@ -19,7 +19,7 @@ const InitiativeRow = ({initiative}:{initiative:Pick<Initiatives, "id" | "name" 
       const request = async ()=>{
         const response = await fetch(
           `https://api.mapbox.com/geocoding/v5/mapbox.places/${coords[0]},${coords[1]}.json`+
-          `?access_token=${mapboxConfig.accessToken}`, { signal })
+          `?access_token=${mapboxToken}`, { signal })
         if(signal.aborted) return;
         const address:any = await response.json()
         if(signal.aborted) return;
@@ -55,7 +55,7 @@ const InitiativeRow = ({initiative}:{initiative:Pick<Initiatives, "id" | "name" 
 export default ()=> {
   const user = useRecoilValue(atoms.user);
   const i18n = useI18n()
-  const { data } = useMyInitiativesQuery({variables:{user:user?.id}});
+  const { data } = useMyInitiativesQuery({variables:{user_id: user?.id}});
   const initiatives = data?.initiatives
 
   return (<>

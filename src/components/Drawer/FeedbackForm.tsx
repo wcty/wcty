@@ -1,3 +1,6 @@
+//@ts-nocheck
+
+
 import { useState, useEffect } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { Paper, FormControl, IconButton, InputLabel, Select, MenuItem, Typography, TextField, Button, MobileStepper, Box } from '@material-ui/core';

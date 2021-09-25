@@ -8,7 +8,6 @@ import Initiatives from './Initiatives'
 import { InitiativeFab, MenuFab, LocateFab, LayersFab } from './Fabs'
 import { useRecoilState } from 'recoil'
 import { atoms, auth } from 'misc'
-import { useApolloClient } from '@apollo/client'
 import { useUserLazyQuery } from 'generated'
 import { AppWrapper, MapWrapper } from './styles'
 
@@ -16,7 +15,6 @@ import { AppWrapper, MapWrapper } from './styles'
 export default function App() {
   const [user, setUser] = useRecoilState(atoms.user)
   const url = useLocation()
-  const client = useApolloClient()
   const history = useHistory()
   const [satellite, setSatellite] = useRecoilState(atoms.satellite)
 
@@ -31,16 +29,13 @@ export default function App() {
   },[userData])
 
   useEffect(()=>{
-    auth.onAuthStateChanged((loggedIn) => {
+    auth.onAuthStateChanged((loggedIn?:boolean) => {
       if(loggedIn){
         const user_id = auth.getClaim("x-hasura-user-id");
         console.log(user_id)
         getUser({variables:{user_id}})
-      }else if(loggedIn===false){
-        setUser(null)
       }else{
         setUser(null)
-        client.resetStore()
       }
     });
   },[])

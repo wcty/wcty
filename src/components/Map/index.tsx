@@ -1,10 +1,10 @@
 import MapGL, { AttributionControl, Layer, Source } from '@urbica/react-map-gl'
 import { MapLayerMouseEvent } from 'mapbox-gl'
-import { mapboxConfig, atoms, useGeolocation } from 'misc'
+import { atoms, useGeolocation, mapboxToken } from 'misc'
 import { useRecoilState } from 'recoil'
 import LocationIcon from './LocationIcon'
 import LoadIcons from './LoadIcons'
-import Markers from './Markers'
+// import Markers from './Markers'
 import Satellite from './Satellite'
 import { useHistory, useLocation } from 'react-router-dom'
 
@@ -30,7 +30,7 @@ export default ()=>{
         <MapGL
           style={{  width: '100%', height: '100%', border:"none", outline: "none" }}
           mapStyle="mapbox://styles/switch9/ckahu5spr0amr1ik3n1fg0fvt"
-          accessToken={mapboxConfig.accessToken}
+          accessToken={mapboxToken}
           onViewportChange={(v:any)=>setViewport({...viewport, ...v})}
           attributionControl={false}
           cursorStyle={cursor}
@@ -42,7 +42,7 @@ export default ()=>{
             position='bottom-left'
           />
           <LoadIcons />
-          <Markers />
+          {/* <Markers /> */}
           { satellite && <Satellite />}
           <LocationIcon />
           <Source 

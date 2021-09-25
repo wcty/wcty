@@ -1,6 +1,4 @@
-import { useSetRecoilState } from 'recoil'
 import { Route, useHistory } from 'react-router-dom'
-import { atoms } from 'misc'
 import CreateInitiative from 'components/Cards/CreateInitiative'
 import InitiativeFeed from './InitiativeFeed'
 

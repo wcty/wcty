@@ -4,7 +4,7 @@ import { Typography, Button, Card, CardActions, CardContent, CardActionArea, use
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { useHistory } from 'react-router-dom'
 import { Helmet } from "react-helmet"
-import { mapboxConfig, atoms, useI18n, useGeolocation } from 'misc'
+import { mapboxToken, atoms, useI18n, useGeolocation } from 'misc'
 import getDistance from "@turf/distance"
 import WecityGroups from 'assets/images/wecity_groups_512.png'
 import ArrowNavigation from  './ArrowNavigation'
@@ -27,7 +27,7 @@ export default ()=>{
     if(next?.[0]){
       const coords = next?.[0]?.geom.coordinates
       const request = async ()=>{
-        const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${coords[0]},${coords[1]}.json?access_token=${mapboxConfig.accessToken}&language=${lang}`)
+        const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${coords[0]},${coords[1]}.json?access_token=${mapboxToken}&language=${lang}`)
         const address = await response.json()
         setAddress(address.features[0]?.properties.address?
           (address.features[0]?.properties.address+', '+(address.features[1]?address.features[1].text:'')+', '+(address.features[3]?address.features[3].text:'')):

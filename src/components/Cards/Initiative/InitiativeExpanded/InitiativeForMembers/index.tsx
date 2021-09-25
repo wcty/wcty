@@ -92,7 +92,7 @@ export default function FullWidthTabs({initiative}:{initiative:InitiativeFieldsF
 
 
   return (<>
-    {user && initiative.initiative_members.find(m=>m.user_id===user.id) && 
+    {user && initiative.members.find(m=>m.user_id===user.id) && 
       <Route path={'/initiative/:initiativeID/post/:postID'} >
         <InitiativeTopic initiative={initiative} />
       </Route>
@@ -122,7 +122,7 @@ export default function FullWidthTabs({initiative}:{initiative:InitiativeFieldsF
         style={{paddingTop:0}}
       >
         <TabPanel key={0} value={value} index={0} dir={theme.direction} className={s.tab}>
-            <InitiativeChat initiative={initiative}/>
+            {/* <InitiativeChat initiative={initiative}/> */}
         </TabPanel>
         <TabPanel key={1} value={value} index={1} dir={theme.direction} className={s.tab}>
             <Typography variant="h6"> 

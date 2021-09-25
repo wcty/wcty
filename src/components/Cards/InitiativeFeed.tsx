@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil'
 import { useParams, useHistory } from 'react-router-dom'
 import SwipeableViews from 'react-swipeable-views'
 import { virtualize } from 'react-swipeable-views-utils'
-import { atoms, reverseArray, getFeed, rearrangeCards, explore, querySize, useGeolocation } from 'misc'
+import { atoms, reverseArray, getFeed, rearrangeCards, explore, useGeolocation } from 'misc'
 import { useAddInitiativeVisitMutation, useInitiativesNearbyQuery, useInitiativesLastVisitedQuery, useInitiativeLazyQuery, InitiativeFieldsFragment } from 'generated'
 import Initiative from './Initiative'
 import Explore from './Explore'
@@ -32,6 +32,8 @@ export default () => {
   const [ feed, setFeed ] = useRecoilState(atoms.initiativeFeed)
   const [ lockKeys, setLock ] = useRecoilState(atoms.lockKeys)
   
+  const querySize = 20
+
   useEffect(()=>{
     function Keys (event:KeyboardEvent) {
       if(!lockKeys && event.key){

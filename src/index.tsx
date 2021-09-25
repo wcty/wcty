@@ -1,71 +1,38 @@
-import 'resize-observer-polyfill/dist/ResizeObserver.global';
-import React from 'react'
-import { render, hydrate } from 'react-dom'
-import App from './components/App'
+import 'resize-observer-polyfill/dist/ResizeObserver.global'
 import './styles/index.css'
-import * as serviceWorker from './serviceWorker';
-import { theme, RecoilExternalStatePortal, auth } from 'misc'
-import { ThemeProvider } from '@material-ui/core/styles'
-import { BrowserRouter as Router } from "react-router-dom";
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { onError } from '@apollo/client/link/error'
-import { RecoilRoot, } from 'recoil';
+import * as serviceWorker from './serviceWorker'
+
+import React from 'react'
+import { render } from 'react-dom'
+import { RecoilExternalStatePortal, auth } from 'misc'
+import { BrowserRouter as Router } from "react-router-dom"
+import { RecoilRoot, } from 'recoil'
 import { createBrowserHistory } from 'history'
+import { NhostAuthProvider } from '@nhost/react-auth'
+import { NhostApolloProvider } from "@nhost/react-apollo"
+import App from './components/App'
 
-const logoutLink = onError(({ networkError }) => {
- if ( 
-    networkError &&
-    'statusCode' in networkError &&
-    networkError.statusCode === 401
-  ) { auth.logout() };
-})
-
-const httpLink = createHttpLink({
-  uri: 'https://hasura-aws.weee.city/v1/graphql',
-});
-
-const authLink = setContext((_, { headers }) => {
-  const jwtToken = auth.getJWTToken();
-  if (jwtToken) {
-      return {
-          headers: {
-              ...headers,
-              Authorization: `Bearer ${jwtToken}`
-          }
-      }
-  }
-  return headers
-});
-
-export const client = new ApolloClient({
-  link: logoutLink.concat(authLink.concat(httpLink)),
-  cache: new InMemoryCache({
-    addTypename: false
-  }),
-});
-
-export const history = createBrowserHistory();
-
-const rootElement = document.getElementById("root")!!
+export const history = createBrowserHistory()
 
 const AppRoot = ()=> 
   <React.StrictMode>
-    <Router {...{history}}>
-      <ThemeProvider theme={theme}>
-        <RecoilRoot>
-          <RecoilExternalStatePortal />
-          <ApolloProvider client={client}>
+    <NhostAuthProvider auth={auth}>
+      <NhostApolloProvider
+        auth={auth}
+        publicRole='anonymous'
+        gqlEndpoint={`https://hasura-aws.weee.city/v1/graphql`}
+      >
+        <Router {...{history}}>
+          <RecoilRoot>
+            <RecoilExternalStatePortal />
             <App />
-          </ApolloProvider>
-        </RecoilRoot>
-      </ThemeProvider>
-    </Router>
+          </RecoilRoot>
+        </Router>
+      </NhostApolloProvider>
+    </NhostAuthProvider>
   </React.StrictMode>
 
-if (rootElement.hasChildNodes()) {
-  hydrate(<AppRoot />, rootElement);
-} else {
-  render(<AppRoot />, rootElement);
-}
+
+render(<AppRoot />, document.getElementById("root"))
+
 serviceWorker.unregister()

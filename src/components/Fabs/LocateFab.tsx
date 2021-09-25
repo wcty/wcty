@@ -1,4 +1,3 @@
-import { makeStyles } from '@material-ui/core/styles'
 import { Fab } from '@material-ui/core'
 import { useRecoilState } from 'recoil'
 import { atoms, useGeolocation } from 'misc'
@@ -16,7 +15,7 @@ export default ()=>{
           setViewport({viewportChangeMethod: 'easeTo', ...location, zoom: 16});
         }
       }}
-      className={classes.locateFab} 
+      className={s.locateFab} 
       size="small"
       aria-label="add"
       disabled={!location}

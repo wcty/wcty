@@ -3,10 +3,11 @@ import { IconButton, InputAdornment, Box, TextField } from '@material-ui/core';
 import { useParams } from 'react-router-dom'
 import { Send } from '@material-ui/icons'
 import { useI18n, atoms } from 'misc'
-import Post from './InitiativePost'
-import { InitiativeFieldsFragment, useAddInitiativeMessageMutation, useInitiativePostsQuery } from 'generated';
+import { InitiativeFieldsFragment, useAddInitiativePostMutation, useInitiativePostsQuery } from 'generated';
 import { useRecoilValue } from 'recoil';
 import s from './styles.module.scss'
+
+// import Post from './InitiativePost'
 
 export default ({initiative}:{initiative:InitiativeFieldsFragment})=>{
   const i18n = useI18n()
@@ -15,8 +16,7 @@ export default ({initiative}:{initiative:InitiativeFieldsFragment})=>{
 
   const [text, setText] = useState('')
   const { data: messages } = useInitiativePostsQuery({variables:{initiative_id:initiativeID}})
-  const [ addPost ] = useAddInitiativePostsMutation({variables:{user_id: user?.id,initiative_id:initiativeID }})
-
+  const [ addPost ] = useAddInitiativePostMutation({variables:{user_id: user?.id, thread_id: 0 }})
 
   const sendMessage = ()=>{
     if(text && user){
@@ -37,7 +37,6 @@ export default ({initiative}:{initiative:InitiativeFieldsFragment})=>{
 
 
   return <>
-    
     <Box style={{width:"100%", marginTop: '0.5rem', padding: '0.5rem', position: 'relative', boxSizing: 'border-box'}}>
       <TextField 
         variant="outlined"
@@ -62,9 +61,9 @@ export default ({initiative}:{initiative:InitiativeFieldsFragment})=>{
         }}
       />
     </Box>
-    <div>
-      {messages?.initiative_thread_messages.map((m,n)=><Post m={m} n={n} initiative={initiative}/>)}
-    </div>
+    {/* <div>
+      {messages?.initiative_thread_posts.map((m,n)=><Post m={m} n={n} initiative={initiative}/>)}
+    </div> */}
 
   </>
 

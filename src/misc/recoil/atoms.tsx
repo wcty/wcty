@@ -19,11 +19,6 @@ export const offsetAtom = atom({
   default: 0,
 });
 
-export const baseAtom = atom({
-  key: 'base',
-  default: 1,
-});
-
 export const lockKeys = atom({
   key: 'lockKeys',
   default: false,
@@ -56,7 +51,7 @@ export const ownAtom = atom({
 
 export const initiativeFeed = atom({
   key: 'initiativeFeed',
-  default: [explore] as FeedEntry[],
+  default: [{ id:'explore' }] as FeedEntry[],
 });
 
 export const indexAtom = atom({

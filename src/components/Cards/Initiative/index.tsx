@@ -98,7 +98,7 @@ export default ({ initiative }:{ initiative: InitiativeFieldsFragment })=>{
           {/* <span style={{float:'right'}}> <ExpandLess /></span> */}
           <span style={{marginLeft: location?"2rem":undefined}}>
             <People style={{fontSize: 'large'}} /> 
-            {initiative.initiative_members.length}
+            {initiative.members.length}
           </span>
           <Typography variant="h6">
             {initiative.name? initiative.name: "Name is not set"}

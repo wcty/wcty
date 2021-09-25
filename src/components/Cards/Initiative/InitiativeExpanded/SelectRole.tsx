@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+//@ts-nocheck
+
+import { useState } from 'react'
 import {  Typography, Card, CardActionArea, CardMedia, CardContent, CardActions,  Box, Button, Radio, RadioGroup, FormControlLabel, FormControl, TextField, InputAdornment, Checkbox } from '@material-ui/core'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { toJSON, useI18n, atoms } from 'misc'
 import { useParams, useHistory } from 'react-router-dom'
 import { useAddInitiativeMemberMutation, useInitiativeQuery, InitiativeFieldsFragment, useInitiativePostsQuery } from 'generated'
@@ -75,8 +76,8 @@ export default ({ initiativeID='' })=>{
         const index = f.map(v=>v.id).indexOf(insert_initiative_members_one?.initiative_id)
         const newArray = [...f]
         const affected = newArray[index] as InitiativeFieldsFragment
-        const newMembers = [...affected.initiative_members, { user_id:insert_initiative_members_one?.user_id } ]
-        affected.initiative_members = newMembers
+        const newMembers = [...affected.members, { user_id:insert_initiative_members_one?.user_id } ]
+        affected.members = newMembers
         return newArray
       })
       setTimeout(()=>setClicked(false),10000)},

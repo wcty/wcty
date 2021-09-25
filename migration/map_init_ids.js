@@ -1,5 +1,4 @@
 global.fetch = require('node-fetch');
-const { ApolloClient, gql, InMemoryCache } = require('@apollo/client');
 const initiatives = require('./initiatives/initiatives_mongo.json')
 const users = require('./users/firebase_users_mapped.json')
 

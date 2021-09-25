@@ -1,48 +1,14 @@
 import { Suspense, useState } from 'react'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { useTheme } from '@material-ui/core/styles'
 import { ListItem, ListItemAvatar, ListItemText, Toolbar, Avatar, CircularProgress } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
 import { useRecoilState } from 'recoil';
-import {ReactComponent as Logo} from 'assets/images/wecityLogoBlack.svg'
+import { ReactComponent as Logo } from 'assets/images/wecityLogoBlack.svg'
 import { useHistory, Link } from 'react-router-dom'
 import { atoms, useI18n, auth } from 'misc'
-
-const Styles = makeStyles( theme => ({
-  appbar: {
-    zIndex: 10,
-  },
-  button: {
-    margin: theme.spacing(0),
-    marginLeft: 'auto'
-  },
-  progress: {
-    color: 'black',
-    marginRight: theme.spacing(1),
-  },
-  progressText: {
-    ...theme.typography.button,
-    marginRight: '1rem',
-    color: 'black'
-  },
-  progressLoaderContainer: {
-    display: 'flex',
-    marginLeft: 'auto'
-  },
-  userProfileContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: 'auto',
-    marginRight: 0
-  },
-  userProfileAvatar: {
-    height: 24,
-    width: 24,
-    marginRight: theme.spacing(1),
-  },
-}))
+import { StyledAvatar, StyledCircularProgress } from './styles';
 
 const LogIn = (props:any)=>{
-  const classes = Styles()
   const i18n = useI18n()
   const [user]:any = useRecoilState(atoms.user);
   const history = useHistory()
@@ -61,10 +27,9 @@ const LogIn = (props:any)=>{
     :
     <ListItem>
       <ListItemAvatar>
-        <Avatar
+        <StyledAvatar
           alt={user?.display_name||undefined}
           src={user?.avatar_url||undefined}
-          className={classes.userProfileAvatar}
           onClick={()=>history.push('/settings')} 
         />
       </ListItemAvatar>         
@@ -79,7 +44,6 @@ const LogIn = (props:any)=>{
 
 export default (props:any)=>{
   const i18n = useI18n()
-  const classes = Styles()
   const [showBar] = useRecoilState(atoms.showBarAtom)
   const [drawer, setDrawer] = useState(false)
   const theme = useTheme()
@@ -95,7 +59,7 @@ export default (props:any)=>{
         <Suspense fallback={ 
           <ListItem>
             <ListItemAvatar>
-              <CircularProgress size={24}  className={classes.progress} />
+              <StyledCircularProgress size={24}/>
             </ListItemAvatar>         
             <ListItemText 
               primary={i18n('loading')}

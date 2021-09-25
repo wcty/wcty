@@ -6,11 +6,15 @@ export * from './i18n'
 export * from './recoil'
 export * from './style'
 export * from './hooks'
-export * from './config'
 export * from './nhost'
 export * from './components'
 
+export const mapboxToken = 'pk.eyJ1Ijoic3dpdGNoOSIsImEiOiJjamozeGV2bnkxajV2M3FvNnpod3h4ODlpIn0.CTt2IXV8II6finbTlxEddg'
+
+type Explore = { id:'explore' }
+export const explore = { id:'explore' } as Explore
 export const cookies = new Cookies();
+
 
 export const toJSON = (date:Date)=>{
   var timezoneOffsetInHours = -(date.getTimezoneOffset() / 60); //UTC minus local time
@@ -46,9 +50,6 @@ export const addVisitPrevious = ({addVisit, user, index, markers, last, initUID}
     }
   })
 }
-
-type Explore = { id:'explore' }
-export const explore = { id:'explore' } as Explore
 
 type LoadMore = { id:'loadMore' }
 export const loadMore = { id:'loadMore' } as LoadMore

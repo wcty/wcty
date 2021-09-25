@@ -1,3 +1,6 @@
+//@ts-nocheck
+
+
 import { Source, Layer } from '@urbica/react-map-gl'
 import { MapLayerMouseEvent, MapMouseEvent } from 'mapbox-gl'
 import { useRecoilState } from 'recoil'
@@ -16,7 +19,7 @@ export default () =>{
   const onClick = (event:MapLayerMouseEvent) => {
     if (event?.features?.length !== 0){ 
 
-      const selected = [...last.features,...next.features].find(f=>f.properties.uid===event?.features?.[0].properties?.uid)
+      const selected = [...last, ...next].find((f)=>f.uid===event?.features?.[0].properties?.uid)
       if(selected){
         setOffset(0)
         setSlideIndex(1)

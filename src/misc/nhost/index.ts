@@ -1,11 +1,15 @@
 import { createClient } from "nhost-js-sdk";
-import { BACKEND_ENDPOINT } from "misc";
+
+const origin = window.location.origin
+console.log(origin)
+
+export const endpoint = 
+  origin === 'http://localhost:3000' ? 'https://api-local.weee.city':
+  origin === 'https://dev.weee.city' ? 'https://api-dev.weee.city':
+  'https://api.weee.city'
 
 const client = createClient({
-  baseURL: BACKEND_ENDPOINT,
+  baseURL: endpoint,
 });
 
-const auth = client.auth;
-const storage = client.storage;
-
-export { auth, storage };
+export const { auth, storage } = client;

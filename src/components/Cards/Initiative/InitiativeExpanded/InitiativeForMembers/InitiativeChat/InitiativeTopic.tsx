@@ -1,13 +1,15 @@
+//@ts-nocheck
+
+
+
 import { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Menu, MenuItem, ListItemSecondaryAction, Toolbar, IconButton, Button, Divider, InputAdornment, Avatar, Typography, Box, TextField, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import { useI18n } from 'misc'
-import { useDatabase, useUser, useDatabaseListData, useFirestore, useFirestoreDocData, useDatabaseObjectData } from 'reactfire'
-import { useParams, useHistory, Route } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { ArrowBack, Send, MoreVert, ThumbUpOutlined, ThumbUp, ThumbDownOutlined, ThumbDown, ModeCommentOutlined, RefreshRounded } from '@material-ui/icons'
 import Post from './InitiativePost'
 import { atoms } from 'misc'
-import { useRecoilState, atom } from 'recoil'
+import { useRecoilState } from 'recoil'
 import {toJSON} from 'misc'
 import s from './styles.module.scss'
 

@@ -44,7 +44,6 @@
     "i18n": "node scripts/i18n.js",
     "generate": "dotenv -- graphql-codegen --config scripts/codegen.yml",
     "generate-watch": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch",
-    "postbuild": "react-snap",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "postinstall": "cd node_modules/@nhost/react-apollo && npm install && npm run build"

@@ -39,13 +39,10 @@
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"npm run generate-watch\"",
     "prebuild": "npm run i18n && npm run generate",
-    "build-zip": "react-scripts build && gzipper c -e br --verbose ./build && gzipper c --brotli -e gz --verbose ./build",
     "build": "react-scripts build",
     "i18n": "node scripts/i18n.js",
     "generate": "dotenv -- graphql-codegen --config scripts/codegen.yml",
     "generate-watch": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "postinstall": "cd node_modules/@nhost/react-apollo && npm install && npm run build"
   },
   "eslintConfig": {

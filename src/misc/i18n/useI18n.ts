@@ -21,8 +21,10 @@ export const useI18n = ()=>{
   const { data:dict, refetch:getDict } = useDictionaryQuery({ variables:{ en:true } })
 
   useEffect(()=>{
-    getDict({[lang]:true})
-  },[getDict, lang])
+    if(getDict && !(dict?.i18n?.[0]?.[lang])){
+      getDict({[lang]:true})
+    }
+  },[dict, getDict, lang])
 
   useEffect(()=>{
     if(dict?.i18n){

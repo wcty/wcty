@@ -42,8 +42,7 @@
     "build": "react-scripts build",
     "i18n": "node scripts/i18n.js",
     "generate": "dotenv -- graphql-codegen --config scripts/codegen.yml",
-    "generate-watch": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch",
-    "postinstall": "cd node_modules/@nhost/react-apollo && npm install && npm run build"
+    "generate-watch": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch"  
   },
   "eslintConfig": {
     "extends": "react-app"

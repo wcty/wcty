@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker'
 
 import React from 'react'
 import { render } from 'react-dom'
-import { RecoilExternalStatePortal, auth } from 'misc'
+import { auth } from 'misc'
 import { BrowserRouter as Router } from "react-router-dom"
 import { RecoilRoot, } from 'recoil'
 import { createBrowserHistory } from 'history'

@@ -2485,9 +2485,10 @@
   resolved "https://registry.yarnpkg.com/@n1ru4l/graphql-live-query/-/graphql-live-query-0.8.1.tgz#2d6ca6157dafdc5d122a1aeb623b43e939c4b238"
   integrity sha512-x5SLY+L9/5s07OJprISXx4csNBPF74UZeTI01ZPSaxOtRz2Gljk652kSPf6OjMLtx5uATr35O0M3G0LYhHBLtg==
 
-"@nhost/react-apollo@https://github.com/wcty/react-apollo.git":
+"@nhost/react-apollo@^1.1.3":
   version "1.1.3"
-  resolved "https://github.com/wcty/react-apollo.git#f7967d85d79a84ae5a12ff2a0beb969ab46f63ac"
+  resolved "https://registry.yarnpkg.com/@nhost/react-apollo/-/react-apollo-1.1.3.tgz#651b0e36c7ad21f8d84831572af4db0efc1ea8c1"
+  integrity sha512-w2d5yfjbQh6UE+hvIuJMvxJ/ci91lqcjqXtXXjYNiVPxIJ5u9yKgfNDsN9isCG6acxc6ZfouxFyhqYoN6o3m9g==
   dependencies:
     subscriptions-transport-ws "^0.9.19"
 

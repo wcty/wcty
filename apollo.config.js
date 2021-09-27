@@ -11,6 +11,13 @@ module.exports = {
         "X-Hasura-Role": "user"      
       }
     },
-    includes: ["src/misc/graphql/*.{ts,tsx,js,jsx,graphql}"]
+    includes: [
+      "src/misc/**/*.graphql",
+      "src/misc/**/**/*.graphql",
+      "src/misc/**/**/**/*.graphql",
+      "src/components/**/*.graphql",
+      "src/components/**/**/*.graphql",
+      "src/components/**/**/**/*.graphql"
+    ]
   }
 }

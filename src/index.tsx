@@ -27,7 +27,7 @@ const AppRoot = ()=>
       >
         <Router {...{history}}>
           <RecoilRoot>
-            <RecoilExternalStatePortal />
+            {/* <RecoilExternalStatePortal /> */}
             <App />
           </RecoilRoot>
         </Router>

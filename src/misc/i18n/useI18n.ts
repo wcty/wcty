@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { default as defaultLang } from './defaultLang.json'
 import { useRecoilValue } from 'recoil'
 import { atoms } from 'misc'
-import { useApolloClient, gql } from '@apollo/client'
+import { useDictionaryQuery } from 'generated'
 
 export type MapSchema<T extends Record<string, string>> = {
   -readonly [K in keyof T]: string
@@ -16,32 +16,26 @@ export type I18nGetter = <K extends keyof i18n> (key:K, params?:any)=>i18n[K]
 
 export const useI18n = ()=>{
   const lang = useRecoilValue(atoms.lang)
-  const client = useApolloClient()
 
-  const DICTIONARY = (l:String)=> gql`
-    query Dictionary{
-      i18n(order_by: {key: asc}) {
-        ${l}
-        key
-      }
-    }
-  `
   const [i18nData, setI18nData] = useState<i18n>({...defaultLang})
+  const { data:dict, refetch:getDict } = useDictionaryQuery({ variables:{ en:true } })
 
   useEffect(()=>{
-    client?.query({
-      query : DICTIONARY(lang)
-    }).then((data)=>{
-      const langObject:i18n = data.data.i18n.reduce((a:any,b:any)=>{
+    getDict({[lang]:true})
+  },[getDict, lang])
+
+  useEffect(()=>{
+    if(dict?.i18n){
+      const langObject:i18n = dict.i18n.reduce((a:any,b:any)=>{
         const {key, ...value} = b
-        a[key]=Object.values(value)[0]
+        a[key]= value[lang]||Object.values(value)[0]
         return a
       }, {})
-      console.log(data, langObject)
-
+      console.log(dict, langObject)
       setI18nData(langObject)
-    })
-  },[lang, client])
+    }
+    
+  },[dict, lang])
 
 
   return function getI18n<K extends keyof i18n>(key:K, ...params:(number|string|boolean)[]):i18n[K] {

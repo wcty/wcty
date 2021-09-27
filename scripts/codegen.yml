@@ -5,7 +5,12 @@ schema:
         X-Hasura-Admin-Secret: ${HASURA_ADMIN}
         X-Hasura-Role: user
 documents: 
-  - 'src/**/*.graphql'
+  - "src/misc/**/*.graphql"
+  - "src/misc/**/**/*.graphql"
+  - "src/misc/**/**/**/*.graphql"
+  - "src/components/**/*.graphql"
+  - "src/components/**/**/*.graphql"
+  - "src/components/**/**/**/*.graphql"
 generates:
   src/generated/graphql.tsx:
     plugins:

@@ -7914,6 +7914,15 @@ export type S_GetFilesSubscriptionVariables = Exact<{
 
 export type S_GetFilesSubscription = { files: Array<Pick<Files, 'id' | 'created_at' | 'file_path' | 'downloadable_url'>> };
 
+export type DictionaryQueryVariables = Exact<{
+  en?: Maybe<Scalars['Boolean']>;
+  uk?: Maybe<Scalars['Boolean']>;
+  fr?: Maybe<Scalars['Boolean']>;
+}>;
+
+
+export type DictionaryQuery = { i18n: Array<MakeOptional<Pick<I18n, 'key' | 'en' | 'uk' | 'fr'>, 'en' | 'uk' | 'fr'>> };
+
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {
   geom
@@ -8665,6 +8674,46 @@ export function useS_GetFilesSubscription(baseOptions: Apollo.SubscriptionHookOp
       }
 export type S_GetFilesSubscriptionHookResult = ReturnType<typeof useS_GetFilesSubscription>;
 export type S_GetFilesSubscriptionResult = Apollo.SubscriptionResult<S_GetFilesSubscription>;
+export const DictionaryDocument = gql`
+    query Dictionary($en: Boolean = false, $uk: Boolean = false, $fr: Boolean = false) {
+  i18n(order_by: {key: asc}) {
+    key
+    en @include(if: $en)
+    uk @include(if: $uk)
+    fr @include(if: $fr)
+  }
+}
+    `;
+
+/**
+ * __useDictionaryQuery__
+ *
+ * To run a query within a React component, call `useDictionaryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useDictionaryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useDictionaryQuery({
+ *   variables: {
+ *      en: // value for 'en'
+ *      uk: // value for 'uk'
+ *      fr: // value for 'fr'
+ *   },
+ * });
+ */
+export function useDictionaryQuery(baseOptions?: Apollo.QueryHookOptions<DictionaryQuery, DictionaryQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<DictionaryQuery, DictionaryQueryVariables>(DictionaryDocument, options);
+      }
+export function useDictionaryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DictionaryQuery, DictionaryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<DictionaryQuery, DictionaryQueryVariables>(DictionaryDocument, options);
+        }
+export type DictionaryQueryHookResult = ReturnType<typeof useDictionaryQuery>;
+export type DictionaryLazyQueryHookResult = ReturnType<typeof useDictionaryLazyQuery>;
+export type DictionaryQueryResult = Apollo.QueryResult<DictionaryQuery, DictionaryQueryVariables>;
 export type filesKeySpecifier = ('created_at' | 'downloadable_url' | 'file_path' | 'id' | 'initiative' | 'initiative_id' | 'user' | 'user_id' | filesKeySpecifier)[];
 export type filesFieldPolicy = {
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,

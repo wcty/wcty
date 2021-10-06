@@ -1,6 +1,6 @@
 import SwipeableViews from 'react-swipeable-views';
 import { useState } from 'react'
-import { withStyles, useTheme } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/styles';
 import { Divider, Tabs, Tab, Typography, Box} from '@material-ui/core';
 import { atoms, useI18n } from 'misc'
 import { Route } from 'react-router-dom'
@@ -116,15 +116,15 @@ export default function FullWidthTabs({initiative}:{initiative:InitiativeFieldsF
         </AntTabs>
       </Box>
       <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        axis={'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
         style={{paddingTop:0}}
       >
-        <TabPanel key={0} value={value} index={0} dir={theme.direction} className={s.tab}>
+        <TabPanel key={0} value={value} index={0} dir={'ltr'} className={s.tab}>
             {/* <InitiativeChat initiative={initiative}/> */}
         </TabPanel>
-        <TabPanel key={1} value={value} index={1} dir={theme.direction} className={s.tab}>
+        <TabPanel key={1} value={value} index={1} dir={'ltr'} className={s.tab}>
             <Typography variant="h6"> 
               {i18n('initiativeGroupMembers')}
             </Typography>
@@ -132,7 +132,7 @@ export default function FullWidthTabs({initiative}:{initiative:InitiativeFieldsF
               In active development
             </Typography>
         </TabPanel>
-        <TabPanel key={2} value={value} index={2} dir={theme.direction} className={s.tab}>
+        <TabPanel key={2} value={value} index={2} dir={'ltr'} className={s.tab}>
           <Typography variant="h6"> 
             {i18n('initiativeGroupProjects')}
           </Typography>
@@ -140,7 +140,7 @@ export default function FullWidthTabs({initiative}:{initiative:InitiativeFieldsF
             In active development
           </Typography>
         </TabPanel>
-        <TabPanel key={3} value={value} index={3} dir={theme.direction} className={s.tab}>
+        <TabPanel key={3} value={value} index={3} dir={'ltr'} className={s.tab}>
           <Typography variant="h6"> 
             {i18n('initiativeGroupResources')}
           </Typography>

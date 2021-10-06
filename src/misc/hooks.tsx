@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { atoms } from 'misc'
 
+export function useUser(){
+  const [user] = useRecoilState(atoms.user)
+  return user
+}
 export function useGeolocation() {
 
   // const defaultValue = {longitude: 30.5234, latitude: 50.4501}

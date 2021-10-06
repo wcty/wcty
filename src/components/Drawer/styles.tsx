@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import { Avatar, CircularProgress } from '@material-ui/core'
 
 export const StyledAvatar = styled(Avatar)`

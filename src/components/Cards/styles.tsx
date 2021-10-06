@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 export const CreateInitiativeWrapper = styled.div`
   width: calc( 100% - 2rem );

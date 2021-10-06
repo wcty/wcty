@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 export const InitiativesContainer = styled.div`
     flex-grow: 1;

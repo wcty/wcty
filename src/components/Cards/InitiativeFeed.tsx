@@ -9,7 +9,7 @@ import Initiative from './Initiative'
 import Explore from './Explore'
 import LoadMore from  './LoadMore'
 import { FeedSidebar, FeedWrapper } from './styles'
-import s from './styles.module.css'
+import s from './styles.module.scss'
 
 const EnhancedSwipeableViews = virtualize(SwipeableViews)
 

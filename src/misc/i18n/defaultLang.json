@@ -143,5 +143,8 @@
  "joinDonateSum": "Amount",
  "joinChooseFromLibrary": "Choose from library",
  "initiativeFormAddCoverPhoto": "+ Add the cover picture",
- "initiativeFormShortDescription": "Short description"
+ "initiativeFormShortDescription": "Short description",
+ "organisations": "Organisations",
+ "login_or_register": "Login or register:",
+ "myOrganisations": "My organisations"
 }

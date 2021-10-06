@@ -43,68 +43,9 @@ export default ()=>{
             position='bottom-left'
           />
           <LoadIcons />
-          {/* <Markers /> */}
           { satellite && <Satellite />}
           <LocationIcon />
-          <Source 
-            id='initiatives'
-            type='vector'
-            url='https://tiles.weee.city/public.initiatives.json'
-            promoteId='id'
-          />
-          <Layer 
-            id='initiatives'
-            type='circle'
-            source='initiatives'
-            source-layer='public.initiatives'
-            paint={{
-              'circle-color': '#009688',
-              'circle-radius': 5,
-              'circle-stroke-color': '#fff',
-              'circle-stroke-width': 2
-            }}
-            onClick={onClick}
-            onEnter={()=>setCursor("pointer")}
-            onLeave={()=>setCursor("")}
-          />
-          <Layer
-            id='initiative-markers'
-            type='symbol'
-            source='initiatives'
-            minzoom={13}
-            source-layer='public.initiatives'
-            paint={{
-              'text-color': 'black',
-              'text-opacity': ["step", ['zoom'], 0, 15, 1 ],
-              'text-halo-width': 1,
-              'text-halo-color': "white",   
-            }}
-            layout={{
-              'icon-image': ['case', ['==', ['get', 'uid'], url.pathname.replace('/initiative/','')], 'marker-active', 'marker-fixed'],
-              'icon-anchor': 'bottom',
-              'icon-allow-overlap': true,
-              'icon-size': 
-                ["interpolate",
-                  ["linear"],
-                  ['zoom'],
-                    9, 0.2,
-                    16, 1.35
-                ],
-              'text-allow-overlap': true,
-              'icon-ignore-placement': true,
-              'text-ignore-placement': true,
-              'symbol-spacing': 1,
-              'text-field': ['case', ['==', ['get', 'id'], url.pathname.replace('/initiative/','')], ['get', 'name'], ''],
-              'text-anchor': 'top',
-              'text-font': ["Montserrat SemiBold"],
-              'text-size': 13,
-              'text-padding': 0,
-              'text-offset': [0, 0],
-            }}
-            onClick={onClick}
-            onEnter={()=>setCursor("pointer")}
-            onLeave={()=>setCursor("")}
-          />
+
         </MapGL>
       </>
     )

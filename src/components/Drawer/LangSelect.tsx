@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil'
 import {ReactComponent as UKRFlag} from 'assets/images/flags/ukr.svg'
 import {ReactComponent as ENFlag} from 'assets/images/flags/en.svg'
 // import {ReactComponent as FIFlag} from 'assets/images/flags/fi.svg'
-import {CustomSvgIcon} from 'misc'
+import { SvgIcon } from 'components'
 import { cookies, atoms, useI18n } from 'misc'
 const useForceUpdate = () => useState()[1];
 
@@ -33,11 +33,11 @@ export default ({toggleDrawer, ...props}:any)=>{
         >
 
           <MenuItem value={'en'} role="radio" aria-label="english">
-            <CustomSvgIcon><ENFlag/></CustomSvgIcon>
+            <SvgIcon><ENFlag/></SvgIcon>
             English
           </MenuItem>
           <MenuItem value={'uk'} role="radio" aria-label="ukrainian" >
-            <CustomSvgIcon><UKRFlag/></CustomSvgIcon>
+            <SvgIcon><UKRFlag/></SvgIcon>
             Українська
           </MenuItem>
         </Select>

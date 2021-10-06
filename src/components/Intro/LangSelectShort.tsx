@@ -14,7 +14,8 @@ export default ({toggleDrawer=undefined, ...props}:{toggleDrawer?: SetterOrUpdat
     const changeLanguage = (event:any) => {
       setLang(event.target.value);
       cookies.set('lang', event.target.value, { path: '/' }); //add selected language in the cookies
-      forceUpdate(undefined)
+      console.log('force update')
+      // forceUpdate(undefined)
       if(toggleDrawer) toggleDrawer(false)
     }
   

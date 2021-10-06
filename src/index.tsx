@@ -11,7 +11,7 @@ import { RecoilRoot, } from 'recoil'
 import { createBrowserHistory } from 'history'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from "@nhost/react-apollo"
-import App from './components/App'
+import App from './App'
 import { InMemoryCache } from '@apollo/client';
 
 export const history = createBrowserHistory()

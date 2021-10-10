@@ -1,30 +1,21 @@
-import MapGL, { AttributionControl, Layer, Source } from '@urbica/react-map-gl'
-import { MapLayerMouseEvent } from 'mapbox-gl'
+import MapGL, { AttributionControl, FeatureProps, Layer, MapGLProps, Source, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
+import { AnimationOptions } from 'mapbox-gl'
 import { atoms, useGeolocation, mapboxToken } from 'misc'
-import { useRecoilState } from 'recoil'
+import { atom, useRecoilState } from 'recoil'
 import LocationIcon from './LocationIcon'
 import LoadIcons from './LoadIcons'
 // import Markers from './Markers'
 import Satellite from './Satellite'
 import { useHistory, useLocation } from 'react-router-dom'
 import mapStyle from './mapStyle.json'
+import { ReactNode } from 'react'
+export default function Map({children}:{children?:ReactNode}){
+  const [viewport, setViewport] = useRecoilState(Map.viewport);
+  const [satellite] = useRecoilState(Map.satellite)
+  const [cursor] = useRecoilState(Map.cursor)
+  const [,setSelected] = useRecoilState(Map.selected)
 
-export default ()=>{
-  const [viewport, setViewport] = useRecoilState(atoms.viewport);
-  const [satellite] = useRecoilState(atoms.satellite)
-  const [cursor, setCursor] = useRecoilState(atoms.cursor)
   const history = useHistory()
-  const url = useLocation()
-
-  const onClick = (event:MapLayerMouseEvent) => {
-    if (event?.features?.length !== 0){ 
-      const selected = event?.features?.[0]
-      if(selected){
-        console.log(selected)
-        history.push(`/initiative/${event?.features?.[0]?.id}`) 
-      }
-    }
-  }
  
   return (
       <>
@@ -36,17 +27,45 @@ export default ()=>{
           attributionControl={false}
           cursorStyle={cursor}
           {...viewport}
-          onClick={()=>{ history.push('/') }}
+          onClick={()=>{ history.push('/'); setSelected(null) }}
         >
           <AttributionControl
             compact={true}
             position='bottom-left'
           />
           <LoadIcons />
-          { satellite && <Satellite />}
+          <>{ satellite && <Satellite /> }</>
           <LocationIcon />
-
+          <>{ children }</>
         </MapGL>
       </>
     )
 }
+
+Map.viewport = atom({
+  key: 'mapViewport',
+  default: {
+    latitude: 50.4501, 
+    longitude: 30.5234, 
+    zoom:15,
+    viewportChangeMethod: 'flyTo'
+  } as Viewport & { 
+    viewportChangeMethod?: ViewportChangeMethodProps,
+    viewportChangeOptions?: AnimationOptions
+  }, 
+})
+
+Map.cursor = atom({
+  key: 'mapCursor',
+  default: ''
+})
+
+Map.satellite = atom({
+  key: 'mapSatellite',
+  default: false
+})
+
+Map.selected = atom({
+  key: 'mapSelected',
+  default: null as (GeoJSON.Feature<GeoJSON.Point> & Omit<FeatureProps<Specs[keyof Specs]>['features'][number],'layer'|'sourceLayer'|'state'>) |null // |null
+})

@@ -5,12 +5,12 @@ import { Alert, AlertTitle } from '@material-ui/lab';
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { atoms } from 'misc'
 import { Menu as MenuIcon } from '@material-ui/icons'
-import Drawer from '../Drawer'
 import s from './styles.module.scss'
+import App from 'App';
 
 export default ()=>{
   const [alert, setAlert] = useState<null|{description:string}>(null)
-  const user = useRecoilValue(atoms.user)
+  const user = useRecoilValue(App.user)
   const [initiativeBar, setInitiativeBar] = useRecoilState(atoms.initiativeBarAtom)
   const [drawer, setDrawer] = useState(false)
 
@@ -29,7 +29,6 @@ export default ()=>{
         >
           <MenuIcon />
         </Fab>
-        <Drawer state={drawer} setState={setDrawer}/>
       </>
     { alert && !user && (
       <Collapse in={Boolean(alert)}>

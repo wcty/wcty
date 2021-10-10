@@ -5,12 +5,14 @@ import { atoms } from 'misc'
 import { MapWrapper } from './styles'
 import Sidepanel from './Sidepanel'
 import Login from './Login'
+import MapContents from './MapContents'
+import App from 'App'
 
 export default function DesktopVersion(){
-  const [user, setUser] = useRecoilState(atoms.user)
+  const [user, setUser] = useRecoilState(App.user)
   const url = useLocation()
   const history = useHistory()
-  const [satellite, setSatellite] = useRecoilState(atoms.satellite)
+  const [satellite, setSatellite] = useRecoilState(Map.satellite)
 
   return <>
       <Route path="/login">
@@ -18,7 +20,9 @@ export default function DesktopVersion(){
       </Route>
       <Route path="/">
         <MapWrapper>
-          <Map />
+          <Map>
+            <MapContents/>
+          </Map>
         </MapWrapper>
         <Sidepanel/>
       </Route>

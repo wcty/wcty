@@ -3,12 +3,13 @@ import { InitiativeFab, MenuFab, LocateFab, LayersFab, Intro, Login, Map, Initia
 import { useRecoilState } from 'recoil'
 import { atoms } from 'misc'
 import { MapWrapper } from './styles'
+import App from 'App'
 
 export default function MobileVersion(){
-  const [user, setUser] = useRecoilState(atoms.user)
+  const [user, setUser] = useRecoilState(App.user)
   const url = useLocation()
   const history = useHistory()
-  const [satellite, setSatellite] = useRecoilState(atoms.satellite)
+  const [satellite, setSatellite] = useRecoilState(Map.satellite)
 
   return <>
       <Route path="/login">

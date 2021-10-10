@@ -6,19 +6,29 @@ import { ReactComponent as LoginIcon } from 'assets/icons/login.svg'
 import { ReactComponent as LogoutIcon } from 'assets/icons/logout.svg'
 import { ReactComponent as Initiatives } from 'assets/icons/initiatives.svg'
 import { ReactComponent as Settings } from 'assets/icons/settings.svg'
+import { ReactComponent as MapIcon } from 'assets/icons/map.svg'
 
-import { useState } from 'react'
+import { useState, ReactElement } from 'react'
 import { auth, useI18n, useUser } from 'misc'
 import { LangSelect } from 'components'
 import { useHistory } from 'react-router'
-
+import { i18n as i18nType } from 'misc'
 export default function (){
   const user = useUser()
   const i18n = useI18n()
   const history = useHistory()
   
-  const tabs = user?
+  type Tabs = readonly {
+    key: keyof i18nType,
+    icon: ReactElement
+  }[]
+
+  const tabs = (user?
   [
+    {
+      key: 'initiativeMap',
+      icon: <MapIcon/>
+    },
     {
       key: 'myInitiatives',
       icon: <Initiatives/>
@@ -31,25 +41,27 @@ export default function (){
       key: 'settings',
       icon: <Settings/>
     }
-  ] as const:
+  ]:
   [
+    {
+      key: 'initiativeMap',
+      icon: <MapIcon/>
+    },
+    {
+      key: 'initiatives',
+      icon: <Initiatives/>
+    },
     {
       key: 'organisations',
       icon: <OrgIcon/>
-    },
-    {
-      key: 'projectLibrary',
-      icon: <ProjectIcon/>
     }
-  ] as const
+  ]) as Tabs
 
-  type Tabs = typeof tabs[number]['key']|'enter'|'exit'
-
-  const [selected, setSelected] = useState<null|Tabs>(null)
-  const [hovered, setHovered] = useState<null|Tabs>(null)
+  const [selected, setSelected] = useState<null|Tabs[number]['key']>(null)
+  const [hovered, setHovered] = useState<null|Tabs[number]['key']>(null)
 
 
-  function props(key:Tabs){
+  function props(key:Tabs[number]['key']){
     return ({
       'data-selected':selected===key,
       'data-hovered':hovered===key,
@@ -64,9 +76,6 @@ export default function (){
     <Sidepanel>
       <Stripe>
         <div>
-          <UserIconThumb className='thumb'>
-            <div/>
-          </UserIconThumb>
           <UserIconCell {...{...props('enter'), onClick:()=>{
             if(!user){history.push('/login')} }}}>
             {user? <UserPhoto src={user.avatar_url||''}/>: <UserIcon/>}

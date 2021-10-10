@@ -9,6 +9,7 @@ import addImage from 'assets/images/addImage.png'
 import CSS from 'csstype'
 import { ImageProps } from '../types';
 import s from './styles.module.scss'
+import App from 'App';
 
 function CircularProgressWithLabel(props:{ value:number, style:CSS.Properties, [props:string]:any }) {
 
@@ -72,7 +73,7 @@ type ImageInputProps = { input: ImageProps, setFormData: SetterOrUpdater<{[prop:
 export default function ImageInput({ input, setFormData, initiativeID }: ImageInputProps) {
   const i18n = useI18n()
   const fileInput = useRef<HTMLInputElement>(null)
-  const user = useRecoilValue(atoms.user)
+  const user = useRecoilValue(App.user)
   const [ fileData, setFileData ] = useState<File | null>()
   const [ uploadState, setUploadState ] = useState("")
   const [ uploadCompleted, setUploadCompleted ] = useState(0)

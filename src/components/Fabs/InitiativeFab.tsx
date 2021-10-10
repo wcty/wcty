@@ -7,10 +7,11 @@ import { useI18n, atoms } from 'misc'
 import { AddLocation } from '@material-ui/icons'
 import { useHistory } from 'react-router-dom'
 import s from './styles.module.scss'
+import App from 'App';
 
 export default ({ active }:{ active: boolean })=>{
   const [alert, setAlert] = useState<{description:string}|null>(null)
-  const user = useRecoilValue(atoms.user)
+  const user = useRecoilValue(App.user)
   const setSelected = useSetRecoilState(atoms.selectedAtom)
   const [initiativeBar, setInitiativeBar] = useRecoilState(atoms.initiativeBarAtom)
   const i18n = useI18n()

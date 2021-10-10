@@ -4,15 +4,6 @@ import { Users, Maybe, InitiativesNearbyQuery, InitiativesLastVisitedQuery } fro
 import { defineLang } from '../i18n'
 import { explore, FeedEntry, loadMore } from '../'
 
-export const viewport = atom({
-  key: 'viewport', 
-  default: {
-    latitude: 50.4501, 
-    longitude: 30.5234, 
-    zoom:15,
-    viewportChangeMethod: 'flyTo'
-  } as Viewport & { viewportChangeMethod: ViewportChangeMethodProps }, 
-});
 
 export const offsetAtom = atom({
   key: 'offset',
@@ -118,19 +109,3 @@ export const replyFieldAtom = atom({
   key: 'replyField',
   default: undefined,
 })
-
-export const user = atom({
-  key: 'user',
-  default: undefined as Maybe<Pick<Users, "id" | "avatar_url" | "created_at" | "display_name">> | undefined,
-});
-
-export const satellite = atom({
-  key: 'satellite',
-  default: false as boolean
-});
-
-export const cursor = atom({
-  key: 'cursor',
-  default: "" as string
-});
-

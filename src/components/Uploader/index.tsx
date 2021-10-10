@@ -4,13 +4,14 @@ import { storage, atoms } from 'misc'
 import { v4 as uuidv4 } from 'uuid'
 import { useRecoilValue } from 'recoil'
 import { useInsertFileMutation } from 'generated'
+import App from 'App'
 
 export interface IFilesProps {}
 
 export default function Files(props: IFilesProps) {
 
   const fileInput = useRef<HTMLInputElement>(null)
-  const user = useRecoilValue(atoms.user)
+  const user = useRecoilValue(App.user)
   const [ initiativeID, setInitiativeID ] = useState<string>()
   const [ fileData, setFileData ] = useState<File | null>()
   const [ uploadState, setUploadState ] = useState("")

@@ -4,9 +4,10 @@ import { Layers, Terrain } from '@material-ui/icons'
 import { useRecoilState } from 'recoil'
 import { atoms } from 'misc'
 import s from './styles.module.scss'
+import { Map } from 'components'
 
 export default ()=>{
-  const [satellite,setSatellite] = useRecoilState(atoms.satellite)
+  const [satellite,setSatellite] = useRecoilState(Map.satellite)
 
   return ( 
     <Fab 

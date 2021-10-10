@@ -146,5 +146,6 @@
  "initiativeFormShortDescription": "Short description",
  "organisations": "Organisations",
  "login_or_register": "Login or register:",
- "myOrganisations": "My organisations"
+ "myOrganisations": "My organisations",
+ "initiatives": "Initiatives"
 }

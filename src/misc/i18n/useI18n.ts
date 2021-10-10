@@ -10,7 +10,7 @@ export type MapSchema<T extends Record<string, string>> = {
 
 const dataObject = {...defaultLang} as const;
 
-type i18n = MapSchema<typeof dataObject>
+export type i18n = MapSchema<typeof dataObject>
 
 export type I18nGetter = <K extends keyof i18n> (key:K, params?:any)=>i18n[K] 
 

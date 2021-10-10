@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { mapboxToken, atoms, useI18n } from 'misc'
 import { useMyInitiativesQuery, Initiatives } from 'generated'
 import { InitiativesContainer } from './styles'
+import App from 'App';
 
 const InitiativeRow = ({initiative}:{initiative:Pick<Initiatives, "id" | "name" | "description" | "image" | "geom">})=>{
   const history = useHistory()
@@ -53,7 +54,7 @@ const InitiativeRow = ({initiative}:{initiative:Pick<Initiatives, "id" | "name" 
 }
 
 export default ()=> {
-  const user = useRecoilValue(atoms.user);
+  const user = useRecoilValue(App.user);
   const i18n = useI18n()
   const { data } = useMyInitiativesQuery({variables:{user_id: user?.id}});
   const initiatives = data?.initiatives

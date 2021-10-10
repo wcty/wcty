@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { MapContext } from  '@urbica/react-map-gl'
 import { Map, CustomLayerInterface } from 'mapbox-gl'
+import Initiative from 'assets/icons/initiative.svg'
 import MarkerActive from 'assets/images/markerActive.svg'
 import Marker from 'assets/images/marker.svg'
 
@@ -56,6 +57,7 @@ export default function LoadIcons () {
         if(!loaded.current){
           loadMarker(map, Marker, 'marker-fixed', 40, )
           loadMarker(map, MarkerActive, 'marker-active', 60)
+          loadMarker(map, Initiative, 'initiative', 40, )
           loaded.current = true
           return;  
         }

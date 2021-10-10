@@ -15,6 +15,7 @@ import LangSelect from './LangSelectShort'
 import SwipeableViews from 'react-swipeable-views';
 import { useRecoilState } from 'recoil'
 import { Intro, Sidebar, Stepper, Wrapper } from './styles'
+import App from 'App'
 
 
 export default ()=> {
@@ -22,7 +23,7 @@ export default ()=> {
   const maxSteps = 4
   const theme = useTheme()
   const i18n = useI18n()
-  const [user] = useRecoilState(atoms.user)
+  const [user] = useRecoilState(App.user)
   const history = useHistory()
 
   return <>

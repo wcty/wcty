@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export const 
 Sidepanel = styled.div`
@@ -12,7 +12,7 @@ Sidepanel = styled.div`
   transition: min-height 0.5s, width 0.5s;
   align-items: stretch;
   overflow: hidden;
-  :hover{
+  &[data-open=true]:hover, &[data-open=true][data-active=true]{
     min-height: 100%;
     width: 300px;
     div > div > div.thumb {
@@ -20,6 +20,13 @@ Sidepanel = styled.div`
     }
     div.menu {
       margin-right: 0px;
+    }
+  }
+  &[data-open=true][data-active=true]{
+    min-height: 100%;
+    width: 345px;
+    div.menu {
+      width: 295px;
     }
   }
 `,
@@ -46,7 +53,7 @@ Menu = styled.div`
   padding-left: 1rem;
   background-color: #F4EADE;
   margin-right: 15px;
-  transition: margin-right 0.5s;
+  transition: margin-right 0.5s, width 0.5s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -198,4 +205,47 @@ LangCell = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #030303;
+`,
+
+List = styled.div`
+  width: 100%;
+  max-height: calc(100vh - 50px);
+  position: relative;
+  overflow: scroll;
+  padding-bottom: 1rem;
+`,
+
+ListItem = styled.div`
+  cursor: pointer;
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  padding: 0px 10px;
+  align-items: center;
+  img {
+    border-radius: 3px;
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+  }
+  div{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1rem;
+    span {
+      transform: translate(0px,0px);
+      transition: transform 0.5s;
+    }
+  }
+  :hover{
+    background-color: #F0F4F8;
+    div > span {
+      transform: translate(2px,2px);
+    }
+  }
+  span.address{
+    color: #5f5f5f;
+  }
 `

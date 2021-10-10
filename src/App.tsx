@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { atom, useRecoilState } from 'recoil'
-import { atoms, auth, useWindowDimensions } from 'misc'
+import { atoms, auth, User, useWindowDimensions } from 'misc'
 import { Maybe, Users, useUserLazyQuery } from 'generated'
 import { AppWrapper } from './styles'
 import DesktopVersion from 'desktop'
@@ -13,12 +13,14 @@ const GlobalStyle = createGlobalStyle`
   * {
     font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
     box-sizing: border-box;
+    font-size: 12px;
   }
   h2{
     font-weight: 500;
     font-size: 19;
   }
 `
+
 export default function App() {
   const [, setUser] = useRecoilState(App.user)
   const history = useHistory()
@@ -56,5 +58,5 @@ export default function App() {
 
 App.user = atom({
   key: 'user',
-  default: undefined as Maybe<Pick<Users, "id" | "avatar_url" | "created_at" | "display_name">> | undefined,
+  default: undefined as User,
 });

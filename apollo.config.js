@@ -12,12 +12,10 @@ module.exports = {
       }
     },
     includes: [
-      "src/misc/**/*.graphql",
-      "src/misc/**/**/*.graphql",
-      "src/misc/**/**/**/*.graphql",
-      "src/components/**/*.graphql",
-      "src/components/**/**/*.graphql",
-      "src/components/**/**/**/*.graphql"
+      "src/**/*.graphql",
+      "src/**/**/*.graphql",
+      "src/**/**/**/*.graphql",
+      "src/**/**/**/**/*.graphql"
     ]
   }
 }

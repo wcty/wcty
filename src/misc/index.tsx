@@ -7,6 +7,7 @@ export * from './recoil'
 export * from './style'
 export * from './hooks'
 export * from './nhost'
+export * from './types'
 
 export const mapboxToken = 'pk.eyJ1Ijoic3dpdGNoOSIsImEiOiJjamozeGV2bnkxajV2M3FvNnpod3h4ODlpIn0.CTt2IXV8II6finbTlxEddg'
 

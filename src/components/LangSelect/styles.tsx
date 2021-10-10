@@ -79,8 +79,8 @@ export const Select = function(
     </SelectComponent>
     { open? 
       <Options onMouseLeave={()=>setOpen(false)}>
-        {(props.children as ReactElement[]).map(v=>
-          <div onClick={
+        {(props.children as ReactElement[]).map((v,key)=>
+          <div {...{key}} onClick={
             ()=> {
               props?.onChange &&
               props.onChange({target:{value:v.props.value}} as any);

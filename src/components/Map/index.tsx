@@ -1,4 +1,4 @@
-import MapGL, { AttributionControl, FeatureProps, Layer, MapGLProps, Source, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
+import { AttributionControl, FeatureProps, Layer, MapGLProps, Source, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
 import { AnimationOptions } from 'mapbox-gl'
 import { atoms, useGeolocation, mapboxToken } from 'misc'
 import { atom, useRecoilState } from 'recoil'
@@ -9,6 +9,8 @@ import Satellite from './Satellite'
 import { useHistory, useLocation } from 'react-router-dom'
 import mapStyle from './mapStyle.json'
 import { ReactNode } from 'react'
+import { MapGL } from './styles'
+
 export default function Map({children}:{children?:ReactNode}){
   const [viewport, setViewport] = useRecoilState(Map.viewport);
   const [satellite] = useRecoilState(Map.satellite)

@@ -50,10 +50,6 @@ query MyInitiatives($user_id:uuid!) {
   }
 }
 
-
-
-# Initiative threads
-
 query InitiativeInfo ($initiative_id: uuid!){
   initiative_info(where:{initiative:{id: {_eq: $initiative_id}}}) {
     context
@@ -89,22 +85,6 @@ query InitiativePostComments ($message_id: Int!){
     }
   }
 }
-
-
-# User data
-
-query User ($user_id: uuid!) {
-  users_by_pk(id: $user_id) {
-    id
-    avatar_url
-    created_at
-    display_name
-  }
-}
-
-
-
-# Files
 
 query Files($limit: Int!) {
   files(limit: $limit) {

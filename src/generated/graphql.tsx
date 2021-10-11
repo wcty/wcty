@@ -7982,12 +7982,12 @@ export type InitiativesNearbyListSubscriptionVariables = Exact<{
 
 export type InitiativesNearbyListSubscription = { initiatives_nearby: Array<Pick<Initiatives, 'image' | 'name' | 'geom'>> };
 
-export type MyInitiativeListQueryVariables = Exact<{
+export type MyInitiativeListSubscriptionVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyInitiativeListQuery = { initiatives: Array<Pick<Initiatives, 'image' | 'name' | 'geom'>> };
+export type MyInitiativeListSubscription = { initiatives: Array<Pick<Initiatives, 'image' | 'name' | 'geom'>> };
 
 export type OrganizationNearbyListSubscriptionVariables = Exact<{
   location: Scalars['geometry'];
@@ -8003,12 +8003,12 @@ export type OrganizationNearbyListSubscriptionVariables = Exact<{
 
 export type OrganizationNearbyListSubscription = { orgs_nearby: Array<Pick<Orgs, 'image' | 'name' | 'geom'>> };
 
-export type MyOrganizationListQueryVariables = Exact<{
+export type MyOrganizationListSubscriptionVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyOrganizationListQuery = { orgs: Array<Pick<Orgs, 'image' | 'name' | 'geom'>> };
+export type MyOrganizationListSubscription = { orgs: Array<Pick<Orgs, 'image' | 'name' | 'geom'>> };
 
 export type AddInitiativeMutationVariables = Exact<{
   geom: Scalars['geometry'];
@@ -8256,7 +8256,7 @@ export function useInitiativesNearbyListSubscription(baseOptions: Apollo.Subscri
 export type InitiativesNearbyListSubscriptionHookResult = ReturnType<typeof useInitiativesNearbyListSubscription>;
 export type InitiativesNearbyListSubscriptionResult = Apollo.SubscriptionResult<InitiativesNearbyListSubscription>;
 export const MyInitiativeListDocument = gql`
-    query MyInitiativeList($user_id: uuid!) {
+    subscription MyInitiativeList($user_id: uuid!) {
   initiatives(where: {members: {user_id: {_eq: $user_id}}}) {
     image
     name
@@ -8266,32 +8266,27 @@ export const MyInitiativeListDocument = gql`
     `;
 
 /**
- * __useMyInitiativeListQuery__
+ * __useMyInitiativeListSubscription__
  *
- * To run a query within a React component, call `useMyInitiativeListQuery` and pass it any options that fit your needs.
- * When your component renders, `useMyInitiativeListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useMyInitiativeListSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useMyInitiativeListSubscription` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useMyInitiativeListQuery({
+ * const { data, loading, error } = useMyInitiativeListSubscription({
  *   variables: {
  *      user_id: // value for 'user_id'
  *   },
  * });
  */
-export function useMyInitiativeListQuery(baseOptions: Apollo.QueryHookOptions<MyInitiativeListQuery, MyInitiativeListQueryVariables>) {
+export function useMyInitiativeListSubscription(baseOptions: Apollo.SubscriptionHookOptions<MyInitiativeListSubscription, MyInitiativeListSubscriptionVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MyInitiativeListQuery, MyInitiativeListQueryVariables>(MyInitiativeListDocument, options);
+        return Apollo.useSubscription<MyInitiativeListSubscription, MyInitiativeListSubscriptionVariables>(MyInitiativeListDocument, options);
       }
-export function useMyInitiativeListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyInitiativeListQuery, MyInitiativeListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MyInitiativeListQuery, MyInitiativeListQueryVariables>(MyInitiativeListDocument, options);
-        }
-export type MyInitiativeListQueryHookResult = ReturnType<typeof useMyInitiativeListQuery>;
-export type MyInitiativeListLazyQueryHookResult = ReturnType<typeof useMyInitiativeListLazyQuery>;
-export type MyInitiativeListQueryResult = Apollo.QueryResult<MyInitiativeListQuery, MyInitiativeListQueryVariables>;
+export type MyInitiativeListSubscriptionHookResult = ReturnType<typeof useMyInitiativeListSubscription>;
+export type MyInitiativeListSubscriptionResult = Apollo.SubscriptionResult<MyInitiativeListSubscription>;
 export const OrganizationNearbyListDocument = gql`
     subscription OrganizationNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
   orgs_nearby(
@@ -8334,7 +8329,7 @@ export function useOrganizationNearbyListSubscription(baseOptions: Apollo.Subscr
 export type OrganizationNearbyListSubscriptionHookResult = ReturnType<typeof useOrganizationNearbyListSubscription>;
 export type OrganizationNearbyListSubscriptionResult = Apollo.SubscriptionResult<OrganizationNearbyListSubscription>;
 export const MyOrganizationListDocument = gql`
-    query MyOrganizationList($user_id: uuid!) {
+    subscription MyOrganizationList($user_id: uuid!) {
   orgs(where: {members: {user_id: {_eq: $user_id}}}) {
     image
     name
@@ -8344,32 +8339,27 @@ export const MyOrganizationListDocument = gql`
     `;
 
 /**
- * __useMyOrganizationListQuery__
+ * __useMyOrganizationListSubscription__
  *
- * To run a query within a React component, call `useMyOrganizationListQuery` and pass it any options that fit your needs.
- * When your component renders, `useMyOrganizationListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useMyOrganizationListSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useMyOrganizationListSubscription` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useMyOrganizationListQuery({
+ * const { data, loading, error } = useMyOrganizationListSubscription({
  *   variables: {
  *      user_id: // value for 'user_id'
  *   },
  * });
  */
-export function useMyOrganizationListQuery(baseOptions: Apollo.QueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
+export function useMyOrganizationListSubscription(baseOptions: Apollo.SubscriptionHookOptions<MyOrganizationListSubscription, MyOrganizationListSubscriptionVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
+        return Apollo.useSubscription<MyOrganizationListSubscription, MyOrganizationListSubscriptionVariables>(MyOrganizationListDocument, options);
       }
-export function useMyOrganizationListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
-        }
-export type MyOrganizationListQueryHookResult = ReturnType<typeof useMyOrganizationListQuery>;
-export type MyOrganizationListLazyQueryHookResult = ReturnType<typeof useMyOrganizationListLazyQuery>;
-export type MyOrganizationListQueryResult = Apollo.QueryResult<MyOrganizationListQuery, MyOrganizationListQueryVariables>;
+export type MyOrganizationListSubscriptionHookResult = ReturnType<typeof useMyOrganizationListSubscription>;
+export type MyOrganizationListSubscriptionResult = Apollo.SubscriptionResult<MyOrganizationListSubscription>;
 export const AddInitiativeDocument = gql`
     mutation AddInitiative($geom: geometry!, $name: String!, $description: String!, $user_id: uuid!, $problem: String = "", $goal: String = "", $context: String = "", $image: String = "") {
   insert_initiatives_one(

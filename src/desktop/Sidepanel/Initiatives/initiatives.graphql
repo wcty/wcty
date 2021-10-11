@@ -6,7 +6,7 @@ subscription InitiativesNearbyList($location: geometry!, $limit: Int = 20, $max_
   }
 }
 
-query MyInitiativeList($user_id:uuid!){
+subscription MyInitiativeList($user_id:uuid!){
 
   initiatives( where: { members: { user_id:{ _eq:$user_id } } } ) {
     image

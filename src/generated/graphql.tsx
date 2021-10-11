@@ -5742,6 +5742,138 @@ export enum Order_By {
   DescNullsLast = 'desc_nulls_last'
 }
 
+/** columns and relationships of "org_members" */
+export type Org_Members = {
+  created_at: Scalars['timestamptz'];
+  id: Scalars['Int'];
+  /** An object relationship */
+  org?: Maybe<Orgs>;
+  org_id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
+  role_description?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  user?: Maybe<Users>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by aggregate values of table "org_members" */
+export type Org_Members_Aggregate_Order_By = {
+  avg?: Maybe<Org_Members_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Org_Members_Max_Order_By>;
+  min?: Maybe<Org_Members_Min_Order_By>;
+  stddev?: Maybe<Org_Members_Stddev_Order_By>;
+  stddev_pop?: Maybe<Org_Members_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Org_Members_Stddev_Samp_Order_By>;
+  sum?: Maybe<Org_Members_Sum_Order_By>;
+  var_pop?: Maybe<Org_Members_Var_Pop_Order_By>;
+  var_samp?: Maybe<Org_Members_Var_Samp_Order_By>;
+  variance?: Maybe<Org_Members_Variance_Order_By>;
+};
+
+/** order by avg() on columns of table "org_members" */
+export type Org_Members_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "org_members". All fields are combined with a logical 'AND'. */
+export type Org_Members_Bool_Exp = {
+  _and?: Maybe<Array<Org_Members_Bool_Exp>>;
+  _not?: Maybe<Org_Members_Bool_Exp>;
+  _or?: Maybe<Array<Org_Members_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  org?: Maybe<Orgs_Bool_Exp>;
+  org_id?: Maybe<Uuid_Comparison_Exp>;
+  role?: Maybe<String_Comparison_Exp>;
+  role_description?: Maybe<String_Comparison_Exp>;
+  user?: Maybe<Users_Bool_Exp>;
+  user_id?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** order by max() on columns of table "org_members" */
+export type Org_Members_Max_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  org_id?: Maybe<Order_By>;
+  role?: Maybe<Order_By>;
+  role_description?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** order by min() on columns of table "org_members" */
+export type Org_Members_Min_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  org_id?: Maybe<Order_By>;
+  role?: Maybe<Order_By>;
+  role_description?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** Ordering options when selecting data from "org_members". */
+export type Org_Members_Order_By = {
+  created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  org?: Maybe<Orgs_Order_By>;
+  org_id?: Maybe<Order_By>;
+  role?: Maybe<Order_By>;
+  role_description?: Maybe<Order_By>;
+  user?: Maybe<Users_Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** select columns of table "org_members" */
+export enum Org_Members_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  OrgId = 'org_id',
+  /** column name */
+  Role = 'role',
+  /** column name */
+  RoleDescription = 'role_description',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** order by stddev() on columns of table "org_members" */
+export type Org_Members_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** order by stddev_pop() on columns of table "org_members" */
+export type Org_Members_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** order by stddev_samp() on columns of table "org_members" */
+export type Org_Members_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** order by sum() on columns of table "org_members" */
+export type Org_Members_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** order by var_pop() on columns of table "org_members" */
+export type Org_Members_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** order by var_samp() on columns of table "org_members" */
+export type Org_Members_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** order by variance() on columns of table "org_members" */
+export type Org_Members_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
 /** columns and relationships of "org_projects" */
 export type Org_Projects = {
   created_at: Scalars['timestamptz'];
@@ -6005,8 +6137,13 @@ export type Orgs = {
   description?: Maybe<Scalars['String']>;
   geom?: Maybe<Scalars['geometry']>;
   id: Scalars['uuid'];
+  image?: Maybe<Scalars['String']>;
   /** fetch data from the table: "initiative_projects" */
   initiative_projects: Array<Initiative_Projects>;
+  /** An array relationship */
+  members: Array<Org_Members>;
+  modified_at: Scalars['timestamptz'];
+  name?: Maybe<Scalars['String']>;
   /** An array relationship */
   projects: Array<Org_Projects>;
   /** An array relationship */
@@ -6023,6 +6160,16 @@ export type OrgsInitiative_ProjectsArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Initiative_Projects_Order_By>>;
   where?: Maybe<Initiative_Projects_Bool_Exp>;
+};
+
+
+/** columns and relationships of "orgs" */
+export type OrgsMembersArgs = {
+  distinct_on?: Maybe<Array<Org_Members_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Org_Members_Order_By>>;
+  where?: Maybe<Org_Members_Bool_Exp>;
 };
 
 
@@ -6064,10 +6211,25 @@ export type Orgs_Bool_Exp = {
   description?: Maybe<String_Comparison_Exp>;
   geom?: Maybe<Geometry_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  image?: Maybe<String_Comparison_Exp>;
   initiative_projects?: Maybe<Initiative_Projects_Bool_Exp>;
+  members?: Maybe<Org_Members_Bool_Exp>;
+  modified_at?: Maybe<Timestamptz_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
   projects?: Maybe<Org_Projects_Bool_Exp>;
   tags?: Maybe<Org_Tags_Bool_Exp>;
   tenders?: Maybe<Tenders_Bool_Exp>;
+};
+
+export type Orgs_Nearby_Args = {
+  limit?: Maybe<Scalars['Int']>;
+  location?: Maybe<Scalars['geometry']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  max_distance?: Maybe<Scalars['float8']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  min_distance?: Maybe<Scalars['float8']>;
+  own?: Maybe<Scalars['Boolean']>;
+  user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** Ordering options when selecting data from "orgs". */
@@ -6076,7 +6238,11 @@ export type Orgs_Order_By = {
   description?: Maybe<Order_By>;
   geom?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
+  image?: Maybe<Order_By>;
   initiative_projects_aggregate?: Maybe<Initiative_Projects_Aggregate_Order_By>;
+  members_aggregate?: Maybe<Org_Members_Aggregate_Order_By>;
+  modified_at?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
   projects_aggregate?: Maybe<Org_Projects_Aggregate_Order_By>;
   tags_aggregate?: Maybe<Org_Tags_Aggregate_Order_By>;
   tenders_aggregate?: Maybe<Tenders_Aggregate_Order_By>;
@@ -6091,7 +6257,13 @@ export enum Orgs_Select_Column {
   /** column name */
   Geom = 'geom',
   /** column name */
-  Id = 'id'
+  Id = 'id',
+  /** column name */
+  Image = 'image',
+  /** column name */
+  ModifiedAt = 'modified_at',
+  /** column name */
+  Name = 'name'
 }
 
 export type Query_Root = {
@@ -6178,6 +6350,10 @@ export type Query_Root = {
   /** execute function "initiatives_nearby" which returns "initiatives" */
   initiatives_nearby: Array<Initiatives>;
   /** An array relationship */
+  org_members: Array<Org_Members>;
+  /** fetch data from the table: "org_members" using primary key columns */
+  org_members_by_pk?: Maybe<Org_Members>;
+  /** An array relationship */
   org_projects: Array<Org_Projects>;
   /** fetch data from the table: "org_projects" using primary key columns */
   org_projects_by_pk?: Maybe<Org_Projects>;
@@ -6189,6 +6365,8 @@ export type Query_Root = {
   orgs: Array<Orgs>;
   /** fetch data from the table: "orgs" using primary key columns */
   orgs_by_pk?: Maybe<Orgs>;
+  /** execute function "orgs_nearby" which returns "orgs" */
+  orgs_nearby: Array<Orgs>;
   /** fetch data from the table: "tags" */
   tags: Array<Tags>;
   /** fetch data from the table: "tags" using primary key columns */
@@ -6497,6 +6675,20 @@ export type Query_RootInitiatives_NearbyArgs = {
 };
 
 
+export type Query_RootOrg_MembersArgs = {
+  distinct_on?: Maybe<Array<Org_Members_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Org_Members_Order_By>>;
+  where?: Maybe<Org_Members_Bool_Exp>;
+};
+
+
+export type Query_RootOrg_Members_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Query_RootOrg_ProjectsArgs = {
   distinct_on?: Maybe<Array<Org_Projects_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -6536,6 +6728,16 @@ export type Query_RootOrgsArgs = {
 
 export type Query_RootOrgs_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+export type Query_RootOrgs_NearbyArgs = {
+  args: Orgs_Nearby_Args;
+  distinct_on?: Maybe<Array<Orgs_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Orgs_Order_By>>;
+  where?: Maybe<Orgs_Bool_Exp>;
 };
 
 
@@ -6675,6 +6877,10 @@ export type Subscription_Root = {
   /** execute function "initiatives_nearby" which returns "initiatives" */
   initiatives_nearby: Array<Initiatives>;
   /** An array relationship */
+  org_members: Array<Org_Members>;
+  /** fetch data from the table: "org_members" using primary key columns */
+  org_members_by_pk?: Maybe<Org_Members>;
+  /** An array relationship */
   org_projects: Array<Org_Projects>;
   /** fetch data from the table: "org_projects" using primary key columns */
   org_projects_by_pk?: Maybe<Org_Projects>;
@@ -6686,6 +6892,8 @@ export type Subscription_Root = {
   orgs: Array<Orgs>;
   /** fetch data from the table: "orgs" using primary key columns */
   orgs_by_pk?: Maybe<Orgs>;
+  /** execute function "orgs_nearby" which returns "orgs" */
+  orgs_nearby: Array<Orgs>;
   /** fetch data from the table: "tags" */
   tags: Array<Tags>;
   /** fetch data from the table: "tags" using primary key columns */
@@ -6994,6 +7202,20 @@ export type Subscription_RootInitiatives_NearbyArgs = {
 };
 
 
+export type Subscription_RootOrg_MembersArgs = {
+  distinct_on?: Maybe<Array<Org_Members_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Org_Members_Order_By>>;
+  where?: Maybe<Org_Members_Bool_Exp>;
+};
+
+
+export type Subscription_RootOrg_Members_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Subscription_RootOrg_ProjectsArgs = {
   distinct_on?: Maybe<Array<Org_Projects_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -7033,6 +7255,16 @@ export type Subscription_RootOrgsArgs = {
 
 export type Subscription_RootOrgs_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootOrgs_NearbyArgs = {
+  args: Orgs_Nearby_Args;
+  distinct_on?: Maybe<Array<Orgs_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Orgs_Order_By>>;
+  where?: Maybe<Orgs_Bool_Exp>;
 };
 
 
@@ -7465,6 +7697,8 @@ export type Users = {
   /** An array relationship */
   initiative_visits: Array<Initiative_Visits>;
   /** An array relationship */
+  org_members: Array<Org_Members>;
+  /** An array relationship */
   org_projects: Array<Org_Projects>;
   /** An array relationship */
   post_reactions: Array<Initiative_Thread_Post_Reactions>;
@@ -7565,6 +7799,16 @@ export type UsersInitiative_VisitsArgs = {
 
 
 /** columns and relationships of "users" */
+export type UsersOrg_MembersArgs = {
+  distinct_on?: Maybe<Array<Org_Members_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Org_Members_Order_By>>;
+  where?: Maybe<Org_Members_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
 export type UsersOrg_ProjectsArgs = {
   distinct_on?: Maybe<Array<Org_Projects_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -7659,6 +7903,7 @@ export type Users_Bool_Exp = {
   id?: Maybe<Uuid_Comparison_Exp>;
   initiative_members?: Maybe<Initiative_Members_Bool_Exp>;
   initiative_visits?: Maybe<Initiative_Visits_Bool_Exp>;
+  org_members?: Maybe<Org_Members_Bool_Exp>;
   org_projects?: Maybe<Org_Projects_Bool_Exp>;
   post_reactions?: Maybe<Initiative_Thread_Post_Reactions_Bool_Exp>;
   posts?: Maybe<Initiative_Thread_Posts_Bool_Exp>;
@@ -7683,6 +7928,7 @@ export type Users_Order_By = {
   id?: Maybe<Order_By>;
   initiative_members_aggregate?: Maybe<Initiative_Members_Aggregate_Order_By>;
   initiative_visits_aggregate?: Maybe<Initiative_Visits_Aggregate_Order_By>;
+  org_members_aggregate?: Maybe<Org_Members_Aggregate_Order_By>;
   org_projects_aggregate?: Maybe<Org_Projects_Aggregate_Order_By>;
   post_reactions_aggregate?: Maybe<Initiative_Thread_Post_Reactions_Aggregate_Order_By>;
   posts_aggregate?: Maybe<Initiative_Thread_Posts_Aggregate_Order_By>;
@@ -7742,6 +7988,27 @@ export type MyInitiativeListQueryVariables = Exact<{
 
 
 export type MyInitiativeListQuery = { initiatives: Array<Pick<Initiatives, 'image' | 'name' | 'geom'>> };
+
+export type OrganizationNearbyListSubscriptionVariables = Exact<{
+  location: Scalars['geometry'];
+  limit?: Maybe<Scalars['Int']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  max_distance?: Maybe<Scalars['float8']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  min_distance?: Maybe<Scalars['float8']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  own?: Maybe<Scalars['Boolean']>;
+}>;
+
+
+export type OrganizationNearbyListSubscription = { orgs_nearby: Array<Pick<Orgs, 'image' | 'name' | 'geom'>> };
+
+export type MyOrganizationListQueryVariables = Exact<{
+  user_id: Scalars['uuid'];
+}>;
+
+
+export type MyOrganizationListQuery = { orgs: Array<Pick<Orgs, 'image' | 'name' | 'geom'>> };
 
 export type AddInitiativeMutationVariables = Exact<{
   geom: Scalars['geometry'];
@@ -8025,6 +8292,84 @@ export function useMyInitiativeListLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type MyInitiativeListQueryHookResult = ReturnType<typeof useMyInitiativeListQuery>;
 export type MyInitiativeListLazyQueryHookResult = ReturnType<typeof useMyInitiativeListLazyQuery>;
 export type MyInitiativeListQueryResult = Apollo.QueryResult<MyInitiativeListQuery, MyInitiativeListQueryVariables>;
+export const OrganizationNearbyListDocument = gql`
+    subscription OrganizationNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
+  orgs_nearby(
+    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
+  ) {
+    image
+    name
+    geom
+  }
+}
+    `;
+
+/**
+ * __useOrganizationNearbyListSubscription__
+ *
+ * To run a query within a React component, call `useOrganizationNearbyListSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useOrganizationNearbyListSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOrganizationNearbyListSubscription({
+ *   variables: {
+ *      location: // value for 'location'
+ *      limit: // value for 'limit'
+ *      max_date: // value for 'max_date'
+ *      max_distance: // value for 'max_distance'
+ *      min_date: // value for 'min_date'
+ *      min_distance: // value for 'min_distance'
+ *      user_id: // value for 'user_id'
+ *      own: // value for 'own'
+ *   },
+ * });
+ */
+export function useOrganizationNearbyListSubscription(baseOptions: Apollo.SubscriptionHookOptions<OrganizationNearbyListSubscription, OrganizationNearbyListSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<OrganizationNearbyListSubscription, OrganizationNearbyListSubscriptionVariables>(OrganizationNearbyListDocument, options);
+      }
+export type OrganizationNearbyListSubscriptionHookResult = ReturnType<typeof useOrganizationNearbyListSubscription>;
+export type OrganizationNearbyListSubscriptionResult = Apollo.SubscriptionResult<OrganizationNearbyListSubscription>;
+export const MyOrganizationListDocument = gql`
+    query MyOrganizationList($user_id: uuid!) {
+  orgs(where: {members: {user_id: {_eq: $user_id}}}) {
+    image
+    name
+    geom
+  }
+}
+    `;
+
+/**
+ * __useMyOrganizationListQuery__
+ *
+ * To run a query within a React component, call `useMyOrganizationListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMyOrganizationListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMyOrganizationListQuery({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useMyOrganizationListQuery(baseOptions: Apollo.QueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
+      }
+export function useMyOrganizationListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
+        }
+export type MyOrganizationListQueryHookResult = ReturnType<typeof useMyOrganizationListQuery>;
+export type MyOrganizationListLazyQueryHookResult = ReturnType<typeof useMyOrganizationListLazyQuery>;
+export type MyOrganizationListQueryResult = Apollo.QueryResult<MyOrganizationListQuery, MyOrganizationListQueryVariables>;
 export const AddInitiativeDocument = gql`
     mutation AddInitiative($geom: geometry!, $name: String!, $description: String!, $user_id: uuid!, $problem: String = "", $goal: String = "", $context: String = "", $image: String = "") {
   insert_initiatives_one(
@@ -9327,6 +9672,17 @@ export type mutation_rootFieldPolicy = {
 	update_tenders?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_tenders_by_pk?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type org_membersKeySpecifier = ('created_at' | 'id' | 'org' | 'org_id' | 'role' | 'role_description' | 'user' | 'user_id' | org_membersKeySpecifier)[];
+export type org_membersFieldPolicy = {
+	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	org?: FieldPolicy<any> | FieldReadFunction<any>,
+	org_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	role?: FieldPolicy<any> | FieldReadFunction<any>,
+	role_description?: FieldPolicy<any> | FieldReadFunction<any>,
+	user?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type org_projectsKeySpecifier = ('created_at' | 'description' | 'id' | 'initiative_projects' | 'org' | 'org_id' | 'tenders' | 'user' | 'user_id' | org_projectsKeySpecifier)[];
 export type org_projectsFieldPolicy = {
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9346,18 +9702,22 @@ export type org_tagsFieldPolicy = {
 	org_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type orgsKeySpecifier = ('created_at' | 'description' | 'geom' | 'id' | 'initiative_projects' | 'projects' | 'tags' | 'tenders' | orgsKeySpecifier)[];
+export type orgsKeySpecifier = ('created_at' | 'description' | 'geom' | 'id' | 'image' | 'initiative_projects' | 'members' | 'modified_at' | 'name' | 'projects' | 'tags' | 'tenders' | orgsKeySpecifier)[];
 export type orgsFieldPolicy = {
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
 	description?: FieldPolicy<any> | FieldReadFunction<any>,
 	geom?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	image?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_projects?: FieldPolicy<any> | FieldReadFunction<any>,
+	members?: FieldPolicy<any> | FieldReadFunction<any>,
+	modified_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	projects?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type query_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
+export type query_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
 export type query_rootFieldPolicy = {
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9400,12 +9760,15 @@ export type query_rootFieldPolicy = {
 	initiatives?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
+	org_members?: FieldPolicy<any> | FieldReadFunction<any>,
+	org_members_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_projects?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_projects_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
+	orgs_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9413,7 +9776,7 @@ export type query_rootFieldPolicy = {
 	users?: FieldPolicy<any> | FieldReadFunction<any>,
 	users_by_pk?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type subscription_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
+export type subscription_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
 export type subscription_rootFieldPolicy = {
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9456,12 +9819,15 @@ export type subscription_rootFieldPolicy = {
 	initiatives?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
+	org_members?: FieldPolicy<any> | FieldReadFunction<any>,
+	org_members_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_projects?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_projects_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
+	orgs_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9499,7 +9865,7 @@ export type tenders_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type usersKeySpecifier = ('avatar_url' | 'comments' | 'created_at' | 'display_name' | 'donations' | 'edits' | 'expenses' | 'files' | 'id' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_visits' | 'org_projects' | 'post_reactions' | 'posts' | 'projects' | 'tasks' | 'tenders' | 'updated_at' | 'volunteers' | 'votes' | usersKeySpecifier)[];
+export type usersKeySpecifier = ('avatar_url' | 'comments' | 'created_at' | 'display_name' | 'donations' | 'edits' | 'expenses' | 'files' | 'id' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_visits' | 'org_members' | 'org_projects' | 'post_reactions' | 'posts' | 'projects' | 'tasks' | 'tenders' | 'updated_at' | 'volunteers' | 'votes' | usersKeySpecifier)[];
 export type usersFieldPolicy = {
 	avatar_url?: FieldPolicy<any> | FieldReadFunction<any>,
 	comments?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9513,6 +9879,7 @@ export type usersFieldPolicy = {
 	initiative_members?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_members_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_visits?: FieldPolicy<any> | FieldReadFunction<any>,
+	org_members?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_projects?: FieldPolicy<any> | FieldReadFunction<any>,
 	post_reactions?: FieldPolicy<any> | FieldReadFunction<any>,
 	posts?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9727,6 +10094,10 @@ export type TypedTypePolicies = TypePolicies & {
 	mutation_root?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | mutation_rootKeySpecifier | (() => undefined | mutation_rootKeySpecifier),
 		fields?: mutation_rootFieldPolicy,
+	},
+	org_members?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | org_membersKeySpecifier | (() => undefined | org_membersKeySpecifier),
+		fields?: org_membersFieldPolicy,
 	},
 	org_projects?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | org_projectsKeySpecifier | (() => undefined | org_projectsKeySpecifier),

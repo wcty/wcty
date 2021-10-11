@@ -1,0 +1,34 @@
+subscription OrganizationNearbyList(
+  $location: geometry!, 
+  $limit: Int = 20, 
+  $max_date: timestamptz = "2999-01-01T00:00:00.000Z", 
+  $max_distance: float8 = 20037500.0, 
+  $min_date: timestamptz = "1970-01-01T00:00:00.000Z", 
+  $min_distance: float8 = 0.0, 
+  $user_id: uuid, 
+  $own: Boolean = false
+){
+  orgs_nearby(args: {
+    location: $location, 
+    own: $own, 
+    user_id: $user_id, 
+    max_date: $max_date, 
+    limit: $limit, 
+    max_distance: $max_distance, 
+    min_date: $min_date, 
+    min_distance: $min_distance
+  }) {
+    image
+    name
+    geom
+  }
+}
+
+query MyOrganizationList($user_id:uuid!){
+
+  orgs( where: { members: { user_id:{ _eq:$user_id } } } ) {
+    image
+    name
+    geom
+  }
+}

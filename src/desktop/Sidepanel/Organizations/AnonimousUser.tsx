@@ -1,12 +1,12 @@
-import { useAddress, useI18n } from "misc";
+import { useI18n } from "misc";
 import { UserIconRow, ListItem, List } from "../styles";
-import { useInitiativesNearbyListSubscription, Initiatives } from "generated";
+import { useOrganizationNearbyListSubscription } from "generated";
 import { useRecoilState } from "recoil";
 import { Map } from 'components'
 import { useEffect, useState } from "react";
 import { ListRow } from "../Row";
 
-export default function InitiativesDrawer(){
+export default function Organization(){
   const i18n = useI18n()
   const [view] = useRecoilState(Map.viewport)
   
@@ -15,14 +15,14 @@ export default function InitiativesDrawer(){
     coordinates: [view.longitude, view.latitude]
   }
 
-  const { data, error, variables } = useInitiativesNearbyListSubscription({variables:{ location, limit: 10 }})
-  const [ initiatives, setInitiatives ] = useState(data)
+  const { data, error, variables } = useOrganizationNearbyListSubscription({variables:{ location, limit: 10 }})
+  const [ organizations, setOrganizations ] = useState(data)
 
-  console.log(error, variables)
+  console.log(error, variables, data)
 
   useEffect(()=>{
-    if( data && data?.initiatives_nearby.length>0 ){
-      setInitiatives(data)
+    if( data && data.orgs_nearby.length>0 ){
+      setOrganizations(data)
     }
   },[data])
 
@@ -30,14 +30,14 @@ export default function InitiativesDrawer(){
     <div>
       <UserIconRow>
           <span>
-            {i18n('initiatives')}
+            {i18n('organisations')}
           </span>
           <span style={{fontSize: 10}}>
-            {/* {'1111 initiatives'} */}
+            {/* {'1111 organizations'} */}
           </span>
       </UserIconRow>
       <List>
-        {initiatives?.initiatives_nearby.map((v,key)=><ListRow data={v} {...{key}}/>)}
+        {organizations?.orgs_nearby.map((v,key)=><ListRow data={v} {...{key}}/>)}
       </List>
     </div>
   </>

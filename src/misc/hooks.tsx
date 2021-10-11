@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { atoms } from 'misc'
+import { atoms, mapboxToken } from 'misc'
 import { Map } from 'components'
 import App from 'App'
 
@@ -84,4 +84,40 @@ export function useWindowDimensions() {
   }, []);
 
   return windowDimensions;
+}
+
+export function useAddress(coords:[ number, number ]) {
+
+  const [addressString, setAddress] = useState<string>()
+
+  useEffect(()=>{
+
+    const controller = new AbortController();
+    if(coords){
+      const { signal } = controller;
+      if(!addressString&&coords){
+        const request = async ()=>{
+          const response = await fetch(
+            `https://api.mapbox.com/geocoding/v5/mapbox.places/${coords[0]},${coords[1]}.json`+
+            `?access_token=${mapboxToken}`, { signal })
+          if(signal.aborted) return;
+          const address:any = await response.json()
+          if(signal.aborted) return;
+          setAddress(
+            address.features[0]?.properties.address ?
+            (address.features[0]?.properties.address+', ') :
+            ''+(address.features[1]?address.features[1].text:'') +
+            ', '+(address.features[3]?address.features[3].text:'')
+          )
+          return;
+        }
+        request()
+      }
+    }
+    return ()=>{
+      controller.abort()
+    }
+  }, [addressString, setAddress, coords])
+
+  return addressString
 }

@@ -1,5 +1,5 @@
 import { CenterPanel } from "components/CenterPanel";
-import { auth, useI18n } from "misc";
+import { auth, useI18n } from "shared";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { ButtonGroup, FormControl, TextField, Label } from "./styles";

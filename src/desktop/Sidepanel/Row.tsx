@@ -1,9 +1,10 @@
 import { Initiatives } from "generated"
-import { useAddress } from "misc"
+import { atoms, useAddress } from "shared"
 import { useRecoilState } from "recoil"
 import { ListItem } from "./styles"
 import { Map } from 'components'
 import { InitiativeCardFragment } from 'generated'
+import Sidepanel from "."
 
 export function ListRow({ data:v, source }:{
   data: InitiativeCardFragment,
@@ -13,7 +14,8 @@ export function ListRow({ data:v, source }:{
   const address = useAddress(v.geometry.coordinates)
   const [selected, setSelected] = useRecoilState(Map.selected)
   const [viewport, setViewport] = useRecoilState(Map.viewport)
-
+  const [open, setOpen] = useRecoilState(Sidepanel.open)
+  
   function onClick(){
     setSelected({
       id: v.id,
@@ -35,6 +37,7 @@ export function ListRow({ data:v, source }:{
       viewportChangeMethod: 'easeTo',
       viewportChangeOptions: {offset:[145,50]}
     })
+    setOpen(false)
   }
 
   return <ListItem {...{onClick}}>

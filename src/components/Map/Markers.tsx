@@ -4,7 +4,7 @@
 import { Source, Layer } from '@urbica/react-map-gl'
 import { MapLayerMouseEvent, MapMouseEvent } from 'mapbox-gl'
 import { useRecoilState } from 'recoil'
-import { atoms } from 'misc'
+import { atoms } from 'shared'
 import { useLocation, useHistory } from 'react-router-dom';
 
 export default () =>{

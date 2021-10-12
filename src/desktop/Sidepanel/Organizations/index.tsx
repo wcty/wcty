@@ -1,4 +1,4 @@
-import { useUser } from "misc";
+import { useUser } from "shared";
 import AuthenticatedUser from "./AuthenticatedUser";
 import AnonimousUser from "./AnonimousUser"
 

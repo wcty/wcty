@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { atom, useRecoilState } from 'recoil'
-import { atoms, auth, User, useWindowDimensions } from 'misc'
+import { atoms, auth, User, useWindowDimensions } from 'shared'
 import { Maybe, Users, useUserLazyQuery } from 'generated'
 import { AppWrapper } from './styles'
 import DesktopVersion from 'desktop'

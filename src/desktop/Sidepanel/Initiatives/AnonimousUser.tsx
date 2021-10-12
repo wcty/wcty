@@ -1,4 +1,4 @@
-import { useAddress, useI18n } from "misc";
+import { useAddress, useI18n } from "shared";
 import { UserIconRow, ListItem, List } from "../styles";
 import { useInitiativesNearbyListSubscription, Initiatives } from "generated";
 import { useRecoilState } from "recoil";

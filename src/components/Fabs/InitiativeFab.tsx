@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Fab, Collapse } from '@material-ui/core'
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import { useI18n, atoms } from 'misc'
+import { useI18n, atoms } from 'shared'
 import { AddLocation } from '@material-ui/icons'
 import { useHistory } from 'react-router-dom'
 import s from './styles.module.scss'

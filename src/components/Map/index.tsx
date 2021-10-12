@@ -1,6 +1,6 @@
 import { AttributionControl, FeatureProps, Layer, MapGLProps, Source, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
 import { AnimationOptions } from 'mapbox-gl'
-import { atoms, useGeolocation, mapboxToken } from 'misc'
+import { atoms, useGeolocation, mapboxToken } from 'shared'
 import { atom, useRecoilState } from 'recoil'
 import LocationIcon from './LocationIcon'
 import LoadIcons from './LoadIcons'

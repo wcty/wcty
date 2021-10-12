@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { Source, Layer, MapContext } from '@urbica/react-map-gl'
 import { useHistory } from 'react-router-dom';
 import { Map, CustomLayerInterface } from 'mapbox-gl'
-import { useGeolocation } from 'misc'
+import { useGeolocation } from 'shared'
 
 type PulsingDot = CustomLayerInterface & {
   width:number,

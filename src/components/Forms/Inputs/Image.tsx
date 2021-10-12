@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Button, CircularProgress, Box } from '@material-ui/core';
 import { v4 as uuidv4 } from 'uuid';
-import { storage, atoms, useI18n } from 'misc'
+import { storage, atoms, useI18n } from 'shared'
 import { SetterOrUpdater, useRecoilValue } from 'recoil'
 import { useInsertFileMutation, useDeleteFilesMutation } from 'generated'
 import addImage from 'assets/images/addImage.png'

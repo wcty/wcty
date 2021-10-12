@@ -1,7 +1,7 @@
 import { Route, useHistory, useLocation } from 'react-router-dom'
 import { InitiativeFab, MenuFab, LocateFab, LayersFab, Intro, Map, Initiatives } from 'components'
 import { useRecoilState } from 'recoil'
-import { atoms } from 'misc'
+import { atoms } from 'shared'
 import { MapWrapper } from './styles'
 import Sidepanel from './Sidepanel'
 import Login from './Login'

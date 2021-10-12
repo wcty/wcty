@@ -1,6 +1,6 @@
 import { Layer, Source, Popup } from "@urbica/react-map-gl";
 import { Map } from "components";
-import { atoms } from "misc";
+import { atoms } from "shared";
 import { useRecoilState } from "recoil";
 import InitiativePopup from "./InitiativePopup";
 

@@ -1,33 +1,33 @@
-import styled from "styled-components/macro";
+import styled, {css} from "styled-components/macro";
 
 export const 
-Sidepanel = styled.div`
+SidepanelWrapper = styled.div`
   top: 0px;
   left: 0px;
-  width: 65px;
-  min-height: 0px;
   position: absolute;
   display: flex;
   flex-direction: row;
   transition: min-height 0.5s, width 0.5s;
   align-items: stretch;
   overflow: hidden;
-  &[data-open=true]:hover, &[data-open=true][data-active=true]{
-    min-height: 100%;
-    width: 300px;
-    div > div > div.thumb {
-      transform: translate(0px,0px);
-    }
-    div.menu {
-      margin-right: 0px;
-    }
-  }
-  &[data-open=true][data-active=true]{
-    min-height: 100%;
-    width: 345px;
-    div.menu {
-      width: 295px;
-    }
+  ${({open}:{open:false|'wide'|'menu'})=>
+    open==='menu'? 
+    css`
+      min-height: 100%;
+      width: 300px;
+      div > div > div.thumb {
+        transform: translate(0px,0px);
+      }`:
+    open==='wide'? 
+    css`
+      min-height: 100%;
+      width: 330px;
+      div.menu {
+        width: 280px;
+      }`: 
+    css`
+      width: 50px;
+      min-height: 0px;`
   }
 `,
 
@@ -52,8 +52,7 @@ Menu = styled.div`
   top: 0px;
   padding-left: 1rem;
   background-color: #F4EADE;
-  margin-right: 15px;
-  transition: margin-right 0.5s, width 0.5s;
+  transition: width 0.5s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -93,13 +92,6 @@ UserIconCell = styled.div`
     background-color: #fcf9f3;
     cursor: pointer;
   }
-  /* ::after{
-    content: '';
-    position: absolute;
-    width: 250px;
-    height: 100%;
-    left: 100%;
-  } */
 `,
 
 UserPhoto = styled.img`
@@ -186,6 +178,7 @@ IconRow = styled.div`
   &[data-hovered=true]{
     span {
       transform: translate(2px,2px);
+      pointer-events: none;
     }
   }
   ::before{

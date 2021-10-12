@@ -1,4 +1,4 @@
-import { useAddress, useI18n, useUser } from "misc";
+import { useAddress, useI18n, useUser } from "shared";
 import { UserIconRow, ListItem, List } from "../styles";
 import { useInitiativesNearbyListSubscription, Initiatives, useMyInitiativeListSubscription } from "generated";
 import { useRecoilState } from "recoil";
@@ -18,8 +18,6 @@ export default function InitiativesDrawer(){
 
   const { data, error, variables } = useMyInitiativeListSubscription({variables:{ user_id: user?.id }})
   const [ initiatives, setInitiatives ] = useState(data)
-
-  console.log(error, variables)
 
   useEffect(()=>{
     if( data && data?.initiatives.length>0 ){

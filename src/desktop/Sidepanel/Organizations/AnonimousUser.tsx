@@ -1,4 +1,4 @@
-import { useI18n } from "misc";
+import { useI18n } from "shared";
 import { UserIconRow, ListItem, List } from "../styles";
 import { useOrganizationNearbyListSubscription } from "generated";
 import { useRecoilState } from "recoil";

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FormControl, Select, MenuItem, Box } from '@material-ui/core'
 import { SetterOrUpdater, useRecoilState } from 'recoil'
-import { useI18n, atoms } from 'misc'
+import { useI18n, atoms } from 'shared'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 

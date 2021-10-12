@@ -1,4 +1,4 @@
-import { I18nGetter } from 'misc'
+import { I18nGetter } from 'shared'
 
 export const categories = (i18n:I18nGetter)=>[
   {name: 'all', label: i18n('allCategories')},

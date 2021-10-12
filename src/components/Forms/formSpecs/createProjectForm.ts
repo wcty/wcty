@@ -1,6 +1,6 @@
 import addImage from 'assets/images/addImage.png'
 import { categories } from './projectCategories'
-import { useI18n } from 'misc'
+import { useI18n } from 'shared'
 import { FormGetterProps } from '../types';
 
 export default ():FormGetterProps =>{

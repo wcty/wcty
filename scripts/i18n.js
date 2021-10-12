@@ -26,6 +26,6 @@ client.query({
       a[key]=Object.values(value)[0]
       return a
     }, {}), null, ' ')
-    fs.writeFile('src/misc/i18n/defaultLang.json', json, { flag: 'w' }, err => {})
+    fs.writeFile('src/shared/i18n/defaultLang.json', json, { flag: 'w' }, err => {})
   }
 )

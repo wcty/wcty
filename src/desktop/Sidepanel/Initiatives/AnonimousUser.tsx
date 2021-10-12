@@ -9,7 +9,7 @@ import { ListRow } from "../Row";
 export default function InitiativesDrawer(){
   const i18n = useI18n()
   const [view] = useRecoilState(Map.viewport)
-  
+  const [selected, setSelected] = useRecoilState(Map.selected)
   const location = {
     type: 'Point',
     coordinates: [view.longitude, view.latitude]
@@ -37,7 +37,7 @@ export default function InitiativesDrawer(){
           </span>
       </UserIconRow>
       <List>
-        {initiatives?.initiatives_nearby.map((v,key)=><ListRow data={v} {...{key}}/>)}
+        {initiatives?.initiatives_nearby.map((v,key)=><ListRow data={v} source='initiatives' {...{key}}/>)}
       </List>
     </div>
   </>

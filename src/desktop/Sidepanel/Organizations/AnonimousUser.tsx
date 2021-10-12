@@ -37,7 +37,7 @@ export default function Organization(){
           </span>
       </UserIconRow>
       <List>
-        {organizations?.orgs_nearby.map((v,key)=><ListRow data={v} {...{key}}/>)}
+        {organizations?.orgs_nearby.map((v,key)=><ListRow data={v} source='orgs' {...{key}}/>)}
       </List>
     </div>
   </>

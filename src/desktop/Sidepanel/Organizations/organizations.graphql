@@ -18,17 +18,13 @@ subscription OrganizationNearbyList(
     min_date: $min_date, 
     min_distance: $min_distance
   }) {
-    image
-    name
-    geom
+    ...OrganizationCard
   }
 }
 
 subscription MyOrganizationList($user_id:uuid!){
 
   orgs( where: { members: { user_id:{ _eq:$user_id } } } ) {
-    image
-    name
-    geom
+    ...OrganizationCard
   }
 }

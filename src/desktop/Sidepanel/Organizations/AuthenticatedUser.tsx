@@ -32,14 +32,14 @@ export default function Organization(){
     <div>
       <UserIconRow>
           <span>
-            {i18n('organisations')}
+            {i18n('myOrganisations')}
           </span>
           <span style={{fontSize: 10}}>
             {/* {'1111 organizations'} */}
           </span>
       </UserIconRow>
       <List>
-        {organizations?.orgs.map((v,key)=><ListRow data={v} {...{key}}/>)}
+        {organizations?.orgs.map((v,key)=><ListRow data={v} source='orgs' {...{key}}/>)}
       </List>
     </div>
   </>

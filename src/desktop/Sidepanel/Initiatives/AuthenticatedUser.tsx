@@ -38,7 +38,7 @@ export default function InitiativesDrawer(){
           </span>
       </UserIconRow>
       <List>
-        {initiatives?.initiatives.map((v,key)=><ListRow data={v} {...{key}}/>)}
+        {initiatives?.initiatives.map((v,key)=><ListRow data={v} source='initiatives' {...{key}}/>)}
       </List>
     </div>
   </>

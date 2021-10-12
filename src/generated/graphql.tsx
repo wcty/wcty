@@ -7968,6 +7968,16 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type InitiativeCardFragment = (
+  Pick<Initiatives, 'id' | 'image' | 'name' | 'created_at' | 'description'>
+  & { geometry: Initiatives['geom'] }
+);
+
+export type OrganizationCardFragment = (
+  Pick<Orgs, 'id' | 'image' | 'name' | 'created_at' | 'description'>
+  & { geometry: Orgs['geom'] }
+);
+
 export type InitiativesNearbyListSubscriptionVariables = Exact<{
   location: Scalars['geometry'];
   limit?: Maybe<Scalars['Int']>;
@@ -7980,14 +7990,14 @@ export type InitiativesNearbyListSubscriptionVariables = Exact<{
 }>;
 
 
-export type InitiativesNearbyListSubscription = { initiatives_nearby: Array<Pick<Initiatives, 'image' | 'name' | 'geom'>> };
+export type InitiativesNearbyListSubscription = { initiatives_nearby: Array<InitiativeCardFragment> };
 
 export type MyInitiativeListSubscriptionVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyInitiativeListSubscription = { initiatives: Array<Pick<Initiatives, 'image' | 'name' | 'geom'>> };
+export type MyInitiativeListSubscription = { initiatives: Array<InitiativeCardFragment> };
 
 export type OrganizationNearbyListSubscriptionVariables = Exact<{
   location: Scalars['geometry'];
@@ -8001,14 +8011,14 @@ export type OrganizationNearbyListSubscriptionVariables = Exact<{
 }>;
 
 
-export type OrganizationNearbyListSubscription = { orgs_nearby: Array<Pick<Orgs, 'image' | 'name' | 'geom'>> };
+export type OrganizationNearbyListSubscription = { orgs_nearby: Array<OrganizationCardFragment> };
 
 export type MyOrganizationListSubscriptionVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyOrganizationListSubscription = { orgs: Array<Pick<Orgs, 'image' | 'name' | 'geom'>> };
+export type MyOrganizationListSubscription = { orgs: Array<OrganizationCardFragment> };
 
 export type AddInitiativeMutationVariables = Exact<{
   geom: Scalars['geometry'];
@@ -8201,6 +8211,26 @@ export type UserQueryVariables = Exact<{
 
 export type UserQuery = { users_by_pk?: Maybe<Pick<Users, 'id' | 'avatar_url' | 'created_at' | 'display_name'>> };
 
+export const InitiativeCardFragmentDoc = gql`
+    fragment InitiativeCard on initiatives {
+  id
+  image
+  name
+  geometry: geom
+  created_at
+  description
+}
+    `;
+export const OrganizationCardFragmentDoc = gql`
+    fragment OrganizationCard on orgs {
+  id
+  image
+  name
+  geometry: geom
+  created_at
+  description
+}
+    `;
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {
   geom
@@ -8219,12 +8249,10 @@ export const InitiativesNearbyListDocument = gql`
   initiatives_nearby(
     args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
   ) {
-    image
-    name
-    geom
+    ...InitiativeCard
   }
 }
-    `;
+    ${InitiativeCardFragmentDoc}`;
 
 /**
  * __useInitiativesNearbyListSubscription__
@@ -8258,12 +8286,10 @@ export type InitiativesNearbyListSubscriptionResult = Apollo.SubscriptionResult<
 export const MyInitiativeListDocument = gql`
     subscription MyInitiativeList($user_id: uuid!) {
   initiatives(where: {members: {user_id: {_eq: $user_id}}}) {
-    image
-    name
-    geom
+    ...InitiativeCard
   }
 }
-    `;
+    ${InitiativeCardFragmentDoc}`;
 
 /**
  * __useMyInitiativeListSubscription__
@@ -8292,12 +8318,10 @@ export const OrganizationNearbyListDocument = gql`
   orgs_nearby(
     args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
   ) {
-    image
-    name
-    geom
+    ...OrganizationCard
   }
 }
-    `;
+    ${OrganizationCardFragmentDoc}`;
 
 /**
  * __useOrganizationNearbyListSubscription__
@@ -8331,12 +8355,10 @@ export type OrganizationNearbyListSubscriptionResult = Apollo.SubscriptionResult
 export const MyOrganizationListDocument = gql`
     subscription MyOrganizationList($user_id: uuid!) {
   orgs(where: {members: {user_id: {_eq: $user_id}}}) {
-    image
-    name
-    geom
+    ...OrganizationCard
   }
 }
-    `;
+    ${OrganizationCardFragmentDoc}`;
 
 /**
  * __useMyOrganizationListSubscription__

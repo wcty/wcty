@@ -1,18 +1,14 @@
 import { Route, useHistory, useLocation } from 'react-router-dom'
-import { InitiativeFab, MenuFab, LocateFab, LayersFab, Intro, Map, Initiatives } from 'components'
+import { Map } from 'components'
 import { useRecoilState } from 'recoil'
-import { atoms } from 'shared'
 import { MapWrapper } from './styles'
 import Sidepanel from './Sidepanel'
 import Login from './Login'
 import MapContents from './MapContents'
 import App from 'App'
+import { FloatPanel } from './FloatPanel'
 
 export default function DesktopVersion(){
-  const [user, setUser] = useRecoilState(App.user)
-  const url = useLocation()
-  const history = useHistory()
-  const [satellite, setSatellite] = useRecoilState(Map.satellite)
 
   return <>
       <Route path="/login">
@@ -25,6 +21,7 @@ export default function DesktopVersion(){
           </Map>
         </MapWrapper>
         <Sidepanel/>
+        <FloatPanel/>
       </Route>
   </>
 }

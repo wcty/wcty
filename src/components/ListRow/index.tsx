@@ -4,23 +4,22 @@ import { useRecoilState } from "recoil"
 import { ListItem } from "./styles"
 import { Map } from 'components'
 import { InitiativeCardFragment } from 'generated'
-import Sidepanel from "."
+import Sidepanel from "desktop/Sidepanel"
 
-export function ListRow({ data:v, source }:{
-  data: InitiativeCardFragment,
-  source: string
+export function ListRow({ data:v, onClick:_onClick }:{
+  data: InitiativeCardFragment&{type: string},
+  onClick?: ()=>void
 }){
 
   const address = useAddress(v.geometry.coordinates)
   const [selected, setSelected] = useRecoilState(Map.selected)
   const [viewport, setViewport] = useRecoilState(Map.viewport)
-  const [open, setOpen] = useRecoilState(Sidepanel.open)
   
   function onClick(){
     setSelected({
       id: v.id,
       type: 'Feature',
-      source,
+      source: v.type,
       geometry: v.geometry,
       properties: {
         name: v.name,
@@ -37,7 +36,7 @@ export function ListRow({ data:v, source }:{
       viewportChangeMethod: 'easeTo',
       viewportChangeOptions: {offset:[145,50]}
     })
-    setOpen(false)
+    _onClick && _onClick()
   }
 
   return <ListItem {...{onClick}}>

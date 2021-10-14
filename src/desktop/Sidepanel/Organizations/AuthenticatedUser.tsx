@@ -1,11 +1,11 @@
 import { useI18n, useUser } from "shared";
-import { UserIconRow, ListItem, List } from "../styles";
-import { useMyOrganizationListSubscription, useOrganizationNearbyListSubscription } from "generated";
+import { UserIconRow, List } from "../styles";
+import { useMyOrganizationListSubscription } from "generated";
 import { useRecoilState } from "recoil";
 import { Map } from 'components'
 import { useEffect, useState } from "react";
-import { ListRow } from "../Row";
-import { userInfo } from "os";
+import { ListRow } from "components";
+import Sidepanel from "..";
 
 export default function Organization(){
   const i18n = useI18n()
@@ -19,6 +19,7 @@ export default function Organization(){
 
   const { data, error, variables } = useMyOrganizationListSubscription({variables:{ user_id: user?.id }})
   const [ organizations, setOrganizations ] = useState(data)
+  const [open, setOpen] = useRecoilState(Sidepanel.open)
 
   console.log(error, variables, data)
 
@@ -39,7 +40,8 @@ export default function Organization(){
           </span>
       </UserIconRow>
       <List>
-        {organizations?.orgs.map((v,key)=><ListRow data={v} source='orgs' {...{key}}/>)}
+        {organizations?.orgs.map((v,key)=>
+          <ListRow onClick={()=>setOpen(false)} data={{...v, type: 'organization'}} {...{key}}/>)}
       </List>
     </div>
   </>

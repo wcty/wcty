@@ -6367,6 +6367,8 @@ export type Query_Root = {
   orgs_by_pk?: Maybe<Orgs>;
   /** execute function "orgs_nearby" which returns "orgs" */
   orgs_nearby: Array<Orgs>;
+  /** fetch data from the table: "search_entries" */
+  search_entries: Array<Search_Entries>;
   /** fetch data from the table: "tags" */
   tags: Array<Tags>;
   /** fetch data from the table: "tags" using primary key columns */
@@ -6741,6 +6743,15 @@ export type Query_RootOrgs_NearbyArgs = {
 };
 
 
+export type Query_RootSearch_EntriesArgs = {
+  distinct_on?: Maybe<Array<Search_Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Search_Entries_Order_By>>;
+  where?: Maybe<Search_Entries_Bool_Exp>;
+};
+
+
 export type Query_RootTagsArgs = {
   distinct_on?: Maybe<Array<Tags_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -6781,6 +6792,65 @@ export type Query_RootUsersArgs = {
 export type Query_RootUsers_By_PkArgs = {
   id: Scalars['uuid'];
 };
+
+/** columns and relationships of "search_entries" */
+export type Search_Entries = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  geom?: Maybe<Scalars['geometry']>;
+  id?: Maybe<Scalars['uuid']>;
+  image?: Maybe<Scalars['String']>;
+  modified_at?: Maybe<Scalars['timestamptz']>;
+  name?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** Boolean expression to filter rows from the table "search_entries". All fields are combined with a logical 'AND'. */
+export type Search_Entries_Bool_Exp = {
+  _and?: Maybe<Array<Search_Entries_Bool_Exp>>;
+  _not?: Maybe<Search_Entries_Bool_Exp>;
+  _or?: Maybe<Array<Search_Entries_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  description?: Maybe<String_Comparison_Exp>;
+  geom?: Maybe<Geometry_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  image?: Maybe<String_Comparison_Exp>;
+  modified_at?: Maybe<Timestamptz_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  type?: Maybe<String_Comparison_Exp>;
+};
+
+/** Ordering options when selecting data from "search_entries". */
+export type Search_Entries_Order_By = {
+  created_at?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+  geom?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  image?: Maybe<Order_By>;
+  modified_at?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+};
+
+/** select columns of table "search_entries" */
+export enum Search_Entries_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Geom = 'geom',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Image = 'image',
+  /** column name */
+  ModifiedAt = 'modified_at',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Type = 'type'
+}
 
 export type St_D_Within_Geography_Input = {
   distance: Scalars['Float'];
@@ -6894,6 +6964,8 @@ export type Subscription_Root = {
   orgs_by_pk?: Maybe<Orgs>;
   /** execute function "orgs_nearby" which returns "orgs" */
   orgs_nearby: Array<Orgs>;
+  /** fetch data from the table: "search_entries" */
+  search_entries: Array<Search_Entries>;
   /** fetch data from the table: "tags" */
   tags: Array<Tags>;
   /** fetch data from the table: "tags" using primary key columns */
@@ -7265,6 +7337,15 @@ export type Subscription_RootOrgs_NearbyArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Orgs_Order_By>>;
   where?: Maybe<Orgs_Bool_Exp>;
+};
+
+
+export type Subscription_RootSearch_EntriesArgs = {
+  distinct_on?: Maybe<Array<Search_Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Search_Entries_Order_By>>;
+  where?: Maybe<Search_Entries_Bool_Exp>;
 };
 
 
@@ -7968,6 +8049,17 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type SearchResultsSubscriptionVariables = Exact<{
+  layers?: Maybe<Array<Scalars['String']> | Scalars['String']>;
+  keyword: Scalars['String'];
+}>;
+
+
+export type SearchResultsSubscription = { search_entries: Array<(
+    Pick<Search_Entries, 'id' | 'name' | 'description' | 'image' | 'type' | 'created_at'>
+    & { geometry: Search_Entries['geom'] }
+  )> };
+
 export type InitiativeCardFragment = (
   Pick<Initiatives, 'id' | 'image' | 'name' | 'created_at' | 'description'>
   & { geometry: Initiatives['geom'] }
@@ -8244,6 +8336,46 @@ export const InitiativeFieldsFragmentDoc = gql`
   }
 }
     `;
+export const SearchResultsDocument = gql`
+    subscription SearchResults($layers: [String!] = ["initiative", "organization"], $keyword: String!) {
+  search_entries(
+    where: {_and: [{type: {_in: $layers}}, {_or: [{name: {_ilike: $keyword}}, {description: {_ilike: $keyword}}]}]}
+    limit: 5
+  ) {
+    id
+    name
+    description
+    image
+    type
+    created_at
+    geometry: geom
+  }
+}
+    `;
+
+/**
+ * __useSearchResultsSubscription__
+ *
+ * To run a query within a React component, call `useSearchResultsSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useSearchResultsSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchResultsSubscription({
+ *   variables: {
+ *      layers: // value for 'layers'
+ *      keyword: // value for 'keyword'
+ *   },
+ * });
+ */
+export function useSearchResultsSubscription(baseOptions: Apollo.SubscriptionHookOptions<SearchResultsSubscription, SearchResultsSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<SearchResultsSubscription, SearchResultsSubscriptionVariables>(SearchResultsDocument, options);
+      }
+export type SearchResultsSubscriptionHookResult = ReturnType<typeof useSearchResultsSubscription>;
+export type SearchResultsSubscriptionResult = Apollo.SubscriptionResult<SearchResultsSubscription>;
 export const InitiativesNearbyListDocument = gql`
     subscription InitiativesNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
   initiatives_nearby(
@@ -9729,7 +9861,7 @@ export type orgsFieldPolicy = {
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type query_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
+export type query_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'search_entries' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
 export type query_rootFieldPolicy = {
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9781,6 +9913,7 @@ export type query_rootFieldPolicy = {
 	orgs?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
+	search_entries?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9788,7 +9921,18 @@ export type query_rootFieldPolicy = {
 	users?: FieldPolicy<any> | FieldReadFunction<any>,
 	users_by_pk?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type subscription_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
+export type search_entriesKeySpecifier = ('created_at' | 'description' | 'geom' | 'id' | 'image' | 'modified_at' | 'name' | 'type' | search_entriesKeySpecifier)[];
+export type search_entriesFieldPolicy = {
+	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	geom?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	image?: FieldPolicy<any> | FieldReadFunction<any>,
+	modified_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	type?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type subscription_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'search_entries' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
 export type subscription_rootFieldPolicy = {
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9840,6 +9984,7 @@ export type subscription_rootFieldPolicy = {
 	orgs?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
+	search_entries?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10126,6 +10271,10 @@ export type TypedTypePolicies = TypePolicies & {
 	query_root?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | query_rootKeySpecifier | (() => undefined | query_rootKeySpecifier),
 		fields?: query_rootFieldPolicy,
+	},
+	search_entries?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | search_entriesKeySpecifier | (() => undefined | search_entriesKeySpecifier),
+		fields?: search_entriesFieldPolicy,
 	},
 	subscription_root?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | subscription_rootKeySpecifier | (() => undefined | subscription_rootKeySpecifier),

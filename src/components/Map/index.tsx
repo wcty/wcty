@@ -72,3 +72,12 @@ Map.selected = atom({
   key: 'mapSelected',
   default: null as (GeoJSON.Feature<GeoJSON.Point> & Omit<FeatureProps<Specs[keyof Specs]>['features'][number],'layer'|'sourceLayer'|'state'>) |null // |null
 })
+
+Map.layers_list = ['initiative', 'organization'] as ('initiative'|'organization')[]
+
+Map.layers = atom({
+  key: 'mapLayers',
+  default: Map.layers_list
+})
+
+

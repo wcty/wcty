@@ -1,10 +1,11 @@
-import { useAddress, useI18n } from "shared";
-import { UserIconRow, ListItem, List } from "../styles";
-import { useInitiativesNearbyListSubscription, Initiatives } from "generated";
+import { useI18n } from "shared";
+import { UserIconRow, List } from "../styles";
+import { useInitiativesNearbyListSubscription } from "generated";
 import { useRecoilState } from "recoil";
 import { Map } from 'components'
 import { useEffect, useState } from "react";
-import { ListRow } from "../Row";
+import { ListRow } from "components";
+import Sidepanel from "..";
 
 export default function InitiativesDrawer(){
   const i18n = useI18n()
@@ -17,6 +18,7 @@ export default function InitiativesDrawer(){
 
   const { data, error, variables } = useInitiativesNearbyListSubscription({variables:{ location, limit: 10 }})
   const [ initiatives, setInitiatives ] = useState(data)
+  const [open, setOpen] = useRecoilState(Sidepanel.open)
 
   console.log(error, variables)
 
@@ -37,7 +39,8 @@ export default function InitiativesDrawer(){
           </span>
       </UserIconRow>
       <List>
-        {initiatives?.initiatives_nearby.map((v,key)=><ListRow data={v} source='initiatives' {...{key}}/>)}
+        {initiatives?.initiatives_nearby.map((v,key)=>
+          <ListRow onClick={()=>setOpen(false)} data={{...v, type: 'initiative'}}  {...{key}}/>)}
       </List>
     </div>
   </>

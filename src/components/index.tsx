@@ -5,6 +5,7 @@ export { default as Map } from './Map'
 export { default as SvgIcon } from './SvgIcon'
 export { default as Uploader } from './Uploader'
 export { default as LangSelect } from './LangSelect'
+export { ListRow as ListRow } from './ListRow'
 
 export * from './Fabs'
 export * from './Forms'

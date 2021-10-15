@@ -7,6 +7,7 @@ import Login from './Login'
 import MapContents from './MapContents'
 import App from 'App'
 import { FloatPanel } from './FloatPanel'
+import InitiativeDetail from 'containers/InitiativeDetail'
 
 export default function DesktopVersion(){
 
@@ -14,7 +15,12 @@ export default function DesktopVersion(){
       <Route path="/login">
         <Login/>
       </Route>
-      <Route path="/">
+      <Route path="/initiative/:id">
+        <InitiativeDetail/>
+        <Sidepanel/>
+        <FloatPanel/>
+      </Route>
+      <Route path="/" exact>
         <MapWrapper>
           <Map>
             <MapContents/>
@@ -23,5 +29,6 @@ export default function DesktopVersion(){
         <Sidepanel/>
         <FloatPanel/>
       </Route>
+      
   </>
 }

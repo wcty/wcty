@@ -10,7 +10,7 @@ import WecityChat from 'assets/images/wecity_chat_512.png'
 import TAB from 'assets/images/logos/tab.png'
 import CreativeEurope from 'assets/images/logos/creativeeurope.png'
 import UCF from 'assets/images/logos/ucf.png'
-import { useI18n, atoms } from 'shared'
+import { useI18n, atoms } from 'common'
 import LangSelect from './LangSelectShort'
 import SwipeableViews from 'react-swipeable-views';
 import { useRecoilState } from 'recoil'

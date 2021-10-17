@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FormControl, TextField, Button } from '@material-ui/core'
-import { auth } from 'shared'
+import { auth } from 'common'
 import { useHistory } from 'react-router'
 
 export default function Login () {

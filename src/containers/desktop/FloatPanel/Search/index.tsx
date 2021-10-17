@@ -1,4 +1,4 @@
-import { useI18n } from "shared";
+import { useI18n } from 'common';
 import { SearchInput, SearchWrapper, FieldWrapper, SearchResults } from "../styles";
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg'
 import { ReactComponent as CancelIcon } from 'assets/icons/cancel.svg'

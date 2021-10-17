@@ -1,6 +1,4 @@
-import { useI18n, useUser } from "shared";
-import { UserIconRow } from "../styles";
-import { useEffect } from "react";
+import { useUser } from 'common';
 import AuthenticatedUser from "./AuthenticatedUser";
 import AnonimousUser from "./AnonimousUser"
 

@@ -1,4 +1,4 @@
-import { useI18n } from "shared";
+import { useI18n } from 'common';
 import { ButtonWrapper } from "../styles";
 import { useRecoilState } from "recoil";
 import { Map } from "components";

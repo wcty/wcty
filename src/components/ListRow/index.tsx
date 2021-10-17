@@ -1,10 +1,10 @@
 import { Initiatives } from "generated"
-import { atoms, useAddress } from "shared"
+import { atoms, useAddress } from 'common'
 import { useRecoilState } from "recoil"
 import { ListItem } from "./styles"
 import { Map } from 'components'
 import { InitiativeCardFragment } from 'generated'
-import Sidepanel from "desktop/Sidepanel"
+import Sidepanel from "containers/desktop/Sidepanel"
 
 export function ListRow({ data:v, onClick:_onClick }:{
   data: InitiativeCardFragment&{type: string},

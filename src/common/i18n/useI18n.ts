@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { default as defaultLang } from './defaultLang.json'
 import { useRecoilValue } from 'recoil'
-import { atoms } from 'shared'
+import { atoms } from 'common'
 import { useDictionaryQuery } from 'generated'
 
 export type MapSchema<T extends Record<string, string>> = {

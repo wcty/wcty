@@ -4,7 +4,7 @@ import { Popup, Thumbnail, Content, TopBar, BottomPanel, Button, Metrics, Icon }
 import { useEffect } from "react";
 import { ReactComponent as People } from 'assets/icons/popupPeople.svg'
 import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
-import { useGeolocation, useI18n } from "shared";
+import { useGeolocation, useI18n } from 'common';
 import distance from '@turf/distance'
 import {format} from 'd3-format'
 

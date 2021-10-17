@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { cookies, atoms, useI18n } from 'shared'
+import { cookies, atoms, useI18n } from 'common'
 import { Select } from './styles'
 const useForceUpdate = () => useState()[1];
 

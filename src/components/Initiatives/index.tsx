@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Divider, List, Typography, ListItem, ListItemText } from '@material-ui/core';
 import { useRecoilValue } from 'recoil';
 import { useHistory } from 'react-router-dom'
-import { mapboxToken, atoms, useI18n } from 'shared'
+import { mapboxToken, atoms, useI18n } from 'common'
 import { useMyInitiativesQuery, Initiatives } from 'generated'
 import { InitiativesContainer } from './styles'
 import App from 'App';

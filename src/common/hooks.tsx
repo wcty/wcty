@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import { atoms, mapboxToken } from 'shared'
+import { atoms, mapboxToken } from 'common'
 import { Map } from 'components'
 import App from 'App'
 

@@ -1,4 +1,4 @@
-import { i18n as i18nType } from 'shared'
+import { i18n as i18nType } from 'common'
 import { ReactComponent as Initiatives } from 'assets/icons/initiatives.svg'
 import { ReactComponent as Settings } from 'assets/icons/settings.svg'
 import { ReactComponent as MapIcon } from 'assets/icons/map.svg'

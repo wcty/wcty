@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
 import { Button } from '@material-ui/core'
-import { storage, atoms } from 'shared'
+import { storage, atoms } from 'common'
 import { v4 as uuidv4 } from 'uuid'
 import { useRecoilValue } from 'recoil'
 import { useInsertFileMutation } from 'generated'

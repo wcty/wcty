@@ -4,7 +4,7 @@ import { ReactComponent as LoginIcon } from 'assets/icons/login.svg'
 import { ReactComponent as LogoutIcon } from 'assets/icons/logout.svg'
 
 import { useState, useEffect } from 'react'
-import { auth, useI18n, useUser } from 'shared'
+import { auth, useI18n, useUser } from 'common'
 import { LangSelect } from 'components'
 import { useHistory } from 'react-router'
 import { tabs, Tabs } from './tabs'

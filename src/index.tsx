@@ -1,11 +1,10 @@
 import 'resize-observer-polyfill/dist/ResizeObserver.global'
-import './shared/style/index.css'
 import 'mapbox-gl/dist/mapbox-gl.css';
 import * as serviceWorker from './serviceWorker'
 
 import React from 'react'
 import { render } from 'react-dom'
-import { auth } from 'shared'
+import { auth, theme } from 'common'
 import { BrowserRouter as Router } from "react-router-dom"
 import { RecoilRoot, } from 'recoil'
 import { createBrowserHistory } from 'history'
@@ -13,7 +12,7 @@ import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from "@nhost/react-apollo"
 import App from './App'
 import { InMemoryCache } from '@apollo/client';
-
+import { ThemeProvider } from 'styled-components'
 export const history = createBrowserHistory()
 
 const AppRoot = ()=> 
@@ -27,8 +26,10 @@ const AppRoot = ()=>
       >
         <Router {...{history}}>
           <RecoilRoot>
-            {/* <RecoilExternalStatePortal /> */}
-            <App />
+            <ThemeProvider {...{theme}}>
+              {/* <RecoilExternalStatePortal /> */}
+              <App />
+            </ThemeProvider>
           </RecoilRoot>
         </Router>
       </NhostApolloProvider>

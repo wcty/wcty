@@ -1,6 +1,6 @@
 import { Fab } from '@material-ui/core'
 import { useRecoilState } from 'recoil'
-import { atoms, useGeolocation } from 'shared'
+import { atoms, useGeolocation } from 'common'
 import { MyLocation } from '@material-ui/icons'
 import s from './styles.module.scss'
 import { Map } from 'components'

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Fab, Collapse } from '@material-ui/core'
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { atoms } from 'shared'
+import { atoms } from 'common'
 import { Menu as MenuIcon } from '@material-ui/icons'
 import s from './styles.module.scss'
 import App from 'App';

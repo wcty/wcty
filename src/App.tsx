@@ -1,25 +1,13 @@
 import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { atom, useRecoilState } from 'recoil'
-import { atoms, auth, User, useWindowDimensions } from 'shared'
-import { Maybe, Users, useUserLazyQuery } from 'generated'
-import { AppWrapper } from './styles'
-import DesktopVersion from 'desktop'
-import MobileVersion from 'mobile'
-import { createGlobalStyle } from 'styled-components/macro'
+import { auth, User, useWindowDimensions } from 'common'
+import { useUserLazyQuery } from 'generated'
+import { AppWrapper, GlobalStyle } from './styles'
+import DesktopVersion from 'containers/desktop'
+import MobileVersion from 'containers/mobile'
 import 'assets/fonts/mono/regular/_index.scss'
 
-const GlobalStyle = createGlobalStyle`
-  * {
-    font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
-    box-sizing: border-box;
-    font-size: 12px;
-  }
-  h2{
-    font-weight: 500;
-    font-size: 19;
-  }
-`
 
 export default function App() {
   const [, setUser] = useRecoilState(App.user)

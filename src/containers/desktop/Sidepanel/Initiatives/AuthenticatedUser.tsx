@@ -1,6 +1,6 @@
 import { useI18n, useUser } from 'common';
 import { UserIconRow, List } from "../styles";
-import { useMyInitiativeListSubscription } from "generated";
+import { useMyInitiativeListQuery } from "generated";
 import { useRecoilState } from "recoil";
 import { Map } from 'components'
 import { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ export default function InitiativesDrawer(){
     coordinates: [view.longitude, view.latitude]
   }
 
-  const { data, error, variables } = useMyInitiativeListSubscription({variables:{ user_id: user?.id }})
+  const { data, error, variables } = useMyInitiativeListQuery({variables:{ user_id: user?.id }})
   const [ initiatives, setInitiatives ] = useState(data)
   const [open, setOpen] = useRecoilState(Sidepanel.open)
 

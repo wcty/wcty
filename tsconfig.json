@@ -3,6 +3,7 @@
     "baseUrl": "src/",
     "typeRoots": [
       "src/types",
+      "src/common/types",
       "node_modules/@types"
     ],
     "target": "es3",

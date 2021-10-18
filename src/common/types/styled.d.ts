@@ -1,6 +1,5 @@
-// import original module declarations
 import 'styled-components';
-import { theme } from './theme'
+import { theme } from '../style/theme'
 type Theme = typeof theme
 
 declare module 'styled-components' {

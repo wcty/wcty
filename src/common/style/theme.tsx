@@ -1,5 +1,3 @@
-import { css } from 'styled-components'
-
 export const theme = {
   colors:{
     titleActive: '#010202',

@@ -1,6 +1,6 @@
 import { useI18n } from 'common';
 import { UserIconRow, List } from "../styles";
-import { useOrganizationNearbyListSubscription } from "generated";
+import { useOrganizationNearbyListQuery } from "generated";
 import { useRecoilState } from "recoil";
 import { Map } from 'components'
 import { useEffect, useState } from "react";
@@ -16,7 +16,7 @@ export default function Organization(){
     coordinates: [view.longitude, view.latitude]
   }
 
-  const { data, error, variables } = useOrganizationNearbyListSubscription({variables:{ location, limit: 10 }})
+  const { data, error, variables } = useOrganizationNearbyListQuery({variables:{ location, limit: 10 }})
   const [ organizations, setOrganizations ] = useState(data)
   const [open, setOpen] = useRecoilState(Sidepanel.open)
 

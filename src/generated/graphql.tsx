@@ -4696,6 +4696,162 @@ export enum Initiatives_Update_Column {
   Name = 'name'
 }
 
+/** columns and relationships of "map_entries" */
+export type Map_Entries = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  geom?: Maybe<Scalars['geometry']>;
+  id?: Maybe<Scalars['uuid']>;
+  image?: Maybe<Scalars['String']>;
+  members?: Maybe<Scalars['bigint']>;
+  modified_at?: Maybe<Scalars['timestamptz']>;
+  name?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** aggregated selection of "map_entries" */
+export type Map_Entries_Aggregate = {
+  aggregate?: Maybe<Map_Entries_Aggregate_Fields>;
+  nodes: Array<Map_Entries>;
+};
+
+/** aggregate fields of "map_entries" */
+export type Map_Entries_Aggregate_Fields = {
+  avg?: Maybe<Map_Entries_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Map_Entries_Max_Fields>;
+  min?: Maybe<Map_Entries_Min_Fields>;
+  stddev?: Maybe<Map_Entries_Stddev_Fields>;
+  stddev_pop?: Maybe<Map_Entries_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Map_Entries_Stddev_Samp_Fields>;
+  sum?: Maybe<Map_Entries_Sum_Fields>;
+  var_pop?: Maybe<Map_Entries_Var_Pop_Fields>;
+  var_samp?: Maybe<Map_Entries_Var_Samp_Fields>;
+  variance?: Maybe<Map_Entries_Variance_Fields>;
+};
+
+
+/** aggregate fields of "map_entries" */
+export type Map_Entries_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Map_Entries_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Map_Entries_Avg_Fields = {
+  members?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "map_entries". All fields are combined with a logical 'AND'. */
+export type Map_Entries_Bool_Exp = {
+  _and?: Maybe<Array<Map_Entries_Bool_Exp>>;
+  _not?: Maybe<Map_Entries_Bool_Exp>;
+  _or?: Maybe<Array<Map_Entries_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  description?: Maybe<String_Comparison_Exp>;
+  geom?: Maybe<Geometry_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  image?: Maybe<String_Comparison_Exp>;
+  members?: Maybe<Bigint_Comparison_Exp>;
+  modified_at?: Maybe<Timestamptz_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  type?: Maybe<String_Comparison_Exp>;
+};
+
+/** aggregate max on columns */
+export type Map_Entries_Max_Fields = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  image?: Maybe<Scalars['String']>;
+  members?: Maybe<Scalars['bigint']>;
+  modified_at?: Maybe<Scalars['timestamptz']>;
+  name?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type Map_Entries_Min_Fields = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  image?: Maybe<Scalars['String']>;
+  members?: Maybe<Scalars['bigint']>;
+  modified_at?: Maybe<Scalars['timestamptz']>;
+  name?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** Ordering options when selecting data from "map_entries". */
+export type Map_Entries_Order_By = {
+  created_at?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+  geom?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  image?: Maybe<Order_By>;
+  members?: Maybe<Order_By>;
+  modified_at?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+};
+
+/** select columns of table "map_entries" */
+export enum Map_Entries_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Geom = 'geom',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Image = 'image',
+  /** column name */
+  Members = 'members',
+  /** column name */
+  ModifiedAt = 'modified_at',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Type = 'type'
+}
+
+/** aggregate stddev on columns */
+export type Map_Entries_Stddev_Fields = {
+  members?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Map_Entries_Stddev_Pop_Fields = {
+  members?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Map_Entries_Stddev_Samp_Fields = {
+  members?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Map_Entries_Sum_Fields = {
+  members?: Maybe<Scalars['bigint']>;
+};
+
+/** aggregate var_pop on columns */
+export type Map_Entries_Var_Pop_Fields = {
+  members?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Map_Entries_Var_Samp_Fields = {
+  members?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Map_Entries_Variance_Fields = {
+  members?: Maybe<Scalars['Float']>;
+};
+
 /** mutation root */
 export type Mutation_Root = {
   /** delete data from the table: "files" */
@@ -6349,6 +6505,10 @@ export type Query_Root = {
   initiatives_by_pk?: Maybe<Initiatives>;
   /** execute function "initiatives_nearby" which returns "initiatives" */
   initiatives_nearby: Array<Initiatives>;
+  /** fetch data from the table: "map_entries" */
+  map_entries: Array<Map_Entries>;
+  /** fetch aggregated fields from the table: "map_entries" */
+  map_entries_aggregate: Map_Entries_Aggregate;
   /** An array relationship */
   org_members: Array<Org_Members>;
   /** fetch data from the table: "org_members" using primary key columns */
@@ -6367,8 +6527,6 @@ export type Query_Root = {
   orgs_by_pk?: Maybe<Orgs>;
   /** execute function "orgs_nearby" which returns "orgs" */
   orgs_nearby: Array<Orgs>;
-  /** fetch data from the table: "search_entries" */
-  search_entries: Array<Search_Entries>;
   /** fetch data from the table: "tags" */
   tags: Array<Tags>;
   /** fetch data from the table: "tags" using primary key columns */
@@ -6677,6 +6835,24 @@ export type Query_RootInitiatives_NearbyArgs = {
 };
 
 
+export type Query_RootMap_EntriesArgs = {
+  distinct_on?: Maybe<Array<Map_Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Map_Entries_Order_By>>;
+  where?: Maybe<Map_Entries_Bool_Exp>;
+};
+
+
+export type Query_RootMap_Entries_AggregateArgs = {
+  distinct_on?: Maybe<Array<Map_Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Map_Entries_Order_By>>;
+  where?: Maybe<Map_Entries_Bool_Exp>;
+};
+
+
 export type Query_RootOrg_MembersArgs = {
   distinct_on?: Maybe<Array<Org_Members_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -6743,15 +6919,6 @@ export type Query_RootOrgs_NearbyArgs = {
 };
 
 
-export type Query_RootSearch_EntriesArgs = {
-  distinct_on?: Maybe<Array<Search_Entries_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Search_Entries_Order_By>>;
-  where?: Maybe<Search_Entries_Bool_Exp>;
-};
-
-
 export type Query_RootTagsArgs = {
   distinct_on?: Maybe<Array<Tags_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -6792,65 +6959,6 @@ export type Query_RootUsersArgs = {
 export type Query_RootUsers_By_PkArgs = {
   id: Scalars['uuid'];
 };
-
-/** columns and relationships of "search_entries" */
-export type Search_Entries = {
-  created_at?: Maybe<Scalars['timestamptz']>;
-  description?: Maybe<Scalars['String']>;
-  geom?: Maybe<Scalars['geometry']>;
-  id?: Maybe<Scalars['uuid']>;
-  image?: Maybe<Scalars['String']>;
-  modified_at?: Maybe<Scalars['timestamptz']>;
-  name?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-};
-
-/** Boolean expression to filter rows from the table "search_entries". All fields are combined with a logical 'AND'. */
-export type Search_Entries_Bool_Exp = {
-  _and?: Maybe<Array<Search_Entries_Bool_Exp>>;
-  _not?: Maybe<Search_Entries_Bool_Exp>;
-  _or?: Maybe<Array<Search_Entries_Bool_Exp>>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  description?: Maybe<String_Comparison_Exp>;
-  geom?: Maybe<Geometry_Comparison_Exp>;
-  id?: Maybe<Uuid_Comparison_Exp>;
-  image?: Maybe<String_Comparison_Exp>;
-  modified_at?: Maybe<Timestamptz_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-  type?: Maybe<String_Comparison_Exp>;
-};
-
-/** Ordering options when selecting data from "search_entries". */
-export type Search_Entries_Order_By = {
-  created_at?: Maybe<Order_By>;
-  description?: Maybe<Order_By>;
-  geom?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  image?: Maybe<Order_By>;
-  modified_at?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  type?: Maybe<Order_By>;
-};
-
-/** select columns of table "search_entries" */
-export enum Search_Entries_Select_Column {
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  Description = 'description',
-  /** column name */
-  Geom = 'geom',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Image = 'image',
-  /** column name */
-  ModifiedAt = 'modified_at',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  Type = 'type'
-}
 
 export type St_D_Within_Geography_Input = {
   distance: Scalars['Float'];
@@ -6946,6 +7054,10 @@ export type Subscription_Root = {
   initiatives_by_pk?: Maybe<Initiatives>;
   /** execute function "initiatives_nearby" which returns "initiatives" */
   initiatives_nearby: Array<Initiatives>;
+  /** fetch data from the table: "map_entries" */
+  map_entries: Array<Map_Entries>;
+  /** fetch aggregated fields from the table: "map_entries" */
+  map_entries_aggregate: Map_Entries_Aggregate;
   /** An array relationship */
   org_members: Array<Org_Members>;
   /** fetch data from the table: "org_members" using primary key columns */
@@ -6964,8 +7076,6 @@ export type Subscription_Root = {
   orgs_by_pk?: Maybe<Orgs>;
   /** execute function "orgs_nearby" which returns "orgs" */
   orgs_nearby: Array<Orgs>;
-  /** fetch data from the table: "search_entries" */
-  search_entries: Array<Search_Entries>;
   /** fetch data from the table: "tags" */
   tags: Array<Tags>;
   /** fetch data from the table: "tags" using primary key columns */
@@ -7274,6 +7384,24 @@ export type Subscription_RootInitiatives_NearbyArgs = {
 };
 
 
+export type Subscription_RootMap_EntriesArgs = {
+  distinct_on?: Maybe<Array<Map_Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Map_Entries_Order_By>>;
+  where?: Maybe<Map_Entries_Bool_Exp>;
+};
+
+
+export type Subscription_RootMap_Entries_AggregateArgs = {
+  distinct_on?: Maybe<Array<Map_Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Map_Entries_Order_By>>;
+  where?: Maybe<Map_Entries_Bool_Exp>;
+};
+
+
 export type Subscription_RootOrg_MembersArgs = {
   distinct_on?: Maybe<Array<Org_Members_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -7337,15 +7465,6 @@ export type Subscription_RootOrgs_NearbyArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Orgs_Order_By>>;
   where?: Maybe<Orgs_Bool_Exp>;
-};
-
-
-export type Subscription_RootSearch_EntriesArgs = {
-  distinct_on?: Maybe<Array<Search_Entries_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Search_Entries_Order_By>>;
-  where?: Maybe<Search_Entries_Bool_Exp>;
 };
 
 
@@ -8049,68 +8168,12 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
-export type SearchResultsSubscriptionVariables = Exact<{
-  layers?: Maybe<Array<Scalars['String']> | Scalars['String']>;
-  keyword: Scalars['String'];
-}>;
-
-
-export type SearchResultsSubscription = { search_entries: Array<(
-    Pick<Search_Entries, 'id' | 'name' | 'description' | 'image' | 'type' | 'created_at'>
-    & { geometry: Search_Entries['geom'] }
-  )> };
-
-export type InitiativeCardFragment = (
-  Pick<Initiatives, 'id' | 'image' | 'name' | 'created_at' | 'description'>
-  & { geometry: Initiatives['geom'] }
-);
-
-export type OrganizationCardFragment = (
-  Pick<Orgs, 'id' | 'image' | 'name' | 'created_at' | 'description'>
-  & { geometry: Orgs['geom'] }
-);
-
-export type InitiativesNearbyListSubscriptionVariables = Exact<{
-  location: Scalars['geometry'];
-  limit?: Maybe<Scalars['Int']>;
-  max_date?: Maybe<Scalars['timestamptz']>;
-  max_distance?: Maybe<Scalars['float8']>;
-  min_date?: Maybe<Scalars['timestamptz']>;
-  min_distance?: Maybe<Scalars['float8']>;
-  user_id?: Maybe<Scalars['uuid']>;
-  own?: Maybe<Scalars['Boolean']>;
-}>;
-
-
-export type InitiativesNearbyListSubscription = { initiatives_nearby: Array<InitiativeCardFragment> };
-
-export type MyInitiativeListSubscriptionVariables = Exact<{
+export type UserQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyInitiativeListSubscription = { initiatives: Array<InitiativeCardFragment> };
-
-export type OrganizationNearbyListSubscriptionVariables = Exact<{
-  location: Scalars['geometry'];
-  limit?: Maybe<Scalars['Int']>;
-  max_date?: Maybe<Scalars['timestamptz']>;
-  max_distance?: Maybe<Scalars['float8']>;
-  min_date?: Maybe<Scalars['timestamptz']>;
-  min_distance?: Maybe<Scalars['float8']>;
-  user_id?: Maybe<Scalars['uuid']>;
-  own?: Maybe<Scalars['Boolean']>;
-}>;
-
-
-export type OrganizationNearbyListSubscription = { orgs_nearby: Array<OrganizationCardFragment> };
-
-export type MyOrganizationListSubscriptionVariables = Exact<{
-  user_id: Scalars['uuid'];
-}>;
-
-
-export type MyOrganizationListSubscription = { orgs: Array<OrganizationCardFragment> };
+export type UserQuery = { users_by_pk?: Maybe<Pick<Users, 'id' | 'avatar_url' | 'created_at' | 'display_name'>> };
 
 export type AddInitiativeMutationVariables = Exact<{
   geom: Scalars['geometry'];
@@ -8296,13 +8359,82 @@ export type DictionaryQueryVariables = Exact<{
 
 export type DictionaryQuery = { i18n: Array<MakeOptional<Pick<I18n, 'key' | 'en' | 'uk' | 'fr'>, 'en' | 'uk' | 'fr'>> };
 
-export type UserQueryVariables = Exact<{
+export type SearchResultsQueryVariables = Exact<{
+  layers?: Maybe<Array<Scalars['String']> | Scalars['String']>;
+  keyword: Scalars['String'];
+}>;
+
+
+export type SearchResultsQuery = { search_entries: Array<(
+    Pick<Map_Entries, 'id' | 'name' | 'description' | 'image' | 'type' | 'created_at'>
+    & { geometry: Map_Entries['geom'] }
+  )> };
+
+export type InitiativeCardFragment = (
+  Pick<Initiatives, 'id' | 'image' | 'name' | 'created_at' | 'description'>
+  & { geometry: Initiatives['geom'] }
+);
+
+export type OrganizationCardFragment = (
+  Pick<Orgs, 'id' | 'image' | 'name' | 'created_at' | 'description'>
+  & { geometry: Orgs['geom'] }
+);
+
+export type InitiativesNearbyListQueryVariables = Exact<{
+  location: Scalars['geometry'];
+  limit?: Maybe<Scalars['Int']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  max_distance?: Maybe<Scalars['float8']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  min_distance?: Maybe<Scalars['float8']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  own?: Maybe<Scalars['Boolean']>;
+}>;
+
+
+export type InitiativesNearbyListQuery = { initiatives_nearby: Array<InitiativeCardFragment> };
+
+export type MyInitiativeListQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type UserQuery = { users_by_pk?: Maybe<Pick<Users, 'id' | 'avatar_url' | 'created_at' | 'display_name'>> };
+export type MyInitiativeListQuery = { initiatives: Array<InitiativeCardFragment> };
 
+export type OrganizationNearbyListQueryVariables = Exact<{
+  location: Scalars['geometry'];
+  limit?: Maybe<Scalars['Int']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  max_distance?: Maybe<Scalars['float8']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  min_distance?: Maybe<Scalars['float8']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  own?: Maybe<Scalars['Boolean']>;
+}>;
+
+
+export type OrganizationNearbyListQuery = { orgs_nearby: Array<OrganizationCardFragment> };
+
+export type MyOrganizationListQueryVariables = Exact<{
+  user_id: Scalars['uuid'];
+}>;
+
+
+export type MyOrganizationListQuery = { orgs: Array<OrganizationCardFragment> };
+
+export const InitiativeFieldsFragmentDoc = gql`
+    fragment InitiativeFields on initiatives {
+  geom
+  name
+  id
+  image
+  description
+  created_at
+  members {
+    user_id
+  }
+}
+    `;
 export const InitiativeCardFragmentDoc = gql`
     fragment InitiativeCard on initiatives {
   id
@@ -8323,197 +8455,44 @@ export const OrganizationCardFragmentDoc = gql`
   description
 }
     `;
-export const InitiativeFieldsFragmentDoc = gql`
-    fragment InitiativeFields on initiatives {
-  geom
-  name
-  id
-  image
-  description
-  created_at
-  members {
-    user_id
-  }
-}
-    `;
-export const SearchResultsDocument = gql`
-    subscription SearchResults($layers: [String!] = ["initiative", "organization"], $keyword: String!) {
-  search_entries(
-    where: {_and: [{type: {_in: $layers}}, {_or: [{name: {_ilike: $keyword}}, {description: {_ilike: $keyword}}]}]}
-    limit: 5
-  ) {
+export const UserDocument = gql`
+    query User($user_id: uuid!) {
+  users_by_pk(id: $user_id) {
     id
-    name
-    description
-    image
-    type
+    avatar_url
     created_at
-    geometry: geom
+    display_name
   }
 }
     `;
 
 /**
- * __useSearchResultsSubscription__
+ * __useUserQuery__
  *
- * To run a query within a React component, call `useSearchResultsSubscription` and pass it any options that fit your needs.
- * When your component renders, `useSearchResultsSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useSearchResultsSubscription({
- *   variables: {
- *      layers: // value for 'layers'
- *      keyword: // value for 'keyword'
- *   },
- * });
- */
-export function useSearchResultsSubscription(baseOptions: Apollo.SubscriptionHookOptions<SearchResultsSubscription, SearchResultsSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<SearchResultsSubscription, SearchResultsSubscriptionVariables>(SearchResultsDocument, options);
-      }
-export type SearchResultsSubscriptionHookResult = ReturnType<typeof useSearchResultsSubscription>;
-export type SearchResultsSubscriptionResult = Apollo.SubscriptionResult<SearchResultsSubscription>;
-export const InitiativesNearbyListDocument = gql`
-    subscription InitiativesNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
-  initiatives_nearby(
-    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
-  ) {
-    ...InitiativeCard
-  }
-}
-    ${InitiativeCardFragmentDoc}`;
-
-/**
- * __useInitiativesNearbyListSubscription__
- *
- * To run a query within a React component, call `useInitiativesNearbyListSubscription` and pass it any options that fit your needs.
- * When your component renders, `useInitiativesNearbyListSubscription` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useInitiativesNearbyListSubscription({
- *   variables: {
- *      location: // value for 'location'
- *      limit: // value for 'limit'
- *      max_date: // value for 'max_date'
- *      max_distance: // value for 'max_distance'
- *      min_date: // value for 'min_date'
- *      min_distance: // value for 'min_distance'
- *      user_id: // value for 'user_id'
- *      own: // value for 'own'
- *   },
- * });
- */
-export function useInitiativesNearbyListSubscription(baseOptions: Apollo.SubscriptionHookOptions<InitiativesNearbyListSubscription, InitiativesNearbyListSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<InitiativesNearbyListSubscription, InitiativesNearbyListSubscriptionVariables>(InitiativesNearbyListDocument, options);
-      }
-export type InitiativesNearbyListSubscriptionHookResult = ReturnType<typeof useInitiativesNearbyListSubscription>;
-export type InitiativesNearbyListSubscriptionResult = Apollo.SubscriptionResult<InitiativesNearbyListSubscription>;
-export const MyInitiativeListDocument = gql`
-    subscription MyInitiativeList($user_id: uuid!) {
-  initiatives(where: {members: {user_id: {_eq: $user_id}}}) {
-    ...InitiativeCard
-  }
-}
-    ${InitiativeCardFragmentDoc}`;
-
-/**
- * __useMyInitiativeListSubscription__
- *
- * To run a query within a React component, call `useMyInitiativeListSubscription` and pass it any options that fit your needs.
- * When your component renders, `useMyInitiativeListSubscription` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMyInitiativeListSubscription({
+ * const { data, loading, error } = useUserQuery({
  *   variables: {
  *      user_id: // value for 'user_id'
  *   },
  * });
  */
-export function useMyInitiativeListSubscription(baseOptions: Apollo.SubscriptionHookOptions<MyInitiativeListSubscription, MyInitiativeListSubscriptionVariables>) {
+export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<MyInitiativeListSubscription, MyInitiativeListSubscriptionVariables>(MyInitiativeListDocument, options);
+        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
       }
-export type MyInitiativeListSubscriptionHookResult = ReturnType<typeof useMyInitiativeListSubscription>;
-export type MyInitiativeListSubscriptionResult = Apollo.SubscriptionResult<MyInitiativeListSubscription>;
-export const OrganizationNearbyListDocument = gql`
-    subscription OrganizationNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
-  orgs_nearby(
-    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
-  ) {
-    ...OrganizationCard
-  }
-}
-    ${OrganizationCardFragmentDoc}`;
-
-/**
- * __useOrganizationNearbyListSubscription__
- *
- * To run a query within a React component, call `useOrganizationNearbyListSubscription` and pass it any options that fit your needs.
- * When your component renders, `useOrganizationNearbyListSubscription` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useOrganizationNearbyListSubscription({
- *   variables: {
- *      location: // value for 'location'
- *      limit: // value for 'limit'
- *      max_date: // value for 'max_date'
- *      max_distance: // value for 'max_distance'
- *      min_date: // value for 'min_date'
- *      min_distance: // value for 'min_distance'
- *      user_id: // value for 'user_id'
- *      own: // value for 'own'
- *   },
- * });
- */
-export function useOrganizationNearbyListSubscription(baseOptions: Apollo.SubscriptionHookOptions<OrganizationNearbyListSubscription, OrganizationNearbyListSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<OrganizationNearbyListSubscription, OrganizationNearbyListSubscriptionVariables>(OrganizationNearbyListDocument, options);
-      }
-export type OrganizationNearbyListSubscriptionHookResult = ReturnType<typeof useOrganizationNearbyListSubscription>;
-export type OrganizationNearbyListSubscriptionResult = Apollo.SubscriptionResult<OrganizationNearbyListSubscription>;
-export const MyOrganizationListDocument = gql`
-    subscription MyOrganizationList($user_id: uuid!) {
-  orgs(where: {members: {user_id: {_eq: $user_id}}}) {
-    ...OrganizationCard
-  }
-}
-    ${OrganizationCardFragmentDoc}`;
-
-/**
- * __useMyOrganizationListSubscription__
- *
- * To run a query within a React component, call `useMyOrganizationListSubscription` and pass it any options that fit your needs.
- * When your component renders, `useMyOrganizationListSubscription` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMyOrganizationListSubscription({
- *   variables: {
- *      user_id: // value for 'user_id'
- *   },
- * });
- */
-export function useMyOrganizationListSubscription(baseOptions: Apollo.SubscriptionHookOptions<MyOrganizationListSubscription, MyOrganizationListSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<MyOrganizationListSubscription, MyOrganizationListSubscriptionVariables>(MyOrganizationListDocument, options);
-      }
-export type MyOrganizationListSubscriptionHookResult = ReturnType<typeof useMyOrganizationListSubscription>;
-export type MyOrganizationListSubscriptionResult = Apollo.SubscriptionResult<MyOrganizationListSubscription>;
+export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+        }
+export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
+export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
+export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
 export const AddInitiativeDocument = gql`
     mutation AddInitiative($geom: geometry!, $name: String!, $description: String!, $user_id: uuid!, $problem: String = "", $goal: String = "", $context: String = "", $image: String = "") {
   insert_initiatives_one(
@@ -9254,44 +9233,209 @@ export function useDictionaryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type DictionaryQueryHookResult = ReturnType<typeof useDictionaryQuery>;
 export type DictionaryLazyQueryHookResult = ReturnType<typeof useDictionaryLazyQuery>;
 export type DictionaryQueryResult = Apollo.QueryResult<DictionaryQuery, DictionaryQueryVariables>;
-export const UserDocument = gql`
-    query User($user_id: uuid!) {
-  users_by_pk(id: $user_id) {
+export const SearchResultsDocument = gql`
+    query SearchResults($layers: [String!] = ["initiative", "organization"], $keyword: String!) {
+  search_entries: map_entries(
+    where: {_and: [{type: {_in: $layers}}, {_or: [{name: {_ilike: $keyword}}, {description: {_ilike: $keyword}}]}]}
+    limit: 5
+  ) {
     id
-    avatar_url
+    name
+    description
+    image
+    type
     created_at
-    display_name
+    geometry: geom
   }
 }
     `;
 
 /**
- * __useUserQuery__
+ * __useSearchResultsQuery__
  *
- * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
- * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useSearchResultsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchResultsQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useUserQuery({
+ * const { data, loading, error } = useSearchResultsQuery({
+ *   variables: {
+ *      layers: // value for 'layers'
+ *      keyword: // value for 'keyword'
+ *   },
+ * });
+ */
+export function useSearchResultsQuery(baseOptions: Apollo.QueryHookOptions<SearchResultsQuery, SearchResultsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchResultsQuery, SearchResultsQueryVariables>(SearchResultsDocument, options);
+      }
+export function useSearchResultsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchResultsQuery, SearchResultsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchResultsQuery, SearchResultsQueryVariables>(SearchResultsDocument, options);
+        }
+export type SearchResultsQueryHookResult = ReturnType<typeof useSearchResultsQuery>;
+export type SearchResultsLazyQueryHookResult = ReturnType<typeof useSearchResultsLazyQuery>;
+export type SearchResultsQueryResult = Apollo.QueryResult<SearchResultsQuery, SearchResultsQueryVariables>;
+export const InitiativesNearbyListDocument = gql`
+    query InitiativesNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
+  initiatives_nearby(
+    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
+  ) {
+    ...InitiativeCard
+  }
+}
+    ${InitiativeCardFragmentDoc}`;
+
+/**
+ * __useInitiativesNearbyListQuery__
+ *
+ * To run a query within a React component, call `useInitiativesNearbyListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInitiativesNearbyListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInitiativesNearbyListQuery({
+ *   variables: {
+ *      location: // value for 'location'
+ *      limit: // value for 'limit'
+ *      max_date: // value for 'max_date'
+ *      max_distance: // value for 'max_distance'
+ *      min_date: // value for 'min_date'
+ *      min_distance: // value for 'min_distance'
+ *      user_id: // value for 'user_id'
+ *      own: // value for 'own'
+ *   },
+ * });
+ */
+export function useInitiativesNearbyListQuery(baseOptions: Apollo.QueryHookOptions<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>(InitiativesNearbyListDocument, options);
+      }
+export function useInitiativesNearbyListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>(InitiativesNearbyListDocument, options);
+        }
+export type InitiativesNearbyListQueryHookResult = ReturnType<typeof useInitiativesNearbyListQuery>;
+export type InitiativesNearbyListLazyQueryHookResult = ReturnType<typeof useInitiativesNearbyListLazyQuery>;
+export type InitiativesNearbyListQueryResult = Apollo.QueryResult<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>;
+export const MyInitiativeListDocument = gql`
+    query MyInitiativeList($user_id: uuid!) {
+  initiatives(where: {members: {user_id: {_eq: $user_id}}}) {
+    ...InitiativeCard
+  }
+}
+    ${InitiativeCardFragmentDoc}`;
+
+/**
+ * __useMyInitiativeListQuery__
+ *
+ * To run a query within a React component, call `useMyInitiativeListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMyInitiativeListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMyInitiativeListQuery({
  *   variables: {
  *      user_id: // value for 'user_id'
  *   },
  * });
  */
-export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
+export function useMyInitiativeListQuery(baseOptions: Apollo.QueryHookOptions<MyInitiativeListQuery, MyInitiativeListQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+        return Apollo.useQuery<MyInitiativeListQuery, MyInitiativeListQueryVariables>(MyInitiativeListDocument, options);
       }
-export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
+export function useMyInitiativeListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyInitiativeListQuery, MyInitiativeListQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+          return Apollo.useLazyQuery<MyInitiativeListQuery, MyInitiativeListQueryVariables>(MyInitiativeListDocument, options);
         }
-export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
-export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
-export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
+export type MyInitiativeListQueryHookResult = ReturnType<typeof useMyInitiativeListQuery>;
+export type MyInitiativeListLazyQueryHookResult = ReturnType<typeof useMyInitiativeListLazyQuery>;
+export type MyInitiativeListQueryResult = Apollo.QueryResult<MyInitiativeListQuery, MyInitiativeListQueryVariables>;
+export const OrganizationNearbyListDocument = gql`
+    query OrganizationNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
+  orgs_nearby(
+    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
+  ) {
+    ...OrganizationCard
+  }
+}
+    ${OrganizationCardFragmentDoc}`;
+
+/**
+ * __useOrganizationNearbyListQuery__
+ *
+ * To run a query within a React component, call `useOrganizationNearbyListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOrganizationNearbyListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOrganizationNearbyListQuery({
+ *   variables: {
+ *      location: // value for 'location'
+ *      limit: // value for 'limit'
+ *      max_date: // value for 'max_date'
+ *      max_distance: // value for 'max_distance'
+ *      min_date: // value for 'min_date'
+ *      min_distance: // value for 'min_distance'
+ *      user_id: // value for 'user_id'
+ *      own: // value for 'own'
+ *   },
+ * });
+ */
+export function useOrganizationNearbyListQuery(baseOptions: Apollo.QueryHookOptions<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>(OrganizationNearbyListDocument, options);
+      }
+export function useOrganizationNearbyListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>(OrganizationNearbyListDocument, options);
+        }
+export type OrganizationNearbyListQueryHookResult = ReturnType<typeof useOrganizationNearbyListQuery>;
+export type OrganizationNearbyListLazyQueryHookResult = ReturnType<typeof useOrganizationNearbyListLazyQuery>;
+export type OrganizationNearbyListQueryResult = Apollo.QueryResult<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>;
+export const MyOrganizationListDocument = gql`
+    query MyOrganizationList($user_id: uuid!) {
+  orgs(where: {members: {user_id: {_eq: $user_id}}}) {
+    ...OrganizationCard
+  }
+}
+    ${OrganizationCardFragmentDoc}`;
+
+/**
+ * __useMyOrganizationListQuery__
+ *
+ * To run a query within a React component, call `useMyOrganizationListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMyOrganizationListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMyOrganizationListQuery({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useMyOrganizationListQuery(baseOptions: Apollo.QueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
+      }
+export function useMyOrganizationListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
+        }
+export type MyOrganizationListQueryHookResult = ReturnType<typeof useMyOrganizationListQuery>;
+export type MyOrganizationListLazyQueryHookResult = ReturnType<typeof useMyOrganizationListLazyQuery>;
+export type MyOrganizationListQueryResult = Apollo.QueryResult<MyOrganizationListQuery, MyOrganizationListQueryVariables>;
 export type filesKeySpecifier = ('created_at' | 'downloadable_url' | 'file_path' | 'id' | 'initiative' | 'initiative_id' | 'user' | 'user_id' | filesKeySpecifier)[];
 export type filesFieldPolicy = {
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9700,6 +9844,91 @@ export type initiatives_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
+export type map_entriesKeySpecifier = ('created_at' | 'description' | 'geom' | 'id' | 'image' | 'members' | 'modified_at' | 'name' | 'type' | map_entriesKeySpecifier)[];
+export type map_entriesFieldPolicy = {
+	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	geom?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	image?: FieldPolicy<any> | FieldReadFunction<any>,
+	members?: FieldPolicy<any> | FieldReadFunction<any>,
+	modified_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	type?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_aggregateKeySpecifier = ('aggregate' | 'nodes' | map_entries_aggregateKeySpecifier)[];
+export type map_entries_aggregateFieldPolicy = {
+	aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
+	nodes?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_aggregate_fieldsKeySpecifier = ('avg' | 'count' | 'max' | 'min' | 'stddev' | 'stddev_pop' | 'stddev_samp' | 'sum' | 'var_pop' | 'var_samp' | 'variance' | map_entries_aggregate_fieldsKeySpecifier)[];
+export type map_entries_aggregate_fieldsFieldPolicy = {
+	avg?: FieldPolicy<any> | FieldReadFunction<any>,
+	count?: FieldPolicy<any> | FieldReadFunction<any>,
+	max?: FieldPolicy<any> | FieldReadFunction<any>,
+	min?: FieldPolicy<any> | FieldReadFunction<any>,
+	stddev?: FieldPolicy<any> | FieldReadFunction<any>,
+	stddev_pop?: FieldPolicy<any> | FieldReadFunction<any>,
+	stddev_samp?: FieldPolicy<any> | FieldReadFunction<any>,
+	sum?: FieldPolicy<any> | FieldReadFunction<any>,
+	var_pop?: FieldPolicy<any> | FieldReadFunction<any>,
+	var_samp?: FieldPolicy<any> | FieldReadFunction<any>,
+	variance?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_avg_fieldsKeySpecifier = ('members' | map_entries_avg_fieldsKeySpecifier)[];
+export type map_entries_avg_fieldsFieldPolicy = {
+	members?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_max_fieldsKeySpecifier = ('created_at' | 'description' | 'id' | 'image' | 'members' | 'modified_at' | 'name' | 'type' | map_entries_max_fieldsKeySpecifier)[];
+export type map_entries_max_fieldsFieldPolicy = {
+	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	image?: FieldPolicy<any> | FieldReadFunction<any>,
+	members?: FieldPolicy<any> | FieldReadFunction<any>,
+	modified_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	type?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_min_fieldsKeySpecifier = ('created_at' | 'description' | 'id' | 'image' | 'members' | 'modified_at' | 'name' | 'type' | map_entries_min_fieldsKeySpecifier)[];
+export type map_entries_min_fieldsFieldPolicy = {
+	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	image?: FieldPolicy<any> | FieldReadFunction<any>,
+	members?: FieldPolicy<any> | FieldReadFunction<any>,
+	modified_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	type?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_stddev_fieldsKeySpecifier = ('members' | map_entries_stddev_fieldsKeySpecifier)[];
+export type map_entries_stddev_fieldsFieldPolicy = {
+	members?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_stddev_pop_fieldsKeySpecifier = ('members' | map_entries_stddev_pop_fieldsKeySpecifier)[];
+export type map_entries_stddev_pop_fieldsFieldPolicy = {
+	members?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_stddev_samp_fieldsKeySpecifier = ('members' | map_entries_stddev_samp_fieldsKeySpecifier)[];
+export type map_entries_stddev_samp_fieldsFieldPolicy = {
+	members?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_sum_fieldsKeySpecifier = ('members' | map_entries_sum_fieldsKeySpecifier)[];
+export type map_entries_sum_fieldsFieldPolicy = {
+	members?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_var_pop_fieldsKeySpecifier = ('members' | map_entries_var_pop_fieldsKeySpecifier)[];
+export type map_entries_var_pop_fieldsFieldPolicy = {
+	members?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_var_samp_fieldsKeySpecifier = ('members' | map_entries_var_samp_fieldsKeySpecifier)[];
+export type map_entries_var_samp_fieldsFieldPolicy = {
+	members?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type map_entries_variance_fieldsKeySpecifier = ('members' | map_entries_variance_fieldsKeySpecifier)[];
+export type map_entries_variance_fieldsFieldPolicy = {
+	members?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type mutation_rootKeySpecifier = ('delete_files' | 'delete_files_by_pk' | 'delete_initiative_donations' | 'delete_initiative_donations_by_pk' | 'delete_initiative_edits' | 'delete_initiative_edits_by_pk' | 'delete_initiative_expenses' | 'delete_initiative_expenses_by_pk' | 'delete_initiative_info' | 'delete_initiative_info_by_pk' | 'delete_initiative_members' | 'delete_initiative_members_by_pk' | 'delete_initiative_poll_votes' | 'delete_initiative_poll_votes_by_pk' | 'delete_initiative_polls' | 'delete_initiative_polls_by_pk' | 'delete_initiative_projects' | 'delete_initiative_projects_by_pk' | 'delete_initiative_tags' | 'delete_initiative_tags_by_pk' | 'delete_initiative_tasks' | 'delete_initiative_tasks_by_pk' | 'delete_initiative_thread_comments' | 'delete_initiative_thread_comments_by_pk' | 'delete_initiative_thread_post_reactions' | 'delete_initiative_thread_post_reactions_by_pk' | 'delete_initiative_thread_posts' | 'delete_initiative_thread_posts_by_pk' | 'delete_initiative_threads' | 'delete_initiative_visits' | 'delete_initiative_visits_by_pk' | 'delete_initiative_volunteers' | 'delete_initiative_volunteers_by_pk' | 'delete_initiatives' | 'delete_initiatives_by_pk' | 'delete_tenders' | 'delete_tenders_by_pk' | 'insert_files' | 'insert_files_one' | 'insert_initiative_donations' | 'insert_initiative_donations_one' | 'insert_initiative_edits' | 'insert_initiative_edits_one' | 'insert_initiative_expenses' | 'insert_initiative_expenses_one' | 'insert_initiative_info' | 'insert_initiative_info_one' | 'insert_initiative_members' | 'insert_initiative_members_one' | 'insert_initiative_poll_votes' | 'insert_initiative_poll_votes_one' | 'insert_initiative_polls' | 'insert_initiative_polls_one' | 'insert_initiative_projects' | 'insert_initiative_projects_one' | 'insert_initiative_tags' | 'insert_initiative_tags_one' | 'insert_initiative_tasks' | 'insert_initiative_tasks_one' | 'insert_initiative_thread_comments' | 'insert_initiative_thread_comments_one' | 'insert_initiative_thread_post_reactions' | 'insert_initiative_thread_post_reactions_one' | 'insert_initiative_thread_posts' | 'insert_initiative_thread_posts_one' | 'insert_initiative_threads' | 'insert_initiative_threads_one' | 'insert_initiative_visits' | 'insert_initiative_visits_one' | 'insert_initiative_volunteers' | 'insert_initiative_volunteers_one' | 'insert_initiatives' | 'insert_initiatives_one' | 'insert_tags' | 'insert_tags_one' | 'insert_tenders' | 'insert_tenders_one' | 'update_files' | 'update_files_by_pk' | 'update_initiative_donations' | 'update_initiative_donations_by_pk' | 'update_initiative_edits' | 'update_initiative_edits_by_pk' | 'update_initiative_expenses' | 'update_initiative_expenses_by_pk' | 'update_initiative_info' | 'update_initiative_info_by_pk' | 'update_initiative_members' | 'update_initiative_members_by_pk' | 'update_initiative_poll_votes' | 'update_initiative_poll_votes_by_pk' | 'update_initiative_polls' | 'update_initiative_polls_by_pk' | 'update_initiative_projects' | 'update_initiative_projects_by_pk' | 'update_initiative_tags' | 'update_initiative_tags_by_pk' | 'update_initiative_tasks' | 'update_initiative_tasks_by_pk' | 'update_initiative_thread_comments' | 'update_initiative_thread_comments_by_pk' | 'update_initiative_thread_post_reactions' | 'update_initiative_thread_post_reactions_by_pk' | 'update_initiative_thread_posts' | 'update_initiative_thread_posts_by_pk' | 'update_initiative_visits' | 'update_initiative_visits_by_pk' | 'update_initiative_volunteers' | 'update_initiative_volunteers_by_pk' | 'update_initiatives' | 'update_initiatives_by_pk' | 'update_tenders' | 'update_tenders_by_pk' | mutation_rootKeySpecifier)[];
 export type mutation_rootFieldPolicy = {
 	delete_files?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9861,7 +10090,7 @@ export type orgsFieldPolicy = {
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type query_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'search_entries' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
+export type query_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'map_entries_aggregate' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
 export type query_rootFieldPolicy = {
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9904,6 +10133,8 @@ export type query_rootFieldPolicy = {
 	initiatives?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
+	map_entries?: FieldPolicy<any> | FieldReadFunction<any>,
+	map_entries_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_members?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_members_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_projects?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9913,7 +10144,6 @@ export type query_rootFieldPolicy = {
 	orgs?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
-	search_entries?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9921,18 +10151,7 @@ export type query_rootFieldPolicy = {
 	users?: FieldPolicy<any> | FieldReadFunction<any>,
 	users_by_pk?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type search_entriesKeySpecifier = ('created_at' | 'description' | 'geom' | 'id' | 'image' | 'modified_at' | 'name' | 'type' | search_entriesKeySpecifier)[];
-export type search_entriesFieldPolicy = {
-	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
-	description?: FieldPolicy<any> | FieldReadFunction<any>,
-	geom?: FieldPolicy<any> | FieldReadFunction<any>,
-	id?: FieldPolicy<any> | FieldReadFunction<any>,
-	image?: FieldPolicy<any> | FieldReadFunction<any>,
-	modified_at?: FieldPolicy<any> | FieldReadFunction<any>,
-	name?: FieldPolicy<any> | FieldReadFunction<any>,
-	type?: FieldPolicy<any> | FieldReadFunction<any>
-};
-export type subscription_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'search_entries' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
+export type subscription_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'map_entries_aggregate' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
 export type subscription_rootFieldPolicy = {
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9975,6 +10194,8 @@ export type subscription_rootFieldPolicy = {
 	initiatives?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
+	map_entries?: FieldPolicy<any> | FieldReadFunction<any>,
+	map_entries_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_members?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_members_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_projects?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -9984,7 +10205,6 @@ export type subscription_rootFieldPolicy = {
 	orgs?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	orgs_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
-	search_entries?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10248,6 +10468,58 @@ export type TypedTypePolicies = TypePolicies & {
 		keyFields?: false | initiatives_mutation_responseKeySpecifier | (() => undefined | initiatives_mutation_responseKeySpecifier),
 		fields?: initiatives_mutation_responseFieldPolicy,
 	},
+	map_entries?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entriesKeySpecifier | (() => undefined | map_entriesKeySpecifier),
+		fields?: map_entriesFieldPolicy,
+	},
+	map_entries_aggregate?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_aggregateKeySpecifier | (() => undefined | map_entries_aggregateKeySpecifier),
+		fields?: map_entries_aggregateFieldPolicy,
+	},
+	map_entries_aggregate_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_aggregate_fieldsKeySpecifier | (() => undefined | map_entries_aggregate_fieldsKeySpecifier),
+		fields?: map_entries_aggregate_fieldsFieldPolicy,
+	},
+	map_entries_avg_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_avg_fieldsKeySpecifier | (() => undefined | map_entries_avg_fieldsKeySpecifier),
+		fields?: map_entries_avg_fieldsFieldPolicy,
+	},
+	map_entries_max_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_max_fieldsKeySpecifier | (() => undefined | map_entries_max_fieldsKeySpecifier),
+		fields?: map_entries_max_fieldsFieldPolicy,
+	},
+	map_entries_min_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_min_fieldsKeySpecifier | (() => undefined | map_entries_min_fieldsKeySpecifier),
+		fields?: map_entries_min_fieldsFieldPolicy,
+	},
+	map_entries_stddev_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_stddev_fieldsKeySpecifier | (() => undefined | map_entries_stddev_fieldsKeySpecifier),
+		fields?: map_entries_stddev_fieldsFieldPolicy,
+	},
+	map_entries_stddev_pop_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_stddev_pop_fieldsKeySpecifier | (() => undefined | map_entries_stddev_pop_fieldsKeySpecifier),
+		fields?: map_entries_stddev_pop_fieldsFieldPolicy,
+	},
+	map_entries_stddev_samp_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_stddev_samp_fieldsKeySpecifier | (() => undefined | map_entries_stddev_samp_fieldsKeySpecifier),
+		fields?: map_entries_stddev_samp_fieldsFieldPolicy,
+	},
+	map_entries_sum_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_sum_fieldsKeySpecifier | (() => undefined | map_entries_sum_fieldsKeySpecifier),
+		fields?: map_entries_sum_fieldsFieldPolicy,
+	},
+	map_entries_var_pop_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_var_pop_fieldsKeySpecifier | (() => undefined | map_entries_var_pop_fieldsKeySpecifier),
+		fields?: map_entries_var_pop_fieldsFieldPolicy,
+	},
+	map_entries_var_samp_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_var_samp_fieldsKeySpecifier | (() => undefined | map_entries_var_samp_fieldsKeySpecifier),
+		fields?: map_entries_var_samp_fieldsFieldPolicy,
+	},
+	map_entries_variance_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | map_entries_variance_fieldsKeySpecifier | (() => undefined | map_entries_variance_fieldsKeySpecifier),
+		fields?: map_entries_variance_fieldsFieldPolicy,
+	},
 	mutation_root?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | mutation_rootKeySpecifier | (() => undefined | mutation_rootKeySpecifier),
 		fields?: mutation_rootFieldPolicy,
@@ -10271,10 +10543,6 @@ export type TypedTypePolicies = TypePolicies & {
 	query_root?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | query_rootKeySpecifier | (() => undefined | query_rootKeySpecifier),
 		fields?: query_rootFieldPolicy,
-	},
-	search_entries?: Omit<TypePolicy, "fields" | "keyFields"> & {
-		keyFields?: false | search_entriesKeySpecifier | (() => undefined | search_entriesKeySpecifier),
-		fields?: search_entriesFieldPolicy,
 	},
 	subscription_root?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | subscription_rootKeySpecifier | (() => undefined | subscription_rootKeySpecifier),

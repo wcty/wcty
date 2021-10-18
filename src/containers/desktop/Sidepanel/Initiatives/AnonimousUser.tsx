@@ -1,6 +1,6 @@
 import { useI18n } from 'common';
 import { UserIconRow, List } from "../styles";
-import { useInitiativesNearbyListSubscription } from "generated";
+import { useInitiativesNearbyListQuery } from "generated";
 import { useRecoilState } from "recoil";
 import { Map } from 'components'
 import { useEffect, useState } from "react";
@@ -16,7 +16,7 @@ export default function InitiativesDrawer(){
     coordinates: [view.longitude, view.latitude]
   }
 
-  const { data, error, variables } = useInitiativesNearbyListSubscription({variables:{ location, limit: 10 }})
+  const { data, error, variables } = useInitiativesNearbyListQuery({variables:{ location, limit: 10 }})
   const [ initiatives, setInitiatives ] = useState(data)
   const [open, setOpen] = useRecoilState(Sidepanel.open)
 

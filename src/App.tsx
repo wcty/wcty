@@ -4,8 +4,8 @@ import { atom, useRecoilState } from 'recoil'
 import { auth, User, useWindowDimensions } from 'common'
 import { useUserLazyQuery } from 'generated'
 import { AppWrapper, GlobalStyle } from './styles'
-import DesktopVersion from 'containers/desktop'
-import MobileVersion from 'containers/mobile'
+import DesktopVersion from 'containers/Desktop'
+import MobileVersion from 'containers/Mobile'
 import 'assets/fonts/mono/regular/_index.scss'
 
 

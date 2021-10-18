@@ -70,7 +70,7 @@ Map.satellite = atom({
 
 Map.selected = atom({
   key: 'mapSelected',
-  default: null as (GeoJSON.Feature<GeoJSON.Point> & Omit<FeatureProps<Specs[keyof Specs]>['features'][number],'layer'|'sourceLayer'|'state'>) |null // |null
+  default: null as (GeoJSON.Feature<GeoJSON.Point> & Omit<FeatureProps<Specs[keyof Specs]>['features'][number],'layer'|'sourceLayer'|'state'|'modified_at'>) |null // |null
 })
 
 Map.layers_list = ['initiative', 'organization'] as ('initiative'|'organization')[]

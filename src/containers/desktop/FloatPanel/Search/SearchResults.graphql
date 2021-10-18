@@ -1,8 +1,8 @@
-subscription SearchResults(
+query SearchResults(
   $layers:[String!]=["initiative","organization"],
   $keyword: String!
 ){
-  search_entries(
+  search_entries:map_entries(
     where:{
       _and:[
         {type:{_in:$layers}},

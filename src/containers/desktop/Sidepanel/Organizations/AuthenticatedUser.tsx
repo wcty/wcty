@@ -1,6 +1,6 @@
 import { useI18n, useUser } from 'common';
 import { UserIconRow, List } from "../styles";
-import { useMyOrganizationListSubscription } from "generated";
+import { useMyOrganizationListQuery } from "generated";
 import { useRecoilState } from "recoil";
 import { Map } from 'components'
 import { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ export default function Organization(){
     coordinates: [view.longitude, view.latitude]
   }
 
-  const { data, error, variables } = useMyOrganizationListSubscription({variables:{ user_id: user?.id }})
+  const { data, error, variables } = useMyOrganizationListQuery({variables:{ user_id: user?.id }})
   const [ organizations, setOrganizations ] = useState(data)
   const [open, setOpen] = useRecoilState(Sidepanel.open)
 

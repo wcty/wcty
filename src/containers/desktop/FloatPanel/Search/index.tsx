@@ -4,7 +4,7 @@ import { ReactComponent as SearchIcon } from 'assets/icons/search.svg'
 import { ReactComponent as CancelIcon } from 'assets/icons/cancel.svg'
 import { useEffect, useState } from "react";
 import Buttons from "./Buttons";
-import { useSearchResultsSubscription } from 'generated'
+import { useSearchResultsQuery } from 'generated'
 import { useRecoilState } from "recoil";
 import { Map, ListRow } from 'components'
 
@@ -12,7 +12,7 @@ export default function Search(){
   const i18n = useI18n()
   const [keyword, setKeyword] = useState('')
   const [layers, setLayers] = useRecoilState(Map.layers)
-  const {data} = useSearchResultsSubscription({variables:{layers,keyword: `%${keyword}%`}})
+  const {data} = useSearchResultsQuery({variables:{layers,keyword: `%${keyword}%`}})
   const [searchResults, setSearchResults] = useState(data)
 
   useEffect(()=>{

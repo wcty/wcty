@@ -1,4 +1,4 @@
-subscription OrganizationNearbyList(
+query OrganizationNearbyList(
   $location: geometry!, 
   $limit: Int = 20, 
   $max_date: timestamptz = "2999-01-01T00:00:00.000Z", 
@@ -22,7 +22,7 @@ subscription OrganizationNearbyList(
   }
 }
 
-subscription MyOrganizationList($user_id:uuid!){
+query MyOrganizationList($user_id:uuid!){
 
   orgs( where: { members: { user_id:{ _eq:$user_id } } } ) {
     ...OrganizationCard

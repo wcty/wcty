@@ -51,7 +51,7 @@ Menu = styled.div`
   right: 0px;
   top: 0px;
   padding-left: 1rem;
-  background-color: #F4EADE;
+  background-color: ${p=>p.theme.colors.primary};
   transition: width 0.5s;
   display: flex;
   flex-direction: column;

@@ -23,7 +23,6 @@ export type Scalars = {
   uuid: any;
 };
 
-
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
 export type Boolean_Comparison_Exp = {
   _eq?: Maybe<Scalars['Boolean']>;
@@ -82,7 +81,6 @@ export type String_Comparison_Exp = {
   /** does the column match the given SQL regular expression */
   _similar?: Maybe<Scalars['String']>;
 };
-
 
 /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
 export type Bigint_Comparison_Exp = {
@@ -251,8 +249,6 @@ export enum Files_Update_Column {
   UserId = 'user_id'
 }
 
-
-
 export type Geography_Cast_Exp = {
   geometry?: Maybe<Geometry_Comparison_Exp>;
 };
@@ -274,7 +270,6 @@ export type Geography_Comparison_Exp = {
   /** does the column spatially intersect the given geography value */
   _st_intersects?: Maybe<Scalars['geography']>;
 };
-
 
 export type Geometry_Cast_Exp = {
   geography?: Maybe<Geography_Comparison_Exp>;
@@ -5868,7 +5863,6 @@ export type Mutation_RootUpdate_Tenders_By_PkArgs = {
   pk_columns: Tenders_Pk_Columns_Input;
 };
 
-
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
 export type Numeric_Comparison_Exp = {
   _eq?: Maybe<Scalars['numeric']>;
@@ -7846,7 +7840,6 @@ export type Tenders_Variance_Order_By = {
   parent_project?: Maybe<Order_By>;
 };
 
-
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type Timestamptz_Comparison_Exp = {
   _eq?: Maybe<Scalars['timestamptz']>;
@@ -7859,7 +7852,6 @@ export type Timestamptz_Comparison_Exp = {
   _neq?: Maybe<Scalars['timestamptz']>;
   _nin?: Maybe<Array<Scalars['timestamptz']>>;
 };
-
 
 /** Boolean expression to compare columns of type "timetz". All fields are combined with logical 'AND'. */
 export type Timetz_Comparison_Exp = {
@@ -8154,7 +8146,6 @@ export enum Users_Select_Column {
   UpdatedAt = 'updated_at'
 }
 
-
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 export type Uuid_Comparison_Exp = {
   _eq?: Maybe<Scalars['uuid']>;
@@ -8173,7 +8164,7 @@ export type UserQueryVariables = Exact<{
 }>;
 
 
-export type UserQuery = { users_by_pk?: Maybe<Pick<Users, 'id' | 'avatar_url' | 'created_at' | 'display_name'>> };
+export type UserQuery = { users_by_pk?: { id: any, avatar_url?: string | null | undefined, created_at: any, display_name?: string | null | undefined } | null | undefined };
 
 export type AddInitiativeMutationVariables = Exact<{
   geom: Scalars['geometry'];
@@ -8187,14 +8178,14 @@ export type AddInitiativeMutationVariables = Exact<{
 }>;
 
 
-export type AddInitiativeMutation = { insert_initiatives_one?: Maybe<Pick<Initiatives, 'created_at' | 'description' | 'geom' | 'id' | 'image' | 'name'>> };
+export type AddInitiativeMutation = { insert_initiatives_one?: { created_at: any, description?: string | null | undefined, geom?: any | null | undefined, id: any, image?: string | null | undefined, name?: string | null | undefined } | null | undefined };
 
 export type DeleteInitiativeMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
 }>;
 
 
-export type DeleteInitiativeMutation = { delete_initiatives_by_pk?: Maybe<Pick<Initiatives, 'id'>> };
+export type DeleteInitiativeMutation = { delete_initiatives_by_pk?: { id: any } | null | undefined };
 
 export type AddInitiativePostMutationVariables = Exact<{
   thread_id?: Maybe<Scalars['Int']>;
@@ -8203,7 +8194,7 @@ export type AddInitiativePostMutationVariables = Exact<{
 }>;
 
 
-export type AddInitiativePostMutation = { insert_initiative_thread_posts_one?: Maybe<Pick<Initiative_Thread_Posts, 'id'>> };
+export type AddInitiativePostMutation = { insert_initiative_thread_posts_one?: { id: any } | null | undefined };
 
 export type DeleteInitiativeMemberMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -8211,10 +8202,7 @@ export type DeleteInitiativeMemberMutationVariables = Exact<{
 }>;
 
 
-export type DeleteInitiativeMemberMutation = { delete_initiative_members?: Maybe<(
-    Pick<Initiative_Members_Mutation_Response, 'affected_rows'>
-    & { returning: Array<Pick<Initiative_Members, 'initiative_id' | 'user_id'>> }
-  )> };
+export type DeleteInitiativeMemberMutation = { delete_initiative_members?: { affected_rows: number, returning: Array<{ initiative_id: any, user_id?: any | null | undefined }> } | null | undefined };
 
 export type AddInitiativeMemberMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -8225,7 +8213,7 @@ export type AddInitiativeMemberMutationVariables = Exact<{
 }>;
 
 
-export type AddInitiativeMemberMutation = { insert_initiative_members_one?: Maybe<Pick<Initiative_Members, 'user_id' | 'initiative_id'>> };
+export type AddInitiativeMemberMutation = { insert_initiative_members_one?: { user_id?: any | null | undefined, initiative_id: any } | null | undefined };
 
 export type AddInitiativeVisitMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -8233,26 +8221,23 @@ export type AddInitiativeVisitMutationVariables = Exact<{
 }>;
 
 
-export type AddInitiativeVisitMutation = { insert_initiative_visits_one?: Maybe<{ initiative: Pick<Initiatives, 'id'> }> };
+export type AddInitiativeVisitMutation = { insert_initiative_visits_one?: { initiative: { id: any } } | null | undefined };
 
 export type InsertFileMutationVariables = Exact<{
   file: Files_Insert_Input;
 }>;
 
 
-export type InsertFileMutation = { insert_files_one?: Maybe<Pick<Files, 'id'>> };
+export type InsertFileMutation = { insert_files_one?: { id: any } | null | undefined };
 
 export type DeleteFilesMutationVariables = Exact<{
   where: Files_Bool_Exp;
 }>;
 
 
-export type DeleteFilesMutation = { delete_files?: Maybe<Pick<Files_Mutation_Response, 'affected_rows'>> };
+export type DeleteFilesMutation = { delete_files?: { affected_rows: number } | null | undefined };
 
-export type InitiativeFieldsFragment = (
-  Pick<Initiatives, 'geom' | 'name' | 'id' | 'image' | 'description' | 'created_at'>
-  & { members: Array<Pick<Initiative_Members, 'user_id'>> }
-);
+export type InitiativeFieldsFragment = { geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, description?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> };
 
 export type InitiativesNearbyQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -8266,7 +8251,7 @@ export type InitiativesNearbyQueryVariables = Exact<{
 }>;
 
 
-export type InitiativesNearbyQuery = { initiatives_nearby: Array<InitiativeFieldsFragment> };
+export type InitiativesNearbyQuery = { initiatives_nearby: Array<{ geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, description?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> }> };
 
 export type MyInitiativesNearbyQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -8280,7 +8265,7 @@ export type MyInitiativesNearbyQueryVariables = Exact<{
 }>;
 
 
-export type MyInitiativesNearbyQuery = { initiatives_nearby: Array<InitiativeFieldsFragment> };
+export type MyInitiativesNearbyQuery = { initiatives_nearby: Array<{ geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, description?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> }> };
 
 export type InitiativesLastVisitedQueryVariables = Exact<{
   limit?: Maybe<Scalars['Int']>;
@@ -8290,65 +8275,56 @@ export type InitiativesLastVisitedQueryVariables = Exact<{
 }>;
 
 
-export type InitiativesLastVisitedQuery = { initiative_visits: Array<(
-    Pick<Initiative_Visits, 'visited_at'>
-    & { initiative: InitiativeFieldsFragment }
-  )> };
+export type InitiativesLastVisitedQuery = { initiative_visits: Array<{ visited_at?: any | null | undefined, initiative: { geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, description?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> } }> };
 
 export type InitiativeQueryVariables = Exact<{
   initiative_id: Scalars['uuid'];
 }>;
 
 
-export type InitiativeQuery = { initiatives_by_pk?: Maybe<InitiativeFieldsFragment> };
+export type InitiativeQuery = { initiatives_by_pk?: { geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, description?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> } | null | undefined };
 
 export type MyInitiativesQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyInitiativesQuery = { initiatives: Array<InitiativeFieldsFragment> };
+export type MyInitiativesQuery = { initiatives: Array<{ geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, description?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> }> };
 
 export type InitiativeInfoQueryVariables = Exact<{
   initiative_id: Scalars['uuid'];
 }>;
 
 
-export type InitiativeInfoQuery = { initiative_info: Array<Pick<Initiative_Info, 'context' | 'goal' | 'problem'>> };
+export type InitiativeInfoQuery = { initiative_info: Array<{ context?: string | null | undefined, goal?: string | null | undefined, problem?: string | null | undefined }> };
 
 export type InitiativePostsQueryVariables = Exact<{
   initiative_id: Scalars['uuid'];
 }>;
 
 
-export type InitiativePostsQuery = { initiative_thread_posts: Array<(
-    Pick<Initiative_Thread_Posts, 'id' | 'thread_id' | 'created_at' | 'post'>
-    & { comments: Array<Pick<Initiative_Thread_Comments, 'comment' | 'created_at'>>, user?: Maybe<Pick<Users, 'avatar_url' | 'display_name'>> }
-  )> };
+export type InitiativePostsQuery = { initiative_thread_posts: Array<{ id: any, thread_id: number, created_at: any, post?: string | null | undefined, comments: Array<{ comment?: string | null | undefined, created_at: any }>, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }> };
 
 export type InitiativePostCommentsQueryVariables = Exact<{
   message_id: Scalars['Int'];
 }>;
 
 
-export type InitiativePostCommentsQuery = { initiative_thread_comments: Array<(
-    Pick<Initiative_Thread_Comments, 'created_at' | 'comment'>
-    & { user?: Maybe<Pick<Users, 'avatar_url' | 'display_name'>> }
-  )> };
+export type InitiativePostCommentsQuery = { initiative_thread_comments: Array<{ created_at: any, comment?: string | null | undefined, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }> };
 
 export type FilesQueryVariables = Exact<{
   limit: Scalars['Int'];
 }>;
 
 
-export type FilesQuery = { files: Array<Pick<Files, 'id' | 'created_at' | 'file_path' | 'downloadable_url'>> };
+export type FilesQuery = { files: Array<{ id: any, created_at?: any | null | undefined, file_path?: string | null | undefined, downloadable_url?: string | null | undefined }> };
 
 export type S_GetFilesSubscriptionVariables = Exact<{
   limit: Scalars['Int'];
 }>;
 
 
-export type S_GetFilesSubscription = { files: Array<Pick<Files, 'id' | 'created_at' | 'file_path' | 'downloadable_url'>> };
+export type S_GetFilesSubscription = { files: Array<{ id: any, created_at?: any | null | undefined, file_path?: string | null | undefined, downloadable_url?: string | null | undefined }> };
 
 export type DictionaryQueryVariables = Exact<{
   en?: Maybe<Scalars['Boolean']>;
@@ -8357,7 +8333,7 @@ export type DictionaryQueryVariables = Exact<{
 }>;
 
 
-export type DictionaryQuery = { i18n: Array<MakeOptional<Pick<I18n, 'key' | 'en' | 'uk' | 'fr'>, 'en' | 'uk' | 'fr'>> };
+export type DictionaryQuery = { i18n: Array<{ key?: string | null | undefined, en?: string | null | undefined, uk?: string | null | undefined, fr?: string | null | undefined }> };
 
 export type SearchResultsQueryVariables = Exact<{
   layers?: Maybe<Array<Scalars['String']> | Scalars['String']>;
@@ -8365,15 +8341,13 @@ export type SearchResultsQueryVariables = Exact<{
 }>;
 
 
-export type SearchResultsQuery = { search_entries: Array<(
-    Pick<Map_Entries, 'id' | 'name' | 'description' | 'image' | 'type' | 'created_at'>
-    & { geometry: Map_Entries['geom'] }
-  )> };
+export type SearchResultsQuery = { search_entries: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined }> };
 
-export type InitiativeCardFragment = (
-  Pick<Initiatives, 'id' | 'image' | 'name' | 'created_at' | 'description'>
-  & { geometry: Initiatives['geom'] }
-);
+export type InitiativeCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
+
+export type OrganizationCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
+
+export type EntryCardFragment = { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined };
 
 export type InitiativesNearbyListQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -8387,19 +8361,14 @@ export type InitiativesNearbyListQueryVariables = Exact<{
 }>;
 
 
-export type InitiativesNearbyListQuery = { initiatives_nearby: Array<InitiativeCardFragment> };
+export type InitiativesNearbyListQuery = { initiatives_nearby: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
 
 export type MyInitiativeListQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyInitiativeListQuery = { initiatives: Array<InitiativeCardFragment> };
-
-export type OrganizationCardFragment = (
-  Pick<Orgs, 'id' | 'image' | 'name' | 'created_at' | 'description'>
-  & { geometry: Orgs['geom'] }
-);
+export type MyInitiativeListQuery = { initiatives: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
 
 export type OrganizationNearbyListQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -8413,14 +8382,14 @@ export type OrganizationNearbyListQueryVariables = Exact<{
 }>;
 
 
-export type OrganizationNearbyListQuery = { orgs_nearby: Array<OrganizationCardFragment> };
+export type OrganizationNearbyListQuery = { orgs_nearby: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
 
 export type MyOrganizationListQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyOrganizationListQuery = { orgs: Array<OrganizationCardFragment> };
+export type MyOrganizationListQuery = { orgs: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
 
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {
@@ -8447,6 +8416,16 @@ export const InitiativeCardFragmentDoc = gql`
     `;
 export const OrganizationCardFragmentDoc = gql`
     fragment OrganizationCard on orgs {
+  id
+  image
+  name
+  geometry: geom
+  created_at
+  description
+}
+    `;
+export const EntryCardFragmentDoc = gql`
+    fragment EntryCard on map_entries {
   id
   image
   name
@@ -9239,16 +9218,10 @@ export const SearchResultsDocument = gql`
     where: {_and: [{type: {_in: $layers}}, {_or: [{name: {_ilike: $keyword}}, {description: {_ilike: $keyword}}]}]}
     limit: 5
   ) {
-    id
-    name
-    description
-    image
-    type
-    created_at
-    geometry: geom
+    ...EntryCard
   }
 }
-    `;
+    ${EntryCardFragmentDoc}`;
 
 /**
  * __useSearchResultsQuery__
@@ -10267,7 +10240,7 @@ export type usersFieldPolicy = {
 	volunteers?: FieldPolicy<any> | FieldReadFunction<any>,
 	votes?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type TypedTypePolicies = TypePolicies & {
+export type StrictTypedTypePolicies = {
 	files?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | filesKeySpecifier | (() => undefined | filesKeySpecifier),
 		fields?: filesFieldPolicy,
@@ -10569,6 +10542,7 @@ export type TypedTypePolicies = TypePolicies & {
 		fields?: usersFieldPolicy,
 	}
 };
+export type TypedTypePolicies = StrictTypedTypePolicies & TypePolicies;
 
       export interface PossibleTypesResultData {
         possibleTypes: {

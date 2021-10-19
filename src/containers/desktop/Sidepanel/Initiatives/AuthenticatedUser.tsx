@@ -22,10 +22,12 @@ export default function InitiativesDrawer(){
   const [open, setOpen] = useRecoilState(Sidepanel.open)
 
   useEffect(()=>{
+    console.log('auth',data,variables)
+
     if( data && data?.initiatives.length>0 ){
       setInitiatives(data)
     }
-  },[data])
+  },[data,variables])
 
   return <>
     <div>

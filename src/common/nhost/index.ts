@@ -8,8 +8,6 @@ export const endpoint =
   origin === 'https://dev.weee.city' ? 'https://api-dev.weee.city':
   'https://api.weee.city'
 
-const client = createClient({
+export const { auth, storage } = createClient({
   baseURL: endpoint,
-});
-
-export const { auth, storage } = client;
+});;

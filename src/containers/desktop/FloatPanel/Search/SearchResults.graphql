@@ -14,12 +14,6 @@ query SearchResults(
     },
     limit: 5
   ) {
-    id
-    name
-    description
-    image
-    type
-    created_at
-    geometry:geom
+    ...EntryCard
   }
 }

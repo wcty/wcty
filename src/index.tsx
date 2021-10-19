@@ -4,30 +4,27 @@ import * as serviceWorker from './serviceWorker'
 
 import React from 'react'
 import { render } from 'react-dom'
-import { auth, theme } from 'common'
+import { auth, storage, theme } from 'common'
 import { BrowserRouter as Router } from "react-router-dom"
 import { RecoilRoot, } from 'recoil'
-import { createBrowserHistory } from 'history'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from "@nhost/react-apollo"
-import App from './App'
-import { InMemoryCache } from '@apollo/client';
+import { InMemoryCache,  } from '@apollo/client';
 import { ThemeProvider } from 'styled-components'
-export const history = createBrowserHistory()
+import App from './App'
 
 const AppRoot = ()=> 
   <React.StrictMode>
-    <NhostAuthProvider auth={auth}>
+    <NhostAuthProvider nhost={{auth,storage}}>
       <NhostApolloProvider
-        auth={auth}
-        cache={new InMemoryCache({ addTypename: false })}
+        nhost={{auth,storage}}
+        cache={new InMemoryCache()}
         publicRole='anonymous'
-        gqlEndpoint={`https://hasura-aws.weee.city/v1/graphql`}
+        graphqlUrl={`https://hasura-aws.weee.city/v1/graphql`}
       >
-        <Router {...{history}}>
+        <Router>
           <RecoilRoot>
             <ThemeProvider {...{theme}}>
-              {/* <RecoilExternalStatePortal /> */}
               <App />
             </ThemeProvider>
           </RecoilRoot>

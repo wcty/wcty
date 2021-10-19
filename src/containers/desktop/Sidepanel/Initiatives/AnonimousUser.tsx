@@ -15,17 +15,18 @@ export default function InitiativesDrawer(){
     type: 'Point',
     coordinates: [view.longitude, view.latitude]
   }
-
+  console.log(location)
   const { data, error, variables } = useInitiativesNearbyListQuery({variables:{ location, limit: 10 }})
   const [ initiatives, setInitiatives ] = useState(data)
   const [open, setOpen] = useRecoilState(Sidepanel.open)
 
   useEffect(()=>{
-    console.log(data)
+    console.log('anon',data,variables)
+
     if( data && data?.initiatives_nearby.length>0 ){
       setInitiatives(data)
     }
-  },[data])
+  },[data,variables])
 
   return <>
     <div>

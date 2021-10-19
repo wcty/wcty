@@ -13,6 +13,10 @@ export function ListRow({ data:v, onClick:_onClick }:{
   const [selected, setSelected] = useRecoilState(Map.selected)
   const [viewport, setViewport] = useRecoilState(Map.viewport)
   
+  if(!v.id){
+    return null
+  }
+  
   function onClick(){
     setSelected({
       id: v.id,

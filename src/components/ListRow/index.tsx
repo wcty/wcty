@@ -9,7 +9,7 @@ export function ListRow({ data:v, onClick:_onClick }:{
   onClick?: ()=>void
 }){
 
-  const address = useAddress(v.geometry.coordinates)
+  const address = useAddress(v?.geometry?.coordinates||[0,0])
   const [selected, setSelected] = useRecoilState(Map.selected)
   const [viewport, setViewport] = useRecoilState(Map.viewport)
   
@@ -28,21 +28,22 @@ export function ListRow({ data:v, onClick:_onClick }:{
         modified_at: ''
       }
     })
-    setViewport({
-      longitude: v.geometry.coordinates[0],
-      latitude: v.geometry.coordinates[1],
-      zoom: 15.5,
-      viewportChangeMethod: 'easeTo',
-      viewportChangeOptions: {offset:[145,50]}
-    })
-    _onClick && _onClick()
+    if(v?.geometry?.coordinates){
+      setViewport({
+        longitude: v.geometry.coordinates[0],
+        latitude: v.geometry.coordinates[1],
+        zoom: 15.5,
+        viewportChangeMethod: 'easeTo',
+        viewportChangeOptions: {offset:[145,50]}
+      })
+      _onClick && _onClick()
+    }
   }
-
   return <ListItem {...{onClick}}>
     <img src={v.image+'?w=30&h=30&q=90'}/>
     <div>
       <span>{v.name}</span>
-      <span className='address'>{address}</span>
+      <span className='address'>{v?.geometry?.coordinates? address: ''}</span>
     </div>
   </ListItem>
 }

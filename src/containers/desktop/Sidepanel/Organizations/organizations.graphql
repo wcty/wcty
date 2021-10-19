@@ -1,3 +1,12 @@
+fragment OrganizationCard on orgs {
+  id
+  image
+  name
+  geometry:geom
+  created_at
+  description
+}
+
 query OrganizationNearbyList(
   $location: geometry!, 
   $limit: Int = 20, 

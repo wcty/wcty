@@ -1,4 +1,6 @@
-export const theme = {
+import styled, {css} from 'styled-components'
+
+const theme = {
   colors:{
     titleActive: '#010202',
     body: '#45494F',
@@ -17,6 +19,8 @@ export const theme = {
     warning: '#E5B049'
   },
   typography:{
-    
+    // header: css`font: 6em sans-serif;`
   }
 } as const
+
+export default theme

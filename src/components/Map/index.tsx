@@ -28,7 +28,7 @@ export default function Map({children}:{children?:ReactNode}){
           onViewportChange={(v:any)=>setViewport({...viewport, ...v})}
           attributionControl={false}
           cursorStyle={cursor}
-          hash
+          // hash
           {...viewport}
           onClick={()=>{ history.push('/'); setSelected(null) }}
         >

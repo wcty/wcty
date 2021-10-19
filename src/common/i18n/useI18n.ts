@@ -33,7 +33,6 @@ export const useI18n = ()=>{
         a[key]= value[lang]||Object.values(value)[0]
         return a
       }, {})
-      console.log(dict, langObject)
       setI18nData(langObject)
     }
     

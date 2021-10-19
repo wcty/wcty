@@ -8375,11 +8375,6 @@ export type InitiativeCardFragment = (
   & { geometry: Initiatives['geom'] }
 );
 
-export type OrganizationCardFragment = (
-  Pick<Orgs, 'id' | 'image' | 'name' | 'created_at' | 'description'>
-  & { geometry: Orgs['geom'] }
-);
-
 export type InitiativesNearbyListQueryVariables = Exact<{
   location: Scalars['geometry'];
   limit?: Maybe<Scalars['Int']>;
@@ -8400,6 +8395,11 @@ export type MyInitiativeListQueryVariables = Exact<{
 
 
 export type MyInitiativeListQuery = { initiatives: Array<InitiativeCardFragment> };
+
+export type OrganizationCardFragment = (
+  Pick<Orgs, 'id' | 'image' | 'name' | 'created_at' | 'description'>
+  & { geometry: Orgs['geom'] }
+);
 
 export type OrganizationNearbyListQueryVariables = Exact<{
   location: Scalars['geometry'];

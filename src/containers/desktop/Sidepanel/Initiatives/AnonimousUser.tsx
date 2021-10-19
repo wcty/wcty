@@ -20,9 +20,8 @@ export default function InitiativesDrawer(){
   const [ initiatives, setInitiatives ] = useState(data)
   const [open, setOpen] = useRecoilState(Sidepanel.open)
 
-  console.log(error, variables)
-
   useEffect(()=>{
+    console.log(data)
     if( data && data?.initiatives_nearby.length>0 ){
       setInitiatives(data)
     }

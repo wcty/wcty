@@ -16,11 +16,12 @@ fragment OrganizationCard on orgs {
   description
 }
 
-fragment EntryCard on map_entries {
+fragment EntryCard on entries {
   id
   image
   name
   geometry:geom
   created_at
   description
+  type
 }

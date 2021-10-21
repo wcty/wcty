@@ -1,6 +1,8 @@
-import styled, {css} from 'styled-components'
+import styled, {css as css_, ThemedCssFunction} from 'styled-components'
 
-const theme = {
+const css = css_ as ThemedCssFunction<{}>
+
+export const theme = {
   colors:{
     titleActive: '#010202',
     body: '#45494F',
@@ -17,10 +19,73 @@ const theme = {
     error: '#E04F4F',
     success: '#52AD92',
     warning: '#E5B049'
-  },
-  typography:{
-    // header: css`font: 6em sans-serif;`
-  }
-} as const
+  } ,
+  font:{
+    title:{
+      mono: (()=>{
+        const font = css<{}>`
+          font-family: 'IBM Plex Mono', monospace;
+          color: black;
+          font-weight: 400;
+          opacity: 0.87;
+        `;
+        return ({
+          h1: css<{}>`${font}; font-size: 30px;`,
+          h2: css<{}>`${font}; font-size: 24px;`,
+          h3: css<{}>`${font}; font-size: 18px;`,
+          h4: css<{}>`${font}; font-size: 14px;`,
+          h5: css<{}>`${font}; font-size: 11px;`,
+        })
+      })(),
 
-export default theme
+      monobold: (()=>{
+        const font = css<{}>`
+          font-family: 'IBM Plex Mono', monospace;
+          color: black;
+          font-weight: 600;
+          opacity: 0.87;
+        `;
+        return ({
+          h1: css<{}>`${font}; font-size: 30px;`,
+          h2: css<{}>`${font}; font-size: 24px;`,
+          h3: css<{}>`${font}; font-size: 18px;`,
+          h4: css<{}>`${font}; font-size: 14px;`,
+          h5: css<{}>`${font}; font-size: 11px;`,
+        })
+      })(),
+    } ,
+    body:{
+      regular: (()=>{
+        const font = css<{}>`
+          font-family: 'Montserrat', sans-serif;
+          color: black;
+          font-weight: 400;
+          opacity: 0.87;
+        `;
+        return ({
+          t1: css<{}>`${font}; font-size:18px;`,
+          t2: css<{}>`${font}; font-size:16px;`,
+          t3: css<{}>`${font}; font-size:14px;`,
+          t4: css<{}>`${font}; font-size:12px;`,
+          t5: css<{}>`${font}; font-size:10px;`,
+        })
+      })(),
+
+      semibold: (()=>{
+        const font = css<{}>`
+          font-family: 'Montserrat', sans-serif;
+          color: black;
+          font-weight: 600;
+          opacity: 0.87;
+        `;
+        return ({
+          t1: css<{}>`${font}; font-size:18px;`,
+          t2: css<{}>`${font}; font-size:16px;`,
+          t3: css<{}>`${font}; font-size:14px;`,
+          t4: css<{}>`${font}; font-size:12px;`,
+          t5: css<{}>`${font}; font-size:10px;`,
+        })
+      })()
+    } 
+  } 
+} 

@@ -4,10 +4,9 @@ import { atom, useRecoilState } from 'recoil'
 import { auth, User, useWindowDimensions } from 'common'
 import { useUserLazyQuery } from 'generated'
 import { AppWrapper, GlobalStyle } from './styles'
+import { isMobile } from 'react-device-detect';
 import DesktopVersion from 'containers/Desktop/'
 import MobileVersion from 'containers/Mobile/'
-import 'assets/fonts/mono/regular/_index.scss'
-
 
 export default function App() {
   const [, setUser] = useRecoilState(App.user)
@@ -16,7 +15,6 @@ export default function App() {
   
   useEffect(()=>{
     if(userData){
-      console.log(userData)
       setUser(userData?.users_by_pk)
       history.push('/')
     }
@@ -35,11 +33,11 @@ export default function App() {
   },[])
   
   const { width, height } = useWindowDimensions()
-
+  
   return <>
     <GlobalStyle/>
     <AppWrapper>
-      {true ? <DesktopVersion/>: <MobileVersion/> }
+      {isMobile ? <MobileVersion/>: <DesktopVersion/> }
     </AppWrapper>
   </>
 }

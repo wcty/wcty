@@ -6,7 +6,7 @@
       "src/common/types",
       "node_modules/@types"
     ],
-    "target": "es3",
+    "target": "es5",
     "module": "esnext",
     "strict": true,
     "esModuleInterop": true,

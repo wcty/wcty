@@ -95,6 +95,177 @@ export type Bigint_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['bigint']>>;
 };
 
+/** columns and relationships of "entries" */
+export type Entries = {
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  geom?: Maybe<Scalars['geometry']>;
+  id?: Maybe<Scalars['uuid']>;
+  image?: Maybe<Scalars['String']>;
+  members_count?: Maybe<Scalars['bigint']>;
+  modified_at?: Maybe<Scalars['timestamptz']>;
+  name?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
+};
+
+/** Boolean expression to filter rows from the table "entries". All fields are combined with a logical 'AND'. */
+export type Entries_Bool_Exp = {
+  _and?: Maybe<Array<Entries_Bool_Exp>>;
+  _not?: Maybe<Entries_Bool_Exp>;
+  _or?: Maybe<Array<Entries_Bool_Exp>>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  description?: Maybe<String_Comparison_Exp>;
+  geom?: Maybe<Geometry_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  image?: Maybe<String_Comparison_Exp>;
+  members_count?: Maybe<Bigint_Comparison_Exp>;
+  modified_at?: Maybe<Timestamptz_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  type?: Maybe<String_Comparison_Exp>;
+};
+
+export type Entries_Nearby_Args = {
+  limit?: Maybe<Scalars['Int']>;
+  location?: Maybe<Scalars['geometry']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  max_distance?: Maybe<Scalars['float8']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  min_distance?: Maybe<Scalars['float8']>;
+  own?: Maybe<Scalars['Boolean']>;
+  type?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** Ordering options when selecting data from "entries". */
+export type Entries_Order_By = {
+  created_at?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
+  geom?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  image?: Maybe<Order_By>;
+  members_count?: Maybe<Order_By>;
+  modified_at?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+};
+
+/** select columns of table "entries" */
+export enum Entries_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Geom = 'geom',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Image = 'image',
+  /** column name */
+  MembersCount = 'members_count',
+  /** column name */
+  ModifiedAt = 'modified_at',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Type = 'type'
+}
+
+/** columns and relationships of "entry_members" */
+export type Entry_Members = {
+  /** An object relationship */
+  entry?: Maybe<Entries>;
+  entry_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['Int']>;
+  type?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** Boolean expression to filter rows from the table "entry_members". All fields are combined with a logical 'AND'. */
+export type Entry_Members_Bool_Exp = {
+  _and?: Maybe<Array<Entry_Members_Bool_Exp>>;
+  _not?: Maybe<Entry_Members_Bool_Exp>;
+  _or?: Maybe<Array<Entry_Members_Bool_Exp>>;
+  entry?: Maybe<Entries_Bool_Exp>;
+  entry_id?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  type?: Maybe<String_Comparison_Exp>;
+  user_id?: Maybe<Uuid_Comparison_Exp>;
+};
+
+/** Ordering options when selecting data from "entry_members". */
+export type Entry_Members_Order_By = {
+  entry?: Maybe<Entries_Order_By>;
+  entry_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** select columns of table "entry_members" */
+export enum Entry_Members_Select_Column {
+  /** column name */
+  EntryId = 'entry_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** columns and relationships of "entry_visits" */
+export type Entry_Visits = {
+  /** An object relationship */
+  entry?: Maybe<Entries>;
+  entry_id?: Maybe<Scalars['uuid']>;
+  id?: Maybe<Scalars['bigint']>;
+  type?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  user?: Maybe<Users>;
+  user_id?: Maybe<Scalars['uuid']>;
+  visited_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** Boolean expression to filter rows from the table "entry_visits". All fields are combined with a logical 'AND'. */
+export type Entry_Visits_Bool_Exp = {
+  _and?: Maybe<Array<Entry_Visits_Bool_Exp>>;
+  _not?: Maybe<Entry_Visits_Bool_Exp>;
+  _or?: Maybe<Array<Entry_Visits_Bool_Exp>>;
+  entry?: Maybe<Entries_Bool_Exp>;
+  entry_id?: Maybe<Uuid_Comparison_Exp>;
+  id?: Maybe<Bigint_Comparison_Exp>;
+  type?: Maybe<String_Comparison_Exp>;
+  user?: Maybe<Users_Bool_Exp>;
+  user_id?: Maybe<Uuid_Comparison_Exp>;
+  visited_at?: Maybe<Timestamptz_Comparison_Exp>;
+};
+
+/** Ordering options when selecting data from "entry_visits". */
+export type Entry_Visits_Order_By = {
+  entry?: Maybe<Entries_Order_By>;
+  entry_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  type?: Maybe<Order_By>;
+  user?: Maybe<Users_Order_By>;
+  user_id?: Maybe<Order_By>;
+  visited_at?: Maybe<Order_By>;
+};
+
+/** select columns of table "entry_visits" */
+export enum Entry_Visits_Select_Column {
+  /** column name */
+  EntryId = 'entry_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UserId = 'user_id',
+  /** column name */
+  VisitedAt = 'visited_at'
+}
+
 /** columns and relationships of "files" */
 export type Files = {
   created_at?: Maybe<Scalars['timetz']>;
@@ -6417,6 +6588,14 @@ export enum Orgs_Select_Column {
 }
 
 export type Query_Root = {
+  /** fetch data from the table: "entries" */
+  entries: Array<Entries>;
+  /** execute function "entries_nearby" which returns "entries" */
+  entries_nearby: Array<Entries>;
+  /** fetch data from the table: "entry_members" */
+  entry_members: Array<Entry_Members>;
+  /** fetch data from the table: "entry_visits" */
+  entry_visits: Array<Entry_Visits>;
   /** An array relationship */
   files: Array<Files>;
   /** fetch data from the table: "files" using primary key columns */
@@ -6533,6 +6712,43 @@ export type Query_Root = {
   users: Array<Users>;
   /** fetch data from the table: "users" using primary key columns */
   users_by_pk?: Maybe<Users>;
+};
+
+
+export type Query_RootEntriesArgs = {
+  distinct_on?: Maybe<Array<Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entries_Order_By>>;
+  where?: Maybe<Entries_Bool_Exp>;
+};
+
+
+export type Query_RootEntries_NearbyArgs = {
+  args: Entries_Nearby_Args;
+  distinct_on?: Maybe<Array<Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entries_Order_By>>;
+  where?: Maybe<Entries_Bool_Exp>;
+};
+
+
+export type Query_RootEntry_MembersArgs = {
+  distinct_on?: Maybe<Array<Entry_Members_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entry_Members_Order_By>>;
+  where?: Maybe<Entry_Members_Bool_Exp>;
+};
+
+
+export type Query_RootEntry_VisitsArgs = {
+  distinct_on?: Maybe<Array<Entry_Visits_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entry_Visits_Order_By>>;
+  where?: Maybe<Entry_Visits_Bool_Exp>;
 };
 
 
@@ -6966,6 +7182,14 @@ export type St_D_Within_Input = {
 };
 
 export type Subscription_Root = {
+  /** fetch data from the table: "entries" */
+  entries: Array<Entries>;
+  /** execute function "entries_nearby" which returns "entries" */
+  entries_nearby: Array<Entries>;
+  /** fetch data from the table: "entry_members" */
+  entry_members: Array<Entry_Members>;
+  /** fetch data from the table: "entry_visits" */
+  entry_visits: Array<Entry_Visits>;
   /** An array relationship */
   files: Array<Files>;
   /** fetch data from the table: "files" using primary key columns */
@@ -7082,6 +7306,43 @@ export type Subscription_Root = {
   users: Array<Users>;
   /** fetch data from the table: "users" using primary key columns */
   users_by_pk?: Maybe<Users>;
+};
+
+
+export type Subscription_RootEntriesArgs = {
+  distinct_on?: Maybe<Array<Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entries_Order_By>>;
+  where?: Maybe<Entries_Bool_Exp>;
+};
+
+
+export type Subscription_RootEntries_NearbyArgs = {
+  args: Entries_Nearby_Args;
+  distinct_on?: Maybe<Array<Entries_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entries_Order_By>>;
+  where?: Maybe<Entries_Bool_Exp>;
+};
+
+
+export type Subscription_RootEntry_MembersArgs = {
+  distinct_on?: Maybe<Array<Entry_Members_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entry_Members_Order_By>>;
+  where?: Maybe<Entry_Members_Bool_Exp>;
+};
+
+
+export type Subscription_RootEntry_VisitsArgs = {
+  distinct_on?: Maybe<Array<Entry_Visits_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Entry_Visits_Order_By>>;
+  where?: Maybe<Entry_Visits_Bool_Exp>;
 };
 
 
@@ -8341,13 +8602,13 @@ export type SearchResultsQueryVariables = Exact<{
 }>;
 
 
-export type SearchResultsQuery = { search_entries: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined }> };
+export type SearchResultsQuery = { entries: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, geometry?: any | null | undefined }> };
 
 export type InitiativeCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
 
 export type OrganizationCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
 
-export type EntryCardFragment = { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined };
+export type EntryCardFragment = { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, geometry?: any | null | undefined };
 
 export type InitiativesNearbyListQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -8391,6 +8652,31 @@ export type MyOrganizationListQueryVariables = Exact<{
 
 export type MyOrganizationListQuery = { orgs: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
 
+export type LastEntriesQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  user_id: Scalars['uuid'];
+}>;
+
+
+export type LastEntriesQuery = { entry_visits: Array<{ visited_at?: any | null | undefined, entry?: { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, geometry?: any | null | undefined } | null | undefined }> };
+
+export type NearbyEntriesQueryVariables = Exact<{
+  location: Scalars['geometry'];
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  max_distance?: Maybe<Scalars['float8']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  min_distance?: Maybe<Scalars['float8']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  own?: Maybe<Scalars['Boolean']>;
+}>;
+
+
+export type NearbyEntriesQuery = { entries_nearby: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, geometry?: any | null | undefined }> };
+
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {
   geom
@@ -8425,13 +8711,14 @@ export const OrganizationCardFragmentDoc = gql`
 }
     `;
 export const EntryCardFragmentDoc = gql`
-    fragment EntryCard on map_entries {
+    fragment EntryCard on entries {
   id
   image
   name
   geometry: geom
   created_at
   description
+  type
 }
     `;
 export const UserDocument = gql`
@@ -9214,7 +9501,7 @@ export type DictionaryLazyQueryHookResult = ReturnType<typeof useDictionaryLazyQ
 export type DictionaryQueryResult = Apollo.QueryResult<DictionaryQuery, DictionaryQueryVariables>;
 export const SearchResultsDocument = gql`
     query SearchResults($layers: [String!] = ["initiative", "organization"], $keyword: String!) {
-  search_entries: map_entries(
+  entries(
     where: {_and: [{type: {_in: $layers}}, {_or: [{name: {_ilike: $keyword}}, {description: {_ilike: $keyword}}]}]}
     limit: 5
   ) {
@@ -9409,6 +9696,128 @@ export function useMyOrganizationListLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type MyOrganizationListQueryHookResult = ReturnType<typeof useMyOrganizationListQuery>;
 export type MyOrganizationListLazyQueryHookResult = ReturnType<typeof useMyOrganizationListLazyQuery>;
 export type MyOrganizationListQueryResult = Apollo.QueryResult<MyOrganizationListQuery, MyOrganizationListQueryVariables>;
+export const LastEntriesDocument = gql`
+    query LastEntries($limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $user_id: uuid!) {
+  entry_visits(
+    where: {_and: [{user_id: {_eq: $user_id}}, {visited_at: {_gt: $min_date}}, {visited_at: {_lte: $max_date}}]}
+    order_by: {visited_at: desc}
+    limit: $limit
+  ) {
+    visited_at
+    entry {
+      ...EntryCard
+    }
+  }
+}
+    ${EntryCardFragmentDoc}`;
+
+/**
+ * __useLastEntriesQuery__
+ *
+ * To run a query within a React component, call `useLastEntriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLastEntriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLastEntriesQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      max_date: // value for 'max_date'
+ *      min_date: // value for 'min_date'
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useLastEntriesQuery(baseOptions: Apollo.QueryHookOptions<LastEntriesQuery, LastEntriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LastEntriesQuery, LastEntriesQueryVariables>(LastEntriesDocument, options);
+      }
+export function useLastEntriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LastEntriesQuery, LastEntriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LastEntriesQuery, LastEntriesQueryVariables>(LastEntriesDocument, options);
+        }
+export type LastEntriesQueryHookResult = ReturnType<typeof useLastEntriesQuery>;
+export type LastEntriesLazyQueryHookResult = ReturnType<typeof useLastEntriesLazyQuery>;
+export type LastEntriesQueryResult = Apollo.QueryResult<LastEntriesQuery, LastEntriesQueryVariables>;
+export const NearbyEntriesDocument = gql`
+    query NearbyEntries($location: geometry!, $limit: Int = null, $offset: Int = 0, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
+  entries_nearby(
+    offset: $offset
+    limit: $limit
+    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: null, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
+  ) {
+    ...EntryCard
+  }
+}
+    ${EntryCardFragmentDoc}`;
+
+/**
+ * __useNearbyEntriesQuery__
+ *
+ * To run a query within a React component, call `useNearbyEntriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNearbyEntriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNearbyEntriesQuery({
+ *   variables: {
+ *      location: // value for 'location'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      max_date: // value for 'max_date'
+ *      max_distance: // value for 'max_distance'
+ *      min_date: // value for 'min_date'
+ *      min_distance: // value for 'min_distance'
+ *      user_id: // value for 'user_id'
+ *      own: // value for 'own'
+ *   },
+ * });
+ */
+export function useNearbyEntriesQuery(baseOptions: Apollo.QueryHookOptions<NearbyEntriesQuery, NearbyEntriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<NearbyEntriesQuery, NearbyEntriesQueryVariables>(NearbyEntriesDocument, options);
+      }
+export function useNearbyEntriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NearbyEntriesQuery, NearbyEntriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<NearbyEntriesQuery, NearbyEntriesQueryVariables>(NearbyEntriesDocument, options);
+        }
+export type NearbyEntriesQueryHookResult = ReturnType<typeof useNearbyEntriesQuery>;
+export type NearbyEntriesLazyQueryHookResult = ReturnType<typeof useNearbyEntriesLazyQuery>;
+export type NearbyEntriesQueryResult = Apollo.QueryResult<NearbyEntriesQuery, NearbyEntriesQueryVariables>;
+export type entriesKeySpecifier = ('created_at' | 'description' | 'geom' | 'id' | 'image' | 'members_count' | 'modified_at' | 'name' | 'type' | entriesKeySpecifier)[];
+export type entriesFieldPolicy = {
+	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	geom?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	image?: FieldPolicy<any> | FieldReadFunction<any>,
+	members_count?: FieldPolicy<any> | FieldReadFunction<any>,
+	modified_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	name?: FieldPolicy<any> | FieldReadFunction<any>,
+	type?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type entry_membersKeySpecifier = ('entry' | 'entry_id' | 'id' | 'type' | 'user_id' | entry_membersKeySpecifier)[];
+export type entry_membersFieldPolicy = {
+	entry?: FieldPolicy<any> | FieldReadFunction<any>,
+	entry_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	type?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type entry_visitsKeySpecifier = ('entry' | 'entry_id' | 'id' | 'type' | 'user' | 'user_id' | 'visited_at' | entry_visitsKeySpecifier)[];
+export type entry_visitsFieldPolicy = {
+	entry?: FieldPolicy<any> | FieldReadFunction<any>,
+	entry_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	type?: FieldPolicy<any> | FieldReadFunction<any>,
+	user?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	visited_at?: FieldPolicy<any> | FieldReadFunction<any>
+};
 export type filesKeySpecifier = ('created_at' | 'downloadable_url' | 'file_path' | 'id' | 'initiative' | 'initiative_id' | 'user' | 'user_id' | filesKeySpecifier)[];
 export type filesFieldPolicy = {
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10063,8 +10472,12 @@ export type orgsFieldPolicy = {
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type query_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'map_entries_aggregate' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
+export type query_rootKeySpecifier = ('entries' | 'entries_nearby' | 'entry_members' | 'entry_visits' | 'files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'map_entries_aggregate' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
 export type query_rootFieldPolicy = {
+	entries?: FieldPolicy<any> | FieldReadFunction<any>,
+	entries_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
+	entry_members?: FieldPolicy<any> | FieldReadFunction<any>,
+	entry_visits?: FieldPolicy<any> | FieldReadFunction<any>,
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	i18n?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10124,8 +10537,12 @@ export type query_rootFieldPolicy = {
 	users?: FieldPolicy<any> | FieldReadFunction<any>,
 	users_by_pk?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type subscription_rootKeySpecifier = ('files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'map_entries_aggregate' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
+export type subscription_rootKeySpecifier = ('entries' | 'entries_nearby' | 'entry_members' | 'entry_visits' | 'files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_thread_comments' | 'initiative_thread_comments_by_pk' | 'initiative_thread_post_reactions' | 'initiative_thread_post_reactions_by_pk' | 'initiative_thread_posts' | 'initiative_thread_posts_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'map_entries_aggregate' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
 export type subscription_rootFieldPolicy = {
+	entries?: FieldPolicy<any> | FieldReadFunction<any>,
+	entries_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
+	entry_members?: FieldPolicy<any> | FieldReadFunction<any>,
+	entry_visits?: FieldPolicy<any> | FieldReadFunction<any>,
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	i18n?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10241,6 +10658,18 @@ export type usersFieldPolicy = {
 	votes?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type StrictTypedTypePolicies = {
+	entries?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | entriesKeySpecifier | (() => undefined | entriesKeySpecifier),
+		fields?: entriesFieldPolicy,
+	},
+	entry_members?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | entry_membersKeySpecifier | (() => undefined | entry_membersKeySpecifier),
+		fields?: entry_membersFieldPolicy,
+	},
+	entry_visits?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | entry_visitsKeySpecifier | (() => undefined | entry_visitsKeySpecifier),
+		fields?: entry_visitsFieldPolicy,
+	},
 	files?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | filesKeySpecifier | (() => undefined | filesKeySpecifier),
 		fields?: filesFieldPolicy,

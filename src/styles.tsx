@@ -2,16 +2,29 @@ import styled, { createGlobalStyle } from 'styled-components/macro'
 
 export const GlobalStyle = createGlobalStyle`
   * {
+    /* ${props=>props.theme.font.body.regular.t5} */
     font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
     box-sizing: border-box;
     font-size: 12px;
   }
-  h2{
-    font-weight: 500;
-    font-size: 19;
+  h1{
+    ${props=>props.theme.font.title.mono.h1}
   }
-  @import url('https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css');
-
+  h2{
+    ${props=>props.theme.font.title.mono.h2}
+  }
+  h3{
+    ${props=>props.theme.font.title.mono.h3}
+  }
+  h4{
+    ${props=>props.theme.font.title.mono.h4}
+  }
+  h5{
+    ${props=>props.theme.font.title.mono.h5}
+  }
+  span{
+    ${props=>props.theme.font.body.regular.t5}
+  }
   html {
     overflow: scroll;
     overflow-x: hidden;
@@ -23,9 +36,6 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -39,8 +49,9 @@ export const GlobalStyle = createGlobalStyle`
   p::selection { background-color: lightgrey; }
   input::-moz-selection { background-color: lightgrey}
   input::selection { background-color: lightgrey; }
-`
-export const AppWrapper = styled.div`
+`,
+
+AppWrapper = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;

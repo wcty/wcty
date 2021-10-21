@@ -1,11 +1,7 @@
-export { default as Initiatives } from './Initiatives'
-export { default as Intro } from './Intro'
 export { default as Login } from './Login'
 export { default as Map } from './Map'
-export { default as SvgIcon } from './SvgIcon'
+export * from './Map'
 export { default as Uploader } from './Uploader'
 export { default as LangSelect } from './LangSelect'
 export { ListRow as ListRow } from './ListRow'
-
-export * from './Fabs'
-export * from './Forms'
+export { default as InitiativeCard } from './InitiativeCard'

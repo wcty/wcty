@@ -2,7 +2,7 @@ query SearchResults(
   $layers:[String!]=["initiative","organization"],
   $keyword: String!
 ){
-  search_entries:map_entries(
+  entries(
     where:{
       _and:[
         {type:{_in:$layers}},

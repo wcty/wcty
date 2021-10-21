@@ -1,12 +1,11 @@
-import { AttributionControl, FeatureProps, Layer, MapGLProps, Source, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
+import { AttributionControl, FeatureProps, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
 import { AnimationOptions } from 'mapbox-gl'
-import { atoms, useGeolocation, mapboxToken } from 'common'
+import { mapboxToken } from 'common'
 import { atom, useRecoilState } from 'recoil'
 import LocationIcon from './LocationIcon'
 import LoadIcons from './LoadIcons'
-// import Markers from './Markers'
 import Satellite from './Satellite'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import mapStyle from './mapStyle.json'
 import { ReactNode } from 'react'
 import { MapGL } from './styles'
@@ -68,9 +67,10 @@ Map.satellite = atom({
   default: false
 })
 
+export type Entry = (GeoJSON.Feature<GeoJSON.Point> & Omit<FeatureProps<Specs[keyof Specs]>['features'][number],'layer'|'sourceLayer'|'state'|'modified_at'>) |null
 Map.selected = atom({
   key: 'mapSelected',
-  default: null as (GeoJSON.Feature<GeoJSON.Point> & Omit<FeatureProps<Specs[keyof Specs]>['features'][number],'layer'|'sourceLayer'|'state'|'modified_at'>) |null // |null
+  default: null as Entry
 })
 
 Map.layers_list = ['initiative', 'organization'] as ('initiative'|'organization')[]

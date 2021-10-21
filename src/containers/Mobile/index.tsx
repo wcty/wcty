@@ -1,35 +1,28 @@
-import { Route, useHistory, useLocation } from 'react-router-dom'
-import { InitiativeFab, MenuFab, LocateFab, LayersFab, Intro, Login, Map, Initiatives } from 'components'
-import { useRecoilState } from 'recoil'
-import { atoms } from 'common'
+import { Route } from 'react-router-dom'
+import { Map } from 'components'
 import { MapWrapper } from './styles'
-import App from 'App'
+import Login from './Login'
+import MapContents from './MapContents'
+import FloatPanel from './FloatPanel'
+import Slides from './Slides'
 
-export default function MobileVersion(){
-  const [user, setUser] = useRecoilState(App.user)
-  const url = useLocation()
-  const history = useHistory()
-  const [satellite, setSatellite] = useRecoilState(Map.satellite)
+export default function DesktopVersion(){
 
   return <>
       <Route path="/login">
         <Login/>
       </Route>
-      <Route path="/">
-        <MapWrapper>
-          <Map />
-          <MenuFab />
-          {url?.pathname?.includes('/intro') && <Intro />}
-          {user?
-            <InitiativeFab active={false} />:
-            <InitiativeFab active={true} />
-          }
-          <LocateFab />
-          <LayersFab />
-        </MapWrapper>
+      <Route path="/initiative/:id"> 
+        <FloatPanel/>
       </Route>
-      <Route path='/initiatives' render={
-        ()=>user?<Initiatives />:null
-      } />
+      <Route path="/" exact>
+        <MapWrapper>
+          <Map>
+            <MapContents/>
+          </Map>
+        </MapWrapper>
+        <FloatPanel/>
+        <Slides/>
+      </Route>
   </>
 }

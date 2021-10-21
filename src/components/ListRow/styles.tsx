@@ -31,7 +31,11 @@ ListItem = styled.div`
       transform: translate(2px,2px);
     }
   }
+  span{
+    ${props=>props.theme.font.body.semibold.t5};
+  }
   span.address{
+    ${props=>props.theme.font.body.regular.t5}
     color: #5f5f5f;
   }
 `

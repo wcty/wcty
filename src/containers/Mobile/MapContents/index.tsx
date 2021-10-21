@@ -1,7 +1,7 @@
 import { Layer, Source, FeatureState } from '@urbica/react-map-gl';
 import { Map } from 'components';
 import { useRecoilState } from 'recoil';
-import InitiativeCard from 'components/InitiativeCard';
+import InitiativePopup from './InitiativePopup';
 
 export default function MapContents(){
   const [cursor, setCursor] = useRecoilState(Map.cursor)
@@ -128,6 +128,6 @@ export default function MapContents(){
       }
     />
     <FeatureState sourceLayer='public.map_entries' source='map_entries' id={selected?.id||''} state={{selected:true}}/>
-    <>{ selected && <InitiativeCard entry={selected}/> }</>
+    <>{ selected && <InitiativePopup/> }</>
   </>
 }

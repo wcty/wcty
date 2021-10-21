@@ -24,4 +24,6 @@ fragment EntryCard on entries {
   created_at
   description
   type
+  members_count
+  modified_at
 }

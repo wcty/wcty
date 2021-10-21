@@ -12,9 +12,9 @@ export default function MapContents(){
   
   return <>
     <Source
-      id='map_entries'
+      id='entries'
       type='vector'
-      url='https://tiles.weee.city/public.map_entries.json'
+      url='https://tiles.weee.city/public.entries.json'
       promoteId='id'
     />
     <Source
@@ -29,9 +29,9 @@ export default function MapContents(){
     />
 
     <Layer
-      id='map_entries'
-      source='map_entries'
-      source-layer='public.map_entries'
+      id='entries'
+      source='entries'
+      source-layer='public.entries'
       type='symbol'
       onClick={({features})=>{
         const feature = JSON.parse(JSON.stringify(features[0])) as typeof features[number]
@@ -127,7 +127,6 @@ export default function MapContents(){
         ['case', ['==',['get','type'],'organization'], true, false]
       }
     />
-    <FeatureState sourceLayer='public.map_entries' source='map_entries' id={selected?.id||''} state={{selected:true}}/>
-    <>{ selected && <InitiativePopup/> }</>
+    <FeatureState sourceLayer='public.entries' source='entries' id={selected?.id||''} state={{selected:true}}/>
   </>
 }

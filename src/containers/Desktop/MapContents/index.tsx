@@ -1,7 +1,7 @@
 import { Layer, Source, FeatureState } from '@urbica/react-map-gl';
-import { Map } from 'components';
+import { Map, InitiativeCard } from 'components';
 import { useRecoilState } from 'recoil';
-import InitiativeCard from 'components/InitiativeCard';
+import { Popup } from './styles';
 
 export default function MapContents(){
   const [cursor, setCursor] = useRecoilState(Map.cursor)
@@ -12,9 +12,9 @@ export default function MapContents(){
   
   return <>
     <Source
-      id='map_entries'
+      id='entries'
       type='vector'
-      url='https://tiles.weee.city/public.map_entries.json'
+      url='https://tiles.weee.city/public.entries.json'
       promoteId='id'
     />
     <Source
@@ -29,9 +29,9 @@ export default function MapContents(){
     />
 
     <Layer
-      id='map_entries'
-      source='map_entries'
-      source-layer='public.map_entries'
+      id='entries'
+      source='entries'
+      source-layer='public.entries'
       type='symbol'
       onClick={({features})=>{
         const feature = JSON.parse(JSON.stringify(features[0])) as typeof features[number]
@@ -127,7 +127,16 @@ export default function MapContents(){
         ['case', ['==',['get','type'],'organization'], true, false]
       }
     />
-    <FeatureState sourceLayer='public.map_entries' source='map_entries' id={selected?.id||''} state={{selected:true}}/>
-    <>{ selected && <InitiativeCard entry={selected}/> }</>
+    <FeatureState sourceLayer='public.entries' source='entries' id={selected?.id||''} state={{selected:true}}/>
+    <>{ selected && 
+      <Popup 
+        closeButton={false} 
+        closeOnClick={false}  
+        latitude={selected?.geometry?.coordinates[1]} 
+        longitude={selected?.geometry?.coordinates[0]} 
+        anchor="bottom-right">
+          <InitiativeCard entry={selected}/> 
+      </Popup>
+    }</>
   </>
 }

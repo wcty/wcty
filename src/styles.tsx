@@ -49,6 +49,10 @@ export const GlobalStyle = createGlobalStyle`
   p::selection { background-color: lightgrey; }
   input::-moz-selection { background-color: lightgrey}
   input::selection { background-color: lightgrey; }
+  div.mapboxgl-popup-content{
+    box-shadow: none;
+    background: none;
+  }
 `,
 
 AppWrapper = styled.div`

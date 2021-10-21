@@ -6,6 +6,7 @@ export * from './i18n'
 export * from './recoil'
 export * from './style'
 export * from './hooks'
+export * from './functions'
 export * from './nhost'
 export * from './types'
 

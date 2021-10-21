@@ -9,10 +9,11 @@ import { BrowserRouter as Router } from "react-router-dom"
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from "@nhost/react-apollo"
-import { defaultDataIdFromObject, InMemoryCache, FieldMergeFunction  } from '@apollo/client';
+import { InMemoryCache } from '@apollo/client';
 import { ThemeProvider } from 'styled-components'
 import App from './App'
 import { Helmet } from "react-helmet";
+import { Map } from 'components'
 
 const AppRoot = ()=> 
   <React.StrictMode>
@@ -49,7 +50,9 @@ const AppRoot = ()=>
                 <link rel="preconnect" href="https://fonts.gstatic.com" cross-origin/>
                 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>              
               </Helmet>
-              <App />
+              <Map.Context.Provider value={{map:undefined}}>
+                <App />
+              </Map.Context.Provider>
             </ThemeProvider>
           </RecoilRoot>
         </Router>

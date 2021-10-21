@@ -20,7 +20,9 @@ SwipeableViews = styled(VirtualizeSwipeableViews).attrs({
       color: black;
       >div{
         height: 100%;
-        margin: 0 9px;
+        overflow: hidden;
+        margin-left: 9px;
+        margin-right: 9px;
         background-color: ${p=>p.theme.colors.backgroundActive};
       }
     }

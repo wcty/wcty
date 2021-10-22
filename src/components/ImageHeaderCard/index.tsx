@@ -1,6 +1,7 @@
 import { Actions, Content, Image, Title } from "./styles";
 import image from 'assets/photo/initiative_big.jpeg'
 import Button from "components/Button";
+import { EButtonSize, EButtonTypes } from "components/Button/styles";
 
 function ImageHeaderCard(){
     return(
@@ -11,7 +12,7 @@ function ImageHeaderCard(){
                     Лавочка в парку по вулиці Бережанській
                 </Title>
                 <Actions>
-                    <Button/>
+                    <Button  size={EButtonSize.LARGE} type={EButtonTypes.PRIMARY} label='Button'/>
                 </Actions>
             </Content>
            

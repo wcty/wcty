@@ -37,6 +37,7 @@
     "react-use-gesture": "^6.0.14",
     "recoil": "^0.4.1",
     "resize-observer-polyfill": "^1.5.1",
+    "storybook-addon-styled-components-themes": "^0.0.2",
     "styled-components": "^5.3.3",
     "typescript": "^4.4.4",
     "universal-cookie": "^4.0.4",
@@ -50,10 +51,22 @@
     "i18n": "node scripts/i18n.js",
     "tiles": "node scripts/tilespecs.js",
     "generate": "dotenv -- graphql-codegen --config scripts/codegen.yml",
-    "generate-watch": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch"
+    "generate-watch": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [
@@ -78,6 +91,12 @@
     "@graphql-codegen/typescript-operations": "^2.1.8",
     "@graphql-codegen/typescript-react-apollo": "^3.1.6",
     "@graphql-codegen/urql-introspection": "^2.1.0",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/node-logger": "^6.3.12",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.12",
     "@types/d3-format": "^3.0.1",
     "@types/jest": "^26.0.22",
     "@types/mapbox-gl": "^2.1.2",
@@ -97,6 +116,7 @@
     "dotenv-cli": "^4.0.0",
     "iv": "^0.0.1",
     "node-fetch": "^2.6.1",
+    "storybook-addon-styled-component-theme": "^2.0.0",
     "typescript-plugin-css-modules": "^3.4.0"
   },
   "plugins": [

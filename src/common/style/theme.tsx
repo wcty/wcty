@@ -3,6 +3,8 @@ import styled, {css as css_, ThemedCssFunction} from 'styled-components'
 const css = css_ as ThemedCssFunction<{}>
 
 export const theme = {
+  id:"T-001",
+  name:'main',
   colors:{
     titleActive: '#010202',
     body: '#45494F',
@@ -107,3 +109,4 @@ export const theme = {
     } 
   } 
 } 
+

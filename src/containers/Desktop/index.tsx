@@ -1,10 +1,11 @@
 import { Route, useHistory, useLocation } from 'react-router-dom'
 import { Map } from 'components'
-import { MapWrapper } from './styles'
+import { ContentWrapper, MapWrapper } from './styles'
 import Sidepanel from './Sidepanel'
 import Login from './Login'
 import MapContents from './MapContents'
 import FloatPanel from './FloatPanel'
+import InitiativeDetail from 'containers/InitiativeDetail'
 
 export default function DesktopVersion(){
 
@@ -15,6 +16,10 @@ export default function DesktopVersion(){
       <Route path="/initiative/:id"> 
         <Sidepanel/>
         <FloatPanel/>
+        <ContentWrapper>
+          <InitiativeDetail/>
+        </ContentWrapper>
+        
       </Route>
       <Route path="/" exact>
         <MapWrapper>

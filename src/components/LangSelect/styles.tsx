@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 const 
 SelectComponent = styled.select`
   display: none;
+  color: white;  
 `,
 
 Selected = styled.div`
@@ -17,6 +18,8 @@ Selected = styled.div`
   span{
     transform: translate(0px,0px);
     transition: transform 0.5s;
+    ${props=>props.theme.font.body.semibold.t4}
+
     :after {
       content: "▼";
       position: relative;
@@ -46,6 +49,7 @@ Options = styled.div`
     padding: 10px 0;
     background-color: #030303;
     span{
+      ${props=>props.theme.font.body.semibold.t4}
       transform: translate(0px,0px);
       transition: transform 0.5s;
     }

@@ -5,8 +5,10 @@ import Login from './Login'
 import MapContents from './MapContents'
 import FloatPanel from './FloatPanel'
 import Slides from './Slides'
+import Buttons from './Buttons'
+import Sidepanel from './Sidepanel'
 
-export default function DesktopVersion(){
+export default function MobileVersion(){
 
   return <>
       <Route path="/login">
@@ -23,6 +25,8 @@ export default function DesktopVersion(){
         </MapWrapper>
         <FloatPanel/>
         <Slides/>
+        <Buttons/>
+        <Sidepanel/>
       </Route>
   </>
 }

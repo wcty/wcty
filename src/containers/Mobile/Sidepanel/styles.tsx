@@ -21,62 +21,34 @@ SidepanelWrapper = styled.div`
     open==='wide'? 
     css`
       min-height: 100%;
-      width: 330px;
-      div.menu {
-        width: 280px;
-      }`: 
+      width: 100%;`: 
     css`
       width: 50px;
       min-height: 0px;`
   }
 `,
 
-Stripe = styled.div`
-  /* width: 50px; */
-  /* height: 100%; */
-  width: 100%;
-  position: relative;
-  background-color: #FFFFFF;
-  flex: 0 0 50px;
+CloseButton = styled.div`
+  width: 58px;
+  height: 58px;
+  border-left: 1px solid black;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  z-index: 1;
+  justify-content: center;
+  align-items: center;
 `,
 
 Menu = styled.div`
-  width: 250px;
+  width: 100%;
   height: 100%;
   position: absolute;
   right: 0px;
   top: 0px;
-  padding-left: 1rem;
+  padding-left: 2rem;
   background-color: ${p=>p.theme.colors.primary};
   transition: width 0.5s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`,
-
-UserIconThumb = styled.div`
-  position: absolute;
-  right: 0px;
-  transform: translate(15px,0px);
-  background-color: white;
-  height: 70px;
-  width: 16px;
-  transition: transform 0.5s;
-  padding: 16px 2px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0 4px 4px 0;
-  div {
-    width: 4px;
-    background-color: #F0F4F8;
-    height: 100%;
-    z-index: -1;
-  }
 `,
 
 UserIconCell = styled.div`
@@ -103,15 +75,16 @@ UserPhoto = styled.img`
   border-radius: 20px;
 `,
 
-UserIconRow = styled.div`
-  width: 100%;
-  height: 70px;
+LogoRow = styled.div`
+  width: calc(100% + 2rem);
+  margin-left: -2rem;
+  padding-left: 2rem;
+  height: 58px;
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid black;
-  padding-right: 2rem;
   cursor: pointer;
   >span {
     transform: translate(0px,0px);
@@ -129,23 +102,33 @@ UserIconRow = styled.div`
   }
 `,
 
-IconCell = styled.div`
+UserIconRow = styled.div`
   width: 100%;
-  height: 50px;
+  height: 70px;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid black;
   cursor: pointer;
-  &[data-hovered=true]{
-    background-color: #fcf9f3;
-    cursor: pointer;
+  >span {
+    display: flex;
+    align-items: center;
+    >button:last-child{
+      margin-left: 10px;
+    }
+    transform: translate(0px,0px);
+    transition: transform 0.5s;
+    ${props=>props.theme.font.body.regular.t3}
   }
   &[data-selected=true] {
-    background-color: #F4EADE;
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
-  &:last-child {
-    margin-bottom: 1rem;
+  &[data-hovered=true]{
+    span {
+      transform: translate(2px,2px);
+    }
   }
 `,
 

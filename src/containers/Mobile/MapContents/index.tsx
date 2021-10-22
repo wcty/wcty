@@ -1,6 +1,8 @@
 import { Layer, Source, FeatureState } from '@urbica/react-map-gl';
+import { atoms } from 'common';
 import { Map } from 'components';
 import { useRecoilState } from 'recoil';
+import Slides from '../Slides';
 import InitiativePopup from './InitiativePopup';
 
 export default function MapContents(){
@@ -8,6 +10,8 @@ export default function MapContents(){
   const [selected, setSelected] = useRecoilState(Map.selected)
   const [viewport, setViewport] = useRecoilState(Map.viewport)
   const [layers, setLayers] = useRecoilState(Map.layers)
+  const [focus, setFocus] = useRecoilState(atoms.focalPoint)
+  const [slideIndex, setSlideIndex] = useRecoilState(Slides.index)
 
   
   return <>
@@ -49,6 +53,9 @@ export default function MapContents(){
             ...feature,
             geometry: feature.geometry
           })
+          setFocus(feature.geometry.coordinates)
+          setSlideIndex(0)
+
         }
       }}
       onEnter={()=>setCursor('pointer')}

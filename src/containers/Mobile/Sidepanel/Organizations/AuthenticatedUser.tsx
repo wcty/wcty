@@ -6,6 +6,7 @@ import { Map } from 'components'
 import { useEffect, useState } from "react";
 import { ListRow } from "components";
 import Sidepanel from "..";
+import BurgerFab from 'containers/Mobile/FloatPanel/BurgerFab';
 
 export default function Organization(){
   const i18n = useI18n()
@@ -33,7 +34,7 @@ export default function Organization(){
     <div>
       <UserIconRow>
           <span>
-            {i18n('myOrganisations')}
+            <BurgerFab/>{i18n('myOrganisations')}
           </span>
           <span style={{fontSize: 10}}>
             {/* {'1111 organizations'} */}

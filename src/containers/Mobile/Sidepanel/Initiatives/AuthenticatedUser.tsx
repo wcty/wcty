@@ -6,6 +6,7 @@ import { Map } from 'components'
 import { useEffect, useState } from "react";
 import { ListRow } from "components";
 import Sidepanel from "..";
+import BurgerFab from 'containers/Mobile/FloatPanel/BurgerFab';
 
 export default function InitiativesDrawer(){
   const user = useUser()
@@ -33,7 +34,7 @@ export default function InitiativesDrawer(){
     <div>
       <UserIconRow>
           <span>
-            {i18n('myInitiatives')}
+            <BurgerFab/>{i18n('myInitiatives')}
           </span>
           <span style={{fontSize: 10}}>
             {/* {'1111 initiatives'} */}

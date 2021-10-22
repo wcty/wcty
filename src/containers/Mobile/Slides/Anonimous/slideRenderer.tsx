@@ -16,7 +16,7 @@ export function slideRenderer(params:SlideRenderProps){
 
   return ( entry ?
     <InitiativeCard 
-      entry={toSelected(entry)}
-    {...{ key }} /> :null
+      entry={toSelected({...entry})}
+    {...{ key }} /> : <div {...{ key }}></div>
   );
 }

@@ -9,12 +9,15 @@ export const Card = styled.div`
   background-color:#fff;
   text-align: left;
   position: relative;
+  border-radius: 3px;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 `,
 
 Thumbnail = styled.img`
   width: 100px;
   height: 100px;
   object-fit: cover;
+  border-radius: 3px 0 0 3px;
 `,
 
 Content = styled.div`

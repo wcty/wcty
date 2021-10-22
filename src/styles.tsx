@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   html {
     overflow: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
   }
   ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */

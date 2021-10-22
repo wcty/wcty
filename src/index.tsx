@@ -25,7 +25,7 @@ const AppRoot = ()=>
             Query: {
               fields:{
                 entries_nearby: {
-                  keyArgs: false,
+                  keyArgs: (o,a)=>a.variables?.type||"",
                   merge(existing, incoming, { args }) {
                     const merged = existing ? existing.slice(0) : [];
                     for (let i = 0; i < incoming.length; ++i) {

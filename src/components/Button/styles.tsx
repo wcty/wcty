@@ -34,25 +34,31 @@ const small =  css`
 `;
 
 
-
 const alarm = css`
-    width: 15em;
+    min-width: 500px;
     background-color: red;
 `
 
 const primary = css`
-    
+   background-color: ${props => props.theme.colors.titleActive};
+   color: ${props => props.theme.colors.backgroundLight};
 `;
 
 const secondary = css`
-    
+    background-color: transparent;
+    color: ${props => props.theme.colors.titleActive};
+    border: 1px solid ${props => props.theme.colors.titleActive};
 `;
 
 const subtle = css`
-    
+    background-color: transparent;
+    color: ${props => props.theme.colors.titleActive};
+    border: 1px solid ${props => props.theme.colors.placeholder};
 `;
 
 const text = css`
+    background-color: transparent;
+    color: ${props => props.theme.colors.titleActive};
     
 `;
 
@@ -93,10 +99,13 @@ export const CustomButton = styled.input.attrs((props: ButtonProps) => ({
     display: flex;
     justify-content: center;
     align-items: center;
-
+    border: none;
     padding: 0 15px;
+    cursor: pointer;
     border-radius: 3px;
-    font: ${props => props.theme.font.title.monserat.large};
+    //font: ${props => props.theme.font.title.monserat.large};
+    font:  ${props => props.theme.font.title.mono.h3};
+
     /* font-size: 2em;
     
     border: 1px solid ${props => props.theme.colors.titleActive};

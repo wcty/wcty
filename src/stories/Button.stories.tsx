@@ -17,22 +17,23 @@ export default {
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
   type:  EButtonTypes.PRIMARY,
-  label: 'Button long label',
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Button',
-};
-
-export const Large = Template.bind({});
-Large.args = {
   size: EButtonSize.LARGE,
   label: 'Button',
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  size: EButtonSize.SMALL,
-  label: 'Button',
-};
+// export const Secondary = Template.bind({});
+// Secondary.args = {
+//   label: 'Button',
+// };
+
+// export const Large = Template.bind({});
+// Large.args = {
+//   size: EButtonSize.LARGE,
+//   label: 'Button',
+// };
+
+// export const Small = Template.bind({});
+// Small.args = {
+//   size: EButtonSize.SMALL,
+//   label: 'Button',
+// };

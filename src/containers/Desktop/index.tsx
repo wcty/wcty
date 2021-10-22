@@ -1,4 +1,4 @@
-import { Route, useHistory, useLocation } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { Map } from 'components'
 import { ContentWrapper, MapWrapper } from './styles'
 import Sidepanel from './Sidepanel'
@@ -15,7 +15,6 @@ export default function DesktopVersion(){
       </Route>
       <Route path="/initiative/:id"> 
         <Sidepanel/>
-        <FloatPanel/>
         <ContentWrapper>
           <InitiativeDetail/>
         </ContentWrapper>

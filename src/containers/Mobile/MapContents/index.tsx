@@ -1,6 +1,8 @@
 import { Layer, Source, FeatureState } from '@urbica/react-map-gl';
+import { atoms } from 'common';
 import { Map } from 'components';
 import { useRecoilState } from 'recoil';
+import Slides from '../Slides';
 import InitiativePopup from './InitiativePopup';
 
 export default function MapContents(){
@@ -8,13 +10,15 @@ export default function MapContents(){
   const [selected, setSelected] = useRecoilState(Map.selected)
   const [viewport, setViewport] = useRecoilState(Map.viewport)
   const [layers, setLayers] = useRecoilState(Map.layers)
+  const [focus, setFocus] = useRecoilState(atoms.focalPoint)
+  const [slideIndex, setSlideIndex] = useRecoilState(Slides.index)
 
   
   return <>
     <Source
-      id='map_entries'
+      id='entries'
       type='vector'
-      url='https://tiles.weee.city/public.map_entries.json'
+      url='https://tiles.weee.city/public.entries.json'
       promoteId='id'
     />
     <Source
@@ -29,9 +33,9 @@ export default function MapContents(){
     />
 
     <Layer
-      id='map_entries'
-      source='map_entries'
-      source-layer='public.map_entries'
+      id='entries'
+      source='entries'
+      source-layer='public.entries'
       type='symbol'
       onClick={({features})=>{
         const feature = JSON.parse(JSON.stringify(features[0])) as typeof features[number]
@@ -49,6 +53,9 @@ export default function MapContents(){
             ...feature,
             geometry: feature.geometry
           })
+          setFocus(feature.geometry.coordinates)
+          setSlideIndex(0)
+
         }
       }}
       onEnter={()=>setCursor('pointer')}
@@ -127,7 +134,6 @@ export default function MapContents(){
         ['case', ['==',['get','type'],'organization'], true, false]
       }
     />
-    <FeatureState sourceLayer='public.map_entries' source='map_entries' id={selected?.id||''} state={{selected:true}}/>
-    <>{ selected && <InitiativePopup/> }</>
+    <FeatureState sourceLayer='public.entries' source='entries' id={selected?.id||''} state={{selected:true}}/>
   </>
 }

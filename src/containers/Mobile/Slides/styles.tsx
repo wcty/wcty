@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import SwipeableViewsUnstyled from 'react-swipeable-views';
 import { virtualize, bindKeyboard } from 'react-swipeable-views-utils';
 
@@ -6,8 +6,8 @@ const VirtualizeSwipeableViews = bindKeyboard(virtualize(SwipeableViewsUnstyled)
 
 export const
 SwipeableViews = styled(VirtualizeSwipeableViews).attrs({
-  style: {padding: '0 19px'},
-  slideStyle: {padding: '0px 0px'},
+  style: {padding: '0 15px', overflowX: 'visible'},
+  slideStyle: {padding: '0px 0px', overflow:'visible'},
   resistance: true
 })`
   position: absolute;
@@ -18,9 +18,12 @@ SwipeableViews = styled(VirtualizeSwipeableViews).attrs({
       padding: 15px;
       min-height: 100px;
       color: black;
+      overflow: visible;
       >div{
         height: 100%;
-        margin: 0 9px;
+        overflow: visible;
+        margin-left: 5px;
+        margin-right: 5px;
         background-color: ${p=>p.theme.colors.backgroundActive};
       }
     }

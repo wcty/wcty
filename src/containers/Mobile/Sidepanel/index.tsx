@@ -1,7 +1,9 @@
-import { SidepanelWrapper, Stripe, UserIconCell, Menu, UserIconRow, IconCell, IconRow, LangCell, UserIconThumb, UserPhoto } from './styles'
+import { SidepanelWrapper, UserIconCell, Menu, UserIconRow, IconRow, LangCell, UserPhoto, CloseButton, LogoRow } from './styles'
 import { ReactComponent as UserIcon } from 'assets/icons/user.svg'
 import { ReactComponent as LoginIcon } from 'assets/icons/login.svg'
 import { ReactComponent as LogoutIcon } from 'assets/icons/logout.svg'
+import { ReactComponent as CloseIcon } from 'assets/icons/close-icon.svg'
+import { ReactComponent as WecityText } from 'assets/icons/wecity-text.svg'
 
 import { useState, useEffect } from 'react'
 import { auth, useI18n, useUser } from 'common'
@@ -41,24 +43,6 @@ export default function Sidepanel (){
 
   return <>
     <SidepanelWrapper onMouseOver={()=>!open&&setOpen('menu')} onMouseLeave={()=>open==='menu'&&setOpen(false)} open={open}/*data-open={selected!=='initiativeMap'} data-active={selected&&selected!=='enter'&&selected!=='initiativeMap'}*/>
-      <Stripe>
-        <div>
-          <UserIconCell {...{...props('enter'), onClick:()=>{
-            if(!user){history.push('/login')} }}}>
-            {user? <UserPhoto src={user.avatar_url||''}/>: <UserIcon/>}
-          </UserIconCell>
-          {tabs(!!user).map((v,key)=>
-            <IconCell {...{key,...props(v.key),
-              ...(v.key==='initiativeMap'&&{onClick:()=>{setOpen(false);setSelected(null)}})
-            }}>
-                {v.icon}
-            </IconCell>
-          )}
-        </div>
-        <LangCell>
-          <LangSelect/>
-        </LangCell>
-      </Stripe>
 
       {selected && selected!=='initiativeMap' ?
         <Menu className='menu'>
@@ -72,6 +56,21 @@ export default function Sidepanel (){
         </Menu>:
         <Menu className='menu'>
           <div>
+            <LogoRow {...{...props('enter'),onClick:()=>{
+                if(!user){history.push('/login')} }}}>
+              {user? 
+                <span style={{textTransform:'uppercase'}}>
+                  {user.display_name}
+                </span>:
+              <>
+                <span>
+                  <WecityText/>
+                </span>
+                <CloseButton>
+                  <CloseIcon/>
+                </CloseButton>
+              </>}
+            </LogoRow>
             <UserIconRow {...{...props('enter'),onClick:()=>{
                 if(!user){history.push('/login')} }}}>
               {user? 
@@ -115,6 +114,6 @@ export default function Sidepanel (){
 }
 
 Sidepanel.open = atom({
-  key:'sidepanelOpen',
+  key:'sidepanelMobileOpen',
   default: false as false|'menu'|'wide'
 })

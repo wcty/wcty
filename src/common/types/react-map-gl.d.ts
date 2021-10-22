@@ -32,6 +32,7 @@ declare module '@urbica/react-map-gl' {
 
   export class MapContext extends React.Context<mapboxgl.Map> {
     static Consumer: IntrinsicAttributes
+    static Provider: IntrinsicAttributes
     static children?: ((map:mapboxgl.Map)=>void)
   }
 

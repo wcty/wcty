@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, MutableRefObject, useRef } from 'react'
 import { useRecoilState } from 'recoil'
 import { atoms, mapboxToken } from 'common'
 import { Map } from 'components'
@@ -120,4 +120,14 @@ export function useAddress(coords:[ number, number ]) {
   }, [addressString, setAddress, coords])
 
   return addressString
+}
+
+export function usePrevious<T>(
+  value: T,
+): MutableRefObject<T | undefined>['current'] {
+  const ref = useRef<T>();
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
 }

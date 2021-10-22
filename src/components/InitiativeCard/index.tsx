@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil"
 import { Map, Entry } from 'components'
-import { Popup, Thumbnail, Content, TopBar, BottomPanel, Button, Metrics, Icon } from "./styles";
+import { Card, Thumbnail, Content, TopBar, BottomPanel, Button, Metrics, Icon } from "./styles";
 import { useEffect } from "react";
 import { ReactComponent as People } from 'assets/icons/popupPeople.svg'
 import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
@@ -13,21 +13,22 @@ const formatMeters = format(',.2r')
 type InitiativeProps = { entry: Entry }
 
 export default function InitiativeCard({entry}:InitiativeProps){
+
   const loc = useGeolocation()
   const dist = entry && loc && distance(
-    entry.geometry.coordinates, 
+    entry?.geometry?.coordinates, 
     [loc.longitude, loc.latitude],
     { units:'meters' }
   )
   const i18n = useI18n()
 
   return entry && 
-    <Popup closeButton={false} closeOnClick={false}  latitude={entry?.geometry.coordinates[1]} longitude={entry?.geometry.coordinates[0]} anchor="bottom-right">
-      <Thumbnail src={entry?.properties.image+'?w=100&h=100&q=90'}/>
+    <Card>
+      <Thumbnail src={entry?.properties?.image+'?w=100&h=100&q=90'}/>
       <Content>
         <TopBar>
           <Metrics>
-            <div><Icon><People/></Icon>{entry.properties.members}</div>
+            <div><Icon><People/></Icon>{entry?.properties?.members}</div>
             { dist && 
               <div>
                 <Icon><Location/></Icon>
@@ -40,8 +41,8 @@ export default function InitiativeCard({entry}:InitiativeProps){
           <Button><div/></Button>
         </TopBar>
         <BottomPanel>
-          <span>{entry.properties.name}</span>
+          <span>{entry?.properties?.name}</span>
         </BottomPanel>
       </Content>
-    </Popup>
+    </Card>
 }

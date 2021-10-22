@@ -8602,13 +8602,13 @@ export type SearchResultsQueryVariables = Exact<{
 }>;
 
 
-export type SearchResultsQuery = { entries: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, geometry?: any | null | undefined }> };
+export type SearchResultsQuery = { entries: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
 
 export type InitiativeCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
 
 export type OrganizationCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
 
-export type EntryCardFragment = { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, geometry?: any | null | undefined };
+export type EntryCardFragment = { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined };
 
 export type InitiativesNearbyListQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -8660,7 +8660,7 @@ export type LastEntriesQueryVariables = Exact<{
 }>;
 
 
-export type LastEntriesQuery = { entry_visits: Array<{ visited_at?: any | null | undefined, entry?: { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, geometry?: any | null | undefined } | null | undefined }> };
+export type LastEntriesQuery = { entry_visits: Array<{ visited_at?: any | null | undefined, entry?: { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined } | null | undefined }> };
 
 export type NearbyEntriesQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -8672,10 +8672,11 @@ export type NearbyEntriesQueryVariables = Exact<{
   min_distance?: Maybe<Scalars['float8']>;
   user_id?: Maybe<Scalars['uuid']>;
   own?: Maybe<Scalars['Boolean']>;
+  type?: Maybe<Array<Scalars['String']> | Scalars['String']>;
 }>;
 
 
-export type NearbyEntriesQuery = { entries_nearby: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, geometry?: any | null | undefined }> };
+export type NearbyEntriesQuery = { entries_nearby: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
 
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {
@@ -8719,6 +8720,8 @@ export const EntryCardFragmentDoc = gql`
   created_at
   description
   type
+  members_count
+  modified_at
 }
     `;
 export const UserDocument = gql`
@@ -9742,10 +9745,11 @@ export type LastEntriesQueryHookResult = ReturnType<typeof useLastEntriesQuery>;
 export type LastEntriesLazyQueryHookResult = ReturnType<typeof useLastEntriesLazyQuery>;
 export type LastEntriesQueryResult = Apollo.QueryResult<LastEntriesQuery, LastEntriesQueryVariables>;
 export const NearbyEntriesDocument = gql`
-    query NearbyEntries($location: geometry!, $limit: Int = null, $offset: Int = 0, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
+    query NearbyEntries($location: geometry!, $limit: Int = null, $offset: Int = 0, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false, $type: [String!] = ["organization", "initiative"]) {
   entries_nearby(
     offset: $offset
     limit: $limit
+    where: {type: {_in: $type}}
     args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: null, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
   ) {
     ...EntryCard
@@ -9774,6 +9778,7 @@ export const NearbyEntriesDocument = gql`
  *      min_distance: // value for 'min_distance'
  *      user_id: // value for 'user_id'
  *      own: // value for 'own'
+ *      type: // value for 'type'
  *   },
  * });
  */

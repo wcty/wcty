@@ -1,5 +1,5 @@
-import { AttributionControl, FeatureProps, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
-import { AnimationOptions } from 'mapbox-gl'
+import { AttributionControl, FeatureProps, MapContext, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
+import { AnimationOptions, Map as MapType } from 'mapbox-gl'
 import { mapboxToken } from 'common'
 import { atom, useRecoilState } from 'recoil'
 import LocationIcon from './LocationIcon'
@@ -7,7 +7,7 @@ import LoadIcons from './LoadIcons'
 import Satellite from './Satellite'
 import { useHistory } from 'react-router-dom'
 import mapStyle from './mapStyle.json'
-import { ReactNode } from 'react'
+import { createContext, ReactNode, useContext, useEffect, useRef } from 'react'
 import { MapGL } from './styles'
 
 export default function Map({children}:{children?:ReactNode}){
@@ -27,10 +27,11 @@ export default function Map({children}:{children?:ReactNode}){
           onViewportChange={(v:any)=>setViewport({...viewport, ...v})}
           attributionControl={false}
           cursorStyle={cursor}
-          // hash
+          hash
           {...viewport}
           onClick={()=>{ history.push('/'); setSelected(null) }}
         >
+          <ContextSetter/>
           <AttributionControl
             compact={true}
             position='bottom-left'
@@ -42,6 +43,19 @@ export default function Map({children}:{children?:ReactNode}){
         </MapGL>
       </>
     )
+}
+
+Map.Context = createContext({map:undefined as MapType|undefined})
+
+function ContextSetter (){
+  const map:MapType = useContext(MapContext)
+  const context = useContext(Map.Context)
+  useEffect(()=>{
+    if(map){
+      context.map = map
+    }
+  },[map, context])
+  return null
 }
 
 Map.viewport = atom({
@@ -67,7 +81,14 @@ Map.satellite = atom({
   default: false
 })
 
-export type Entry = (GeoJSON.Feature<GeoJSON.Point> & Omit<FeatureProps<Specs[keyof Specs]>['features'][number],'layer'|'sourceLayer'|'state'|'modified_at'>) |null
+export type Entry = (
+  GeoJSON.Feature<GeoJSON.Point> &
+  Omit<
+    FeatureProps<
+      Specs[keyof Specs]
+    >['features'][number],
+    'layer'|'sourceLayer'|'state'|'modified_at'
+  >)|null
 Map.selected = atom({
   key: 'mapSelected',
   default: null as Entry

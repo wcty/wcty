@@ -15,48 +15,25 @@ export enum EButtonSize  {
 }
 
 
-
-
-function handleSize(size: EButtonSize) {
-    console.log(size);
-    switch(size){
-        case EButtonSize.LARGE:
-            return large;
-            
-        case EButtonSize.SMALL:
-            return small;
-            
-        default:
-            return alarm; 
-            
-    };
-}
-
-function handleType(type: EButtonTypes) {
-    //console.log(type);
-    switch(type){
-        case EButtonTypes.PRIMARY:
-            return large;
-            
-        case EButtonTypes.SECONDARY:
-            return small;
-            
-        default:
-            return alarm; 
-            
-    };
-}
-
-
 const large =  css`
-    padding: 1em 0;
-    width: 10em;
+    min-width: 160px;
+    height: 56px;
+    font-size: 14px;
+`;
+
+const medium =  css`
+    min-width: 120px;
+    height: 40px;
+    font-size: 12px;
 `;
 
 const small =  css`
-    padding: 0.75em  0;
-    width: 8em;
+    min-width: 90px;
+    height: 32px;
+    font-size: 10px;
 `;
+
+
 
 const alarm = css`
     width: 15em;
@@ -66,6 +43,41 @@ const alarm = css`
 const primary = css`
     
 `;
+
+const secondary = css`
+    
+`;
+
+const subtle = css`
+    
+`;
+
+const text = css`
+    
+`;
+
+
+const handleSize = {
+    [EButtonSize.LARGE]:large,
+    [EButtonSize.MEDIUM]:medium,
+    [EButtonSize.SMALL]:small,
+}
+
+const handleType = {
+    [EButtonTypes.PRIMARY]:primary,
+    [EButtonTypes.SECONDARY]:secondary,
+    [EButtonTypes.SUBTLE]:subtle,
+    [EButtonTypes.TEXT]:text,
+    [EButtonTypes.SHARE]:text,
+}
+
+
+
+
+
+
+
+
 
 interface ButtonProps {
     customSize:EButtonSize;
@@ -78,14 +90,20 @@ export const CustomButton = styled.input.attrs((props: ButtonProps) => ({
     type:'button',
     value: props.label  
 }))<ButtonProps>`
-    
-    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 15px;
     border-radius: 3px;
+    font: ${props => props.theme.font.title.monserat.large};
+    /* font-size: 2em;
+    
     border: 1px solid ${props => props.theme.colors.titleActive};
     font:  ${props => props.theme.font.title.mono.h3};
-    color: ${props => props.theme.colors.titleActive};
+    color: ${props => props.theme.colors.titleActive}; */
 
-    ${({customType}) => handleType(customType)}
-    ${({customSize}) => handleSize(customSize)};
+    ${({customType}) => handleType[customType]};
+    ${({customSize}) => handleSize[customSize]};
 
 `;

@@ -26,6 +26,18 @@ export const theme = {
   } ,
   font:{
     title:{
+      monserat: (()=>  {
+        const font = css<{}>`
+          font-family: 'Montserrat', sans-serif;;
+          font-weight: 600;
+        `;
+        return ({
+          large: css<{}>`${font}; font-size: 14px;`,
+          medium: css<{}>`${font}; font-size: 12px;`,
+          small: css<{}>`${font}; font-size: 10px;`
+        })
+
+      })(),
       mono: (()=>{
         const font = css<{}>`
           font-family: 'IBM Plex Mono', monospace;

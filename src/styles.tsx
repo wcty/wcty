@@ -1,9 +1,11 @@
+
+
 import styled, { createGlobalStyle } from 'styled-components/macro'
 
 export const GlobalStyle = createGlobalStyle`
   * {
     /* ${props=>props.theme.font.body.regular.t5} */
-    font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+    font-family: 'IBM Plex Mono', 'Montserrat','Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
     box-sizing: border-box;
     font-size: 12px;
   }

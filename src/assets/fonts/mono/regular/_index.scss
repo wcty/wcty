@@ -9,6 +9,10 @@ $font-prefix: '~@ibm/plex' !default;
     url('#{$font-prefix}/IBM-Plex-Mono/fonts/complete/woff/IBMPlexMono-Regular.woff') format('woff');
 }
 
+//TODO  move to folder montserrat
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
 @import 'cyrillic';
 @import 'pi';
 @import 'latin3';

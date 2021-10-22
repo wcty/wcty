@@ -38,3 +38,4 @@ mongo_initiatives*
 .env
 .env.me
 !.env.project
+.env.development

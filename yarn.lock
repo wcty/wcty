@@ -17996,17 +17996,10 @@ typescript@~3.7.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.7.tgz#c931733e2ec10dda56b855b379cc488a72a81199"
   integrity sha512-MmQdgo/XenfZPvVLtKZOq9jQQvzaUAUpcKW8Z43x9B2fOm4S5g//tPtMweZUIP+SoBqrVPEIm+dJeQ9dfO0QdA==
 
-<<<<<<< HEAD
 ua-parser-js@0.7.28:
   version "0.7.28"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
   integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
-=======
-ua-parser-js@^0.7.18, ua-parser-js@^0.7.28:
-  version "0.7.29"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.29.tgz#aad8d679f15a721ed79454d553e3473f9f0536f1"
-  integrity sha512-EdEWUP3Dk9oyycRzMBbVHYW3GLbq5KPWHLKpXSNwD5F6u0s1x12mmP4KIzqSSzpngv8/8pE3f49/qGBG8VgqCg==
->>>>>>> 02855eb5c2817aac1faf255eb93122f244aeb094
 
 ua-parser-js@^0.7.18:
   version "0.7.30"

@@ -1,15 +1,70 @@
 {
-<<<<<<< HEAD
+  "public.orgs": {
+    "id": "public.orgs",
+    "schema": "public",
+    "table": "orgs",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "created_at": "timestamptz",
+      "modified_at": "timestamptz",
+      "description": "text",
+      "image": "text",
+      "id": "uuid",
+      "name": "text"
+    }
+  },
+  "public.initiatives_view": {
+    "id": "public.initiatives_view",
+    "schema": "public",
+    "table": "initiatives_view",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "created_at": "timestamptz",
+      "name": "varchar",
+      "id": "uuid",
+      "image": "text",
+      "modified_at": "timestamptz",
+      "description": "text",
+      "members_count": "int8"
+    }
+  },
+  "public.orgs_view": {
+    "id": "public.orgs_view",
+    "schema": "public",
+    "table": "orgs_view",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "description": "text",
+      "image": "text",
+      "members_count": "int8",
+      "modified_at": "timestamptz",
+      "name": "text",
+      "created_at": "timestamptz",
+      "id": "uuid"
+    }
+  },
   "public.map_entries": {
     "id": "public.map_entries",
     "schema": "public",
     "table": "map_entries",
-=======
-  "public.initiatives": {
-    "id": "public.initiatives",
-    "schema": "public",
-    "table": "initiatives",
->>>>>>> 02855eb5c2817aac1faf255eb93122f244aeb094
     "id_column": null,
     "geometry_column": "geom",
     "srid": 4326,
@@ -18,162 +73,14 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
-<<<<<<< HEAD
+      "description": "text",
       "members": "int8",
-      "image": "text",
       "type": "text",
+      "id": "uuid",
       "name": "text",
-      "id": "uuid",
-      "description": "text",
-      "created_at": "timestamptz",
-      "modified_at": "timestamptz"
-=======
-      "id": "uuid",
-      "created_at": "timestamptz",
       "modified_at": "timestamptz",
-      "description": "text",
-      "name": "varchar",
+      "created_at": "timestamptz",
       "image": "text"
->>>>>>> 02855eb5c2817aac1faf255eb93122f244aeb094
-    }
-  },
-  "public.initiatives_view": {
-    "id": "public.initiatives_view",
-    "schema": "public",
-    "table": "initiatives_view",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-<<<<<<< HEAD
-      "id": "uuid",
-      "image": "text",
-      "modified_at": "timestamptz",
-      "description": "text",
-      "created_at": "timestamptz",
-      "name": "varchar",
-      "members_count": "int8"
-    }
-  },
-  "public.initiatives": {
-    "id": "public.initiatives",
-    "schema": "public",
-    "table": "initiatives",
-=======
-      "type": "text",
-      "id": "uuid",
-      "name": "text",
-      "description": "text",
-      "members": "int8",
-      "image": "text",
-      "modified_at": "timestamptz",
-      "created_at": "timestamptz"
-    }
-  },
-  "public.orgs": {
-    "id": "public.orgs",
-    "schema": "public",
-    "table": "orgs",
->>>>>>> 02855eb5c2817aac1faf255eb93122f244aeb094
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-<<<<<<< HEAD
-      "image": "text",
-      "id": "uuid",
-      "description": "text",
-      "modified_at": "timestamptz",
-      "name": "varchar",
-      "created_at": "timestamptz"
-    }
-  },
-  "public.orgs_view": {
-    "id": "public.orgs_view",
-    "schema": "public",
-    "table": "orgs_view",
-=======
-      "name": "text",
-      "description": "text",
-      "image": "text",
-      "modified_at": "timestamptz",
-      "id": "uuid",
-      "created_at": "timestamptz"
-    }
-  },
-  "public.initiatives_view": {
-    "id": "public.initiatives_view",
-    "schema": "public",
-    "table": "initiatives_view",
->>>>>>> 02855eb5c2817aac1faf255eb93122f244aeb094
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-<<<<<<< HEAD
-      "created_at": "timestamptz",
-=======
-      "members_count": "int8",
->>>>>>> 02855eb5c2817aac1faf255eb93122f244aeb094
-      "description": "text",
-      "id": "uuid",
-      "image": "text",
-<<<<<<< HEAD
-      "members_count": "int8",
-      "modified_at": "timestamptz",
-      "name": "text"
-    }
-  },
-  "public.orgs": {
-    "id": "public.orgs",
-    "schema": "public",
-    "table": "orgs",
-=======
-      "created_at": "timestamptz",
-      "name": "varchar",
-      "id": "uuid"
-    }
-  },
-  "public.orgs_view": {
-    "id": "public.orgs_view",
-    "schema": "public",
-    "table": "orgs_view",
->>>>>>> 02855eb5c2817aac1faf255eb93122f244aeb094
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-      "image": "text",
-<<<<<<< HEAD
-      "id": "uuid",
-      "description": "text",
-      "created_at": "timestamptz",
-      "modified_at": "timestamptz",
-      "name": "text"
-=======
-      "members_count": "int8",
-      "name": "text",
-      "description": "text",
-      "id": "uuid",
-      "modified_at": "timestamptz",
-      "created_at": "timestamptz"
->>>>>>> 02855eb5c2817aac1faf255eb93122f244aeb094
     }
   },
   "public.entries": {
@@ -188,25 +95,34 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
-<<<<<<< HEAD
-      "created_at": "timestamptz",
-      "modified_at": "timestamptz",
-      "name": "text",
-      "members_count": "int8",
-      "description": "text",
       "image": "text",
-      "id": "uuid",
-      "type": "text"
-=======
-      "members_count": "int8",
       "name": "text",
       "id": "uuid",
       "description": "text",
-      "type": "text",
-      "created_at": "timestamptz",
       "modified_at": "timestamptz",
-      "image": "text"
->>>>>>> 02855eb5c2817aac1faf255eb93122f244aeb094
+      "members_count": "int8",
+      "created_at": "timestamptz",
+      "type": "text"
+    }
+  },
+  "public.initiatives": {
+    "id": "public.initiatives",
+    "schema": "public",
+    "table": "initiatives",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "modified_at": "timestamptz",
+      "name": "varchar",
+      "id": "uuid",
+      "created_at": "timestamptz",
+      "image": "text",
+      "description": "text"
     }
   }
 }

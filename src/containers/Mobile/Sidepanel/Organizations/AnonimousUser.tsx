@@ -1,4 +1,4 @@
-import { useI18n } from 'common';
+import { atoms, useI18n } from 'common';
 import { UserIconRow, List } from "../styles";
 import { useOrganizationNearbyListQuery } from "generated";
 import { useRecoilState } from "recoil";
@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { ListRow } from "components";
 import Sidepanel from "..";
 import BurgerFab from 'containers/Mobile/FloatPanel/BurgerFab';
+import Slides from '../../Slides'
 
 export default function Organization(){
   const i18n = useI18n()
@@ -20,6 +21,9 @@ export default function Organization(){
   const { data, error, variables } = useOrganizationNearbyListQuery({variables:{ location, limit: 10 }})
   const [ organizations, setOrganizations ] = useState(data)
   const [open, setOpen] = useRecoilState(Sidepanel.open)
+  const [focus, setFocus] = useRecoilState(atoms.focalPoint)
+  const [slideIndex, setSlideIndex] = useRecoilState(Slides.index)
+  const [viewport, setViewport] = useRecoilState(Map.viewport)
 
   console.log(error, variables, data)
 
@@ -41,7 +45,18 @@ export default function Organization(){
       </UserIconRow>
       <List>
         {organizations?.orgs_nearby.map((v,key)=>
-          <ListRow onClick={()=>setOpen(false)} data={{...v, type: 'organization'}} {...{key}}/>)}
+          <ListRow onClick={
+            ()=>{
+              setOpen(false)
+              setFocus(v.geometry.coordinates)
+              setViewport({
+                longitude: v.geometry.coordinates[0],
+                latitude: v.geometry.coordinates[1],
+                zoom: 16,
+                viewportChangeMethod: 'easeTo'
+              })
+              setSlideIndex(0)
+          }} data={{...v, type: 'organization'}} {...{key}}/>)}
       </List>
     </div>
   </>

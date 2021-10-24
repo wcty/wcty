@@ -13,6 +13,10 @@ Wrapper = styled.div`
   align-items: center;
   background-color: rgba(0,0,0,0.25);
   z-index: 100;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    height: 100%;
+  }
 `,
 
 Box = styled.div`

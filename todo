@@ -1,20 +1,4 @@
 # Build everything according to Maryna's mockups
 
-Make adding tasks for volunteers on project creation (make optional fields: min number of people, min number of hours)
-Make adding expenses for budget on project creation
-
-Edit initiative functionality
-Edit comment functionality
-
-Add circle and line
-Button to download/show labels in an unexplored place
-Set up User Settings
-
-Change initiative member role to the checkbox, instead of radio button, to support multiple
-  
-  
-Add initiative contents + list of members, projects, etc.
-  6. Make all the stuff (initiative, post, comment) editable
-  - Translate joining
-  - Make initiative Posts show all different member actions!
-  -Add settings for registered users: default language + login options
+ - Add navigation buttons to the desktop map
+ - Add previously seen initiatives to the map feed for authenticated users

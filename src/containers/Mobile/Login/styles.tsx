@@ -1,7 +1,14 @@
 import { ReactElement } from 'react'
-import styled from 'styled-components'
+import styled from "styled-components/macro"
 
 export const 
+CenterPanel = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background-color: ${props=>props.theme.colors.primary};
+`,
+
 FormControl = styled.form`
   width: 100%;
   height: 100%;
@@ -61,6 +68,9 @@ ButtonGroup = styled.div`
     }
     &:last-child{
       margin: 0.5rem 0rem 0.5rem 0.5rem;
+    }
+    &:only-child{
+      margin:0.5rem 0rem;
     }
   }
 `

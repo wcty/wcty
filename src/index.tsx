@@ -10,7 +10,7 @@ import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from "@nhost/react-apollo"
 import { InMemoryCache } from '@apollo/client';
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from "styled-components/macro"
 import App from './App'
 import { Helmet } from "react-helmet";
 import { Map } from 'components'
@@ -25,12 +25,14 @@ const AppRoot = ()=>
             Query: {
               fields:{
                 entries_nearby: {
-                  keyArgs: (o,a)=>a.variables?.type||"",
+                  keyArgs: ['type'],
                   merge(existing, incoming, { args }) {
                     const merged = existing ? existing.slice(0) : [];
                     for (let i = 0; i < incoming.length; ++i) {
                       merged[args?.offset + i] = incoming[i];
                     }
+                    // console.log('cache merge', existing, incoming, { args }, merged)
+
                     return merged;
                   },
                 }
@@ -48,7 +50,8 @@ const AppRoot = ()=>
                 <link href='https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css' rel='stylesheet' />
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" cross-origin/>
-                <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>              
+                <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>     
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>     
               </Helmet>
               <Map.Context.Provider value={{map:undefined}}>
                 <App />

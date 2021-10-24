@@ -45,7 +45,13 @@ export default function Sidepanel (){
         <div>
           <UserIconCell {...{...props('enter'), onClick:()=>{
             if(!user){history.push('/login')} }}}>
-            {user? <UserPhoto src={user.avatar_url||''}/>: <UserIcon/>}
+            {user? <UserPhoto src={
+              user.avatar_url?.includes("platform-lookaside.fbsbx")?
+              `http://graph.facebook.com/${
+                new URL(user.avatar_url).searchParams.get('asid')
+              }/picture?type=large&redirect=true&width=50&height=50`:
+              user.avatar_url||''
+            }/>: <UserIcon/>}
           </UserIconCell>
           {tabs(!!user).map((v,key)=>
             <IconCell {...{key,...props(v.key),

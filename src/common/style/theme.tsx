@@ -1,4 +1,4 @@
-import styled, {css as css_, ThemedCssFunction} from 'styled-components'
+import styled, {css as css_, ThemedCssFunction} from "styled-components/macro"
 
 const css = css_ as ThemedCssFunction<{}>
 
@@ -42,7 +42,7 @@ export const theme = {
         const font = css<{}>`
           font-family: 'IBM Plex Mono', monospace;
           font-weight: 400;
-          opacity: 0.87;
+          color: rgba(0,0,0,0.87);
         `;
         return ({
           /** font-size: 30 */
@@ -57,12 +57,11 @@ export const theme = {
           h5: css<{}>`${font}; font-size: 11px;`,
         })
       })(),
-
       monobold: (()=>{
         const font = css<{}>`
           font-family: 'IBM Plex Mono', monospace;
           font-weight: 600;
-          opacity: 0.87;
+          color: rgba(0,0,0,0.87);
         `;
         return ({
           /** font-size: 30 */
@@ -83,7 +82,7 @@ export const theme = {
         const font = css<{}>`
           font-family: 'Montserrat', sans-serif;
           font-weight: 400;
-          opacity: 0.87;
+          color: rgba(0,0,0,0.87);
         `;
         return ({
           /** font-size: 18 */
@@ -103,7 +102,7 @@ export const theme = {
         const font = css<{}>`
           font-family: 'Montserrat', sans-serif;
           font-weight: 600;
-          opacity: 0.87;
+          color: rgba(0,0,0,0.87);
         `;
         return ({
           /** font-size: 18 */

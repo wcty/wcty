@@ -31,13 +31,12 @@ export default function Anonimous(){
   useEffect(()=>{
     const len = nearbyEntries?.entries_nearby.length
     if(len && index>=(len-2)){
-      console.log('loaded more', len)
-      fetchMore({variables:{offset: len}})
+      console.log('loaded more', len, layers)
+      fetchMore({variables:{ offset: len }})
     }    
-  },[index, nearbyEntries?.entries_nearby.length, layers])
+  },[index, nearbyEntries?.entries_nearby.length])
 
   useEffect(()=>{
-    console.log(nearbyEntries?.entries_nearby.map(v=>v.name))
     const entry = {...nearbyEntries?.entries_nearby?.[index]||{}}
     if(entry && (index===0 || index!==prevIndex)){
       setViewport({

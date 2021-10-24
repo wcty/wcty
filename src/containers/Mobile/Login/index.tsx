@@ -1,15 +1,15 @@
-import { CenterPanel } from "components/CenterPanel";
 import { auth, useI18n } from 'common';
+import { LangSelect } from 'components';
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { ButtonGroup, FormControl, TextField, Label } from "./styles";
+import { ButtonGroup, CenterPanel, FormControl, TextField, Label } from "./styles";
 
 export default function Login (){
   const i18n = useI18n()
   const [credentials, setCredentials] = useState({email:'', password:''})
   const history = useHistory()
   
-  return <CenterPanel onClose={()=>history.push('/')}>
+  return <CenterPanel>
     <h2 style={{marginTop:'2rem'}}>{i18n('login_or_register')}</h2>
     <FormControl>
       <Label id="email">
@@ -40,6 +40,8 @@ export default function Login (){
           }}>
             <span>Login</span>
           </button>
+        </ButtonGroup>
+        <ButtonGroup>
           <button onClick={(e)=>{
             e.preventDefault()
             if( credentials.email && credentials.password ) {

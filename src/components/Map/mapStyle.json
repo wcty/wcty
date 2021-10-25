@@ -3662,8 +3662,9 @@
             8, 0.5,
             9, 0.8,
             12, 1,
-            12.5, 0.5,
-            13, 0.2
+            13, 0.8,
+            14, 0.5,
+            14.2, 0
           ],
           "line-color": "rgba(156, 156, 156, 0.9)"
         }
@@ -3682,7 +3683,7 @@
       },
       "tiles": {
         "type": "vector",
-        "tiles": ["https://planet.wddd.city/roads/{z}/{x}/{y}.pbf"],
+        "tiles": ["https://planet.weee.city/roads/{z}/{x}/{y}.pbf"],
         "maxzoom": 11,
         "volatile": true
       }

@@ -305,7 +305,7 @@
         "id": "tunnel-trunk-primary-casing",
         "type": "line",
         "paint": {
-          "line-color": "#aaa",
+          "line-color": "#555",
           "line-width": {
               "base": 1.2,
               "stops": [
@@ -741,8 +741,8 @@
             "interpolate",
             ["linear"],
             ["zoom"],
-            12, "#ddd",
-            15, "#ddd"
+            12, "#e5dfd8",
+            15, "#e5dfd8"
           ],
           "line-width": {
               "base": 1.2,
@@ -917,7 +917,7 @@
         "id": "aeroway-taxiway-casing",
         "type": "line",
         "paint": {
-            "line-color": "#aaa",
+            "line-color": "#555",
             "line-width": {
                 "base": 1.5,
                 "stops": [
@@ -957,7 +957,7 @@
         "id": "aeroway-runway-casing",
         "type": "line",
         "paint": {
-            "line-color": "#aaa",
+            "line-color": "#555",
             "line-width": {
                 "base": 1.5,
                 "stops": [
@@ -1040,7 +1040,7 @@
         "id": "aeroway-taxiway",
         "type": "line",
         "paint": {
-            "line-color": "#ddd",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.5,
                 "stops": [
@@ -1097,7 +1097,7 @@
         "id": "aeroway-runway",
         "type": "line",
         "paint": {
-            "line-color": "#ddd",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.5,
                 "stops": [
@@ -1252,7 +1252,7 @@
         "id": "highway-motorway-link-casing",
         "type": "line",
         "paint": {
-            "line-color": "#ddd",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1310,7 +1310,7 @@
         "id": "highway-link-casing",
         "type": "line",
         "paint": {
-            "line-color": "#cfcfcf",
+            "line-color": "#555",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1332,7 +1332,7 @@
                     ]
                 ]
             },
-            "line-opacity": 1
+            "line-opacity": 0.5
         },
         "filter": [
             "all",
@@ -1448,7 +1448,7 @@
         "id": "highway-secondary-tertiary-casing",
         "type": "line",
         "paint": {
-            "line-color": "#aaa",
+            "line-color": "#555",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1508,7 +1508,7 @@
         "id": "highway-primary-casing",
         "type": "line",
         "paint": {
-            "line-color": "#aaa",
+            "line-color": "#555",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1582,7 +1582,7 @@
         "id": "highway-trunk-casing",
         "type": "line",
         "paint": {
-            "line-color": "#aaa",
+            "line-color": "#555",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1604,18 +1604,15 @@
                     ]
                 ]
             },
-            "line-opacity": {
-                "stops": [
-                    [
-                        5,
-                        0
-                    ],
-                    [
-                        6,
-                        1
-                    ]
-                ]
-            }
+            "line-opacity": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                6,0.2,
+                7,0.2,
+                8,0.4,
+                9,0.4
+              ]
         },
         "filter": [
             "all",
@@ -1652,7 +1649,7 @@
         "id": "highway-motorway-casing",
         "type": "line",
         "paint": {
-            "line-color": "#aaa",
+            "line-color": "#555",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1678,18 +1675,15 @@
                     ]
                 ]
             },
-            "line-opacity": {
-                "stops": [
-                    [
-                        4,
-                        0
-                    ],
-                    [
-                        5,
-                        1
-                    ]
-                ]
-            }
+            "line-opacity": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                6,0.2,
+                7,0.2,
+                8,0.4,
+                9,1
+            ]
         },
         "filter": [
             "all",
@@ -1726,7 +1720,7 @@
         "id": "highway-path",
         "type": "line",
         "paint": {
-            "line-color": "#ddd",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1774,7 +1768,7 @@
         "id": "highway-motorway-link",
         "type": "line",
         "paint": {
-            "line-color": "#ddd",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1831,7 +1825,7 @@
         "id": "highway-link",
         "type": "line",
         "paint": {
-            "line-color": "#ddd",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1892,7 +1886,7 @@
         "id": "highway-minor",
         "type": "line",
         "paint": {
-            "line-color": "#ddd",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1946,7 +1940,7 @@
         "id": "highway-secondary-tertiary",
         "type": "line",
         "paint": {
-            "line-color": "#ddd",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -2004,8 +1998,8 @@
               "interpolate",
               ["linear"],
               ["zoom"],
-              12, "#ddd",
-              15, "#ddd"
+              12, "#e5dfd8",
+              15, "#e5dfd8"
             ],
             "line-width": {
                 "base": 1.2,
@@ -2064,7 +2058,7 @@
         "id": "highway-trunk",
         "type": "line",
         "paint": {
-            "line-color": "#ddd",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -2122,7 +2116,7 @@
         "id": "highway-motorway",
         "type": "line",
         "paint": {
-            "line-color": "#ddd",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -2597,7 +2591,7 @@
         "id": "bridge-secondary-tertiary-casing",
         "type": "line",
         "paint": {
-          "line-color": "#aaa",
+          "line-color": "#555",
           "line-width": {
               "base": 1.2,
               "stops": [
@@ -2668,7 +2662,7 @@
         "id": "bridge-trunk-primary-casing",
         "type": "line",
         "paint": {
-          "line-color": "#aaa",
+          "line-color": "#555",
           "line-width": {
               "base": 1.2,
               "stops": [
@@ -3006,7 +3000,7 @@
         "id": "bridge-link",
         "type": "line",
         "paint": {
-          "line-color": "#ddd",
+          "line-color": "#e5dfd8",
           "line-width": {
               "base": 1.2,
               "stops": [
@@ -3121,8 +3115,8 @@
             "interpolate",
             ["linear"],
             ["zoom"],
-            12, "#ddd",
-            15, "#ddd"
+            12, "#e5dfd8",
+            15, "#e5dfd8"
           ],
           "line-width": {
               "base": 1.2,
@@ -3178,8 +3172,8 @@
             "interpolate",
             ["linear"],
             ["zoom"],
-            12, "#ddd",
-            15, "#ddd"
+            12, "#e5dfd8",
+            15, "#e5dfd8"
           ],
           "line-width": {
               "base": 1.2,
@@ -3453,7 +3447,7 @@
                   ]
               },
               "fill-antialias": true,
-              "fill-outline-color": "#C6C2BE"
+              "fill-outline-color": "#999"
           },
           "layout": {
               "visibility": "visible"

@@ -17,29 +17,27 @@
         "id": "tunnel-service-track-casing",
         "type": "line",
         "paint": {
-            "line-color": "#cfcdca",
-            "line-width": {
-                "base": 1.2,
-                "stops": [
-                    [
-                        15,
-                        1
-                    ],
-                    [
-                        16,
-                        4
-                    ],
-                    [
-                        20,
-                        11
-                    ]
-                ]
-            },
-            "line-dasharray": [
-                0.5,
-                0.25
+          "line-color": "#555",
+          "line-width": [
+              "interpolate",
+              ["exponential", 1.2],
+              ["zoom"],
+                      8,
+                      1,
+                      10,0.1,
+                      12,0.2,
+                      20,
+                      10
+            ],
+            "line-opacity": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              13,0,
+              14,0.1,
+              15,0.2
             ]
-        },
+      },
         "filter": [
             "all",
             [
@@ -67,33 +65,21 @@
         "id": "tunnel-motorway-link-casing",
         "type": "line",
         "paint": {
-            "line-color": "rgba(200, 147, 102, 1)",
-            "line-width": {
-                "base": 1.2,
-                "stops": [
-                    [
-                        12,
-                        1
-                    ],
-                    [
-                        13,
-                        3
-                    ],
-                    [
-                        14,
-                        4
-                    ],
-                    [
-                        20,
-                        15
-                    ]
-                ]
-            },
-            "line-dasharray": [
-                0.5,
-                0.25
-            ]
-        },
+          "line-color": "#555",
+          "line-width": [
+              "interpolate",
+              ["exponential", 1.2],
+              ["zoom"],
+                      8,
+                      1,
+                      10,0.1,
+                      12,0.2,
+                      20,
+                      10
+            ],
+          "line-opacity": 1,
+          "line-dasharray": [0.5,0.25]
+      },
         "filter": [
             "all",
             [
@@ -126,40 +112,19 @@
         "id": "tunnel-minor-casing",
         "type": "line",
         "paint": {
-            "line-color": "#cfcdca",
-            "line-width": {
-                "base": 1.2,
-                "stops": [
-                    [
-                        12,
-                        0.5
-                    ],
-                    [
-                        13,
-                        1
-                    ],
-                    [
-                        14,
-                        4
-                    ],
-                    [
-                        20,
-                        15
-                    ]
-                ]
-            },
-            "line-opacity": {
-                "stops": [
-                    [
-                        12,
-                        0
-                    ],
-                    [
-                        12.5,
-                        1
-                    ]
-                ]
-            },
+          "line-color": "#555",
+          "line-width": [
+              "interpolate",
+              ["exponential", 1.2],
+              ["zoom"],
+                      8,
+                      1,
+                      10,0.1,
+                      12,0.2,
+                      20,
+                      10
+            ],
+          "line-opacity": 1,
             "line-dasharray": [
                 0.5,
                 0.25
@@ -191,7 +156,7 @@
         "id": "tunnel-link-casing",
         "type": "line",
         "paint": {
-            "line-color": "#e9ac77",
+            "line-color": "#555",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -253,7 +218,7 @@
         "id": "tunnel-secondary-tertiary-casing",
         "type": "line",
         "paint": {
-            "line-color": "#e9ac77",
+            "line-color": "#555",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -376,33 +341,33 @@
         "id": "tunnel-motorway-casing",
         "type": "line",
         "paint": {
-            "line-color": "#e9ac77",
-            "line-width": {
-                "base": 1.2,
-                "stops": [
-                    [
-                        5,
-                        0.4
-                    ],
-                    [
-                        6,
-                        0.6
-                    ],
-                    [
-                        7,
-                        1.5
-                    ],
-                    [
-                        20,
-                        22
-                    ]
-                ]
-            },
-            "line-dasharray": [
-                0.5,
-                0.25
-            ]
-        },
+          "line-color": "#555",
+          "line-width": {
+              "base": 1.2,
+              "stops": [
+                  [
+                      8,
+                      1.5
+                  ],
+                  [
+                      20,
+                      17
+                  ]
+              ]
+          },
+          "line-opacity": [
+            
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              7,0,
+              11,
+              0.2,
+              12,
+              0.25
+          ],
+          "line-dasharray":[0.5,0.25]
+      },
         "filter": [
             "all",
             [
@@ -435,7 +400,7 @@
         "id": "tunnel-path",
         "type": "line",
         "paint": {
-            "line-color": "#cba",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -482,7 +447,7 @@
         "id": "tunnel-motorway-link",
         "type": "line",
         "paint": {
-            "line-color": "rgba(244, 209, 158, 1)",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -537,7 +502,7 @@
         "id": "tunnel-service-track",
         "type": "line",
         "paint": {
-            "line-color": "#eee",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -583,7 +548,7 @@
         "id": "tunnel-link",
         "type": "line",
         "paint": {
-            "line-color": "#eee4c6",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -640,7 +605,7 @@
         "id": "tunnel-minor",
         "type": "line",
         "paint": {
-            "line-color": "#eee",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -686,7 +651,7 @@
         "id": "tunnel-secondary-tertiary",
         "type": "line",
         "paint": {
-            "line-color": "#eee4c6",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -794,7 +759,7 @@
         "id": "tunnel-motorway",
         "type": "line",
         "paint": {
-            "line-color": "#ffdaa6",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -1219,12 +1184,19 @@
     },
     {
         "id": "highway-area",
-        "type": "fill",
+        "type": "line",
         "paint": {
-            "fill-color": "#cfcfcf",
-            "fill-opacity": 0.9,
-            "fill-antialias": false,
-            "fill-outline-color": "#cfcdca"
+            "line-color": "#555",
+            "line-opacity": 0.5,
+            "line-width": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+                      14,0.0,
+                      14.5,0.1,
+                      15,0.1,
+                      20,1
+            ]
         },
         "filter": [
             "all",
@@ -1252,30 +1224,18 @@
         "id": "highway-motorway-link-casing",
         "type": "line",
         "paint": {
-            "line-color": "#e5dfd8",
-            "line-width": {
-                "base": 1.2,
-                "stops": [
-                    [
-                        12,
-                        1
-                    ],
-                    [
-                        13,
-                        3
-                    ],
-                    [
-                        14,
-                        4
-                    ],
-                    [
-                        20,
-                        15
-                    ]
-                ]
-            },
-            "line-opacity": 1
-        },
+          "line-color": "#555",
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+                    12.5,0,
+                    13,1.5,
+                    14,2.5,
+                    20,10
+          ],
+          "line-opacity": 1
+      },
         "filter": [
             "all",
             [
@@ -1401,18 +1361,13 @@
                     ]
                 ]
             },
-            "line-opacity": {
-                "stops": [
-                    [
-                        12,
-                        0
-                    ],
-                    [
-                        12.5,
-                        1
-                    ]
-                ]
-            }
+          "line-opacity": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              12,0,
+              12.5,1
+            ]
         },
         "filter": [
             "all",
@@ -1508,45 +1463,37 @@
         "id": "highway-primary-casing",
         "type": "line",
         "paint": {
-            "line-color": "#555",
-            "line-width": {
-                "base": 1.2,
-                "stops": [
-                    [
-                        7,
-                        0
-                    ],
-                    [
-                        8,
-                        0.6
-                    ],
-                    [
-                        9,
-                        1.5
-                    ],
-                    [
-                        20,
-                        22
-                    ]
-                ]
-            },
-            "line-opacity": {
-                "stops": [
-                    [
-                      7,
+          "line-color": "#555",
+          "line-width": {
+              "base": 1.2,
+              "stops": [
+                  [
+                      5,
                       0
-                    ],
-                    [
-                      8,
-                      0.2
-                    ],
-                    [
-                      12,
-                      0.4
-                    ]
-                ]
-            }
-        },
+                  ],
+                  [
+                      6,
+                      0.6
+                  ],
+                  [
+                      7,
+                      1.5
+                  ],
+                  [
+                      20,
+                      22
+                  ]
+              ]
+          },
+          "line-opacity": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              7,0,
+              8,0.1,
+              9,0.2
+            ]
+      },
         "filter": [
             "all",
             [
@@ -1608,10 +1555,9 @@
                 "interpolate",
                 ["linear"],
                 ["zoom"],
-                6,0.2,
-                7,0.2,
-                8,0.4,
-                9,0.4
+                7,0,
+                8,0.1,
+                9,0.2
               ]
         },
         "filter": [
@@ -1649,42 +1595,28 @@
         "id": "highway-motorway-casing",
         "type": "line",
         "paint": {
-            "line-color": "#555",
-            "line-width": {
-                "base": 1.2,
-                "stops": [
-                    [
-                        4,
-                        0
-                    ],
-                    [
-                        5,
-                        0.4
-                    ],
-                    [
-                        6,
-                        0.6
-                    ],
-                    [
-                        7,
-                        1.5
-                    ],
-                    [
-                        20,
-                        22
-                    ]
-                ]
-            },
-            "line-opacity": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                6,0.2,
-                7,0.2,
-                8,0.4,
-                9,1
-            ]
-        },
+          "line-color": "#555",
+          "line-width": [
+            "interpolate",
+            ["exponential", 1.2],
+            ["zoom"],
+              4,0,
+              5,0.01,
+              8,1,
+              12,3.5,
+              14,6,
+              20,
+              18
+          ],
+          "line-opacity": [
+            "interpolate",
+            ["exponential", 1.2],
+            ["zoom"],
+              4,0,
+              5,0.1,
+              8,1
+          ]
+      },
         "filter": [
             "all",
             [
@@ -2478,30 +2410,18 @@
         "id": "bridge-motorway-link-casing",
         "type": "line",
         "paint": {
-            "line-color": "#e9ac77",
-            "line-width": {
-                "base": 1.2,
-                "stops": [
-                    [
-                        12,
-                        1
-                    ],
-                    [
-                        13,
-                        3
-                    ],
-                    [
-                        14,
-                        4
-                    ],
-                    [
-                        20,
-                        19
-                    ]
-                ]
-            },
-            "line-opacity": 1
-        },
+          "line-color": "#555",
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+                    12.5,0,
+                    13,1.5,
+                    14,2.5,
+                    20,10
+          ],
+          "line-opacity": 1
+      },
         "filter": [
             "all",
             [
@@ -2533,28 +2453,18 @@
         "id": "bridge-link-casing",
         "type": "line",
         "paint": {
-          "line-color": "#cfcfcf",
-          "line-width": {
-              "base": 1.2,
-              "stops": [
-                  [
-                      12,
-                      1
-                  ],
-                  [
-                      13,
-                      3
-                  ],
-                  [
-                      14,
-                      4
-                  ],
-                  [
+          "line-color": "#555",
+          "line-width": [
+              "interpolate",
+              ["exponential", 1.2],
+              ["zoom"],
+                      8,
+                      1,
+                      10,0.1,
+                      12,0.2,
                       20,
-                      15
-                  ]
-              ]
-          },
+                      10
+            ],
           "line-opacity": 1
       },
         "filter": [
@@ -2592,43 +2502,18 @@
         "type": "line",
         "paint": {
           "line-color": "#555",
-          "line-width": {
-              "base": 1.2,
-              "stops": [
-                  [
-                      7,
-                      0
-                  ],
-                  [
+          "line-width": [
+              "interpolate",
+              ["exponential", 1.2],
+              ["zoom"],
                       8,
-                      0.6
-                  ],
-                  [
-                      9,
-                      1.5
-                  ],
-                  [
+                      1,
+                      10,0.1,
+                      12,0.2,
                       20,
-                      22
-                  ]
-              ]
-          },
-          "line-opacity": {
-              "stops": [
-                  [
-                    7,
-                    0
-                  ],
-                  [
-                    8,
-                    0.4
-                  ],
-                  [
-                    12,
-                    0.6
-                  ]
-              ]
-          }
+                      10
+            ],
+          "line-opacity": 1
       },
         "filter": [
             "all",
@@ -2667,15 +2552,15 @@
               "base": 1.2,
               "stops": [
                   [
-                      7,
+                      5,
                       0
                   ],
                   [
-                      8,
+                      6,
                       0.6
                   ],
                   [
-                      9,
+                      7,
                       1.5
                   ],
                   [
@@ -2684,23 +2569,15 @@
                   ]
               ]
           },
-          "line-opacity": {
-              "stops": [
-                  [
-                    7,
-                    0
-                  ],
-                  [
-                    8,
-                    0.4
-                  ],
-                  [
-                    12,
-                    0.6
-                  ]
-              ]
-          }
-        },
+          "line-opacity": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              7,0,
+              8,0.1,
+              9,0.2
+            ]
+      },
         "filter": [
             "all",
             [
@@ -2733,29 +2610,26 @@
         "id": "bridge-motorway-casing",
         "type": "line",
         "paint": {
-            "line-color": "#e9ac77",
-            "line-width": {
-                "base": 1.2,
-                "stops": [
-                    [
-                        5,
-                        0.4
-                    ],
-                    [
-                        6,
-                        0.6
-                    ],
-                    [
-                        7,
-                        1.5
-                    ],
-                    [
-                        20,
-                        26
-                    ]
-                ]
-            }
-        },
+          "line-color": "#555",
+          "line-width": [
+            "interpolate",
+            ["exponential", 1.2],
+            ["zoom"],
+                    8,1,
+                    12,3.5,
+                    14,6,
+                    20,
+                    15
+          ],
+          "line-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            7,0,
+            8,0.2,
+            9,1
+          ]
+      },
         "filter": [
             "all",
             [
@@ -2787,41 +2661,27 @@
         "id": "bridge-minor-casing",
         "type": "line",
         "paint": {
-            "line-color": "#cfcdca",
-            "line-width": {
-                "base": 1.2,
-                "stops": [
-                    [
-                        12,
-                        0.5
-                    ],
-                    [
-                        13,
-                        1
-                    ],
-                    [
-                        14,
-                        6
-                    ],
-                    [
-                        20,
-                        24
-                    ]
-                ]
-            },
-            "line-opacity": {
-                "stops": [
-                    [
-                        12,
-                        0
-                    ],
-                    [
-                        12.5,
-                        1
-                    ]
-                ]
-            }
-        },
+          "line-color": "#555",
+          "line-width": [
+              "interpolate",
+              ["exponential", 1.2],
+              ["zoom"],
+                      8,
+                      1,
+                      10,0.1,
+                      12,0.2,
+                      20,
+                      10
+            ],
+            "line-opacity": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              7,0,
+              8,0.1,
+              9,0.2
+            ]
+      },
         "filter": [
             "all",
             [
@@ -2946,7 +2806,7 @@
         "id": "bridge-motorway-link",
         "type": "line",
         "paint": {
-            "line-color": "#fc8",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -3057,7 +2917,7 @@
         "id": "bridge-minor",
         "type": "line",
         "paint": {
-            "line-color": "#eee",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -3225,7 +3085,7 @@
         "id": "bridge-motorway",
         "type": "line",
         "paint": {
-            "line-color": "#fc8",
+            "line-color": "#e5dfd8",
             "line-width": {
                 "base": 1.2,
                 "stops": [
@@ -3615,7 +3475,8 @@
         "type": "fill",
         "paint": {
             "fill-color": "#ECE5DD",
-            "fill-antialias": true
+            "fill-antialias": true,
+            "fill-outline-color": "#aaa"
         },
         "filter": [
             "all",

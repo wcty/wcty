@@ -16,7 +16,6 @@
     "@turf/distance": "^6.3.0",
     "@types/react-swipeable-views-core": "^0.13.0",
     "@urbica/react-map-gl": "^1.14.2",
-    "babel-plugin-macros": "^3.1.0",
     "d3-format": "^3.0.1",
     "dom-helpers": "^5.2.0",
     "graphql": "^15.6.1",
@@ -37,7 +36,6 @@
     "react-use-gesture": "^6.0.14",
     "recoil": "^0.4.1",
     "resize-observer-polyfill": "^1.5.1",
-    "storybook-addon-styled-components-themes": "^0.0.2",
     "styled-components": "^5.3.3",
     "typescript": "^4.4.4",
     "universal-cookie": "^4.0.4",
@@ -81,6 +79,9 @@
       "last 1 safari version"
     ]
   },
+  "resolutions": {
+    "babel-loader": "8.1.0"
+  },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.2.1",
     "@graphql-codegen/fragment-matcher": "^3.1.0",
@@ -111,16 +112,13 @@
     "@types/styled-components": "^5.1.14",
     "@types/uuid": "^8.3.1",
     "apollo": "^2.33.2",
-    "babel-plugin-styled-components": "^1.13.2",
     "concurrently": "^6.1.0",
     "dotenv": "^8.2.0",
     "dotenv-cli": "^4.0.0",
     "iv": "^0.0.1",
     "node-fetch": "^2.6.1",
+    "storybook-addon-styled-components-themes": "^0.0.2",
     "storybook-addon-styled-component-theme": "^2.0.0",
     "typescript-plugin-css-modules": "^3.4.0"
-  },
-  "plugins": [
-    "babel-plugin-styled-components"
-  ]
+  }
 }

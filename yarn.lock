@@ -5578,7 +5578,7 @@ babel-jest@^26.6.0, babel-jest@^26.6.3:
     graceful-fs "^4.2.4"
     slash "^3.0.0"
 
-babel-loader@8.1.0:
+babel-loader@8.1.0, babel-loader@^8.2.2:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.1.0.tgz#c611d5112bd5209abe8b9fa84c3e4da25275f1c3"
   integrity sha512-7q7nC1tYOrqvUrN3LQK4GwSk/TQorZSOlO9C+RZDZpODgyN4ZlCqE5q9cDsyWOliN+aU9B4JX01xK9eJXowJLw==
@@ -5587,16 +5587,6 @@ babel-loader@8.1.0:
     loader-utils "^1.4.0"
     mkdirp "^0.5.3"
     pify "^4.0.1"
-    schema-utils "^2.6.5"
-
-babel-loader@^8.2.2:
-  version "8.2.3"
-  resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.2.3.tgz#8986b40f1a64cacfcb4b8429320085ef68b1342d"
-  integrity sha512-n4Zeta8NC3QAsuyiizu0GkmRcQ6clkV9WFUnUf1iXP//IeSKbWjofW3UHyZVwlOB4y039YQKefawyTn64Zwbuw==
-  dependencies:
-    find-cache-dir "^3.3.1"
-    loader-utils "^1.4.0"
-    make-dir "^3.1.0"
     schema-utils "^2.6.5"
 
 babel-plugin-add-react-displayname@^0.0.5:
@@ -5672,7 +5662,7 @@ babel-plugin-macros@2.8.0, babel-plugin-macros@^2.0.0, babel-plugin-macros@^2.6.
     cosmiconfig "^6.0.0"
     resolve "^1.12.0"
 
-babel-plugin-macros@^3.0.1, babel-plugin-macros@^3.1.0:
+babel-plugin-macros@^3.0.1:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-macros/-/babel-plugin-macros-3.1.0.tgz#9ef6dc74deb934b4db344dc973ee851d148c50c1"
   integrity sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==
@@ -5727,7 +5717,7 @@ babel-plugin-react-docgen@^4.1.0, babel-plugin-react-docgen@^4.2.1:
     lodash "^4.17.15"
     react-docgen "^5.0.0"
 
-"babel-plugin-styled-components@>= 1.12.0", babel-plugin-styled-components@^1.13.2:
+"babel-plugin-styled-components@>= 1.12.0":
   version "1.13.3"
   resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.13.3.tgz#1f1cb3927d4afa1e324695c78f690900e3d075bc"
   integrity sha512-meGStRGv+VuKA/q0/jXxrPNWEm4LPfYIqxooDTdmh8kFsP/Ph7jJG5rUPwUPX3QHUvggwdbgdGpo88P/rRYsVw==
@@ -12495,7 +12485,7 @@ make-dir@^2.0.0, make-dir@^2.1.0:
     pify "^4.0.1"
     semver "^5.6.0"
 
-make-dir@^3.0.0, make-dir@^3.0.2, make-dir@^3.1.0:
+make-dir@^3.0.0, make-dir@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-3.1.0.tgz#415e967046b3a7f1d185277d84aa58203726a13f"
   integrity sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==
@@ -15160,11 +15150,11 @@ react-dev-utils@^11.0.3:
     text-table "0.2.0"
 
 react-device-detect@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-2.0.1.tgz#663530bafe1dad333b67eae4252556244f45c2fc"
-  integrity sha512-DrDKiKky/L/DSEJUw5CL2I38s/18zCLIoKP4pE4CyO1FyL6XhQZMIjHmv0pbYQBlfdKB+ZUXP53tWeLkt0eqJw==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-device-detect/-/react-device-detect-2.1.1.tgz#e3a055a36be74d10a87a28182358209f701dbe6b"
+  integrity sha512-F0pYqYlo0/O5RmahZ1io3NHWd1ckr8THiiz/ItCW+ikh3TaKKCT2Rpk/NVKkSGnartzdkgOpcNKGDgO2JxdZvw==
   dependencies:
-    ua-parser-js "^0.7.28"
+    ua-parser-js "0.7.28"
 
 react-docgen-typescript-plugin@^1.0.0:
   version "1.0.0"
@@ -18006,10 +17996,15 @@ typescript@~3.7.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.7.tgz#c931733e2ec10dda56b855b379cc488a72a81199"
   integrity sha512-MmQdgo/XenfZPvVLtKZOq9jQQvzaUAUpcKW8Z43x9B2fOm4S5g//tPtMweZUIP+SoBqrVPEIm+dJeQ9dfO0QdA==
 
-ua-parser-js@^0.7.18, ua-parser-js@^0.7.28:
-  version "0.7.29"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.29.tgz#aad8d679f15a721ed79454d553e3473f9f0536f1"
-  integrity sha512-EdEWUP3Dk9oyycRzMBbVHYW3GLbq5KPWHLKpXSNwD5F6u0s1x12mmP4KIzqSSzpngv8/8pE3f49/qGBG8VgqCg==
+ua-parser-js@0.7.28:
+  version "0.7.28"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
+  integrity sha512-6Gurc1n//gjp9eQNXjD9O3M/sMwVtN5S8Lv9bvOYBfKfDNiIIhqiyi01vMBO45u4zkDE420w/e0se7Vs+sIg+g==
+
+ua-parser-js@^0.7.18:
+  version "0.7.30"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.30.tgz#4cf5170e8b55ac553fe8b38df3a82f0669671f0b"
+  integrity sha512-uXEtSresNUlXQ1QL4/3dQORcGv7+J2ookOG2ybA/ga9+HYEXueT2o+8dUJQkpedsyTyCJ6jCCirRcKtdtx1kbg==
 
 unbox-primitive@^1.0.1:
   version "1.0.1"

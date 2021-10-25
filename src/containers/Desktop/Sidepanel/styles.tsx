@@ -194,6 +194,10 @@ LangCell = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #030303;
+  select, span{
+    ${props=>props.theme.font.body.semibold.t4};
+    color: white;
+  }
 `,
 
 List = styled.div`

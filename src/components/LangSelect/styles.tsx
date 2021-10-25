@@ -18,7 +18,6 @@ Selected = styled.div`
   span{
     transform: translate(0px,0px);
     transition: transform 0.5s;
-    ${props=>props.theme.font.body.semibold.t4}
 
     :after {
       content: "▼";
@@ -26,7 +25,7 @@ Selected = styled.div`
       margin-left: 8px;
       margin-bottom: 6px;
       cursor: pointer;
-    }
+    } 
   }
   :hover{
     background-color: #242424;
@@ -49,7 +48,6 @@ Options = styled.div`
     padding: 10px 0;
     background-color: #030303;
     span{
-      ${props=>props.theme.font.body.semibold.t4}
       transform: translate(0px,0px);
       transition: transform 0.5s;
     }

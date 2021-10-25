@@ -7,24 +7,23 @@ SidepanelWrapper = styled.div`
   position: absolute;
   display: flex;
   flex-direction: row;
-  transition: min-height 0.5s, width 0.5s;
+  transition: width 0.5s;
   align-items: stretch;
   overflow: hidden;
+  min-height: 100%;
   ${({open}:{open:false|'wide'|'menu'})=>
     open==='menu'? 
     css`
-      min-height: 100%;
       width: 300px;
       div > div > div.thumb {
         transform: translate(0px,0px);
       }`:
     open==='wide'? 
     css`
-      min-height: 100%;
       width: 100%;`: 
     css`
-      width: 50px;
-      min-height: 0px;`
+      width: 0px;
+      `
   }
 `,
 
@@ -60,10 +59,6 @@ UserIconCell = styled.div`
   align-items: center;
   background-color: white;
   cursor: pointer;
-  &[data-hovered=true]{
-    background-color: #fcf9f3;
-    cursor: pointer;
-  }
 `,
 
 UserPhoto = styled.img`
@@ -95,11 +90,6 @@ LogoRow = styled.div`
     text-decoration: underline;
     text-underline-offset: 2px;
   }
-  &[data-hovered=true]{
-    span {
-      transform: translate(2px,2px);
-    }
-  }
 `,
 
 UserIconRow = styled.div`
@@ -114,6 +104,15 @@ UserIconRow = styled.div`
   >span {
     display: flex;
     align-items: center;
+    >img{
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      margin-right: 1rem;
+    }
+    svg{
+      margin-right: 1.5rem;      
+    }
     >button:last-child{
       margin-left: 10px;
     }
@@ -124,11 +123,6 @@ UserIconRow = styled.div`
   &[data-selected=true] {
     text-decoration: underline;
     text-underline-offset: 2px;
-  }
-  &[data-hovered=true]{
-    span {
-      transform: translate(2px,2px);
-    }
   }
 `,
 
@@ -153,12 +147,6 @@ IconRow = styled.div`
   &[data-selected=true] {
     text-decoration: underline;
     text-underline-offset: 2px;
-  }
-  &[data-hovered=true]{
-    span {
-      transform: translate(2px,2px);
-      pointer-events: none;
-    }
   }
   ::before{
     content: '';
@@ -185,4 +173,29 @@ List = styled.div`
   position: relative;
   overflow: scroll;
   padding-bottom: 1rem;
+`,
+
+BottomPanel = styled.div`
+  width: calc(100% + 2rem);
+  height: 58px;
+  position: relative;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  margin-left: -2rem;
+  >div:first-child{
+    flex: 0 0 80px;
+    background-color: black;
+    height: 100%;
+    position: relative;
+    select, span{
+      ${props=>props.theme.font.body.semibold.t1};
+      color: white;
+    }
+  }
+  >div:last-child{
+    padding: 1rem;
+    background-color: white;
+    ${props=>props.theme.font.body.regular.t4}
+  }
 `

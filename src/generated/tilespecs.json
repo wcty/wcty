@@ -1,4 +1,26 @@
 {
+  "public.map_entries": {
+    "id": "public.map_entries",
+    "schema": "public",
+    "table": "map_entries",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "name": "text",
+      "created_at": "timestamptz",
+      "description": "text",
+      "image": "text",
+      "id": "uuid",
+      "modified_at": "timestamptz",
+      "type": "text",
+      "members": "int8"
+    }
+  },
   "public.orgs": {
     "id": "public.orgs",
     "schema": "public",
@@ -11,33 +33,12 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
+      "name": "text",
       "created_at": "timestamptz",
-      "modified_at": "timestamptz",
-      "description": "text",
-      "image": "text",
-      "id": "uuid",
-      "name": "text"
-    }
-  },
-  "public.initiatives_view": {
-    "id": "public.initiatives_view",
-    "schema": "public",
-    "table": "initiatives_view",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-      "created_at": "timestamptz",
-      "name": "varchar",
       "id": "uuid",
       "image": "text",
       "modified_at": "timestamptz",
-      "description": "text",
-      "members_count": "int8"
+      "description": "text"
     }
   },
   "public.orgs_view": {
@@ -52,57 +53,13 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
-      "description": "text",
-      "image": "text",
       "members_count": "int8",
-      "modified_at": "timestamptz",
-      "name": "text",
-      "created_at": "timestamptz",
-      "id": "uuid"
-    }
-  },
-  "public.map_entries": {
-    "id": "public.map_entries",
-    "schema": "public",
-    "table": "map_entries",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-      "description": "text",
-      "members": "int8",
-      "type": "text",
-      "id": "uuid",
-      "name": "text",
-      "modified_at": "timestamptz",
-      "created_at": "timestamptz",
-      "image": "text"
-    }
-  },
-  "public.entries": {
-    "id": "public.entries",
-    "schema": "public",
-    "table": "entries",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
       "image": "text",
+      "modified_at": "timestamptz",
       "name": "text",
       "id": "uuid",
       "description": "text",
-      "modified_at": "timestamptz",
-      "members_count": "int8",
-      "created_at": "timestamptz",
-      "type": "text"
+      "created_at": "timestamptz"
     }
   },
   "public.initiatives": {
@@ -122,6 +79,49 @@
       "id": "uuid",
       "created_at": "timestamptz",
       "image": "text",
+      "description": "text"
+    }
+  },
+  "public.initiatives_view": {
+    "id": "public.initiatives_view",
+    "schema": "public",
+    "table": "initiatives_view",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "modified_at": "timestamptz",
+      "id": "uuid",
+      "created_at": "timestamptz",
+      "members_count": "int8",
+      "name": "varchar",
+      "image": "text",
+      "description": "text"
+    }
+  },
+  "public.entries": {
+    "id": "public.entries",
+    "schema": "public",
+    "table": "entries",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "members_count": "int8",
+      "type": "text",
+      "name": "text",
+      "image": "text",
+      "id": "uuid",
+      "created_at": "timestamptz",
+      "modified_at": "timestamptz",
       "description": "text"
     }
   }

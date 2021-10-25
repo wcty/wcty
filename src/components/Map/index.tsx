@@ -29,7 +29,11 @@ export default function Map({children}:{children?:ReactNode}){
           cursorStyle={cursor}
           hash
           {...viewport}
-          onClick={()=>{ history.push('/'); setSelected(null) }}
+          onClick={(e:any)=>{
+            console.log(e.target.queryRenderedFeatures(e.point)?.[0]?.layer?.id)
+            
+
+            history.push('/'); setSelected(null) }}
         >
           <ContextSetter/>
           <AttributionControl

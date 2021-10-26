@@ -3,14 +3,19 @@ import { EButtonTypes,  EButtonSize,  CustomButton } from "./styles";
 //'primary'  |  'secondary' |  'subtle' |  'text'
 
 export  interface IButtonProps  {
-    type: EButtonTypes,
-    size: EButtonSize,
-    label: string,
-    isDisabled: boolean,
+    type?: EButtonTypes,
+    size?: EButtonSize,
+    label?: string,
+    isDisabled?: boolean,
     onClick?: () => void;
 }
 
-function Button({type,size,label,isDisabled = false, onClick, ...props} : IButtonProps) {
+function Button({
+    type = EButtonTypes.PRIMARY,
+    size =  EButtonSize.MEDIUM,
+    label =  'Button',
+    isDisabled = false,
+    onClick, ...props} : IButtonProps) {
     return(
         <CustomButton
         label={label}

@@ -1,4 +1,4 @@
-import { Actions, Content, Image, Title } from "./styles";
+import { Actions, Buttons, Content, Icons, Image, Title } from "./styles";
 import image from 'assets/photo/initiative_big.jpeg'
 import Button from "components/Button";
 import { EButtonSize, EButtonTypes } from "components/Button/styles";
@@ -12,7 +12,12 @@ function ImageHeaderCard(){
                     Лавочка в парку по вулиці Бережанській
                 </Title>
                 <Actions>
-                    <Button  size={EButtonSize.LARGE} type={EButtonTypes.PRIMARY} label='Button'/>
+                    <Icons>
+                    </Icons>
+                    <Buttons>
+                        <Button />
+                        <Button type={EButtonTypes.SECONDARY}/>
+                    </Buttons>
                 </Actions>
             </Content>
            

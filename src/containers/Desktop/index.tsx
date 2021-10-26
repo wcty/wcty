@@ -13,7 +13,7 @@ export default function DesktopVersion(){
       <Route path="/login">
         <Login/>
       </Route>
-      <Route path="/initiative/:id"> 
+      <Route path="/initiative/:id" exact> 
         <Sidepanel/>
         <ContentWrapper>
           <InitiativeDetail/>

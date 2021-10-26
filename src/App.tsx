@@ -9,16 +9,18 @@ import DesktopVersion from 'containers/Desktop/'
 import MobileVersion from 'containers/Mobile/'
 
 export default function App() {
-  const [, setUser] = useRecoilState(App.user)
+  const [user, setUser] = useRecoilState(App.user)
   const history = useHistory()
   const [getUser, {data:userData}] = useUserLazyQuery()
   const [{isMobile}, data] = useDeviceSelectors(window.navigator.userAgent)
+
   useEffect(()=>{
-    if(userData){
+    const user_id = auth.getClaim("x-hasura-user-id");
+    if(!user_id && userData){
       setUser(userData?.users_by_pk)
       history.push('/')
     }
-  },[userData])
+  },[userData, user])
 
   useEffect(()=>{
     auth.onAuthStateChanged((loggedIn?:boolean) => {

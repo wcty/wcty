@@ -27,13 +27,12 @@ export default function Map({children}:{children?:ReactNode}){
           onViewportChange={(v:any)=>setViewport({...viewport, ...v})}
           attributionControl={false}
           cursorStyle={cursor}
-          hash
+          // hash
           {...viewport}
           onClick={(e:any)=>{
             console.log(e.target.queryRenderedFeatures(e.point)?.[0]?.layer?.id)
-            
-
-            history.push('/'); setSelected(null) }}
+            history.push('/'); setSelected(null) 
+          }}
         >
           <ContextSetter/>
           <AttributionControl

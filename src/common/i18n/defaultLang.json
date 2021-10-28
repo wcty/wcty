@@ -149,5 +149,9 @@
  "myOrganisations": "My organisations",
  "initiatives": "Initiatives",
  "search": "Search",
- "write_us": "For any question please contact us at hi@weee.city"
+ "write_us": "For any question please contact us at hi@weee.city",
+ "created_at": "Created at ",
+ "initiative_created_at": "Initiative created at ",
+ "share": "Share",
+ "description_of_initiative": "Description of initiative"
 }

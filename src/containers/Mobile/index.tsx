@@ -1,12 +1,13 @@
 import { Route } from 'react-router-dom'
 import { Map } from 'components'
-import { MapWrapper } from './styles'
+import { Burger, MapWrapper } from './styles'
 import Login from './Login'
 import MapContents from './MapContents'
 import FloatPanel from './FloatPanel'
 import Slides from './Slides'
 import Buttons from './Buttons'
 import Sidepanel from './Sidepanel'
+import Initiative from './Initiative'
 
 export default function MobileVersion(){
 
@@ -15,7 +16,9 @@ export default function MobileVersion(){
         <Login/>
       </Route>
       <Route path="/initiative/:id"> 
-        <FloatPanel/>
+        <Burger/>
+        <Sidepanel/>
+        <Initiative/>
       </Route>
       <Route path="/" exact>
         <MapWrapper>

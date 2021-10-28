@@ -1,6 +1,7 @@
 import Chat from "components/Chat";
 import ImageHeaderCard from "components/ImageHeaderCard";
 import { IPost } from "components/Post/IPost";
+import { useParams } from "react-router-dom";
 
 import { Body, Container, Header,  LeftColumn,  RightColumn } from "./styles";
 const posts: IPost[] =  [
@@ -26,6 +27,8 @@ const posts: IPost[] =  [
 ]
 
 function InitiativeDetail() {
+    const {id} = useParams<{id:string}>();
+    
 
     return(
         <Container>

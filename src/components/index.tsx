@@ -1,4 +1,3 @@
-export { default as Login } from './Login'
 export { default as Map } from './Map'
 export * from './Map'
 export { default as Uploader } from './Uploader'

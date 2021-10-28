@@ -4,7 +4,8 @@ import * as serviceWorker from './serviceWorker'
 
 import React from 'react'
 import { render } from 'react-dom'
-import { auth, storage, theme } from 'common'
+import { theme } from 'common'
+import * as nhost from 'common/nhost'
 import { BrowserRouter as Router } from "react-router-dom"
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
@@ -17,9 +18,9 @@ import { Map } from 'components'
 
 const AppRoot = ()=> 
   <React.StrictMode>
-    <NhostAuthProvider nhost={{auth,storage}}>
+    <NhostAuthProvider {...{nhost}}>
       <NhostApolloProvider
-        nhost={{auth,storage}}
+        {...{nhost}}
         cache={new InMemoryCache({
           typePolicies: {
             Query: {

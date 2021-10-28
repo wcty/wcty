@@ -13,12 +13,14 @@ export default function App() {
   const history = useHistory()
   const [getUser, {data:userData}] = useUserLazyQuery()
   const [{isMobile}, data] = useDeviceSelectors(window.navigator.userAgent)
-
+  
   useEffect(()=>{
-    const user_id = auth.getClaim("x-hasura-user-id");
-    if(!user_id && userData){
+    if(!user && userData && auth.isAuthenticated()){
+      console.log('set user')
       setUser(userData?.users_by_pk)
-      history.push('/')
+      if(history.location.pathname==='/oauth/success'){
+        history.push('/')
+      }
     }
   },[userData, user])
 
@@ -29,6 +31,7 @@ export default function App() {
         console.log(user_id)
         getUser({variables:{user_id}})
       }else{
+        console.log('not logged in')
         setUser(null)
       }
     });

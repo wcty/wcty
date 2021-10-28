@@ -7,6 +7,7 @@ import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
 import { useGeolocation, useI18n } from 'common';
 import distance from '@turf/distance'
 import { format } from 'd3-format'
+import { useHistory } from "react-router-dom";
 
 const formatMeters = format(',.2r')
 
@@ -21,9 +22,10 @@ export default function InitiativeCard({entry}:InitiativeProps){
     { units:'meters' }
   )
   const i18n = useI18n()
+  const history = useHistory()
 
   return entry && 
-    <Card>
+    <Card onClick={()=>entry.properties.type==='initiative'&&history.push(`/initiative/${entry.id}`)}>
       <Thumbnail src={entry?.properties?.image+'?w=100&h=100&q=90'}/>
       <Content>
         <TopBar>

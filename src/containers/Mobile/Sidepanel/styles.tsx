@@ -11,6 +11,7 @@ SidepanelWrapper = styled.div`
   align-items: stretch;
   overflow: hidden;
   min-height: 100%;
+  box-shadow: 3px 0px 6px 6px rgba(0,0,0,0.05);
   ${({open}:{open:false|'wide'|'menu'})=>
     open==='menu'? 
     css`

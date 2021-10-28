@@ -4505,6 +4505,7 @@ export type Initiative_Volunteers_Variance_Order_By = {
 
 /** columns and relationships of "initiatives" */
 export type Initiatives = {
+  address?: Maybe<Scalars['String']>;
   created_at: Scalars['timestamptz'];
   description?: Maybe<Scalars['String']>;
   /** An array relationship */
@@ -4698,6 +4699,7 @@ export type Initiatives_Bool_Exp = {
   _and?: Maybe<Array<Initiatives_Bool_Exp>>;
   _not?: Maybe<Initiatives_Bool_Exp>;
   _or?: Maybe<Array<Initiatives_Bool_Exp>>;
+  address?: Maybe<String_Comparison_Exp>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
   description?: Maybe<String_Comparison_Exp>;
   donations?: Maybe<Initiative_Donations_Bool_Exp>;
@@ -4787,6 +4789,7 @@ export type Initiatives_On_Conflict = {
 
 /** Ordering options when selecting data from "initiatives". */
 export type Initiatives_Order_By = {
+  address?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
   description?: Maybe<Order_By>;
   donations_aggregate?: Maybe<Initiative_Donations_Aggregate_Order_By>;
@@ -4818,6 +4821,8 @@ export type Initiatives_Pk_Columns_Input = {
 /** select columns of table "initiatives" */
 export enum Initiatives_Select_Column {
   /** column name */
+  Address = 'address',
+  /** column name */
   CreatedAt = 'created_at',
   /** column name */
   Description = 'description',
@@ -4835,6 +4840,7 @@ export enum Initiatives_Select_Column {
 
 /** input type for updating data in table "initiatives" */
 export type Initiatives_Set_Input = {
+  address?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   geom?: Maybe<Scalars['geometry']>;
@@ -4846,6 +4852,8 @@ export type Initiatives_Set_Input = {
 
 /** update columns of table "initiatives" */
 export enum Initiatives_Update_Column {
+  /** column name */
+  Address = 'address',
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
@@ -8652,6 +8660,14 @@ export type MyOrganizationListQueryVariables = Exact<{
 
 export type MyOrganizationListQuery = { orgs: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
 
+export type InitiativeByPkQueryVariables = Exact<{
+  id: Scalars['uuid'];
+  user_id?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type InitiativeByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, geometry?: any | null | undefined, members: Array<{ user_id?: any | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined }> } | null | undefined };
+
 export type LastEntriesQueryVariables = Exact<{
   limit?: Maybe<Scalars['Int']>;
   max_date?: Maybe<Scalars['timestamptz']>;
@@ -9699,6 +9715,59 @@ export function useMyOrganizationListLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type MyOrganizationListQueryHookResult = ReturnType<typeof useMyOrganizationListQuery>;
 export type MyOrganizationListLazyQueryHookResult = ReturnType<typeof useMyOrganizationListLazyQuery>;
 export type MyOrganizationListQueryResult = Apollo.QueryResult<MyOrganizationListQuery, MyOrganizationListQueryVariables>;
+export const InitiativeByPkDocument = gql`
+    query InitiativeByPK($id: uuid!, $user_id: uuid = "00000000-0000-0000-0000-000000000000") {
+  initiative: initiatives_by_pk(id: $id) {
+    id
+    name
+    members(where: {user_id: {_eq: $user_id}}) {
+      user_id
+    }
+    members_aggregate {
+      aggregate {
+        count
+      }
+    }
+    address
+    infos {
+      problem
+    }
+    geometry: geom
+    modified_at
+    created_at
+    image
+  }
+}
+    `;
+
+/**
+ * __useInitiativeByPkQuery__
+ *
+ * To run a query within a React component, call `useInitiativeByPkQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInitiativeByPkQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInitiativeByPkQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useInitiativeByPkQuery(baseOptions: Apollo.QueryHookOptions<InitiativeByPkQuery, InitiativeByPkQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<InitiativeByPkQuery, InitiativeByPkQueryVariables>(InitiativeByPkDocument, options);
+      }
+export function useInitiativeByPkLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InitiativeByPkQuery, InitiativeByPkQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<InitiativeByPkQuery, InitiativeByPkQueryVariables>(InitiativeByPkDocument, options);
+        }
+export type InitiativeByPkQueryHookResult = ReturnType<typeof useInitiativeByPkQuery>;
+export type InitiativeByPkLazyQueryHookResult = ReturnType<typeof useInitiativeByPkLazyQuery>;
+export type InitiativeByPkQueryResult = Apollo.QueryResult<InitiativeByPkQuery, InitiativeByPkQueryVariables>;
 export const LastEntriesDocument = gql`
     query LastEntries($limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $user_id: uuid!) {
   entry_visits(
@@ -10201,8 +10270,9 @@ export type initiative_volunteers_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiativesKeySpecifier = ('created_at' | 'description' | 'donations' | 'edits' | 'expenses' | 'files' | 'geom' | 'id' | 'image' | 'infos' | 'members' | 'members_aggregate' | 'modified_at' | 'name' | 'polls' | 'projects' | 'tags' | 'tasks' | 'tenders' | 'threads' | 'visits' | 'volunteers' | initiativesKeySpecifier)[];
+export type initiativesKeySpecifier = ('address' | 'created_at' | 'description' | 'donations' | 'edits' | 'expenses' | 'files' | 'geom' | 'id' | 'image' | 'infos' | 'members' | 'members_aggregate' | 'modified_at' | 'name' | 'polls' | 'projects' | 'tags' | 'tasks' | 'tenders' | 'threads' | 'visits' | 'volunteers' | initiativesKeySpecifier)[];
 export type initiativesFieldPolicy = {
+	address?: FieldPolicy<any> | FieldReadFunction<any>,
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
 	description?: FieldPolicy<any> | FieldReadFunction<any>,
 	donations?: FieldPolicy<any> | FieldReadFunction<any>,

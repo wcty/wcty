@@ -33168,6 +33168,18 @@
         "description": "columns and relationships of \"initiatives\"",
         "fields": [
           {
+            "name": "address",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "created_at",
             "description": null,
             "args": [],
@@ -34811,6 +34823,18 @@
             "deprecationReason": null
           },
           {
+            "name": "address",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "created_at",
             "description": null,
             "type": {
@@ -35614,6 +35638,18 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "address",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "created_at",
             "description": null,
             "type": {
@@ -35906,6 +35942,12 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "address",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "created_at",
             "description": "column name",
             "isDeprecated": false,
@@ -35956,6 +35998,18 @@
         "description": "input type for updating data in table \"initiatives\"",
         "fields": null,
         "inputFields": [
+          {
+            "name": "address",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "created_at",
             "description": null,
@@ -36053,6 +36107,12 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
+          {
+            "name": "address",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "created_at",
             "description": "column name",
@@ -57514,7 +57574,7 @@
         "description": "columns and relationships of \"users\"",
         "fields": [
           {
-            "name": "avatar_url",
+            "name": "avatarUrl",
             "description": null,
             "args": [],
             "type": {
@@ -57643,7 +57703,7 @@
             "deprecationReason": null
           },
           {
-            "name": "display_name",
+            "name": "displayName",
             "description": null,
             "args": [],
             "type": {
@@ -59359,7 +59419,7 @@
             "deprecationReason": null
           },
           {
-            "name": "avatar_url",
+            "name": "avatarUrl",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -59395,7 +59455,7 @@
             "deprecationReason": null
           },
           {
-            "name": "display_name",
+            "name": "displayName",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -59622,7 +59682,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "avatar_url",
+            "name": "avatarUrl",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -59658,7 +59718,7 @@
             "deprecationReason": null
           },
           {
-            "name": "display_name",
+            "name": "displayName",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -59887,7 +59947,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "avatar_url",
+            "name": "avatarUrl",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -59899,7 +59959,7 @@
             "deprecationReason": null
           },
           {
-            "name": "display_name",
+            "name": "displayName",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null

@@ -17,7 +17,7 @@ Fab = styled.button`
   &:last-child{
     margin-left: 18px;
   }
-  height: 100%;
+  height: 29px;
   width: 29px;
   display: flex;
   align-items: center;

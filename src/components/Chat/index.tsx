@@ -10,7 +10,7 @@ function Chat({posts}:IChatProps) {
     return(
         <Container>
             {
-                posts.map((post,  key) =>  <Post  {...post}/>)
+                posts.map((post,  key) =>  <Post  {...post} key={key}/>)
             }
         </Container>
     )

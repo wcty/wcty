@@ -17,7 +17,6 @@ export const Author  = styled.div`
     padding: 16px 16px 0 16px;
 `
 
-
 export const Avatar = styled.div`
     margin-right: 7px;
 `
@@ -28,12 +27,13 @@ export const Info  =  styled.div`
 `
 
 export const Name = styled.div`
-    ${props => props.theme.font.body.semibold.t5}
+    ${props => props.theme.font.body.semibold.t5};
 `
 
 export const Roles = styled.div`
     ${props => props.theme.font.body.regular.t5}
-    color: ${props => props.theme.colors.label}
+    color: ${props => props.theme.colors.label};
+    text-transform: capitalize;
 `
 
 export const Date = styled.div`
@@ -55,11 +55,10 @@ export const Tags = styled.div`
     color: ${props => props.theme.colors.label}
 `
 
-
-
 export const Comments = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     padding: 15px 0;
 `
 
@@ -68,7 +67,7 @@ color: ${props => props.theme.colors.label}
 `
 
 export const ToComment = styled.div`
-    padding-left: 22.5px;
+    
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -76,6 +75,13 @@ export const ToComment = styled.div`
 
     & > img {
         padding-right: 8px;
+    }
+`
+
+export const Likes  = styled.div`
+    color: ${props => props.theme.colors.label};
+    & > img {
+        padding-left: 8px;
     }
 `
     

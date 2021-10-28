@@ -1,11 +1,12 @@
 import { IPost } from "./IPost";
-import { Author, Avatar, CommentCounter, Comments, Container, Content, Date, Info, Message, Name, Roles, Tags, ToComment } from "./styles";
+import { Author, Avatar, CommentCounter, Comments, Container, Content, Date, Info, Likes, Message, Name, Roles, Tags, ToComment } from "./styles";
 import UserIcon from 'assets/icons/user.svg'
 import CommentIco from 'assets/icons/comment.svg'
+import LikeIco from 'assets/icons/like.svg'
 
 export interface IPostProps extends IPost {}
 
-function Post({author,  message}:IPostProps) {
+function Post({author,  message, comments, likes, avatar, roles, date, tags}:IPostProps) {
     return(
         <Container>
             <Author>
@@ -13,25 +14,30 @@ function Post({author,  message}:IPostProps) {
                     <img src={UserIcon} alt="user"/>
                 </Avatar>
                 <Info>
-                    <Name>Анатолій Бойко</Name>
-                    <Roles>Спеціаліст, волонтер, інвестор</Roles>
-                    <Date> 5 серпня 2020</Date>
+                    <Name>{author}</Name>
+                    <Roles>{roles?.join()}</Roles>
+                    <Date>{date}</Date>
                 </Info>
                 
             </Author>
             <Content>
                 <Message>
-                Всім привіт! Я майстер і готовий встановити або зробити лаву.
+                {message}
                 </Message>
-                <Tags>#розроблення-проєкту</Tags>
+                <Tags>#{tags?.map(tag => `${tag} `)}</Tags>
                 <Comments>
                     <CommentCounter>
-                        Коментарів: 10
+                        Коментарів: {comments.length}
                     </CommentCounter>
+                    
                     <ToComment>
-                        <img src={CommentIco} alt="user"/>
+                        <img src={CommentIco} alt="comment"/>
                         Коментувати
                     </ToComment>
+                    <Likes>
+                        {likes.length}
+                        <img src={LikeIco} alt="likes"/>
+                    </Likes>
                 </Comments>
             </Content>
            

@@ -11,7 +11,7 @@ export const Container = styled.div`
    
     `
 
-export const Author  = styled.div`
+export const AuthorContainer  = styled.div`
     display: flex;
     flex-direction: row;
     padding: 16px 16px 0 16px;
@@ -55,11 +55,12 @@ export const Tags = styled.div`
     color: ${props => props.theme.colors.label}
 `
 
-export const Comments = styled.div`
+export const Actions = styled.div`
+    padding: 15px 19px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 15px 0;
+    
 `
 
 export const CommentCounter = styled.div`
@@ -67,7 +68,6 @@ color: ${props => props.theme.colors.label}
 `
 
 export const ToComment = styled.div`
-    
     display: flex;
     flex-direction: row;
     justify-content: center;

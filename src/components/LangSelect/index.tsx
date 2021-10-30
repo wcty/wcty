@@ -21,7 +21,6 @@ export default ({toggleDrawer, ...props}:any)=>{
       <Select value={lang} onChange={changeLanguage} name="lang" id="lang">
         <option value="en">EN</option>
         <option value="uk">UA</option>
-        <option value="fr">FR</option>
       </Select>
     </>
 }

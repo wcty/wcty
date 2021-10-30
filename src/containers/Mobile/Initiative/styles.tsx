@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 import {ReactComponent as Fillet} from 'assets/icons/fillet.svg'
 import {ReactComponent as ArrowUp} from 'assets/icons/arrow-up.svg'
 
@@ -97,9 +97,42 @@ InitiativeDescription = styled.div<{open:boolean}>`
   flex: 1 1 auto;
   line-height: 40px;
   display: flex;
+  flex-direction: column;
   border-radius: 3px;
   overflow: hidden;
   >span{
-    padding: 2rem;
+    padding: 0rem 2rem;
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: solid 1px #000000;
+    >svg{
+      transform: ${p=>p.open ? css`rotate(180deg)` : css`rotate(0deg)`};
+      transition: transform 0.2s;;
+    }
+    >span{
+      transition: transform 0.2s;
+      transform: translate(0px,0px);
+    }
+    &:hover{
+      >span{
+        transform: translate(2px,2px);
+      }
+    }
+    >div{
+      max-height: ${p=>p.open ? css`100%` : css`0px`};
+      transition: max-height 0.2s;
+    }
+  }
+  >div{
+    padding: 0rem 2rem;
+    position: relative;
+    max-height: ${p=>p.open ? css`600px` : css`0px`};
+    transition: max-height 0.5s, padding 0.5s;
+    >div:first-child{
+      margin: 2rem 0rem;
+    }
   }
 `

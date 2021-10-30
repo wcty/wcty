@@ -57574,7 +57574,7 @@
         "description": "columns and relationships of \"users\"",
         "fields": [
           {
-            "name": "avatarUrl",
+            "name": "avatar_url",
             "description": null,
             "args": [],
             "type": {
@@ -57703,7 +57703,7 @@
             "deprecationReason": null
           },
           {
-            "name": "displayName",
+            "name": "display_name",
             "description": null,
             "args": [],
             "type": {
@@ -59419,7 +59419,7 @@
             "deprecationReason": null
           },
           {
-            "name": "avatarUrl",
+            "name": "avatar_url",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -59455,7 +59455,7 @@
             "deprecationReason": null
           },
           {
-            "name": "displayName",
+            "name": "display_name",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -59682,7 +59682,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "avatarUrl",
+            "name": "avatar_url",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -59718,7 +59718,7 @@
             "deprecationReason": null
           },
           {
-            "name": "displayName",
+            "name": "display_name",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -59947,7 +59947,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "avatarUrl",
+            "name": "avatar_url",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -59959,7 +59959,7 @@
             "deprecationReason": null
           },
           {
-            "name": "displayName",
+            "name": "display_name",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null

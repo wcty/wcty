@@ -5,9 +5,11 @@ export interface IIconButtonProps extends IIconButton{
     onClick:() => void
 }
 
-function IconButton({name = "icon_button", type = 'primary', ...props}:IIconButtonProps){
+function IconButton({name = "icon_button", Icon, type = 'primary', ...props}:IIconButtonProps){
     return(
-        <CustomIconButton name={name}  type={type} {...props} />
+        <>
+        {Icon}
+        </>
     )
 }
 export default IconButton;

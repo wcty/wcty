@@ -1,5 +1,5 @@
 export  interface IIconButton {
     name?:  string;
-    icon: SVGElement;
+    Icon: React.ReactNode;
     type: 'primary' | 'subtle'
 }

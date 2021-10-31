@@ -1,10 +1,10 @@
 query Feed($id: uuid){
-  posts: initiative_thread_posts(where:{thread:{initiative:{id: {_eq:$id}}}}) {
+  posts: initiative_posts(where:{thread:{initiative:{id: {_eq:$id}}}}) {
     ...FeedFields
   }
 }
 
-fragment FeedFields on initiative_thread_posts {
+fragment FeedFields on initiative_posts {
   id
   user{
     avatar_url
@@ -12,7 +12,7 @@ fragment FeedFields on initiative_thread_posts {
   }
   created_at
   modified_at
-  post
+  message
   type
   comments_aggregate {
     aggregate {

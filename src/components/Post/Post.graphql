@@ -1,11 +1,11 @@
-fragment Post on initiative_thread_posts{
+fragment Post on initiative_posts{
   comments_count:comments_aggregate {
     aggregate {
       count
     }
   }
   type
-  post
+  message
   user {
     display_name
     avatar_url

@@ -1,5 +1,5 @@
 import { AuthorContainer} from "./styles";
-import { IAuthor } from "./IAuthor";
+import { IAuthor } from "./types/IAuthor";
 import Avatar from "components/Avatar";
 import UserInfo from "./UserInfo";
 

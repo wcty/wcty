@@ -1,6 +1,6 @@
 import { auth } from "common";
 import { Feed } from "components";
-import { IPost } from "components/Post/IPost";
+import { IPost } from "components/Post/types/IPost";
 import { useFeedQuery } from "generated";
 import { useParams } from "react-router-dom";
 

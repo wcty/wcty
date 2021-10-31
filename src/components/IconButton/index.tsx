@@ -10,5 +10,4 @@ function IconButton({name = "icon_button", type = 'primary', ...props}:IIconButt
         <CustomIconButton name={name}  type={type} {...props} />
     )
 }
-s
 export default IconButton;

@@ -5,25 +5,31 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-`
+`,
 
-export const Header = styled.div`
+Header = styled.div`
     width: 100%;
     
-`
+`,
 
-export const Body = styled.div`
+Body = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-`
+`,
 
-export const RightColumn = styled.div`
+RightColumn = styled.div`
     width: 552px;
 
+`,
+
+LeftColumn = styled.div`
+    width: 500px
+`,
+
+Channels = styled.div`
+    color: ${props => props.theme.colors.label};
+    padding: 20px 0;
 `
 
-export const LeftColumn = styled.div`
-    width: 500px
-`

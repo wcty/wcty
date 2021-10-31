@@ -3,6 +3,7 @@ import {  Actions, CommentCounter,  Container, Content, Likes, Message, Tags, To
 import Author from "./Author";
 import CommentIco from 'assets/icons/comment.svg'
 import LikeIco from 'assets/icons/like.svg'
+import CreatePost from "./CreatePost";
 
 
 export interface IPostProps extends IPost {}
@@ -34,3 +35,4 @@ function Post({author,  message, comments, likes, tags}:IPostProps) {
 }
 
 export default Post;
+export { CreatePost }

@@ -1,9 +1,10 @@
-import Chat from "components/Chat";
+import Feed from "components/Feed";
 import ImageHeaderCard from "components/ImageHeaderCard";
+import {CreatePost} from "components/Post";
 import { IPost } from "components/Post/IPost";
 import { useParams } from "react-router-dom";
 
-import { Body, Container, Header,  LeftColumn,  RightColumn } from "./styles";
+import { Body, Channels, Container, Header,  LeftColumn,  RightColumn } from "./styles";
 const posts: IPost[] =  [
     {
         author: {name: "Анатолій Бойко", date : new Date(), roles: ['спеціаліст', 'волонтер', 'інвестор']},
@@ -35,7 +36,9 @@ function InitiativeDetail() {
                 <LeftColumn>
                 </LeftColumn>
                 <RightColumn>
-                    <Chat posts={posts}/>
+                    <Channels> #збір-коштів #розробка-проєкту</Channels>
+                    <CreatePost/>
+                    <Feed posts={posts}/>
                 </RightColumn>
             </Body>
             

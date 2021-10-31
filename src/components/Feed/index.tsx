@@ -2,11 +2,11 @@ import Post, { IPostProps } from "components/Post";
 import { IPost } from "components/Post/IPost";
 import { Container } from "./styles";
 
-export interface IChatProps {
+export interface IFeedProps {
     posts:  IPost[];
 }
 
-function Chat({posts}:IChatProps) {
+function Feed({posts}:IFeedProps) {
     return(
         <Container>
             {
@@ -16,4 +16,4 @@ function Chat({posts}:IChatProps) {
     )
 }
 
-export default Chat;
+export default Feed;

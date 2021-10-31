@@ -21,7 +21,7 @@ const posts: IPost[] =  [
   }
 ]
 
-export default ()=>{
+ const IniativeFeed = () => {
   const { id } = useParams<{id:string}>();
   const { data:postsData, error } = useFeedQuery({
     variables:{id}, 
@@ -37,3 +37,5 @@ export default ()=>{
   console.log(auth.getClaim("x-hasura-user-id"))
   return <Feed posts={posts}/>
 }
+
+export default IniativeFeed;

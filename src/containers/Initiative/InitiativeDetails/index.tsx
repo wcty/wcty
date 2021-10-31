@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import Description from "./Description";
 import Information from "./Information";
 import { Images } from "./Images";
+import { Feed } from "..";
+
 
 export default function InitiativeDetails({desktop=false}) {
   const {id} = useParams<{id:string}>();
@@ -21,5 +23,6 @@ export default function InitiativeDetails({desktop=false}) {
       'Join initiative'
     }
     </div>
+   <Feed/>
   </>
 }

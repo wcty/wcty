@@ -2,7 +2,7 @@ import Avatar from "components/Avatar";
 import { EAvatarSize } from "components/Avatar/EAvatarSize";
 import TextField from "components/Inputs/TextField";
 import { Actions, Channels, Chip, Container, CreateVote, InputContent } from "./styles";
-import  SendIco from "assets/icons/send.svg";
+import  {ReactComponent  as SendIco} from "assets/icons/send.svg";
 import Button from "components/Button";
 import { EButtonTypes } from "components/Button/styles";
 
@@ -11,6 +11,7 @@ import { useCreatePostMutation } from "generated";
 import { useUser } from "common";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+
 
 const channels = ['збір-коштів', 'Голосування','Розробкапроєкту'];
 
@@ -26,8 +27,8 @@ function CreatePost({}:ICreatePostProps){
       <Container>
         <InputContent> 
             <Avatar size={'small'}/>
-            <TextField/>
-            <VoteIcon onClick={()=>addPost()}/>
+            <TextField onChange={e => setMessage('message')}/>
+            <SendIco onClick={()=>addPost()}/>
         </InputContent>
         <Actions>
           <Channels>

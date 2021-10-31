@@ -1,6 +1,8 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import IconButton from "components/IconButton";
-import {} from "assets/icons/send.svg"
+
+
+
 export default {
     title: 'Buttons/IconButton',
     component: IconButton,
@@ -14,6 +16,12 @@ export default {
 
   export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-  
-};
+    Primary.args = {
+    icon:  'vote'
+    };
+
+export const Secondary = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+    Secondary.args = {
+    icon:  'send'
+    };

@@ -1,7 +1,9 @@
 import styled from "styled-components"
+import { ITextFieldProps } from "."
 
 export const
-Field = styled.input`
+Field = styled.input.attrs((props: ITextFieldProps) => ({
+}))<ITextFieldProps>`
     outline: none;
     height: 29px;
     width:  100%;

@@ -2,6 +2,7 @@ import styled, {css} from "styled-components/macro";
 
 export const 
 SidepanelWrapper = styled.div`
+  z-index: 1;
   top: 0px;
   left: 0px;
   position: absolute;

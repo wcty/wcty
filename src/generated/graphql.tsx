@@ -8666,7 +8666,7 @@ export type InitiativeByPkQueryVariables = Exact<{
 }>;
 
 
-export type InitiativeByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, geometry?: any | null | undefined, members: Array<{ user_id?: any | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined }> } | null | undefined };
+export type InitiativeByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined, members: Array<{ user_id?: any | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> } | null | undefined };
 
 export type LastEntriesQueryVariables = Exact<{
   limit?: Maybe<Scalars['Int']>;
@@ -9729,13 +9729,16 @@ export const InitiativeByPkDocument = gql`
       }
     }
     address
-    infos {
+    infos(order_by: {approved_at: desc}, limit: 1) {
       problem
+      goal
+      context
     }
     geometry: geom
     modified_at
     created_at
     image
+    description
   }
 }
     `;

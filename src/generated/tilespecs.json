@@ -1,4 +1,46 @@
 {
+  "public.map_entries": {
+    "id": "public.map_entries",
+    "schema": "public",
+    "table": "map_entries",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "id": "uuid",
+      "image": "text",
+      "description": "text",
+      "type": "text",
+      "created_at": "timestamptz",
+      "name": "text",
+      "members": "int8",
+      "modified_at": "timestamptz"
+    }
+  },
+  "public.orgs": {
+    "id": "public.orgs",
+    "schema": "public",
+    "table": "orgs",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "id": "uuid",
+      "image": "text",
+      "description": "text",
+      "name": "text",
+      "created_at": "timestamptz",
+      "modified_at": "timestamptz"
+    }
+  },
   "public.entries": {
     "id": "public.entries",
     "schema": "public",
@@ -11,13 +53,34 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
+      "name": "text",
+      "id": "uuid",
+      "image": "text",
+      "modified_at": "timestamptz",
+      "members_count": "int8",
       "created_at": "timestamptz",
       "description": "text",
+      "type": "text"
+    }
+  },
+  "public.orgs_view": {
+    "id": "public.orgs_view",
+    "schema": "public",
+    "table": "orgs_view",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "created_at": "timestamptz",
+      "image": "text",
+      "members_count": "int8",
       "modified_at": "timestamptz",
       "name": "text",
-      "members_count": "int8",
-      "image": "text",
-      "type": "text",
+      "description": "text",
       "id": "uuid"
     }
   },
@@ -33,12 +96,13 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
-      "modified_at": "timestamptz",
-      "name": "varchar",
-      "image": "text",
+      "description": "text",
       "created_at": "timestamptz",
       "id": "uuid",
-      "description": "text"
+      "address": "text",
+      "image": "text",
+      "modified_at": "timestamptz",
+      "name": "varchar"
     }
   },
   "public.initiatives_view": {
@@ -53,75 +117,12 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
-      "created_at": "timestamptz",
-      "image": "text",
-      "description": "text",
       "name": "varchar",
-      "members_count": "int8",
       "modified_at": "timestamptz",
-      "id": "uuid"
-    }
-  },
-  "public.map_entries": {
-    "id": "public.map_entries",
-    "schema": "public",
-    "table": "map_entries",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-      "name": "text",
+      "description": "text",
       "image": "text",
-      "description": "text",
-      "modified_at": "timestamptz",
-      "members": "int8",
-      "created_at": "timestamptz",
-      "type": "text",
-      "id": "uuid"
-    }
-  },
-  "public.orgs_view": {
-    "id": "public.orgs_view",
-    "schema": "public",
-    "table": "orgs_view",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
       "members_count": "int8",
-      "modified_at": "timestamptz",
-      "name": "text",
-      "image": "text",
-      "description": "text",
-      "created_at": "timestamptz",
-      "id": "uuid"
-    }
-  },
-  "public.orgs": {
-    "id": "public.orgs",
-    "schema": "public",
-    "table": "orgs",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-      "description": "text",
       "id": "uuid",
-      "name": "text",
-      "modified_at": "timestamptz",
-      "image": "text",
       "created_at": "timestamptz"
     }
   }

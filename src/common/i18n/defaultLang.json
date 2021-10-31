@@ -153,5 +153,17 @@
  "created_at": "Created at ",
  "initiative_created_at": "Initiative created at ",
  "share": "Share",
- "description_of_initiative": "Description of initiative"
+ "description_of_initiative": "Description of initiative",
+ "implemented_of_the_project": "Implemented of the project",
+ "collected_sum_from_sum": "Collected {0} from planned {1}",
+ "hide": "Hide",
+ "show": "Show",
+ "list_of_expenses": "List of expenses",
+ "list_of_tasks": "List of tasks",
+ "finished_tasks_from_total": "Finsihed {0} tasks from {1}",
+ "problem_or_idea": "Problem or idea",
+ "goal": "Goal",
+ "context": "Context",
+ "photos": "Photos",
+ "show_all": "Show all"
 }

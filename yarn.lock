@@ -4185,6 +4185,11 @@
   resolved "https://registry.yarnpkg.com/@types/jwt-decode/-/jwt-decode-2.2.1.tgz#afdf5c527fcfccbd4009b5fd02d1e18241f2d2f2"
   integrity sha512-aWw2YTtAdT7CskFyxEX2K21/zSDStuf/ikI3yBqmwpwJF0pS+/IX5DWv+1UFffZIbruP6cnT9/LAJV1gFwAT1A==
 
+"@types/luxon@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-2.0.5.tgz#29d3b095d55ee50df8f4cf109b16009334d9828e"
+  integrity sha512-GKrG5v16BOs9XGpouu33hOkAFaiSDi3ZaDXG9F2yAoyzHRBtksZnI60VWY5aM/yAENCccBejrxw8jDY+9OVlxw==
+
 "@types/mapbox-gl@^2.1.2":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@types/mapbox-gl/-/mapbox-gl-2.4.2.tgz#b2d5d6572a49561eef0eb361afd92365027efc50"
@@ -12469,6 +12474,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+luxon@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-2.0.2.tgz#11f2cd4a11655fdf92e076b5782d7ede5bcdd133"
+  integrity sha512-ZRioYLCgRHrtTORaZX1mx+jtxKtKuI5ZDvHNAmqpUzGqSrR+tL4FVLn/CUGMA3h0+AKD1MAxGI5GnCqR5txNqg==
 
 magic-string@^0.25.0, magic-string@^0.25.7:
   version "0.25.7"

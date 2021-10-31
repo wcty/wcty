@@ -1,13 +1,44 @@
 import { useState, useEffect, MutableRefObject, useRef } from 'react'
 import { useRecoilState } from 'recoil'
-import { atoms, mapboxToken } from 'common'
+import { atoms, auth, mapboxToken } from 'common'
 import { Map } from 'components'
 import App from 'App'
+import { useHistory } from 'react-router-dom'
+import { useUserLazyQuery } from 'generated'
 
 export function useUser(){
   const [user] = useRecoilState(App.user)
   return user
 }
+
+export function useUserData(){
+  const [user, setUser] = useRecoilState(App.user)
+  const history = useHistory()
+  const [getUser, {data:userData}] = useUserLazyQuery()
+
+  useEffect(()=>{
+    if(!user && userData && auth.isAuthenticated()){
+      setUser(userData?.users_by_pk)
+      if(history.location.pathname==='/oauth/success'){
+        history.push('/')
+      }
+    }
+  },[userData, user])
+
+  useEffect(()=>{
+    auth.onAuthStateChanged((loggedIn?:boolean) => {
+      if(loggedIn){
+        const user_id = auth.getClaim("x-hasura-user-id");
+        getUser({variables:{user_id}})
+      }else{
+        console.log('not logged in')
+        setUser(null)
+      }
+    });
+  },[])
+  return null
+}
+
 const defaultSettings = {
   enableHighAccuracy: false,
   timeout: Infinity,
@@ -89,7 +120,7 @@ export function useWindowDimensions() {
 export function useAddress(coords:[ number, number ]) {
 
   const [addressString, setAddress] = useState<string>()
-
+  const [lang] = useRecoilState(atoms.lang)
   useEffect(()=>{
 
     const controller = new AbortController();
@@ -99,7 +130,7 @@ export function useAddress(coords:[ number, number ]) {
         const request = async ()=>{
           const response = await fetch(
             `https://api.mapbox.com/geocoding/v5/mapbox.places/${coords[0]},${coords[1]}.json`+
-            `?access_token=${mapboxToken}`, { signal })
+            `?access_token=${mapboxToken}&language=${lang}`, { signal })
           if(signal.aborted) return;
           const address:any = await response.json()
           if(signal.aborted) return;

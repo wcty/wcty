@@ -27,6 +27,12 @@ export const GlobalStyle = createGlobalStyle`
   span{
     ${props=>props.theme.font.body.regular.t5}
   }
+  a{
+    ${props=>props.theme.font.body.semibold.t5}
+    color: black;
+    text-decoration: none;
+    text-transform: none;
+  }
   html {
     overflow: scroll;
     overflow: hidden;

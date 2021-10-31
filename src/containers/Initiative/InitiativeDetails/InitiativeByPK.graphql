@@ -11,12 +11,15 @@ query InitiativeByPK($id:uuid!, $user_id:uuid="00000000-0000-0000-0000-000000000
       }
     }
     address
-    infos{
+    infos(order_by: {approved_at: desc}, limit:1) {
       problem
+      goal
+      context
     }
     geometry:geom
     modified_at
     created_at
     image
+    description
   }
 }

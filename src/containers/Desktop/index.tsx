@@ -5,7 +5,7 @@ import Sidepanel from './Sidepanel'
 import Login from './Login'
 import MapContents from './MapContents'
 import FloatPanel from './FloatPanel'
-import InitiativeDetail from 'containers/InitiativeDetail'
+import Initiative from 'containers/Initiative'
 
 export default function DesktopVersion(){
 
@@ -13,12 +13,11 @@ export default function DesktopVersion(){
       <Route path="/login">
         <Login/>
       </Route>
-      <Route path="/initiative/:id" exact> 
+      <Route path="/initiative/:id"> 
         <Sidepanel/>
         <ContentWrapper>
-          <InitiativeDetail/>
+          <Initiative.Desktop/>
         </ContentWrapper>
-        
       </Route>
       <Route path="/" exact>
         <MapWrapper>

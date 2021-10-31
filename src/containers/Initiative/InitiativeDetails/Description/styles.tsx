@@ -1,0 +1,328 @@
+import { describeArc, selectWords, useI18n } from 'common';
+import { animated, Interpolation } from 'react-spring';
+import styled, { css } from 'styled-components/macro';
+
+export const
+InitiativeDescription = styled.div<{open:boolean, desktop:boolean}>`
+  flex: 1 1 auto;
+  line-height: 40px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: padding-bottom 0.5s, border-bottom 0.5s;
+  padding-bottom: ${({open}) => open ? '2rem' : '0rem'};
+  border-bottom:  ${({open}) => open ? css`1px solid rgba(0,0,0,1)` : css`1px solid rgba(0,0,0,0)`};
+  >span{
+    ${p=>p.desktop ? 
+      css`display: none;`:
+      css<{open:boolean}>`
+        padding: 0rem 2rem;
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        border-bottom: solid 1px #000000;
+        >svg{
+          transform: ${p=>p.open ? css`rotate(180deg)` : css`rotate(0deg)`};
+          transition: transform 0.2s;;
+        }
+        >span{
+          transition: transform 0.2s;
+          transform: translate(0px,0px);
+        }
+        &:hover{
+          >span{
+            transform: translate(2px,2px);
+          }
+        }
+      `
+    }
+  }
+  >div{
+    padding: 0rem 2rem;
+    position: relative;
+    max-height: ${p=>p.open ? css`600px` : css`0px`};
+    transition: max-height 0.5s, padding 0.5s;
+    >div:first-child{
+      margin: 2rem 0rem;
+    }
+  }
+`,
+
+CircleText = styled(animated.div)`
+  ${p=>p.theme.font.body.semibold.t3}
+  color: black;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`,
+
+Gauge = styled.div.attrs((p:{
+  percent: Interpolation<number, number>;
+})=>({
+  percent:p.percent,
+  children:
+    <>
+      <svg width={86} height={86}>
+        <circle cx={43} cy={43} r={35} fill='none' stroke='#D2BEA7' strokeWidth={8}/>
+        <animated.circle 
+          strokeDasharray={219} 
+          strokeDashoffset={p.percent.to(x => (1 - x) * 219 )} 
+          cx={43} 
+          cy={43} 
+          r={35} 
+          fill='none' 
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          stroke='#000000' 
+          strokeWidth={8}/>
+      </svg>
+      <CircleText>{p.percent.to(x => (x*100).toFixed(0)+'%')}</CircleText>
+    </>
+}))`
+  width: 86px;
+  height: 86px;
+  position: relative;
+  >svg { transform: rotate(-90deg); }
+`,
+
+GaugeBlock = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`,
+
+CollectedSum = styled.div.attrs(
+  (p:{
+    sum:number,
+    total:number
+  })=>({
+    sum:p.sum, 
+    total:p.total,
+    children: 
+    <>
+      <span>
+        {selectWords(
+          useI18n()('collected_sum_from_sum', 
+          `${p.sum} ${useI18n()('UAH')}`, 
+          `${p.total} ${useI18n()('UAH')}`
+          ), 0, 3
+        )} 
+      </span> 
+      <span>
+        {selectWords(
+          useI18n()('collected_sum_from_sum', 
+          `${p.sum} ${useI18n()('UAH')}`, 
+          `${p.total} ${useI18n()('UAH')}`
+          ), 3
+        )}
+      </span>
+    </>
+  }))`
+  >:first-child{
+    ${p=>p.theme.font.body.semibold.t5}
+    margin-right: 4px;
+  }
+  >:last-child{
+    ${p=>p.theme.font.body.regular.t5}
+  }
+`,
+
+ProgressBar = styled.div.attrs({
+  children: 
+    <>
+      <span/>
+      <div>
+        <div/>
+      </div>
+    </>
+})<{ percent: number }>`
+  display: flex;
+  height: 18px;
+  align-items: center;
+  >span {
+    flex: 0 0 40px;
+    ${p=>p.theme.font.body.semibold.t5}
+    :after{
+      content: '${p=>p.percent}%';
+    }
+  }
+  >div{
+    flex: 1;
+    position: relative;
+    height: 8px;
+    border-radius: 4px;
+    background-color: ${p=>p.theme.colors.darkBeige};
+    >div{
+      height: 8px;
+      border-radius: 4px;
+      transition: width 0.5s ease-in-out;
+      width: ${p=>p.percent}%;
+      background-color: black;
+    }
+  }
+`,
+
+List = styled.div<{open:boolean}>`
+  flex: 1 1 auto;
+  line-height: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+  overflow: hidden;
+  >span{
+    >span{ 
+      ${p=>p.theme.font.body.semibold.t5}
+    }
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    >span:first-child{
+      transition: transform 0.2s;
+      transform: translate(0px,0px);
+    }
+    >span:last-child{
+      >svg{
+        transform: ${p=>p.open ? css`rotate(180deg)` : css`rotate(0deg)`};
+        transition: transform 0.2s;
+        margin-left: 10px;
+      }
+    }
+    &:hover{
+      >span{
+        transform: translate(2px,2px);
+      }
+    }
+  }
+  >div{
+    padding: 0rem 0rem;
+    position: relative;
+    overflow: scroll;
+    max-height: ${p=>p.open ? css`300px` : css`0px`};
+    transition: max-height 0.5s, padding 0.5s;
+  }
+`,
+
+Expense = styled.div`
+  display: flex;
+  align-items: flex-start;
+  line-height: 2rem;
+
+  >span:first-child{
+    ${p=>p.theme.font.body.regular.t5}
+    width: 28px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+  }
+  >div{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 0;
+    margin: 0;
+    >span{
+      padding: 0;
+      margin: 0;
+      line-height: 2rem;
+      display: flex;
+      align-items: center;
+      >svg:first-child{
+        margin-right: 8px;
+      }
+    }
+  }
+  >span:last-child{
+    ${p=>p.theme.font.body.semibold.t5}
+    /* width: 28px; */
+    /* flex: 0 0 auto; */
+    justify-content: start;
+    white-space: nowrap;
+  }
+`,
+
+FinishedTasks = styled.div.attrs(
+  (p:{
+    tasks:number,
+    total:number
+  })=>({
+    tasks:p.tasks, 
+    total:p.total,
+    children: 
+    <>
+      <span>
+        {selectWords(
+          useI18n()('finished_tasks_from_total', 
+          `${p.tasks}`, 
+          `${p.total}`
+          ), 0, 3
+        )} 
+      </span> 
+      <span>
+        {selectWords(
+          useI18n()('finished_tasks_from_total', 
+          `${p.tasks}`, 
+          `${p.total}`
+          ), 3
+        )}
+      </span>
+    </>
+  }))`
+  >:first-child{
+    ${p=>p.theme.font.body.semibold.t5}
+    margin-right: 4px;
+  }
+  >:last-child{
+    ${p=>p.theme.font.body.regular.t5}
+  }
+`,
+
+Task = styled.div`
+  display: flex;
+  align-items: flex-start;
+  line-height: 2rem;
+  justify-content: center;
+  align-items: center;
+  >span:first-child{
+    ${p=>p.theme.font.body.regular.t5}
+    width: 28px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+  }
+  >div{
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    cursor: pointer;
+    >span{
+      padding: 0;
+      margin: 0;
+      line-height: 2rem;
+      display: flex;
+      align-items: center;
+      >svg:first-child{
+        margin-right: 8px;
+      }
+    }
+  }
+  >span:last-child{
+    ${p=>p.theme.font.body.semibold.t5}
+    /* width: 28px; */
+    /* flex: 0 0 auto; */
+    justify-content: start;
+    white-space: nowrap;
+  }
+`

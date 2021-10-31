@@ -1,28 +1,46 @@
-import { Actions, Buttons, Content, Icons, Image, Title } from "./styles";
-import image from 'assets/photo/initiative_big.jpeg'
+import { Actions, Buttons, Content, FilletButton, Icons, Image, Title } from "./styles";
 import Button from "components/Button";
-import { EButtonSize, EButtonTypes } from "components/Button/styles";
+import { EButtonTypes } from "components/Button/styles";
+import { useHistory, useParams } from "react-router-dom";
+import { useUser } from "common";
 
-function ImageHeaderCard(){
-    return(
-        <>
-            <Image src={image}/>
-            <Content>
-                <Title>
-                    Лавочка в парку по вулиці Бережанській
-                </Title>
-                <Actions>
-                    <Icons>
-                    </Icons>
-                    <Buttons>
-                        <Button />
-                        <Button type={EButtonTypes.SECONDARY}/>
-                    </Buttons>
-                </Actions>
-            </Content>
-           
-       </>
-    )
+interface ImageProps {
+  src: string
+  title: string
 }
 
-export default ImageHeaderCard;
+function Desktop(props:ImageProps){
+  return(
+    <>
+      <Image src={props.src}/>
+      <Content>
+        <Title>
+          {props.title}
+        </Title>
+        <Actions>
+          <Icons>
+          </Icons>
+          <Buttons>
+            <Button />
+            <Button type={EButtonTypes.SECONDARY}/>
+          </Buttons>
+        </Actions>
+      </Content>
+    </>
+  )
+}
+
+function Mobile(props:ImageProps){
+  const { id } = useParams<{id:string}>();
+  const user = useUser()
+  const history = useHistory();
+
+  return(
+    <>
+      <img src={props.src}/>
+      <FilletButton onClick={()=>history.push('/')}/>
+    </>
+  )
+}
+
+export default { Desktop, Mobile };

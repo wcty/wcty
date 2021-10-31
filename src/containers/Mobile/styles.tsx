@@ -13,5 +13,6 @@ Burger = styled.div.attrs({
 })`
   position: fixed;
   top: 29px;
-  left: 0
+  left: 0;
+  z-index: 1;
 `

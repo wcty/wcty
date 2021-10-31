@@ -38,3 +38,12 @@ export function describeArc(x:number=0, y:number=0, radius:number, startAngle:nu
   ].join(" ");
   return d;       
 }
+
+/** Function to select words in a string by start and end index */
+export function selectWords(str:string, start:number, end:number=Infinity){
+  if(start > end) return ''
+  let words = str.split(' ')
+  let selected = words.slice(start, end)
+  return selected.join(' ')
+}
+

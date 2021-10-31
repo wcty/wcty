@@ -22,7 +22,8 @@ export const theme = {
     secondaryAccent: '#002FD3',
     error: '#E04F4F',
     success: '#52AD92',
-    warning: '#E5B049'
+    warning: '#E5B049',
+    darkBeige: '#D2BEA7'
   } ,
   font:{
     title:{

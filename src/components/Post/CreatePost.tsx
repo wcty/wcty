@@ -18,9 +18,9 @@ export interface ICreatePostProps{}
 
 function CreatePost({}:ICreatePostProps){
   const {id} = useParams<{id:string}>();
-  const user = useUser()
+  const user = useUser();
   const [message, setMessage] = useState('')
-  const [addPost] = useCreatePostMutation({variables:{initiative_id:id, user_id:user?id||'', message}})
+  const [addPost] = useCreatePostMutation({variables:{initiative_id:id, user_id: user?.id, message}})
 
   return (
       <Container>

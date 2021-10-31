@@ -15,9 +15,7 @@ const handleType =  {
     subtle
 }
 export  const  CustomIconButton = styled.img.attrs((props: IIconButtonProps ) => ({
-    src : props.icon,
-    alt: props.name ,
-    onclick : props.onClick
+   
 }))<IIconButtonProps>`
     padding: 4px;
     ${({type}) => handleType[type]}

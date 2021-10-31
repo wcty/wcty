@@ -5,4 +5,5 @@ export { default as LangSelect } from './LangSelect'
 export { ListRow as ListRow } from './ListRow'
 export { default as InitiativeCard } from './InitiativeCard'
 export { default as Feed } from './Feed'
-export * from './Feed'
+
+

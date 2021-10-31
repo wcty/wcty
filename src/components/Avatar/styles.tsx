@@ -1,5 +1,6 @@
 import styled , {css}from "styled-components"
 import { EAvatarSize } from "./EAvatarSize"
+import { IAvatar } from "./IAvatar";
 
 export const 
 
@@ -19,19 +20,17 @@ large  = css`
 `;
 
 const handleSize = {
-    [EAvatarSize.LARGE]:large,
-    [EAvatarSize.MEDIUM]:medium,
-    [EAvatarSize.SMALL]:small,
+    ['large']:large,
+    ['medium']:medium,
+    ['small']:small,
 }
 
 
-interface IContainerProps {
-    size: EAvatarSize
-}
 
-export const Container = styled.div<IContainerProps>`
+
+export const Container = styled.div<IAvatar>`
     margin-right: 7px;
     & > img  {
-        ${({size}) => handleSize[size]};
+        ${({size}) => handleSize[size!]};
     }
 `;

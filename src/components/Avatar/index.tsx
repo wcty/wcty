@@ -5,7 +5,7 @@ import { EAvatarSize } from "./EAvatarSize";
 
 export interface IAvatarProps extends IAvatar{}
 
-function Avatar({picture = UserIcon, name = 'userpic',  size  = EAvatarSize.MEDIUM}: IAvatarProps) {
+function Avatar({picture = UserIcon, name = 'userpic',  size  = 'medium'}: IAvatarProps) {
     return (
         <Container size={size}>
             <img src={picture} alt={name}/>

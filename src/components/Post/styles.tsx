@@ -89,6 +89,28 @@ InputContent =  styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 15px 19px 0 19px;
-   
+    padding: 15px 19px;
+
+    & > img {
+        padding-left: 4px;
+    }
+`,
+
+Channels  = styled.div`
+    display: flex;
+    flex-direction: row;
+`,
+
+CreateVote = styled.div``,
+
+Chip = styled.div`
+    height: 19px;
+    ${props => props.theme.font.body.regular.t5};
+    color: ${props => props.theme.colors.label};
+    border: none;
+    border-radius: 3px;
+    background-color: ${props => props.theme.colors.backgroundActive};
+    padding: 5px;
+    margin-right: 10px;
 `
+

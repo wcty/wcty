@@ -1,21 +1,33 @@
 import Avatar from "components/Avatar";
 import { EAvatarSize } from "components/Avatar/EAvatarSize";
 import TextField from "components/Inputs/TextField";
-import { Container, InputContent } from "./styles";
+import { Actions, Channels, Chip, Container, CreateVote, InputContent } from "./styles";
 import  SendIco from "assets/icons/send.svg";
-export interface ICreatePost{}
+import Button from "components/Button";
+import { EButtonTypes } from "components/Button/styles";
 
-function CreatePost(){
+const channels = ['збір-коштів', 'Голосування','Розробкапроєкту'];
+
+export interface ICreatePostProps{}
+
+function CreatePost({}:ICreatePostProps){
   return (
       <Container>
         <InputContent> 
-            <Avatar size={EAvatarSize.SMALL}/>
+            <Avatar size={'small'}/>
             <TextField/>
             <img src={SendIco}  alt="send message"/>
         </InputContent>
-            
-          
-          
+        <Actions>
+          <Channels>
+            Канали: {
+              channels.map((channel, i) => <Chip key={i}>#{channel}</Chip>)
+            }
+          </Channels>
+          <CreateVote>
+            <Button type={EButtonTypes.TEXT} label='Створити голосування'/>
+          </CreateVote>
+        </Actions>
       </Container>
   )
 }

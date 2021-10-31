@@ -1,0 +1,13 @@
+fragment Post on initiative_thread_posts{
+  comments_count:comments_aggregate {
+    aggregate {
+      count
+    }
+  }
+  type
+  post
+  user {
+    display_name
+    avatar_url
+  }
+}

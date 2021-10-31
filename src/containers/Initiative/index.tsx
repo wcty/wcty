@@ -10,7 +10,8 @@ import { useUser } from "common";
 function Desktop() {
   const { id } = useParams<{id:string}>();
   const user = useUser()
-  const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
+  const {data} = useInitiativeByPkQuery({variables:{id, user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
+  
 
   return(
     <Container.Desktop>
@@ -22,7 +23,7 @@ function Desktop() {
           <InitiativeDetails desktop/>
         </LeftColumn>
         <RightColumn>
-          <Feed/>
+          {user && <Feed/>}
         </RightColumn>
       </Body>
     </Container.Desktop>

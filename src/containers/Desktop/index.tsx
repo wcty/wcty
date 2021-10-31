@@ -28,6 +28,5 @@ export default function DesktopVersion(){
         <Sidepanel/>
         <FloatPanel/>
       </Route>
-      
   </>
 }

@@ -1,0 +1,22 @@
+query Feed($id: uuid){
+  posts: initiative_thread_posts(where:{thread:{initiative:{id: {_eq:$id}}}}) {
+    ...FeedFields
+  }
+}
+
+fragment FeedFields on initiative_thread_posts {
+  id
+  user{
+    avatar_url
+    display_name
+  }
+  created_at
+  modified_at
+  post
+  type
+  comments_aggregate {
+    aggregate {
+      count
+    }
+  }
+}

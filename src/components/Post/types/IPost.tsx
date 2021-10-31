@@ -1,4 +1,3 @@
-import { IAuthorProps } from "./Author";
 import { IAuthor } from "./IAuthor";
 import { ILike } from "./ILike";
 import { IPostComment } from "./IPostComment";

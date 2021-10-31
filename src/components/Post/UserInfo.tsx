@@ -1,4 +1,4 @@
-import { IUserInfo } from "./IUserInfo";
+import { IUserInfo } from "./types/IUserInfo";
 import { Date, Info, Name, Roles } from "./styles";
 
 export interface IUserInfoProps extends IUserInfo {}

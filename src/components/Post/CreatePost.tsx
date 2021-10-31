@@ -6,19 +6,28 @@ import  SendIco from "assets/icons/send.svg";
 import Button from "components/Button";
 import { EButtonTypes } from "components/Button/styles";
 
-import VoteIcon from "assets/icons/vote.svg";
+import {ReactComponent as VoteIcon} from "assets/icons/vote.svg";
+import { useCreatePostMutation } from "generated";
+import { useUser } from "common";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 const channels = ['збір-коштів', 'Голосування','Розробкапроєкту'];
 
 export interface ICreatePostProps{}
 
 function CreatePost({}:ICreatePostProps){
+  const {id} = useParams<{id:string}>();
+  const user = useUser()
+  const [message, setMessage] = useState('')
+  const [addPost] = useCreatePostMutation({variables:{initiative_id:id, user_id:user?id||'', message}})
+
   return (
       <Container>
         <InputContent> 
             <Avatar size={'small'}/>
             <TextField/>
-            <img src={SendIco}  alt="send message"/>
+            <VoteIcon onClick={()=>addPost()}/>
         </InputContent>
         <Actions>
           <Channels>
@@ -28,7 +37,7 @@ function CreatePost({}:ICreatePostProps){
           </Channels>
           <CreateVote>
             
-            <img src ={VoteIcon} alt="votes"/>
+            <VoteIcon/>
             <Button type={EButtonTypes.TEXT} label='Створити голосування'/>
           </CreateVote>
         </Actions>

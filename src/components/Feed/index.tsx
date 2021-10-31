@@ -1,5 +1,5 @@
 import Post, { CreatePost } from "components/Post";
-import { IPost } from "components/Post/IPost";
+import { IPost } from "components/Post/types/IPost";
 import { Container } from "./styles";
 
 export interface IFeedProps {

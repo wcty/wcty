@@ -51,14 +51,6 @@ mutation DeleteInitiative($initiative_id: uuid!){
   }
 }
 
-# Initiative Post mutations:
-
-mutation AddInitiativePost($thread_id: Int, $user_id: uuid!, $post: String){
-  insert_initiative_thread_posts_one(object: {user_id:$user_id, post: $post, thread_id: $thread_id}) {
-    id
-  }
-}
-
 # Initiative members mutations:
 
 mutation DeleteInitiativeMember($initiative_id: uuid!, $user_id: uuid!) {

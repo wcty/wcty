@@ -1,4 +1,47 @@
 {
+  "public.map_entries": {
+    "id": "public.map_entries",
+    "schema": "public",
+    "table": "map_entries",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "type": "text",
+      "name": "text",
+      "description": "text",
+      "created_at": "timestamptz",
+      "image": "text",
+      "id": "uuid",
+      "members": "int8",
+      "modified_at": "timestamptz"
+    }
+  },
+  "public.initiatives": {
+    "id": "public.initiatives",
+    "schema": "public",
+    "table": "initiatives",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "id": "uuid",
+      "name": "varchar",
+      "modified_at": "timestamptz",
+      "created_at": "timestamptz",
+      "image": "text",
+      "description": "text",
+      "address": "text"
+    }
+  },
   "public.orgs": {
     "id": "public.orgs",
     "schema": "public",
@@ -11,33 +54,12 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
-      "description": "text",
-      "image": "text",
+      "name": "text",
       "modified_at": "timestamptz",
-      "name": "text",
-      "created_at": "timestamptz",
-      "id": "uuid"
-    }
-  },
-  "public.orgs_view": {
-    "id": "public.orgs_view",
-    "schema": "public",
-    "table": "orgs_view",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-      "created_at": "timestamptz",
       "description": "text",
-      "image": "text",
-      "members_count": "int8",
       "id": "uuid",
-      "name": "text",
-      "modified_at": "timestamptz"
+      "image": "text",
+      "created_at": "timestamptz"
     }
   },
   "public.initiatives_view": {
@@ -52,13 +74,13 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
-      "modified_at": "timestamptz",
-      "name": "varchar",
-      "created_at": "timestamptz",
-      "description": "text",
       "id": "uuid",
       "members_count": "int8",
-      "image": "text"
+      "description": "text",
+      "image": "text",
+      "modified_at": "timestamptz",
+      "name": "varchar",
+      "created_at": "timestamptz"
     }
   },
   "public.entries": {
@@ -74,56 +96,34 @@
     "geometry_type": "GEOMETRY",
     "properties": {
       "description": "text",
-      "name": "text",
+      "id": "uuid",
       "created_at": "timestamptz",
+      "modified_at": "timestamptz",
+      "image": "text",
+      "name": "text",
+      "members_count": "int8",
+      "type": "text"
+    }
+  },
+  "public.orgs_view": {
+    "id": "public.orgs_view",
+    "schema": "public",
+    "table": "orgs_view",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
       "members_count": "int8",
       "modified_at": "timestamptz",
-      "image": "text",
-      "id": "uuid",
-      "type": "text"
-    }
-  },
-  "public.initiatives": {
-    "id": "public.initiatives",
-    "schema": "public",
-    "table": "initiatives",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-      "modified_at": "timestamptz",
-      "name": "varchar",
-      "description": "text",
-      "address": "text",
-      "created_at": "timestamptz",
-      "id": "uuid",
-      "image": "text"
-    }
-  },
-  "public.map_entries": {
-    "id": "public.map_entries",
-    "schema": "public",
-    "table": "map_entries",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
-      "description": "text",
-      "modified_at": "timestamptz",
       "name": "text",
-      "created_at": "timestamptz",
-      "members": "int8",
+      "description": "text",
       "image": "text",
-      "id": "uuid",
-      "type": "text"
+      "created_at": "timestamptz",
+      "id": "uuid"
     }
   }
 }

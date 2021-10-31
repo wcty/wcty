@@ -1,4 +1,4 @@
-import { IPost } from "./IPost";
+import { IPost } from "./types/IPost";
 import {  Actions, CommentCounter,  Container, Content, Likes, Message, Tags, ToComment } from "./styles";
 import Author from "./Author";
 import CommentIco from 'assets/icons/comment.svg'

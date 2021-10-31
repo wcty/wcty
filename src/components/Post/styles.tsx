@@ -101,7 +101,12 @@ Channels  = styled.div`
     flex-direction: row;
 `,
 
-CreateVote = styled.div``,
+CreateVote = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`,
 
 Chip = styled.div`
     height: 19px;

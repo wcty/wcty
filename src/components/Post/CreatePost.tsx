@@ -6,6 +6,8 @@ import  SendIco from "assets/icons/send.svg";
 import Button from "components/Button";
 import { EButtonTypes } from "components/Button/styles";
 
+import VoteIcon from "assets/icons/vote.svg";
+
 const channels = ['збір-коштів', 'Голосування','Розробкапроєкту'];
 
 export interface ICreatePostProps{}
@@ -25,6 +27,8 @@ function CreatePost({}:ICreatePostProps){
             }
           </Channels>
           <CreateVote>
+            
+            <img src ={VoteIcon} alt="votes"/>
             <Button type={EButtonTypes.TEXT} label='Створити голосування'/>
           </CreateVote>
         </Actions>

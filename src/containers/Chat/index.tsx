@@ -13,10 +13,10 @@ function Chat({}: IChatProps) {
             <Manager>
                 <ManagerHeader>
                     <Title>
-                    Title
+                        Повідомлення
                     </Title>
                     <Initiative>
-                    Initiative
+                        Лавочка біля будинку
                     </Initiative>
                 </ManagerHeader>
                 <Search>

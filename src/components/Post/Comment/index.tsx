@@ -1,14 +1,13 @@
 import { IBaseComment, IComment } from "./IComment";
 import { Container } from "../styles";
 import Author from "../Author";
-import { Actions, Footer, Likes, Reply, Time , Content, Message, Info, Offset} from "./styles";
-import IconButton from "components/IconButton";
+import { Actions, Footer, Likes,  Time , Content, Message, Info, Offset} from "./styles";
 import Button from "components/Button";
 import {ReactComponent as Like} from 'assets/icons/like.svg'
 
 export interface ICommentProps extends IComment {}
 
-function  BaseComment({author, message, likesCount, date, comments}:IBaseComment) {
+function  BaseComment({author, message, likesCount, date}:IBaseComment) {
     const handleLike  = (e: any) => {
         console.log("like");
     }

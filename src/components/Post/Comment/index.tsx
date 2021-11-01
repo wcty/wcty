@@ -21,10 +21,12 @@ function Comment({author, message, likesCount, date}:ICommentProps) {
                 <Info>
                     <Time>{date.getHours().toString()}</Time>
                     <Likes>Подобається: {likesCount}</Likes>
+
                     
                 </Info>
+                <Button label='Відповісти'  customType='text'/>
                 <Actions>
-                    <Button label='Відповісти'  customType='text'/>
+                   
                     <Like onClick={handleLike}/>
                 </Actions>
             </Footer>

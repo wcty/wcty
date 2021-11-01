@@ -89,7 +89,7 @@ InputContent =  styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 15px 19px;
+    padding: 15px 19px 0 19px;
 
     & > img {
         padding-left: 4px;
@@ -99,6 +99,9 @@ InputContent =  styled.div`
 Channels  = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: ${props => props.theme.colors.label};
 `,
 
 CreateVote = styled.div`

@@ -1,6 +1,5 @@
 import { Actions, Buttons, Content, FilletButton, Icons, Image, Title } from "./styles";
 import Button from "components/Button";
-import { EButtonTypes } from "components/Button/styles";
 import { useHistory, useParams } from "react-router-dom";
 import { useUser } from "common";
 
@@ -22,7 +21,7 @@ function Desktop(props:ImageProps){
           </Icons>
           <Buttons>
             <Button />
-            <Button type={EButtonTypes.SECONDARY}/>
+            <Button customType='secondary'/>
           </Buttons>
         </Actions>
       </Content>

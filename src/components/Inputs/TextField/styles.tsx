@@ -12,6 +12,7 @@ Field = styled.input.attrs((props: ITextFieldProps) => ({
     border-radius: 3px;
     ${props => props.theme.font.body.regular.t5};
     color: ${props => props.theme.colors.secondary};
+    margin-right: 4px;
     
 `,
 

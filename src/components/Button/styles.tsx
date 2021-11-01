@@ -1,18 +1,8 @@
 import styled, {css} from "styled-components/macro";
+import { IButtonProps } from ".";
 
-export enum EButtonTypes {
-    PRIMARY = 'primary',
-    SECONDARY = 'secondary',
-    SUBTLE =  'subtle',
-    TEXT  = 'text',
-    SHARE  = 'share'
-}
 
-export enum EButtonSize  {
-    LARGE = 'large',
-    MEDIUM = 'medium',
-    SMALL = 'small'
-}
+
 
 
 const large =  css`
@@ -115,42 +105,24 @@ const share = css`
 
 
 const handleSize = {
-    [EButtonSize.LARGE]:large,
-    [EButtonSize.MEDIUM]:medium,
-    [EButtonSize.SMALL]:small,
+    ['large']:large,
+    ['medium']:medium,
+    ['small']:small,
 }
 
 const handleType = {
-    [EButtonTypes.PRIMARY]:primary,
-    [EButtonTypes.SECONDARY]:secondary,
-    [EButtonTypes.SUBTLE]:subtle,
-    [EButtonTypes.TEXT]:text,
-    [EButtonTypes.SHARE]:text,
+    ['primary']:primary,
+    ['secondary']:secondary,
+    ['subtle']:subtle,
+    ['text']:text,
+    ['share']:text,
 }
 
 
-
-
-
-
-
-
-
-interface ButtonProps {
-    customSize:EButtonSize;
-    customType:  EButtonTypes;
-    label: string;
-    isDisabled: boolean;
-    onClick?: () => void
-
-}
-
-export const CustomButton = styled.input.attrs((props: ButtonProps) => ({
-    type:'button',
-    value: props.label,
+export const CustomButton = styled.button.attrs((props: IButtonProps) => ({
     disabled: props.isDisabled,
     onclick : props.onClick
-}))<ButtonProps>`
+}))<IButtonProps>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -158,10 +130,10 @@ export const CustomButton = styled.input.attrs((props: ButtonProps) => ({
     padding: 0 15px;
     cursor: pointer;
     border-radius: 3px;
-    font:  ${props => props.theme.font.body.semibold.t4};
+    font:  ${props => props.theme.font.body.semibold.t5};
     
-    ${({customType}) => handleType[customType]};
-    ${({customSize}) => handleSize[customSize]};
+    ${({customType}) => handleType[customType!]};
+    ${({customSize}) => handleSize[customSize!]};
 
     
 

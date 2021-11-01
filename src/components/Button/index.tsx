@@ -1,29 +1,37 @@
-import { EButtonTypes,  EButtonSize,  CustomButton } from "./styles";
+import { IButton } from "./IButton";
+import {  CustomButton } from "./styles";
+import {ReactComponent as SendIco} from 'assets/icons/arrow-up-2.svg'
+import {ReactComponent as VoteIco} from 'assets/icons/vote.svg'
 
 //'primary'  |  'secondary' |  'subtle' |  'text'
 
-export  interface IButtonProps  {
-    type?: EButtonTypes,
-    size?: EButtonSize,
-    label?: string,
-    isDisabled?: boolean,
+export  interface IButtonProps extends IButton  {
     onClick?: () => void;
 }
 
+
+
 function Button({
-    type = EButtonTypes.PRIMARY,
-    size =  EButtonSize.MEDIUM,
+    customType = 'primary',
+    customSize =  'medium',
     label =  'Button',
     isDisabled = false,
-    onClick, ...props} : IButtonProps) {
+    onClick,
+    icon
+} : IButtonProps) {
     return(
         <CustomButton
-        label={label}
-        customSize={size}
-        customType={type}
-        isDisabled={isDisabled}
-        onClick={onClick}
-        /> 
+            {...{customType, customSize,isDisabled, icon}}
+        > 
+        {icon&& 
+            {
+                'send': <SendIco/>,
+                'vote': <VoteIco/>,
+                'upload': <VoteIco/>
+            }[icon]
+        }
+        {label}
+        </CustomButton>
            
         
     )

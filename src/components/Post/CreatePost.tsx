@@ -4,7 +4,7 @@ import TextField from "components/Inputs/TextField";
 import { Actions, Channels, Chip, Container, CreateVote, InputContent } from "./styles";
 import  {ReactComponent  as SendIco} from "assets/icons/send.svg";
 import Button from "components/Button";
-import { EButtonTypes } from "components/Button/styles";
+
 
 import {ReactComponent as VoteIcon} from "assets/icons/vote.svg";
 import { useCreatePostMutation } from "generated";
@@ -12,6 +12,7 @@ import { useUser } from "common";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import IconButton from "components/IconButton";
+import SectionTab from "components/SectionTab";
 
 
 const channels = ['збір-коштів', 'Голосування','Розробкапроєкту'];
@@ -35,13 +36,13 @@ function CreatePost({}:ICreatePostProps){
         <Actions>
           <Channels>
             Канали: {
-              channels.map((channel, i) => <Chip key={i}>#{channel}</Chip>)
+              channels.map((channel, i) => <SectionTab key={i}  label={`#${channel}`}/>)
             }
           </Channels>
           <CreateVote>
             
-            <VoteIcon/>
-            <Button type={EButtonTypes.TEXT} label='Створити голосування'/>
+            
+            <Button icon='vote' customType='text' label='Створити голосування'/>
           </CreateVote>
         </Actions>
       </Container>

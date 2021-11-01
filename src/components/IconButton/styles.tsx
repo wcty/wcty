@@ -30,10 +30,18 @@ export const Container =  styled.div.attrs((props: IIconButtonProps) => ({
     justify-content: center;
     align-items: center;
     background-color: ${props => props.theme.colors.titleActive};
-    border-radius: 50%;
+    
     cursor: pointer;
+
+    & > svg {
+        width: 60%;
+        height: 60%;
+       
+    }
     
     ${({size})  => handleSize[size!]}
+
+    
     &:hover {
         background-color: ${props => props.theme.colors.secondary};
     };
@@ -43,12 +51,8 @@ export const Container =  styled.div.attrs((props: IIconButtonProps) => ({
     &:disabled {
         background-color: ${props => props.theme.colors.body};
     }
-    & > svg {
-        width: 60%;
-        height: 60%;
-       
-    }
-
+    
+    border-radius: 100%;
    
    
 

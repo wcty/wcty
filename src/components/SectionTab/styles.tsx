@@ -31,10 +31,7 @@ export const Container = styled.div.attrs((props: ISectionTabProps) => ({
     &:active {
         background-color: ${props => props.theme.colors.backgroundLight};
     };
-    &:disabled {
-        background-color: ${props => props.theme.colors.backgroundLight};
-        opacity: 0.4;
-    }
+    
 
     ${props => props.disabled ? disabled: ''}
 `

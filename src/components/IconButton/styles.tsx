@@ -24,7 +24,7 @@ const handleSize =  {
 
 
 export const Container =  styled.div.attrs((props: IIconButtonProps) => ({
-
+    onclick : props.onClick
 }))<IIconButtonProps>`
     display: flex;
     justify-content: center;

@@ -11,7 +11,7 @@ function Toggle({checked =  false} :IToggle) {
     return(
         <Switch>
             <Input type='checkbox' defaultChecked={toggle}/>
-            <Slider {...{toggle}} onClick = {() => { console.log(!toggle); setToggle(!toggle)}}/>
+            <Slider {...{toggle}} onClick = {() =>  setToggle(!toggle)}/>
         </Switch>
     )
 }

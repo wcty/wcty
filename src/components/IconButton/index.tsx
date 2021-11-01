@@ -8,9 +8,9 @@ export interface  IIconButtonProps extends  IIconButton {
     onClick?: (e: any) => void
 }
 
-function IconButton({icon = 'send', size = 'medium'}: IIconButtonProps) {
+function IconButton({icon = 'send', size = 'medium', onClick}: IIconButtonProps) {
     return (
-        <Container size={size}>
+        <Container {...{icon, size,  onClick}}>
             {
                 {
                     'send': <SendIco/>,

@@ -22,19 +22,10 @@ const posts: IPost[] =  [
 ]
 
  const IniativeFeed = () => {
+  
   const { id } = useParams<{id:string}>();
-  const { data:postsData, error } = useFeedQuery({
-    variables:{id}, 
-    context:{
-      headers:{
-        "x-hasura-role":"user",
-        "authorization": `Bearer ${auth.getJWTToken()}`
-      }
-    }
-  })
-  console.log(postsData, error)
+  const { data:postsData, error } = useFeedQuery({variables:{id}})
 
-  console.log(auth.getClaim("x-hasura-user-id"))
   return <Feed posts={posts}/>
 }
 

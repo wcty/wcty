@@ -10,10 +10,10 @@ import Initiative from 'containers/Initiative'
 export default function DesktopVersion(){
 
   return <>
-      <Route path="/login">
+      <Route exact path="/login">
         <Login/>
       </Route>
-      <Route path="/initiative/:id"> 
+      <Route exact path="/initiative/:id"> 
         <Sidepanel/>
         <ContentWrapper>
           <Initiative.Desktop/>

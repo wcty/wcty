@@ -1,7 +1,6 @@
 import { createClient } from "nhost-js-sdk";
 
 const origin = window.location.origin
-console.log(origin)
 
 export const endpoint = 
   origin === 'http://localhost:3000' ? 'https://api-local.weee.city':
@@ -10,4 +9,7 @@ export const endpoint =
 
 export const { auth, storage } = createClient({
   baseURL: endpoint,
-});;
+  useCookies: true
+});
+
+export * from './NhostApolloProvider'

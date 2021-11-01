@@ -38,6 +38,12 @@ Actions = styled.div`
     align-items: center;
 `,
 
-Reply = styled.div``
+Reply = styled.div``,
+
+Offset = styled.div`
+padding-left: 50px;
+`
+
+
 
 

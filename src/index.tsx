@@ -3,11 +3,10 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import * as serviceWorker from './serviceWorker'
 import { StrictMode } from 'react'
 import { render } from 'react-dom'
-import { cacheConfig, Fonts, theme } from 'common'
+import { cacheConfig, Fonts, NhostApolloProvider, theme } from 'common'
 import { BrowserRouter as Router } from "react-router-dom"
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
-import { NhostApolloProvider } from "@nhost/react-apollo"
 import { InMemoryCache } from '@apollo/client';
 import { ThemeProvider } from "styled-components/macro"
 import { Map } from 'components'
@@ -21,6 +20,7 @@ const AppRoot = ()=>
         {...{nhost}}
         cache={new InMemoryCache(cacheConfig)}
         publicRole='anonymous'
+        connectToDevTools
         graphqlUrl={`https://hasura-aws.weee.city/v1/graphql`}
       >
         <Router>

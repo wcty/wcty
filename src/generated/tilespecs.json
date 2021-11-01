@@ -1,4 +1,45 @@
 {
+  "public.orgs": {
+    "id": "public.orgs",
+    "schema": "public",
+    "table": "orgs",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "name": "text",
+      "image": "text",
+      "modified_at": "timestamptz",
+      "description": "text",
+      "created_at": "timestamptz",
+      "id": "uuid"
+    }
+  },
+  "public.orgs_view": {
+    "id": "public.orgs_view",
+    "schema": "public",
+    "table": "orgs_view",
+    "id_column": null,
+    "geometry_column": "geom",
+    "srid": 4326,
+    "extent": 4096,
+    "buffer": 64,
+    "clip_geom": true,
+    "geometry_type": "GEOMETRY",
+    "properties": {
+      "description": "text",
+      "created_at": "timestamptz",
+      "members_count": "int8",
+      "modified_at": "timestamptz",
+      "name": "text",
+      "image": "text",
+      "id": "uuid"
+    }
+  },
   "public.initiatives_view": {
     "id": "public.initiatives_view",
     "schema": "public",
@@ -11,35 +52,13 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
-      "description": "text",
-      "name": "varchar",
-      "image": "text",
-      "members_count": "int8",
-      "id": "uuid",
-      "created_at": "timestamptz",
-      "modified_at": "timestamptz"
-    }
-  },
-  "public.entries": {
-    "id": "public.entries",
-    "schema": "public",
-    "table": "entries",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
       "image": "text",
       "modified_at": "timestamptz",
-      "id": "uuid",
-      "description": "text",
-      "name": "text",
       "created_at": "timestamptz",
-      "members_count": "int8",
-      "type": "text"
+      "description": "text",
+      "name": "varchar",
+      "id": "uuid",
+      "members_count": "int8"
     }
   },
   "public.initiatives": {
@@ -54,12 +73,12 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
-      "address": "text",
-      "created_at": "timestamptz",
-      "description": "text",
       "image": "text",
       "modified_at": "timestamptz",
       "name": "varchar",
+      "created_at": "timestamptz",
+      "description": "text",
+      "address": "text",
       "id": "uuid"
     }
   },
@@ -75,40 +94,20 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
-      "image": "text",
-      "type": "text",
-      "description": "text",
-      "id": "uuid",
-      "created_at": "timestamptz",
-      "name": "text",
       "members": "int8",
-      "modified_at": "timestamptz"
-    }
-  },
-  "public.orgs": {
-    "id": "public.orgs",
-    "schema": "public",
-    "table": "orgs",
-    "id_column": null,
-    "geometry_column": "geom",
-    "srid": 4326,
-    "extent": 4096,
-    "buffer": 64,
-    "clip_geom": true,
-    "geometry_type": "GEOMETRY",
-    "properties": {
+      "created_at": "timestamptz",
       "image": "text",
       "modified_at": "timestamptz",
+      "type": "text",
+      "description": "text",
       "name": "text",
-      "id": "uuid",
-      "created_at": "timestamptz",
-      "description": "text"
+      "id": "uuid"
     }
   },
-  "public.orgs_view": {
-    "id": "public.orgs_view",
+  "public.entries": {
+    "id": "public.entries",
     "schema": "public",
-    "table": "orgs_view",
+    "table": "entries",
     "id_column": null,
     "geometry_column": "geom",
     "srid": 4326,
@@ -117,13 +116,14 @@
     "clip_geom": true,
     "geometry_type": "GEOMETRY",
     "properties": {
+      "created_at": "timestamptz",
+      "members_count": "int8",
+      "name": "text",
+      "type": "text",
+      "modified_at": "timestamptz",
       "id": "uuid",
       "image": "text",
-      "created_at": "timestamptz",
-      "name": "text",
-      "description": "text",
-      "members_count": "int8",
-      "modified_at": "timestamptz"
+      "description": "text"
     }
   }
 }

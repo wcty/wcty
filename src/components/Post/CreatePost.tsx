@@ -1,7 +1,7 @@
 import Avatar from "components/Avatar";
 
 import TextField from "components/Inputs/TextField";
-import { Actions, Channels, Chip, Container, CreateVote, InputContent } from "./styles";
+import { Actions, Channels, Container, CreateVote, InputContent } from "./styles";
 import  {ReactComponent  as SendIco} from "assets/icons/send.svg";
 import Button from "components/Button";
 
@@ -17,6 +17,7 @@ import SectionTab from "components/SectionTab";
 
 const channels = ['збір-коштів', 'Голосування','Розробкапроєкту'];
 
+
 export interface ICreatePostProps{}
 
 function CreatePost({}:ICreatePostProps){
@@ -27,6 +28,7 @@ function CreatePost({}:ICreatePostProps){
 
   return (
       <Container>
+        
         <InputContent> 
             <Avatar size={'small'}/>
             <TextField onChange={e => setMessage('message')}/>

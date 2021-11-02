@@ -9,7 +9,8 @@ export const endpoint =
 
 export const { auth, storage } = createClient({
   baseURL: endpoint,
-  useCookies: true
+  useCookies: true,
+  autoLogin: true
 });
 
 export * from './NhostApolloProvider'

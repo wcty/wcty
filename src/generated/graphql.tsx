@@ -1162,17 +1162,13 @@ export type Initiative_Comments_Variance_Order_By = {
 
 /** columns and relationships of "initiative_donations" */
 export type Initiative_Donations = {
-  /** An object relationship */
-  expense?: Maybe<Initiative_Expenses>;
-  expense_id?: Maybe<Scalars['Int']>;
+  currency?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   /** An object relationship */
   initiative: Initiatives;
   initiative_id: Scalars['uuid'];
-  /** An object relationship */
-  post: Initiative_Posts;
-  post_id: Scalars['bigint'];
   recurrent?: Maybe<Scalars['Boolean']>;
+  status: Scalars['String'];
   sum?: Maybe<Scalars['numeric']>;
   /** An object relationship */
   user?: Maybe<Users>;
@@ -1203,9 +1199,7 @@ export type Initiative_Donations_Arr_Rel_Insert_Input = {
 
 /** order by avg() on columns of table "initiative_donations" */
 export type Initiative_Donations_Avg_Order_By = {
-  expense_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
 };
 
@@ -1214,14 +1208,12 @@ export type Initiative_Donations_Bool_Exp = {
   _and?: Maybe<Array<Initiative_Donations_Bool_Exp>>;
   _not?: Maybe<Initiative_Donations_Bool_Exp>;
   _or?: Maybe<Array<Initiative_Donations_Bool_Exp>>;
-  expense?: Maybe<Initiative_Expenses_Bool_Exp>;
-  expense_id?: Maybe<Int_Comparison_Exp>;
+  currency?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   initiative?: Maybe<Initiatives_Bool_Exp>;
   initiative_id?: Maybe<Uuid_Comparison_Exp>;
-  post?: Maybe<Initiative_Posts_Bool_Exp>;
-  post_id?: Maybe<Bigint_Comparison_Exp>;
   recurrent?: Maybe<Boolean_Comparison_Exp>;
+  status?: Maybe<String_Comparison_Exp>;
   sum?: Maybe<Numeric_Comparison_Exp>;
   user?: Maybe<Users_Bool_Exp>;
   user_id?: Maybe<Uuid_Comparison_Exp>;
@@ -1230,48 +1222,42 @@ export type Initiative_Donations_Bool_Exp = {
 /** unique or primary key constraints on table "initiative_donations" */
 export enum Initiative_Donations_Constraint {
   /** unique or primary key constraint */
-  InitiativeDonationsPkey = 'initiative_donations_pkey',
-  /** unique or primary key constraint */
-  UnqInitiativeDonationsPostId = 'unq_initiative_donations_post_id'
+  InitiativeDonationsPkey = 'initiative_donations_pkey'
 }
 
 /** input type for incrementing numeric columns in table "initiative_donations" */
 export type Initiative_Donations_Inc_Input = {
-  expense_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
-  post_id?: Maybe<Scalars['bigint']>;
   sum?: Maybe<Scalars['numeric']>;
 };
 
 /** input type for inserting data into table "initiative_donations" */
 export type Initiative_Donations_Insert_Input = {
-  expense?: Maybe<Initiative_Expenses_Obj_Rel_Insert_Input>;
-  expense_id?: Maybe<Scalars['Int']>;
+  currency?: Maybe<Scalars['String']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
-  post?: Maybe<Initiative_Posts_Obj_Rel_Insert_Input>;
-  post_id?: Maybe<Scalars['bigint']>;
   recurrent?: Maybe<Scalars['Boolean']>;
+  status?: Maybe<Scalars['String']>;
   sum?: Maybe<Scalars['numeric']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "initiative_donations" */
 export type Initiative_Donations_Max_Order_By = {
-  expense_id?: Maybe<Order_By>;
+  currency?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   initiative_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
+  status?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
   user_id?: Maybe<Order_By>;
 };
 
 /** order by min() on columns of table "initiative_donations" */
 export type Initiative_Donations_Min_Order_By = {
-  expense_id?: Maybe<Order_By>;
+  currency?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   initiative_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
+  status?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
   user_id?: Maybe<Order_By>;
 };
@@ -1293,14 +1279,12 @@ export type Initiative_Donations_On_Conflict = {
 
 /** Ordering options when selecting data from "initiative_donations". */
 export type Initiative_Donations_Order_By = {
-  expense?: Maybe<Initiative_Expenses_Order_By>;
-  expense_id?: Maybe<Order_By>;
+  currency?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   initiative?: Maybe<Initiatives_Order_By>;
   initiative_id?: Maybe<Order_By>;
-  post?: Maybe<Initiative_Posts_Order_By>;
-  post_id?: Maybe<Order_By>;
   recurrent?: Maybe<Order_By>;
+  status?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
   user?: Maybe<Users_Order_By>;
   user_id?: Maybe<Order_By>;
@@ -1314,15 +1298,15 @@ export type Initiative_Donations_Pk_Columns_Input = {
 /** select columns of table "initiative_donations" */
 export enum Initiative_Donations_Select_Column {
   /** column name */
-  ExpenseId = 'expense_id',
+  Currency = 'currency',
   /** column name */
   Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
-  PostId = 'post_id',
-  /** column name */
   Recurrent = 'recurrent',
+  /** column name */
+  Status = 'status',
   /** column name */
   Sum = 'sum',
   /** column name */
@@ -1331,59 +1315,51 @@ export enum Initiative_Donations_Select_Column {
 
 /** input type for updating data in table "initiative_donations" */
 export type Initiative_Donations_Set_Input = {
-  expense_id?: Maybe<Scalars['Int']>;
+  currency?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   initiative_id?: Maybe<Scalars['uuid']>;
-  post_id?: Maybe<Scalars['bigint']>;
   recurrent?: Maybe<Scalars['Boolean']>;
+  status?: Maybe<Scalars['String']>;
   sum?: Maybe<Scalars['numeric']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by stddev() on columns of table "initiative_donations" */
 export type Initiative_Donations_Stddev_Order_By = {
-  expense_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
 };
 
 /** order by stddev_pop() on columns of table "initiative_donations" */
 export type Initiative_Donations_Stddev_Pop_Order_By = {
-  expense_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
 };
 
 /** order by stddev_samp() on columns of table "initiative_donations" */
 export type Initiative_Donations_Stddev_Samp_Order_By = {
-  expense_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
 };
 
 /** order by sum() on columns of table "initiative_donations" */
 export type Initiative_Donations_Sum_Order_By = {
-  expense_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
 };
 
 /** update columns of table "initiative_donations" */
 export enum Initiative_Donations_Update_Column {
   /** column name */
-  ExpenseId = 'expense_id',
+  Currency = 'currency',
   /** column name */
   Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
-  PostId = 'post_id',
-  /** column name */
   Recurrent = 'recurrent',
+  /** column name */
+  Status = 'status',
   /** column name */
   Sum = 'sum',
   /** column name */
@@ -1392,25 +1368,19 @@ export enum Initiative_Donations_Update_Column {
 
 /** order by var_pop() on columns of table "initiative_donations" */
 export type Initiative_Donations_Var_Pop_Order_By = {
-  expense_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
 };
 
 /** order by var_samp() on columns of table "initiative_donations" */
 export type Initiative_Donations_Var_Samp_Order_By = {
-  expense_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
 };
 
 /** order by variance() on columns of table "initiative_donations" */
 export type Initiative_Donations_Variance_Order_By = {
-  expense_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   sum?: Maybe<Order_By>;
 };
 
@@ -1690,8 +1660,6 @@ export type Initiative_Edits_Variance_Order_By = {
 export type Initiative_Expenses = {
   budget: Scalars['numeric'];
   description?: Maybe<Scalars['String']>;
-  /** An array relationship */
-  donations: Array<Initiative_Donations>;
   id: Scalars['Int'];
   /** An object relationship */
   initiative: Initiatives;
@@ -1706,16 +1674,6 @@ export type Initiative_Expenses = {
   /** An object relationship */
   user?: Maybe<Users>;
   user_id?: Maybe<Scalars['uuid']>;
-};
-
-
-/** columns and relationships of "initiative_expenses" */
-export type Initiative_ExpensesDonationsArgs = {
-  distinct_on?: Maybe<Array<Initiative_Donations_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Initiative_Donations_Order_By>>;
-  where?: Maybe<Initiative_Donations_Bool_Exp>;
 };
 
 /** order by aggregate values of table "initiative_expenses" */
@@ -1755,7 +1713,6 @@ export type Initiative_Expenses_Bool_Exp = {
   _or?: Maybe<Array<Initiative_Expenses_Bool_Exp>>;
   budget?: Maybe<Numeric_Comparison_Exp>;
   description?: Maybe<String_Comparison_Exp>;
-  donations?: Maybe<Initiative_Donations_Bool_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   initiative?: Maybe<Initiatives_Bool_Exp>;
   initiative_id?: Maybe<Uuid_Comparison_Exp>;
@@ -1788,7 +1745,6 @@ export type Initiative_Expenses_Inc_Input = {
 export type Initiative_Expenses_Insert_Input = {
   budget?: Maybe<Scalars['numeric']>;
   description?: Maybe<Scalars['String']>;
-  donations?: Maybe<Initiative_Donations_Arr_Rel_Insert_Input>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   poll?: Maybe<Initiative_Polls_Obj_Rel_Insert_Input>;
@@ -1831,13 +1787,6 @@ export type Initiative_Expenses_Mutation_Response = {
   returning: Array<Initiative_Expenses>;
 };
 
-/** input type for inserting object relation for remote table "initiative_expenses" */
-export type Initiative_Expenses_Obj_Rel_Insert_Input = {
-  data: Initiative_Expenses_Insert_Input;
-  /** on conflict condition */
-  on_conflict?: Maybe<Initiative_Expenses_On_Conflict>;
-};
-
 /** on conflict condition type for table "initiative_expenses" */
 export type Initiative_Expenses_On_Conflict = {
   constraint: Initiative_Expenses_Constraint;
@@ -1849,7 +1798,6 @@ export type Initiative_Expenses_On_Conflict = {
 export type Initiative_Expenses_Order_By = {
   budget?: Maybe<Order_By>;
   description?: Maybe<Order_By>;
-  donations_aggregate?: Maybe<Initiative_Donations_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   initiative?: Maybe<Initiatives_Order_By>;
   initiative_id?: Maybe<Order_By>;
@@ -2226,16 +2174,40 @@ export type Initiative_Info_Variance_Order_By = {
 export type Initiative_Members = {
   contractor?: Maybe<Scalars['Boolean']>;
   created_at: Scalars['timestamptz'];
+  /** An array relationship */
+  donations: Array<Initiative_Donations>;
   donator?: Maybe<Scalars['Boolean']>;
   id: Scalars['Int'];
   /** An object relationship */
   initiative: Initiatives;
   initiative_id: Scalars['uuid'];
   initiator?: Maybe<Scalars['Boolean']>;
+  /** An array relationship */
+  tasks: Array<Initiative_Tasks>;
   /** An object relationship */
   user?: Maybe<Users>;
   user_id?: Maybe<Scalars['uuid']>;
   volunteer?: Maybe<Scalars['Boolean']>;
+};
+
+
+/** columns and relationships of "initiative_members" */
+export type Initiative_MembersDonationsArgs = {
+  distinct_on?: Maybe<Array<Initiative_Donations_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Donations_Order_By>>;
+  where?: Maybe<Initiative_Donations_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiative_members" */
+export type Initiative_MembersTasksArgs = {
+  distinct_on?: Maybe<Array<Initiative_Tasks_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Tasks_Order_By>>;
+  where?: Maybe<Initiative_Tasks_Bool_Exp>;
 };
 
 /** aggregated selection of "initiative_members" */
@@ -2305,11 +2277,13 @@ export type Initiative_Members_Bool_Exp = {
   _or?: Maybe<Array<Initiative_Members_Bool_Exp>>;
   contractor?: Maybe<Boolean_Comparison_Exp>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  donations?: Maybe<Initiative_Donations_Bool_Exp>;
   donator?: Maybe<Boolean_Comparison_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   initiative?: Maybe<Initiatives_Bool_Exp>;
   initiative_id?: Maybe<Uuid_Comparison_Exp>;
   initiator?: Maybe<Boolean_Comparison_Exp>;
+  tasks?: Maybe<Initiative_Tasks_Bool_Exp>;
   user?: Maybe<Users_Bool_Exp>;
   user_id?: Maybe<Uuid_Comparison_Exp>;
   volunteer?: Maybe<Boolean_Comparison_Exp>;
@@ -2330,11 +2304,13 @@ export type Initiative_Members_Inc_Input = {
 export type Initiative_Members_Insert_Input = {
   contractor?: Maybe<Scalars['Boolean']>;
   created_at?: Maybe<Scalars['timestamptz']>;
+  donations?: Maybe<Initiative_Donations_Arr_Rel_Insert_Input>;
   donator?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['Int']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   initiator?: Maybe<Scalars['Boolean']>;
+  tasks?: Maybe<Initiative_Tasks_Arr_Rel_Insert_Input>;
   user_id?: Maybe<Scalars['uuid']>;
   volunteer?: Maybe<Scalars['Boolean']>;
 };
@@ -2390,11 +2366,13 @@ export type Initiative_Members_On_Conflict = {
 export type Initiative_Members_Order_By = {
   contractor?: Maybe<Order_By>;
   created_at?: Maybe<Order_By>;
+  donations_aggregate?: Maybe<Initiative_Donations_Aggregate_Order_By>;
   donator?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   initiative?: Maybe<Initiatives_Order_By>;
   initiative_id?: Maybe<Order_By>;
   initiator?: Maybe<Order_By>;
+  tasks_aggregate?: Maybe<Initiative_Tasks_Aggregate_Order_By>;
   user?: Maybe<Users_Order_By>;
   user_id?: Maybe<Order_By>;
   volunteer?: Maybe<Order_By>;
@@ -3159,8 +3137,6 @@ export type Initiative_Posts = {
   comments_aggregate: Initiative_Comments_Aggregate;
   created_at: Scalars['timestamptz'];
   /** An array relationship */
-  donations: Array<Initiative_Donations>;
-  /** An array relationship */
   edits: Array<Initiative_Edits>;
   /** An array relationship */
   expenses: Array<Initiative_Expenses>;
@@ -3205,16 +3181,6 @@ export type Initiative_PostsComments_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Initiative_Comments_Order_By>>;
   where?: Maybe<Initiative_Comments_Bool_Exp>;
-};
-
-
-/** columns and relationships of "initiative_posts" */
-export type Initiative_PostsDonationsArgs = {
-  distinct_on?: Maybe<Array<Initiative_Donations_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Initiative_Donations_Order_By>>;
-  where?: Maybe<Initiative_Donations_Bool_Exp>;
 };
 
 
@@ -3346,7 +3312,6 @@ export type Initiative_Posts_Bool_Exp = {
   _or?: Maybe<Array<Initiative_Posts_Bool_Exp>>;
   comments?: Maybe<Initiative_Comments_Bool_Exp>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  donations?: Maybe<Initiative_Donations_Bool_Exp>;
   edits?: Maybe<Initiative_Edits_Bool_Exp>;
   expenses?: Maybe<Initiative_Expenses_Bool_Exp>;
   id?: Maybe<Bigint_Comparison_Exp>;
@@ -3381,7 +3346,6 @@ export type Initiative_Posts_Inc_Input = {
 export type Initiative_Posts_Insert_Input = {
   comments?: Maybe<Initiative_Comments_Arr_Rel_Insert_Input>;
   created_at?: Maybe<Scalars['timestamptz']>;
-  donations?: Maybe<Initiative_Donations_Arr_Rel_Insert_Input>;
   edits?: Maybe<Initiative_Edits_Arr_Rel_Insert_Input>;
   expenses?: Maybe<Initiative_Expenses_Arr_Rel_Insert_Input>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
@@ -3472,7 +3436,6 @@ export type Initiative_Posts_On_Conflict = {
 export type Initiative_Posts_Order_By = {
   comments_aggregate?: Maybe<Initiative_Comments_Aggregate_Order_By>;
   created_at?: Maybe<Order_By>;
-  donations_aggregate?: Maybe<Initiative_Donations_Aggregate_Order_By>;
   edits_aggregate?: Maybe<Initiative_Edits_Aggregate_Order_By>;
   expenses_aggregate?: Maybe<Initiative_Expenses_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
@@ -9239,31 +9202,15 @@ export type InitiativeByPkQueryVariables = Exact<{
 
 export type InitiativeByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined, members: Array<{ user_id?: any | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> } | null | undefined };
 
-export type LastEntriesQueryVariables = Exact<{
-  limit?: Maybe<Scalars['Int']>;
-  max_date?: Maybe<Scalars['timestamptz']>;
-  min_date?: Maybe<Scalars['timestamptz']>;
-  user_id: Scalars['uuid'];
+export type JoinMutationVariables = Exact<{
+  userId: Scalars['uuid'];
+  id: Scalars['uuid'];
+  sum?: Maybe<Scalars['numeric']>;
+  currency?: Maybe<Scalars['String']>;
 }>;
 
 
-export type LastEntriesQuery = { entry_visits: Array<{ visited_at?: any | null | undefined, entry?: { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined } | null | undefined }> };
-
-export type NearbyEntriesQueryVariables = Exact<{
-  location: Scalars['geometry'];
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  max_date?: Maybe<Scalars['timestamptz']>;
-  max_distance?: Maybe<Scalars['float8']>;
-  min_date?: Maybe<Scalars['timestamptz']>;
-  min_distance?: Maybe<Scalars['float8']>;
-  user_id?: Maybe<Scalars['uuid']>;
-  own?: Maybe<Scalars['Boolean']>;
-  type?: Maybe<Array<Scalars['String']> | Scalars['String']>;
-}>;
-
-
-export type NearbyEntriesQuery = { entries_nearby: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
+export type JoinMutation = { insert_initiative_members?: { affected_rows: number } | null | undefined };
 
 export type InitiativeCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
 
@@ -9312,6 +9259,32 @@ export type MyOrganizationListQueryVariables = Exact<{
 
 
 export type MyOrganizationListQuery = { orgs: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
+
+export type LastEntriesQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  user_id: Scalars['uuid'];
+}>;
+
+
+export type LastEntriesQuery = { entry_visits: Array<{ visited_at?: any | null | undefined, entry?: { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined } | null | undefined }> };
+
+export type NearbyEntriesQueryVariables = Exact<{
+  location: Scalars['geometry'];
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  max_distance?: Maybe<Scalars['float8']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  min_distance?: Maybe<Scalars['float8']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  own?: Maybe<Scalars['Boolean']>;
+  type?: Maybe<Array<Scalars['String']> | Scalars['String']>;
+}>;
+
+
+export type NearbyEntriesQuery = { entries_nearby: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
 
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {
@@ -10213,100 +10186,44 @@ export function useInitiativeByPkLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type InitiativeByPkQueryHookResult = ReturnType<typeof useInitiativeByPkQuery>;
 export type InitiativeByPkLazyQueryHookResult = ReturnType<typeof useInitiativeByPkLazyQuery>;
 export type InitiativeByPkQueryResult = Apollo.QueryResult<InitiativeByPkQuery, InitiativeByPkQueryVariables>;
-export const LastEntriesDocument = gql`
-    query LastEntries($limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $user_id: uuid!) {
-  entry_visits(
-    where: {_and: [{user_id: {_eq: $user_id}}, {visited_at: {_gt: $min_date}}, {visited_at: {_lte: $max_date}}]}
-    order_by: {visited_at: desc}
-    limit: $limit
+export const JoinDocument = gql`
+    mutation Join($userId: uuid!, $id: uuid!, $sum: numeric, $currency: String = "uah") {
+  insert_initiative_members(
+    objects: {initiative_id: $id, user_id: $userId, donations: {data: [{sum: $sum, currency: $currency}]}}
   ) {
-    visited_at
-    entry {
-      ...EntryCard
-    }
+    affected_rows
   }
 }
-    ${EntryCardFragmentDoc}`;
+    `;
+export type JoinMutationFn = Apollo.MutationFunction<JoinMutation, JoinMutationVariables>;
 
 /**
- * __useLastEntriesQuery__
+ * __useJoinMutation__
  *
- * To run a query within a React component, call `useLastEntriesQuery` and pass it any options that fit your needs.
- * When your component renders, `useLastEntriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
+ * To run a mutation, you first call `useJoinMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useJoinMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
  *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const { data, loading, error } = useLastEntriesQuery({
+ * const [joinMutation, { data, loading, error }] = useJoinMutation({
  *   variables: {
- *      limit: // value for 'limit'
- *      max_date: // value for 'max_date'
- *      min_date: // value for 'min_date'
- *      user_id: // value for 'user_id'
+ *      userId: // value for 'userId'
+ *      id: // value for 'id'
+ *      sum: // value for 'sum'
+ *      currency: // value for 'currency'
  *   },
  * });
  */
-export function useLastEntriesQuery(baseOptions: Apollo.QueryHookOptions<LastEntriesQuery, LastEntriesQueryVariables>) {
+export function useJoinMutation(baseOptions?: Apollo.MutationHookOptions<JoinMutation, JoinMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<LastEntriesQuery, LastEntriesQueryVariables>(LastEntriesDocument, options);
+        return Apollo.useMutation<JoinMutation, JoinMutationVariables>(JoinDocument, options);
       }
-export function useLastEntriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LastEntriesQuery, LastEntriesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<LastEntriesQuery, LastEntriesQueryVariables>(LastEntriesDocument, options);
-        }
-export type LastEntriesQueryHookResult = ReturnType<typeof useLastEntriesQuery>;
-export type LastEntriesLazyQueryHookResult = ReturnType<typeof useLastEntriesLazyQuery>;
-export type LastEntriesQueryResult = Apollo.QueryResult<LastEntriesQuery, LastEntriesQueryVariables>;
-export const NearbyEntriesDocument = gql`
-    query NearbyEntries($location: geometry!, $limit: Int = null, $offset: Int = 0, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false, $type: [String!] = ["organization", "initiative"]) {
-  entries_nearby(
-    offset: $offset
-    limit: $limit
-    where: {type: {_in: $type}}
-    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: null, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
-  ) {
-    ...EntryCard
-  }
-}
-    ${EntryCardFragmentDoc}`;
-
-/**
- * __useNearbyEntriesQuery__
- *
- * To run a query within a React component, call `useNearbyEntriesQuery` and pass it any options that fit your needs.
- * When your component renders, `useNearbyEntriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useNearbyEntriesQuery({
- *   variables: {
- *      location: // value for 'location'
- *      limit: // value for 'limit'
- *      offset: // value for 'offset'
- *      max_date: // value for 'max_date'
- *      max_distance: // value for 'max_distance'
- *      min_date: // value for 'min_date'
- *      min_distance: // value for 'min_distance'
- *      user_id: // value for 'user_id'
- *      own: // value for 'own'
- *      type: // value for 'type'
- *   },
- * });
- */
-export function useNearbyEntriesQuery(baseOptions: Apollo.QueryHookOptions<NearbyEntriesQuery, NearbyEntriesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<NearbyEntriesQuery, NearbyEntriesQueryVariables>(NearbyEntriesDocument, options);
-      }
-export function useNearbyEntriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NearbyEntriesQuery, NearbyEntriesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<NearbyEntriesQuery, NearbyEntriesQueryVariables>(NearbyEntriesDocument, options);
-        }
-export type NearbyEntriesQueryHookResult = ReturnType<typeof useNearbyEntriesQuery>;
-export type NearbyEntriesLazyQueryHookResult = ReturnType<typeof useNearbyEntriesLazyQuery>;
-export type NearbyEntriesQueryResult = Apollo.QueryResult<NearbyEntriesQuery, NearbyEntriesQueryVariables>;
+export type JoinMutationHookResult = ReturnType<typeof useJoinMutation>;
+export type JoinMutationResult = Apollo.MutationResult<JoinMutation>;
+export type JoinMutationOptions = Apollo.BaseMutationOptions<JoinMutation, JoinMutationVariables>;
 export const InitiativesNearbyListDocument = gql`
     query InitiativesNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
   initiatives_nearby(
@@ -10465,6 +10382,100 @@ export function useMyOrganizationListLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type MyOrganizationListQueryHookResult = ReturnType<typeof useMyOrganizationListQuery>;
 export type MyOrganizationListLazyQueryHookResult = ReturnType<typeof useMyOrganizationListLazyQuery>;
 export type MyOrganizationListQueryResult = Apollo.QueryResult<MyOrganizationListQuery, MyOrganizationListQueryVariables>;
+export const LastEntriesDocument = gql`
+    query LastEntries($limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $user_id: uuid!) {
+  entry_visits(
+    where: {_and: [{user_id: {_eq: $user_id}}, {visited_at: {_gt: $min_date}}, {visited_at: {_lte: $max_date}}]}
+    order_by: {visited_at: desc}
+    limit: $limit
+  ) {
+    visited_at
+    entry {
+      ...EntryCard
+    }
+  }
+}
+    ${EntryCardFragmentDoc}`;
+
+/**
+ * __useLastEntriesQuery__
+ *
+ * To run a query within a React component, call `useLastEntriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useLastEntriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useLastEntriesQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      max_date: // value for 'max_date'
+ *      min_date: // value for 'min_date'
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useLastEntriesQuery(baseOptions: Apollo.QueryHookOptions<LastEntriesQuery, LastEntriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<LastEntriesQuery, LastEntriesQueryVariables>(LastEntriesDocument, options);
+      }
+export function useLastEntriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<LastEntriesQuery, LastEntriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<LastEntriesQuery, LastEntriesQueryVariables>(LastEntriesDocument, options);
+        }
+export type LastEntriesQueryHookResult = ReturnType<typeof useLastEntriesQuery>;
+export type LastEntriesLazyQueryHookResult = ReturnType<typeof useLastEntriesLazyQuery>;
+export type LastEntriesQueryResult = Apollo.QueryResult<LastEntriesQuery, LastEntriesQueryVariables>;
+export const NearbyEntriesDocument = gql`
+    query NearbyEntries($location: geometry!, $limit: Int = null, $offset: Int = 0, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false, $type: [String!] = ["organization", "initiative"]) {
+  entries_nearby(
+    offset: $offset
+    limit: $limit
+    where: {type: {_in: $type}}
+    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: null, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
+  ) {
+    ...EntryCard
+  }
+}
+    ${EntryCardFragmentDoc}`;
+
+/**
+ * __useNearbyEntriesQuery__
+ *
+ * To run a query within a React component, call `useNearbyEntriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNearbyEntriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNearbyEntriesQuery({
+ *   variables: {
+ *      location: // value for 'location'
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *      max_date: // value for 'max_date'
+ *      max_distance: // value for 'max_distance'
+ *      min_date: // value for 'min_date'
+ *      min_distance: // value for 'min_distance'
+ *      user_id: // value for 'user_id'
+ *      own: // value for 'own'
+ *      type: // value for 'type'
+ *   },
+ * });
+ */
+export function useNearbyEntriesQuery(baseOptions: Apollo.QueryHookOptions<NearbyEntriesQuery, NearbyEntriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<NearbyEntriesQuery, NearbyEntriesQueryVariables>(NearbyEntriesDocument, options);
+      }
+export function useNearbyEntriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NearbyEntriesQuery, NearbyEntriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<NearbyEntriesQuery, NearbyEntriesQueryVariables>(NearbyEntriesDocument, options);
+        }
+export type NearbyEntriesQueryHookResult = ReturnType<typeof useNearbyEntriesQuery>;
+export type NearbyEntriesLazyQueryHookResult = ReturnType<typeof useNearbyEntriesLazyQuery>;
+export type NearbyEntriesQueryResult = Apollo.QueryResult<NearbyEntriesQuery, NearbyEntriesQueryVariables>;
 export type entriesKeySpecifier = ('created_at' | 'description' | 'geom' | 'id' | 'image' | 'members_count' | 'modified_at' | 'name' | 'type' | entriesKeySpecifier)[];
 export type entriesFieldPolicy = {
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10631,16 +10642,14 @@ export type initiative_comments_variance_fieldsFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	message_id?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_donationsKeySpecifier = ('expense' | 'expense_id' | 'id' | 'initiative' | 'initiative_id' | 'post' | 'post_id' | 'recurrent' | 'sum' | 'user' | 'user_id' | initiative_donationsKeySpecifier)[];
+export type initiative_donationsKeySpecifier = ('currency' | 'id' | 'initiative' | 'initiative_id' | 'recurrent' | 'status' | 'sum' | 'user' | 'user_id' | initiative_donationsKeySpecifier)[];
 export type initiative_donationsFieldPolicy = {
-	expense?: FieldPolicy<any> | FieldReadFunction<any>,
-	expense_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	currency?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
-	post?: FieldPolicy<any> | FieldReadFunction<any>,
-	post_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	recurrent?: FieldPolicy<any> | FieldReadFunction<any>,
+	status?: FieldPolicy<any> | FieldReadFunction<any>,
 	sum?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>
@@ -10671,11 +10680,10 @@ export type initiative_edits_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_expensesKeySpecifier = ('budget' | 'description' | 'donations' | 'id' | 'initiative' | 'initiative_id' | 'poll' | 'poll_id' | 'post' | 'post_id' | 'status' | 'user' | 'user_id' | initiative_expensesKeySpecifier)[];
+export type initiative_expensesKeySpecifier = ('budget' | 'description' | 'id' | 'initiative' | 'initiative_id' | 'poll' | 'poll_id' | 'post' | 'post_id' | 'status' | 'user' | 'user_id' | initiative_expensesKeySpecifier)[];
 export type initiative_expensesFieldPolicy = {
 	budget?: FieldPolicy<any> | FieldReadFunction<any>,
 	description?: FieldPolicy<any> | FieldReadFunction<any>,
-	donations?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10710,15 +10718,17 @@ export type initiative_info_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_membersKeySpecifier = ('contractor' | 'created_at' | 'donator' | 'id' | 'initiative' | 'initiative_id' | 'initiator' | 'user' | 'user_id' | 'volunteer' | initiative_membersKeySpecifier)[];
+export type initiative_membersKeySpecifier = ('contractor' | 'created_at' | 'donations' | 'donator' | 'id' | 'initiative' | 'initiative_id' | 'initiator' | 'tasks' | 'user' | 'user_id' | 'volunteer' | initiative_membersKeySpecifier)[];
 export type initiative_membersFieldPolicy = {
 	contractor?: FieldPolicy<any> | FieldReadFunction<any>,
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	donations?: FieldPolicy<any> | FieldReadFunction<any>,
 	donator?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiator?: FieldPolicy<any> | FieldReadFunction<any>,
+	tasks?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	volunteer?: FieldPolicy<any> | FieldReadFunction<any>
@@ -10837,12 +10847,11 @@ export type initiative_post_reactions_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_postsKeySpecifier = ('comments' | 'comments_aggregate' | 'created_at' | 'donations' | 'edits' | 'expenses' | 'id' | 'initiative' | 'initiative_id' | 'message' | 'modified_at' | 'projects' | 'reactions' | 'tasks' | 'thread' | 'thread_id' | 'type' | 'user' | 'user_id' | 'volunteers' | initiative_postsKeySpecifier)[];
+export type initiative_postsKeySpecifier = ('comments' | 'comments_aggregate' | 'created_at' | 'edits' | 'expenses' | 'id' | 'initiative' | 'initiative_id' | 'message' | 'modified_at' | 'projects' | 'reactions' | 'tasks' | 'thread' | 'thread_id' | 'type' | 'user' | 'user_id' | 'volunteers' | initiative_postsKeySpecifier)[];
 export type initiative_postsFieldPolicy = {
 	comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	comments_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
-	donations?: FieldPolicy<any> | FieldReadFunction<any>,
 	edits?: FieldPolicy<any> | FieldReadFunction<any>,
 	expenses?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,

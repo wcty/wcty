@@ -1,0 +1,22 @@
+mutation Join(
+    $userId: uuid!
+    $id: uuid!
+    $sum: numeric
+    $currency: String="uah"
+  ) {
+  insert_initiative_members(objects:{
+    initiative_id: $id
+    user_id: $userId
+    donations: {
+      data:[
+        {
+    			sum: $sum,
+          currency: $currency
+  			}
+      ]
+    }
+  }){
+    affected_rows
+  }
+}
+

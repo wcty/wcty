@@ -11,7 +11,7 @@ import Join, { LoginToJoin } from "./Join";
 function Desktop() {
   const { id } = useParams<{id:string}>();
   const user = useUser()
-  const { data } = useInitiativeByPkQuery({variables:{id, user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
+  const { data } = useInitiativeByPkQuery({variables:{id, user_id:user?.id}, fetchPolicy:"cache-first"});
   const isMember = !!data?.initiative?.members?.length
 
   return(

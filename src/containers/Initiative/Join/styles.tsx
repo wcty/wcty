@@ -12,4 +12,9 @@ Container = styled.div`
   border-radius: 3px;
   min-height: 200px;
   ${p=>p.theme.shadow}
+  >div{
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0;
+  }
 `

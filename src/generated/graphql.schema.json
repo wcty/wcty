@@ -9134,24 +9134,12 @@
         "description": "columns and relationships of \"initiative_donations\"",
         "fields": [
           {
-            "name": "expense",
-            "description": "An object relationship",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "initiative_expenses",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "expense_id",
+            "name": "currency",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -9206,38 +9194,6 @@
             "deprecationReason": null
           },
           {
-            "name": "post",
-            "description": "An object relationship",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "initiative_posts",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "bigint",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "recurrent",
             "description": null,
             "args": [],
@@ -9245,6 +9201,22 @@
               "kind": "SCALAR",
               "name": "Boolean",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -9488,31 +9460,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -9599,23 +9547,11 @@
             "deprecationReason": null
           },
           {
-            "name": "expense",
+            "name": "currency",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "initiative_expenses_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "expense_id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "Int_comparison_exp",
+              "name": "String_comparison_exp",
               "ofType": null
             },
             "defaultValue": null,
@@ -9659,35 +9595,23 @@
             "deprecationReason": null
           },
           {
-            "name": "post",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_posts_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "bigint_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "recurrent",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "Boolean_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
               "ofType": null
             },
             "defaultValue": null,
@@ -9748,12 +9672,6 @@
             "description": "unique or primary key constraint",
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "unq_initiative_donations_post_id",
-            "description": "unique or primary key constraint",
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -9765,35 +9683,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
               "ofType": null
             },
             "defaultValue": null,
@@ -9824,23 +9718,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_expenses_obj_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "expense_id",
+            "name": "currency",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -9872,35 +9754,23 @@
             "deprecationReason": null
           },
           {
-            "name": "post",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_posts_obj_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "recurrent",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -9943,7 +9813,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
+            "name": "currency",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -9979,7 +9849,7 @@
             "deprecationReason": null
           },
           {
-            "name": "post_id",
+            "name": "status",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10026,7 +9896,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
+            "name": "currency",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10062,7 +9932,7 @@
             "deprecationReason": null
           },
           {
-            "name": "post_id",
+            "name": "status",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10223,19 +10093,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_expenses_order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "expense_id",
+            "name": "currency",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10283,19 +10141,7 @@
             "deprecationReason": null
           },
           {
-            "name": "post",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_posts_order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
+            "name": "recurrent",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10307,7 +10153,7 @@
             "deprecationReason": null
           },
           {
-            "name": "recurrent",
+            "name": "status",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10395,7 +10241,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "expense_id",
+            "name": "currency",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -10413,13 +10259,13 @@
             "deprecationReason": null
           },
           {
-            "name": "post_id",
+            "name": "recurrent",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "recurrent",
+            "name": "status",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -10446,11 +10292,11 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
+            "name": "currency",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -10482,11 +10328,11 @@
             "deprecationReason": null
           },
           {
-            "name": "post_id",
+            "name": "recurrent",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "bigint",
+              "name": "Boolean",
               "ofType": null
             },
             "defaultValue": null,
@@ -10494,11 +10340,11 @@
             "deprecationReason": null
           },
           {
-            "name": "recurrent",
+            "name": "status",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "Boolean",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -10541,31 +10387,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10600,31 +10422,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10659,31 +10457,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10718,31 +10492,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10779,7 +10529,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "expense_id",
+            "name": "currency",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -10797,13 +10547,13 @@
             "deprecationReason": null
           },
           {
-            "name": "post_id",
+            "name": "recurrent",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "recurrent",
+            "name": "status",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -10830,31 +10580,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10889,31 +10615,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -10948,31 +10650,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "expense_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "post_id",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -13082,107 +12760,6 @@
             "deprecationReason": null
           },
           {
-            "name": "donations",
-            "description": "An array relationship",
-            "args": [
-              {
-                "name": "distinct_on",
-                "description": "distinct select on columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "initiative_donations_select_column",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "limit",
-                "description": "limit the number of rows returned",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "order_by",
-                "description": "sort the rows by one or more columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "initiative_donations_order_by",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "where",
-                "description": "filter the rows returned",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "initiative_donations_bool_exp",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "initiative_donations",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
             "description": null,
             "args": [],
@@ -13660,18 +13237,6 @@
             "deprecationReason": null
           },
           {
-            "name": "donations",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_donations_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
             "description": null,
             "type": {
@@ -13902,18 +13467,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "donations",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_donations_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null,
@@ -14288,45 +13841,6 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "initiative_expenses_obj_rel_insert_input",
-        "description": "input type for inserting object relation for remote table \"initiative_expenses\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "data",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "initiative_expenses_insert_input",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "on_conflict",
-            "description": "on conflict condition",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_expenses_on_conflict",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "initiative_expenses_on_conflict",
         "description": "on conflict condition type for table \"initiative_expenses\"",
         "fields": null,
@@ -14412,18 +13926,6 @@
             "type": {
               "kind": "ENUM",
               "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "donations_aggregate",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_donations_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null,
@@ -16972,6 +16474,107 @@
             "deprecationReason": null
           },
           {
+            "name": "donations",
+            "description": "An array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "initiative_donations_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "initiative_donations_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "initiative_donations_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "initiative_donations",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "donator",
             "description": null,
             "args": [],
@@ -17039,6 +16642,107 @@
               "kind": "SCALAR",
               "name": "Boolean",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tasks",
+            "description": "An array relationship",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "initiative_tasks_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "initiative_tasks_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "initiative_tasks_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "initiative_tasks",
+                    "ofType": null
+                  }
+                }
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -17631,6 +17335,18 @@
             "deprecationReason": null
           },
           {
+            "name": "donations",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "initiative_donations_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "donator",
             "description": null,
             "type": {
@@ -17684,6 +17400,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "Boolean_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tasks",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "initiative_tasks_bool_exp",
               "ofType": null
             },
             "defaultValue": null,
@@ -17802,6 +17530,18 @@
             "deprecationReason": null
           },
           {
+            "name": "donations",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "initiative_donations_arr_rel_insert_input",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "donator",
             "description": null,
             "type": {
@@ -17855,6 +17595,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tasks",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "initiative_tasks_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null,
@@ -18271,6 +18023,18 @@
             "deprecationReason": null
           },
           {
+            "name": "donations_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "initiative_donations_aggregate_order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "donator",
             "description": null,
             "type": {
@@ -18324,6 +18088,18 @@
             "type": {
               "kind": "ENUM",
               "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "tasks_aggregate",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "initiative_tasks_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null,
@@ -23382,107 +23158,6 @@
             "deprecationReason": null
           },
           {
-            "name": "donations",
-            "description": "An array relationship",
-            "args": [
-              {
-                "name": "distinct_on",
-                "description": "distinct select on columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "ENUM",
-                      "name": "initiative_donations_select_column",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "limit",
-                "description": "limit the number of rows returned",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "offset",
-                "description": "skip the first n rows. Use only with order_by",
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "order_by",
-                "description": "sort the rows by one or more columns",
-                "type": {
-                  "kind": "LIST",
-                  "name": null,
-                  "ofType": {
-                    "kind": "NON_NULL",
-                    "name": null,
-                    "ofType": {
-                      "kind": "INPUT_OBJECT",
-                      "name": "initiative_donations_order_by",
-                      "ofType": null
-                    }
-                  }
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
-                "name": "where",
-                "description": "filter the rows returned",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "initiative_donations_bool_exp",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              }
-            ],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "initiative_donations",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "edits",
             "description": "An array relationship",
             "args": [
@@ -24812,18 +24487,6 @@
             "deprecationReason": null
           },
           {
-            "name": "donations",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_donations_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "edits",
             "description": null,
             "type": {
@@ -25096,18 +24759,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "timestamptz",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "donations",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_donations_arr_rel_insert_input",
               "ofType": null
             },
             "defaultValue": null,
@@ -25892,18 +25543,6 @@
             "type": {
               "kind": "ENUM",
               "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "donations_aggregate",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "initiative_donations_aggregate_order_by",
               "ofType": null
             },
             "defaultValue": null,

@@ -67,7 +67,13 @@ export default function Sidepanel (){
             </UserIconCell>
             {tabs(!!user).map((v,key)=>
               <IconCell {...{key,...props(v.key),
-                ...(v.key==='initiativeMap'&&{onClick:()=>{setOpen(false);setSelected(null);history.push('/')}})
+                ...(v.key==='initiativeMap'&&{ 
+                  onClick:()=>{
+                    setOpen(false);
+                    setSelected(null);
+                    history.push('/')
+                  }
+                })
               }}>
                   {v.icon}
               </IconCell>

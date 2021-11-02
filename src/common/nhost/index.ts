@@ -9,7 +9,7 @@ export const endpoint =
 
 export const { auth, storage } = createClient({
   baseURL: endpoint,
-  useCookies: true,
+  useCookies: false,
   autoLogin: true
 });
 

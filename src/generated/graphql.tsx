@@ -9222,6 +9222,49 @@ export type SearchResultsQueryVariables = Exact<{
 
 export type SearchResultsQuery = { entries: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
 
+export type FeedQueryVariables = Exact<{
+  id?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type FeedQuery = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
+
+export type FeedFieldsFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
+
+export type InitiativeByPkQueryVariables = Exact<{
+  id: Scalars['uuid'];
+  user_id?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type InitiativeByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined, members: Array<{ user_id?: any | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> } | null | undefined };
+
+export type LastEntriesQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  user_id: Scalars['uuid'];
+}>;
+
+
+export type LastEntriesQuery = { entry_visits: Array<{ visited_at?: any | null | undefined, entry?: { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined } | null | undefined }> };
+
+export type NearbyEntriesQueryVariables = Exact<{
+  location: Scalars['geometry'];
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  max_date?: Maybe<Scalars['timestamptz']>;
+  max_distance?: Maybe<Scalars['float8']>;
+  min_date?: Maybe<Scalars['timestamptz']>;
+  min_distance?: Maybe<Scalars['float8']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  own?: Maybe<Scalars['Boolean']>;
+  type?: Maybe<Array<Scalars['String']> | Scalars['String']>;
+}>;
+
+
+export type NearbyEntriesQuery = { entries_nearby: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
+
 export type InitiativeCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
 
 export type OrganizationCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
@@ -9270,49 +9313,6 @@ export type MyOrganizationListQueryVariables = Exact<{
 
 export type MyOrganizationListQuery = { orgs: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
 
-export type FeedQueryVariables = Exact<{
-  id?: Maybe<Scalars['uuid']>;
-}>;
-
-
-export type FeedQuery = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
-
-export type FeedFieldsFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
-
-export type InitiativeByPkQueryVariables = Exact<{
-  id: Scalars['uuid'];
-  user_id?: Maybe<Scalars['uuid']>;
-}>;
-
-
-export type InitiativeByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined, members: Array<{ user_id?: any | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> } | null | undefined };
-
-export type LastEntriesQueryVariables = Exact<{
-  limit?: Maybe<Scalars['Int']>;
-  max_date?: Maybe<Scalars['timestamptz']>;
-  min_date?: Maybe<Scalars['timestamptz']>;
-  user_id: Scalars['uuid'];
-}>;
-
-
-export type LastEntriesQuery = { entry_visits: Array<{ visited_at?: any | null | undefined, entry?: { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined } | null | undefined }> };
-
-export type NearbyEntriesQueryVariables = Exact<{
-  location: Scalars['geometry'];
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  max_date?: Maybe<Scalars['timestamptz']>;
-  max_distance?: Maybe<Scalars['float8']>;
-  min_date?: Maybe<Scalars['timestamptz']>;
-  min_distance?: Maybe<Scalars['float8']>;
-  user_id?: Maybe<Scalars['uuid']>;
-  own?: Maybe<Scalars['Boolean']>;
-  type?: Maybe<Array<Scalars['String']> | Scalars['String']>;
-}>;
-
-
-export type NearbyEntriesQuery = { entries_nearby: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
-
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {
   geom
@@ -9338,6 +9338,24 @@ export const PostFragmentDoc = gql`
   user {
     display_name
     avatar_url
+  }
+}
+    `;
+export const FeedFieldsFragmentDoc = gql`
+    fragment FeedFields on initiative_posts {
+  id
+  user {
+    avatar_url
+    display_name
+  }
+  created_at
+  modified_at
+  message
+  type
+  comments_aggregate {
+    aggregate {
+      count
+    }
   }
 }
     `;
@@ -9372,24 +9390,6 @@ export const EntryCardFragmentDoc = gql`
   type
   members_count
   modified_at
-}
-    `;
-export const FeedFieldsFragmentDoc = gql`
-    fragment FeedFields on initiative_posts {
-  id
-  user {
-    avatar_url
-    display_name
-  }
-  created_at
-  modified_at
-  message
-  type
-  comments_aggregate {
-    aggregate {
-      count
-    }
-  }
 }
     `;
 export const UserDocument = gql`
@@ -10121,164 +10121,6 @@ export function useSearchResultsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type SearchResultsQueryHookResult = ReturnType<typeof useSearchResultsQuery>;
 export type SearchResultsLazyQueryHookResult = ReturnType<typeof useSearchResultsLazyQuery>;
 export type SearchResultsQueryResult = Apollo.QueryResult<SearchResultsQuery, SearchResultsQueryVariables>;
-export const InitiativesNearbyListDocument = gql`
-    query InitiativesNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
-  initiatives_nearby(
-    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
-  ) {
-    ...InitiativeCard
-  }
-}
-    ${InitiativeCardFragmentDoc}`;
-
-/**
- * __useInitiativesNearbyListQuery__
- *
- * To run a query within a React component, call `useInitiativesNearbyListQuery` and pass it any options that fit your needs.
- * When your component renders, `useInitiativesNearbyListQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useInitiativesNearbyListQuery({
- *   variables: {
- *      location: // value for 'location'
- *      limit: // value for 'limit'
- *      max_date: // value for 'max_date'
- *      max_distance: // value for 'max_distance'
- *      min_date: // value for 'min_date'
- *      min_distance: // value for 'min_distance'
- *      user_id: // value for 'user_id'
- *      own: // value for 'own'
- *   },
- * });
- */
-export function useInitiativesNearbyListQuery(baseOptions: Apollo.QueryHookOptions<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>(InitiativesNearbyListDocument, options);
-      }
-export function useInitiativesNearbyListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>(InitiativesNearbyListDocument, options);
-        }
-export type InitiativesNearbyListQueryHookResult = ReturnType<typeof useInitiativesNearbyListQuery>;
-export type InitiativesNearbyListLazyQueryHookResult = ReturnType<typeof useInitiativesNearbyListLazyQuery>;
-export type InitiativesNearbyListQueryResult = Apollo.QueryResult<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>;
-export const MyInitiativeListDocument = gql`
-    query MyInitiativeList($user_id: uuid!) {
-  initiatives(where: {members: {user_id: {_eq: $user_id}}}) {
-    ...InitiativeCard
-  }
-}
-    ${InitiativeCardFragmentDoc}`;
-
-/**
- * __useMyInitiativeListQuery__
- *
- * To run a query within a React component, call `useMyInitiativeListQuery` and pass it any options that fit your needs.
- * When your component renders, `useMyInitiativeListQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMyInitiativeListQuery({
- *   variables: {
- *      user_id: // value for 'user_id'
- *   },
- * });
- */
-export function useMyInitiativeListQuery(baseOptions: Apollo.QueryHookOptions<MyInitiativeListQuery, MyInitiativeListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MyInitiativeListQuery, MyInitiativeListQueryVariables>(MyInitiativeListDocument, options);
-      }
-export function useMyInitiativeListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyInitiativeListQuery, MyInitiativeListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MyInitiativeListQuery, MyInitiativeListQueryVariables>(MyInitiativeListDocument, options);
-        }
-export type MyInitiativeListQueryHookResult = ReturnType<typeof useMyInitiativeListQuery>;
-export type MyInitiativeListLazyQueryHookResult = ReturnType<typeof useMyInitiativeListLazyQuery>;
-export type MyInitiativeListQueryResult = Apollo.QueryResult<MyInitiativeListQuery, MyInitiativeListQueryVariables>;
-export const OrganizationNearbyListDocument = gql`
-    query OrganizationNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
-  orgs_nearby(
-    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
-  ) {
-    ...OrganizationCard
-  }
-}
-    ${OrganizationCardFragmentDoc}`;
-
-/**
- * __useOrganizationNearbyListQuery__
- *
- * To run a query within a React component, call `useOrganizationNearbyListQuery` and pass it any options that fit your needs.
- * When your component renders, `useOrganizationNearbyListQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useOrganizationNearbyListQuery({
- *   variables: {
- *      location: // value for 'location'
- *      limit: // value for 'limit'
- *      max_date: // value for 'max_date'
- *      max_distance: // value for 'max_distance'
- *      min_date: // value for 'min_date'
- *      min_distance: // value for 'min_distance'
- *      user_id: // value for 'user_id'
- *      own: // value for 'own'
- *   },
- * });
- */
-export function useOrganizationNearbyListQuery(baseOptions: Apollo.QueryHookOptions<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>(OrganizationNearbyListDocument, options);
-      }
-export function useOrganizationNearbyListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>(OrganizationNearbyListDocument, options);
-        }
-export type OrganizationNearbyListQueryHookResult = ReturnType<typeof useOrganizationNearbyListQuery>;
-export type OrganizationNearbyListLazyQueryHookResult = ReturnType<typeof useOrganizationNearbyListLazyQuery>;
-export type OrganizationNearbyListQueryResult = Apollo.QueryResult<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>;
-export const MyOrganizationListDocument = gql`
-    query MyOrganizationList($user_id: uuid!) {
-  orgs(where: {members: {user_id: {_eq: $user_id}}}) {
-    ...OrganizationCard
-  }
-}
-    ${OrganizationCardFragmentDoc}`;
-
-/**
- * __useMyOrganizationListQuery__
- *
- * To run a query within a React component, call `useMyOrganizationListQuery` and pass it any options that fit your needs.
- * When your component renders, `useMyOrganizationListQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMyOrganizationListQuery({
- *   variables: {
- *      user_id: // value for 'user_id'
- *   },
- * });
- */
-export function useMyOrganizationListQuery(baseOptions: Apollo.QueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
-      }
-export function useMyOrganizationListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
-        }
-export type MyOrganizationListQueryHookResult = ReturnType<typeof useMyOrganizationListQuery>;
-export type MyOrganizationListLazyQueryHookResult = ReturnType<typeof useMyOrganizationListLazyQuery>;
-export type MyOrganizationListQueryResult = Apollo.QueryResult<MyOrganizationListQuery, MyOrganizationListQueryVariables>;
 export const FeedDocument = gql`
     query Feed($id: uuid) {
   posts: initiative_posts(where: {thread: {initiative: {id: {_eq: $id}}}}) {
@@ -10465,6 +10307,164 @@ export function useNearbyEntriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type NearbyEntriesQueryHookResult = ReturnType<typeof useNearbyEntriesQuery>;
 export type NearbyEntriesLazyQueryHookResult = ReturnType<typeof useNearbyEntriesLazyQuery>;
 export type NearbyEntriesQueryResult = Apollo.QueryResult<NearbyEntriesQuery, NearbyEntriesQueryVariables>;
+export const InitiativesNearbyListDocument = gql`
+    query InitiativesNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
+  initiatives_nearby(
+    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
+  ) {
+    ...InitiativeCard
+  }
+}
+    ${InitiativeCardFragmentDoc}`;
+
+/**
+ * __useInitiativesNearbyListQuery__
+ *
+ * To run a query within a React component, call `useInitiativesNearbyListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInitiativesNearbyListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInitiativesNearbyListQuery({
+ *   variables: {
+ *      location: // value for 'location'
+ *      limit: // value for 'limit'
+ *      max_date: // value for 'max_date'
+ *      max_distance: // value for 'max_distance'
+ *      min_date: // value for 'min_date'
+ *      min_distance: // value for 'min_distance'
+ *      user_id: // value for 'user_id'
+ *      own: // value for 'own'
+ *   },
+ * });
+ */
+export function useInitiativesNearbyListQuery(baseOptions: Apollo.QueryHookOptions<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>(InitiativesNearbyListDocument, options);
+      }
+export function useInitiativesNearbyListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>(InitiativesNearbyListDocument, options);
+        }
+export type InitiativesNearbyListQueryHookResult = ReturnType<typeof useInitiativesNearbyListQuery>;
+export type InitiativesNearbyListLazyQueryHookResult = ReturnType<typeof useInitiativesNearbyListLazyQuery>;
+export type InitiativesNearbyListQueryResult = Apollo.QueryResult<InitiativesNearbyListQuery, InitiativesNearbyListQueryVariables>;
+export const MyInitiativeListDocument = gql`
+    query MyInitiativeList($user_id: uuid!) {
+  initiatives(where: {members: {user_id: {_eq: $user_id}}}) {
+    ...InitiativeCard
+  }
+}
+    ${InitiativeCardFragmentDoc}`;
+
+/**
+ * __useMyInitiativeListQuery__
+ *
+ * To run a query within a React component, call `useMyInitiativeListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMyInitiativeListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMyInitiativeListQuery({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useMyInitiativeListQuery(baseOptions: Apollo.QueryHookOptions<MyInitiativeListQuery, MyInitiativeListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MyInitiativeListQuery, MyInitiativeListQueryVariables>(MyInitiativeListDocument, options);
+      }
+export function useMyInitiativeListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyInitiativeListQuery, MyInitiativeListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MyInitiativeListQuery, MyInitiativeListQueryVariables>(MyInitiativeListDocument, options);
+        }
+export type MyInitiativeListQueryHookResult = ReturnType<typeof useMyInitiativeListQuery>;
+export type MyInitiativeListLazyQueryHookResult = ReturnType<typeof useMyInitiativeListLazyQuery>;
+export type MyInitiativeListQueryResult = Apollo.QueryResult<MyInitiativeListQuery, MyInitiativeListQueryVariables>;
+export const OrganizationNearbyListDocument = gql`
+    query OrganizationNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
+  orgs_nearby(
+    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
+  ) {
+    ...OrganizationCard
+  }
+}
+    ${OrganizationCardFragmentDoc}`;
+
+/**
+ * __useOrganizationNearbyListQuery__
+ *
+ * To run a query within a React component, call `useOrganizationNearbyListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOrganizationNearbyListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOrganizationNearbyListQuery({
+ *   variables: {
+ *      location: // value for 'location'
+ *      limit: // value for 'limit'
+ *      max_date: // value for 'max_date'
+ *      max_distance: // value for 'max_distance'
+ *      min_date: // value for 'min_date'
+ *      min_distance: // value for 'min_distance'
+ *      user_id: // value for 'user_id'
+ *      own: // value for 'own'
+ *   },
+ * });
+ */
+export function useOrganizationNearbyListQuery(baseOptions: Apollo.QueryHookOptions<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>(OrganizationNearbyListDocument, options);
+      }
+export function useOrganizationNearbyListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>(OrganizationNearbyListDocument, options);
+        }
+export type OrganizationNearbyListQueryHookResult = ReturnType<typeof useOrganizationNearbyListQuery>;
+export type OrganizationNearbyListLazyQueryHookResult = ReturnType<typeof useOrganizationNearbyListLazyQuery>;
+export type OrganizationNearbyListQueryResult = Apollo.QueryResult<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>;
+export const MyOrganizationListDocument = gql`
+    query MyOrganizationList($user_id: uuid!) {
+  orgs(where: {members: {user_id: {_eq: $user_id}}}) {
+    ...OrganizationCard
+  }
+}
+    ${OrganizationCardFragmentDoc}`;
+
+/**
+ * __useMyOrganizationListQuery__
+ *
+ * To run a query within a React component, call `useMyOrganizationListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMyOrganizationListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMyOrganizationListQuery({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useMyOrganizationListQuery(baseOptions: Apollo.QueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
+      }
+export function useMyOrganizationListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
+        }
+export type MyOrganizationListQueryHookResult = ReturnType<typeof useMyOrganizationListQuery>;
+export type MyOrganizationListLazyQueryHookResult = ReturnType<typeof useMyOrganizationListLazyQuery>;
+export type MyOrganizationListQueryResult = Apollo.QueryResult<MyOrganizationListQuery, MyOrganizationListQueryVariables>;
 export type entriesKeySpecifier = ('created_at' | 'description' | 'geom' | 'id' | 'image' | 'members_count' | 'modified_at' | 'name' | 'type' | entriesKeySpecifier)[];
 export type entriesFieldPolicy = {
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,

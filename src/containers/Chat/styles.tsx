@@ -87,9 +87,18 @@ MyMessage = styled.div`
     border: 1px solid #F7F9FB;
     box-sizing: border-box;
     border-radius: 15px;
+    margin: 5px;
 `,
 
 CompanionMessage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    max-width: 400px;
+    background: #FFFFFF;
+    border-radius: 3px 15px 15px 3px;
+    margin: 5px 0 5px 30px;
 `,
 
 

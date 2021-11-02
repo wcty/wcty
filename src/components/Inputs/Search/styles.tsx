@@ -69,8 +69,8 @@ export const Container = styled.div`
 SearchInput = styled.input`
     height: 100%;
     width: 100%;
-    padding-left: 5px;
-    padding-right: 5px;
+    /* padding-left: 5px;
+    padding-right: 5px; */
     background-color: white;
     border-radius: 3px;
     border: none;

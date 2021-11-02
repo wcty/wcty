@@ -59,6 +59,7 @@ function Chat({}: IChatProps) {
                         </MyMessage>
                     </MyMessageWrapper>
                     <CompanionMessageWrapper>
+                        <Avatar/>
                         <CompanionMessage>
                                 Доброго дня!
                         </CompanionMessage>
@@ -71,6 +72,11 @@ function Chat({}: IChatProps) {
                             Підскажіть, будь ласка, коли чекати правки?
                         </CompanionMessage>
                     </CompanionMessageWrapper>
+                    <MyMessageWrapper>
+                        <MyMessage>
+                        Супер. Бачу листа. Макет буде готовий зранку.
+                        </MyMessage>
+                    </MyMessageWrapper>
                 </ChatMessages>
 
                 <CreateMessage>

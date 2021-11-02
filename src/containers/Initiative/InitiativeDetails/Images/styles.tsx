@@ -1,7 +1,10 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 
 export const Container = styled.div`
-  padding: 1rem 2rem;
+  padding: ${p=>p.theme.layout==='mobile'?
+    css`1rem 2rem`:
+    css`1rem 0rem`
+  };
   border-top: 1px solid #000000;
   border-bottom: 1px solid #000000;
   >span{

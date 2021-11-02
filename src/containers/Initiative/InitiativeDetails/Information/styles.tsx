@@ -1,9 +1,9 @@
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 
 export const
 Block = styled.div`
   display: flex;
-  padding: 1rem 2rem;
+  padding: ${p=>p.theme.layout==='mobile'?css`1rem 2rem`:css`1rem 0rem`};
   flex-direction: column;
   &:last-child{
     margin-bottom: 1rem;

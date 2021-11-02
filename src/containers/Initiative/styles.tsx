@@ -6,7 +6,7 @@ export const Container = {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    overflow: scroll;
+    overflow-x: visible;
   `,
   Mobile: styled.div`
     width: 100%;
@@ -15,32 +15,25 @@ export const Container = {
     position: relative;
     background-color: ${p=>p.theme.colors.primary};
     overflow: scroll;
-    >img:first-child{
-      object-fit: cover;
-      width: 100%;
-      height: 148px;
-    }
   `,
 },
 
-Header = styled.div`
-    width: 100%;
-    
-`,
-
-Body = styled.div`
+Body = {
+  Desktop: styled.div`
     width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-`,
+  `,
+  Mobile: styled.div`
+    width: 100%;
+  `,
+},
 
 RightColumn = styled.div`
-    width: 552px;
-
+    flex: 1 1 auto;
+    padding-left: 2rem;
 `,
 
 LeftColumn = styled.div`
-    width: 500px
+    flex: 0 0 400px
 `
 

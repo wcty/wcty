@@ -1,4 +1,4 @@
-import { useI18n, useUser } from "common";
+import { useI18n, useLayout, useUser } from "common";
 import { useInitiativeByPkQuery } from "generated";
 import { useParams } from "react-router-dom";
 import { Container, Grid, Img } from "./styles";
@@ -9,14 +9,16 @@ export function Images() {
   const user = useUser()
   const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()
+  const layout = useLayout()
 
-  return data?.initiative?.image ? <Container>
-    <span>
-      <span><MediaIcon/>{i18n('photos')}</span>
-      <span>{i18n('show_all')}</span>
-    </span>
-    <Grid>
-      <Img src={data.initiative.image} alt=""/>
-    </Grid>
-  </Container>: null
+  return data?.initiative?.image ? 
+    <Container>
+      <span>
+        <span><MediaIcon/>{i18n('photos')}</span>
+        <span>{i18n('show_all')}</span>
+      </span>
+      <Grid>
+        <Img src={data.initiative.image} alt=""/>
+      </Grid>
+    </Container>: null
 }

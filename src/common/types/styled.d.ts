@@ -3,5 +3,7 @@ import { theme } from '../style/theme'
 type Theme = typeof theme
 
 declare module "styled-components/macro" {
-  export interface DefaultTheme extends Theme {}
+  export interface DefaultTheme extends Theme {
+    layout: 'mobile'|'desktop'
+  }
 }

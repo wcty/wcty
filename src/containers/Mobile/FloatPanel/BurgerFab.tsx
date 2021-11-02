@@ -1,7 +1,7 @@
 import { Fab } from "./styles";
 import { ReactComponent as Burger } from 'assets/icons/burger.svg'
 import { useRecoilState } from "recoil";
-import Sidebar from "../Sidepanel";
+import Sidebar from "containers/Sidepanel";
 
 export default function BurgerFab(){
   

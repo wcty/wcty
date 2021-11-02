@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 CheckedChannels = styled.span`
     color: ${props => props.theme.colors.label};
-    padding: 15px 0;
+    padding: 15px 1.5rem;
 `,
 
 Footer = styled.div`

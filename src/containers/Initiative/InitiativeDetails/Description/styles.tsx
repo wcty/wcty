@@ -3,7 +3,8 @@ import { animated, Interpolation } from 'react-spring';
 import styled, { css } from 'styled-components/macro';
 
 export const
-InitiativeDescription = styled.div<{open:boolean, desktop:boolean}>`
+InitiativeDescription = styled.div<{open:boolean, layout:string}>`
+  margin-top: 1rem;
   flex: 1 1 auto;
   line-height: 40px;
   display: flex;
@@ -13,7 +14,7 @@ InitiativeDescription = styled.div<{open:boolean, desktop:boolean}>`
   padding-bottom: ${({open}) => open ? '2rem' : '0rem'};
   border-bottom:  ${({open}) => open ? css`1px solid rgba(0,0,0,1)` : css`1px solid rgba(0,0,0,0)`};
   >span{
-    ${p=>p.desktop ? 
+    ${p=>p.layout==='desktop' ? 
       css`display: none;`:
       css<{open:boolean}>`
         padding: 0rem 2rem;
@@ -40,7 +41,7 @@ InitiativeDescription = styled.div<{open:boolean, desktop:boolean}>`
     }
   }
   >div{
-    padding: 0rem 2rem;
+    padding: ${p=>p.layout==='mobile'? css`0rem 2rem`: css`0rem 0rem`};
     position: relative;
     max-height: ${p=>p.open ? css`600px` : css`0px`};
     transition: max-height 0.5s, padding 0.5s;
@@ -50,46 +51,61 @@ InitiativeDescription = styled.div<{open:boolean, desktop:boolean}>`
   }
 `,
 
-CircleText = styled(animated.div)`
+CircleText = styled.div`
   ${p=>p.theme.font.body.semibold.t3}
   color: black;
   position: absolute;
   top:0;
   left:0;
   width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-bottom:100%;
+  height: 0;
+  >div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `,
 
 Gauge = styled.div.attrs((p:{
-  percent: Interpolation<number, number>;
+  percent: Interpolation<number, number>,
+  radius: number
 })=>({
   percent:p.percent,
+  radius:p.radius,
   children:
     <>
-      <svg width={86} height={86}>
-        <circle cx={43} cy={43} r={35} fill='none' stroke='#D2BEA7' strokeWidth={8}/>
+      <svg width={(p.radius+8)*2} height={(p.radius+8)*2}>
+        <circle cx={p.radius+8} cy={p.radius+8} r={p.radius} fill='none' stroke='#D2BEA7' strokeWidth={8}/>
         <animated.circle 
-          strokeDasharray={219} 
-          strokeDashoffset={p.percent.to(x => (1 - x) * 219 )} 
-          cx={43} 
-          cy={43} 
-          r={35} 
+          strokeDasharray={2*Math.PI*p.radius} 
+          strokeDashoffset={p.percent.to(x => (1 - x) * 2*Math.PI*p.radius )} 
+          cx={p.radius+8} 
+          cy={p.radius+8} 
+          r={p.radius} 
           fill='none' 
           strokeLinecap="round"
           strokeLinejoin="round"
           stroke='#000000' 
           strokeWidth={8}/>
       </svg>
-      <CircleText>{p.percent.to(x => (x*100).toFixed(0)+'%')}</CircleText>
+      <CircleText><animated.div>{p.percent.to(x => (x*100).toFixed(0)+'%')}</animated.div></CircleText>
     </>
 }))`
-  width: 86px;
-  height: 86px;
+  /* width: 86px;
+  height: 86px; */
   position: relative;
   >svg { transform: rotate(-90deg); }
+  >div >div{
+    font-size: ${p=>(p.radius-35)/120*10 + 18}px;
+  }
 `,
 
 GaugeBlock = styled.div`

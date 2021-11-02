@@ -1,10 +1,11 @@
-import { useState, useEffect, MutableRefObject, useRef } from 'react'
+import { useState, useEffect, MutableRefObject, useRef, useLayoutEffect, useCallback, RefObject } from 'react'
 import { useRecoilState } from 'recoil'
 import { atoms, auth, mapboxToken } from 'common'
 import { Map } from 'components'
 import App from 'App'
 import { useHistory } from 'react-router-dom'
 import { useUserLazyQuery } from 'generated'
+import { useDeviceSelectors } from 'react-device-detect'
 
 export function useUser(){
   const [user] = useRecoilState(App.user)
@@ -15,11 +16,13 @@ export function useUserData(){
   const [user, setUser] = useRecoilState(App.user)
   const history = useHistory()
   const [getUser, {data:userData}] = useUserLazyQuery()
+  const [url, setUrl] = useState('')
 
   useEffect(()=>{
     if(!user && userData && auth.isAuthenticated()){
       setUser(userData?.users_by_pk)
       if(history.location.pathname==='/oauth/success'){
+        console.log('go to the root')
         history.push('/')
       }
     }
@@ -27,9 +30,15 @@ export function useUserData(){
 
   useEffect(()=>{
     auth.onAuthStateChanged((loggedIn?:boolean) => {
+
       if(loggedIn){
         const user_id = auth.getClaim("x-hasura-user-id");
         getUser({variables:{user_id}})
+        console.log(history.location.pathname)
+        if(history.location.pathname==='/login'){
+          console.log('go to prev page')
+          history.goBack()
+        }
       }else{
         console.log('not logged in')
         setUser(null)
@@ -161,4 +170,50 @@ export function usePrevious<T>(
     ref.current = value;
   }, [value]);
   return ref.current;
+}
+
+export function useLayout(){
+  const [{isMobile}, data] = useDeviceSelectors(window.navigator.userAgent)
+  const { width, height } = useWindowDimensions()
+
+  return (isMobile||width<960)? 'mobile': 'desktop'
+}
+
+interface Size {
+  width: number
+  height: number
+}
+
+interface Ref {
+  ref: RefObject<HTMLDivElement>
+}
+
+// Hook to get the size of a ref and to update it when the ref changes
+export const useSize = (): Size&Ref => {
+  const [width, setWidth] = useState(0)
+  const [height, setHeight] = useState(0)
+  const ref = useRef<HTMLDivElement>(null)
+
+  const updateSize = useCallback(() => {
+    if (ref.current) {
+      setWidth(ref.current.offsetWidth)
+      setHeight(ref.current.offsetHeight)
+    }
+  }, [ref])
+
+  useLayoutEffect(() => {
+    updateSize()
+  }, [updateSize])
+
+  useEffect(() => {
+    if(ref.current) {
+      const observer = new ResizeObserver((entries) => {
+        updateSize()
+      })
+      observer.observe(ref.current)
+      return () => observer.disconnect()
+    }
+  }, [ref, updateSize])
+
+  return { ref, width, height }
 }

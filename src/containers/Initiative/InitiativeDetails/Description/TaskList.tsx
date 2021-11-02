@@ -1,10 +1,9 @@
 import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
-import { describeArc, useI18n, useUser } from "common";
+import { useI18n, useUser } from "common";
 import { useInitiativeByPkQuery } from "generated";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Expense, List, Task } from "./styles";
-import {ReactComponent as LinkIcon} from 'assets/icons/link.svg';
+import { List, Task } from "./styles";
 import { Checkbox } from 'components/Checkbox';
 
 export default function TaskList() {
@@ -12,7 +11,7 @@ export default function TaskList() {
   const user = useUser()
   const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [tasks, setTasks] = useState([
     {
       name: 'Task name', 

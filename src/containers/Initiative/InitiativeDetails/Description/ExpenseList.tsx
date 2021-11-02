@@ -1,5 +1,5 @@
 import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
-import { describeArc, useI18n, useUser } from "common";
+import { useI18n, useUser } from "common";
 import { useInitiativeByPkQuery } from "generated";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -11,7 +11,7 @@ export default function ExpenseList() {
   const user = useUser()
   const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <List {...{open}}>

@@ -8,7 +8,7 @@ export const MapWrapper = styled.div`
 `
 
 export const ContentWrapper = styled.div`
-  padding-top: 20px;
+  overflow-y: scroll;
   width: 100%;
   height: 100%;
   display: flex;

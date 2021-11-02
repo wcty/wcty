@@ -1,4 +1,4 @@
-import { useI18n, useUser } from "common";
+import { useI18n, useLayout, useSize, useUser } from "common";
 import { useInitiativeByPkQuery } from "generated";
 import { useParams } from "react-router-dom";
 import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
@@ -8,8 +8,9 @@ import { InitiativeDescription, CollectedSum, Gauge, GaugeBlock, ProgressBar, Fi
 import ExpenseList from "./ExpenseList";
 import TaskList from "./TaskList";
 
-export default function Description({desktop=false}) {
-  
+export default function Description() {
+  const layout = useLayout()
+
   const {id} = useParams<{id:string}>();
   const user = useUser()
   const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
@@ -27,16 +28,18 @@ export default function Description({desktop=false}) {
     onRest: () => set(!flip),
   })  
 
+  const { ref, width } = useSize()
+
   return (
 
-    <InitiativeDescription {...{open: desktop || open, desktop}}>
+    <InitiativeDescription {...{open: layout==='desktop' || open, ref, layout }}>
       <span onClick={()=>setOpen(!open)}>
         <span>{i18n('description_of_initiative')}</span>
         <ArrowDropDown/>
       </span>
       <div>
         <GaugeBlock>
-          <Gauge percent={x.to(x => x)}/>
+          <Gauge percent={x.to(x => x)} radius={(width && width>=480 && layout!=='desktop')? width*0.0125*6 : layout==='desktop'? 60 : 35 }/>
           <h4>{i18n('implemented_of_the_project')}</h4>
         </GaugeBlock>
         <>

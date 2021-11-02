@@ -1,11 +1,12 @@
 import { Route } from 'react-router-dom'
 import { Map } from 'components'
 import { ContentWrapper, MapWrapper } from './styles'
-import Sidepanel from './Sidepanel'
-import Login from './Login'
-import MapContents from './MapContents'
-import FloatPanel from './FloatPanel'
+import Sidepanel from '../Sidepanel'
+import Login from '../Login'
+import MapContents from '../MapContents'
+import FloatPanel from '../FloatPanel'
 import Initiative from 'containers/Initiative'
+import FloatButtons from 'containers/FloatButtons'
 
 export default function DesktopVersion(){
 
@@ -25,6 +26,7 @@ export default function DesktopVersion(){
             <MapContents/>
           </Map>
         </MapWrapper>
+        <FloatButtons/>
         <Sidepanel/>
         <FloatPanel/>
       </Route>

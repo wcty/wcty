@@ -3,7 +3,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import * as serviceWorker from './serviceWorker'
 import { StrictMode } from 'react'
 import { render } from 'react-dom'
-import { cacheConfig, Fonts, NhostApolloProvider, theme } from 'common'
+import { cacheConfig, Fonts, NhostApolloProvider, theme, useLayout } from 'common'
 import { BrowserRouter as Router } from "react-router-dom"
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
@@ -25,7 +25,7 @@ const AppRoot = ()=>
       >
         <Router>
           <RecoilRoot>
-            <ThemeProvider {...{theme}}>
+            <ThemeProvider {...{theme:{...theme, layout: useLayout()}}}>
               <Fonts/>
               <Map.Context.Provider value={{map:undefined}}>
                 <App />

@@ -5,6 +5,7 @@ const css = css_ as ThemedCssFunction<{}>
 export const theme = {
   id:"T-001",
   name:'main',
+  shadow: css`box-shadow: 3px 3px 3px rgba(0,0,0,0.15);`,
   colors:{
     titleActive: '#010202',
     body: '#45494F',

@@ -1,4 +1,4 @@
-import { useI18n, useUser } from "common";
+import { useI18n, useLayout, useUser } from "common";
 import { useInitiativeByPkQuery } from "generated";
 import { useParams } from "react-router-dom";
 import { Block } from "./styles";
@@ -11,7 +11,7 @@ export default function Information() {
   const user = useUser()
   const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()
-
+  
   return data?.initiative?.infos?.[0]? <div>
     {data.initiative.infos[0].problem && <Block>
       <h5><Lightbulb/>{i18n('problem_or_idea')}</h5>

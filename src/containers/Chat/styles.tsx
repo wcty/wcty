@@ -57,7 +57,43 @@ UserCard = styled.div`
 
 `,
 
-ChatMessages = styled.div``,
+ChatMessages = styled.div`
+    display: flex;
+    flex-direction: column;
+`,
+
+MyMessageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+`,
+
+CompanionMessageWrapper  = styled.div`
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`,
+
+MyMessage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #F0F4F8;
+    max-width: 400px;
+    /* Grayscale/Light Blue */
+
+    border: 1px solid #F7F9FB;
+    box-sizing: border-box;
+    border-radius: 15px;
+`,
+
+CompanionMessage = styled.div`
+`,
+
+
+
 
 CreateMessage = styled.div``,
 

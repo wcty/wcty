@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Container = styled.div`
     height: 29px;
-    width: 298px;
+    width: 100%;
     position: relative;
     transition: transform 0.2s;
     transform: translate(0px,0px);
@@ -22,7 +22,7 @@ export const Container = styled.div`
     >div:last-child{
     position: absolute;
     top:0px;
-    right:-68px;
+    right:0px;
     height: 100%;
     width: 29px;
     display: flex;
@@ -69,8 +69,8 @@ export const Container = styled.div`
 SearchInput = styled.input`
     height: 100%;
     width: 100%;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: 5px;
+    padding-right: 5px;
     background-color: white;
     border-radius: 3px;
     border: none;

@@ -1,6 +1,6 @@
 
 import { IChat } from "./IChat";
-import { ChatMessages, Container, CreateMessage, Divider, HeaderSpace, Initiative, Manager, ManagerHeader, Messages, MessagesHeader, Search, SpaceBuffer, Title, UserCard, Users } from "./styles";
+import { ChatMessages, CompanionMessage, CompanionMessageWrapper, Container, CreateMessage, Divider, HeaderSpace, Initiative, Manager, ManagerHeader, Messages, MessagesHeader, MyMessage, MyMessageWrapper, Search, SpaceBuffer, Title, UserCard, Users } from "./styles";
 import SearchInput from 'components/Inputs/Search'
 import Button from "components/Button";
 import Author from "components/Post/Author";
@@ -53,7 +53,24 @@ function Chat({}: IChatProps) {
                 </MessagesHeader>
 
                 <ChatMessages>
-                ChatMessages
+                    <MyMessageWrapper>
+                        <MyMessage>
+                        Ольга, доброго дня! 🙂 Чекаю від вас лінк на відредактований текст, щоб доробити макет.
+                        </MyMessage>
+                    </MyMessageWrapper>
+                    <CompanionMessageWrapper>
+                        <CompanionMessage>
+                                Доброго дня!
+                        </CompanionMessage>
+                        <CompanionMessage>
+                        Марина
+                        Ольга, доброго дня! 🙂 Чекаю від вас лінк н...
+                        Хвилину назад відправила вам на пошту
+                        </CompanionMessage>
+                        <CompanionMessage>
+                            Підскажіть, будь ласка, коли чекати правки?
+                        </CompanionMessage>
+                    </CompanionMessageWrapper>
                 </ChatMessages>
 
                 <CreateMessage>

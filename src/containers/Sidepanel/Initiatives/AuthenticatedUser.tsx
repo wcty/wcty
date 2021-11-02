@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { ListRow } from "components";
 import Sidepanel from "..";
 import Slides from 'containers/Slides';
-import BurgerFab from 'containers/FloatPanelMobile/BurgerFab';
+import BurgerFab from 'containers/FloatPanel/BurgerFab';
 
 export default function InitiativesDrawer(){
   const user = useUser()

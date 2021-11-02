@@ -1,5 +1,5 @@
 import styled from "styled-components/macro";
-import BurgerFab from "../FloatPanelMobile/BurgerFab";
+import BurgerFab from "../FloatPanel/BurgerFab";
 
 export const MapWrapper = styled.div`
   top: 0px;

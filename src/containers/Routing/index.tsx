@@ -7,11 +7,10 @@ import MapContents from '../MapContents'
 import FloatPanel from '../FloatPanel'
 import Initiative from 'containers/Initiative'
 import FloatButtons from 'containers/FloatButtons'
-import FloatPanelMobile from 'containers/FloatPanelMobile/'
 import Slides from 'containers/Slides'
-import { useEffect } from 'react'
 import { useLayout } from 'common'
 import { useRecoilState } from 'recoil'
+import AuthSuccess from './AuthSuccess'
 
 export default function Routing(){
   const layout = useLayout()
@@ -41,25 +40,11 @@ export default function Routing(){
           </Map>
         </MapWrapper>
         <FloatButtons/>
-        {layout==='desktop'?
-          <FloatPanel/>:
-          <FloatPanelMobile/>}
+        <FloatPanel/>
         {layout==='mobile'&&<Slides/>}
         <Sidepanel/>
       </Route>
   </>
 }
 
-function AuthSuccess(){
-  const history = useHistory()
-  
-  useEffect(()=>{
-    const callbackUrl = localStorage.getItem('callbackUrl');
-    if(callbackUrl){
-      history.push(callbackUrl)
-    }else{
-      history.push('/')
-    }
-  },[])
-  return null
-}
+

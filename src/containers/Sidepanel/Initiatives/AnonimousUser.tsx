@@ -6,7 +6,7 @@ import { Map } from 'components'
 import { useEffect, useState } from "react";
 import { ListRow } from "components";
 import Sidepanel from "..";
-import BurgerFab from 'containers/FloatPanelMobile/BurgerFab';
+import BurgerFab from 'containers/FloatPanel/BurgerFab';
 import Slides from 'containers/Slides';
 
 export default function InitiativesDrawer(){

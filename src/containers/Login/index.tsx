@@ -3,8 +3,7 @@ import { auth, endpoint, useI18n, useLayout } from 'common';
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { ButtonGroup, FormControl, TextField, Label } from "./styles";
-import BurgerFab from "containers/FloatPanelMobile/BurgerFab";
-import Frame, { useFrame } from 'react-frame-component'
+import BurgerFab from "containers/FloatPanel/BurgerFab";
 
 const LoginButton = ({credentials={email:'', password:''}})=>{
   const history = useHistory()
@@ -13,12 +12,7 @@ const LoginButton = ({credentials={email:'', password:''}})=>{
     <button onClick={(e)=>{
       e.preventDefault()
       if( credentials.email && credentials.password ) {
-        auth.login(credentials).then(res=>{
-          if(res.user) {
-            console.log(res)
-            // history.goBack()
-          }
-        })
+        auth.login(credentials)
       }
     }}>
     <span>Login</span>
@@ -100,20 +94,12 @@ export default function Login (){
             <ButtonGroup>
               <button onClick={(e)=>{
                 e.preventDefault()
-                // console.log(frame?.frames[0].location)
-                // if(frame?.frames[0].location)
-                // frame.frames[0].location.href = `${endpoint}/auth/providers/google`;
-                //window.open(`${endpoint}/auth/providers/google`,"poop", "height=200,width=200,modal=yes,alwaysRaised=yes");
-                // localStorage.setItem('callbackUrl', window.location.href)
-                // console.log('check', localStorage.getItem('callbackUrl'))
-          
                 auth.login({ provider: 'google' })
               }}>
                 <span>Google</span>
               </button>
               <button onClick={(e)=>{
-                e.preventDefault()
-                          
+                e.preventDefault()      
                 auth.login({ provider: 'facebook' })}}>
                 <span>Facebook</span>
               </button>

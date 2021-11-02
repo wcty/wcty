@@ -1,7 +1,16 @@
 
 import { IChat } from "./IChat";
-import { ChatMessages, Container, CreateMessage, Initiative, Manager, ManagerHeader, Messages, MessagesHeader, Search, Title, UserCard, Users } from "./styles";
+import { ChatMessages, Container, CreateMessage, Initiative, Manager, ManagerHeader, Messages, MessagesHeader, Search, SpaceBuffer, Title, UserCard, Users } from "./styles";
+import SearchInput from 'components/Inputs/Search'
+import Button from "components/Button";
+import Author from "components/Post/Author";
+import Avatar from "components/Avatar";
 
+const authors = [
+    {name: "Ольга Мельник", date : new Date(),  roles: ['iніціатор', 'волонтер', 'інвестор'] },
+    {name: "Александр Бойко", date : new Date(),  roles: ['iніціатор', 'филантроп', 'миллиардер'] },
+    {name: "Ольга Мельник", date : new Date(),  roles: ['iніціатор', 'волонтер', 'інвестор'] }
+]
 export interface IChatProps extends IChat {
 
 }
@@ -20,17 +29,23 @@ function Chat({}: IChatProps) {
                     </Initiative>
                 </ManagerHeader>
                 <Search>
-                Search
+                    <SearchInput/>
                 </Search>
                 <Users>
-                Users
+                    <p>+ Написати повідомлення</p>
+                    {
+                        authors.map((user,i)  => <Author key={i} {...user}/>)
+                    }
+                
                 </Users>
 
             </Manager>
+            <SpaceBuffer></SpaceBuffer>
             <Messages>
                 <MessagesHeader>
                     <UserCard>
-                    UserCard
+                        <Avatar />
+                        Ольга Мельник
                     </UserCard>
                 </MessagesHeader>
 

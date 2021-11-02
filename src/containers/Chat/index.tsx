@@ -1,6 +1,6 @@
 
 import { IChat } from "./IChat";
-import { ChatMessages, Container, CreateMessage, Initiative, Manager, ManagerHeader, Messages, MessagesHeader, Search, SpaceBuffer, Title, UserCard, Users } from "./styles";
+import { ChatMessages, Container, CreateMessage, Divider, HeaderSpace, Initiative, Manager, ManagerHeader, Messages, MessagesHeader, Search, SpaceBuffer, Title, UserCard, Users } from "./styles";
 import SearchInput from 'components/Inputs/Search'
 import Button from "components/Button";
 import Author from "components/Post/Author";
@@ -40,7 +40,10 @@ function Chat({}: IChatProps) {
                 </Users>
 
             </Manager>
-            <SpaceBuffer></SpaceBuffer>
+            <SpaceBuffer>
+                <HeaderSpace></HeaderSpace>
+                <Divider></Divider>
+            </SpaceBuffer>
             <Messages>
                 <MessagesHeader>
                     <UserCard>

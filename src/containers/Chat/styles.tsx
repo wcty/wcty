@@ -63,7 +63,24 @@ CreateMessage = styled.div``,
 
 SpaceBuffer = styled.div`
 flex-grow: 0.1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`,
+
+Divider = styled.div`
+    width: 0.1px;
+    height: 100%;
+    border-left: 1px solid rgba(210, 190, 167, 0.5);;
+
+`,
+
+HeaderSpace = styled.div`
+    padding: 35px 0;
 `
+
+
 
 
 

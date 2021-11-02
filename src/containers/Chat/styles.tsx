@@ -104,7 +104,31 @@ CompanionMessage = styled.div`
 
 
 
-CreateMessage = styled.div``,
+CreateMessage = styled.div`
+
+    width: 100%;    
+    display: flex;
+    flex-direction: column;
+    background-color: ${props =>  props.theme.colors.backgroundLighter};
+    box-shadow: 0px 0px 2px rgba(137, 150, 159, 0.1), 0px 2px 2px rgba(137, 150, 159, 0.1), 0px 1px 3px rgba(137, 150, 159, 0.1);
+    border-radius: 3px;
+    padding-bottom: 10px;
+
+`,
+
+InputContent = styled.div`
+
+display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 19px 0 19px;
+
+    & > svg {
+        padding-left: 4px;
+        cursor: pointer;
+    }
+`,
 
 SpaceBuffer = styled.div`
 flex-grow: 0.1;

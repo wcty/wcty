@@ -7,7 +7,7 @@ import Buttons from "./Buttons";
 import { useSearchResultsQuery } from 'generated'
 import { atom, useRecoilState } from "recoil";
 import { Map, ListRow } from 'components'
-import Slides from 'containers/Mobile/Slides'
+import Slides from 'containers/Slides'
 
 export default function Search(){
   const i18n = useI18n()

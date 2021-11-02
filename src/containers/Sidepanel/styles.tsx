@@ -2,7 +2,7 @@ import styled, {css} from "styled-components/macro";
 
 export const 
 SidepanelWrapper = styled.div<{open:false|'wide'|'menu'}>`
-  z-index: 1;
+  z-index: 2;
   top: 0px;
   left: 0px;
   position: absolute;

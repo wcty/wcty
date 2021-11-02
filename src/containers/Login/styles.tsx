@@ -5,9 +5,17 @@ export const
 FormControl = styled.form`
   width: 100%;
   height: 100%;
+  margin-top: 2rem;
+  >h2{
+    display: flex;
+    margin: 5rem 0rem;
+    >button:only-child {
+      margin-left: 0rem;
+    }
+  }
   ${p=>p.theme.layout==='mobile'? 
     css`
-      padding: 2rem;
+      padding: 2rem 0rem;
       background-color: ${props=>props.theme.colors.primary};
     `:
     css`

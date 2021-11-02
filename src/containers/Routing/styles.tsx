@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+import BurgerFab from "../FloatPanelMobile/BurgerFab";
 
 export const MapWrapper = styled.div`
   top: 0px;
@@ -16,4 +17,13 @@ export const ContentWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   background-color: ${props => props.theme.colors.primary}
+`,
+
+Burger = styled.div.attrs({
+  children: <BurgerFab/>
+})`
+  position: fixed;
+  top: 29px;
+  left: 0;
+  z-index: 1;
 `

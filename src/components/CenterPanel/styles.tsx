@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled, { css } from 'styled-components/macro'
 
 export const 
 Wrapper = styled.div`
@@ -12,19 +12,26 @@ Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(0,0,0,0.25);
-  z-index: 100;
-  @media screen and (max-width: 600px) {
-    width: 100%;
-    height: 100%;
-  }
+  z-index: 1;
+  ${p=>p.theme.layout==='mobile'&& 
+    css<{}>`
+      width: 100%;
+      height: 100%;
+  `}
 `,
 
 Box = styled.div`
-  width: 600px;
-  height: 600px;
+  ${p=>p.theme.layout==='mobile'?
+    css<{}>`
+      width: 100%;
+      height: 100%;`:
+    css<{}>`
+      width: 600px;
+      height: 600px;`}
   background-color: #F4EADE;
+  max-height: 100%;
   box-shadow: 3px 3px 3px rgba(0,0,0,0.15);
-  padding: 2.5rem 3rem;
+  padding: 1.5rem 3rem;
   position: relative;
 `,
 

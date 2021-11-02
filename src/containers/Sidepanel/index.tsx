@@ -56,7 +56,9 @@ export default function Sidepanel (){
         <Stripe>
           <div>
             <UserIconCell {...{...props('enter'), onClick:()=>{
-              if(!user){history.push('/login')} }}}>
+                localStorage.setItem('callbackUrl', history.location.pathname)
+                if(!user){history.push('/login')} 
+            }}}>
               {user? <UserPhoto src={
                 user.avatar_url?.includes("platform-lookaside.fbsbx")?
                 `http://graph.facebook.com/${

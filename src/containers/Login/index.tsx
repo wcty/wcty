@@ -104,13 +104,16 @@ export default function Login (){
                 // if(frame?.frames[0].location)
                 // frame.frames[0].location.href = `${endpoint}/auth/providers/google`;
                 //window.open(`${endpoint}/auth/providers/google`,"poop", "height=200,width=200,modal=yes,alwaysRaised=yes");
-
+                // localStorage.setItem('callbackUrl', window.location.href)
+                // console.log('check', localStorage.getItem('callbackUrl'))
+          
                 auth.login({ provider: 'google' })
               }}>
                 <span>Google</span>
               </button>
               <button onClick={(e)=>{
                 e.preventDefault()
+                          
                 auth.login({ provider: 'facebook' })}}>
                 <span>Facebook</span>
               </button>

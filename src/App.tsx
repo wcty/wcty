@@ -12,7 +12,7 @@ export default function App() {
   return <>
     <GlobalStyle/>
     <AppWrapper>
-      { layout==='mobile' ? <Routing.Mobile/>: <Routing.Desktop/> }
+      <Routing/>
     </AppWrapper>
   </>
 }

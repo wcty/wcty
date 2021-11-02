@@ -32,7 +32,10 @@ export default function MenuHeader ({props}:MenuHeaderProps){
 
   return layout==='desktop'?
     <UserIconRow {...{...props('enter'),onClick:()=>{
-        if(!user){history.push('/login')} }}}>
+        localStorage.setItem('callbackUrl', history.location.pathname)
+        if(!user){history.push('/login')} 
+
+      }}}>
       {user? 
         <span style={{textTransform:'uppercase'}}>
           {user.display_name}
@@ -56,7 +59,10 @@ export default function MenuHeader ({props}:MenuHeaderProps){
         </CloseButton>
     </LogoRow>
     <UserIconRow {...{...props('enter'),onClick:()=>{
-        if(!user){history.push('/login')} }}}>
+        setOpen(false)
+        localStorage.setItem('callbackUrl', history.location.pathname)
+        if(!user){history.push('/login')} 
+      }}}>
       {user? 
         <span style={{textTransform:'uppercase'}}>
           <img src={

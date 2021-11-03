@@ -11,7 +11,15 @@ export type Tabs = readonly {
   icon: ReactElement
 }[]
 
-export const tabs = (user:boolean)=>(user?
+export const tabs = (user:boolean, creation:boolean=false)=>(
+  creation?
+[
+  {
+    key: 'initiativeMap',
+    icon: <MapIcon/>
+  }
+]:
+  user?
 [
   {
     key: 'initiativeMap',
@@ -25,10 +33,10 @@ export const tabs = (user:boolean)=>(user?
     key: 'myOrganisations',
     icon: <OrgIcon/>
   },
-  {
-    key: 'settings',
-    icon: <Settings/>
-  }
+  // {
+  //   key: 'settings',
+  //   icon: <Settings/>
+  // }
 ]:
 [
   {

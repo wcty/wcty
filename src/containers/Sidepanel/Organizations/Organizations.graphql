@@ -8,7 +8,7 @@ query OrganizationNearbyList(
   $user_id: uuid, 
   $own: Boolean = false
 ){
-  orgs_nearby(args: {
+  orgs:orgs_nearby(args: {
     location: $location, 
     own: $own, 
     user_id: $user_id, 

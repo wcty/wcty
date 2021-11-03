@@ -1,6 +1,7 @@
 import { Layer, Source, FeatureState } from '@urbica/react-map-gl';
-import { useLayout } from 'common';
+import { atoms, useLayout } from 'common';
 import { Map, InitiativeCard } from 'components';
+import { useHistory } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { Popup } from './styles';
 
@@ -10,8 +11,23 @@ export default function MapContents(){
   const [viewport, setViewport] = useRecoilState(Map.viewport)
   const [layers, setLayers] = useRecoilState(Map.layers)
   const layout = useLayout()
-  
+  const history = useHistory()
+  const isEntryCreation = history.location.pathname.includes('/create-initiative')
+  const [focus, setFocus] = useRecoilState(atoms.focalPoint)
+
   return <>
+    <Source
+      id='pin'
+      type='geojson'
+      data={{
+        type: 'Feature',
+        properties:{},
+        geometry: {
+          type: 'Point',
+          coordinates: focus||[0,0]
+        }
+      }}
+    />
     <Source
       id='entries'
       type='vector'
@@ -28,7 +44,20 @@ export default function MapContents(){
       }}
       promoteId='id'
     />
-
+    {isEntryCreation?<>
+      <Layer
+        id='pin'
+        source='pin'
+        type='symbol'
+        layout={{
+          'icon-image': 'pin',
+          'icon-anchor': 'bottom',
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': true,
+          'icon-size': 0.4
+        }}
+      />
+    </>:<>
     <Layer
       id='entries'
       source='entries'
@@ -139,5 +168,6 @@ export default function MapContents(){
           <InitiativeCard entry={selected}/> 
       </Popup>
     }</>
+    </>}
   </>
 }

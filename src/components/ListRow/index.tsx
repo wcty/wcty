@@ -30,7 +30,8 @@ export function ListRow({ data:v, onClick:_onClick }:{
         description: v.description||'',
         created_at: v.created_at,
         id: v.id,
-        modified_at: ''
+        modified_at: '',
+        address: ''
       }
     })
     if(v?.geometry?.coordinates){

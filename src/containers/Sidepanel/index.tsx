@@ -17,7 +17,8 @@ export default function Sidepanel (){
   const user = useUser()
   const i18n = useI18n()
   const history = useHistory()
-  
+  const isEntryCreation = history.location.pathname.includes('/create-initiative')
+
 
   const [selected, setSelected] = useState<null|Tabs[number]['key']>(null)
   const [hovered, setHovered] = useState<null|Tabs[number]['key']>(null)
@@ -67,7 +68,7 @@ export default function Sidepanel (){
                 user.avatar_url||''
               }/>: <UserIcon/>}
             </UserIconCell>
-            {tabs(!!user).map((v,key)=>
+            {tabs(!!user, isEntryCreation).map((v,key)=>
               <IconCell {...{key,...props(v.key),
                 ...(v.key==='initiativeMap'&&{ 
                   onClick:()=>{
@@ -99,9 +100,13 @@ export default function Sidepanel (){
         <Menu className='menu'>
           <div>
             <MenuHeader {...{props}}/>
-            {tabs(!!user).map((v,key)=>
+            {tabs(!!user, isEntryCreation).map((v,key)=>
               <IconRow {...{key,...props(v.key), 
-                ...(v.key==='initiativeMap'&&{onClick:()=>{setOpen(false);setSelected(null)}})
+                ...(v.key==='initiativeMap'&&{
+                  onClick:()=>{
+                    setOpen(false);
+                    setSelected(null)
+                    history.push('/')}})
               }} >
                   <span>
                     {i18n(v.key)}

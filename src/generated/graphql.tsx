@@ -9684,7 +9684,7 @@ export type InitiativesNearbyListQueryVariables = Exact<{
 }>;
 
 
-export type InitiativesNearbyListQuery = { initiatives_nearby: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
+export type InitiativesNearbyListQuery = { initiatives: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
 
 export type MyInitiativeListQueryVariables = Exact<{
   user_id: Scalars['uuid'];
@@ -9705,7 +9705,7 @@ export type OrganizationNearbyListQueryVariables = Exact<{
 }>;
 
 
-export type OrganizationNearbyListQuery = { orgs_nearby: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
+export type OrganizationNearbyListQuery = { orgs: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
 
 export type MyOrganizationListQueryVariables = Exact<{
   user_id: Scalars['uuid'];
@@ -10797,7 +10797,7 @@ export type TasksLazyQueryHookResult = ReturnType<typeof useTasksLazyQuery>;
 export type TasksQueryResult = Apollo.QueryResult<TasksQuery, TasksQueryVariables>;
 export const InitiativesNearbyListDocument = gql`
     query InitiativesNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
-  initiatives_nearby(
+  initiatives: initiatives_nearby(
     args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
   ) {
     ...InitiativeCard
@@ -10876,7 +10876,7 @@ export type MyInitiativeListLazyQueryHookResult = ReturnType<typeof useMyInitiat
 export type MyInitiativeListQueryResult = Apollo.QueryResult<MyInitiativeListQuery, MyInitiativeListQueryVariables>;
 export const OrganizationNearbyListDocument = gql`
     query OrganizationNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
-  orgs_nearby(
+  orgs: orgs_nearby(
     args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
   ) {
     ...OrganizationCard

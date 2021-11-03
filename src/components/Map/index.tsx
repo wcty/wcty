@@ -37,9 +37,10 @@ export default function Map({children}:{children?:ReactNode}){
           // hash
           {...viewport}
           onClick={(e:any)=>{
-            console.log(e.target.queryRenderedFeatures(e.point)?.[0]?.layer?.id)
-            history.push('/'); 
-            setSelected(null) 
+            if(!history.location.pathname.includes('/create-initiative')){
+              history.push('/'); 
+              setSelected(null)   
+            }
           }}
         >
           <ContextSetter/>

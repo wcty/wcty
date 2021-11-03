@@ -6,14 +6,14 @@ import { useRecoilState } from 'recoil'
 import { Map } from 'components'
 import { atoms, useGeolocation, useLayout } from 'common'
 
-export default function FloatButtons(){
+export default function FloatButtons({bottom=false}){
   const [,setSatellite] = useRecoilState(Map.satellite)
   const [view,setViewport] = useRecoilState(Map.viewport)
   const [,setFocus] = useRecoilState(atoms.focalPoint)
   const location = useGeolocation()
   const layout = useLayout()
   
-  return <ButtonsWrapper>
+  return <ButtonsWrapper {...{bottom}}>
     <Button onClick={()=>{
       setFocus([view.longitude, view.latitude])
     }}>

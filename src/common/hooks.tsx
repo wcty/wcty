@@ -126,7 +126,7 @@ export function useWindowDimensions() {
   return windowDimensions;
 }
 
-export function useAddress(coords:[ number, number ]) {
+export function useAddress(coords:[ number, number ], watch = false) {
 
   const [addressString, setAddress] = useState<string>()
   const [lang] = useRecoilState(atoms.lang)
@@ -135,7 +135,7 @@ export function useAddress(coords:[ number, number ]) {
     const controller = new AbortController();
     if(coords){
       const { signal } = controller;
-      if(!addressString&&coords){
+      if((!addressString||watch)&&coords){
         const request = async ()=>{
           const response = await fetch(
             `https://api.mapbox.com/geocoding/v5/mapbox.places/${coords[0]},${coords[1]}.json`+

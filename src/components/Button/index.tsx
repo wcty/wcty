@@ -22,6 +22,7 @@ function Button(props : IButtonProps) {
       <CustomButton {...{...defaults, ...props}} > 
         {props.icon && variants[props.icon]}
         {props.label}
+        {props.children}
       </CustomButton>
     )
 }

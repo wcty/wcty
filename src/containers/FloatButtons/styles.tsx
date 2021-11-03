@@ -1,11 +1,14 @@
 import styled, { css } from "styled-components/macro"
 
 export const 
-ButtonsWrapper = styled.div`
+ButtonsWrapper = styled.div<{bottom?:boolean}>`
   width: 30px;
   position: absolute;
   left: ${p=>p.theme.layout==='mobile'?css`19px`:css`10px`};;
-  bottom: ${p=>p.theme.layout==='mobile'?css`120px`:css`25px`};
+  bottom: ${p=>p.theme.layout==='desktop'||p?.bottom?
+    css`25px`:
+    css`120px`
+  };
   margin-bottom: 9px;
 `,
 

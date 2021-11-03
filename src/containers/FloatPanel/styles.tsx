@@ -25,6 +25,10 @@ Fab = styled.button`
     &:last-child{
       margin-left: 18px;
     }
+    &:only-child{
+      margin-left: 0px;
+      margin-right: 18px;
+    }
   `:
   css<{}>`
     height: 100%;

@@ -1,4 +1,4 @@
-import styled , {css}from "styled-components"
+import styled , {css}from 'styled-components/macro'
 import { EAvatarSize } from "./EAvatarSize"
 import { IAvatar } from "./IAvatar";
 

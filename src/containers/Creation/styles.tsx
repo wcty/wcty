@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled, {css} from 'styled-components/macro';
 import Placeholder from 'assets/icons/cover-placeholder.svg';
 import { InputHTMLAttributes } from 'react';
 import { ReactComponent as Cross } from 'assets/icons/cross.svg'

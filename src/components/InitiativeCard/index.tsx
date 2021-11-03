@@ -25,7 +25,7 @@ export default function InitiativeCard({entry}:InitiativeProps){
   const history = useHistory()
 
   return entry && 
-    <Card onClick={()=>entry.properties.type==='initiative'&&history.push(`/initiative/${entry.id}`)}>
+    <Card onClick={()=>entry?.properties?.type==='initiative'&&history.push(`/initiative/${entry.id}`)}>
       <Thumbnail src={entry?.properties?.image+'?w=100&h=100&q=90'}/>
       <Content>
         <TopBar>

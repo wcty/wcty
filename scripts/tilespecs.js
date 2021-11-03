@@ -23,6 +23,7 @@ fetch("https://tiles.weee.city/index.json")
       .map(entry=>{
         return [entry[0], {...entry[1], properties:Order(entry[1].properties)}]
       })
+      .reduce((agg,v)=>({...agg, [v[0]]:v[1]}), {})
 
     fs.writeFile('src/generated/tilespecs.json', JSON.stringify(data, null, 2), { flag: 'w' }, err => {})
   })

@@ -1,11 +1,11 @@
 import { useState, useEffect, MutableRefObject, useRef, useLayoutEffect, useCallback, RefObject } from 'react'
 import { useRecoilState } from 'recoil'
 import { atoms, auth, mapboxToken } from 'common'
-import { Map } from 'components'
 import App from 'App'
 import { useHistory } from 'react-router-dom'
 import { useUserLazyQuery } from 'generated'
 import { useDeviceSelectors } from 'react-device-detect'
+export * from './useUploader'
 
 export function useUser(){
   const [user] = useRecoilState(App.user)

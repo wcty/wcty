@@ -83,17 +83,3 @@ mutation AddInitiativeVisit($initiative_id: uuid!, $user_id: uuid!) {
 }
 
 
-
-# Files mutations:
-
-mutation insertFile($file: files_insert_input!) {
-  insert_files_one(object: $file) {
-    id
-  }
-}
-
-mutation deleteFiles($where: files_bool_exp!) {
-  delete_files(where: $where) {
-    affected_rows
-  }
-}

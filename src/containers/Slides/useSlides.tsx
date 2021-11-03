@@ -65,7 +65,7 @@ export default function Anonimous(){
     return ()=>{
       window.removeEventListener('keydown', handleKeyDown)
     }
-  },[index])
+  },[index, onChangeIndex])
 
   return {index, onChangeIndex, nearbyEntries}
 }

@@ -13,7 +13,7 @@ function Desktop() {
   const user = useUser()
   const { data } = useInitiativeByPkQuery({variables:{id, user_id:user?.id}, fetchPolicy:"cache-first"});
   const isMember = !!data?.initiative?.members?.length
-
+  console.log(data)
   return(
     <Container.Desktop>
       <ImageHeaderCard.Desktop src={data?.initiative?.image||''}/>

@@ -5502,6 +5502,7 @@ export enum Initiatives_Constraint {
 
 /** input type for inserting data into table "initiatives" */
 export type Initiatives_Insert_Input = {
+  address?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   donations?: Maybe<Initiative_Donations_Arr_Rel_Insert_Input>;
@@ -9505,20 +9506,6 @@ export type AddInitiativeVisitMutationVariables = Exact<{
 
 export type AddInitiativeVisitMutation = { insert_initiative_visits_one?: { initiative: { id: any } } | null | undefined };
 
-export type InsertFileMutationVariables = Exact<{
-  file: Files_Insert_Input;
-}>;
-
-
-export type InsertFileMutation = { insert_files_one?: { id: any } | null | undefined };
-
-export type DeleteFilesMutationVariables = Exact<{
-  where: Files_Bool_Exp;
-}>;
-
-
-export type DeleteFilesMutation = { delete_files?: { affected_rows: number } | null | undefined };
-
 export type InitiativeFieldsFragment = { geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, description?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> };
 
 export type InitiativesNearbyQueryVariables = Exact<{
@@ -9594,6 +9581,28 @@ export type S_GetFilesSubscriptionVariables = Exact<{
 
 export type S_GetFilesSubscription = { files: Array<{ id: any, created_at?: any | null | undefined, file_path?: string | null | undefined, downloadable_url?: string | null | undefined }> };
 
+export type UpdateFileMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  file?: Maybe<Files_Set_Input>;
+}>;
+
+
+export type UpdateFileMutation = { update_files_by_pk?: { id: any } | null | undefined };
+
+export type InsertFileMutationVariables = Exact<{
+  file: Files_Insert_Input;
+}>;
+
+
+export type InsertFileMutation = { insert_files_one?: { id: any } | null | undefined };
+
+export type DeleteFilesMutationVariables = Exact<{
+  where: Files_Bool_Exp;
+}>;
+
+
+export type DeleteFilesMutation = { delete_files?: { affected_rows: number } | null | undefined };
+
 export type DictionaryQueryVariables = Exact<{
   en?: Maybe<Scalars['Boolean']>;
   uk?: Maybe<Scalars['Boolean']>;
@@ -9613,6 +9622,13 @@ export type CreatePostMutationVariables = Exact<{
 export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
 
 export type PostFragment = { type: string, message?: string | null | undefined, comments_count: { aggregate?: { count: number } | null | undefined }, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined };
+
+export type InsertInitiativeMutationVariables = Exact<{
+  initiative: Initiatives_Insert_Input;
+}>;
+
+
+export type InsertInitiativeMutation = { insert_initiatives_one?: { id: any } | null | undefined };
 
 export type SearchResultsQueryVariables = Exact<{
   layers?: Maybe<Array<Scalars['String']> | Scalars['String']>;
@@ -10055,72 +10071,6 @@ export function useAddInitiativeVisitMutation(baseOptions?: Apollo.MutationHookO
 export type AddInitiativeVisitMutationHookResult = ReturnType<typeof useAddInitiativeVisitMutation>;
 export type AddInitiativeVisitMutationResult = Apollo.MutationResult<AddInitiativeVisitMutation>;
 export type AddInitiativeVisitMutationOptions = Apollo.BaseMutationOptions<AddInitiativeVisitMutation, AddInitiativeVisitMutationVariables>;
-export const InsertFileDocument = gql`
-    mutation insertFile($file: files_insert_input!) {
-  insert_files_one(object: $file) {
-    id
-  }
-}
-    `;
-export type InsertFileMutationFn = Apollo.MutationFunction<InsertFileMutation, InsertFileMutationVariables>;
-
-/**
- * __useInsertFileMutation__
- *
- * To run a mutation, you first call `useInsertFileMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useInsertFileMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [insertFileMutation, { data, loading, error }] = useInsertFileMutation({
- *   variables: {
- *      file: // value for 'file'
- *   },
- * });
- */
-export function useInsertFileMutation(baseOptions?: Apollo.MutationHookOptions<InsertFileMutation, InsertFileMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<InsertFileMutation, InsertFileMutationVariables>(InsertFileDocument, options);
-      }
-export type InsertFileMutationHookResult = ReturnType<typeof useInsertFileMutation>;
-export type InsertFileMutationResult = Apollo.MutationResult<InsertFileMutation>;
-export type InsertFileMutationOptions = Apollo.BaseMutationOptions<InsertFileMutation, InsertFileMutationVariables>;
-export const DeleteFilesDocument = gql`
-    mutation deleteFiles($where: files_bool_exp!) {
-  delete_files(where: $where) {
-    affected_rows
-  }
-}
-    `;
-export type DeleteFilesMutationFn = Apollo.MutationFunction<DeleteFilesMutation, DeleteFilesMutationVariables>;
-
-/**
- * __useDeleteFilesMutation__
- *
- * To run a mutation, you first call `useDeleteFilesMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteFilesMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteFilesMutation, { data, loading, error }] = useDeleteFilesMutation({
- *   variables: {
- *      where: // value for 'where'
- *   },
- * });
- */
-export function useDeleteFilesMutation(baseOptions?: Apollo.MutationHookOptions<DeleteFilesMutation, DeleteFilesMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteFilesMutation, DeleteFilesMutationVariables>(DeleteFilesDocument, options);
-      }
-export type DeleteFilesMutationHookResult = ReturnType<typeof useDeleteFilesMutation>;
-export type DeleteFilesMutationResult = Apollo.MutationResult<DeleteFilesMutation>;
-export type DeleteFilesMutationOptions = Apollo.BaseMutationOptions<DeleteFilesMutation, DeleteFilesMutationVariables>;
 export const InitiativesNearbyDocument = gql`
     query InitiativesNearby($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
   initiatives_nearby(
@@ -10432,6 +10382,106 @@ export function useS_GetFilesSubscription(baseOptions: Apollo.SubscriptionHookOp
       }
 export type S_GetFilesSubscriptionHookResult = ReturnType<typeof useS_GetFilesSubscription>;
 export type S_GetFilesSubscriptionResult = Apollo.SubscriptionResult<S_GetFilesSubscription>;
+export const UpdateFileDocument = gql`
+    mutation updateFile($id: uuid!, $file: files_set_input) {
+  update_files_by_pk(pk_columns: {id: $id}, _set: $file) {
+    id
+  }
+}
+    `;
+export type UpdateFileMutationFn = Apollo.MutationFunction<UpdateFileMutation, UpdateFileMutationVariables>;
+
+/**
+ * __useUpdateFileMutation__
+ *
+ * To run a mutation, you first call `useUpdateFileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateFileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateFileMutation, { data, loading, error }] = useUpdateFileMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      file: // value for 'file'
+ *   },
+ * });
+ */
+export function useUpdateFileMutation(baseOptions?: Apollo.MutationHookOptions<UpdateFileMutation, UpdateFileMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateFileMutation, UpdateFileMutationVariables>(UpdateFileDocument, options);
+      }
+export type UpdateFileMutationHookResult = ReturnType<typeof useUpdateFileMutation>;
+export type UpdateFileMutationResult = Apollo.MutationResult<UpdateFileMutation>;
+export type UpdateFileMutationOptions = Apollo.BaseMutationOptions<UpdateFileMutation, UpdateFileMutationVariables>;
+export const InsertFileDocument = gql`
+    mutation insertFile($file: files_insert_input!) {
+  insert_files_one(object: $file) {
+    id
+  }
+}
+    `;
+export type InsertFileMutationFn = Apollo.MutationFunction<InsertFileMutation, InsertFileMutationVariables>;
+
+/**
+ * __useInsertFileMutation__
+ *
+ * To run a mutation, you first call `useInsertFileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertFileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertFileMutation, { data, loading, error }] = useInsertFileMutation({
+ *   variables: {
+ *      file: // value for 'file'
+ *   },
+ * });
+ */
+export function useInsertFileMutation(baseOptions?: Apollo.MutationHookOptions<InsertFileMutation, InsertFileMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<InsertFileMutation, InsertFileMutationVariables>(InsertFileDocument, options);
+      }
+export type InsertFileMutationHookResult = ReturnType<typeof useInsertFileMutation>;
+export type InsertFileMutationResult = Apollo.MutationResult<InsertFileMutation>;
+export type InsertFileMutationOptions = Apollo.BaseMutationOptions<InsertFileMutation, InsertFileMutationVariables>;
+export const DeleteFilesDocument = gql`
+    mutation deleteFiles($where: files_bool_exp!) {
+  delete_files(where: $where) {
+    affected_rows
+  }
+}
+    `;
+export type DeleteFilesMutationFn = Apollo.MutationFunction<DeleteFilesMutation, DeleteFilesMutationVariables>;
+
+/**
+ * __useDeleteFilesMutation__
+ *
+ * To run a mutation, you first call `useDeleteFilesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteFilesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteFilesMutation, { data, loading, error }] = useDeleteFilesMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteFilesMutation(baseOptions?: Apollo.MutationHookOptions<DeleteFilesMutation, DeleteFilesMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteFilesMutation, DeleteFilesMutationVariables>(DeleteFilesDocument, options);
+      }
+export type DeleteFilesMutationHookResult = ReturnType<typeof useDeleteFilesMutation>;
+export type DeleteFilesMutationResult = Apollo.MutationResult<DeleteFilesMutation>;
+export type DeleteFilesMutationOptions = Apollo.BaseMutationOptions<DeleteFilesMutation, DeleteFilesMutationVariables>;
 export const DictionaryDocument = gql`
     query Dictionary($en: Boolean = false, $uk: Boolean = false, $fr: Boolean = false) {
   i18n(order_by: {key: asc}) {
@@ -10509,6 +10559,39 @@ export function useCreatePostMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
 export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
 export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
+export const InsertInitiativeDocument = gql`
+    mutation InsertInitiative($initiative: initiatives_insert_input!) {
+  insert_initiatives_one(object: $initiative) {
+    id
+  }
+}
+    `;
+export type InsertInitiativeMutationFn = Apollo.MutationFunction<InsertInitiativeMutation, InsertInitiativeMutationVariables>;
+
+/**
+ * __useInsertInitiativeMutation__
+ *
+ * To run a mutation, you first call `useInsertInitiativeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertInitiativeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertInitiativeMutation, { data, loading, error }] = useInsertInitiativeMutation({
+ *   variables: {
+ *      initiative: // value for 'initiative'
+ *   },
+ * });
+ */
+export function useInsertInitiativeMutation(baseOptions?: Apollo.MutationHookOptions<InsertInitiativeMutation, InsertInitiativeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<InsertInitiativeMutation, InsertInitiativeMutationVariables>(InsertInitiativeDocument, options);
+      }
+export type InsertInitiativeMutationHookResult = ReturnType<typeof useInsertInitiativeMutation>;
+export type InsertInitiativeMutationResult = Apollo.MutationResult<InsertInitiativeMutation>;
+export type InsertInitiativeMutationOptions = Apollo.BaseMutationOptions<InsertInitiativeMutation, InsertInitiativeMutationVariables>;
 export const SearchResultsDocument = gql`
     query SearchResults($layers: [String!] = ["initiative", "organization"], $keyword: String!) {
   entries(

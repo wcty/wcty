@@ -1,4 +1,7 @@
 import styled, {css} from 'styled-components';
+import Placeholder from 'assets/icons/cover-placeholder.svg';
+import { InputHTMLAttributes } from 'react';
+import { ReactComponent as Cross } from 'assets/icons/cross.svg'
 
 export const 
 FloatingContainer = styled.div`
@@ -39,6 +42,52 @@ FloatingContainer = styled.div`
     margin-bottom: 1rem;
   }
 `, 
+
+FileInput = styled.label.attrs(
+  (p:{
+    src?:string,
+    onInputChange?:(e:React.ChangeEvent<HTMLInputElement>)=>void
+  }&InputHTMLAttributes<HTMLInputElement>)=>({
+    onInputChange:p.onInputChange,
+    children: <><input type="file" onChange={p.onInputChange} /><div><Cross/>{p.title}</div></>
+}))<{src?:string}>`
+  width: 100%;
+  height: 150px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-image: url(${p=>p.src? p.src+'?w=150&h=300&q=90': Placeholder});
+  background-size: cover;
+  background-position: center;
+  border-radius: 3px;
+  position: relative;
+  >input[type="file"]{
+    display: none;
+  }
+  >div{
+    height: 32px;
+    background-color: white;
+    border-radius: 3px;
+    position: absolute;
+    bottom:1rem;
+    right:1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    ${p=>p.theme.font.body.semibold.t5}
+    ${p=>p.theme.shadow}
+    transform: translate(0px,0px);
+    transition: transform 0.3s ease-in-out;
+    &:hover{
+      transform: translate(3px,3px);
+    }
+    >svg{
+      height: 14px;
+      margin: 0.5rem;
+      margin-right: 1rem;
+    }
+  }
+`,
 
 BottomContainer = styled.div`
   display: flex;

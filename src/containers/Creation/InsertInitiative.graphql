@@ -1,0 +1,7 @@
+mutation InsertInitiative($initiative: initiatives_insert_input!){
+  insert_initiatives_one(
+    object: $initiative
+  ){
+    id
+  }
+}

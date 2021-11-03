@@ -1,52 +1,36 @@
 import Button from "components/Button";
-import { BottomContainer } from "./styles";
-import { useHistory } from "react-router-dom";
-import { storage, useAddress, useI18n, useUser } from "common";
+import { BottomContainer, FileInput } from "./styles";
 import { ReactComponent as Steps } from 'assets/icons/steps2.svg'
-import Map from 'components/Map'
-import { useRecoilState } from "recoil";
-import { TextArea, TextField } from "components";
-import { ChangeEvent, useState } from "react";
-
-export type Initiative = {
-  address: string,
-  location: [number, number],
-  name: string,
-  problem: string,
-  image: string
-}
+import { Initiative } from ".";
+import { ChangeEvent, useEffect } from "react";
+import { useInsertInitiativeMutation } from "generated";
+import { userInfo } from "os";
+import { useUser } from "common";
+import { useHistory } from "react-router-dom";
 
 export default function Creation({
   initiative,
-  setInitiative,
-  index, setIndex
+  index, setIndex,
+  onInputChangeSubmit
 }:{
   initiative:Initiative,
   setInitiative: (initiative:Initiative) => void,
-  index:number, setIndex:(index:number) => void
+  index:number, setIndex:(index:number) => void,
+  onInputChangeSubmit: (e: ChangeEvent<HTMLInputElement>, createRecord?: boolean) => void
 }) {
-  
-  async function upload() {
-    if(file){
-      try {
-        await storage.put("/public/test.png", file);
-        // await storage.put(`/public/${uuid}.${extension}`, file);
-        // await storage.put(`/public/${file.name}`, file);
-      } catch (error) {
-        console.log({ error });
-        return alert("Upload failed");
-      }
-      alert("Upload successful");
+  const history = useHistory()
+  const user = useUser()
+  const [insert, {error, data}] = useInsertInitiativeMutation()
+  console.log(error, data)
+
+  useEffect(()=>{
+    const id = data?.insert_initiatives_one?.id
+    if(id){
+      console.log(id)
+      history.push(`/initiative/${id}`)
     }
 
-    // You probably want to save the uploaded file to the database
-    // You only need to save the `/public/test.png` part
-  }
-
-  const [file, setFile] = useState<File|null>(null);
-  function addFile(e:ChangeEvent<HTMLInputElement>) {
-    e.target.files?.[0] && setFile(e.target.files[0]);
-  }
+  },[data?.insert_initiatives_one?.id])
 
   return (
     <>
@@ -55,11 +39,7 @@ export default function Creation({
           Створення ініціативи
           <Steps/>
         </div>
-          <input type="file" onChange={addFile} />
-          <Button 
-            label='Upload image' 
-            customType='secondary' 
-            onClick={upload}/>
+        <FileInput title={initiative.url?'Змінити фото':'Додати фото'} src={initiative.url!==''?initiative.url+`#${initiative.timeUpdated}`:undefined} onInputChange={(e)=>onInputChangeSubmit(e,false)}/>
         <div>
           <Button 
             label='Назад' 
@@ -67,9 +47,50 @@ export default function Creation({
             onClick={()=>setIndex(index-1)}/>
           <Button 
             label='Створити ініціативу' 
-            disabled={initiative.name.length<10||initiative.problem.length<10}
+            disabled={!(initiative.url&&initiative.path)}
             onClick={()=>{
-                setIndex(index+1)
+                insert({variables:{
+                  initiative:{
+                    files:{
+                      data: [{
+                        downloadable_url: initiative.url,
+                        file_path: initiative.path,
+                        user_id: user?.id,
+                      }]
+                    },
+                    name:initiative.name,
+                    members: {
+                      data:[{
+                        user_id: user?.id,
+                        tasks:{
+                          data:[{
+                            description: 'Create initiative',
+                            status: 'COMPLETED',
+                            volunteers:{
+                              data:[{
+                                user_id: user?.id
+                              }]
+                            }
+                          }]
+                        }
+                      }]
+                    },
+                    geom: {
+                      type: 'Point',
+                      coordinates: initiative.location
+                    },
+                    address: initiative.address,
+                    id: initiative.id,
+                    image: initiative.url,
+                    infos:{
+                      data:[{
+                        user_id: user?.id,
+                        approved_at: new Date(),
+                        problem: initiative.problem,
+                      }]
+                    },
+                  }
+                }})
             }}/>
         </div>
       </BottomContainer>

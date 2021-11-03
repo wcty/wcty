@@ -1,25 +1,12 @@
 import Button from "components/Button";
-import { BottomContainer, Center, LocationCard } from "./styles";
-import { ReactComponent as Cross } from 'assets/icons/cross.svg'
+import { BottomContainer } from "./styles";
 import { useHistory } from "react-router-dom";
-import { atoms, useAddress, useI18n, useUser } from "common";
-import Unauthorized from "./Unauthorized";
+import { useAddress, useI18n, useUser } from "common";
 import { ReactComponent as Steps } from 'assets/icons/steps1.svg'
-import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
-import { ReactComponent as Pen } from 'assets/icons/pen.svg'
-import { ReactComponent as PinNew } from 'assets/icons/pin-new.svg'
-import { useContext, useEffect, useState } from "react";
 import Map from 'components/Map'
 import { useRecoilState } from "recoil";
 import { TextArea, TextField } from "components";
-
-export type Initiative = {
-  address: string,
-  location: [number, number],
-  name: string,
-  problem: string,
-  image: string
-}
+import { Initiative } from ".";
 
 export default function Creation({
   initiative,

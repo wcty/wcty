@@ -21,10 +21,10 @@
       "members_count": "int8"
     }
   },
-  "public.initiatives_view": {
-    "id": "public.initiatives_view",
+  "public.map_entries": {
+    "id": "public.map_entries",
     "schema": "public",
-    "table": "initiatives_view",
+    "table": "map_entries",
     "id_column": null,
     "geometry_column": "geom",
     "srid": 4326,
@@ -63,10 +63,10 @@
       "address": "text"
     }
   },
-  "public.map_entries": {
-    "id": "public.map_entries",
+  "public.orgs_view": {
+    "id": "public.orgs_view",
     "schema": "public",
-    "table": "map_entries",
+    "table": "orgs_view",
     "id_column": null,
     "geometry_column": "geom",
     "srid": 4326,
@@ -85,10 +85,10 @@
       "members": "int8"
     }
   },
-  "public.orgs": {
-    "id": "public.orgs",
+  "public.entries": {
+    "id": "public.entries",
     "schema": "public",
-    "table": "orgs",
+    "table": "entries",
     "id_column": null,
     "geometry_column": "geom",
     "srid": 4326,
@@ -105,10 +105,10 @@
       "name": "text"
     }
   },
-  "public.orgs_view": {
-    "id": "public.orgs_view",
+  "public.initiatives_view": {
+    "id": "public.initiatives_view",
     "schema": "public",
-    "table": "orgs_view",
+    "table": "initiatives_view",
     "id_column": null,
     "geometry_column": "geom",
     "srid": 4326,

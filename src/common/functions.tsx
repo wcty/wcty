@@ -15,7 +15,8 @@ export function toSelected(entry:NearbyEntriesQuery['entries_nearby'][number]){
       members: entry?.members_count,
       members_count: entry?.members_count,
       modified_at: entry?.modified_at,
-      type: entry?.type
+      type: entry?.type,
+      address: '',
     }
   } as const
 }

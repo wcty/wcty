@@ -14,6 +14,7 @@ import { useRecoilState } from "recoil";
 import { TextField } from "components";
 import SelectAddress from "./SelectAddress";
 import SelectName from "./SelectName";
+import SelectCover from "./SelectCover";
 
 export type Initiative = {
   address: string,
@@ -41,6 +42,8 @@ export default function Creation() {
         <SelectAddress {...{initiative, setInitiative, index, setIndex}}/>:
       index===1?
         <SelectName {...{initiative, setInitiative, index, setIndex}}/>:
+      index===2?
+        <SelectCover {...{initiative, setInitiative, index, setIndex}}/>:
       null
     ):
     <Unauthorized/>

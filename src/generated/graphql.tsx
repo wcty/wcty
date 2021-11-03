@@ -10786,7 +10786,7 @@ export type FirstMemberQueryResult = Apollo.QueryResult<FirstMemberQuery, FirstM
 export const CreatePostDocument = gql`
     mutation CreatePost($message: String!, $user_id: uuid!, $initiative_id: uuid!) {
   insert_initiative_posts_one(
-    object: {type: "message", message: $message, user_id: $user_id, initiative_id: $initiative_id}
+    object: {type: "message", message: $message, user_id: $user_id, initiative_id: $initiative_id, thread: {data: {name: "general"}}}
   ) {
     id
   }

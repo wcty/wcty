@@ -8,6 +8,11 @@ mutation CreatePost(
     message: $message,
     user_id: $user_id,
     initiative_id: $initiative_id,
+    thread:{
+      data:{
+        name: "general"
+      }
+    }
   }){
     id
   }

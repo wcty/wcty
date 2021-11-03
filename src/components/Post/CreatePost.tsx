@@ -32,13 +32,13 @@ function CreatePost({}:ICreatePostProps){
         <InputContent> 
             <Avatar size={'small'}/>
             <TextField onChange={e => setMessage('message')}/>
-            <IconButton icon="send" size="small" onClick={()=>false&&addPost()}/>
+            <IconButton icon="send" size="small" onClick={()=>addPost()}/>
             
         </InputContent>
         <Actions>
           <Channels>
             Канали: {
-              channels.map((channel, i) => <SectionTab key={i}  label={`#${channel}`}/>)
+              channels.map((channel, i) => <SectionTab key={i} label={`#${channel}`}/>)
             }
           </Channels>
           <CreateVote>

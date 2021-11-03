@@ -12,39 +12,37 @@ export default function ExpenseList() {
   const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()
   const [open, setOpen] = useState(true);
-
+  const isAvailable = data?.initiative && data.initiative.expenses.length>0
+  
   return (
     <List {...{open}}>
       <span onClick={()=>setOpen(!open)}>
-        <span>{i18n('list_of_expenses')}</span>
-        <span>
+        <span>{
+          isAvailable?
+          i18n('list_of_expenses'):
+          i18n('expenses_absent')}</span>
+        {isAvailable&&<span>
           {open?i18n('hide'):i18n('show')}
           <ArrowDropDown/>
-        </span>
+        </span>}
       </span>
-      <div>
+      {isAvailable && <div>
         {
-          [{
-            name: 'Expense name', 
-            value: 7000, 
-            currency: 'uah', 
-            documentName: 'Expense document name',
-            documentLink: 'https://google.com'
-          }].map((v,i)=>
+          data.initiative!.expenses.map((v,i)=>
             <Expense key={i}>
               <span>{i+1}</span>
               <div>
-                <span>{v.name}</span>
+                <span>{v.description}</span>
                 <span>
                   <LinkIcon/>
-                  <a href={v.documentLink}>{v.documentName}</a>
+                  {v.link&& <a href={v.link}>{v.link_name||v.link}</a>}
                 </span>
               </div>
-              <span>{`${v.value} ${v.currency}`}</span>
+              <span>{`${v.amount} ${v.currency}`}</span>
             </Expense>
           )
         }
-      </div>
+      </div>}
     </List>
   )
 }

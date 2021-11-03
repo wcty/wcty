@@ -46,7 +46,7 @@ export default function Join() {
           Number(donationValue) > 0
         )? [{
           currency: currency,
-          sum: Number(donationValue)
+          amount: Number(donationValue)
         }]:[],
       tasks:
         (

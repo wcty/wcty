@@ -12,10 +12,10 @@ InitiativeDescription = styled.div<{open:boolean, layout:string}>`
   overflow: hidden;
   transition: padding-bottom 0.5s, border-bottom 0.5s;
   padding-bottom: ${({open}) => open ? '2rem' : '0rem'};
-  border-bottom:  ${({open}) => open ? css`1px solid rgba(0,0,0,1)` : css`1px solid rgba(0,0,0,0)`};
+  border-bottom:  ${({open}) => open ? css<{}>`1px solid rgba(0,0,0,1)` : css<{}>`1px solid rgba(0,0,0,0)`};
   >span{
     ${p=>p.layout==='desktop' ? 
-      css`display: none;`:
+      css<{}>`display: none;`:
       css<{open:boolean}>`
         padding: 0rem 2rem;
         flex: 1 1 auto;
@@ -25,7 +25,7 @@ InitiativeDescription = styled.div<{open:boolean, layout:string}>`
         flex-direction: row;
         border-bottom: solid 1px #000000;
         >svg{
-          transform: ${p=>p.open ? css`rotate(180deg)` : css`rotate(0deg)`};
+          transform: ${p=>p.open ? css<{}>`rotate(180deg)` : css<{}>`rotate(0deg)`};
           transition: transform 0.2s;;
         }
         >span{
@@ -41,9 +41,9 @@ InitiativeDescription = styled.div<{open:boolean, layout:string}>`
     }
   }
   >div{
-    padding: ${p=>p.layout==='mobile'? css`0rem 2rem`: css`0rem 0rem`};
+    padding: ${p=>p.layout==='mobile'? css<{}>`0rem 2rem`: css<{}>`0rem 0rem`};
     position: relative;
-    max-height: ${p=>p.open ? css`600px` : css`0px`};
+    max-height: ${p=>p.open ? css<{}>`600px` : css<{}>`0px`};
     transition: max-height 0.5s, padding 0.5s;
     >div:first-child{
       ${p=>p.theme.layout==='desktop'?
@@ -138,22 +138,23 @@ CollectedSum = styled.div.attrs(
           ), 0, 3
         )} 
       </span> 
-      <span>
+      {p.total!==0 && <span>
         {selectWords(
           useI18n()('collected_sum_from_sum', 
           `${p.sum} ${useI18n()('UAH')}`, 
           `${p.total} ${useI18n()('UAH')}`
           ), 3
         )}
-      </span>
+      </span>}
     </>
   }))`
+
+  >:last-child{
+    ${p=>p.theme.font.body.regular.t5}
+  }
   >:first-child{
     ${p=>p.theme.font.body.semibold.t5}
     margin-right: 4px;
-  }
-  >:last-child{
-    ${p=>p.theme.font.body.regular.t5}
   }
 `,
 
@@ -214,7 +215,7 @@ List = styled.div<{open:boolean}>`
     }
     >span:last-child{
       >svg{
-        transform: ${p=>p.open ? css`rotate(180deg)` : css`rotate(0deg)`};
+        transform: ${p=>p.open ? css<{}>`rotate(180deg)` : css<{}>`rotate(0deg)`};
         transition: transform 0.2s;
         margin-left: 10px;
       }
@@ -229,7 +230,7 @@ List = styled.div<{open:boolean}>`
     padding: 0rem 0rem;
     position: relative;
     overflow: scroll;
-    max-height: ${p=>p.open ? css`300px` : css`0px`};
+    max-height: ${p=>p.open ? css<{}>`300px` : css<{}>`0px`};
     transition: max-height 0.5s, padding 0.5s;
   }
 `,

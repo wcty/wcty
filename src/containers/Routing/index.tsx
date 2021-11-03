@@ -29,7 +29,7 @@ export default function Routing(){
           <AuthSuccess/>
       </Route>
       <Route exact path="/initiative/:id"> 
-        {layout==='mobile'&&<Burger/>}
+        {layout==='mobile'&&<Burger style={{marginLeft:'1.5rem'}}/>}
         <Sidepanel/>
         {layout==='desktop'?
           <ContentWrapper>

@@ -14,6 +14,12 @@ fragment FeedFields on initiative_posts {
   modified_at
   message
   type
+  thread{
+    name
+  }
+  reactions {
+    type
+  }
   comments_aggregate {
     aggregate {
       count

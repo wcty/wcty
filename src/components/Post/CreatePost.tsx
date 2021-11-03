@@ -32,7 +32,7 @@ function CreatePost({}:ICreatePostProps){
         <InputContent> 
             <Avatar size={'small'}/>
             <TextField onChange={e => setMessage('message')}/>
-            <IconButton icon="send" size="small" onClick={()=>addPost()}/>
+            <IconButton icon="send" size="small" onClick={()=>false&&addPost()}/>
             
         </InputContent>
         <Actions>

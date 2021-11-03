@@ -60,6 +60,7 @@ ShareJoin = {
     display: flex;
     border-radius: 3px;
     overflow: hidden;
+    /* max-width: 450px; */
     
     >div{
       ${p=>p.theme.font.body.semibold.t4}
@@ -67,12 +68,19 @@ ShareJoin = {
       justify-content: center;
       align-items: center;
       flex: 1 1 auto;
+      max-width: 450px;
     }
     >div:first-child{
       background-color: white;
       color: black;
     }
     >div:last-child{
+      background-color: black;
+      color: white;
+    }
+    >div:only-child{
+      position: relative;
+      margin-left: auto;
       background-color: black;
       color: white;
     }

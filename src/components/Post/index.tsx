@@ -4,28 +4,37 @@ import Author from "./Author";
 import CommentIco from 'assets/icons/comment.svg'
 import LikeIco from 'assets/icons/like.svg'
 import CreatePost from "./CreatePost";
+import { FeedQuery } from "generated";
+import { useParams } from "react-router-dom";
 
 
 export interface IPostProps extends IPost {}
 
-function Post({author,  message, comments, likes, tags}:IPostProps) {
+
+function Post({user, message, comments_aggregate, reactions}: FeedQuery['posts'][number] ) {
+
+
     return(
         <Container>
-            <Author {...author}/>
+            <Author
+              avatar={user?.avatar_url||''}
+              name={user?.display_name||''}
+              date={new Date()}
+            />
             <Content>
                 <Message>{message}</Message>
-                <Tags>#{tags?.join(' ')}</Tags>
+                <Tags>#{[/*tags*/].join(' ')}</Tags>
             </Content>
             <Actions> 
                 <CommentCounter>
-                    Коментарів: {comments.length}
+                    Коментарів: {comments_aggregate?.aggregate?.count}
                 </CommentCounter>
                 <ToComment>
                     <img src={CommentIco} alt="comment"/>
                     Коментувати
                 </ToComment>
                 <Likes>
-                    {likes.length}
+                    {reactions.length}
                     <img src={LikeIco} alt="likes"/>
                 </Likes>
             </Actions>

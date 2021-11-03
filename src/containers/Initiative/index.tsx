@@ -2,7 +2,7 @@ import ImageHeaderCard from "components/ImageHeaderCard";
 import Feed from "./Feed";
 import InitiativeDetails from "./InitiativeDetails";
 import { Body, Container,  LeftColumn,  RightColumn } from "./styles";
-import { useHistory, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useInitiativeByPkQuery } from "generated";
 import { useUser } from "common";
 import Header from "./Header";
@@ -13,8 +13,8 @@ function Desktop() {
   const user = useUser()
   const { data } = useInitiativeByPkQuery({variables:{id, user_id:user?.id}, fetchPolicy:"cache-first"});
   const isMember = !!data?.initiative?.members?.length
-  console.log(data)
-  return(
+  
+  return !data?.initiative? <Redirect to='/'/> :(
     <Container.Desktop>
       <ImageHeaderCard.Desktop src={data?.initiative?.image||''}/>
       <Header.Desktop/>
@@ -43,7 +43,7 @@ function Mobile() {
   const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
   const isMember = !!data?.initiative?.members?.length
 
-  return (
+  return (data?.initiative && !data.initiative?.id)? <Redirect to='/'/> :(
     <Container.Mobile>
       <ImageHeaderCard.Mobile src={data?.initiative?.image||''}/>
       <Header.Mobile/>

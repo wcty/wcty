@@ -54,7 +54,7 @@ function Mobile() {
       </Header.Mobile>
       <ShareJoin.Mobile>
         <div>{i18n('share')}</div>
-        <div>{i18n('join')}</div>
+        {!isMember && <div>{i18n('join')}</div>}
       </ShareJoin.Mobile>
   </>
 }

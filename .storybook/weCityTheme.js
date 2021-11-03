@@ -11,7 +11,7 @@ export default create({
 //   fontBase: 'IBM Plex Mono',
 //   fontCode: 'monospace',
 
-//   appBg: '#d7d4c9',
+  appBg: '#F4EADE'
  
  
 });

@@ -52,9 +52,9 @@ function PostDiscussion({}:IPostDiscussionProps) {
                 </Channels>
             </Header>
 
-            <Post>
+            {/* <Post>
                 <UserPost {...post} />
-            </Post>
+            </Post> */}
             
                 <Expander>
                     <ArrowDownIco/>

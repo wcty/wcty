@@ -39,3 +39,5 @@ mongo_initiatives*
 .env.me
 !.env.project
 .env.development
+src/generated/tilespecs.json
+src/generated/tilespecs.json

@@ -70,13 +70,13 @@ function ContextSetter (){
   return null
 }
 
-const defaultFocus = cookies.get('focus')
+const defaultFocus:number[]|undefined = cookies.get('focus')
 
 Map.viewport = atom({
   key: 'mapViewport',
   default: {
-    latitude: defaultFocus[1]||50.4501, 
-    longitude: defaultFocus[0]||30.5234, 
+    latitude: defaultFocus?.[1]||50.4501, 
+    longitude: defaultFocus?.[0]||30.5234, 
     zoom:15,
     viewportChangeMethod: 'flyTo'
   } as Viewport & { 

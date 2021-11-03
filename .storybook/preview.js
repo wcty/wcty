@@ -5,6 +5,19 @@ import { ThemeProvider } from "styled-components/macro";
 import {theme} from "../src/common/style"
 
 export const parameters = {
+  backgrounds: {
+    default: 'weCity',
+    values: [
+      {
+        name: 'weCity',
+        value: '#F4EADE',
+      },
+      {
+        name: 'white',
+        value: '#fff',
+      },
+    ],
+  },
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {

@@ -1,4 +1,4 @@
-import { useI18n } from 'common';
+import { atoms, useI18n, useLayout } from 'common';
 import { SearchInput, SearchWrapper, FieldWrapper, SearchResults } from "../styles";
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg'
 import { ReactComponent as CancelIcon } from 'assets/icons/cancel.svg'
@@ -7,11 +7,16 @@ import Buttons from "./Buttons";
 import { useSearchResultsQuery } from 'generated'
 import { useRecoilState } from "recoil";
 import { Map, ListRow } from 'components'
+import Slides from 'containers/Slides';
 
 export default function Search(){
   const i18n = useI18n()
   const [keyword, setKeyword] = useState('')
   const [layers, setLayers] = useRecoilState(Map.layers)
+  const [focus, setFocus] = useRecoilState(atoms.focalPoint)
+  const [slideIndex, setSlideIndex] = useRecoilState(Slides.index)
+  const [viewport, setViewport] = useRecoilState(Map.viewport)
+  const layout = useLayout()
   const {data} = useSearchResultsQuery({variables:{layers,keyword: `%${keyword}%`}})
   const [searchResults, setSearchResults] = useState(data)
 
@@ -38,7 +43,22 @@ export default function Search(){
       </FieldWrapper>
       <SearchResults data-active={!!keyword}>
         {searchResults?.entries.map((v,key)=>
-          <ListRow onClick={()=>setKeyword('')} data={v as any} {...{key}} />
+          <ListRow onClick={
+            layout==='desktop'?
+            ()=>setKeyword(''):
+            ()=>{
+              console.log('search',v)
+              setKeyword('')
+              setFocus(v.geometry.coordinates)
+              setViewport({
+                longitude: v.geometry.coordinates[0],
+                latitude: v.geometry.coordinates[1],
+                zoom: 16,
+                viewportChangeMethod: 'easeTo'
+              })
+              setSlideIndex(0)
+            }
+          } data={v as any} {...{key}} />
         )}
       </SearchResults>
     </SearchWrapper>

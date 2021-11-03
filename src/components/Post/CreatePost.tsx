@@ -1,6 +1,6 @@
 import Avatar from "components/Avatar";
 
-import TextField from "components/Inputs/TextField";
+import { TextField } from "components";
 import { Actions, Channels, Container, CreateVote, InputContent } from "./styles";
 import  {ReactComponent  as SendIco} from "assets/icons/send.svg";
 import Button from "components/Button";

@@ -175,8 +175,7 @@ export function usePrevious<T>(
 export function useLayout(){
   const [{isMobile}, data] = useDeviceSelectors(window.navigator.userAgent)
   const { width, height } = useWindowDimensions()
-
-  return (isMobile||width<960)? 'mobile': 'desktop'
+  return (width<960)? 'mobile': 'desktop'
 }
 
 interface Size {

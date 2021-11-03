@@ -9,12 +9,19 @@ import { useHistory } from 'react-router-dom'
 import mapStyle from './mapStyle.json'
 import { createContext, ReactNode, useContext, useEffect, useRef } from 'react'
 import { MapGL } from './styles'
+import Cookies from 'universal-cookie'
 
+const cookies = new Cookies()
 export default function Map({children}:{children?:ReactNode}){
   const [viewport, setViewport] = useRecoilState(Map.viewport);
   const [satellite] = useRecoilState(Map.satellite)
   const [cursor] = useRecoilState(Map.cursor)
-  const [,setSelected] = useRecoilState(Map.selected)
+  const [selected,setSelected] = useRecoilState(Map.selected)
+
+  useEffect(()=>{
+    if(selected?.geometry?.coordinates)
+    cookies.set('focus', selected.geometry.coordinates , { path: '/' });
+  },[selected])
 
   const history = useHistory()
  
@@ -31,7 +38,8 @@ export default function Map({children}:{children?:ReactNode}){
           {...viewport}
           onClick={(e:any)=>{
             console.log(e.target.queryRenderedFeatures(e.point)?.[0]?.layer?.id)
-            history.push('/'); setSelected(null) 
+            history.push('/'); 
+            setSelected(null) 
           }}
         >
           <ContextSetter/>
@@ -61,11 +69,13 @@ function ContextSetter (){
   return null
 }
 
+const defaultFocus = cookies.get('focus')
+
 Map.viewport = atom({
   key: 'mapViewport',
   default: {
-    latitude: 50.4501, 
-    longitude: 30.5234, 
+    latitude: defaultFocus[1]||50.4501, 
+    longitude: defaultFocus[0]||30.5234, 
     zoom:15,
     viewportChangeMethod: 'flyTo'
   } as Viewport & { 

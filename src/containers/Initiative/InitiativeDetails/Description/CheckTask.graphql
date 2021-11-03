@@ -1,0 +1,12 @@
+mutation CheckTask(
+  $initiative_id:uuid!, 
+  $task_id:Int!,
+  $value: String!="PENDING"
+){
+  update_initiative_tasks_by_pk(
+    pk_columns: {id: $task_id, initiative_id: $initiative_id},
+    _set: {status: $value}
+  ) {
+    id
+  }
+}

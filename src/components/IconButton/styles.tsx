@@ -1,19 +1,19 @@
 import styled,  {css} from "styled-components";
 import { IIconButtonProps } from ".";
 
-const small = css`
+const small = css<{}>`
     width: 27px;
     height: 27px;
 `
 
-const medium = css`
+const medium = css<{}>`
     width: 48px;
     height: 48px;
 `
 
-const large = css`
-width: 64px;
-height: 64px;
+const large = css<{}>`
+    width: 64px;
+    height: 64px;
 `
 
 const handleSize =  {
@@ -21,7 +21,6 @@ const handleSize =  {
     ['medium']: medium,
     ['large']: large
 }
-
 
 export const Container =  styled.div.attrs((props: IIconButtonProps) => ({
     onclick : props.onClick
@@ -36,12 +35,10 @@ export const Container =  styled.div.attrs((props: IIconButtonProps) => ({
     & > svg {
         width: 60%;
         height: 60%;
-       
     }
     
     ${({size})  => handleSize[size!]}
 
-    
     &:hover {
         background-color: ${props => props.theme.colors.secondary};
     };
@@ -51,9 +48,6 @@ export const Container =  styled.div.attrs((props: IIconButtonProps) => ({
     &:disabled {
         background-color: ${props => props.theme.colors.body};
     }
-    
-    border-radius: 100%;
-   
-   
 
+    border-radius: 100%;
 `

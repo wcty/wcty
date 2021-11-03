@@ -8,7 +8,7 @@ interface CheckboxProps {
   disabled?: boolean;
 }
 
-export const Checkbox = styled.label.attrs((p:CheckboxProps)=>({
+const Checkbox = styled.label.attrs((p:CheckboxProps)=>({
   value: p.value,
   disabled: p.disabled,
   onChange: p.disabled?()=>{}:p.onChange,
@@ -65,3 +65,5 @@ export const Checkbox = styled.label.attrs((p:CheckboxProps)=>({
     }
   }
 `
+
+export default Checkbox;

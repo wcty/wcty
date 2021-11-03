@@ -14,7 +14,7 @@ export const Container = {
     min-height: 100%;
     position: relative;
     background-color: ${p=>p.theme.colors.primary};
-    overflow: scroll;
+    overflow: auto;
   `,
 },
 

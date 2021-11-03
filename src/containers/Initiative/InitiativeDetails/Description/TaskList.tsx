@@ -1,29 +1,36 @@
 import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
 import { useI18n, useUser } from "common";
-import { useInitiativeByPkQuery } from "generated";
+import { TasksDocument, useCheckTaskMutation, useTasksQuery } from "generated";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { List, Task } from "./styles";
-import { Checkbox } from 'components/Checkbox';
+import { FinishedTasks, List, ProgressBar, Task } from "./styles";
+import { Checkbox } from 'components';
 
 export default function TaskList() {
   const {id} = useParams<{id:string}>();
   const user = useUser()
-  const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
+  const {data} = useTasksQuery({variables:{id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()
   const [open, setOpen] = useState(true);
-  const [tasks, setTasks] = useState([
-    {
-      name: 'Task name', 
-      finished: true
-    },
-    {
-      name: 'Another task', 
-      finished: false
-    }
-  ])
+  const [check] = useCheckTaskMutation({refetchQueries: [TasksDocument]});
 
-  return (
+  const onChange = (v:{status?:string|null, id:number})=>{
+    if(v.status==='COMPLETED'){
+      check({variables:{
+        initiative_id:id, task_id: v.id, value:'PENDING'}})
+    }else{
+      check({variables:{
+          initiative_id:id, task_id: v.id, value:'COMPLETED'}})             
+    }
+  }
+  const tasksCompleted = data?.initiative_tasks.filter(t=>t.status==='COMPLETED').length ||0
+  const tasksNumber = data?.initiative_tasks.length ||0
+
+  return (<>
+    <FinishedTasks tasks={tasksCompleted} total={tasksNumber}/>
+    <ProgressBar percent={
+      tasksNumber===0? 0:
+      tasksCompleted/tasksNumber*100||0}/>
     <List {...{open}}>
       <span onClick={()=>setOpen(!open)}>
         <span>{i18n('list_of_tasks')}</span>
@@ -34,29 +41,21 @@ export default function TaskList() {
       </span>
       <div>
         {
-          tasks.map((v,i)=>
+          data?.initiative_tasks?.map((v,i)=>
             <Task key={i}>
               <Checkbox 
-                checked={v.finished} 
-                value={v.name}
-                disabled={i==0}
-                onChange={
-                  ()=>{console.log('Change');setTasks(
-                    [...tasks].map(d=>d.name===v.name? {...d, finished:!v.finished}: d)
-                  )}
-                }/>
+                checked={v.status==='COMPLETED'} 
+                value={v.description}
+                disabled={!user}
+                onChange={()=>onChange(v) }/>
               <div 
-                onClick={
-                  ()=>{console.log('Change');setTasks(
-                    [...tasks].map(d=>d.name===v.name? {...d, finished:!v.finished}: d)
-                  )}
-                }>
-                <span>{v.name}</span>
+                onClick={()=>onChange(v) }>
+                <span>{v.description}</span>
               </div>
             </Task>
           )
         }
       </div>
     </List>
-  )
+  </>)
 }

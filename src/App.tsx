@@ -1,9 +1,7 @@
 import { atom } from 'recoil'
 import { useI18nDictionary, useLayout, User, useUserData, useWindowDimensions } from 'common'
 import { AppWrapper, GlobalStyle } from './styles'
-import { useDeviceSelectors } from 'react-device-detect';
-import DesktopVersion from 'containers/Desktop/'
-import MobileVersion from 'containers/Mobile/'
+import Routing from 'containers/Routing/'
 
 export default function App() {
 
@@ -14,7 +12,7 @@ export default function App() {
   return <>
     <GlobalStyle/>
     <AppWrapper>
-      { layout==='mobile' ? <MobileVersion/>: <DesktopVersion/> }
+      <Routing/>
     </AppWrapper>
   </>
 }

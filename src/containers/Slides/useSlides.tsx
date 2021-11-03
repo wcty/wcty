@@ -1,12 +1,9 @@
 import { useNearbyEntriesQuery } from 'generated';
 import { useRecoilState } from 'recoil';
-import { SwipeableViews } from '../styles';
 import { Map } from 'components'
 import { useEffect } from 'react';
-import { slideRenderer } from './slideRenderer';
-import { SlideRenderProps } from 'react-swipeable-views-utils';
 import { atoms, toSelected, usePrevious } from 'common';
-import Slides from '..'
+import Slides from '.'
 
 export default function Anonimous(){
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
@@ -31,7 +28,6 @@ export default function Anonimous(){
   useEffect(()=>{
     const len = nearbyEntries?.entries_nearby.length
     if(len && index>=(len-2)){
-      console.log('loaded more', len, layers)
       fetchMore({variables:{ offset: len }})
     }    
   },[index, nearbyEntries?.entries_nearby.length])
@@ -54,17 +50,22 @@ export default function Anonimous(){
       setIndex(i)
     }
   }
-  
-  return (
-    <SwipeableViews
-      {...{index, onChangeIndex}}
-      slideCount={nearbyEntries?.entries_nearby.length||2}
-      overscanSlideAfter={2}
-      overscanSlideBefore={2}
-      enableMouseEvents
-      slideRenderer={(v:SlideRenderProps)=>
-          slideRenderer({...v, entry: {...nearbyEntries?.entries_nearby}?.[v.key] }
-      )}
-    />
-  )
-};
+
+  //Effect to listen to keys and change slides
+  useEffect(()=>{
+    const handleKeyDown = (e:KeyboardEvent)=>{
+      if(e.code==='ArrowLeft'){
+        onChangeIndex(index-1)
+      }
+      if(e.code==='ArrowRight'){
+        onChangeIndex(index+1)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return ()=>{
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  },[index])
+
+  return {index, onChangeIndex, nearbyEntries}
+}

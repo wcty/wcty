@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro'
-import { Popup as PopupUnstyled } from '@urbica/react-map-gl'
 
 export const Card = styled.div`
   border-radius: none;

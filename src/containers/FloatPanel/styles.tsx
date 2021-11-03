@@ -4,13 +4,31 @@ export const
 Wrapper = styled.div`
   position: absolute;
   top: 2rem;
-  right: 2.5rem;
+  ${p=>p.theme.layout==='desktop'?
+  css<{}>`
+    right: 2.5rem;
+  `:
+  css<{}>`
+    right: 18px;
+    left: 18px;
+  `}
   height: 29px;
   display: flex;
 `,
 
 Fab = styled.button`
-  height: 100%;
+  ${p=>p.theme.layout==='mobile'?
+  css<{}>`
+    &:first-child{
+      margin-right: 18px;
+    }
+    &:last-child{
+      margin-left: 18px;
+    }
+  `:
+  css<{}>`
+    height: 100%;
+  `}
   width: 29px;
   display: flex;
   align-items: center;
@@ -35,8 +53,14 @@ Fab = styled.button`
 
 SearchWrapper = styled.div`
   position: relative;
-  margin-right: 2rem;
-  width: calc(280px + 2rem);
+  ${p=>p.theme.layout==='mobile'?
+  css<{}>`
+    flex: 1 1 auto;
+  `:
+  css<{}>`
+    margin-right: 2rem;
+    width: calc(280px + 2rem);
+  `}
   :focus-within {
     >div:first-child{      
       border-radius: 3px 3px 0px 0px;

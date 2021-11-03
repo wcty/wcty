@@ -165,5 +165,11 @@
  "goal": "Goal",
  "context": "Context",
  "photos": "Photos",
- "show_all": "Show all"
+ "show_all": "Show all",
+ "i_am_ready_to_donate": "I am ready to donate",
+ "enter_sum": "Enter sum",
+ "i_am_ready_to_volunteer": "I am ready to volunteer",
+ "suggest_relevant_task": "Suggest a relevant task for the initiative that you can perform",
+ "choose_one_task": "Choose one of the tasks you can perform, or suggest your own.",
+ "expenses_absent": "Expenses were not added yet"
 }

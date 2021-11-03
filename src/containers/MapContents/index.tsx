@@ -129,12 +129,12 @@ export default function MapContents(){
       }
     />
     <FeatureState sourceLayer='public.entries' source='entries' id={selected?.id||''} state={{selected:true}}/>
-    <>{ selected && layout==='desktop' &&
+    <>{ selected && selected?.geometry?.coordinates && layout==='desktop' &&
       <Popup 
         closeButton={false} 
         closeOnClick={false}  
-        latitude={selected?.geometry?.coordinates[1]} 
-        longitude={selected?.geometry?.coordinates[0]} 
+        latitude={selected.geometry.coordinates[1]} 
+        longitude={selected.geometry.coordinates[0]} 
         anchor="bottom-right">
           <InitiativeCard entry={selected}/> 
       </Popup>

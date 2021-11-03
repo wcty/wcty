@@ -4,5 +4,4 @@ export interface IButton {
     customSize?: 'large'|  'medium' | 'small'
     label?: string,
     isDisabled?: boolean
-
 }

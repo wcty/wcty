@@ -62,7 +62,7 @@ export default function Creation({
             onClick={()=>setIndex(index-1)}/>
           <Button 
             label='Далі' 
-            disabled={initiative.name.length<10||initiative.problem.length<10}
+            disabled={initiative.name.length<5||initiative.problem.length<10}
             onClick={()=>{
                 setIndex(index+1)
             }}/>

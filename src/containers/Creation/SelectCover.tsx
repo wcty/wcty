@@ -1,11 +1,12 @@
 import Button from "components/Button";
 import { BottomContainer } from "./styles";
 import { useHistory } from "react-router-dom";
-import { useAddress, useI18n, useUser } from "common";
+import { storage, useAddress, useI18n, useUser } from "common";
 import { ReactComponent as Steps } from 'assets/icons/steps2.svg'
 import Map from 'components/Map'
 import { useRecoilState } from "recoil";
 import { TextArea, TextField } from "components";
+import { ChangeEvent, useState } from "react";
 
 export type Initiative = {
   address: string,
@@ -25,12 +26,27 @@ export default function Creation({
   index:number, setIndex:(index:number) => void
 }) {
   
-  const user = useUser()
-  const history = useHistory()
-  const [viewport, setViewport] = useRecoilState(Map.viewport)
-  // const [focus, setFocus] = useRecoilState(atoms.focalPoint)
-  const mbAddress = useAddress([viewport.longitude, viewport.latitude], true)
-  const i18n = useI18n()
+  async function upload() {
+    if(file){
+      try {
+        await storage.put("/public/test.png", file);
+        // await storage.put(`/public/${uuid}.${extension}`, file);
+        // await storage.put(`/public/${file.name}`, file);
+      } catch (error) {
+        console.log({ error });
+        return alert("Upload failed");
+      }
+      alert("Upload successful");
+    }
+
+    // You probably want to save the uploaded file to the database
+    // You only need to save the `/public/test.png` part
+  }
+
+  const [file, setFile] = useState<File|null>(null);
+  function addFile(e:ChangeEvent<HTMLInputElement>) {
+    e.target.files?.[0] && setFile(e.target.files[0]);
+  }
 
   return (
     <>
@@ -39,23 +55,18 @@ export default function Creation({
           Створення ініціативи
           <Steps/>
         </div>
-        <TextField 
-          type='text'
-          value={initiative.name}
-          onChange={(e)=>setInitiative({...initiative, name: e.target.value})}
-          placeholder={'Назва вашої ініціативи'}/>
-        <TextArea
-          rows={3}
-          value={initiative.problem}
-          onChange={(e)=>setInitiative({...initiative, problem: e.target.value})}
-          placeholder={'Опишіть свою ідею або проблему що ви намагаєтеся вирішити'}/>
+          <input type="file" onChange={addFile} />
+          <Button 
+            label='Upload image' 
+            customType='secondary' 
+            onClick={upload}/>
         <div>
           <Button 
             label='Назад' 
             customType='secondary' 
             onClick={()=>setIndex(index-1)}/>
           <Button 
-            label='Далі' 
+            label='Створити ініціативу' 
             disabled={initiative.name.length<10||initiative.problem.length<10}
             onClick={()=>{
                 setIndex(index+1)

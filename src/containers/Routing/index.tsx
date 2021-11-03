@@ -9,12 +9,10 @@ import Initiative from 'containers/Initiative'
 import FloatButtons from 'containers/FloatButtons'
 import Slides from 'containers/Slides'
 import { useLayout } from 'common'
-import { useRecoilState } from 'recoil'
 import AuthSuccess from './AuthSuccess'
 
 export default function Routing(){
   const layout = useLayout()
-  const [selected, setSelected] = useRecoilState(Map.selected)
 
   return <>
       <Route exact path="/login">
@@ -41,7 +39,7 @@ export default function Routing(){
         </MapWrapper>
         <FloatButtons/>
         <FloatPanel/>
-        {layout==='mobile'&&<Slides/>}
+        <Slides/>
         <Sidepanel/>
       </Route>
   </>

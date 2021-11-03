@@ -2,7 +2,7 @@ import styled from 'styled-components/macro'
 import SwipeableViewsUnstyled from 'react-swipeable-views';
 import { virtualize, bindKeyboard } from 'react-swipeable-views-utils';
 
-const VirtualizeSwipeableViews = bindKeyboard(virtualize(SwipeableViewsUnstyled));
+const VirtualizeSwipeableViews = virtualize(SwipeableViewsUnstyled);
 
 export const
 SwipeableViews = styled(VirtualizeSwipeableViews).attrs({
@@ -28,4 +28,18 @@ SwipeableViews = styled(VirtualizeSwipeableViews).attrs({
       }
     }
   }
+`,
+
+LeftArrow = styled.div`
+  position: absolute;
+  left: 2rem;
+  top: 50%;
+  cursor: pointer;
+`,
+
+RightArrow = styled.div`
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  cursor: pointer;
 `

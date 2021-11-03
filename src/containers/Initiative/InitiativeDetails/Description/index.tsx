@@ -40,7 +40,7 @@ export default function Description() {
       <div>
         <GaugeBlock>
           <Gauge percent={x.to(x => x)} radius={(width && width>=480 && layout!=='desktop')? width*0.0125*6 : layout==='desktop'? 60 : 35 }/>
-          <h4>{i18n('implemented_of_the_project')}</h4>
+          <h3>{i18n('implemented_of_the_project')}</h3>
         </GaugeBlock>
         <>
           <CollectedSum sum={3120} total={12000}/>

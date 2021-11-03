@@ -1,35 +1,30 @@
 import styled, {css} from "styled-components/macro";
 import { IButtonProps } from ".";
 
-
-
-
-
-const large =  css`
+const large =  css<{}>`
     min-width: 160px;
     height: 56px;
     font-size: 14px;
 `;
 
-const medium =  css`
+const medium =  css<{}>`
     min-width: 120px;
     height: 40px;
     font-size: 12px;
 `;
 
-const small =  css`
+const small =  css<{}>`
     min-width: 90px;
     height: 32px;
     font-size: 10px;
 `;
 
-
-const alarm = css`
+const alarm = css<{}>`
     min-width: 500px;
     background-color: red;
 `
 
-const primary = css`
+const primary = css<{}>`
    background-color: ${props => props.theme.colors.titleActive};
    color: ${props => props.theme.colors.backgroundLight};
     &:hover {
@@ -41,10 +36,9 @@ const primary = css`
     &:disabled {
         background-color: ${props => props.theme.colors.body};
     }
-  
 `;
 
-const secondary = css`
+const secondary = css<{}>`
     background-color: transparent;
     color: ${props => props.theme.colors.titleActive};
     border: 1px solid ${props => props.theme.colors.titleActive};
@@ -60,10 +54,9 @@ const secondary = css`
         border-color: ${props => props.theme.colors.body};
         color: ${props => props.theme.colors.body};
     }
-
 `;
 
-const subtle = css`
+const subtle = css<{}>`
     background-color: transparent;
     color: ${props => props.theme.colors.titleActive};
     border: 1px solid ${props => props.theme.colors.placeholder};
@@ -81,28 +74,19 @@ const subtle = css`
     }
 `;
 
-const text = css`
+const text = css<{}>`
     background-color: transparent;
     color: ${props => props.theme.colors.titleActive};
     &:hover {
-        
         color: ${props => props.theme.colors.secondary};
     };
     &:active {
-        
         color: ${props => props.theme.colors.secondaryAccent};
     };
     &:disabled {
-        
         color: ${props => props.theme.colors.placeholder};
     }
 `;
-
-
-const share = css`
-
-`
-
 
 const handleSize = {
     ['large']:large,
@@ -118,11 +102,7 @@ const handleType = {
     ['share']:text,
 }
 
-
-export const CustomButton = styled.button.attrs((props: IButtonProps) => ({
-    disabled: props.isDisabled,
-    onclick : props.onClick
-}))<IButtonProps>`
+export const CustomButton = styled.button<IButtonProps>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,10 +111,6 @@ export const CustomButton = styled.button.attrs((props: IButtonProps) => ({
     cursor: pointer;
     border-radius: 3px;
     font:  ${props => props.theme.font.body.semibold.t5};
-    
     ${({customType}) => handleType[customType!]};
     ${({customSize}) => handleSize[customSize!]};
-
-    
-
 `;

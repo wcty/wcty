@@ -46,7 +46,10 @@ InitiativeDescription = styled.div<{open:boolean, layout:string}>`
     max-height: ${p=>p.open ? css`600px` : css`0px`};
     transition: max-height 0.5s, padding 0.5s;
     >div:first-child{
-      margin: 2rem 0rem;
+      ${p=>p.theme.layout==='desktop'?
+        css<{}>`margin: 0`:
+        css<{}>`margin: 2rem 0rem;`
+      }
     }
   }
 `,
@@ -113,6 +116,9 @@ GaugeBlock = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  >h4{
+    margin-right: 1rem;
+  }
 `,
 
 CollectedSum = styled.div.attrs(

@@ -4,7 +4,7 @@ import { useInitiativeByPkQuery } from "generated";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { List, Task } from "./styles";
-import { Checkbox } from 'components/Checkbox';
+import { Checkbox } from 'components';
 
 export default function TaskList() {
   const {id} = useParams<{id:string}>();

@@ -2016,6 +2016,7 @@ export type Initiative_Info_Insert_Input = {
   initiative_id?: Maybe<Scalars['uuid']>;
   modified_at?: Maybe<Scalars['timestamptz']>;
   problem?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "initiative_info" */
@@ -2184,10 +2185,16 @@ export type Initiative_Members = {
   initiator?: Maybe<Scalars['Boolean']>;
   /** An array relationship */
   tasks: Array<Initiative_Tasks>;
+  /** An aggregate relationship */
+  tasks_aggregate: Initiative_Tasks_Aggregate;
   /** An object relationship */
   user?: Maybe<Users>;
   user_id?: Maybe<Scalars['uuid']>;
   volunteer?: Maybe<Scalars['Boolean']>;
+  /** An array relationship */
+  volunteers: Array<Initiative_Volunteers>;
+  /** An aggregate relationship */
+  volunteers_aggregate: Initiative_Volunteers_Aggregate;
 };
 
 
@@ -2208,6 +2215,36 @@ export type Initiative_MembersTasksArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Initiative_Tasks_Order_By>>;
   where?: Maybe<Initiative_Tasks_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiative_members" */
+export type Initiative_MembersTasks_AggregateArgs = {
+  distinct_on?: Maybe<Array<Initiative_Tasks_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Tasks_Order_By>>;
+  where?: Maybe<Initiative_Tasks_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiative_members" */
+export type Initiative_MembersVolunteersArgs = {
+  distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
+  where?: Maybe<Initiative_Volunteers_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiative_members" */
+export type Initiative_MembersVolunteers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
+  where?: Maybe<Initiative_Volunteers_Bool_Exp>;
 };
 
 /** aggregated selection of "initiative_members" */
@@ -2287,6 +2324,7 @@ export type Initiative_Members_Bool_Exp = {
   user?: Maybe<Users_Bool_Exp>;
   user_id?: Maybe<Uuid_Comparison_Exp>;
   volunteer?: Maybe<Boolean_Comparison_Exp>;
+  volunteers?: Maybe<Initiative_Volunteers_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "initiative_members" */
@@ -2313,6 +2351,7 @@ export type Initiative_Members_Insert_Input = {
   tasks?: Maybe<Initiative_Tasks_Arr_Rel_Insert_Input>;
   user_id?: Maybe<Scalars['uuid']>;
   volunteer?: Maybe<Scalars['Boolean']>;
+  volunteers?: Maybe<Initiative_Volunteers_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -2376,6 +2415,7 @@ export type Initiative_Members_Order_By = {
   user?: Maybe<Users_Order_By>;
   user_id?: Maybe<Order_By>;
   volunteer?: Maybe<Order_By>;
+  volunteers_aggregate?: Maybe<Initiative_Volunteers_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: initiative_members */
@@ -2711,6 +2751,8 @@ export type Initiative_Polls = {
   initiative_id: Scalars['uuid'];
   /** An array relationship */
   tasks: Array<Initiative_Tasks>;
+  /** An aggregate relationship */
+  tasks_aggregate: Initiative_Tasks_Aggregate;
   user_id?: Maybe<Scalars['uuid']>;
   /** An array relationship */
   votes: Array<Initiative_Poll_Votes>;
@@ -2739,6 +2781,16 @@ export type Initiative_PollsExpensesArgs = {
 
 /** columns and relationships of "initiative_polls" */
 export type Initiative_PollsTasksArgs = {
+  distinct_on?: Maybe<Array<Initiative_Tasks_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Tasks_Order_By>>;
+  where?: Maybe<Initiative_Tasks_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiative_polls" */
+export type Initiative_PollsTasks_AggregateArgs = {
   distinct_on?: Maybe<Array<Initiative_Tasks_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -3150,8 +3202,6 @@ export type Initiative_Posts = {
   projects: Array<Initiative_Projects>;
   /** An array relationship */
   reactions: Array<Initiative_Post_Reactions>;
-  /** An array relationship */
-  tasks: Array<Initiative_Tasks>;
   /** An object relationship */
   thread: Initiative_Threads;
   thread_id: Scalars['Int'];
@@ -3159,8 +3209,6 @@ export type Initiative_Posts = {
   /** An object relationship */
   user?: Maybe<Users>;
   user_id?: Maybe<Scalars['uuid']>;
-  /** An array relationship */
-  volunteers: Array<Initiative_Volunteers>;
 };
 
 
@@ -3221,26 +3269,6 @@ export type Initiative_PostsReactionsArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Initiative_Post_Reactions_Order_By>>;
   where?: Maybe<Initiative_Post_Reactions_Bool_Exp>;
-};
-
-
-/** columns and relationships of "initiative_posts" */
-export type Initiative_PostsTasksArgs = {
-  distinct_on?: Maybe<Array<Initiative_Tasks_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Initiative_Tasks_Order_By>>;
-  where?: Maybe<Initiative_Tasks_Bool_Exp>;
-};
-
-
-/** columns and relationships of "initiative_posts" */
-export type Initiative_PostsVolunteersArgs = {
-  distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
-  where?: Maybe<Initiative_Volunteers_Bool_Exp>;
 };
 
 /** aggregated selection of "initiative_posts" */
@@ -3321,13 +3349,11 @@ export type Initiative_Posts_Bool_Exp = {
   modified_at?: Maybe<Timestamptz_Comparison_Exp>;
   projects?: Maybe<Initiative_Projects_Bool_Exp>;
   reactions?: Maybe<Initiative_Post_Reactions_Bool_Exp>;
-  tasks?: Maybe<Initiative_Tasks_Bool_Exp>;
   thread?: Maybe<Initiative_Threads_Bool_Exp>;
   thread_id?: Maybe<Int_Comparison_Exp>;
   type?: Maybe<String_Comparison_Exp>;
   user?: Maybe<Users_Bool_Exp>;
   user_id?: Maybe<Uuid_Comparison_Exp>;
-  volunteers?: Maybe<Initiative_Volunteers_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "initiative_posts" */
@@ -3354,12 +3380,10 @@ export type Initiative_Posts_Insert_Input = {
   modified_at?: Maybe<Scalars['timestamptz']>;
   projects?: Maybe<Initiative_Projects_Arr_Rel_Insert_Input>;
   reactions?: Maybe<Initiative_Post_Reactions_Arr_Rel_Insert_Input>;
-  tasks?: Maybe<Initiative_Tasks_Arr_Rel_Insert_Input>;
   thread?: Maybe<Initiative_Threads_Obj_Rel_Insert_Input>;
   thread_id?: Maybe<Scalars['Int']>;
   type?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  volunteers?: Maybe<Initiative_Volunteers_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -3445,13 +3469,11 @@ export type Initiative_Posts_Order_By = {
   modified_at?: Maybe<Order_By>;
   projects_aggregate?: Maybe<Initiative_Projects_Aggregate_Order_By>;
   reactions_aggregate?: Maybe<Initiative_Post_Reactions_Aggregate_Order_By>;
-  tasks_aggregate?: Maybe<Initiative_Tasks_Aggregate_Order_By>;
   thread?: Maybe<Initiative_Threads_Order_By>;
   thread_id?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
   user?: Maybe<Users_Order_By>;
   user_id?: Maybe<Order_By>;
-  volunteers_aggregate?: Maybe<Initiative_Volunteers_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: initiative_posts */
@@ -3608,8 +3630,6 @@ export type Initiative_Projects = {
   org_id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   org_project?: Maybe<Org_Projects>;
-  /** An object relationship */
-  post: Initiative_Posts;
   post_id: Scalars['bigint'];
   reference_project_id?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
@@ -3667,7 +3687,6 @@ export type Initiative_Projects_Bool_Exp = {
   org?: Maybe<Orgs_Bool_Exp>;
   org_id?: Maybe<Uuid_Comparison_Exp>;
   org_project?: Maybe<Org_Projects_Bool_Exp>;
-  post?: Maybe<Initiative_Posts_Bool_Exp>;
   post_id?: Maybe<Bigint_Comparison_Exp>;
   reference_project_id?: Maybe<Int_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
@@ -3703,7 +3722,6 @@ export type Initiative_Projects_Insert_Input = {
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   org_id?: Maybe<Scalars['uuid']>;
-  post?: Maybe<Initiative_Posts_Obj_Rel_Insert_Input>;
   post_id?: Maybe<Scalars['bigint']>;
   reference_project_id?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
@@ -3768,7 +3786,6 @@ export type Initiative_Projects_Order_By = {
   org?: Maybe<Orgs_Order_By>;
   org_id?: Maybe<Order_By>;
   org_project?: Maybe<Org_Projects_Order_By>;
-  post?: Maybe<Initiative_Posts_Order_By>;
   post_id?: Maybe<Order_By>;
   reference_project_id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
@@ -4103,29 +4120,66 @@ export type Initiative_Tasks = {
   /** An object relationship */
   initiative: Initiatives;
   initiative_id: Scalars['uuid'];
-  /** An array relationship */
-  initiative_volunteers: Array<Initiative_Volunteers>;
   /** An object relationship */
   poll?: Maybe<Initiative_Polls>;
   poll_id?: Maybe<Scalars['Int']>;
-  /** An object relationship */
-  post: Initiative_Posts;
-  post_id: Scalars['bigint'];
   status?: Maybe<Scalars['String']>;
   /** An object relationship */
   user?: Maybe<Users>;
   user_id?: Maybe<Scalars['uuid']>;
-  volunteers?: Maybe<Scalars['numeric']>;
+  /** An array relationship */
+  volunteers: Array<Initiative_Volunteers>;
+  /** An aggregate relationship */
+  volunteers_aggregate: Initiative_Volunteers_Aggregate;
+  volunteers_needed?: Maybe<Scalars['numeric']>;
 };
 
 
 /** columns and relationships of "initiative_tasks" */
-export type Initiative_TasksInitiative_VolunteersArgs = {
+export type Initiative_TasksVolunteersArgs = {
   distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
   where?: Maybe<Initiative_Volunteers_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiative_tasks" */
+export type Initiative_TasksVolunteers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
+  where?: Maybe<Initiative_Volunteers_Bool_Exp>;
+};
+
+/** aggregated selection of "initiative_tasks" */
+export type Initiative_Tasks_Aggregate = {
+  aggregate?: Maybe<Initiative_Tasks_Aggregate_Fields>;
+  nodes: Array<Initiative_Tasks>;
+};
+
+/** aggregate fields of "initiative_tasks" */
+export type Initiative_Tasks_Aggregate_Fields = {
+  avg?: Maybe<Initiative_Tasks_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Initiative_Tasks_Max_Fields>;
+  min?: Maybe<Initiative_Tasks_Min_Fields>;
+  stddev?: Maybe<Initiative_Tasks_Stddev_Fields>;
+  stddev_pop?: Maybe<Initiative_Tasks_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Initiative_Tasks_Stddev_Samp_Fields>;
+  sum?: Maybe<Initiative_Tasks_Sum_Fields>;
+  var_pop?: Maybe<Initiative_Tasks_Var_Pop_Fields>;
+  var_samp?: Maybe<Initiative_Tasks_Var_Samp_Fields>;
+  variance?: Maybe<Initiative_Tasks_Variance_Fields>;
+};
+
+
+/** aggregate fields of "initiative_tasks" */
+export type Initiative_Tasks_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Initiative_Tasks_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "initiative_tasks" */
@@ -4150,12 +4204,18 @@ export type Initiative_Tasks_Arr_Rel_Insert_Input = {
   on_conflict?: Maybe<Initiative_Tasks_On_Conflict>;
 };
 
+/** aggregate avg on columns */
+export type Initiative_Tasks_Avg_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  poll_id?: Maybe<Scalars['Float']>;
+  volunteers_needed?: Maybe<Scalars['Float']>;
+};
+
 /** order by avg() on columns of table "initiative_tasks" */
 export type Initiative_Tasks_Avg_Order_By = {
   id?: Maybe<Order_By>;
   poll_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "initiative_tasks". All fields are combined with a logical 'AND'. */
@@ -4167,31 +4227,26 @@ export type Initiative_Tasks_Bool_Exp = {
   id?: Maybe<Int_Comparison_Exp>;
   initiative?: Maybe<Initiatives_Bool_Exp>;
   initiative_id?: Maybe<Uuid_Comparison_Exp>;
-  initiative_volunteers?: Maybe<Initiative_Volunteers_Bool_Exp>;
   poll?: Maybe<Initiative_Polls_Bool_Exp>;
   poll_id?: Maybe<Int_Comparison_Exp>;
-  post?: Maybe<Initiative_Posts_Bool_Exp>;
-  post_id?: Maybe<Bigint_Comparison_Exp>;
   status?: Maybe<String_Comparison_Exp>;
   user?: Maybe<Users_Bool_Exp>;
   user_id?: Maybe<Uuid_Comparison_Exp>;
-  volunteers?: Maybe<Numeric_Comparison_Exp>;
+  volunteers?: Maybe<Initiative_Volunteers_Bool_Exp>;
+  volunteers_needed?: Maybe<Numeric_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "initiative_tasks" */
 export enum Initiative_Tasks_Constraint {
   /** unique or primary key constraint */
-  InitiativeTasksPkey = 'initiative_tasks_pkey',
-  /** unique or primary key constraint */
-  UnqInitiativeTasksPostId = 'unq_initiative_tasks_post_id'
+  InitiativeTasksPkey = 'initiative_tasks_pkey'
 }
 
 /** input type for incrementing numeric columns in table "initiative_tasks" */
 export type Initiative_Tasks_Inc_Input = {
   id?: Maybe<Scalars['Int']>;
   poll_id?: Maybe<Scalars['Int']>;
-  post_id?: Maybe<Scalars['bigint']>;
-  volunteers?: Maybe<Scalars['numeric']>;
+  volunteers_needed?: Maybe<Scalars['numeric']>;
 };
 
 /** input type for inserting data into table "initiative_tasks" */
@@ -4199,14 +4254,23 @@ export type Initiative_Tasks_Insert_Input = {
   description?: Maybe<Scalars['String']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
-  initiative_volunteers?: Maybe<Initiative_Volunteers_Arr_Rel_Insert_Input>;
   poll?: Maybe<Initiative_Polls_Obj_Rel_Insert_Input>;
   poll_id?: Maybe<Scalars['Int']>;
-  post?: Maybe<Initiative_Posts_Obj_Rel_Insert_Input>;
-  post_id?: Maybe<Scalars['bigint']>;
   status?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  volunteers?: Maybe<Scalars['numeric']>;
+  volunteers?: Maybe<Initiative_Volunteers_Arr_Rel_Insert_Input>;
+  volunteers_needed?: Maybe<Scalars['numeric']>;
+};
+
+/** aggregate max on columns */
+export type Initiative_Tasks_Max_Fields = {
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
+  poll_id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  volunteers_needed?: Maybe<Scalars['numeric']>;
 };
 
 /** order by max() on columns of table "initiative_tasks" */
@@ -4215,10 +4279,20 @@ export type Initiative_Tasks_Max_Order_By = {
   id?: Maybe<Order_By>;
   initiative_id?: Maybe<Order_By>;
   poll_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   user_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Initiative_Tasks_Min_Fields = {
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
+  poll_id?: Maybe<Scalars['Int']>;
+  status?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  volunteers_needed?: Maybe<Scalars['numeric']>;
 };
 
 /** order by min() on columns of table "initiative_tasks" */
@@ -4227,10 +4301,9 @@ export type Initiative_Tasks_Min_Order_By = {
   id?: Maybe<Order_By>;
   initiative_id?: Maybe<Order_By>;
   poll_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   user_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "initiative_tasks" */
@@ -4261,15 +4334,13 @@ export type Initiative_Tasks_Order_By = {
   id?: Maybe<Order_By>;
   initiative?: Maybe<Initiatives_Order_By>;
   initiative_id?: Maybe<Order_By>;
-  initiative_volunteers_aggregate?: Maybe<Initiative_Volunteers_Aggregate_Order_By>;
   poll?: Maybe<Initiative_Polls_Order_By>;
   poll_id?: Maybe<Order_By>;
-  post?: Maybe<Initiative_Posts_Order_By>;
-  post_id?: Maybe<Order_By>;
   status?: Maybe<Order_By>;
   user?: Maybe<Users_Order_By>;
   user_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_aggregate?: Maybe<Initiative_Volunteers_Aggregate_Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: initiative_tasks */
@@ -4288,13 +4359,11 @@ export enum Initiative_Tasks_Select_Column {
   /** column name */
   PollId = 'poll_id',
   /** column name */
-  PostId = 'post_id',
-  /** column name */
   Status = 'status',
   /** column name */
   UserId = 'user_id',
   /** column name */
-  Volunteers = 'volunteers'
+  VolunteersNeeded = 'volunteers_needed'
 }
 
 /** input type for updating data in table "initiative_tasks" */
@@ -4303,42 +4372,65 @@ export type Initiative_Tasks_Set_Input = {
   id?: Maybe<Scalars['Int']>;
   initiative_id?: Maybe<Scalars['uuid']>;
   poll_id?: Maybe<Scalars['Int']>;
-  post_id?: Maybe<Scalars['bigint']>;
   status?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  volunteers?: Maybe<Scalars['numeric']>;
+  volunteers_needed?: Maybe<Scalars['numeric']>;
+};
+
+/** aggregate stddev on columns */
+export type Initiative_Tasks_Stddev_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  poll_id?: Maybe<Scalars['Float']>;
+  volunteers_needed?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "initiative_tasks" */
 export type Initiative_Tasks_Stddev_Order_By = {
   id?: Maybe<Order_By>;
   poll_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Initiative_Tasks_Stddev_Pop_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  poll_id?: Maybe<Scalars['Float']>;
+  volunteers_needed?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "initiative_tasks" */
 export type Initiative_Tasks_Stddev_Pop_Order_By = {
   id?: Maybe<Order_By>;
   poll_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Initiative_Tasks_Stddev_Samp_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  poll_id?: Maybe<Scalars['Float']>;
+  volunteers_needed?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "initiative_tasks" */
 export type Initiative_Tasks_Stddev_Samp_Order_By = {
   id?: Maybe<Order_By>;
   poll_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Initiative_Tasks_Sum_Fields = {
+  id?: Maybe<Scalars['Int']>;
+  poll_id?: Maybe<Scalars['Int']>;
+  volunteers_needed?: Maybe<Scalars['numeric']>;
 };
 
 /** order by sum() on columns of table "initiative_tasks" */
 export type Initiative_Tasks_Sum_Order_By = {
   id?: Maybe<Order_By>;
   poll_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
 };
 
 /** update columns of table "initiative_tasks" */
@@ -4352,37 +4444,53 @@ export enum Initiative_Tasks_Update_Column {
   /** column name */
   PollId = 'poll_id',
   /** column name */
-  PostId = 'post_id',
-  /** column name */
   Status = 'status',
   /** column name */
   UserId = 'user_id',
   /** column name */
-  Volunteers = 'volunteers'
+  VolunteersNeeded = 'volunteers_needed'
 }
+
+/** aggregate var_pop on columns */
+export type Initiative_Tasks_Var_Pop_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  poll_id?: Maybe<Scalars['Float']>;
+  volunteers_needed?: Maybe<Scalars['Float']>;
+};
 
 /** order by var_pop() on columns of table "initiative_tasks" */
 export type Initiative_Tasks_Var_Pop_Order_By = {
   id?: Maybe<Order_By>;
   poll_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Initiative_Tasks_Var_Samp_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  poll_id?: Maybe<Scalars['Float']>;
+  volunteers_needed?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "initiative_tasks" */
 export type Initiative_Tasks_Var_Samp_Order_By = {
   id?: Maybe<Order_By>;
   poll_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Initiative_Tasks_Variance_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  poll_id?: Maybe<Scalars['Float']>;
+  volunteers_needed?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "initiative_tasks" */
 export type Initiative_Tasks_Variance_Order_By = {
   id?: Maybe<Order_By>;
   poll_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
-  volunteers?: Maybe<Order_By>;
+  volunteers_needed?: Maybe<Order_By>;
 };
 
 /** columns and relationships of "initiative_threads" */
@@ -4673,20 +4781,45 @@ export type Initiative_Visits_Variance_Order_By = {
 
 /** columns and relationships of "initiative_volunteers" */
 export type Initiative_Volunteers = {
-  hours: Scalars['numeric'];
-  id: Scalars['Int'];
+  id: Scalars['bigint'];
   /** An object relationship */
   initiative: Initiatives;
   initiative_id: Scalars['uuid'];
+  role?: Maybe<Scalars['String']>;
   /** An object relationship */
-  post: Initiative_Posts;
-  post_id: Scalars['bigint'];
+  task: Initiative_Tasks;
+  task_id: Scalars['Int'];
   /** An object relationship */
-  task?: Maybe<Initiative_Tasks>;
-  task_id?: Maybe<Scalars['Int']>;
-  /** An object relationship */
-  user?: Maybe<Users>;
-  user_id?: Maybe<Scalars['uuid']>;
+  user: Users;
+  user_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "initiative_volunteers" */
+export type Initiative_Volunteers_Aggregate = {
+  aggregate?: Maybe<Initiative_Volunteers_Aggregate_Fields>;
+  nodes: Array<Initiative_Volunteers>;
+};
+
+/** aggregate fields of "initiative_volunteers" */
+export type Initiative_Volunteers_Aggregate_Fields = {
+  avg?: Maybe<Initiative_Volunteers_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Initiative_Volunteers_Max_Fields>;
+  min?: Maybe<Initiative_Volunteers_Min_Fields>;
+  stddev?: Maybe<Initiative_Volunteers_Stddev_Fields>;
+  stddev_pop?: Maybe<Initiative_Volunteers_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Initiative_Volunteers_Stddev_Samp_Fields>;
+  sum?: Maybe<Initiative_Volunteers_Sum_Fields>;
+  var_pop?: Maybe<Initiative_Volunteers_Var_Pop_Fields>;
+  var_samp?: Maybe<Initiative_Volunteers_Var_Samp_Fields>;
+  variance?: Maybe<Initiative_Volunteers_Variance_Fields>;
+};
+
+
+/** aggregate fields of "initiative_volunteers" */
+export type Initiative_Volunteers_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "initiative_volunteers" */
@@ -4711,11 +4844,15 @@ export type Initiative_Volunteers_Arr_Rel_Insert_Input = {
   on_conflict?: Maybe<Initiative_Volunteers_On_Conflict>;
 };
 
+/** aggregate avg on columns */
+export type Initiative_Volunteers_Avg_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  task_id?: Maybe<Scalars['Float']>;
+};
+
 /** order by avg() on columns of table "initiative_volunteers" */
 export type Initiative_Volunteers_Avg_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   task_id?: Maybe<Order_By>;
 };
 
@@ -4724,12 +4861,10 @@ export type Initiative_Volunteers_Bool_Exp = {
   _and?: Maybe<Array<Initiative_Volunteers_Bool_Exp>>;
   _not?: Maybe<Initiative_Volunteers_Bool_Exp>;
   _or?: Maybe<Array<Initiative_Volunteers_Bool_Exp>>;
-  hours?: Maybe<Numeric_Comparison_Exp>;
-  id?: Maybe<Int_Comparison_Exp>;
+  id?: Maybe<Bigint_Comparison_Exp>;
   initiative?: Maybe<Initiatives_Bool_Exp>;
   initiative_id?: Maybe<Uuid_Comparison_Exp>;
-  post?: Maybe<Initiative_Posts_Bool_Exp>;
-  post_id?: Maybe<Bigint_Comparison_Exp>;
+  role?: Maybe<String_Comparison_Exp>;
   task?: Maybe<Initiative_Tasks_Bool_Exp>;
   task_id?: Maybe<Int_Comparison_Exp>;
   user?: Maybe<Users_Bool_Exp>;
@@ -4739,47 +4874,58 @@ export type Initiative_Volunteers_Bool_Exp = {
 /** unique or primary key constraints on table "initiative_volunteers" */
 export enum Initiative_Volunteers_Constraint {
   /** unique or primary key constraint */
-  InitiativeDonationsPkey_0 = 'initiative_donations_pkey_0',
-  /** unique or primary key constraint */
-  UnqInitiativeVolunteersPostId = 'unq_initiative_volunteers_post_id'
+  InitiativeVolunteersPkey = 'initiative_volunteers_pkey'
 }
 
 /** input type for incrementing numeric columns in table "initiative_volunteers" */
 export type Initiative_Volunteers_Inc_Input = {
-  hours?: Maybe<Scalars['numeric']>;
-  id?: Maybe<Scalars['Int']>;
-  post_id?: Maybe<Scalars['bigint']>;
+  id?: Maybe<Scalars['bigint']>;
   task_id?: Maybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "initiative_volunteers" */
 export type Initiative_Volunteers_Insert_Input = {
-  hours?: Maybe<Scalars['numeric']>;
+  id?: Maybe<Scalars['bigint']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
-  post?: Maybe<Initiative_Posts_Obj_Rel_Insert_Input>;
-  post_id?: Maybe<Scalars['bigint']>;
+  role?: Maybe<Scalars['String']>;
   task?: Maybe<Initiative_Tasks_Obj_Rel_Insert_Input>;
+  task_id?: Maybe<Scalars['Int']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Initiative_Volunteers_Max_Fields = {
+  id?: Maybe<Scalars['bigint']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
   task_id?: Maybe<Scalars['Int']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "initiative_volunteers" */
 export type Initiative_Volunteers_Max_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   initiative_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
+  role?: Maybe<Order_By>;
   task_id?: Maybe<Order_By>;
   user_id?: Maybe<Order_By>;
 };
 
+/** aggregate min on columns */
+export type Initiative_Volunteers_Min_Fields = {
+  id?: Maybe<Scalars['bigint']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
+  task_id?: Maybe<Scalars['Int']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
 /** order by min() on columns of table "initiative_volunteers" */
 export type Initiative_Volunteers_Min_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   initiative_id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
+  role?: Maybe<Order_By>;
   task_id?: Maybe<Order_By>;
   user_id?: Maybe<Order_By>;
 };
@@ -4801,12 +4947,10 @@ export type Initiative_Volunteers_On_Conflict = {
 
 /** Ordering options when selecting data from "initiative_volunteers". */
 export type Initiative_Volunteers_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
   initiative?: Maybe<Initiatives_Order_By>;
   initiative_id?: Maybe<Order_By>;
-  post?: Maybe<Initiative_Posts_Order_By>;
-  post_id?: Maybe<Order_By>;
+  role?: Maybe<Order_By>;
   task?: Maybe<Initiative_Tasks_Order_By>;
   task_id?: Maybe<Order_By>;
   user?: Maybe<Users_Order_By>;
@@ -4815,19 +4959,17 @@ export type Initiative_Volunteers_Order_By = {
 
 /** primary key columns input for table: initiative_volunteers */
 export type Initiative_Volunteers_Pk_Columns_Input = {
-  id: Scalars['Int'];
+  id: Scalars['bigint'];
 };
 
 /** select columns of table "initiative_volunteers" */
 export enum Initiative_Volunteers_Select_Column {
   /** column name */
-  Hours = 'hours',
-  /** column name */
   Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
-  PostId = 'post_id',
+  Role = 'role',
   /** column name */
   TaskId = 'task_id',
   /** column name */
@@ -4836,83 +4978,108 @@ export enum Initiative_Volunteers_Select_Column {
 
 /** input type for updating data in table "initiative_volunteers" */
 export type Initiative_Volunteers_Set_Input = {
-  hours?: Maybe<Scalars['numeric']>;
-  id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['bigint']>;
   initiative_id?: Maybe<Scalars['uuid']>;
-  post_id?: Maybe<Scalars['bigint']>;
+  role?: Maybe<Scalars['String']>;
   task_id?: Maybe<Scalars['Int']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
 
+/** aggregate stddev on columns */
+export type Initiative_Volunteers_Stddev_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  task_id?: Maybe<Scalars['Float']>;
+};
+
 /** order by stddev() on columns of table "initiative_volunteers" */
 export type Initiative_Volunteers_Stddev_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   task_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Initiative_Volunteers_Stddev_Pop_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  task_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "initiative_volunteers" */
 export type Initiative_Volunteers_Stddev_Pop_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   task_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Initiative_Volunteers_Stddev_Samp_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  task_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "initiative_volunteers" */
 export type Initiative_Volunteers_Stddev_Samp_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   task_id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Initiative_Volunteers_Sum_Fields = {
+  id?: Maybe<Scalars['bigint']>;
+  task_id?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "initiative_volunteers" */
 export type Initiative_Volunteers_Sum_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   task_id?: Maybe<Order_By>;
 };
 
 /** update columns of table "initiative_volunteers" */
 export enum Initiative_Volunteers_Update_Column {
   /** column name */
-  Hours = 'hours',
-  /** column name */
   Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
-  PostId = 'post_id',
+  Role = 'role',
   /** column name */
   TaskId = 'task_id',
   /** column name */
   UserId = 'user_id'
 }
 
+/** aggregate var_pop on columns */
+export type Initiative_Volunteers_Var_Pop_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  task_id?: Maybe<Scalars['Float']>;
+};
+
 /** order by var_pop() on columns of table "initiative_volunteers" */
 export type Initiative_Volunteers_Var_Pop_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   task_id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Initiative_Volunteers_Var_Samp_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  task_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "initiative_volunteers" */
 export type Initiative_Volunteers_Var_Samp_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   task_id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Initiative_Volunteers_Variance_Fields = {
+  id?: Maybe<Scalars['Float']>;
+  task_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "initiative_volunteers" */
 export type Initiative_Volunteers_Variance_Order_By = {
-  hours?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  post_id?: Maybe<Order_By>;
   task_id?: Maybe<Order_By>;
 };
 
@@ -4948,14 +5115,14 @@ export type Initiatives = {
   tags: Array<Initiative_Tags>;
   /** An array relationship */
   tasks: Array<Initiative_Tasks>;
+  /** An aggregate relationship */
+  tasks_aggregate: Initiative_Tasks_Aggregate;
   /** An array relationship */
   tenders: Array<Tenders>;
   /** An array relationship */
   threads: Array<Initiative_Threads>;
   /** An array relationship */
   visits: Array<Initiative_Visits>;
-  /** An array relationship */
-  volunteers: Array<Initiative_Volunteers>;
 };
 
 
@@ -5070,6 +5237,16 @@ export type InitiativesTasksArgs = {
 
 
 /** columns and relationships of "initiatives" */
+export type InitiativesTasks_AggregateArgs = {
+  distinct_on?: Maybe<Array<Initiative_Tasks_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Tasks_Order_By>>;
+  where?: Maybe<Initiative_Tasks_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiatives" */
 export type InitiativesTendersArgs = {
   distinct_on?: Maybe<Array<Tenders_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -5095,16 +5272,6 @@ export type InitiativesVisitsArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Initiative_Visits_Order_By>>;
   where?: Maybe<Initiative_Visits_Bool_Exp>;
-};
-
-
-/** columns and relationships of "initiatives" */
-export type InitiativesVolunteersArgs = {
-  distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
-  where?: Maybe<Initiative_Volunteers_Bool_Exp>;
 };
 
 /** Boolean expression to filter rows from the table "initiatives". All fields are combined with a logical 'AND'. */
@@ -5133,7 +5300,6 @@ export type Initiatives_Bool_Exp = {
   tenders?: Maybe<Tenders_Bool_Exp>;
   threads?: Maybe<Initiative_Threads_Bool_Exp>;
   visits?: Maybe<Initiative_Visits_Bool_Exp>;
-  volunteers?: Maybe<Initiative_Volunteers_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "initiatives" */
@@ -5164,7 +5330,6 @@ export type Initiatives_Insert_Input = {
   tenders?: Maybe<Tenders_Arr_Rel_Insert_Input>;
   threads?: Maybe<Initiative_Threads_Arr_Rel_Insert_Input>;
   visits?: Maybe<Initiative_Visits_Arr_Rel_Insert_Input>;
-  volunteers?: Maybe<Initiative_Volunteers_Arr_Rel_Insert_Input>;
 };
 
 /** response of any mutation on the table "initiatives" */
@@ -5223,7 +5388,6 @@ export type Initiatives_Order_By = {
   tenders_aggregate?: Maybe<Tenders_Aggregate_Order_By>;
   threads_aggregate?: Maybe<Initiative_Threads_Aggregate_Order_By>;
   visits_aggregate?: Maybe<Initiative_Visits_Aggregate_Order_By>;
-  volunteers_aggregate?: Maybe<Initiative_Volunteers_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: initiatives */
@@ -5888,7 +6052,7 @@ export type Mutation_RootDelete_Initiative_VolunteersArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Volunteers_By_PkArgs = {
-  id: Scalars['Int'];
+  id: Scalars['bigint'];
 };
 
 
@@ -7143,6 +7307,8 @@ export type Query_Root = {
   initiative_tags_by_pk?: Maybe<Initiative_Tags>;
   /** fetch data from the table: "initiative_tasks" */
   initiative_tasks: Array<Initiative_Tasks>;
+  /** fetch aggregated fields from the table: "initiative_tasks" */
+  initiative_tasks_aggregate: Initiative_Tasks_Aggregate;
   /** fetch data from the table: "initiative_tasks" using primary key columns */
   initiative_tasks_by_pk?: Maybe<Initiative_Tasks>;
   /** fetch data from the table: "initiative_threads" */
@@ -7151,8 +7317,10 @@ export type Query_Root = {
   initiative_visits: Array<Initiative_Visits>;
   /** fetch data from the table: "initiative_visits" using primary key columns */
   initiative_visits_by_pk?: Maybe<Initiative_Visits>;
-  /** An array relationship */
+  /** fetch data from the table: "initiative_volunteers" */
   initiative_volunteers: Array<Initiative_Volunteers>;
+  /** fetch aggregated fields from the table: "initiative_volunteers" */
+  initiative_volunteers_aggregate: Initiative_Volunteers_Aggregate;
   /** fetch data from the table: "initiative_volunteers" using primary key columns */
   initiative_volunteers_by_pk?: Maybe<Initiative_Volunteers>;
   /** fetch data from the table: "initiatives" */
@@ -7495,6 +7663,15 @@ export type Query_RootInitiative_TasksArgs = {
 };
 
 
+export type Query_RootInitiative_Tasks_AggregateArgs = {
+  distinct_on?: Maybe<Array<Initiative_Tasks_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Tasks_Order_By>>;
+  where?: Maybe<Initiative_Tasks_Bool_Exp>;
+};
+
+
 export type Query_RootInitiative_Tasks_By_PkArgs = {
   id: Scalars['Int'];
 };
@@ -7531,8 +7708,17 @@ export type Query_RootInitiative_VolunteersArgs = {
 };
 
 
+export type Query_RootInitiative_Volunteers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
+  where?: Maybe<Initiative_Volunteers_Bool_Exp>;
+};
+
+
 export type Query_RootInitiative_Volunteers_By_PkArgs = {
-  id: Scalars['Int'];
+  id: Scalars['bigint'];
 };
 
 
@@ -7777,6 +7963,8 @@ export type Subscription_Root = {
   initiative_tags_by_pk?: Maybe<Initiative_Tags>;
   /** fetch data from the table: "initiative_tasks" */
   initiative_tasks: Array<Initiative_Tasks>;
+  /** fetch aggregated fields from the table: "initiative_tasks" */
+  initiative_tasks_aggregate: Initiative_Tasks_Aggregate;
   /** fetch data from the table: "initiative_tasks" using primary key columns */
   initiative_tasks_by_pk?: Maybe<Initiative_Tasks>;
   /** fetch data from the table: "initiative_threads" */
@@ -7785,8 +7973,10 @@ export type Subscription_Root = {
   initiative_visits: Array<Initiative_Visits>;
   /** fetch data from the table: "initiative_visits" using primary key columns */
   initiative_visits_by_pk?: Maybe<Initiative_Visits>;
-  /** An array relationship */
+  /** fetch data from the table: "initiative_volunteers" */
   initiative_volunteers: Array<Initiative_Volunteers>;
+  /** fetch aggregated fields from the table: "initiative_volunteers" */
+  initiative_volunteers_aggregate: Initiative_Volunteers_Aggregate;
   /** fetch data from the table: "initiative_volunteers" using primary key columns */
   initiative_volunteers_by_pk?: Maybe<Initiative_Volunteers>;
   /** fetch data from the table: "initiatives" */
@@ -8129,6 +8319,15 @@ export type Subscription_RootInitiative_TasksArgs = {
 };
 
 
+export type Subscription_RootInitiative_Tasks_AggregateArgs = {
+  distinct_on?: Maybe<Array<Initiative_Tasks_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Tasks_Order_By>>;
+  where?: Maybe<Initiative_Tasks_Bool_Exp>;
+};
+
+
 export type Subscription_RootInitiative_Tasks_By_PkArgs = {
   id: Scalars['Int'];
 };
@@ -8165,8 +8364,17 @@ export type Subscription_RootInitiative_VolunteersArgs = {
 };
 
 
+export type Subscription_RootInitiative_Volunteers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
+  where?: Maybe<Initiative_Volunteers_Bool_Exp>;
+};
+
+
 export type Subscription_RootInitiative_Volunteers_By_PkArgs = {
-  id: Scalars['Int'];
+  id: Scalars['bigint'];
 };
 
 
@@ -8722,11 +8930,11 @@ export type Users = {
   projects: Array<Initiative_Projects>;
   /** An array relationship */
   tasks: Array<Initiative_Tasks>;
+  /** An aggregate relationship */
+  tasks_aggregate: Initiative_Tasks_Aggregate;
   /** An array relationship */
   tenders: Array<Tenders>;
   updated_at: Scalars['timestamptz'];
-  /** An array relationship */
-  volunteers: Array<Initiative_Volunteers>;
   /** An array relationship */
   votes: Array<Initiative_Poll_Votes>;
 };
@@ -8903,22 +9111,22 @@ export type UsersTasksArgs = {
 
 
 /** columns and relationships of "users" */
+export type UsersTasks_AggregateArgs = {
+  distinct_on?: Maybe<Array<Initiative_Tasks_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Tasks_Order_By>>;
+  where?: Maybe<Initiative_Tasks_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
 export type UsersTendersArgs = {
   distinct_on?: Maybe<Array<Tenders_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Tenders_Order_By>>;
   where?: Maybe<Tenders_Bool_Exp>;
-};
-
-
-/** columns and relationships of "users" */
-export type UsersVolunteersArgs = {
-  distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
-  where?: Maybe<Initiative_Volunteers_Bool_Exp>;
 };
 
 
@@ -8956,7 +9164,6 @@ export type Users_Bool_Exp = {
   tasks?: Maybe<Initiative_Tasks_Bool_Exp>;
   tenders?: Maybe<Tenders_Bool_Exp>;
   updated_at?: Maybe<Timestamptz_Comparison_Exp>;
-  volunteers?: Maybe<Initiative_Volunteers_Bool_Exp>;
   votes?: Maybe<Initiative_Poll_Votes_Bool_Exp>;
 };
 
@@ -8982,7 +9189,6 @@ export type Users_Order_By = {
   tasks_aggregate?: Maybe<Initiative_Tasks_Aggregate_Order_By>;
   tenders_aggregate?: Maybe<Tenders_Aggregate_Order_By>;
   updated_at?: Maybe<Order_By>;
-  volunteers_aggregate?: Maybe<Initiative_Volunteers_Aggregate_Order_By>;
   votes_aggregate?: Maybe<Initiative_Poll_Votes_Aggregate_Order_By>;
 };
 
@@ -9205,12 +9411,20 @@ export type InitiativeByPkQuery = { initiative?: { id: any, name?: string | null
 export type JoinMutationVariables = Exact<{
   userId: Scalars['uuid'];
   id: Scalars['uuid'];
-  sum?: Maybe<Scalars['numeric']>;
-  currency?: Maybe<Scalars['String']>;
+  donations: Array<Initiative_Donations_Insert_Input> | Initiative_Donations_Insert_Input;
+  tasks: Array<Initiative_Tasks_Insert_Input> | Initiative_Tasks_Insert_Input;
+  volunteers: Array<Initiative_Volunteers_Insert_Input> | Initiative_Volunteers_Insert_Input;
 }>;
 
 
 export type JoinMutation = { insert_initiative_members?: { affected_rows: number } | null | undefined };
+
+export type TasksQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type TasksQuery = { initiative_tasks: Array<{ id: number, description?: string | null | undefined, volunteers_needed?: any | null | undefined, status?: string | null | undefined, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } }> };
 
 export type InitiativeCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
 
@@ -10187,9 +10401,9 @@ export type InitiativeByPkQueryHookResult = ReturnType<typeof useInitiativeByPkQ
 export type InitiativeByPkLazyQueryHookResult = ReturnType<typeof useInitiativeByPkLazyQuery>;
 export type InitiativeByPkQueryResult = Apollo.QueryResult<InitiativeByPkQuery, InitiativeByPkQueryVariables>;
 export const JoinDocument = gql`
-    mutation Join($userId: uuid!, $id: uuid!, $sum: numeric, $currency: String = "uah") {
+    mutation Join($userId: uuid!, $id: uuid!, $donations: [initiative_donations_insert_input!]!, $tasks: [initiative_tasks_insert_input!]!, $volunteers: [initiative_volunteers_insert_input!]!) {
   insert_initiative_members(
-    objects: {initiative_id: $id, user_id: $userId, donations: {data: [{sum: $sum, currency: $currency}]}}
+    objects: {initiative_id: $id, user_id: $userId, donations: {data: $donations}, tasks: {data: $tasks}, volunteers: {data: $volunteers}}
   ) {
     affected_rows
   }
@@ -10212,8 +10426,9 @@ export type JoinMutationFn = Apollo.MutationFunction<JoinMutation, JoinMutationV
  *   variables: {
  *      userId: // value for 'userId'
  *      id: // value for 'id'
- *      sum: // value for 'sum'
- *      currency: // value for 'currency'
+ *      donations: // value for 'donations'
+ *      tasks: // value for 'tasks'
+ *      volunteers: // value for 'volunteers'
  *   },
  * });
  */
@@ -10224,6 +10439,49 @@ export function useJoinMutation(baseOptions?: Apollo.MutationHookOptions<JoinMut
 export type JoinMutationHookResult = ReturnType<typeof useJoinMutation>;
 export type JoinMutationResult = Apollo.MutationResult<JoinMutation>;
 export type JoinMutationOptions = Apollo.BaseMutationOptions<JoinMutation, JoinMutationVariables>;
+export const TasksDocument = gql`
+    query Tasks($id: uuid!) {
+  initiative_tasks(where: {initiative_id: {_eq: $id}}) {
+    id
+    description
+    volunteers_needed
+    status
+    volunteers_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useTasksQuery__
+ *
+ * To run a query within a React component, call `useTasksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTasksQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTasksQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useTasksQuery(baseOptions: Apollo.QueryHookOptions<TasksQuery, TasksQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TasksQuery, TasksQueryVariables>(TasksDocument, options);
+      }
+export function useTasksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TasksQuery, TasksQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TasksQuery, TasksQueryVariables>(TasksDocument, options);
+        }
+export type TasksQueryHookResult = ReturnType<typeof useTasksQuery>;
+export type TasksLazyQueryHookResult = ReturnType<typeof useTasksLazyQuery>;
+export type TasksQueryResult = Apollo.QueryResult<TasksQuery, TasksQueryVariables>;
 export const InitiativesNearbyListDocument = gql`
     query InitiativesNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
   initiatives_nearby(
@@ -10718,7 +10976,7 @@ export type initiative_info_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_membersKeySpecifier = ('contractor' | 'created_at' | 'donations' | 'donator' | 'id' | 'initiative' | 'initiative_id' | 'initiator' | 'tasks' | 'user' | 'user_id' | 'volunteer' | initiative_membersKeySpecifier)[];
+export type initiative_membersKeySpecifier = ('contractor' | 'created_at' | 'donations' | 'donator' | 'id' | 'initiative' | 'initiative_id' | 'initiator' | 'tasks' | 'tasks_aggregate' | 'user' | 'user_id' | 'volunteer' | 'volunteers' | 'volunteers_aggregate' | initiative_membersKeySpecifier)[];
 export type initiative_membersFieldPolicy = {
 	contractor?: FieldPolicy<any> | FieldReadFunction<any>,
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10729,9 +10987,12 @@ export type initiative_membersFieldPolicy = {
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiator?: FieldPolicy<any> | FieldReadFunction<any>,
 	tasks?: FieldPolicy<any> | FieldReadFunction<any>,
+	tasks_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>,
-	volunteer?: FieldPolicy<any> | FieldReadFunction<any>
+	volunteer?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_aggregate?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type initiative_members_aggregateKeySpecifier = ('aggregate' | 'nodes' | initiative_members_aggregateKeySpecifier)[];
 export type initiative_members_aggregateFieldPolicy = {
@@ -10817,7 +11078,7 @@ export type initiative_poll_votes_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_pollsKeySpecifier = ('edits' | 'expenses' | 'id' | 'initiative' | 'initiative_id' | 'tasks' | 'user_id' | 'votes' | initiative_pollsKeySpecifier)[];
+export type initiative_pollsKeySpecifier = ('edits' | 'expenses' | 'id' | 'initiative' | 'initiative_id' | 'tasks' | 'tasks_aggregate' | 'user_id' | 'votes' | initiative_pollsKeySpecifier)[];
 export type initiative_pollsFieldPolicy = {
 	edits?: FieldPolicy<any> | FieldReadFunction<any>,
 	expenses?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10825,6 +11086,7 @@ export type initiative_pollsFieldPolicy = {
 	initiative?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	tasks?: FieldPolicy<any> | FieldReadFunction<any>,
+	tasks_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	votes?: FieldPolicy<any> | FieldReadFunction<any>
 };
@@ -10847,7 +11109,7 @@ export type initiative_post_reactions_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_postsKeySpecifier = ('comments' | 'comments_aggregate' | 'created_at' | 'edits' | 'expenses' | 'id' | 'initiative' | 'initiative_id' | 'message' | 'modified_at' | 'projects' | 'reactions' | 'tasks' | 'thread' | 'thread_id' | 'type' | 'user' | 'user_id' | 'volunteers' | initiative_postsKeySpecifier)[];
+export type initiative_postsKeySpecifier = ('comments' | 'comments_aggregate' | 'created_at' | 'edits' | 'expenses' | 'id' | 'initiative' | 'initiative_id' | 'message' | 'modified_at' | 'projects' | 'reactions' | 'thread' | 'thread_id' | 'type' | 'user' | 'user_id' | initiative_postsKeySpecifier)[];
 export type initiative_postsFieldPolicy = {
 	comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	comments_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10861,13 +11123,11 @@ export type initiative_postsFieldPolicy = {
 	modified_at?: FieldPolicy<any> | FieldReadFunction<any>,
 	projects?: FieldPolicy<any> | FieldReadFunction<any>,
 	reactions?: FieldPolicy<any> | FieldReadFunction<any>,
-	tasks?: FieldPolicy<any> | FieldReadFunction<any>,
 	thread?: FieldPolicy<any> | FieldReadFunction<any>,
 	thread_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	type?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
-	user_id?: FieldPolicy<any> | FieldReadFunction<any>,
-	volunteers?: FieldPolicy<any> | FieldReadFunction<any>
+	user_id?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type initiative_posts_aggregateKeySpecifier = ('aggregate' | 'nodes' | initiative_posts_aggregateKeySpecifier)[];
 export type initiative_posts_aggregateFieldPolicy = {
@@ -10955,7 +11215,7 @@ export type initiative_posts_variance_fieldsFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	thread_id?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_projectsKeySpecifier = ('budget' | 'description' | 'id' | 'initiative' | 'initiative_id' | 'org' | 'org_id' | 'org_project' | 'post' | 'post_id' | 'reference_project_id' | 'status' | 'tender' | 'tender_id' | 'user' | 'user_id' | 'volunteers' | initiative_projectsKeySpecifier)[];
+export type initiative_projectsKeySpecifier = ('budget' | 'description' | 'id' | 'initiative' | 'initiative_id' | 'org' | 'org_id' | 'org_project' | 'post_id' | 'reference_project_id' | 'status' | 'tender' | 'tender_id' | 'user' | 'user_id' | 'volunteers' | initiative_projectsKeySpecifier)[];
 export type initiative_projectsFieldPolicy = {
 	budget?: FieldPolicy<any> | FieldReadFunction<any>,
 	description?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10965,7 +11225,6 @@ export type initiative_projectsFieldPolicy = {
 	org?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_project?: FieldPolicy<any> | FieldReadFunction<any>,
-	post?: FieldPolicy<any> | FieldReadFunction<any>,
 	post_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	reference_project_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	status?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -10993,26 +11252,112 @@ export type initiative_tags_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_tasksKeySpecifier = ('description' | 'id' | 'initiative' | 'initiative_id' | 'initiative_volunteers' | 'poll' | 'poll_id' | 'post' | 'post_id' | 'status' | 'user' | 'user_id' | 'volunteers' | initiative_tasksKeySpecifier)[];
+export type initiative_tasksKeySpecifier = ('description' | 'id' | 'initiative' | 'initiative_id' | 'poll' | 'poll_id' | 'status' | 'user' | 'user_id' | 'volunteers' | 'volunteers_aggregate' | 'volunteers_needed' | initiative_tasksKeySpecifier)[];
 export type initiative_tasksFieldPolicy = {
 	description?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
-	initiative_volunteers?: FieldPolicy<any> | FieldReadFunction<any>,
 	poll?: FieldPolicy<any> | FieldReadFunction<any>,
 	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
-	post?: FieldPolicy<any> | FieldReadFunction<any>,
-	post_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	status?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>,
-	volunteers?: FieldPolicy<any> | FieldReadFunction<any>
+	volunteers?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_aggregateKeySpecifier = ('aggregate' | 'nodes' | initiative_tasks_aggregateKeySpecifier)[];
+export type initiative_tasks_aggregateFieldPolicy = {
+	aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
+	nodes?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_aggregate_fieldsKeySpecifier = ('avg' | 'count' | 'max' | 'min' | 'stddev' | 'stddev_pop' | 'stddev_samp' | 'sum' | 'var_pop' | 'var_samp' | 'variance' | initiative_tasks_aggregate_fieldsKeySpecifier)[];
+export type initiative_tasks_aggregate_fieldsFieldPolicy = {
+	avg?: FieldPolicy<any> | FieldReadFunction<any>,
+	count?: FieldPolicy<any> | FieldReadFunction<any>,
+	max?: FieldPolicy<any> | FieldReadFunction<any>,
+	min?: FieldPolicy<any> | FieldReadFunction<any>,
+	stddev?: FieldPolicy<any> | FieldReadFunction<any>,
+	stddev_pop?: FieldPolicy<any> | FieldReadFunction<any>,
+	stddev_samp?: FieldPolicy<any> | FieldReadFunction<any>,
+	sum?: FieldPolicy<any> | FieldReadFunction<any>,
+	var_pop?: FieldPolicy<any> | FieldReadFunction<any>,
+	var_samp?: FieldPolicy<any> | FieldReadFunction<any>,
+	variance?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_avg_fieldsKeySpecifier = ('id' | 'poll_id' | 'volunteers_needed' | initiative_tasks_avg_fieldsKeySpecifier)[];
+export type initiative_tasks_avg_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_max_fieldsKeySpecifier = ('description' | 'id' | 'initiative_id' | 'poll_id' | 'status' | 'user_id' | 'volunteers_needed' | initiative_tasks_max_fieldsKeySpecifier)[];
+export type initiative_tasks_max_fieldsFieldPolicy = {
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	status?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_min_fieldsKeySpecifier = ('description' | 'id' | 'initiative_id' | 'poll_id' | 'status' | 'user_id' | 'volunteers_needed' | initiative_tasks_min_fieldsKeySpecifier)[];
+export type initiative_tasks_min_fieldsFieldPolicy = {
+	description?: FieldPolicy<any> | FieldReadFunction<any>,
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	status?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type initiative_tasks_mutation_responseKeySpecifier = ('affected_rows' | 'returning' | initiative_tasks_mutation_responseKeySpecifier)[];
 export type initiative_tasks_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_stddev_fieldsKeySpecifier = ('id' | 'poll_id' | 'volunteers_needed' | initiative_tasks_stddev_fieldsKeySpecifier)[];
+export type initiative_tasks_stddev_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_stddev_pop_fieldsKeySpecifier = ('id' | 'poll_id' | 'volunteers_needed' | initiative_tasks_stddev_pop_fieldsKeySpecifier)[];
+export type initiative_tasks_stddev_pop_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_stddev_samp_fieldsKeySpecifier = ('id' | 'poll_id' | 'volunteers_needed' | initiative_tasks_stddev_samp_fieldsKeySpecifier)[];
+export type initiative_tasks_stddev_samp_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_sum_fieldsKeySpecifier = ('id' | 'poll_id' | 'volunteers_needed' | initiative_tasks_sum_fieldsKeySpecifier)[];
+export type initiative_tasks_sum_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_var_pop_fieldsKeySpecifier = ('id' | 'poll_id' | 'volunteers_needed' | initiative_tasks_var_pop_fieldsKeySpecifier)[];
+export type initiative_tasks_var_pop_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_var_samp_fieldsKeySpecifier = ('id' | 'poll_id' | 'volunteers_needed' | initiative_tasks_var_samp_fieldsKeySpecifier)[];
+export type initiative_tasks_var_samp_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_tasks_variance_fieldsKeySpecifier = ('id' | 'poll_id' | 'volunteers_needed' | initiative_tasks_variance_fieldsKeySpecifier)[];
+export type initiative_tasks_variance_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	poll_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	volunteers_needed?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type initiative_threadsKeySpecifier = ('initiative' | 'posts' | 'posts_aggregate' | initiative_threadsKeySpecifier)[];
 export type initiative_threadsFieldPolicy = {
@@ -11039,17 +11384,55 @@ export type initiative_visits_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_volunteersKeySpecifier = ('hours' | 'id' | 'initiative' | 'initiative_id' | 'post' | 'post_id' | 'task' | 'task_id' | 'user' | 'user_id' | initiative_volunteersKeySpecifier)[];
+export type initiative_volunteersKeySpecifier = ('id' | 'initiative' | 'initiative_id' | 'role' | 'task' | 'task_id' | 'user' | 'user_id' | initiative_volunteersKeySpecifier)[];
 export type initiative_volunteersFieldPolicy = {
-	hours?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
-	post?: FieldPolicy<any> | FieldReadFunction<any>,
-	post_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	role?: FieldPolicy<any> | FieldReadFunction<any>,
 	task?: FieldPolicy<any> | FieldReadFunction<any>,
 	task_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_aggregateKeySpecifier = ('aggregate' | 'nodes' | initiative_volunteers_aggregateKeySpecifier)[];
+export type initiative_volunteers_aggregateFieldPolicy = {
+	aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
+	nodes?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_aggregate_fieldsKeySpecifier = ('avg' | 'count' | 'max' | 'min' | 'stddev' | 'stddev_pop' | 'stddev_samp' | 'sum' | 'var_pop' | 'var_samp' | 'variance' | initiative_volunteers_aggregate_fieldsKeySpecifier)[];
+export type initiative_volunteers_aggregate_fieldsFieldPolicy = {
+	avg?: FieldPolicy<any> | FieldReadFunction<any>,
+	count?: FieldPolicy<any> | FieldReadFunction<any>,
+	max?: FieldPolicy<any> | FieldReadFunction<any>,
+	min?: FieldPolicy<any> | FieldReadFunction<any>,
+	stddev?: FieldPolicy<any> | FieldReadFunction<any>,
+	stddev_pop?: FieldPolicy<any> | FieldReadFunction<any>,
+	stddev_samp?: FieldPolicy<any> | FieldReadFunction<any>,
+	sum?: FieldPolicy<any> | FieldReadFunction<any>,
+	var_pop?: FieldPolicy<any> | FieldReadFunction<any>,
+	var_samp?: FieldPolicy<any> | FieldReadFunction<any>,
+	variance?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_avg_fieldsKeySpecifier = ('id' | 'task_id' | initiative_volunteers_avg_fieldsKeySpecifier)[];
+export type initiative_volunteers_avg_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	task_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_max_fieldsKeySpecifier = ('id' | 'initiative_id' | 'role' | 'task_id' | 'user_id' | initiative_volunteers_max_fieldsKeySpecifier)[];
+export type initiative_volunteers_max_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	role?: FieldPolicy<any> | FieldReadFunction<any>,
+	task_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_min_fieldsKeySpecifier = ('id' | 'initiative_id' | 'role' | 'task_id' | 'user_id' | initiative_volunteers_min_fieldsKeySpecifier)[];
+export type initiative_volunteers_min_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	role?: FieldPolicy<any> | FieldReadFunction<any>,
+	task_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type initiative_volunteers_mutation_responseKeySpecifier = ('affected_rows' | 'returning' | initiative_volunteers_mutation_responseKeySpecifier)[];
@@ -11057,7 +11440,42 @@ export type initiative_volunteers_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiativesKeySpecifier = ('address' | 'created_at' | 'description' | 'donations' | 'edits' | 'expenses' | 'files' | 'geom' | 'id' | 'image' | 'infos' | 'members' | 'members_aggregate' | 'modified_at' | 'name' | 'polls' | 'projects' | 'tags' | 'tasks' | 'tenders' | 'threads' | 'visits' | 'volunteers' | initiativesKeySpecifier)[];
+export type initiative_volunteers_stddev_fieldsKeySpecifier = ('id' | 'task_id' | initiative_volunteers_stddev_fieldsKeySpecifier)[];
+export type initiative_volunteers_stddev_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	task_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_stddev_pop_fieldsKeySpecifier = ('id' | 'task_id' | initiative_volunteers_stddev_pop_fieldsKeySpecifier)[];
+export type initiative_volunteers_stddev_pop_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	task_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_stddev_samp_fieldsKeySpecifier = ('id' | 'task_id' | initiative_volunteers_stddev_samp_fieldsKeySpecifier)[];
+export type initiative_volunteers_stddev_samp_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	task_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_sum_fieldsKeySpecifier = ('id' | 'task_id' | initiative_volunteers_sum_fieldsKeySpecifier)[];
+export type initiative_volunteers_sum_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	task_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_var_pop_fieldsKeySpecifier = ('id' | 'task_id' | initiative_volunteers_var_pop_fieldsKeySpecifier)[];
+export type initiative_volunteers_var_pop_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	task_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_var_samp_fieldsKeySpecifier = ('id' | 'task_id' | initiative_volunteers_var_samp_fieldsKeySpecifier)[];
+export type initiative_volunteers_var_samp_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	task_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiative_volunteers_variance_fieldsKeySpecifier = ('id' | 'task_id' | initiative_volunteers_variance_fieldsKeySpecifier)[];
+export type initiative_volunteers_variance_fieldsFieldPolicy = {
+	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	task_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type initiativesKeySpecifier = ('address' | 'created_at' | 'description' | 'donations' | 'edits' | 'expenses' | 'files' | 'geom' | 'id' | 'image' | 'infos' | 'members' | 'members_aggregate' | 'modified_at' | 'name' | 'polls' | 'projects' | 'tags' | 'tasks' | 'tasks_aggregate' | 'tenders' | 'threads' | 'visits' | initiativesKeySpecifier)[];
 export type initiativesFieldPolicy = {
 	address?: FieldPolicy<any> | FieldReadFunction<any>,
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -11078,10 +11496,10 @@ export type initiativesFieldPolicy = {
 	projects?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tasks?: FieldPolicy<any> | FieldReadFunction<any>,
+	tasks_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
 	threads?: FieldPolicy<any> | FieldReadFunction<any>,
-	visits?: FieldPolicy<any> | FieldReadFunction<any>,
-	volunteers?: FieldPolicy<any> | FieldReadFunction<any>
+	visits?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type initiatives_mutation_responseKeySpecifier = ('affected_rows' | 'returning' | initiatives_mutation_responseKeySpecifier)[];
 export type initiatives_mutation_responseFieldPolicy = {
@@ -11340,7 +11758,7 @@ export type orgsFieldPolicy = {
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type query_rootKeySpecifier = ('entries' | 'entries_nearby' | 'entry_members' | 'entry_visits' | 'files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_comment_reactions' | 'initiative_comment_reactions_by_pk' | 'initiative_comments' | 'initiative_comments_aggregate' | 'initiative_comments_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_post_reactions' | 'initiative_post_reactions_by_pk' | 'initiative_posts' | 'initiative_posts_aggregate' | 'initiative_posts_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'map_entries_aggregate' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
+export type query_rootKeySpecifier = ('entries' | 'entries_nearby' | 'entry_members' | 'entry_visits' | 'files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_comment_reactions' | 'initiative_comment_reactions_by_pk' | 'initiative_comments' | 'initiative_comments_aggregate' | 'initiative_comments_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_post_reactions' | 'initiative_post_reactions_by_pk' | 'initiative_posts' | 'initiative_posts_aggregate' | 'initiative_posts_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_aggregate' | 'initiative_tasks_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'map_entries_aggregate' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
 export type query_rootFieldPolicy = {
 	entries?: FieldPolicy<any> | FieldReadFunction<any>,
 	entries_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -11382,11 +11800,13 @@ export type query_rootFieldPolicy = {
 	initiative_tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_tasks?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_tasks_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_tasks_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_threads?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_visits?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_visits_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_volunteers?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_volunteers_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_volunteers_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -11409,7 +11829,7 @@ export type query_rootFieldPolicy = {
 	users?: FieldPolicy<any> | FieldReadFunction<any>,
 	users_by_pk?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type subscription_rootKeySpecifier = ('entries' | 'entries_nearby' | 'entry_members' | 'entry_visits' | 'files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_comment_reactions' | 'initiative_comment_reactions_by_pk' | 'initiative_comments' | 'initiative_comments_aggregate' | 'initiative_comments_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_post_reactions' | 'initiative_post_reactions_by_pk' | 'initiative_posts' | 'initiative_posts_aggregate' | 'initiative_posts_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'map_entries_aggregate' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
+export type subscription_rootKeySpecifier = ('entries' | 'entries_nearby' | 'entry_members' | 'entry_visits' | 'files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_comment_reactions' | 'initiative_comment_reactions_by_pk' | 'initiative_comments' | 'initiative_comments_aggregate' | 'initiative_comments_by_pk' | 'initiative_donations' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_post_reactions' | 'initiative_post_reactions_by_pk' | 'initiative_posts' | 'initiative_posts_aggregate' | 'initiative_posts_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_aggregate' | 'initiative_tasks_by_pk' | 'initiative_threads' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'map_entries_aggregate' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
 export type subscription_rootFieldPolicy = {
 	entries?: FieldPolicy<any> | FieldReadFunction<any>,
 	entries_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -11451,11 +11871,13 @@ export type subscription_rootFieldPolicy = {
 	initiative_tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_tasks?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_tasks_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_tasks_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_threads?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_visits?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_visits_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_volunteers?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_volunteers_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_volunteers_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiatives_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -11508,7 +11930,7 @@ export type tenders_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type usersKeySpecifier = ('avatar_url' | 'comment_reactions' | 'comments' | 'comments_aggregate' | 'created_at' | 'display_name' | 'donations' | 'edits' | 'expenses' | 'files' | 'id' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_visits' | 'org_members' | 'org_projects' | 'post_reactions' | 'posts' | 'posts_aggregate' | 'projects' | 'tasks' | 'tenders' | 'updated_at' | 'volunteers' | 'votes' | usersKeySpecifier)[];
+export type usersKeySpecifier = ('avatar_url' | 'comment_reactions' | 'comments' | 'comments_aggregate' | 'created_at' | 'display_name' | 'donations' | 'edits' | 'expenses' | 'files' | 'id' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_visits' | 'org_members' | 'org_projects' | 'post_reactions' | 'posts' | 'posts_aggregate' | 'projects' | 'tasks' | 'tasks_aggregate' | 'tenders' | 'updated_at' | 'votes' | usersKeySpecifier)[];
 export type usersFieldPolicy = {
 	avatar_url?: FieldPolicy<any> | FieldReadFunction<any>,
 	comment_reactions?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -11531,9 +11953,9 @@ export type usersFieldPolicy = {
 	posts_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	projects?: FieldPolicy<any> | FieldReadFunction<any>,
 	tasks?: FieldPolicy<any> | FieldReadFunction<any>,
+	tasks_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
 	updated_at?: FieldPolicy<any> | FieldReadFunction<any>,
-	volunteers?: FieldPolicy<any> | FieldReadFunction<any>,
 	votes?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type StrictTypedTypePolicies = {
@@ -11817,9 +12239,57 @@ export type StrictTypedTypePolicies = {
 		keyFields?: false | initiative_tasksKeySpecifier | (() => undefined | initiative_tasksKeySpecifier),
 		fields?: initiative_tasksFieldPolicy,
 	},
+	initiative_tasks_aggregate?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_aggregateKeySpecifier | (() => undefined | initiative_tasks_aggregateKeySpecifier),
+		fields?: initiative_tasks_aggregateFieldPolicy,
+	},
+	initiative_tasks_aggregate_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_aggregate_fieldsKeySpecifier | (() => undefined | initiative_tasks_aggregate_fieldsKeySpecifier),
+		fields?: initiative_tasks_aggregate_fieldsFieldPolicy,
+	},
+	initiative_tasks_avg_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_avg_fieldsKeySpecifier | (() => undefined | initiative_tasks_avg_fieldsKeySpecifier),
+		fields?: initiative_tasks_avg_fieldsFieldPolicy,
+	},
+	initiative_tasks_max_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_max_fieldsKeySpecifier | (() => undefined | initiative_tasks_max_fieldsKeySpecifier),
+		fields?: initiative_tasks_max_fieldsFieldPolicy,
+	},
+	initiative_tasks_min_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_min_fieldsKeySpecifier | (() => undefined | initiative_tasks_min_fieldsKeySpecifier),
+		fields?: initiative_tasks_min_fieldsFieldPolicy,
+	},
 	initiative_tasks_mutation_response?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | initiative_tasks_mutation_responseKeySpecifier | (() => undefined | initiative_tasks_mutation_responseKeySpecifier),
 		fields?: initiative_tasks_mutation_responseFieldPolicy,
+	},
+	initiative_tasks_stddev_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_stddev_fieldsKeySpecifier | (() => undefined | initiative_tasks_stddev_fieldsKeySpecifier),
+		fields?: initiative_tasks_stddev_fieldsFieldPolicy,
+	},
+	initiative_tasks_stddev_pop_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_stddev_pop_fieldsKeySpecifier | (() => undefined | initiative_tasks_stddev_pop_fieldsKeySpecifier),
+		fields?: initiative_tasks_stddev_pop_fieldsFieldPolicy,
+	},
+	initiative_tasks_stddev_samp_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_stddev_samp_fieldsKeySpecifier | (() => undefined | initiative_tasks_stddev_samp_fieldsKeySpecifier),
+		fields?: initiative_tasks_stddev_samp_fieldsFieldPolicy,
+	},
+	initiative_tasks_sum_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_sum_fieldsKeySpecifier | (() => undefined | initiative_tasks_sum_fieldsKeySpecifier),
+		fields?: initiative_tasks_sum_fieldsFieldPolicy,
+	},
+	initiative_tasks_var_pop_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_var_pop_fieldsKeySpecifier | (() => undefined | initiative_tasks_var_pop_fieldsKeySpecifier),
+		fields?: initiative_tasks_var_pop_fieldsFieldPolicy,
+	},
+	initiative_tasks_var_samp_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_var_samp_fieldsKeySpecifier | (() => undefined | initiative_tasks_var_samp_fieldsKeySpecifier),
+		fields?: initiative_tasks_var_samp_fieldsFieldPolicy,
+	},
+	initiative_tasks_variance_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_tasks_variance_fieldsKeySpecifier | (() => undefined | initiative_tasks_variance_fieldsKeySpecifier),
+		fields?: initiative_tasks_variance_fieldsFieldPolicy,
 	},
 	initiative_threads?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | initiative_threadsKeySpecifier | (() => undefined | initiative_threadsKeySpecifier),
@@ -11841,9 +12311,57 @@ export type StrictTypedTypePolicies = {
 		keyFields?: false | initiative_volunteersKeySpecifier | (() => undefined | initiative_volunteersKeySpecifier),
 		fields?: initiative_volunteersFieldPolicy,
 	},
+	initiative_volunteers_aggregate?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_aggregateKeySpecifier | (() => undefined | initiative_volunteers_aggregateKeySpecifier),
+		fields?: initiative_volunteers_aggregateFieldPolicy,
+	},
+	initiative_volunteers_aggregate_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_aggregate_fieldsKeySpecifier | (() => undefined | initiative_volunteers_aggregate_fieldsKeySpecifier),
+		fields?: initiative_volunteers_aggregate_fieldsFieldPolicy,
+	},
+	initiative_volunteers_avg_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_avg_fieldsKeySpecifier | (() => undefined | initiative_volunteers_avg_fieldsKeySpecifier),
+		fields?: initiative_volunteers_avg_fieldsFieldPolicy,
+	},
+	initiative_volunteers_max_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_max_fieldsKeySpecifier | (() => undefined | initiative_volunteers_max_fieldsKeySpecifier),
+		fields?: initiative_volunteers_max_fieldsFieldPolicy,
+	},
+	initiative_volunteers_min_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_min_fieldsKeySpecifier | (() => undefined | initiative_volunteers_min_fieldsKeySpecifier),
+		fields?: initiative_volunteers_min_fieldsFieldPolicy,
+	},
 	initiative_volunteers_mutation_response?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | initiative_volunteers_mutation_responseKeySpecifier | (() => undefined | initiative_volunteers_mutation_responseKeySpecifier),
 		fields?: initiative_volunteers_mutation_responseFieldPolicy,
+	},
+	initiative_volunteers_stddev_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_stddev_fieldsKeySpecifier | (() => undefined | initiative_volunteers_stddev_fieldsKeySpecifier),
+		fields?: initiative_volunteers_stddev_fieldsFieldPolicy,
+	},
+	initiative_volunteers_stddev_pop_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_stddev_pop_fieldsKeySpecifier | (() => undefined | initiative_volunteers_stddev_pop_fieldsKeySpecifier),
+		fields?: initiative_volunteers_stddev_pop_fieldsFieldPolicy,
+	},
+	initiative_volunteers_stddev_samp_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_stddev_samp_fieldsKeySpecifier | (() => undefined | initiative_volunteers_stddev_samp_fieldsKeySpecifier),
+		fields?: initiative_volunteers_stddev_samp_fieldsFieldPolicy,
+	},
+	initiative_volunteers_sum_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_sum_fieldsKeySpecifier | (() => undefined | initiative_volunteers_sum_fieldsKeySpecifier),
+		fields?: initiative_volunteers_sum_fieldsFieldPolicy,
+	},
+	initiative_volunteers_var_pop_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_var_pop_fieldsKeySpecifier | (() => undefined | initiative_volunteers_var_pop_fieldsKeySpecifier),
+		fields?: initiative_volunteers_var_pop_fieldsFieldPolicy,
+	},
+	initiative_volunteers_var_samp_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_var_samp_fieldsKeySpecifier | (() => undefined | initiative_volunteers_var_samp_fieldsKeySpecifier),
+		fields?: initiative_volunteers_var_samp_fieldsFieldPolicy,
+	},
+	initiative_volunteers_variance_fields?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | initiative_volunteers_variance_fieldsKeySpecifier | (() => undefined | initiative_volunteers_variance_fieldsKeySpecifier),
+		fields?: initiative_volunteers_variance_fieldsFieldPolicy,
 	},
 	initiatives?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | initiativesKeySpecifier | (() => undefined | initiativesKeySpecifier),

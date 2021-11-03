@@ -5,7 +5,7 @@ import SearchInput from 'components/Inputs/Search'
 import Button from "components/Button";
 import Author from "components/Post/Author";
 import Avatar from "components/Avatar";
-import TextField from "components/Inputs/TextField";
+import { TextField } from "components";
 
 import {ReactComponent as SendIco} from "assets/icons/send-message.svg";
 

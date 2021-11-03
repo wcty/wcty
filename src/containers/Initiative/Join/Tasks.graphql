@@ -1,0 +1,13 @@
+query Tasks($id:uuid!){
+  initiative_tasks(where:{initiative_id: {_eq: $id}}){
+    id
+    description
+    volunteers_needed
+    status
+    volunteers_aggregate{
+      aggregate{
+        count
+      }
+    }
+  }
+}

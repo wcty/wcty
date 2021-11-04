@@ -57,20 +57,21 @@ export default function Creation({
         </div>
           <input type="file" onChange={addFile} />
           <Button 
-            label='Upload image' 
+            size='medium'
             customType='secondary' 
-            onClick={upload}/>
+            onClick={upload}>Upload image</Button>
         <div>
           <Button 
-            label='Назад' 
+            size='medium'
             customType='secondary' 
-            onClick={()=>setIndex(index-1)}/>
+            onClick={()=>setIndex(index-1)}>Назад</Button>
           <Button 
-            label='Створити ініціативу' 
+            size='medium'
+            customType='primary'
             disabled={initiative.name.length<10||initiative.problem.length<10}
             onClick={()=>{
                 setIndex(index+1)
-            }}/>
+            }}>Створити ініціативу</Button>
         </div>
       </BottomContainer>
     </>

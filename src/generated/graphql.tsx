@@ -2066,6 +2066,8 @@ export type Initiative_Info = {
   initiative_id: Scalars['uuid'];
   modified_at: Scalars['timestamptz'];
   problem?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  user?: Maybe<Users>;
 };
 
 
@@ -2120,6 +2122,7 @@ export type Initiative_Info_Bool_Exp = {
   initiative_id?: Maybe<Uuid_Comparison_Exp>;
   modified_at?: Maybe<Timestamptz_Comparison_Exp>;
   problem?: Maybe<String_Comparison_Exp>;
+  user?: Maybe<Users_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "initiative_info" */
@@ -2140,7 +2143,6 @@ export type Initiative_Info_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   edits?: Maybe<Initiative_Edits_Arr_Rel_Insert_Input>;
   goal?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   modified_at?: Maybe<Scalars['timestamptz']>;
@@ -2206,6 +2208,7 @@ export type Initiative_Info_Order_By = {
   initiative_id?: Maybe<Order_By>;
   modified_at?: Maybe<Order_By>;
   problem?: Maybe<Order_By>;
+  user?: Maybe<Users_Order_By>;
 };
 
 /** primary key columns input for table: initiative_info */
@@ -5502,6 +5505,7 @@ export enum Initiatives_Constraint {
 
 /** input type for inserting data into table "initiatives" */
 export type Initiatives_Insert_Input = {
+  address?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   donations?: Maybe<Initiative_Donations_Arr_Rel_Insert_Input>;
@@ -7514,9 +7518,9 @@ export type Query_Root = {
   initiative_visits: Array<Initiative_Visits>;
   /** fetch data from the table: "initiative_visits" using primary key columns */
   initiative_visits_by_pk?: Maybe<Initiative_Visits>;
-  /** fetch data from the table: "initiative_volunteers" */
+  /** An array relationship */
   initiative_volunteers: Array<Initiative_Volunteers>;
-  /** fetch aggregated fields from the table: "initiative_volunteers" */
+  /** An aggregate relationship */
   initiative_volunteers_aggregate: Initiative_Volunteers_Aggregate;
   /** fetch data from the table: "initiative_volunteers" using primary key columns */
   initiative_volunteers_by_pk?: Maybe<Initiative_Volunteers>;
@@ -8182,9 +8186,9 @@ export type Subscription_Root = {
   initiative_visits: Array<Initiative_Visits>;
   /** fetch data from the table: "initiative_visits" using primary key columns */
   initiative_visits_by_pk?: Maybe<Initiative_Visits>;
-  /** fetch data from the table: "initiative_volunteers" */
+  /** An array relationship */
   initiative_volunteers: Array<Initiative_Volunteers>;
-  /** fetch aggregated fields from the table: "initiative_volunteers" */
+  /** An aggregate relationship */
   initiative_volunteers_aggregate: Initiative_Volunteers_Aggregate;
   /** fetch data from the table: "initiative_volunteers" using primary key columns */
   initiative_volunteers_by_pk?: Maybe<Initiative_Volunteers>;
@@ -9132,11 +9136,17 @@ export type Users = {
   files: Array<Files>;
   id: Scalars['uuid'];
   /** An array relationship */
+  initiative_infos: Array<Initiative_Info>;
+  /** An array relationship */
   initiative_members: Array<Initiative_Members>;
   /** An aggregate relationship */
   initiative_members_aggregate: Initiative_Members_Aggregate;
   /** An array relationship */
   initiative_visits: Array<Initiative_Visits>;
+  /** An array relationship */
+  initiative_volunteers: Array<Initiative_Volunteers>;
+  /** An aggregate relationship */
+  initiative_volunteers_aggregate: Initiative_Volunteers_Aggregate;
   /** An array relationship */
   org_members: Array<Org_Members>;
   /** An array relationship */
@@ -9242,6 +9252,16 @@ export type UsersFilesArgs = {
 
 
 /** columns and relationships of "users" */
+export type UsersInitiative_InfosArgs = {
+  distinct_on?: Maybe<Array<Initiative_Info_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Info_Order_By>>;
+  where?: Maybe<Initiative_Info_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
 export type UsersInitiative_MembersArgs = {
   distinct_on?: Maybe<Array<Initiative_Members_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -9268,6 +9288,26 @@ export type UsersInitiative_VisitsArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Initiative_Visits_Order_By>>;
   where?: Maybe<Initiative_Visits_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersInitiative_VolunteersArgs = {
+  distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
+  where?: Maybe<Initiative_Volunteers_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersInitiative_Volunteers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Initiative_Volunteers_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Volunteers_Order_By>>;
+  where?: Maybe<Initiative_Volunteers_Bool_Exp>;
 };
 
 
@@ -9385,8 +9425,10 @@ export type Users_Bool_Exp = {
   expenses?: Maybe<Initiative_Expenses_Bool_Exp>;
   files?: Maybe<Files_Bool_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
+  initiative_infos?: Maybe<Initiative_Info_Bool_Exp>;
   initiative_members?: Maybe<Initiative_Members_Bool_Exp>;
   initiative_visits?: Maybe<Initiative_Visits_Bool_Exp>;
+  initiative_volunteers?: Maybe<Initiative_Volunteers_Bool_Exp>;
   org_members?: Maybe<Org_Members_Bool_Exp>;
   org_projects?: Maybe<Org_Projects_Bool_Exp>;
   post_reactions?: Maybe<Initiative_Post_Reactions_Bool_Exp>;
@@ -9410,8 +9452,10 @@ export type Users_Order_By = {
   expenses_aggregate?: Maybe<Initiative_Expenses_Aggregate_Order_By>;
   files_aggregate?: Maybe<Files_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
+  initiative_infos_aggregate?: Maybe<Initiative_Info_Aggregate_Order_By>;
   initiative_members_aggregate?: Maybe<Initiative_Members_Aggregate_Order_By>;
   initiative_visits_aggregate?: Maybe<Initiative_Visits_Aggregate_Order_By>;
+  initiative_volunteers_aggregate?: Maybe<Initiative_Volunteers_Aggregate_Order_By>;
   org_members_aggregate?: Maybe<Org_Members_Aggregate_Order_By>;
   org_projects_aggregate?: Maybe<Org_Projects_Aggregate_Order_By>;
   post_reactions_aggregate?: Maybe<Initiative_Post_Reactions_Aggregate_Order_By>;
@@ -11351,7 +11395,7 @@ export type initiative_expenses_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_infoKeySpecifier = ('approved_at' | 'context' | 'created_at' | 'edits' | 'goal' | 'id' | 'initiative' | 'initiative_id' | 'modified_at' | 'problem' | initiative_infoKeySpecifier)[];
+export type initiative_infoKeySpecifier = ('approved_at' | 'context' | 'created_at' | 'edits' | 'goal' | 'id' | 'initiative' | 'initiative_id' | 'modified_at' | 'problem' | 'user' | initiative_infoKeySpecifier)[];
 export type initiative_infoFieldPolicy = {
 	approved_at?: FieldPolicy<any> | FieldReadFunction<any>,
 	context?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -11362,7 +11406,8 @@ export type initiative_infoFieldPolicy = {
 	initiative?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	modified_at?: FieldPolicy<any> | FieldReadFunction<any>,
-	problem?: FieldPolicy<any> | FieldReadFunction<any>
+	problem?: FieldPolicy<any> | FieldReadFunction<any>,
+	user?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type initiative_info_mutation_responseKeySpecifier = ('affected_rows' | 'returning' | initiative_info_mutation_responseKeySpecifier)[];
 export type initiative_info_mutation_responseFieldPolicy = {
@@ -12332,7 +12377,7 @@ export type tenders_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type usersKeySpecifier = ('avatar_url' | 'comment_reactions' | 'comments' | 'comments_aggregate' | 'created_at' | 'display_name' | 'donations' | 'donations_aggregate' | 'edits' | 'expenses' | 'files' | 'id' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_visits' | 'org_members' | 'org_projects' | 'post_reactions' | 'posts' | 'posts_aggregate' | 'projects' | 'tasks' | 'tasks_aggregate' | 'tenders' | 'updated_at' | 'votes' | usersKeySpecifier)[];
+export type usersKeySpecifier = ('avatar_url' | 'comment_reactions' | 'comments' | 'comments_aggregate' | 'created_at' | 'display_name' | 'donations' | 'donations_aggregate' | 'edits' | 'expenses' | 'files' | 'id' | 'initiative_infos' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_visits' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'org_members' | 'org_projects' | 'post_reactions' | 'posts' | 'posts_aggregate' | 'projects' | 'tasks' | 'tasks_aggregate' | 'tenders' | 'updated_at' | 'votes' | usersKeySpecifier)[];
 export type usersFieldPolicy = {
 	avatar_url?: FieldPolicy<any> | FieldReadFunction<any>,
 	comment_reactions?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12346,9 +12391,12 @@ export type usersFieldPolicy = {
 	expenses?: FieldPolicy<any> | FieldReadFunction<any>,
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_infos?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_members?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_members_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_visits?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_volunteers?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_volunteers_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_members?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_projects?: FieldPolicy<any> | FieldReadFunction<any>,
 	post_reactions?: FieldPolicy<any> | FieldReadFunction<any>,

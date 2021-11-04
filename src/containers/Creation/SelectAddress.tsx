@@ -72,7 +72,7 @@ export default function Creation({
           </LocationCard>}
         <div>
           <Button 
-            label='Відміна' 
+            size= 'medium'
             customType='secondary' 
             onClick={()=>
               editable?
@@ -82,9 +82,10 @@ export default function Creation({
                   setInitiative({...initiative, address: ''})
                   setFocus(undefined)
                 })():  
-                history.push('/')}/>
+                history.push('/')}>Відміна</Button>
           <Button 
-            label='Підтвердити адресу' 
+            size='medium'
+            customType='primary'
             onClick={()=>{
                 if(!(initiative.address&&initiative.location)){
                   setInitiative({...initiative, 
@@ -99,7 +100,7 @@ export default function Creation({
                 setViewport({...viewport, latitude: viewport.latitude+0.0001, viewportChangeOptions:{offset:[0,-120]}})
                 setIndex(index+1)
 
-            }}/>
+            }}>Підтвердити адресу</Button>
         </div>
       </BottomContainer>
     </>

@@ -18,18 +18,18 @@ export default function Creation() {
       Для того, щоб створити ініціативу, вам необхідно зареєструватися або увійти в обліковий запис
       </div>
       <div>
-        <Button label='Зареєструватися' onClick={
+        <Button size="medium" customType='primary' onClick={
           (e)=>{
             localStorage.setItem('callbackUrl', '/create-initiative');
             e.preventDefault()
             history.push('/login')
           }
-        }/>
-        <Button label='Увійти' customType='secondary' onClick={(e)=>{
+        }>Зареєструватися</Button>
+        <Button size='medium' customType='secondary' onClick={(e)=>{
           localStorage.setItem('callbackUrl', '/create-initiative');
           e.preventDefault()
           history.push('/login')
-        }} />
+        }} > Увійти</Button>
       </div>
     </FloatingContainer>
   );

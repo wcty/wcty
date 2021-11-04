@@ -176,14 +176,15 @@ export default function Join() {
           placeholder={i18n('suggest_relevant_task')}/>
         <div>
           <Button
-            label={i18n('join')}
+            size='medium'
+            customType='primary'
             disabled={ disabled }
             onClick={(e)=>{
               if(user){ 
                 e.preventDefault();
                 join() 
               }
-            }}/>
+            }}>{i18n('join')}</Button>
         </div>
 
       </Form>

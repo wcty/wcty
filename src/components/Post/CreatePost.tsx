@@ -40,7 +40,9 @@ function CreatePost({}:ICreatePostProps){
             }
           </Channels>
           <CreateVote>
-            <Button icon='vote' customType='text' label='Створити голосування'/>
+            
+            
+            <Button  customType='text' size='medium'>Створити голосування</Button>
           </CreateVote>
         </Actions>
       </Container>

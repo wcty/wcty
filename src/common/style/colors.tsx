@@ -1,0 +1,20 @@
+export const colors = {
+    titleActive: '#010202',
+    body: '#45494F',
+    label: '#84898F',
+    placeholder: '#B1B8C1',
+    line: '#D9DFE4',
+    backgroundTransparent: 'transparent',
+    backgroundActive: '#F0F4F8',
+    backgroundDark:'#010202',
+    backgroundLight: '#F7F9FB',
+    backgroundLighter: '#FFF',
+    primary: '#F4EADE',
+    primaryAccent: '#FCF8F4',
+    secondary: '#174AFF',
+    secondaryAccent: '#002FD3',
+    error: '#E04F4F',
+    success: '#52AD92',
+    warning: '#E5B049',
+    darkBeige: '#D2BEA7'
+}

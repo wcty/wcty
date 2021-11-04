@@ -39,59 +39,23 @@ export default function Creation({
           Створення ініціативи
           <Steps/>
         </div>
-        <FileInput title={initiative.url?'Змінити фото':'Додати фото'} src={initiative.url!==''?initiative.url+`#${initiative.timeUpdated}`:undefined} onInputChange={(e)=>onInputChangeSubmit(e,false)}/>
+          <input type="file" onChange={addFile} />
+          <Button 
+            size='medium'
+            customType='secondary' 
+            onClick={upload}>Upload image</Button>
         <div>
           <Button 
-            label='Назад' 
+            size='medium'
             customType='secondary' 
-            onClick={()=>setIndex(index-1)}/>
+            onClick={()=>setIndex(index-1)}>Назад</Button>
           <Button 
-            label='Створити ініціативу' 
-            disabled={!(initiative.url&&initiative.path)}
+            size='medium'
+            customType='primary'
+            disabled={initiative.name.length<10||initiative.problem.length<10}
             onClick={()=>{
-                insert({variables:{
-                  initiative:{
-                    files:{
-                      data: [{
-                        downloadable_url: initiative.url,
-                        file_path: initiative.path,
-                        user_id: user?.id,
-                      }]
-                    },
-                    name:initiative.name,
-                    members: {
-                      data:[{
-                        user_id: user?.id,
-                        tasks:{
-                          data:[{
-                            description: 'Create initiative',
-                            status: 'COMPLETED',
-                            volunteers:{
-                              data:[{
-                                user_id: user?.id
-                              }]
-                            }
-                          }]
-                        }
-                      }]
-                    },
-                    geom: {
-                      type: 'Point',
-                      coordinates: initiative.location
-                    },
-                    address: initiative.address,
-                    id: initiative.id,
-                    image: initiative.url,
-                    infos:{
-                      data:[{
-                        user_id: user?.id,
-                        approved_at: new Date(),
-                        problem: initiative.problem,
-                      }]
-                    },
-                  }
-                }})
-            }}/>
+                setIndex(index+1)
+            }}>Створити ініціативу</Button>
         </div>
       </BottomContainer>
     </>

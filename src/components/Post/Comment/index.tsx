@@ -23,7 +23,7 @@ function  BaseComment({author, message, likesCount, date}:IBaseComment) {
 
                     
                 </Info>
-                <Button label='Відповісти'  customType='text'/>
+                <Button size='medium' customType="text">Відповісти</Button>
                 <Actions>
                     <Like onClick={handleLike}/>
                 </Actions>

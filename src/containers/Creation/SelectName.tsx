@@ -44,15 +44,16 @@ export default function Creation({
           placeholder={'Опишіть свою ідею або проблему що ви намагаєтеся вирішити'}/>
         <div>
           <Button 
-            label='Назад' 
+            size='medium'
             customType='secondary' 
-            onClick={()=>setIndex(index-1)}/>
+            onClick={()=>setIndex(index-1)}>Назад</Button>
           <Button 
-            label='Далі' 
+            size='medium'
+            customType='primary'
             disabled={initiative.name.length<5||initiative.problem.length<10}
             onClick={()=>{
                 setIndex(index+1)
-            }}/>
+            }}>Далі</Button>
         </div>
       </BottomContainer>
     </>

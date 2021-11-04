@@ -3973,7 +3973,7 @@ export type Initiative_Tags = {
   /** An object relationship */
   initiative?: Maybe<Initiatives>;
   initiative_id?: Maybe<Scalars['uuid']>;
-  tag?: Maybe<Tags_Enum>;
+  tag?: Maybe<Scalars['String']>;
   /** An object relationship */
   tags?: Maybe<Tags>;
 };
@@ -4013,7 +4013,7 @@ export type Initiative_Tags_Bool_Exp = {
   id?: Maybe<Int_Comparison_Exp>;
   initiative?: Maybe<Initiatives_Bool_Exp>;
   initiative_id?: Maybe<Uuid_Comparison_Exp>;
-  tag?: Maybe<Tags_Enum_Comparison_Exp>;
+  tag?: Maybe<String_Comparison_Exp>;
   tags?: Maybe<Tags_Bool_Exp>;
 };
 
@@ -4033,7 +4033,7 @@ export type Initiative_Tags_Insert_Input = {
   id?: Maybe<Scalars['Int']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
-  tag?: Maybe<Tags_Enum>;
+  tag?: Maybe<Scalars['String']>;
   tags?: Maybe<Tags_Obj_Rel_Insert_Input>;
 };
 
@@ -4041,12 +4041,14 @@ export type Initiative_Tags_Insert_Input = {
 export type Initiative_Tags_Max_Order_By = {
   id?: Maybe<Order_By>;
   initiative_id?: Maybe<Order_By>;
+  tag?: Maybe<Order_By>;
 };
 
 /** order by min() on columns of table "initiative_tags" */
 export type Initiative_Tags_Min_Order_By = {
   id?: Maybe<Order_By>;
   initiative_id?: Maybe<Order_By>;
+  tag?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "initiative_tags" */
@@ -4092,7 +4094,7 @@ export enum Initiative_Tags_Select_Column {
 export type Initiative_Tags_Set_Input = {
   id?: Maybe<Scalars['Int']>;
   initiative_id?: Maybe<Scalars['uuid']>;
-  tag?: Maybe<Tags_Enum>;
+  tag?: Maybe<Scalars['String']>;
 };
 
 /** order by stddev() on columns of table "initiative_tags" */
@@ -8790,19 +8792,6 @@ export enum Tags_Constraint {
   /** unique or primary key constraint */
   TagsPkey = 'tags_pkey'
 }
-
-export enum Tags_Enum {
-  Wcty = 'wcty'
-}
-
-/** Boolean expression to compare columns of type "tags_enum". All fields are combined with logical 'AND'. */
-export type Tags_Enum_Comparison_Exp = {
-  _eq?: Maybe<Tags_Enum>;
-  _in?: Maybe<Array<Tags_Enum>>;
-  _is_null?: Maybe<Scalars['Boolean']>;
-  _neq?: Maybe<Tags_Enum>;
-  _nin?: Maybe<Array<Tags_Enum>>;
-};
 
 /** input type for inserting data into table "tags" */
 export type Tags_Insert_Input = {

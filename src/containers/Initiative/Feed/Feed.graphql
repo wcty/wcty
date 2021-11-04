@@ -1,10 +1,10 @@
-query Feed($id: uuid){
-  posts: initiative_posts(where:{thread:{initiative:{id: {_eq:$id}}}}) {
-    ...FeedFields
+subscription Feed($id: uuid){
+  posts: initiative_posts(where:{initiative_id: {_eq: $id}}) {
+    ...Feed
   }
 }
 
-fragment FeedFields on initiative_posts {
+fragment Feed on initiative_posts {
   id
   user{
     avatar_url
@@ -14,9 +14,7 @@ fragment FeedFields on initiative_posts {
   modified_at
   message
   type
-  thread{
-    name
-  }
+  thread_id
   reactions {
     type
   }

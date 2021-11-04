@@ -6,7 +6,7 @@ import { ReactComponent as WecityText } from 'assets/icons/wecity-text.svg'
 import { ReactComponent as AnonIcon } from 'assets/icons/anon-icon.svg'
 
 import { useState, useEffect } from 'react'
-import { useI18n, useLayout, useUser } from 'common'
+import { fixAvatar, useI18n, useLayout, useUser } from 'common'
 import { useHistory } from 'react-router'
 import { Tabs } from './tabs'
 import { useRecoilState } from 'recoil'
@@ -65,13 +65,7 @@ export default function MenuHeader ({props}:MenuHeaderProps){
       }}}>
       {user? 
         <span style={{textTransform:'uppercase'}}>
-          <img src={
-            user.avatar_url?.includes("platform-lookaside.fbsbx")?
-            `http://graph.facebook.com/${
-              new URL(user.avatar_url).searchParams.get('asid')
-            }/picture?type=large&redirect=true&width=50&height=50`:
-            user.avatar_url||''
-          }/>
+          <img src={fixAvatar(user?.avatar_url)}/>
           {user.display_name}
         </span>:
       <>

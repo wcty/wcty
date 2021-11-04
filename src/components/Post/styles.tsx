@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import { IUserInfo } from './types/IUserInfo'
 
 export const Container = styled.div`
     width: 100%;    
@@ -39,6 +40,20 @@ Date = styled.div`
     ${props => props.theme.font.body.regular.t5}
     color: ${props => props.theme.colors.label}
 `,
+
+UserInfo = styled.div.attrs(({
+  name, roles, date
+}: IUserInfo)=>({
+  name, roles, date,
+  children: <>
+      <Name>{name}</Name>
+      <Roles>{roles?.join()}</Roles>
+      <Date>{date.toDateString()}</Date>
+    </>
+}))`
+  display: flex;
+  flex-direction: column;
+`, 
 
 Content = styled.div`
     padding: 15px 19px 0 19px;
@@ -86,8 +101,7 @@ Likes  = styled.div`
 
 InputContent =  styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 15px 19px 0 19px;
 

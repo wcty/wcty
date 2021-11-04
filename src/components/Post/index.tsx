@@ -4,26 +4,28 @@ import Author from "./Author";
 import CommentIco from 'assets/icons/comment.svg'
 import LikeIco from 'assets/icons/like.svg'
 import CreatePost from "./CreatePost";
-import { FeedQuery } from "generated";
+import { FeedFragment } from "generated";
 import { useParams } from "react-router-dom";
+import { fixAvatar } from "common";
 
 
 export interface IPostProps extends IPost {}
 
 
-function Post({user, message, comments_aggregate, reactions}: FeedQuery['posts'][number] ) {
+function Post({user, message, comments_aggregate, reactions}: FeedFragment ) {
 
 
     return(
         <Container>
+          
             <Author
-              avatar={user?.avatar_url||''}
+              avatar={fixAvatar(user?.avatar_url)}
               name={user?.display_name||''}
               date={new Date()}
             />
             <Content>
                 <Message>{message}</Message>
-                <Tags>#{[/*tags*/].join(' ')}</Tags>
+                {/* <Tags>#{[].join(' ')}</Tags> */}
             </Content>
             <Actions> 
                 <CommentCounter>

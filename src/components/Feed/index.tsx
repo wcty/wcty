@@ -1,12 +1,12 @@
 import { useUser } from "common";
 import Post, { CreatePost } from "components/Post";
 import { IPost } from "components/Post/types/IPost";
-import { FeedQuery, useFirstMemberQuery, useInitiativeByPkQuery } from "generated";
+import { FeedFragment, useFirstMemberQuery, useInitiativeByPkQuery } from "generated";
 import { useParams } from "react-router-dom";
 import { CheckedChannels, Container, Footer } from "./styles";
 const checkedChannels = ['збір-коштів','Розробкапроєкту'];
 
-function Feed({posts}:FeedQuery) {
+function Feed({posts}:{posts:FeedFragment[]}) {
   const { id } = useParams<{id:string}>();
   const user = useUser()
   const {data} = useFirstMemberQuery({variables:{id}});
@@ -15,8 +15,8 @@ function Feed({posts}:FeedQuery) {
     <Container>
       <CheckedChannels>
           { posts.reduce((agg,v)=>
-            agg.includes(v.thread.name)?
-            agg:[...agg,v.thread.name],[] as string[])
+            agg.includes(v.thread_id)?
+            agg:[...agg,v.thread_id],[] as string[])
               .map((channel, i) => `#${channel}`) }
       </CheckedChannels>
       <CreatePost/>

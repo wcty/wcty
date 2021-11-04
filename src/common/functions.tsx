@@ -48,3 +48,12 @@ export function selectWords(str:string, start:number, end:number=Infinity){
   return selected.join(' ')
 }
 
+export const fixAvatar = (url?:string|null) => {
+  if(!url) return ''
+  const link = url.includes("platform-lookaside.fbsbx")?
+    `http://graph.facebook.com/${
+      new URL(url).searchParams.get('asid')
+    }/picture?type=large&redirect=true&width=50&height=50`:
+    url||''
+  return link.replace('http://', 'https://')
+}

@@ -8,15 +8,13 @@ import Button from "components/Button";
 
 import {ReactComponent as VoteIcon} from "assets/icons/vote.svg";
 import { useCreatePostMutation } from "generated";
-import { useUser } from "common";
+import { fixAvatar, useUser } from "common";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import IconButton from "components/IconButton";
 import SectionTab from "components/SectionTab";
 
-
 const channels = ['збір-коштів', 'Голосування','Розробкапроєкту'];
-
 
 export interface ICreatePostProps{}
 
@@ -28,12 +26,12 @@ function CreatePost({}:ICreatePostProps){
 
   return (
       <Container>
-        
         <InputContent> 
-            <Avatar size={'small'}/>
-            <TextField onChange={e => setMessage('message')}/>
-            <IconButton icon="send" size="small" onClick={()=>addPost()}/>
-            
+            <Avatar size={'small'} picture={
+              fixAvatar(user?.avatar_url)
+            }/>
+            <TextField value={message} onChange={(e)=>setMessage(e.target.value)}/>
+            <IconButton icon="send" size="small" onClick={()=>{addPost();setMessage('')}}/>
         </InputContent>
         <Actions>
           <Channels>
@@ -42,8 +40,6 @@ function CreatePost({}:ICreatePostProps){
             }
           </Channels>
           <CreateVote>
-            
-            
             <Button icon='vote' customType='text' label='Створити голосування'/>
           </CreateVote>
         </Actions>

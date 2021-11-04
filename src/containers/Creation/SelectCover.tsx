@@ -1,36 +1,52 @@
 import Button from "components/Button";
-import { BottomContainer, FileInput } from "./styles";
-import { ReactComponent as Steps } from 'assets/icons/steps2.svg'
-import { Initiative } from ".";
-import { ChangeEvent, useEffect } from "react";
-import { useInsertInitiativeMutation } from "generated";
-import { userInfo } from "os";
-import { useUser } from "common";
+import { BottomContainer } from "./styles";
 import { useHistory } from "react-router-dom";
+import { storage, useAddress, useI18n, useUser } from "common";
+import { ReactComponent as Steps } from 'assets/icons/steps2.svg'
+import Map from 'components/Map'
+import { useRecoilState } from "recoil";
+import { TextArea, TextField } from "components";
+import { ChangeEvent, useState } from "react";
+
+export type Initiative = {
+  address: string,
+  location: [number, number],
+  name: string,
+  problem: string,
+  image: string
+}
 
 export default function Creation({
   initiative,
-  index, setIndex,
-  onInputChangeSubmit
+  setInitiative,
+  index, setIndex
 }:{
   initiative:Initiative,
-  setInitiative: (initiative:Initiative) => void,
-  index:number, setIndex:(index:number) => void,
-  onInputChangeSubmit: (e: ChangeEvent<HTMLInputElement>, createRecord?: boolean) => void
+  setInitiative?: (initiative:Initiative) => void,
+  index:number, setIndex:(index:number) => void
 }) {
-  const history = useHistory()
-  const user = useUser()
-  const [insert, {error, data}] = useInsertInitiativeMutation()
-  console.log(error, data)
-
-  useEffect(()=>{
-    const id = data?.insert_initiatives_one?.id
-    if(id){
-      console.log(id)
-      history.push(`/initiative/${id}`)
+  
+  async function upload() {
+    if(file){
+      try {
+        await storage.put("/public/test.png", file);
+        // await storage.put(`/public/${uuid}.${extension}`, file);
+        // await storage.put(`/public/${file.name}`, file);
+      } catch (error) {
+        console.log({ error });
+        return alert("Upload failed");
+      }
+      alert("Upload successful");
     }
 
-  },[data?.insert_initiatives_one?.id])
+    // You probably want to save the uploaded file to the database
+    // You only need to save the `/public/test.png` part
+  }
+
+  const [file, setFile] = useState<File|null>(null);
+  function addFile(e:ChangeEvent<HTMLInputElement>) {
+    e.target.files?.[0] && setFile(e.target.files[0]);
+  }
 
   return (
     <>

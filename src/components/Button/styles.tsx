@@ -14,8 +14,8 @@ const buttonType = variant({
 })
 
 export interface IButtonProps  {
-  size: 'small' | 'medium' | 'large',
-  customType: 'primary' | 'secondary' | 'subtle' | 'text'
+  size?: 'small' | 'medium' | 'large',
+  customType?: 'primary' | 'secondary' | 'subtle' | 'text'
 }
 
 

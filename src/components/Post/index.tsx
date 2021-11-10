@@ -1,12 +1,13 @@
 import { IPost } from "./types/IPost";
-import {  Actions, CommentCounter,  Container, Content, Likes, Message, Tags, ToComment } from "./styles";
+import {  Actions, CommentCounter,  Container, Content, LikeCounter, Likes, Message, Tags, ToComment } from "./styles";
 import Author from "./Author";
 import CommentIco from 'assets/icons/comment.svg'
-import LikeIco from 'assets/icons/like.svg'
+import { ReactComponent as LikeIco} from 'assets/icons/like.svg'
 import CreatePost from "./CreatePost";
 import { FeedFragment } from "generated";
 import { useParams } from "react-router-dom";
 import { fixAvatar } from "common";
+
 
 
 export interface IPostProps extends IPost {}
@@ -36,8 +37,8 @@ function Post({user, message, comments_aggregate, reactions}: FeedFragment ) {
                     Коментувати
                 </ToComment>
                 <Likes>
-                    {reactions.length}
-                    <img src={LikeIco} alt="likes"/>
+                    <LikeCounter>{reactions.length}</LikeCounter>
+                    <LikeIco/>
                 </Likes>
             </Actions>
            

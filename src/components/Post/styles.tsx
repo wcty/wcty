@@ -18,6 +18,7 @@ AuthorContainer  = styled.div`
 `,
 
 Avatar = styled.div`
+    flex-shrink: 0;
     margin-right: 7px;
 `,
 
@@ -92,7 +93,15 @@ ToComment = styled.div`
     }
 `,
 
+LikeCounter = styled.div`
+    padding-right: 4px;
+`,
+
 Likes  = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
     color: ${props => props.theme.colors.label};
     & > img {
         padding-left: 8px;

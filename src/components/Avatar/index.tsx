@@ -13,11 +13,16 @@ const Avatar = styled.div
     size, name, picture,
     children: <img src={picture} alt={name}/>,
   }))`
+      flex-shrink: 0;
       margin-right: 7px;
-      border-radius: 17px;
+      border-radius: 50%;
       overflow: hidden;
+      ${({size}) => handleSize[size!]};
       & > img  {
-          ${({size}) => handleSize[size!]};
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+         
       }
   `;
 

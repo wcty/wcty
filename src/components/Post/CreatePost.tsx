@@ -6,7 +6,7 @@ import  {ReactComponent  as SendIco} from "assets/icons/send.svg";
 import Button from "components/Button";
 
 
-import {ReactComponent as VoteIcon} from "assets/icons/vote.svg";
+
 import { useCreatePostMutation } from "generated";
 import { fixAvatar, useUser } from "common";
 import { useParams } from "react-router-dom";

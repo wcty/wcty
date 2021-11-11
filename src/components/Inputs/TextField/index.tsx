@@ -1,5 +1,6 @@
 import { ChangeEvent, InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 import { ReactComponent as CancelIcon } from 'assets/icons/cancel.svg'
+import { ReactComponent as PIcon}  from 'assets/icons/create-post-icon.svg'
 
 import { FieldWrapper, TextAreaInput, TextInput } from "./styles";
 export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {}
@@ -19,7 +20,8 @@ export function TextField(props:TextFieldProps){
               }
             } as ChangeEvent<HTMLInputElement>)
           }}>
-            <CancelIcon/>
+            {/* <CancelIcon/> */}
+            <PIcon/>
         </button>
       </div>
     </FieldWrapper>

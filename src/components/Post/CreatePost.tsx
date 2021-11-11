@@ -2,7 +2,7 @@ import Avatar from "components/Avatar";
 
 import { TextField } from "components";
 import { Actions, Channels, Container, CreateVote, InputContent } from "./styles";
-import  {ReactComponent  as SendIco} from "assets/icons/send.svg";
+import  {ReactComponent  as VoteIco} from "assets/icons/vote.svg";
 import Button from "components/Button";
 
 
@@ -39,11 +39,9 @@ function CreatePost({}:ICreatePostProps){
               channels.map((channel, i) => <SectionTab key={i} label={`#${channel}`}/>)
             }
           </Channels>
-          <CreateVote>
-            
-            
-            <Button  customType='text' size='medium'>Створити голосування</Button>
-          </CreateVote>
+          
+            <Button  customType='text' size='small'><VoteIco/>Створити голосування</Button>
+          
         </Actions>
       </Container>
   )

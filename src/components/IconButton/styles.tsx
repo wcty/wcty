@@ -30,6 +30,7 @@ export const Container =  styled.div.attrs((props: IIconButtonProps) => ({
     align-items: center;
     flex-shrink: 0;
     background-color: ${props => props.theme.colors.titleActive};
+    margin-left: 5px;
     
     cursor: pointer;
 

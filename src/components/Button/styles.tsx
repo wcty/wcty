@@ -24,7 +24,7 @@ export const Button = styled.button<IButtonProps>`
   border: 0;
   outline: 0;
   display: flex;
-  justify-content: center;
+  //justify-content: center;
   align-items: center;
   border: none;
   padding: 0 15px;

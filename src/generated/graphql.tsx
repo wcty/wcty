@@ -5202,6 +5202,8 @@ export type Initiatives = {
   /** An array relationship */
   polls: Array<Initiative_Polls>;
   /** An array relationship */
+  posts: Array<Initiative_Posts>;
+  /** An array relationship */
   projects: Array<Initiative_Projects>;
   /** An array relationship */
   tags: Array<Initiative_Tags>;
@@ -5311,6 +5313,16 @@ export type InitiativesPollsArgs = {
 
 
 /** columns and relationships of "initiatives" */
+export type InitiativesPostsArgs = {
+  distinct_on?: Maybe<Array<Initiative_Posts_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Initiative_Posts_Order_By>>;
+  where?: Maybe<Initiative_Posts_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiatives" */
 export type InitiativesProjectsArgs = {
   distinct_on?: Maybe<Array<Initiative_Projects_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -5409,6 +5421,7 @@ export type Initiatives_Bool_Exp = {
   modified_at?: Maybe<Timestamptz_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   polls?: Maybe<Initiative_Polls_Bool_Exp>;
+  posts?: Maybe<Initiative_Posts_Bool_Exp>;
   projects?: Maybe<Initiative_Projects_Bool_Exp>;
   tags?: Maybe<Initiative_Tags_Bool_Exp>;
   tasks?: Maybe<Initiative_Tasks_Bool_Exp>;
@@ -5440,6 +5453,7 @@ export type Initiatives_Insert_Input = {
   modified_at?: Maybe<Scalars['timestamptz']>;
   name?: Maybe<Scalars['String']>;
   polls?: Maybe<Initiative_Polls_Arr_Rel_Insert_Input>;
+  posts?: Maybe<Initiative_Posts_Arr_Rel_Insert_Input>;
   projects?: Maybe<Initiative_Projects_Arr_Rel_Insert_Input>;
   tags?: Maybe<Initiative_Tags_Arr_Rel_Insert_Input>;
   tasks?: Maybe<Initiative_Tasks_Arr_Rel_Insert_Input>;
@@ -5498,6 +5512,7 @@ export type Initiatives_Order_By = {
   modified_at?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   polls_aggregate?: Maybe<Initiative_Polls_Aggregate_Order_By>;
+  posts_aggregate?: Maybe<Initiative_Posts_Aggregate_Order_By>;
   projects_aggregate?: Maybe<Initiative_Projects_Aggregate_Order_By>;
   tags_aggregate?: Maybe<Initiative_Tags_Aggregate_Order_By>;
   tasks_aggregate?: Maybe<Initiative_Tasks_Aggregate_Order_By>;
@@ -9658,6 +9673,15 @@ export type CreatePostMutationVariables = Exact<{
 
 export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
 
+export type ReactionToPostMutationVariables = Exact<{
+  user_id: Scalars['uuid'];
+  post_id: Scalars['Int'];
+  reaction: Reactions_Enum;
+}>;
+
+
+export type ReactionToPostMutation = { insert_initiative_post_reactions_one?: { user_id?: any | null | undefined, post_id?: number | null | undefined, type?: Reactions_Enum | null | undefined } | null | undefined };
+
 export type PostFragment = { type: Post_Types_Enum, message?: string | null | undefined, comments_count: { aggregate?: { count: number } | null | undefined }, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined };
 
 export type InsertInitiativeMutationVariables = Exact<{
@@ -9680,9 +9704,9 @@ export type FeedSubscriptionVariables = Exact<{
 }>;
 
 
-export type FeedSubscription = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
+export type FeedSubscription = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
 
-export type FeedFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
+export type FeedFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
 
 export type InitiativeByPkQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -9835,6 +9859,7 @@ export const FeedFragmentDoc = gql`
   thread_id
   reactions {
     type
+    user_id
   }
   comments_aggregate {
     aggregate {
@@ -10644,6 +10669,45 @@ export function useCreatePostMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
 export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
 export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
+export const ReactionToPostDocument = gql`
+    mutation ReactionToPost($user_id: uuid!, $post_id: Int!, $reaction: reactions_enum!) {
+  insert_initiative_post_reactions_one(
+    object: {user_id: $user_id, type: $reaction, post_id: $post_id}
+  ) {
+    user_id
+    post_id
+    type
+  }
+}
+    `;
+export type ReactionToPostMutationFn = Apollo.MutationFunction<ReactionToPostMutation, ReactionToPostMutationVariables>;
+
+/**
+ * __useReactionToPostMutation__
+ *
+ * To run a mutation, you first call `useReactionToPostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useReactionToPostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [reactionToPostMutation, { data, loading, error }] = useReactionToPostMutation({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *      post_id: // value for 'post_id'
+ *      reaction: // value for 'reaction'
+ *   },
+ * });
+ */
+export function useReactionToPostMutation(baseOptions?: Apollo.MutationHookOptions<ReactionToPostMutation, ReactionToPostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ReactionToPostMutation, ReactionToPostMutationVariables>(ReactionToPostDocument, options);
+      }
+export type ReactionToPostMutationHookResult = ReturnType<typeof useReactionToPostMutation>;
+export type ReactionToPostMutationResult = Apollo.MutationResult<ReactionToPostMutation>;
+export type ReactionToPostMutationOptions = Apollo.BaseMutationOptions<ReactionToPostMutation, ReactionToPostMutationVariables>;
 export const InsertInitiativeDocument = gql`
     mutation InsertInitiative($initiative: initiatives_insert_input!) {
   insert_initiatives_one(object: $initiative) {
@@ -11980,7 +12044,7 @@ export type initiative_volunteers_variance_fieldsFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	task_id?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiativesKeySpecifier = ('address' | 'created_at' | 'description' | 'donations' | 'donations_aggregate' | 'edits' | 'expenses' | 'files' | 'geom' | 'id' | 'image' | 'infos' | 'members' | 'members_aggregate' | 'modified_at' | 'name' | 'polls' | 'projects' | 'tags' | 'tasks' | 'tasks_aggregate' | 'tenders' | 'visits' | 'volunteers' | 'volunteers_aggregate' | initiativesKeySpecifier)[];
+export type initiativesKeySpecifier = ('address' | 'created_at' | 'description' | 'donations' | 'donations_aggregate' | 'edits' | 'expenses' | 'files' | 'geom' | 'id' | 'image' | 'infos' | 'members' | 'members_aggregate' | 'modified_at' | 'name' | 'polls' | 'posts' | 'projects' | 'tags' | 'tasks' | 'tasks_aggregate' | 'tenders' | 'visits' | 'volunteers' | 'volunteers_aggregate' | initiativesKeySpecifier)[];
 export type initiativesFieldPolicy = {
 	address?: FieldPolicy<any> | FieldReadFunction<any>,
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -11999,6 +12063,7 @@ export type initiativesFieldPolicy = {
 	modified_at?: FieldPolicy<any> | FieldReadFunction<any>,
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	polls?: FieldPolicy<any> | FieldReadFunction<any>,
+	posts?: FieldPolicy<any> | FieldReadFunction<any>,
 	projects?: FieldPolicy<any> | FieldReadFunction<any>,
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tasks?: FieldPolicy<any> | FieldReadFunction<any>,

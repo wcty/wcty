@@ -59,6 +59,7 @@ UserInfo = styled.div.attrs(({
 Content = styled.div`
     padding: 15px 19px 0 19px;
     ${props =>  props.theme.font.body.regular.t4};
+    color: ${props  => props.theme.colors.body};
 `,
     
 
@@ -101,11 +102,11 @@ Likes  = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-   
+    cursor: pointer;
     color: ${props => props.theme.colors.label};
-    & > img {
+    /* & > svg {
         padding-left: 8px;
-    }
+    } */
 `,
 
 InputContent =  styled.div`

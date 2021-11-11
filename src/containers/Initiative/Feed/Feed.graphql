@@ -17,6 +17,7 @@ fragment Feed on initiative_posts {
   thread_id
   reactions {
     type
+    user_id
   }
   comments_aggregate {
     aggregate {

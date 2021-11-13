@@ -1,4 +1,4 @@
-import styled, {css as css_, ThemedCssFunction} from "styled-components/macro";
+import styled, {css as css_, ThemedCssFunction} from "styled-components";
 
 import {colors} from './colors'
 import {buttonTypes, buttonSizes} from './inputs/buttons';

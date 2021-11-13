@@ -1,6 +1,5 @@
 import { useI18n, useLayout, useSize, useUser } from "common";
 import { InitiativeByPkQuery, useInitiativeByPkQuery } from "generated";
-import { useParams } from "react-router-dom";
 import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
 import { config, useSpring } from 'react-spring'
 import { useState } from "react";
@@ -8,13 +7,14 @@ import { InitiativeDescription, CollectedSum, Gauge, GaugeBlock, ProgressBar, Fi
 import ExpenseList from "./ExpenseList";
 import TaskList from "./TaskList";
 import getScore from "./getScore";
+import { useRouter } from "next/router";
 
 
 
 export default function Description() {
   const layout = useLayout()
 
-  const {id} = useParams<{id:string}>();
+  const { id } = useRouter().query;
   const user = useUser()
   const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()

@@ -1,13 +1,11 @@
-import { useRecoilState } from "recoil"
-import { Map, Entry } from 'components'
+import { Entry } from 'components'
 import { Card, Thumbnail, Content, TopBar, BottomPanel, Button, Metrics, Icon } from "./styles";
-import { useEffect } from "react";
 import { ReactComponent as People } from 'assets/icons/popupPeople.svg'
 import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
 import { useGeolocation, useI18n } from 'common';
 import distance from '@turf/distance'
 import { format } from 'd3-format'
-import { useHistory } from "react-router-dom";
+import { useRouter } from 'next/router';
 
 const formatMeters = format(',.2r')
 
@@ -22,10 +20,10 @@ export default function InitiativeCard({entry}:InitiativeProps){
     { units:'meters' }
   )
   const i18n = useI18n()
-  const history = useHistory()
+  const router = useRouter()
 
   return entry && 
-    <Card onClick={()=>entry?.properties?.type==='initiative'&&history.push(`/initiative/${entry.id}`)}>
+    <Card onClick={()=>entry?.properties?.type==='initiative' && router.push({pathname: `/initiative/[id]`, query: { id:entry.id }})}>
       <Thumbnail src={entry?.properties?.image+'?w=100&h=100&q=90'}/>
       <Content>
         <TopBar>

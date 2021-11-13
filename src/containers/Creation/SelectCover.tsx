@@ -1,11 +1,7 @@
 import Button from "components/Button";
 import { BottomContainer } from "./styles";
-import { useHistory } from "react-router-dom";
-import { storage, useAddress, useI18n, useUser } from "common";
+import { storage } from "common";
 import { ReactComponent as Steps } from 'assets/icons/steps2.svg'
-import Map from 'components/Map'
-import { useRecoilState } from "recoil";
-import { TextArea, TextField } from "components";
 import { ChangeEvent, useState } from "react";
 
 export type Initiative = {

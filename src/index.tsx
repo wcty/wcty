@@ -4,7 +4,6 @@ import * as serviceWorker from './serviceWorker'
 import { StrictMode } from 'react'
 import { render } from 'react-dom'
 import { cacheConfig, Fonts, NhostApolloProvider, theme, useLayout } from 'common'
-import { BrowserRouter as Router } from "react-router-dom"
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { InMemoryCache } from '@apollo/client';
@@ -23,16 +22,14 @@ const AppRoot = ()=>
         connectToDevTools
         graphqlUrl={`https://hasura-aws.weee.city/v1/graphql`}
       >
-        <Router>
-          <RecoilRoot>
-            <ThemeProvider {...{theme:{...theme, layout: useLayout()}}}>
-              <Fonts/>
-              <Map.Context.Provider value={{map:undefined}}>
-                <App />
-              </Map.Context.Provider>
-            </ThemeProvider>
-          </RecoilRoot>
-        </Router>
+        <RecoilRoot>
+          <ThemeProvider {...{theme:{...theme, layout: useLayout()}}}>
+            <Fonts/>
+            <Map.Context.Provider value={{map:undefined}}>
+              <App />
+            </Map.Context.Provider>
+          </ThemeProvider>
+        </RecoilRoot>
       </NhostApolloProvider>
     </NhostAuthProvider>
   </StrictMode>

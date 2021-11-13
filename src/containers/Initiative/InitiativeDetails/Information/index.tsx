@@ -1,13 +1,13 @@
 import { useI18n, useLayout, useUser } from "common";
 import { useInitiativeByPkQuery } from "generated";
-import { useParams } from "react-router-dom";
 import { Block } from "./styles";
 import {ReactComponent as Flag} from "assets/icons/flag.svg"
 import {ReactComponent as Lightbulb} from "assets/icons/lightbulb.svg"
 import {ReactComponent as BuildCircle} from "assets/icons/build_circle.svg"
+import { useRouter } from "next/router";
 
 export default function Information() {
-  const {id} = useParams<{id:string}>();
+  const { id } = useRouter().query;
   const user = useUser()
   const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()

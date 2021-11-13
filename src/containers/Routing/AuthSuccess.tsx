@@ -1,16 +1,16 @@
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 export default function AuthSuccess(){
-  const history = useHistory()
+  const router = useRouter()
   
   useEffect(()=>{
     const callbackUrl = localStorage.getItem('callbackUrl');
     if(callbackUrl){
-      history.push(callbackUrl)
+      router.push(callbackUrl)
       localStorage.removeItem('callbackUrl')
     }else{
-      history.push('/')
+      router.push('/')
     }
   },[])
   return null

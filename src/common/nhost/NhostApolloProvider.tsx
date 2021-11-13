@@ -60,10 +60,10 @@ function generateApolloClient({
   } else {
     throw new Error('no GraphQL URL');
   }
-
-  const wsUri = uri.startsWith('https')
-    ? uri.replace(/^https/, 'wss')
-    : uri.replace(/^http/, 'ws');
+  //@ts-ignore
+  const wsUri = uri?.startsWith('https')
+    ? uri?.replace(/^https/, 'wss')
+    : uri?.replace(/^http/, 'ws');
 
   let webSocketClient: SubscriptionClient | undefined;
   if (isBrowser()) {

@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 import { Popup as PopupUnstyled } from '@urbica/react-map-gl'
 
 export const Popup = styled(PopupUnstyled)`

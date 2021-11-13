@@ -1,16 +1,16 @@
 import Button from "components/Button";
 import { FloatingContainer } from "./styles";
 import { ReactComponent as Cross } from 'assets/icons/cross.svg'
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
 
 export default function Creation() {
 
-  const history = useHistory()
+  const router = useRouter()
   return (
     <FloatingContainer>
       <button onClick={(e)=>{
         e.preventDefault()
-        history.push('/')
+        router.push('/')
       }}>
         <Cross />
       </button>
@@ -22,13 +22,13 @@ export default function Creation() {
           (e)=>{
             localStorage.setItem('callbackUrl', '/create-initiative');
             e.preventDefault()
-            history.push('/login')
+            router.push('/login')
           }
         }>Зареєструватися</Button>
         <Button size='medium' customType='secondary' onClick={(e)=>{
           localStorage.setItem('callbackUrl', '/create-initiative');
           e.preventDefault()
-          history.push('/login')
+          router.push('/login')
         }} > Увійти</Button>
       </div>
     </FloatingContainer>

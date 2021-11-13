@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 import { IUserInfo } from './types/IUserInfo'
 
 export const Container = styled.div`

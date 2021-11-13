@@ -7,10 +7,10 @@ import { ReactComponent as AnonIcon } from 'assets/icons/anon-icon.svg'
 
 import { useState, useEffect } from 'react'
 import { fixAvatar, useI18n, useLayout, useUser } from 'common'
-import { useHistory } from 'react-router'
 import { Tabs } from './tabs'
 import { useRecoilState } from 'recoil'
 import Sidepanel from '.'
+import { useRouter } from 'next/router'
 
 type MenuHeaderProps = {
   props(key: Tabs[number]['key']): {
@@ -25,15 +25,15 @@ type MenuHeaderProps = {
 export default function MenuHeader ({props}:MenuHeaderProps){
   const user = useUser()
   const i18n = useI18n()
-  const history = useHistory()
+  const router = useRouter()
   
   const [open, setOpen] = useRecoilState(Sidepanel.open)
   const layout = useLayout()
 
   return layout==='desktop'?
     <UserIconRow {...{...props('enter'),onClick:()=>{
-        localStorage.setItem('callbackUrl', history.location.pathname)
-        if(!user){history.push('/login')} 
+        localStorage.setItem('callbackUrl', router.pathname)
+        if(!user){ router.push('/login') } 
 
       }}}>
       {user? 
@@ -60,8 +60,8 @@ export default function MenuHeader ({props}:MenuHeaderProps){
     </LogoRow>
     <UserIconRow {...{...props('enter'),onClick:()=>{
         setOpen(false)
-        localStorage.setItem('callbackUrl', history.location.pathname)
-        if(!user){history.push('/login')} 
+        localStorage.setItem('callbackUrl', router.pathname)
+        if(!user){ router.push('/login') } 
       }}}>
       {user? 
         <span style={{textTransform:'uppercase'}}>

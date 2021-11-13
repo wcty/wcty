@@ -3,11 +3,11 @@ import Button from 'components/Button';
 import { Checkbox, TextArea, TextField } from 'components';
 import { InitiativeByPkDocument, useJoinMutation, useTasksQuery } from 'generated';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { Container, DonationMenu, Form, TaskSelection } from './styles';
+import { useRouter } from 'next/router';
 
 export default function Join() {
-  const {id} = useParams<{id:string}>();
+  const { id } = useRouter().query;
   const user = useUser()
   const i18n = useI18n();
   const {data:tasks} = useTasksQuery({variables:{id}, fetchPolicy:'cache-first', nextFetchPolicy: 'cache-only'})

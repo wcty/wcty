@@ -1,10 +1,6 @@
 import Button from "components/Button";
 import { BottomContainer } from "./styles";
-import { useHistory } from "react-router-dom";
-import { useAddress, useI18n, useUser } from "common";
 import { ReactComponent as Steps } from 'assets/icons/steps1.svg'
-import Map from 'components/Map'
-import { useRecoilState } from "recoil";
 import { TextArea, TextField } from "components";
 import { Initiative } from ".";
 
@@ -18,13 +14,6 @@ export default function Creation({
   index:number, setIndex:(index:number) => void
 }) {
   
-  const user = useUser()
-  const history = useHistory()
-  const [viewport, setViewport] = useRecoilState(Map.viewport)
-  // const [focus, setFocus] = useRecoilState(atoms.focalPoint)
-  const mbAddress = useAddress([viewport.longitude, viewport.latitude], true)
-  const i18n = useI18n()
-
   return (
     <>
       <BottomContainer>

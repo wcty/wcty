@@ -1,15 +1,15 @@
 import { useUser } from "common";
-import Post, { CreatePost } from "components/Post";
+import Post from "components/Post";
+import CreatePost from "components/Post/CreatePost";
 import { IPost } from "components/Post/types/IPost";
 import { FeedFragment, useFirstMemberQuery, useInitiativeByPkQuery } from "generated";
-import { useParams } from "react-router-dom";
+import { useRouter } from "next/router";
 import { CheckedChannels, Container, Footer } from "./styles";
 const checkedChannels = ['збір-коштів','Розробкапроєкту'];
 
 function Feed({posts}:{posts:FeedFragment[]}) {
-  const { id } = useParams<{id:string}>();
-  const user = useUser()
-  const {data} = useFirstMemberQuery({variables:{id}});
+  const { id } = useRouter().query;
+  const { data } = useFirstMemberQuery({variables:{id}});
 
   return(
     <Container>

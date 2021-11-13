@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import {ReactComponent as Fillet} from 'assets/icons/fillet.svg'
 import {ReactComponent as ArrowUp} from 'assets/icons/arrow-up.svg'
 import { ReactNode } from "react";

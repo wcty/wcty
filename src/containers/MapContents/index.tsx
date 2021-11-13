@@ -1,7 +1,7 @@
 import { Layer, Source, FeatureState } from '@urbica/react-map-gl';
 import { atoms, useLayout } from 'common';
 import { Map, InitiativeCard } from 'components';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { Popup } from './styles';
 
@@ -11,8 +11,8 @@ export default function MapContents(){
   const [viewport, setViewport] = useRecoilState(Map.viewport)
   const [layers, setLayers] = useRecoilState(Map.layers)
   const layout = useLayout()
-  const history = useHistory()
-  const isEntryCreation = history.location.pathname.includes('/create-initiative')
+  const router = useRouter()
+  const isEntryCreation = router.pathname.includes('/create-initiative')
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
 
   return <>

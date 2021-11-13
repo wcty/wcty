@@ -1,10 +1,10 @@
 import { Feed } from "components";
 import { useFeedSubscription } from "generated";
-import { useParams } from "react-router-dom";
+import { useRouter } from "next/router";
 
  const IniativeFeed = () => {
   
-  const { id } = useParams<{id:string}>();
+  const { id } = useRouter().query;
   const { data:postsData, error } = useFeedSubscription({variables:{id}})
   
   return postsData ? <Feed posts={postsData.posts}/>: null

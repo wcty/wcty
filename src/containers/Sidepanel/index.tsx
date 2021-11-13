@@ -6,18 +6,18 @@ import { ReactComponent as LogoutIcon } from 'assets/icons/logout.svg'
 import { useState, useEffect } from 'react'
 import { auth, useI18n, useLayout, useUser } from 'common'
 import { LangSelect } from 'components'
-import { useHistory } from 'react-router'
 import { tabs, Tabs } from './tabs'
 import Organizations from './Organizations'
 import Initiatives from './Initiatives'
 import { atom, useRecoilState } from 'recoil'
 import MenuHeader from './MenuHeader'
+import { useRouter } from 'next/router'
 
 export default function Sidepanel (){
   const user = useUser()
   const i18n = useI18n()
-  const history = useHistory()
-  const isEntryCreation = history.location.pathname.includes('/create-initiative')
+  const router = useRouter()
+  const isEntryCreation = router.pathname.includes('/create-initiative')
 
 
   const [selected, setSelected] = useState<null|Tabs[number]['key']>(null)
@@ -57,8 +57,8 @@ export default function Sidepanel (){
         <Stripe>
           <div>
             <UserIconCell {...{...props('enter'), onClick:()=>{
-                localStorage.setItem('callbackUrl', history.location.pathname)
-                if(!user){history.push('/login')} 
+                localStorage.setItem('callbackUrl', router.pathname)
+                if(!user){router.push('/login')} 
             }}}>
               {user? <UserPhoto src={
                 user.avatar_url?.includes("platform-lookaside.fbsbx")?
@@ -74,7 +74,7 @@ export default function Sidepanel (){
                   onClick:()=>{
                     setOpen(false);
                     setSelected(null);
-                    history.push('/')
+                    router.push('/')
                   }
                 })
               }}>
@@ -106,7 +106,7 @@ export default function Sidepanel (){
                   onClick:()=>{
                     setOpen(false);
                     setSelected(null)
-                    history.push('/')}})
+                    router.push('/')}})
               }} >
                   <span>
                     {i18n(v.key)}

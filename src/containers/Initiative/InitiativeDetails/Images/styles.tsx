@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   padding: ${p=>p.theme.layout==='mobile'?

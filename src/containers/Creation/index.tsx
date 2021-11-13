@@ -1,17 +1,8 @@
-import Button from "components/Button";
-import { BottomContainer, Center, LocationCard } from "./styles";
-import { ReactComponent as Cross } from 'assets/icons/cross.svg'
-import { useHistory } from "react-router-dom";
-import { useAddress, useI18n, useUser } from "common";
+import { useUser } from "common";
 import Unauthorized from "./Unauthorized";
-import { ReactComponent as Steps } from 'assets/icons/steps.svg'
-import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
-import { ReactComponent as Pen } from 'assets/icons/pen.svg'
-import { ReactComponent as PinNew } from 'assets/icons/pin-new.svg'
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Map from 'components/Map'
 import { useRecoilState } from "recoil";
-import { TextField } from "components";
 import SelectAddress from "./SelectAddress";
 import SelectName from "./SelectName";
 import SelectCover from "./SelectCover";

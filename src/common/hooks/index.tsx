@@ -1,10 +1,10 @@
 import { useState, useEffect, MutableRefObject, useRef, useLayoutEffect, useCallback, RefObject } from 'react'
 import { useRecoilState } from 'recoil'
 import { atoms, auth, mapboxToken } from 'common'
+import { useUserQuery } from 'generated'
+import { useRouter } from 'next/router'
 import App from 'App'
-import { useHistory } from 'react-router-dom'
-import { useUserLazyQuery } from 'generated'
-import { useDeviceSelectors } from 'react-device-detect'
+import { useNhostAuth } from '@nhost/react-auth'
 export * from './useUploader'
 
 export function useUser(){
@@ -14,38 +14,49 @@ export function useUser(){
 
 export function useUserData(){
   const [user, setUser] = useRecoilState(App.user)
-  const history = useHistory()
-  const [getUser, {data:userData}] = useUserLazyQuery()
-  const [url, setUrl] = useState('')
+  const [user_id, setUserId] = useState<string>()
+  const router = useRouter()
+  const { isAuthenticated } = useNhostAuth()
+  const { data:userData } = useUserQuery({variables:{user_id}, skip: !user_id})
+  
+  console.log( 'userData', userData, isAuthenticated )
 
   useEffect(()=>{
-    if(!user && userData && auth.isAuthenticated()){
+    if(!user && userData && isAuthenticated){
       setUser(userData?.users_by_pk)
-      if(history.location.pathname==='/oauth/success'){
-        console.log('go to the root')
-        history.push('/')
+      if(router.pathname==='/oauth/success'){
+        router.push('/')
       }
     }
-  },[userData, user])
+  },[userData, user, isAuthenticated])
 
   useEffect(()=>{
-    auth.onAuthStateChanged((loggedIn?:boolean) => {
-
-      if(loggedIn){
-        const user_id = auth.getClaim("x-hasura-user-id");
-        getUser({variables:{user_id}})
-        console.log(history.location.pathname)
-        if(history.location.pathname==='/login'){
-          console.log('go to prev page')
-          history.goBack()
-        }
-      }else{
-        console.log('not logged in')
-        setUser(null)
+    if(isAuthenticated){
+      const user_id = auth.getClaim("x-hasura-user-id");
+      if(typeof user_id==='string'){
+        setUserId(user_id)
       }
-    });
+      console.log(router.pathname, 'get user')
+      if(router.pathname==='/login'){
+        console.log('go to prev page')
+        router.back()
+      }
+    }else{
+      setUser(null)
+      setUserId(undefined)
+    }
+  },[isAuthenticated])
+
+  useEffect(()=>{
+    auth.onAuthStateChanged(loggedIn=>{
+      if(!loggedIn){
+        setUser(null)
+        setUserId(undefined)
+      }
+    })
   },[])
-  return null
+
+  return {user}
 }
 
 const defaultSettings = {
@@ -104,17 +115,18 @@ export const useGeolocation = (watch = false, settings = defaultSettings) => {
 };
 
 export function useWindowDimensions() {
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+  const [windowDimensions, setWindowDimensions] = useState({width: 0, height: 0});
   
-  function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-      width,
-      height
-    };
-  }
-
   useEffect(() => {
+    function getWindowDimensions() {
+      const { innerWidth: width, innerHeight: height } = window;
+      return {
+        width,
+        height
+      };
+    }
+    setWindowDimensions(getWindowDimensions());
+    
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
     }
@@ -173,7 +185,6 @@ export function usePrevious<T>(
 }
 
 export function useLayout(){
-  const [{isMobile}, data] = useDeviceSelectors(window.navigator.userAgent)
   const { width, height } = useWindowDimensions()
   return (width<960)? 'mobile': 'desktop'
 }

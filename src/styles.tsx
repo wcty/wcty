@@ -1,8 +1,15 @@
 
 
-import styled, { createGlobalStyle } from 'styled-components/macro'
+import styled, { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
+  #root{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
   * {
     /* ${props=>props.theme.font.body.regular.t5} */
     font-family: 'IBM Plex Mono', 'Montserrat','Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
@@ -73,12 +80,4 @@ export const GlobalStyle = createGlobalStyle`
   input[type=number] {
     -moz-appearance: textfield;
   }
-`,
-
-AppWrapper = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
 `

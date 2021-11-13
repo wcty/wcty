@@ -1,6 +1,6 @@
 import { describeArc, selectWords, useI18n } from 'common';
 import { animated, Interpolation } from 'react-spring';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 
 export const
 InitiativeDescription = styled.div<{open:boolean, layout:string}>`

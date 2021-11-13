@@ -3,15 +3,8 @@ import {  Actions, CommentCounter,  Container, Content, LikeCounter, Likes, Mess
 import Author from "./Author";
 import CommentIco from 'assets/icons/comment.svg'
 import { ReactComponent as LikeIco} from 'assets/icons/like.svg'
-import CreatePost from "./CreatePost";
 import { FeedFragment, Reactions_Enum, useReactionToPostMutation } from "generated";
-import { useParams } from "react-router-dom";
 import { fixAvatar, useUser } from "common";
-
-
-
-export interface IPostProps extends IPost {}
-
 
 function Post({user: author, id: post_id, message, comments_aggregate, reactions}: FeedFragment ) {
 
@@ -47,6 +40,6 @@ function Post({user: author, id: post_id, message, comments_aggregate, reactions
         </Container>
     )
 }
-
+export interface IPostProps extends IPost {}
 export default Post;
-export { CreatePost }
+// export { CreatePost }

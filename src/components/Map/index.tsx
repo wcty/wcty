@@ -1,15 +1,15 @@
-import { AttributionControl, FeatureProps, MapContext, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
+import MapGL, { AttributionControl, FeatureProps, MapContext, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
 import { AnimationOptions, Map as MapType } from 'mapbox-gl'
 import { mapboxToken } from 'common'
 import { atom, useRecoilState } from 'recoil'
 import LocationIcon from './LocationIcon'
 import LoadIcons from './LoadIcons'
 import Satellite from './Satellite'
-import { useHistory } from 'react-router-dom'
 import mapStyle from './mapStyle.json'
 import { createContext, ReactNode, useContext, useEffect, useRef } from 'react'
-import { MapGL } from './styles'
+// import { MapGL } from './styles'
 import Cookies from 'universal-cookie'
+import { useRouter } from 'next/router'
 
 const cookies = new Cookies()
 export default function Map({children}:{children?:ReactNode}){
@@ -23,7 +23,7 @@ export default function Map({children}:{children?:ReactNode}){
     cookies.set('focus', selected.geometry.coordinates , { path: '/' });
   },[selected])
 
-  const history = useHistory()
+  const router = useRouter()
  
   return (
       <>
@@ -37,8 +37,8 @@ export default function Map({children}:{children?:ReactNode}){
           // hash
           {...viewport}
           onClick={(e:any)=>{
-            if(!history.location.pathname.includes('/create-initiative')){
-              history.push('/'); 
+            if(!router.pathname.includes('/create-initiative')){
+              router.push('/'); 
               setSelected(null)   
             }
           }}

@@ -8,7 +8,7 @@ import { ListRow } from "components";
 import Sidepanel from "..";
 import Slides from 'containers/Slides';
 import BurgerFab from 'containers/FloatPanel/BurgerFab';
-import { useHistory } from 'react-router';
+import { useRouter } from 'next/router';
 
 export default function InitiativesDrawer(){
   const user = useUser()
@@ -40,8 +40,8 @@ export default function InitiativesDrawer(){
       }
     }
   },[data, myData, user])
-  const history = useHistory()
-  const isEntryCreation = history.location.pathname.includes('/create-initiative')
+  const router = useRouter()
+  const isEntryCreation = router.pathname.includes('/create-initiative')
 
   return <>
     <div>

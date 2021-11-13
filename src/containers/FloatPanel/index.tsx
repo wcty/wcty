@@ -3,18 +3,18 @@ import CreateFab from "./CreateFab";
 import Search from "./Search/";
 import { Wrapper } from "./styles";
 import BurgerFab from "./BurgerFab";
-import { useHistory } from "react-router-dom";
+import { useRouter } from "next/router";
 
 export default function FloatPanel(){
   const layout = useLayout()
-  const history = useHistory()
-  const isEntryCreation = history.location.pathname.includes('/create-initiative')
+  const router = useRouter()
+  const isEntryCreation = router.pathname.includes('/create-initiative')
 
   return <Wrapper>
     {layout==='mobile' && <BurgerFab/>}
     {!isEntryCreation &&<>
       <Search/>
-      <CreateFab onClick={()=>history.push('/create-initiative')}/>
+      <CreateFab onClick={()=>router.push('/create-initiative')}/>
     </>}
   </Wrapper>
 }

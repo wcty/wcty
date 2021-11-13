@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components/macro";
+import styled, { css } from "styled-components";
 import {ReactComponent as Checkmark} from "assets/icons/checkmark.svg";
 
 interface CheckboxProps {

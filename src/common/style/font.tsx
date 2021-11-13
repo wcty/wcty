@@ -1,4 +1,4 @@
-import styled, {css as css_, ThemedCssFunction} from "styled-components/macro";
+import styled, {css as css_, ThemedCssFunction} from "styled-components";
 const css = css_ as ThemedCssFunction<{}>
 
 export const font = {

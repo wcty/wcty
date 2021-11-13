@@ -2,16 +2,16 @@ import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.sv
 import { useI18n, useUser } from "common";
 import { useInitiativeByPkQuery } from "generated";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { Expense, List } from "./styles";
 import {ReactComponent as LinkIcon} from 'assets/icons/link.svg';
+import { useRouter } from 'next/router';
 
 export default function ExpenseList() {
-  const {id} = useParams<{id:string}>();
+  const { id } = useRouter().query;
   const user = useUser()
-  const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
+  const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()
-  const [open, setOpen] = useState(true);
+  const [ open, setOpen ] = useState(true);
   const isAvailable = data?.initiative && data.initiative.expenses.length>0
   
   return (

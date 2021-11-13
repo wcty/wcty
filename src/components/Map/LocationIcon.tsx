@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { Source, Layer, MapContext } from '@urbica/react-map-gl'
-import { useHistory } from 'react-router-dom';
 import { Map, CustomLayerInterface } from 'mapbox-gl'
 import { useGeolocation } from 'common'
+import { useRouter } from 'next/router'
 
 type PulsingDot = CustomLayerInterface & {
   width:number,
@@ -88,7 +88,6 @@ const pulsingDot = (map:Map):PulsingDot =>{
 }
 
 export default ()=>{
-  const history = useHistory()
   const loaded =  useRef(false)
   const location = useGeolocation()
 
@@ -128,7 +127,6 @@ export default ()=>{
           'icon-image': 'pulsing-dot',
         }}
         before='markers'
-        // onClick={()=>history.push('/initiative/explore')}
       />
     </>
   )

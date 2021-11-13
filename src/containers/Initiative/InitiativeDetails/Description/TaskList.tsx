@@ -2,12 +2,12 @@ import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.sv
 import { useI18n, useUser } from "common";
 import { TasksDocument, useCheckTaskMutation, useTasksQuery } from "generated";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { FinishedTasks, List, ProgressBar, Task } from "./styles";
 import { Checkbox } from 'components';
+import { useRouter } from 'next/router';
 
 export default function TaskList() {
-  const {id} = useParams<{id:string}>();
+  const { id } = useRouter().query;
   const user = useUser()
   const {data} = useTasksQuery({variables:{id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()

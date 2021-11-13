@@ -1,6 +1,6 @@
 import { IAvatar } from "./IAvatar";
 import UserIcon from 'assets/icons/user.svg'
-import styled , {css}from 'styled-components/macro'
+import styled , {css}from 'styled-components'
 
 export interface IAvatarProps extends IAvatar{}
 

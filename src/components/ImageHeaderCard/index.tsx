@@ -1,5 +1,5 @@
+import { useRouter } from "next/router";
 import { FilletButton, Image } from "./styles";
-import { useHistory } from "react-router-dom";
 
 interface ImageProps {
   src: string
@@ -14,11 +14,11 @@ function Desktop(props:ImageProps){
 }
 
 function Mobile(props:ImageProps){
-  const history = useHistory();
+  const router = useRouter()
 
   return(
     <Image.Mobile src={props.src}>
-      <FilletButton onClick={()=>history.push('/')}/>
+      <FilletButton onClick={()=>router.push('/')}/>
     </Image.Mobile>
   )
 }

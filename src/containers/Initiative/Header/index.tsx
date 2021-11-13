@@ -1,6 +1,5 @@
 import { atoms, useAddress, useGeolocation, useI18n, useUser } from "common";
 import { useInitiativeByPkQuery } from "generated";
-import { useParams } from "react-router-dom";
 import { Header, Icon, MetricsRow, ShareJoin, Stats } from "./styles";
 
 import { format } from 'd3-format'
@@ -9,11 +8,12 @@ import { useRecoilState } from "recoil";
 import { ReactComponent as People } from 'assets/icons/popupPeople.svg'
 import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
 import distance from "@turf/distance";
+import { useRouter } from "next/router";
 
 const formatMeters = format(',.2r')
 
 function Mobile() {
-  const {id} = useParams<{id:string}>();
+  const { id } = useRouter().query;
   const user = useUser()
   const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   
@@ -61,7 +61,7 @@ function Mobile() {
 
 
 function Desktop() {
-  const {id} = useParams<{id:string}>();
+  const { id } = useRouter().query;
   const user = useUser()
   const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   

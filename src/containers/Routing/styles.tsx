@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import BurgerFab from "../FloatPanel/BurgerFab";
 
 export const MapWrapper = styled.div`

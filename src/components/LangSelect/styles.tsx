@@ -1,5 +1,5 @@
 import { ReactElement, useState } from 'react';
-import styled from 'styled-components/macro'
+import styled from 'styled-components'
 
 const 
 SelectComponent = styled.select`

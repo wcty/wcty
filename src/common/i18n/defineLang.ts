@@ -6,7 +6,7 @@ type Language = 'en' | 'uk' | 'fr' //List of implemented languages (using html i
 export const defineLang = function():Language{
   const implementedLang =  ['en', 'uk', 'fr'] //List of implemented languages (using html iso ref)
 
-  let navLang:any = window.navigator.language.slice(0,2)  //=browser language
+  let navLang:any = typeof window !=='undefined'? window.navigator.language.slice(0,2): 'en'  //=browser language
   let lang:Language //=return language
 
   if (implementedLang.indexOf(cookies.get('lang')) >-1 ) { //if there is a set language in the cookies: use it as language

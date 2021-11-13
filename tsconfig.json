@@ -6,6 +6,10 @@
       "src/common/types",
       "node_modules/@types"
     ],
+    "types": [
+      "react/next",
+      "react-dom/next"
+    ],
     "target": "es5",
     "module": "esnext",
     "strict": true,
@@ -23,10 +27,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "noFallthroughCasesInSwitch": true
+    "jsx": "preserve",
+    "noFallthroughCasesInSwitch": true,
+    "incremental": true
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

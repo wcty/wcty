@@ -2,19 +2,29 @@ import ImageHeaderCard from "components/ImageHeaderCard";
 import Feed from "./Feed";
 import InitiativeDetails from "./InitiativeDetails";
 import { Body, Container,  LeftColumn,  RightColumn } from "./styles";
-import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useInitiativeByPkQuery } from "generated";
 import { useUser } from "common";
 import Header from "./Header";
 import Join, { LoginToJoin } from "./Join";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
+const Redirect = ({to}:{to:string})=>{
+  const router = useRouter();
+  useEffect(() => {
+    router.push(to);
+  },[])
+  return null
+}
 
 function Desktop() {
-  const { id } = useParams<{id:string}>();
+  const { id } = useRouter().query;
   const user = useUser()
   const { data } = useInitiativeByPkQuery({variables:{id, user_id:user?.id}, fetchPolicy:"cache-first"});
   const isMember = !!data?.initiative?.members?.length
   
-  return (data?.initiative && !data.initiative?.id)? <Redirect to='/'/>  :(
+  return (data?.initiative && !data.initiative?.id)? 
+    <Redirect to='/'/>  :(
     <Container.Desktop>
       <ImageHeaderCard.Desktop src={data?.initiative?.image||''}/>
       <Header.Desktop/>
@@ -37,9 +47,8 @@ function Desktop() {
 }
 
 function Mobile() {
-  const { id } = useParams<{id:string}>();
+  const { id } = useRouter().query;
   const user = useUser()
-  const history = useHistory();
   const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
   const isMember = !!data?.initiative?.members?.length
 

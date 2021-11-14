@@ -955,6 +955,7 @@ export type Initiative_Comments_Inc_Input = {
 /** input type for inserting data into table "initiative_comments" */
 export type Initiative_Comments_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
   message?: Maybe<Scalars['String']>;
   message_id?: Maybe<Scalars['Int']>;
   post?: Maybe<Initiative_Posts_Obj_Rel_Insert_Input>;
@@ -1267,6 +1268,7 @@ export type Initiative_Donations_Inc_Input = {
 export type Initiative_Donations_Insert_Input = {
   amount?: Maybe<Scalars['numeric']>;
   currency?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   recurrent?: Maybe<Scalars['Boolean']>;
@@ -1569,6 +1571,7 @@ export type Initiative_Edits_Inc_Input = {
 /** input type for inserting data into table "initiative_edits" */
 export type Initiative_Edits_Insert_Input = {
   description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
   info?: Maybe<Initiative_Info_Obj_Rel_Insert_Input>;
   info_id?: Maybe<Scalars['Int']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
@@ -1846,6 +1849,7 @@ export type Initiative_Expenses_Insert_Input = {
   amount?: Maybe<Scalars['numeric']>;
   currency?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   link?: Maybe<Scalars['String']>;
@@ -2141,6 +2145,7 @@ export type Initiative_Info_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   edits?: Maybe<Initiative_Edits_Arr_Rel_Insert_Input>;
   goal?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   modified_at?: Maybe<Scalars['timestamptz']>;
@@ -3007,6 +3012,7 @@ export type Initiative_Polls_Inc_Input = {
 export type Initiative_Polls_Insert_Input = {
   edits?: Maybe<Initiative_Edits_Arr_Rel_Insert_Input>;
   expenses?: Maybe<Initiative_Expenses_Arr_Rel_Insert_Input>;
+  id?: Maybe<Scalars['Int']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   tasks?: Maybe<Initiative_Tasks_Arr_Rel_Insert_Input>;
@@ -3478,6 +3484,7 @@ export type Initiative_Posts_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   edits?: Maybe<Initiative_Edits_Arr_Rel_Insert_Input>;
   expenses?: Maybe<Initiative_Expenses_Arr_Rel_Insert_Input>;
+  id?: Maybe<Scalars['bigint']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
@@ -3748,6 +3755,7 @@ export type Initiative_Projects_Inc_Input = {
 export type Initiative_Projects_Insert_Input = {
   budget?: Maybe<Scalars['numeric']>;
   description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   org_id?: Maybe<Scalars['uuid']>;
@@ -4284,6 +4292,7 @@ export type Initiative_Tasks_Inc_Input = {
 export type Initiative_Tasks_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   poll?: Maybe<Initiative_Polls_Obj_Rel_Insert_Input>;
@@ -8946,6 +8955,7 @@ export type Tenders_Inc_Input = {
 /** input type for inserting data into table "tenders" */
 export type Tenders_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['bigint']>;
   initiative?: Maybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: Maybe<Scalars['uuid']>;
   org_id?: Maybe<Scalars['uuid']>;

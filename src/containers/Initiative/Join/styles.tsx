@@ -61,4 +61,26 @@ TaskSelection = styled.div`
     align-items: center;
     justify-content: end;
   }
+`,
+
+TextContainer = styled.div`
+  ${p=>p.theme.font.body.regular.t4}
+  margin-top: 2rem;
+  line-height: 2rem;
+`,
+
+ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: top;
+  width: 100%;
+  >:first-child{
+    margin-right: 1rem;
+  }
+  >button{
+    flex: 1 1 auto;
+    justify-content: center;
+    margin-top: -1rem;
+  }
 `

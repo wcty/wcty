@@ -1,24 +1,26 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {ReactComponent as Fillet} from 'assets/icons/fillet.svg'
 import {ReactComponent as ArrowUp} from 'assets/icons/arrow-up.svg'
 import { ReactNode } from "react";
 
 export const 
-Image = {
-  Desktop: styled.img`
-    margin-top: calc( min((100vw - 960px) / 2, 60px));
-    width: 960px;
-    height: 360px;
-    object-fit: cover;
-    border-radius: 3px;
-  `,
-
-  Mobile: styled.div.attrs((props:{
-    src:string,
-    children: ReactNode
-  })=>({
-    children: <><img src={props.src}/>{props.children}</>
-  }))<{src:string}>`
+Image = styled.div.attrs((props:{
+  src:string,
+  children?: ReactNode
+})=>({
+  children: <><img src={props.src}/>{props.children}</>
+}))<{src:string}>`
+  ${p=>p.theme.layout==='desktop'?
+  css<{}>`
+    >img:first-child{
+      margin-top: calc( min((100vw - 960px) / 2, 60px));
+      width: 960px;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+  `:
+  css<{}>`
     width: 100%;
     min-height: 148px;
     max-height: 360px;
@@ -28,8 +30,8 @@ Image = {
       width: 100%;
       height: 100%;
     }
-  `
-},
+  `}
+`,
 
 Actions = styled.div`
     display: flex;

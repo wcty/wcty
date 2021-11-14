@@ -1,16 +1,14 @@
 import { ChangeEvent, useState, MouseEvent, MouseEventHandler } from 'react'
-import { storage } from 'common'
+import { atoms, storage } from 'common'
 import { v4 as uuidv4 } from 'uuid'
 import { useRecoilValue } from 'recoil'
 import { useInsertFileMutation, useUpdateFileMutation } from 'generated'
-import App from 'App'
-
 
 type Handler = MouseEventHandler<HTMLButtonElement>
 
 export function useUploader(initiativeID: string) {
 
-  const user = useRecoilValue(App.user)
+  const user = useRecoilValue(atoms.user)
   const [ uuid, setUuid ] = useState<string>();
   const [ fileData, setFileData ] = useState<File | null>()
   const [ progress, setProgress ] = useState(0)

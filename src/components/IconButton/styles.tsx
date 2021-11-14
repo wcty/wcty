@@ -36,7 +36,6 @@ export const Container =  styled.div.attrs((props: IIconButtonProps) => ({
 
     & > svg {
         width: 60%;
-        height: 60%;
     }
     
     ${({size})  => handleSize[size!]}

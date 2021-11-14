@@ -1,14 +1,14 @@
 import styled, {css} from "styled-components";
-import { variant} from 'styled-system'
+import { variant } from 'styled-system'
 
 
-const buttonSize = variant({
+export const buttonSize = variant({
   prop: 'size',
   key: 'buttonSizes'
 });
 
 
-const buttonType = variant({
+export const buttonType = variant({
   prop: 'customType',
   key: 'buttonTypes'
 })
@@ -36,8 +36,6 @@ export const Button = styled.button<IButtonProps>`
 `;
 
 Button.defaultProps = {
-    size: 'medium',
-    customType: 'primary'
-  }
-
-
+  size: 'medium',
+  customType: 'primary'
+}

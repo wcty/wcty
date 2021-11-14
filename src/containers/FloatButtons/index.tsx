@@ -1,5 +1,5 @@
 import { Button, ButtonsWrapper } from './styles'
-import {ReactComponent as PinIcon} from 'assets/icons/pin.svg'
+import {ReactComponent as PinIcon} from 'assets/icons/pin-icon.svg'
 import {ReactComponent as GPSIcon} from 'assets/icons/gps.svg'
 import {ReactComponent as SatelliteIcon} from 'assets/icons/satellite.svg'
 import { useRecoilState } from 'recoil'

@@ -11,6 +11,8 @@ import { Tabs } from './tabs'
 import { useRecoilState } from 'recoil'
 import Sidepanel from '.'
 import { useRouter } from 'next/router'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 type MenuHeaderProps = {
   props(key: Tabs[number]['key']): {
@@ -32,7 +34,8 @@ export default function MenuHeader ({props}:MenuHeaderProps){
 
   return layout==='desktop'?
     <UserIconRow {...{...props('enter'),onClick:()=>{
-        localStorage.setItem('callbackUrl', router.pathname)
+        const { pathname, query } = router
+        cookies.set('callbackUrl', { pathname, query }, { path: '/' }); 
         if(!user){ router.push('/login') } 
 
       }}}>
@@ -60,7 +63,8 @@ export default function MenuHeader ({props}:MenuHeaderProps){
     </LogoRow>
     <UserIconRow {...{...props('enter'),onClick:()=>{
         setOpen(false)
-        localStorage.setItem('callbackUrl', router.pathname)
+        const { pathname, query } = router
+        cookies.set('callbackUrl', { pathname, query }, { path: '/' }); 
         if(!user){ router.push('/login') } 
       }}}>
       {user? 

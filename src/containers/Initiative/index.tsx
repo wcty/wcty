@@ -3,75 +3,51 @@ import Feed from "./Feed";
 import InitiativeDetails from "./InitiativeDetails";
 import { Body, Container,  LeftColumn,  RightColumn } from "./styles";
 import { useInitiativeByPkQuery } from "generated";
-import { useUser } from "common";
+import { useLayout, useUser } from "common";
 import Header from "./Header";
 import Join, { LoginToJoin } from "./Join";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import Redirect from "components/Redirect";
 
-const Redirect = ({to}:{to:string})=>{
-  const router = useRouter();
-  useEffect(() => {
-    router.push(to);
-  },[])
-  return null
+function FeedBlock({isMember=false}) {
+  const user = useUser()
+  return  user ? (
+      isMember?
+      <Feed/>:
+      <Join/>
+    ): <LoginToJoin/> 
 }
 
-function Desktop() {
+export default function Initiative() {
   const { id } = useRouter().query;
   const user = useUser()
   const { data } = useInitiativeByPkQuery({variables:{id, user_id:user?.id}, fetchPolicy:"cache-first"});
   const isMember = !!data?.initiative?.members?.length
-  
+  const layout = useLayout()
+
   return (data?.initiative && !data.initiative?.id)? 
     <Redirect to='/'/>  :(
-    <Container.Desktop>
-      <ImageHeaderCard.Desktop src={data?.initiative?.image||''}/>
-      <Header.Desktop/>
-      <Body.Desktop>
-        <LeftColumn>
-          <InitiativeDetails/>
-        </LeftColumn>
-        <RightColumn>
-          { 
-            user ? (
-              isMember?
-              <Feed/>:
-              <Join/>
-            ): <LoginToJoin/> 
-          }
-        </RightColumn>
-      </Body.Desktop>
-    </Container.Desktop>
+    <Container>
+      <ImageHeaderCard src={data?.initiative?.image||''}/>
+      <Header/>
+      {layout==='desktop'?
+        <Body>
+          <LeftColumn>
+            <InitiativeDetails/>
+          </LeftColumn>
+          <RightColumn>
+            <FeedBlock {...{isMember}}/>
+          </RightColumn>
+        </Body>:
+        <>
+          <Body>
+            <InitiativeDetails/>
+          </Body>
+          <FeedBlock {...{isMember}}/>
+        </>}
+    </Container>
   )
 }
-
-function Mobile() {
-  const { id } = useRouter().query;
-  const user = useUser()
-  const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
-  const isMember = !!data?.initiative?.members?.length
-
-  return (data?.initiative && !data.initiative?.id)? <Redirect to='/'/> :(
-    <Container.Mobile>
-      <ImageHeaderCard.Mobile src={data?.initiative?.image||''}/>
-      <Header.Mobile/>
-      <Body.Mobile>
-        <InitiativeDetails/>
-      </Body.Mobile>
-      { 
-        user ? (
-          isMember?
-          <Feed/>:
-          <Join/>
-        ): <LoginToJoin/> 
-      }
-    </Container.Mobile>
-  )
-}
-
-
-export default { Desktop, Mobile };
 
 export { default as Feed } from './Feed'
 export { default as InitiativeDetails } from './InitiativeDetails'

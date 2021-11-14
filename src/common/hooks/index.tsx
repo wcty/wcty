@@ -1,26 +1,23 @@
 import { useState, useEffect, MutableRefObject, useRef, useLayoutEffect, useCallback, RefObject } from 'react'
 import { useRecoilState } from 'recoil'
 import { atoms, auth, mapboxToken } from 'common'
-import { useUserQuery } from 'generated'
+import { DictionaryQuery, useUserQuery } from 'generated'
 import { useRouter } from 'next/router'
-import App from 'App'
 import { useNhostAuth } from '@nhost/react-auth'
 export * from './useUploader'
 
 export function useUser(){
-  const [user] = useRecoilState(App.user)
+  const [user] = useRecoilState(atoms.user)
   return user
 }
 
 export function useUserData(){
-  const [user, setUser] = useRecoilState(App.user)
+  const [user, setUser] = useRecoilState(atoms.user)
   const [user_id, setUserId] = useState<string>()
   const router = useRouter()
   const { isAuthenticated } = useNhostAuth()
   const { data:userData } = useUserQuery({variables:{user_id}, skip: !user_id})
   
-  console.log( 'userData', userData, isAuthenticated )
-
   useEffect(()=>{
     if(!user && userData && isAuthenticated){
       setUser(userData?.users_by_pk)
@@ -36,9 +33,7 @@ export function useUserData(){
       if(typeof user_id==='string'){
         setUserId(user_id)
       }
-      console.log(router.pathname, 'get user')
       if(router.pathname==='/login'){
-        console.log('go to prev page')
         router.back()
       }
     }else{
@@ -227,3 +222,4 @@ export const useSize = (): Size&Ref => {
 
   return { ref, width, height }
 }
+

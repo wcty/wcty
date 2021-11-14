@@ -145,7 +145,6 @@
  "initiativeFormAddCoverPhoto": "+ Add the cover picture",
  "initiativeFormShortDescription": "Short description",
  "organisations": "Organisations",
- "login_or_register": "Login or register:",
  "myOrganisations": "My organisations",
  "initiatives": "Initiatives",
  "search": "Search",
@@ -171,5 +170,9 @@
  "i_am_ready_to_volunteer": "I am ready to volunteer",
  "suggest_relevant_task": "Suggest a relevant task for the initiative that you can perform",
  "choose_one_task": "Choose one of the tasks you can perform, or suggest your own.",
- "expenses_absent": "Expenses were not added yet"
+ "expenses_absent": "Expenses were not added yet",
+ "register": "Register",
+ "login": "Login",
+ "login_or_register_full": "In order to join or create an initiative, you need to register or log in to your own account",
+ "login_or_register": "Login or register"
 }

@@ -1,6 +1,7 @@
 
 
 import styled, { createGlobalStyle } from 'styled-components'
+import BurgerFab from "containers/FloatPanel/BurgerFab";
 
 export const GlobalStyle = createGlobalStyle`
   #root{
@@ -80,4 +81,32 @@ export const GlobalStyle = createGlobalStyle`
   input[type=number] {
     -moz-appearance: textfield;
   }
+`
+
+export const MapWrapper = styled.div`
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+`,
+
+ContentWrapper = styled.div`
+  overflow-y: scroll;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: ${props => props.theme.colors.primary}
+`,
+
+Burger = styled.div.attrs({
+  children: <BurgerFab/>
+})`
+  position: fixed;
+  top: 29px;
+  left: 0;
+  z-index: 1;
 `

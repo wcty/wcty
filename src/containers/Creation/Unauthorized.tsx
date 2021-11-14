@@ -2,6 +2,8 @@ import Button from "components/Button";
 import { FloatingContainer } from "./styles";
 import { ReactComponent as Cross } from 'assets/icons/cross.svg'
 import { useRouter } from "next/router";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export default function Creation() {
 
@@ -20,13 +22,15 @@ export default function Creation() {
       <div>
         <Button size="medium" customType='primary' onClick={
           (e)=>{
-            localStorage.setItem('callbackUrl', '/create-initiative');
+            const { pathname, query } = router
+            cookies.set('callbackUrl', { pathname, query }, { path: '/' }); 
             e.preventDefault()
             router.push('/login')
           }
         }>Зареєструватися</Button>
         <Button size='medium' customType='secondary' onClick={(e)=>{
-          localStorage.setItem('callbackUrl', '/create-initiative');
+          const { pathname, query } = router
+          cookies.set('callbackUrl', { pathname, query }, { path: '/' }); 
           e.preventDefault()
           router.push('/login')
         }} > Увійти</Button>

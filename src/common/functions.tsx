@@ -1,4 +1,6 @@
-import { NearbyEntriesQuery } from "generated";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { DictionaryDocument, DictionaryQuery, NearbyEntriesQuery } from "generated";
+import { GetServerSideProps } from "next";
 
 export function toSelected(entry:NearbyEntriesQuery['entries_nearby'][number]){
   return {

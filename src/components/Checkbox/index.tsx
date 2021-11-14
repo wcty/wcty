@@ -59,7 +59,7 @@ const Checkbox = styled.label.attrs((p:CheckboxProps)=>({
     align-items: center;
     justify-content: center;
     >svg{
-      flex: 1 1 auto;
+      /* flex: 1 1 auto; */
       width: 10px;
       height: 10px;
     }

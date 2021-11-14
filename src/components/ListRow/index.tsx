@@ -18,7 +18,6 @@ export function ListRow({ data:v, onClick:_onClick }:{
   }
   
   function onClick(){
-    console.log('listrow',v)
     setSelected({
       id: v.id,
       type: 'Feature',

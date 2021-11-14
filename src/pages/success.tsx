@@ -1,16 +1,19 @@
 import { useEffect } from "react";
 import { useRouter } from 'next/router'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export default function AuthSuccess(){
-  const history = useRouter()
+  const router = useRouter()
   
   useEffect(()=>{
-    const callbackUrl = localStorage.getItem('callbackUrl');
+    const callbackUrl = cookies.get('callbackUrl');
+    console.log(callbackUrl)
     if(callbackUrl){
-      history.push(callbackUrl)
-      localStorage.removeItem('callbackUrl')
+      router.push(callbackUrl)
+      cookies.remove('callbackUrl')
     }else{
-      history.push('/')
+      router.push('/')
     }
   },[])
   return null

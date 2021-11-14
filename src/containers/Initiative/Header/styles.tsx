@@ -1,91 +1,62 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const 
-Header = {
-  Mobile: styled.div`
-    padding: 2rem;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
+Header = styled.div`
+  width: 100%;
+  display: flex;
+  font-weight: lighter;
+  div{
+    ${p=>p.theme.font.body.regular.t5}
+  }
+  ${p=>p.theme.layout==='mobile'?
+    css<{}>`
+      align-items: flex-start;
+      padding: 2rem;
+      flex-direction: column;`:
+    css<{}>`
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid black;`
+  }
+`,
+
+ShareJoin = styled.div`
+  display: flex;
+  border-radius: 3px;
+  overflow: hidden;
+  ${p=>p.theme.layout==='mobile'?
+    css<{}>`
+      padding: 0rem 2rem;
+      flex: 1 1 auto;
+      line-height: 40px;
+      >div:only-child{
+        position: relative;
+        margin-left: auto;
+        background-color: black;
+        color: white;
+      }`:
+    css<{}>`
+      width: 254px;
+      min-width: 254px;
+      height: 40px;`}
+  
+  >div{
+    ${p=>p.theme.font.body.semibold.t4}
     display: flex;
-    font-weight: lighter;
-    div{
-      ${p=>p.theme.font.body.regular.t5}
-    }
-  `,
-  Desktop: styled.div`
-    width: 100%;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    display: flex;
-    font-weight: lighter;
-    border-bottom: 1px solid black;
-    div{
-      ${p=>p.theme.font.body.regular.t5}
-    }
-  `,
-},
-
-ShareJoin = {
-
-  Desktop: styled.div`
-    width: 254px;
-    min-width: 254px;
-    height: 40px;
-    display: flex;
-    border-radius: 3px;
-    overflow: hidden;
-    
-    >div{
-      ${p=>p.theme.font.body.semibold.t4}
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: 1 1 auto;
-    }
-    >div:first-child{
-      background-color: white;
-      color: black;
-    }
-    >div:last-child{
-      background-color: black;
-      color: white;
-    }
-  `,
-
-  Mobile: styled.div`
-    padding: 0rem 2rem;
     flex: 1 1 auto;
-    line-height: 40px;
-    display: flex;
-    border-radius: 3px;
-    overflow: hidden;
-    /* max-width: 450px; */
-    
-    >div{
-      ${p=>p.theme.font.body.semibold.t4}
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: 1 1 auto;
-      max-width: 450px;
-    }
-    >div:first-child{
-      background-color: white;
-      color: black;
-    }
-    >div:last-child{
-      background-color: black;
-      color: white;
-    }
-    >div:only-child{
-      position: relative;
-      margin-left: auto;
-      background-color: black;
-      color: white;
-    }
-  `
-},
+    ${p=>p.theme.layout==='mobile' && css<{}>`max-width: 450px;`}
+  }
+  >div:first-child{
+    background-color: white;
+    color: black;
+  }
+  >div:last-child{
+    background-color: black;
+    color: white;
+  }
+`,
 
 MetricsRow = styled.div`
   flex: 1 1 auto;

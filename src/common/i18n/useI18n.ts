@@ -1,8 +1,10 @@
 import { default as defaultLang } from './defaultLang.json'
 import { atom, useRecoilState, useRecoilValue } from 'recoil'
 import { atoms, Mutable } from 'common'
-import { DictionaryQuery, useDictionaryQuery } from 'generated'
+import { DictionaryDocument, DictionaryQuery, useDictionaryQuery } from 'generated'
 import { useEffect } from 'react'
+import { GetServerSideProps } from 'next'
+import { ApolloClient, InMemoryCache } from '@apollo/client'
 
 export type MapSchema<T extends Record<string, string>> = {
   -readonly [K in keyof T]: string
@@ -14,18 +16,17 @@ export type i18n = MapSchema<typeof dataObject>
 
 export type I18nGetter = <K extends keyof i18n> (key:K, ...params:(number|string|boolean)[])=>i18n[K]|string
 
+export function getLangObject(dict:DictionaryQuery, lang:string){
+  return dict.i18n.reduce((a:any,b:any)=>{
+    const {key, ...value} = b
+    a[key]= value[lang]
+    return a
+  }, {}) as i18n
+}
+
 export const useI18n = ()=>{
-  const lang = useRecoilValue(atoms.lang)
-  const dict = useRecoilValue(useI18n.dict)
-
-
-
+  const langObject = useRecoilValue(useI18n.dict)
   return function getI18n(key, ...params) {
-    const langObject:i18n = dict.i18n.reduce((a:any,b:any)=>{
-      const {key, ...value} = b
-      a[key]= value[lang]//||Object.values(value)[0]
-      return a
-    }, {})
 
     if ( params.length > 0 ) {
         let i18nKey = `${langObject[key]}`;
@@ -49,10 +50,12 @@ export const useI18n = ()=>{
 
 useI18n.dict = atom({
   key: 'i18nDict',
-  default: {i18n:
-    Object.entries({...defaultLang})
-      .map(([key, value])=>({key, en:value}))
-  } as DictionaryQuery
+  default: getLangObject(
+    {i18n:
+      Object.entries({...defaultLang})
+        .map(([key, value])=>({key, en:value}))
+    } as DictionaryQuery,
+    'en')
 })
 
 
@@ -79,9 +82,42 @@ export function useI18nDictionary(){
 
   useEffect(()=>{
     if(dictData?.i18n?.[0]?.[lang]){
-      setDict(dictData)
+      setDict(getLangObject(dictData,lang))
     }
   },[dictData])
 
+  return null
+}
+
+const client = new ApolloClient({
+  ssrMode: true,
+  uri: "https://hasura-aws.weee.city/v1/graphql",
+  cache: new InMemoryCache(),
+})
+
+
+export const getLangServerSideProps:GetServerSideProps = async (ctx) => {
+  const { req:{ cookies }, res } = ctx
+  let data: DictionaryQuery | undefined
+  if(cookies.lang){
+    data = (await client.query<DictionaryQuery | undefined>({
+      query: DictionaryDocument,
+      variables:{[cookies.lang]: true},
+    })).data;
+  }
+
+  return { props: { serverDictData: data, lang:cookies.lang } }
+}
+
+export type ServerI18nProps = {
+  serverDictData?: DictionaryQuery, 
+  lang?:string
+}
+
+export const useServerI18n = (props:ServerI18nProps)=>{
+  const [lang, setLang] = useRecoilState(atoms.lang)
+  const [dict, setDict] = useRecoilState(useI18n.dict)
+  if(props.lang){ setLang(props.lang as any) }
+  if(props.serverDictData){ setDict( getLangObject(props.serverDictData, lang)) }
   return null
 }

@@ -49,7 +49,7 @@ export default function Login (){
     <CenterPanel onClose={()=>router.back()}>
         {layout==='mobile'&&<BurgerFab/>}
         <h2 style={{marginTop:'2rem'}}>
-          {i18n('login_or_register')}
+          {i18n('login_or_register')}:
         </h2>
       <FormControl>
         <Label id="email">

@@ -44,7 +44,7 @@ export default function MapContents(){
       }}
       promoteId='id'
     />
-    {isEntryCreation?<>
+    {isEntryCreation&&focus?<>
       <Layer
         id='pin'
         source='pin'
@@ -79,6 +79,7 @@ export default function MapContents(){
             ...feature,
             geometry: feature.geometry
           })
+          setFocus(feature.geometry.coordinates)
         }
       }}
       onEnter={()=>setCursor('pointer')}

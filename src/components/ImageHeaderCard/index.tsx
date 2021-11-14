@@ -1,3 +1,4 @@
+import { useLayout } from "common";
 import { useRouter } from "next/router";
 import { FilletButton, Image } from "./styles";
 
@@ -5,22 +6,13 @@ interface ImageProps {
   src: string
 }
 
-function Desktop(props:ImageProps){
-  return(
-    <>
-      <Image.Desktop src={props.src}/>
-    </>
-  )
-}
-
-function Mobile(props:ImageProps){
+export default function ImageHeader(props:ImageProps){
   const router = useRouter()
+  const layout = useLayout()
 
   return(
-    <Image.Mobile src={props.src}>
-      <FilletButton onClick={()=>router.push('/')}/>
-    </Image.Mobile>
+    <Image src={props.src}>
+      {layout==='mobile' ? <FilletButton onClick={()=>router.push('/')}/>: undefined}
+    </Image>
   )
 }
-
-export default { Desktop, Mobile };

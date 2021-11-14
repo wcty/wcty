@@ -12,6 +12,8 @@ import Initiatives from './Initiatives'
 import { atom, useRecoilState } from 'recoil'
 import MenuHeader from './MenuHeader'
 import { useRouter } from 'next/router'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export default function Sidepanel (){
   const user = useUser()
@@ -57,7 +59,8 @@ export default function Sidepanel (){
         <Stripe>
           <div>
             <UserIconCell {...{...props('enter'), onClick:()=>{
-                localStorage.setItem('callbackUrl', router.pathname)
+                const { pathname, query } = router
+                cookies.set('callbackUrl', { pathname, query }, { path: '/' }); 
                 if(!user){router.push('/login')} 
             }}}>
               {user? <UserPhoto src={

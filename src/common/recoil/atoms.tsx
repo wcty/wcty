@@ -1,3 +1,4 @@
+import { User } from 'common';
 import { atom } from 'recoil';
 import { defineLang } from '../i18n'
 
@@ -14,5 +15,9 @@ export const lang = atom({
 export const focalPoint = atom({
   key: 'userCursor',
   default: undefined as number[]|undefined
-})
+}),
 
+user = atom({
+  key: 'user',
+  default: undefined as User,
+});

@@ -67,17 +67,17 @@ export const buttonTypes = {
 
   buttonSizes = {
     small: {
-      minWidth: '90px',
+      // minWidth: '90px',
       height: '32px',
       fontSize: '10px'
     },
     medium: {
-      minWidth: '120px',
+      // minWidth: '120px',
       height: '40px',
       fontSize: '12px'
     },
     large: {
-      minWidth: '160px',
+      // minWidth: '160px',
       height: '56px',
       fontSize: '14px'
     }

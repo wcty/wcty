@@ -206,7 +206,11 @@ export const useSize = (): Size&Ref => {
     }
   }, [ref])
 
-  useLayoutEffect(() => {
+  // useLayoutEffect(() => {
+  //   updateSize()
+  // }, [updateSize])
+
+  useEffect(() => {
     updateSize()
   }, [updateSize])
 

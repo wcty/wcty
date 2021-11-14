@@ -1,15 +1,13 @@
 import Description from "./Description";
 import Information from "./Information";
 import { Images } from "./Images";
-import ClientOnly from "components/ClientOnly";
+import { InitiativePublicByPkQuery } from "generated";
 
-export default function InitiativeDetails() {
+export default function InitiativeDetails(props:{initiative?:InitiativePublicByPkQuery['initiative']}) {
 
   return <>
-    <ClientOnly>
-      <Description/>
-    </ClientOnly>
-    <Information/>
-    <Images/>
+    <Description {...props}/>
+    <Information {...props}/>
+    <Images {...props}/>
   </>
 }

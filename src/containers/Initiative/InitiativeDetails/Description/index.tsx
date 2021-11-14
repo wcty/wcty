@@ -1,5 +1,5 @@
 import { useI18n, useLayout, useSize, useUser } from "common";
-import { InitiativeByPkQuery, useInitiativeByPkQuery } from "generated";
+import { InitiativeByPkQuery, InitiativePublicByPkQuery } from "generated";
 import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
 import { config, useSpring } from 'react-spring'
 import { useState } from "react";
@@ -8,19 +8,19 @@ import ExpenseList from "./ExpenseList";
 import TaskList from "./TaskList";
 import getScore from "./getScore";
 import { useRouter } from "next/router";
+import { InitiativeProps } from "containers/Initiative";
 
 
 
-export default function Description() {
+export default function Description({initiative}:InitiativeProps) {
   const layout = useLayout()
 
   const { id } = useRouter().query;
   const user = useUser()
-  const {data} = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()
   const [open, setOpen] = useState(true)
 
-  const { score, collected, required } = getScore(data?.initiative)
+  const { score, collected, required } = getScore(initiative)
   const { x } = useSpring({
     from: { x: 0 },
     x: score,
@@ -49,7 +49,7 @@ export default function Description() {
           <ProgressBar percent={
             required===0 && collected>0?
             50:collected/required||0}/>
-          <ExpenseList/>
+          <ExpenseList {...{initiative}}/>
         </>
         <TaskList/>
       </div>

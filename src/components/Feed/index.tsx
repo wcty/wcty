@@ -2,7 +2,7 @@ import { useUser } from "common";
 import Post from "components/Post";
 import CreatePost from "components/Post/CreatePost";
 import { IPost } from "components/Post/types/IPost";
-import { FeedFragment, useFirstMemberQuery, useInitiativeByPkQuery } from "generated";
+import { FeedFragment, useFirstMemberQuery } from "generated";
 import { useRouter } from "next/router";
 import { CheckedChannels, Container, Footer } from "./styles";
 const checkedChannels = ['збір-коштів','Розробкапроєкту'];

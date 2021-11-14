@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 export default function TaskList() {
   const { id } = useRouter().query;
   const user = useUser()
-  const {data} = useTasksQuery({variables:{id}, fetchPolicy:"cache-only"});
+  const {data} = useTasksQuery({variables:{id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
   const i18n = useI18n()
   const [open, setOpen] = useState(true);
   const [check] = useCheckTaskMutation({refetchQueries: [TasksDocument]});

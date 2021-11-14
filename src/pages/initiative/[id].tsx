@@ -1,23 +1,20 @@
-import { getLangServerSideProps, ServerI18nProps, useLayout, useServerI18n, useUser } from 'common'
-import Initiative from 'containers/Initiative'
+import { client, ServerI18nProps, useLayout, useServerI18n, useUser } from 'common'
+import Initiative, { InitiativeProps } from 'containers/Initiative'
 import { Burger, ContentWrapper } from 'styles'
 import Sidepanel from 'containers/Sidepanel'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { useInitiativeByPkQuery } from 'generated'
+import { DictionaryDocument, DictionaryQuery, InitiativePublicByPkDocument, InitiativePublicByPkQuery } from 'generated'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
+import { GetServerSideProps } from 'next'
 
-export default function DynamicInitiative(props:ServerI18nProps) {
+export default function DynamicInitiative(props:ServerI18nProps&InitiativeProps) {
   useServerI18n(props)
   const router = useRouter()
-  const { id } = router.query
   const layout = useLayout()
-  const user = useUser()
-  const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
-
-  const name = data?.initiative?.name||'Initiative'
-  const description = data?.initiative?.description||data?.initiative?.infos[0].problem||'Initiative from Wecity platform'
-  const image = data?.initiative?.image
+  const name = props.initiative?.name||'Initiative'
+  const description = props.initiative?.description||props.initiative?.infos[0].problem||'Initiative from Wecity platform'
+  const image = props.initiative?.image
 
   return <> 
     <Head>
@@ -35,9 +32,28 @@ export default function DynamicInitiative(props:ServerI18nProps) {
     {layout==='mobile' && <Burger style={{marginLeft:'1.5rem'}}/>}
     <Sidepanel/>
     <ContentWrapper>
-      <Initiative/>
+      <Initiative initiative={props.initiative}/>
     </ContentWrapper>
   </>
 }
 
-export const getServerSideProps = getLangServerSideProps
+export const getServerSideProps:GetServerSideProps = async (ctx) => {
+  const { req:{ cookies }, res, query } = ctx
+  let serverDictData: DictionaryQuery | undefined
+  let initiative: InitiativePublicByPkQuery['initiative'] | undefined
+
+  if(cookies.lang){
+    serverDictData = (await client.query<DictionaryQuery | undefined>({
+      query: DictionaryDocument,
+      variables:{[cookies.lang]: true},
+    })).data;
+  } 
+  if(query.id){
+    initiative = (await client.query<InitiativePublicByPkQuery | undefined>({
+      query: InitiativePublicByPkDocument,
+      variables:{id: query.id},
+    })).data?.initiative;
+  }
+
+  return { props: { serverDictData, lang:cookies.lang, initiative } }
+}

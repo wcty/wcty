@@ -9724,7 +9724,7 @@ export type InitiativeByPkQueryVariables = Exact<{
 }>;
 
 
-export type InitiativeByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined, members: Array<{ user_id?: any | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }>, tasks: Array<{ id: number, status?: string | null | undefined, description?: string | null | undefined, volunteers_needed?: any | null | undefined, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } }>, donations_aggregate: { aggregate?: { count: number, sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, expenses: Array<{ status?: string | null | undefined, amount: any, currency?: string | null | undefined, description?: string | null | undefined, link?: string | null | undefined, link_name?: string | null | undefined }>, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
+export type InitiativeByPkQuery = { initiative?: { id: any, members: Array<{ user_id?: any | null | undefined }> } | null | undefined };
 
 export type CheckTaskMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -9826,6 +9826,13 @@ export type NearbyEntriesQueryVariables = Exact<{
 
 
 export type NearbyEntriesQuery = { entries_nearby: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
+
+export type InitiativePublicByPkQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type InitiativePublicByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }>, tasks: Array<{ id: number, status?: string | null | undefined, description?: string | null | undefined, volunteers_needed?: any | null | undefined, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } }>, donations_aggregate: { aggregate?: { count: number, sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, expenses: Array<{ status?: string | null | undefined, amount: any, currency?: string | null | undefined, description?: string | null | undefined, link?: string | null | undefined, link_name?: string | null | undefined }>, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
 
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {
@@ -10824,58 +10831,8 @@ export const InitiativeByPkDocument = gql`
     query InitiativeByPK($id: uuid!, $user_id: uuid = "00000000-0000-0000-0000-000000000000") {
   initiative: initiatives_by_pk(id: $id) {
     id
-    name
     members(where: {user_id: {_eq: $user_id}}) {
       user_id
-    }
-    members_aggregate {
-      aggregate {
-        count
-      }
-    }
-    address
-    infos(order_by: {approved_at: desc}, limit: 1) {
-      problem
-      goal
-      context
-    }
-    geometry: geom
-    modified_at
-    created_at
-    image
-    description
-    address
-    tasks {
-      id
-      status
-      description
-      volunteers_needed
-      volunteers_aggregate {
-        aggregate {
-          count
-        }
-      }
-    }
-    donations_aggregate {
-      aggregate {
-        sum {
-          amount
-        }
-        count
-      }
-    }
-    expenses {
-      status
-      amount
-      currency
-      description
-      link
-      link_name
-    }
-    volunteers_aggregate {
-      aggregate {
-        count
-      }
     }
   }
 }
@@ -11284,6 +11241,91 @@ export function useNearbyEntriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type NearbyEntriesQueryHookResult = ReturnType<typeof useNearbyEntriesQuery>;
 export type NearbyEntriesLazyQueryHookResult = ReturnType<typeof useNearbyEntriesLazyQuery>;
 export type NearbyEntriesQueryResult = Apollo.QueryResult<NearbyEntriesQuery, NearbyEntriesQueryVariables>;
+export const InitiativePublicByPkDocument = gql`
+    query InitiativePublicByPK($id: uuid!) {
+  initiative: initiatives_by_pk(id: $id) {
+    id
+    name
+    members_aggregate {
+      aggregate {
+        count
+      }
+    }
+    address
+    infos(order_by: {approved_at: desc}, limit: 1) {
+      problem
+      goal
+      context
+    }
+    geometry: geom
+    modified_at
+    created_at
+    image
+    description
+    address
+    tasks {
+      id
+      status
+      description
+      volunteers_needed
+      volunteers_aggregate {
+        aggregate {
+          count
+        }
+      }
+    }
+    donations_aggregate {
+      aggregate {
+        sum {
+          amount
+        }
+        count
+      }
+    }
+    expenses {
+      status
+      amount
+      currency
+      description
+      link
+      link_name
+    }
+    volunteers_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useInitiativePublicByPkQuery__
+ *
+ * To run a query within a React component, call `useInitiativePublicByPkQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInitiativePublicByPkQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInitiativePublicByPkQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useInitiativePublicByPkQuery(baseOptions: Apollo.QueryHookOptions<InitiativePublicByPkQuery, InitiativePublicByPkQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<InitiativePublicByPkQuery, InitiativePublicByPkQueryVariables>(InitiativePublicByPkDocument, options);
+      }
+export function useInitiativePublicByPkLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InitiativePublicByPkQuery, InitiativePublicByPkQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<InitiativePublicByPkQuery, InitiativePublicByPkQueryVariables>(InitiativePublicByPkDocument, options);
+        }
+export type InitiativePublicByPkQueryHookResult = ReturnType<typeof useInitiativePublicByPkQuery>;
+export type InitiativePublicByPkLazyQueryHookResult = ReturnType<typeof useInitiativePublicByPkLazyQuery>;
+export type InitiativePublicByPkQueryResult = Apollo.QueryResult<InitiativePublicByPkQuery, InitiativePublicByPkQueryVariables>;
 export type entriesKeySpecifier = ('created_at' | 'description' | 'geom' | 'id' | 'image' | 'members_count' | 'modified_at' | 'name' | 'type' | entriesKeySpecifier)[];
 export type entriesFieldPolicy = {
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,

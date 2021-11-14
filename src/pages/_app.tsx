@@ -1,4 +1,5 @@
-import App, { AppProps, AppContext } from 'next/app'
+import App, { AppProps } from 'next/app'
+import Head from 'next/head'
 import { GlobalStyle } from 'styles'
 import { cacheConfig, Fonts, theme, useLayout } from 'common'
 import 'resize-observer-polyfill/dist/ResizeObserver.global'
@@ -28,6 +29,19 @@ console.error = function (err) {
 export default function AppWrapper({ Component, pageProps }:AppProps) {
   return (
     <>
+      <Head>
+        <meta charSet="utf-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta
+          name="description"
+          content="The web platform to help civic self-organisation happen in the cities"
+        />
+        <link rel="apple-touch-icon" href="/logo192.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <title>We.City</title>
+      </Head>
       <StrictMode>
         <NhostAuthProvider {...{nhost}}>
           <NhostApolloProvider

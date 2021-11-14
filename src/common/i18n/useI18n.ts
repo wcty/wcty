@@ -89,12 +89,11 @@ export function useI18nDictionary(){
   return null
 }
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   ssrMode: true,
   uri: "https://hasura-aws.weee.city/v1/graphql",
   cache: new InMemoryCache(),
 })
-
 
 export const getLangServerSideProps:GetServerSideProps = async (ctx) => {
   const { req:{ cookies }, res } = ctx
@@ -104,7 +103,7 @@ export const getLangServerSideProps:GetServerSideProps = async (ctx) => {
       query: DictionaryDocument,
       variables:{[cookies.lang]: true},
     })).data;
-  }
+  } 
 
   return { props: { serverDictData: data, lang:cookies.lang } }
 }

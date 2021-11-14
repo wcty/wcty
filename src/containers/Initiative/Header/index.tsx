@@ -1,5 +1,4 @@
 import { atoms, useAddress, useGeolocation, useI18n, useLayout, useUser } from "common";
-import { useInitiativeByPkQuery } from "generated";
 import { Header, Icon, MetricsRow, ShareJoin, Stats } from "./styles";
 
 import { format } from 'd3-format'
@@ -10,6 +9,8 @@ import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
 import distance from "@turf/distance";
 import { useRouter } from "next/router";
 import Button from "components/Button";
+import { InitiativeProps } from "..";
+import { useInitiativeByPkQuery } from "generated";
 
 const formatMeters = format(',.2r')
 
@@ -29,44 +30,44 @@ function PeopleLocation({count, distance}: {count:number, distance?:number}) {
   </>
 }
 
-export default function HeaderComponent() {
+export default function HeaderComponent({initiative}:InitiativeProps) {
   const layout = useLayout()
   const { id } = useRouter().query;
   const user = useUser()
-  const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   
   const loc = useGeolocation()
-  const dist = data?.initiative && loc && distance(
-    data?.initiative?.geometry?.coordinates, 
+  const dist = initiative && loc && distance(
+    initiative?.geometry?.coordinates, 
     [loc.longitude, loc.latitude],
     { units:'meters' }
   ) || undefined
   const i18n = useI18n()
-  const address = useAddress(data?.initiative?.geometry.coordinates)
+  const address = useAddress(initiative?.geometry.coordinates)
   const [lang] = useRecoilState(atoms.lang)
 
   const f:DateTimeFormatOptions = {month: 'long', day: 'numeric', year:'numeric'};
   const dt = DateTime
-    .fromISO(data?.initiative?.created_at)
+    .fromISO(initiative?.created_at)
     .setLocale(lang)
     .toLocaleString(f)
-
+    
+  const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const isMember = !!data?.initiative?.members?.length
 
   return <>
       {layout==='desktop' ? 
         <Stats>
-          <PeopleLocation count={data?.initiative?.members_aggregate.aggregate?.count||1} distance={dist}/>
+          <PeopleLocation count={initiative?.members_aggregate.aggregate?.count||1} distance={dist}/>
           <div>{address}</div>
           <div>{i18n('initiative_created_at') + dt}</div>
         </Stats>:
         <MetricsRow>
-          <PeopleLocation count={data?.initiative?.members_aggregate.aggregate?.count||1} distance={dist}/>
+          <PeopleLocation count={initiative?.members_aggregate.aggregate?.count||1} distance={dist}/>
         </MetricsRow> 
       }
       <Header>
         {layout==='mobile'&& <div>{address}</div> }
-        <h2>{data?.initiative?.name }</h2>
+        <h2>{initiative?.name }</h2>
         {layout==='mobile'?
           <div>{i18n('initiative_created_at') + dt}</div>:
           <ShareJoin>

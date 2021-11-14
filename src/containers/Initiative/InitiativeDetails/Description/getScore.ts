@@ -1,6 +1,6 @@
-import { InitiativeByPkQuery } from "generated"
+import { InitiativeByPkQuery, InitiativePublicByPkQuery } from "generated"
 
-export default function getScore(data: InitiativeByPkQuery['initiative']){
+export default function getScore(data: InitiativePublicByPkQuery['initiative']){
   const tasksNumber = data?.tasks.length || 0
   const tasksCompleted = data?.tasks.filter(t=>t.status==='completed').length || 0
   const tasksNotCompleted = tasksNumber - tasksCompleted

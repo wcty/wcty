@@ -4,15 +4,12 @@ import { useInitiativeByPkQuery } from "generated";
 import { useState } from "react";
 import { Expense, List } from "./styles";
 import {ReactComponent as LinkIcon} from 'assets/icons/link.svg';
-import { useRouter } from 'next/router';
+import { InitiativeProps } from 'containers/Initiative';
+export default function ExpenseList({initiative}:InitiativeProps) {
 
-export default function ExpenseList() {
-  const { id } = useRouter().query;
-  const user = useUser()
-  const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const i18n = useI18n()
   const [ open, setOpen ] = useState(true);
-  const isAvailable = data?.initiative && data.initiative.expenses.length>0
+  const isAvailable = initiative && initiative.expenses.length>0
   
   return (
     <List {...{open}}>
@@ -28,7 +25,7 @@ export default function ExpenseList() {
       </span>
       {isAvailable && <div>
         {
-          data.initiative!.expenses.map((v,i)=>
+          initiative!.expenses.map((v,i)=>
             <Expense key={i}>
               <span>{i+1}</span>
               <div>

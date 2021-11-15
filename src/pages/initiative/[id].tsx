@@ -7,6 +7,7 @@ import Head from 'next/head'
 import { DictionaryDocument, DictionaryQuery, InitiativePublicByPkDocument, InitiativePublicByPkQuery } from 'generated'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
 import { GetServerSideProps } from 'next'
+import { FixedBottom } from 'react-fixed-bottom'
 
 export default function DynamicInitiative(props:ServerI18nProps&InitiativeProps) {
   useServerI18n(props)
@@ -31,9 +32,11 @@ export default function DynamicInitiative(props:ServerI18nProps&InitiativeProps)
     </Head>
     {layout==='mobile' && <Burger style={{marginLeft:'1.5rem'}}/>}
     <Sidepanel/>
-    <ContentWrapper>
-      <Initiative initiative={props.initiative}/>
-    </ContentWrapper>
+    <FixedBottom>
+      <ContentWrapper>
+        <Initiative initiative={props.initiative}/>
+      </ContentWrapper>
+    </FixedBottom>
   </>
 }
 

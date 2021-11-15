@@ -3,8 +3,8 @@ import { atoms, useLayout } from 'common';
 import { Map, InitiativeCard } from 'components';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import Sources from './Sources';
 import { Popup } from './styles';
+import { useContext } from 'react';
 
 export default function MapContents(){
   const [cursor, setCursor] = useRecoilState(Map.cursor)
@@ -15,9 +15,11 @@ export default function MapContents(){
   const router = useRouter()
   const isEntryCreation = router.pathname.includes('/create-initiative')
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
+  // const {map} = useContext(Map.Context)
+  // const isSourceLoading = true//!map?.getSource('entries')
 
   return <>
-    {isEntryCreation&&focus?<>
+    {isEntryCreation && focus?<>
       <Layer
         id='pin'
         source='pin'

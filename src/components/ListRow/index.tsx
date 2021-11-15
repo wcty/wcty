@@ -8,11 +8,11 @@ export function ListRow({ data:v, onClick:_onClick }:{
   data: InitiativeCardFragment&{type: string},
   onClick?: ()=>void
 }){
-
   const address = useAddress(v?.geometry?.coordinates||[0,0])
   const [selected, setSelected] = useRecoilState(Map.selected)
   const [viewport, setViewport] = useRecoilState(Map.viewport)
   
+
   if(!v.id){
     return null
   }

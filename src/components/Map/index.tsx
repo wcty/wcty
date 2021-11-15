@@ -48,10 +48,10 @@ export default function Map({children}:{children?:ReactNode}){
             compact={true}
             position='bottom-left'
           />
+          <>{ children }</>
           <LoadIcons />
           <>{ satellite && <Satellite /> }</>
           <LocationIcon />
-          <>{ children }</>
         </MapGL>
       </>
     )

@@ -40,6 +40,9 @@ Fab = styled.button`
   cursor: pointer;
   background-color: white;
   transition: background-color 0.2s;
+  position: relative;
+  padding: 0;
+  height: 29px;
   >svg{
     transform: translate(0px,0px);
     transition: transform 0.5s;

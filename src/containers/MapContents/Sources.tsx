@@ -25,9 +25,7 @@ export default function MapContents(){
       type='vector'
       url='https://tiles.weee.city/public.entries.json'
       promoteId='id'
-    >
-      <FeatureState source='entries' sourceLayer='public.entries' id={selected?.id||''} state={{selected:true}}/>
-    </Source>
+    />
     <Source
       id='selected_entry'
       type='geojson'

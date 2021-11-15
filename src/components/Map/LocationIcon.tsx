@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useContext, useRef } from 'react'
 import { Source, Layer, MapContext } from '@urbica/react-map-gl'
 import { Map, CustomLayerInterface } from 'mapbox-gl'
 import { useGeolocation } from 'common'
@@ -90,7 +90,7 @@ const pulsingDot = (map:Map):PulsingDot =>{
 export default ()=>{
   const loaded =  useRef(false)
   const location = useGeolocation()
-
+  
   return (
     <>
       <MapContext.Consumer>

@@ -1,4 +1,4 @@
-import App, { AppProps } from 'next/app'
+import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { GlobalStyle } from 'styles'
 import { cacheConfig, Fonts, theme, useLayout } from 'common'
@@ -8,7 +8,7 @@ import { StrictMode } from 'react'
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from 'common'
-import styled, { css, ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import { InMemoryCache } from '@apollo/client';
 import { Map } from 'components'
 import * as nhost from 'common/nhost'
@@ -60,7 +60,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
 }
 
 function ClientSetup(props:any){
-  
+
   return (<>
     <ClientOnly>
       <Auth/>

@@ -20,7 +20,7 @@ export default function DynamicInitiative(props:ServerI18nProps&InitiativeProps)
     <Head>
       <title>{`${name} | Wecity`}</title>
       <meta name="description" content={description} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="article" />
       <meta property="og:image" content={image? image+'?w=500&h=500&q=90' :DefaultInitiativeCover} />
       <meta property="og:title" content={name} />
       <meta property="og:description" content={description} />

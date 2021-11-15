@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     bottom: 0;
     left: 0;
     right: 0;
+    overflow: hidden;
   }
   * {
     /* ${props=>props.theme.font.body.regular.t5} */
@@ -42,7 +43,9 @@ export const GlobalStyle = createGlobalStyle`
     text-transform: none;
   }
   html {
-    overflow: scroll;
+    overflow: hidden;
+  }
+  body{
     overflow: hidden;
   }
   ::-webkit-scrollbar {

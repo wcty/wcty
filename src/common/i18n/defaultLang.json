@@ -173,7 +173,6 @@
  "expenses_absent": "Expenses were not added yet",
  "register": "Register",
  "login": "Login",
- "login_or_register_full": "In order to join or create an initiative, you need to register or log in to your own account",
  "login_or_register": "Login or register",
  "describe_your_idea": "Describe your idea or problem that you are trying to solve",
  "name_of_your_initiative": "Name of your initiative",
@@ -183,5 +182,8 @@
  "create_initiative": "Create initiative",
  "approve_address": "Approve address",
  "change": "Change",
- "address_of_initiative": "Address of initiative"
+ "address_of_initiative": "Address of initiative",
+ "login_or_register_full": "In order to join or create an initiative, you need to register or log in to your own account",
+ "create_poll": "Create poll",
+ "channels": "Channels"
 }

@@ -71,6 +71,7 @@ FilletButton = styled.button.attrs({
   transform: translate(0,calc(-100% + 4px));
   margin-bottom: -40px;
   cursor: pointer;
+  margin-top:1rem;
   >svg:last-child{
     transform: translate(0px,0px);
     transition: transform 0.3s; 

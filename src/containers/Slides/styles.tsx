@@ -6,7 +6,7 @@ const VirtualizeSwipeableViews = virtualize(SwipeableViewsUnstyled);
 
 export const
 SwipeableViews = styled(VirtualizeSwipeableViews).attrs({
-  style: {padding: '0 15px', overflowX: 'visible'},
+  style: {padding: '0 15px', overflowX: 'hidden'},
   slideStyle: {padding: '0px 0px', overflow:'visible'},
   resistance: true
 })`

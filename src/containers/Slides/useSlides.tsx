@@ -2,7 +2,7 @@ import { useNearbyEntriesQuery } from 'generated';
 import { useRecoilState } from 'recoil';
 import { Map } from 'components'
 import { useEffect } from 'react';
-import { atoms, toSelected, usePrevious } from 'common';
+import { atoms, toSelected, useLayout, usePrevious } from 'common';
 import Slides from '.'
 
 export default function Anonimous(){
@@ -10,6 +10,7 @@ export default function Anonimous(){
   const [view, setViewport] = useRecoilState(Map.viewport)
   const [selected, setSelected] = useRecoilState(Map.selected)
   const [layers, setLayers] = useRecoilState(Map.layers)
+  const layout = useLayout()
 
   useEffect(()=>{
     if(!focus){
@@ -38,8 +39,12 @@ export default function Anonimous(){
       setViewport({
         longitude: entry.geometry?.coordinates[0]||0,
         latitude: entry.geometry?.coordinates[1]||0,
-        zoom: 18,
-        viewportChangeMethod:'easeTo'
+        zoom: 16,
+        viewportChangeMethod: 'easeTo',
+        viewportChangeOptions: 
+          layout==='desktop'?
+            {offset:[145,50]}:
+            {offset:[0,0]}
       })
       setSelected(toSelected(entry))
     }

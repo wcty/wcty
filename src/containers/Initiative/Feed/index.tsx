@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
   
   const { id } = useRouter().query;
   const { data:postsData, error } = useFeedSubscription({variables:{id}})
-  
+
   return postsData ? <Feed posts={postsData.posts}/>: null
 }
 

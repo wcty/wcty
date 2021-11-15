@@ -1,8 +1,15 @@
 # Build everything according to Maryna's mockups
 
- - Add create initiative views
- - Add join initiative views
- - Add initiative views
- 
- - Add navigation buttons to the desktop map
- - Add previously seen initiatives to the map feed for authenticated users
+  - Cтворення ініціативи - десктоп
+  - Introductory slides
+  - Make comments
+  - Make private chats
+  - Доробити таски, чати, голосування, nav menu for chats
+  - Активація аккаунту, нотіфікейшени та помилки
+  - User profile
+  - Choose currency
+  - Notifications in browser and email
+  - Add previously seen initiatives to the map feed for authenticated users
+  - Generate graphics for initiative
+  - Organisations, projects, etc.
+

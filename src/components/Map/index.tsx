@@ -38,7 +38,7 @@ export default function Map({children}:{children?:ReactNode}){
           {...viewport}
           onClick={(e:any)=>{
             if(!router.pathname.includes('/create-initiative')){
-              router.push('/'); 
+              router.push('/',undefined,{shallow:true}); 
               setSelected(null)   
             }
           }}

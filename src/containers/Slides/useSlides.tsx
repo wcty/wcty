@@ -46,7 +46,8 @@ export default function Anonimous(){
             {offset:[145,50]}:
             {offset:[0,0]}
       })
-      setSelected(toSelected(entry))
+      setSelected(
+        toSelected(entry))
     }
   },[ index, prevIndex, nearbyEntries ])
 

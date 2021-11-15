@@ -86,7 +86,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 `
 
-export const MapWrapper = styled.div`
+export const 
+MapWrapper = styled.div`
   top: 0px;
   width: 100%;
   height: 100%;

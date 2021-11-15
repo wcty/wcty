@@ -22,7 +22,7 @@ export function useUserData(){
     if(!user && userData && isAuthenticated){
       setUser(userData?.users_by_pk)
       if(router.pathname==='/oauth/success'){
-        router.push('/')
+        router.push('/',undefined,{shallow:true})
       }
     }
   },[userData, user, isAuthenticated])

@@ -7,6 +7,7 @@ import SelectAddress from "./SelectAddress";
 import SelectName from "./SelectName";
 import SelectCover from "./SelectCover";
 import { v4 as uuidv4 } from 'uuid'
+import { CreationContainer } from "./styles";
 
 export type Initiative = {
   address: string,
@@ -46,7 +47,7 @@ export default function Creation() {
   },[url,path])
 
   return (user?
-    (
+    <CreationContainer>{
       index===0?
         <SelectAddress {...{initiative, setInitiative, index, setIndex}}/>:
       index===1?
@@ -54,7 +55,7 @@ export default function Creation() {
       index===2?
         <SelectCover {...{initiative, setInitiative, index, setIndex, onInputChangeSubmit}}/>:
       null
-    ):
+    }</CreationContainer>:  
     <Unauthorized/>
   )
 }

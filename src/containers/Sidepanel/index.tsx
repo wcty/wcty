@@ -77,7 +77,7 @@ export default function Sidepanel (){
                   onClick:()=>{
                     setOpen(false);
                     setSelected(null);
-                    router.push('/')
+                    router.push('/',undefined,{shallow:true})
                   }
                 })
               }}>
@@ -109,7 +109,8 @@ export default function Sidepanel (){
                   onClick:()=>{
                     setOpen(false);
                     setSelected(null)
-                    router.push('/')}})
+                    router.push('/',undefined,{shallow:true})
+                  }})
               }} >
                   <span>
                     {i18n(v.key)}

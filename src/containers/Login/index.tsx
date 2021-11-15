@@ -17,7 +17,7 @@ const LoginButton = ({credentials={email:'', password:''}})=>{
           console.log(error);
           return alert("login failed");
         }
-        router.push("/");
+        router.push('/',undefined,{shallow:true})
       }
     }}>
       <span>Login</span>

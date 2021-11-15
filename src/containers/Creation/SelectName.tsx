@@ -1,10 +1,6 @@
 import Button from "components/Button";
-import { BottomContainer } from "./styles";
-import { useHistory } from "react-router-dom";
-import { useAddress, useI18n, useUser } from "common";
+import { useI18n } from "common";
 import { ReactComponent as Steps } from 'assets/icons/steps1.svg'
-import Map from 'components/Map'
-import { useRecoilState } from "recoil";
 import { TextArea, TextField } from "components";
 import { Initiative } from ".";
 
@@ -21,7 +17,6 @@ export default function Creation({
 
   return (
     <>
-      <BottomContainer>
         <div>
           {i18n('creation_of_initiative')}
           <Steps/>
@@ -46,7 +41,6 @@ export default function Creation({
                 setIndex(index+1)
             }}>{i18n('next')}</Button>
         </div>
-      </BottomContainer>
     </>
   )
 }

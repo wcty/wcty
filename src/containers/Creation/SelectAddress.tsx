@@ -1,6 +1,5 @@
 import Button from "components/Button";
-import { BottomContainer, Center, LocationCard } from "./styles";
-import { useHistory } from "react-router-dom";
+import { Center, LocationCard } from "./styles";
 import { atoms, useAddress, useI18n, useUser } from "common";
 import { ReactComponent as Steps } from 'assets/icons/steps.svg'
 import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
@@ -11,6 +10,7 @@ import Map from 'components/Map'
 import { useRecoilState } from "recoil";
 import { TextField } from "components";
 import { Initiative } from ".";
+import { useRouter } from "next/router";
 
 export default function Creation({
   initiative,
@@ -23,7 +23,7 @@ export default function Creation({
 }) {
   
   const user = useUser()
-  const history = useHistory()
+  const router = useRouter()
   const [viewport, setViewport] = useRecoilState(Map.viewport)
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
   const mbAddress = useAddress([viewport.longitude, viewport.latitude], true)
@@ -36,8 +36,7 @@ export default function Creation({
 
   return (
     <>
-      {!(initiative.address && focus) &&<Center><PinNew/></Center>}
-      <BottomContainer>
+      {!(initiative.address && focus) && <Center><PinNew/></Center>}
         <div>
           {i18n('creation_of_initiative')}
           <Steps/>
@@ -72,7 +71,8 @@ export default function Creation({
                   setInitiative({...initiative, address: ''})
                   setFocus(undefined)
                 })():  
-                history.push('/')}>{i18n('cancel')}</Button>
+                router.push('/',undefined,{shallow:true})
+            }>{i18n('cancel')}</Button>
           <Button 
             onClick={()=>{
                 if(!(initiative.address&&initiative.location)){
@@ -89,7 +89,6 @@ export default function Creation({
                 setIndex(index+1)
             }}>{i18n('approve_address')}</Button>
         </div>
-      </BottomContainer>
     </>
   )
 }

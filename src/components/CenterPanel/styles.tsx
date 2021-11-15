@@ -31,7 +31,7 @@ Box = styled.div`
   background-color: #F4EADE;
   max-height: 100%;
   box-shadow: 3px 3px 3px rgba(0,0,0,0.15);
-  padding: 1.5rem 3rem;
+  padding: 3rem 4rem;
   position: relative;
 `,
 

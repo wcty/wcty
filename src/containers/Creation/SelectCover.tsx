@@ -1,12 +1,11 @@
 import Button from "components/Button";
-import { BottomContainer, FileInput } from "./styles";
+import { FileInput } from "./styles";
 import { ReactComponent as Steps } from 'assets/icons/steps2.svg'
 import { Initiative } from ".";
 import { ChangeEvent, useEffect } from "react";
 import { useInsertInitiativeMutation } from "generated";
 import { userInfo } from "os";
 import { useI18n, useUser } from "common";
-import { useHistory } from "react-router-dom";
 import { useRouter } from "next/router";
 
 export default function Creation({
@@ -35,7 +34,6 @@ export default function Creation({
 
   return (
     <>
-      <BottomContainer>
         <div>
           {i18n('creation_of_initiative')}
           <Steps/>
@@ -105,7 +103,6 @@ export default function Creation({
               {i18n('create_initiative')}
             </Button>
         </div>
-      </BottomContainer>
     </>
   )
 }

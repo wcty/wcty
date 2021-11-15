@@ -14,7 +14,7 @@ export default function FloatPanel(){
     {layout==='mobile' && <BurgerFab/>}
     {!isEntryCreation &&<>
       <Search/>
-      <CreateFab onClick={()=>router.push('/create-initiative')}/>
+      <CreateFab onClick={()=>router.push('/create-initiative', undefined, {shallow:true})}/>
     </>}
   </Wrapper>
 }

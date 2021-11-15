@@ -11,9 +11,9 @@ export default function AuthSuccess(){
     console.log(callbackUrl)
     if(callbackUrl){
       router.push(callbackUrl)
-      cookies.remove('callbackUrl')
+      //cookies.remove('callbackUrl')
     }else{
-      router.push('/')
+      router.push('/',undefined,{shallow:true})
     }
   },[])
   return null

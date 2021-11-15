@@ -5,9 +5,6 @@ import { ReactComponent as Cross } from 'assets/icons/cross.svg'
 
 export const 
 FloatingContainer = styled.div`
-  width: calc(100% - 4rem);
-  ${p=>p.theme.shadow}
-  ${p=>p.theme.font.body.regular.t4}
   border-radius: 3px;
   left: 2rem;
   position: absolute;
@@ -15,6 +12,17 @@ FloatingContainer = styled.div`
   transform: translate(0, -50%);
   background-color: white;
   padding: 2rem;
+  ${p=>p.theme.layout==='mobile'?
+    css<{}>`
+      width: calc(100% - 4rem);`:
+    css<{}>`
+      width: 320px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      `}
+  ${p=>p.theme.shadow}
+  ${p=>p.theme.font.body.regular.t4}
+
   >button{
     position: absolute;
     top: 1.5rem;
@@ -36,7 +44,13 @@ FloatingContainer = styled.div`
   >div:last-child{
     ${p=>p.theme.font.body.regular.t4}
     display: flex;
-    justify-content: space-between;
+    >button{
+      flex: 1 1 auto;
+      justify-content: center;
+      &:first-child{
+        margin-right: 1rem;
+      }
+    }
     margin-top:2rem;
     margin-bottom: 1rem;
   }
@@ -88,14 +102,20 @@ FileInput = styled.label.attrs(
   }
 `,
 
-BottomContainer = styled.div`
+CreationContainer = styled.div`
+  ${p=>p.theme.layout==='mobile'?
+    css<{}>`
+      bottom: 0;
+      width: 100%;
+      min-height: 190px;`:
+    css<{}>`
+      top:2rem;
+      right:2rem;
+      width: 320px;`}
   display: flex;
   flex-direction: column;
   align-items: space-between;
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  min-height: 190px;
   background-color: white;
   padding: 2rem;
   >div:nth-child(2) >input{
@@ -135,7 +155,7 @@ LocationCard = styled.div`
 `,
 
 Center = styled.div`
-  position: absolute;
+  position: fixed;
   top: calc(50% - 37px);
   left: 50%;
   transform: translate(-50%, 0);

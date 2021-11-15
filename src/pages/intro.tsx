@@ -1,18 +1,19 @@
 import FloatButtons from 'containers/FloatButtons'
-import Creation from 'containers/Creation'
+import Slides from 'containers/Slides'
+import { getLangServerSideProps, ServerI18nProps, useServerI18n } from 'common'
 import FloatPanel from 'containers/FloatPanel'
 import Sidepanel from 'containers/Sidepanel'
-import { getLangServerSideProps, ServerI18nProps, useServerI18n } from 'common'
 import Head from 'next/head'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
-import ClientOnly from 'components/ClientOnly'
+import Intro from 'containers/Intro'
 
 export const getServerSideProps = getLangServerSideProps
-export default function CreateInitiative(props:ServerI18nProps){
-  console.log('here')
+
+export default function RootPath(props:ServerI18nProps) {
   useServerI18n(props)
-  const name = "Create initiative"
-  const description = "Select the location in your city, and describe what would you like to change there. Create initiatives and find support in Wecity platform."
+  const name = "Welcome to Wecity platform"
+  const description = "A small introduction into how Wecity works."
+
   return <>
     <Head>
       <title>{`${name} | Wecity`}</title>
@@ -26,10 +27,9 @@ export default function CreateInitiative(props:ServerI18nProps){
       <meta property="twitter:title" content={name} />
       <meta property="twitter:description" content={description} />
     </Head>
-    <FloatButtons bottom/>
+    <FloatButtons/>
     <FloatPanel/>
-    <Creation/>
+    <Intro/>
     <Sidepanel/>
   </>
 }
-

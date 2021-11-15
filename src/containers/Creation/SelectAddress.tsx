@@ -1,5 +1,6 @@
 import Button from "components/Button";
 import { BottomContainer, Center, LocationCard } from "./styles";
+import { useHistory } from "react-router-dom";
 import { atoms, useAddress, useI18n, useUser } from "common";
 import { ReactComponent as Steps } from 'assets/icons/steps.svg'
 import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
@@ -10,7 +11,6 @@ import Map from 'components/Map'
 import { useRecoilState } from "recoil";
 import { TextField } from "components";
 import { Initiative } from ".";
-import { useRouter } from "next/router";
 
 export default function Creation({
   initiative,
@@ -23,7 +23,7 @@ export default function Creation({
 }) {
   
   const user = useUser()
-  const router = useRouter()
+  const history = useHistory()
   const [viewport, setViewport] = useRecoilState(Map.viewport)
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
   const mbAddress = useAddress([viewport.longitude, viewport.latitude], true)
@@ -39,7 +39,7 @@ export default function Creation({
       {!(initiative.address && focus) &&<Center><PinNew/></Center>}
       <BottomContainer>
         <div>
-          Створення ініціативи
+          {i18n('creation_of_initiative')}
           <Steps/>
         </div>
         {editable?
@@ -47,7 +47,7 @@ export default function Creation({
             type='text'
             value={initiative.address}
             onChange={(e)=>setInitiative({...initiative, address: e.target.value})}
-            placeholder={'Адреса ініціативи'}/>:
+            placeholder={i18n('address_of_initiative')}/>:
           <LocationCard onClick={()=>{
             setEditable(true);
             mbAddress && setInitiative({...initiative, address: mbAddress})
@@ -57,13 +57,12 @@ export default function Creation({
               <span>{mbAddress}</span>
             </span>
             <span>
-              Змінити
+              {i18n('change')}
               <Pen/>
             </span>
           </LocationCard>}
         <div>
           <Button 
-            size= 'medium'
             customType='secondary' 
             onClick={()=>
               editable?
@@ -73,10 +72,8 @@ export default function Creation({
                   setInitiative({...initiative, address: ''})
                   setFocus(undefined)
                 })():  
-                router.push('/')}>Відміна</Button>
+                history.push('/')}>{i18n('cancel')}</Button>
           <Button 
-            size='medium'
-            customType='primary'
             onClick={()=>{
                 if(!(initiative.address&&initiative.location)){
                   setInitiative({...initiative, 
@@ -90,8 +87,7 @@ export default function Creation({
 
                 setViewport({...viewport, latitude: viewport.latitude+0.0001, viewportChangeOptions:{offset:[0,-120]}})
                 setIndex(index+1)
-
-            }}>Підтвердити адресу</Button>
+            }}>{i18n('approve_address')}</Button>
         </div>
       </BottomContainer>
     </>

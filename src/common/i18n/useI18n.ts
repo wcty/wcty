@@ -116,7 +116,9 @@ export type ServerI18nProps = {
 export const useServerI18n = (props:ServerI18nProps)=>{
   const [lang, setLang] = useRecoilState(atoms.lang)
   const [dict, setDict] = useRecoilState(useI18n.dict)
-  if(props.lang){ setLang(props.lang as any) }
-  if(props.serverDictData){ setDict( getLangObject(props.serverDictData, lang)) }
+  useEffect(()=>{
+    if(props.lang){ setLang(props.lang as any) }
+    if(props.serverDictData){ setDict( getLangObject(props.serverDictData, lang)) }  
+  },[])
   return null
 }

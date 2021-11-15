@@ -23,24 +23,8 @@ Header = styled.div`
 ShareJoin = styled.div`
   display: flex;
   border-radius: 3px;
-  overflow: hidden;
-  ${p=>p.theme.layout==='mobile'?
-    css<{}>`
-      padding: 0rem 2rem;
-      flex: 1 1 auto;
-      line-height: 40px;
-      >div:only-child{
-        position: relative;
-        margin-left: auto;
-        background-color: black;
-        color: white;
-      }`:
-    css<{}>`
-      width: 254px;
-      min-width: 254px;
-      height: 40px;`}
-  
-  >div{
+  overflow: hidden;  
+  >button{
     ${p=>p.theme.font.body.semibold.t4}
     display: flex;
     justify-content: center;
@@ -48,14 +32,36 @@ ShareJoin = styled.div`
     flex: 1 1 auto;
     ${p=>p.theme.layout==='mobile' && css<{}>`max-width: 450px;`}
   }
-  >div:first-child{
+  >button:first-child{
     background-color: white;
     color: black;
+    border: none;
+    border-radius: 3px 0px 0px 3px;
+    max-width: 50%;
   }
-  >div:last-child{
+  >button:last-child{
     background-color: black;
     color: white;
+    border-radius: 0px 3px 3px 0px;
+    max-width: 50%;
   }
+  ${p=>p.theme.layout==='mobile'?
+    css<{}>`
+      padding: 0rem 2rem;
+      flex: 1 1 auto;
+      line-height: 40px;
+      >button:only-child{
+        position: relative;
+        margin-left: auto;
+        background-color: black;
+        color: white;
+        max-width: 50%;
+        border-radius: 3px 3px 3px 3px;
+      }`:
+    css<{}>`
+      width: 254px;
+      min-width: 254px;
+      height: 40px;`}
 `,
 
 MetricsRow = styled.div`

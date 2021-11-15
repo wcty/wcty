@@ -8,7 +8,7 @@ import { StrictMode } from 'react'
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from 'common'
-import { ThemeProvider } from 'styled-components'
+import styled, { css, ThemeProvider } from 'styled-components'
 import { InMemoryCache } from '@apollo/client';
 import { Map } from 'components'
 import * as nhost from 'common/nhost'
@@ -17,16 +17,8 @@ import MapContents from 'containers/MapContents'
 import ClientOnly from 'components/ClientOnly'
 import Auth from 'components/Auth'
 
-var consoleerror = console.error;
-console.error = function (err) {
-    if (typeof (err.stack) != 'undefined' && err.stack.includes('https://planet.weee.city/')) {
-        return;
-    } else {
-        consoleerror(err);
-    }
-}
-
 export default function AppWrapper({ Component, pageProps }:AppProps) {
+  const layout = useLayout()
   return (
     <>
       <Head>
@@ -52,7 +44,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
           >
             <RecoilRoot>
                 <Map.Context.Provider value={{map:undefined}}>
-                  <ThemeProvider {...{theme:{...theme, layout: useLayout()}}}>
+                  <ThemeProvider {...{theme:{...theme, layout}}}>
                       <GlobalStyle />
                       <Fonts/>
                       <ClientSetup/>
@@ -67,9 +59,9 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
   )
 }
 
-function ClientSetup(){
-
-  return (
+function ClientSetup(props:any){
+  
+  return (<>
     <ClientOnly>
       <Auth/>
       <MapWrapper>
@@ -78,5 +70,5 @@ function ClientSetup(){
         </Map>
       </MapWrapper>
     </ClientOnly>
-  )
+  </>)
 }

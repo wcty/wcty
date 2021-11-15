@@ -14,6 +14,10 @@ import { useInitiativeByPkQuery } from "generated";
 
 const formatMeters = format(',.2r')
 
+function copyToClipboard(text:string) {
+  window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+}
+
 function PeopleLocation({count, distance}: {count:number, distance?:number}) {
   const i18n = useI18n()
 
@@ -28,6 +32,19 @@ function PeopleLocation({count, distance}: {count:number, distance?:number}) {
         }
       </div> }
   </>
+}
+
+function Buttons({isMember=false}){
+  const i18n = useI18n()
+
+  return (
+    <ShareJoin>
+      <Button 
+        onClick={()=>copyToClipboard(window.location.href)}
+        customType="secondary">{i18n('share')}</Button>
+      {!isMember && <Button>{i18n('join')}</Button>}
+    </ShareJoin>
+  )
 }
 
 export default function HeaderComponent({initiative}:InitiativeProps) {
@@ -70,16 +87,9 @@ export default function HeaderComponent({initiative}:InitiativeProps) {
         <h2>{initiative?.name }</h2>
         {layout==='mobile'?
           <div>{i18n('initiative_created_at') + dt}</div>:
-          <ShareJoin>
-            <Button>{i18n('share')}</Button>
-            <Button>{i18n('join')}</Button>
-          </ShareJoin>
+          <Buttons {...{isMember}}/>
         }
       </Header>
-      {layout==='mobile'&&       
-        <ShareJoin>
-          <div>{i18n('share')}</div>
-          {!isMember && <div>{i18n('join')}</div>}
-        </ShareJoin> }
+      {layout==='mobile'&& <Buttons {...{isMember}}/> }
   </>
 }

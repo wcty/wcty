@@ -5,9 +5,11 @@ import Sidepanel from 'containers/Sidepanel'
 import { getLangServerSideProps, ServerI18nProps, useServerI18n } from 'common'
 import Head from 'next/head'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
+import ClientOnly from 'components/ClientOnly'
 
 export const getServerSideProps = getLangServerSideProps
 export default function CreateInitiative(props:ServerI18nProps){
+  console.log('here')
   useServerI18n(props)
   const name = "Create initiative"
   const description = "Select the location in your city, and describe what would you like to change there. Create initiatives and find support in Wecity platform."
@@ -26,7 +28,9 @@ export default function CreateInitiative(props:ServerI18nProps){
     </Head>
     <FloatButtons bottom/>
     <FloatPanel/>
-    <Creation/>
+    <ClientOnly>
+      <Creation/>
+    </ClientOnly>
     <Sidepanel/>
   </>
 }

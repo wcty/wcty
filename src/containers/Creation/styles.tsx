@@ -35,7 +35,6 @@ FloatingContainer = styled.div`
   }
   >div:last-child{
     ${p=>p.theme.font.body.regular.t4}
-
     display: flex;
     justify-content: space-between;
     margin-top:2rem;

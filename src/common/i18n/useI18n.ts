@@ -102,15 +102,15 @@ export const getLangServerSideProps:GetServerSideProps = async (ctx) => {
     data = (await client.query<DictionaryQuery | undefined>({
       query: DictionaryDocument,
       variables:{[cookies.lang]: true},
-    })).data;
+    }))?.data;
   } 
 
-  return { props: { serverDictData: data, lang:cookies.lang } }
+  return { props: { serverDictData: data||null, lang:cookies?.lang||null } }
 }
 
 export type ServerI18nProps = {
-  serverDictData?: DictionaryQuery, 
-  lang?:string
+  serverDictData?: DictionaryQuery|null, 
+  lang?:string|null
 }
 
 export const useServerI18n = (props:ServerI18nProps)=>{

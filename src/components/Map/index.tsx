@@ -10,6 +10,7 @@ import { createContext, ReactNode, useContext, useEffect, useRef } from 'react'
 // import { MapGL } from './styles'
 import Cookies from 'universal-cookie'
 import { useRouter } from 'next/router'
+import ContextProvider from './ContextProvider'
 
 const cookies = new Cookies()
 export default function Map({children}:{children?:ReactNode}){
@@ -57,7 +58,7 @@ export default function Map({children}:{children?:ReactNode}){
     )
 }
 
-Map.Context = createContext({map:undefined as MapType|undefined})
+Map.Context = ContextProvider
 
 function ContextSetter (){
   const map:MapType = useContext(MapContext)

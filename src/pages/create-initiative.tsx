@@ -5,7 +5,9 @@ import Sidepanel from 'containers/Sidepanel'
 import { getLangServerSideProps, ServerI18nProps, useServerI18n } from 'common'
 import Head from 'next/head'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
-import ClientOnly from 'components/ClientOnly'
+import { MapWrapper } from 'styles'
+import MapContents from 'containers/MapContents'
+import Map from 'components/Map'
 
 export const getServerSideProps = getLangServerSideProps
 export default function CreateInitiative(props:ServerI18nProps){
@@ -26,6 +28,11 @@ export default function CreateInitiative(props:ServerI18nProps){
       <meta property="twitter:title" content={name} />
       <meta property="twitter:description" content={description} />
     </Head>
+    <MapWrapper>
+        <Map>
+          <MapContents/>
+        </Map>
+    </MapWrapper>
     <FloatButtons bottom/>
     <FloatPanel/>
     <Creation/>

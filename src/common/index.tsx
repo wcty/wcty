@@ -1,5 +1,5 @@
 import { InitiativesLastVisitedQuery, InitiativesNearbyQuery } from 'generated';
-import { SetterOrUpdater } from 'recoil';
+import type { SetterOrUpdater } from 'recoil';
 import Cookies from 'universal-cookie';
 
 export * from './i18n'

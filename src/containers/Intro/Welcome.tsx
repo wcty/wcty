@@ -1,11 +1,7 @@
 import { atoms, useI18n, useUser } from "common";
-import { ReactComponent as Steps } from 'assets/icons/steps.svg'
-import Map from 'components/Map'
 import { useRecoilState } from "recoil";
 import { useRouter } from "next/router";
 import Cover from 'assets/images/intro_cover.png'
-import { RightArrow } from "containers/Slides/styles";
-import IconButton from "components/IconButton";
 
 export default function Creation({
   index, setIndex
@@ -15,7 +11,7 @@ export default function Creation({
   
   const user = useUser()
   const router = useRouter()
-  const [viewport, setViewport] = useRecoilState(Map.viewport)
+  const [viewport, setViewport] = useRecoilState(atoms.viewport)
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
   const i18n = useI18n()
 console.log(Cover)

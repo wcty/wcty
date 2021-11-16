@@ -6,16 +6,16 @@ import { useEffect, useState } from "react";
 import Buttons from "./Buttons";
 import { useSearchResultsQuery } from 'generated'
 import { useRecoilState } from "recoil";
-import { Map, ListRow } from 'components'
+import { ListRow } from 'components'
 import Slides from 'containers/Slides';
 
 export default function Search(){
   const i18n = useI18n()
   const [keyword, setKeyword] = useState('')
-  const [layers, setLayers] = useRecoilState(Map.layers)
+  const [layers, setLayers] = useRecoilState(atoms.layers)
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
   const [slideIndex, setSlideIndex] = useRecoilState(Slides.index)
-  const [viewport, setViewport] = useRecoilState(Map.viewport)
+  const [viewport, setViewport] = useRecoilState(atoms.viewport)
   const layout = useLayout()
   const {data} = useSearchResultsQuery({variables:{layers,keyword: `%${keyword}%`}})
   const [searchResults, setSearchResults] = useState(data)

@@ -1,15 +1,14 @@
-import { Entry } from 'components'
 import { Card, Thumbnail, Content, TopBar, BottomPanel, Button, Metrics, Icon } from "./styles";
 import { ReactComponent as People } from 'assets/icons/popupPeople.svg'
 import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
-import { useGeolocation, useI18n } from 'common';
+import { useGeolocation, useI18n, atoms } from 'common';
 import distance from '@turf/distance'
 import { format } from 'd3-format'
 import { useRouter } from 'next/router';
 
 const formatMeters = format(',.2r')
 
-type InitiativeProps = { entry: Entry }
+type InitiativeProps = { entry: atoms.Entry }
 
 export default function InitiativeCard({entry}:InitiativeProps){
 

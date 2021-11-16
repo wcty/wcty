@@ -1,12 +1,12 @@
 import MapGL, { AttributionControl, FeatureProps, MapContext, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
-import { AnimationOptions, Map as MapType } from 'mapbox-gl'
-import { mapboxToken } from 'common'
-import { atom, useRecoilState } from 'recoil'
+import type { Map as MapType } from 'mapbox-gl'
+import { atoms, mapboxToken } from 'common'
+import { useRecoilState } from 'recoil'
 import LocationIcon from './LocationIcon'
 import LoadIcons from './LoadIcons'
 import Satellite from './Satellite'
 import mapStyle from './mapStyle.json'
-import { createContext, ReactNode, useContext, useEffect, useRef } from 'react'
+import { ReactNode, useContext, useEffect } from 'react'
 // import { MapGL } from './styles'
 import Cookies from 'universal-cookie'
 import { useRouter } from 'next/router'
@@ -14,10 +14,10 @@ import ContextProvider from './ContextProvider'
 
 const cookies = new Cookies()
 export default function Map({children}:{children?:ReactNode}){
-  const [viewport, setViewport] = useRecoilState(Map.viewport);
-  const [satellite] = useRecoilState(Map.satellite)
-  const [cursor] = useRecoilState(Map.cursor)
-  const [selected,setSelected] = useRecoilState(Map.selected)
+  const [viewport, setViewport] = useRecoilState(atoms.viewport);
+  const [satellite] = useRecoilState(atoms.satellite)
+  const [cursor] = useRecoilState(atoms.cursor)
+  const [selected,setSelected] = useRecoilState(atoms.selected)
 
   useEffect(()=>{
     if(selected?.geometry?.coordinates)
@@ -70,50 +70,3 @@ function ContextSetter (){
   },[map, context])
   return null
 }
-
-const defaultFocus:number[]|undefined = cookies.get('focus')
-
-Map.viewport = atom({
-  key: 'mapViewport',
-  default: {
-    latitude: defaultFocus?.[1]||50.4501, 
-    longitude: defaultFocus?.[0]||30.5234, 
-    zoom:15,
-    viewportChangeMethod: 'flyTo'
-  } as Viewport & { 
-    viewportChangeMethod?: ViewportChangeMethodProps,
-    viewportChangeOptions?: AnimationOptions
-  }, 
-})
-
-Map.cursor = atom({
-  key: 'mapCursor',
-  default: ''
-})
-
-Map.satellite = atom({
-  key: 'mapSatellite',
-  default: false
-})
-
-export type Entry = (
-  GeoJSON.Feature<GeoJSON.Point> &
-  Omit<
-    FeatureProps<
-      Specs[keyof Specs]
-    >['features'][number],
-    'layer'|'sourceLayer'|'state'|'modified_at'
-  >)|null
-Map.selected = atom({
-  key: 'mapSelected',
-  default: null as Entry
-})
-
-Map.layers_list = ['initiative', 'organization'] as ('initiative'|'organization')[]
-
-Map.layers = atom({
-  key: 'mapLayers',
-  default: Map.layers_list
-})
-
-

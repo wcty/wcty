@@ -7,8 +7,9 @@ import Head from 'next/head'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
 import Intro from 'containers/Intro'
 import { MapWrapper } from 'styles'
-import MapContents from 'containers/MapContents'
-import Map from 'components/Map'
+import { lazy, Suspense } from 'react'
+const MapContents = lazy(()=>import('containers/MapContents'))
+const Map = lazy(()=>import('components/Map'))
 
 export const getServerSideProps = getLangServerSideProps
 
@@ -31,9 +32,11 @@ export default function RootPath(props:ServerI18nProps) {
       <meta property="twitter:description" content={description} />
     </Head>
     <MapWrapper>
+      <Suspense fallback={null}>
         <Map>
           <MapContents/>
         </Map>
+      </Suspense>
     </MapWrapper>
     <FloatButtons/>
     <FloatPanel/>

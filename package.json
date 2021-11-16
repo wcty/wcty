@@ -108,6 +108,7 @@
     "concurrently": "^6.1.0",
     "dotenv": "^8.2.0",
     "dotenv-cli": "^4.0.0",
+    "eslint": "<8.0.0",
     "iv": "^0.0.1",
     "node-fetch": "^2.6.1",
     "storybook-addon-styled-component-theme": "^2.0.0",

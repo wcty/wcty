@@ -1,7 +1,6 @@
-import { useUploader, useUser } from "common";
+import { atoms, useUploader, useUser } from "common";
 import Unauthorized from "./Unauthorized";
 import { useEffect, useState } from "react";
-import Map from 'components/Map'
 import { useRecoilState } from "recoil";
 import SelectAddress from "./SelectAddress";
 import SelectName from "./SelectName";
@@ -23,7 +22,7 @@ export type Initiative = {
 
 export default function Creation() {
   const user = useUser()
-  const [viewport] = useRecoilState(Map.viewport)
+  const [viewport] = useRecoilState(atoms.viewport)
 
   const [initiative, setInitiative] = useState<Initiative>({
     address: '',

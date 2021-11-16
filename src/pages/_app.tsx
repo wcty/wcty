@@ -1,18 +1,18 @@
+import 'resize-observer-polyfill/dist/ResizeObserver.global'
 import { AppProps } from 'next/app'
-import Head from 'next/head'
 import { GlobalStyle } from 'styles'
 import { cacheConfig, Fonts, theme, useLayout } from 'common'
-import 'resize-observer-polyfill/dist/ResizeObserver.global'
-import { StrictMode } from 'react'
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from 'common'
 import { ThemeProvider } from 'styled-components'
 import { InMemoryCache } from '@apollo/client';
-import Context from 'components/Map/ContextProvider'
 import * as nhost from 'common/nhost'
+import MapContext from 'components/Map/ContextProvider'
 import ClientOnly from 'components/ClientOnly'
 import Auth from 'components/Auth'
+import Head from 'next/head'
+
 
 export default function AppWrapper({ Component, pageProps }:AppProps) {
   const layout = useLayout()
@@ -31,27 +31,25 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
         <link rel="manifest" href="/manifest.json" />
         <title>We.City</title>
       </Head>
-      <StrictMode>
-        <NhostAuthProvider {...{nhost}}>
-          <NhostApolloProvider
-            {...{nhost}}
-            cache={new InMemoryCache( cacheConfig )}
-            publicRole='anonymous'
-            graphqlUrl={`https://hasura-aws.weee.city/v1/graphql`}
-          >
-            <RecoilRoot>
-                <Context.Provider value={{map:undefined}}>
-                  <ThemeProvider {...{theme:{...theme, layout}}}>
-                      <GlobalStyle />
-                      <Fonts/>
-                      <ClientSetup/>
-                      <Component {...pageProps} />
-                  </ThemeProvider>
-                </Context.Provider>
-            </RecoilRoot>
-          </NhostApolloProvider>
-        </NhostAuthProvider>
-      </StrictMode>
+      <NhostAuthProvider {...{nhost}}>
+        <NhostApolloProvider
+          {...{nhost}}
+          cache={new InMemoryCache( cacheConfig )}
+          publicRole='anonymous'
+          graphqlUrl={`https://hasura-aws.weee.city/v1/graphql`}
+        >
+          <RecoilRoot>
+              <MapContext.Provider value={{map:undefined}}>
+                <ThemeProvider {...{theme:{...theme, layout}}}>
+                    <GlobalStyle />
+                    <Fonts/>
+                    <ClientSetup/>
+                    <Component {...pageProps} />
+                </ThemeProvider>
+              </MapContext.Provider>
+          </RecoilRoot>
+        </NhostApolloProvider>
+      </NhostAuthProvider>
     </>
   )
 }

@@ -1,15 +1,14 @@
 import { useNearbyEntriesQuery } from 'generated';
 import { useRecoilState } from 'recoil';
-import { Map } from 'components'
 import { useEffect } from 'react';
 import { atoms, toSelected, useLayout, usePrevious } from 'common';
 import Slides from '.'
 
 export default function Anonimous(){
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
-  const [view, setViewport] = useRecoilState(Map.viewport)
-  const [selected, setSelected] = useRecoilState(Map.selected)
-  const [layers, setLayers] = useRecoilState(Map.layers)
+  const [view, setViewport] = useRecoilState(atoms.viewport)
+  const [selected, setSelected] = useRecoilState(atoms.selected)
+  const [layers, setLayers] = useRecoilState(atoms.layers)
   const layout = useLayout()
 
   useEffect(()=>{

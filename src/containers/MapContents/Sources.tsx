@@ -1,10 +1,9 @@
 import { Source, FeatureState } from '@urbica/react-map-gl';
 import { atoms } from 'common';
-import { Map } from 'components';
 import { useRecoilState } from 'recoil';
 
 export default function MapContents(){
-  const [selected] = useRecoilState(Map.selected)
+  const [selected] = useRecoilState(atoms.selected)
   const [focus] = useRecoilState(atoms.focalPoint)
 
   return <>

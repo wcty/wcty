@@ -9,9 +9,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
  * @type {import('next').NextConfig}
  **/
  const nextConfig = {
-  compress: true,
   target: "serverless",
+  reactStrictMode: true,
   experimental: {
+    reactMode: 'concurrent'
     //concurrentFeatures: true,
   },
   webpack: (config, options) => {

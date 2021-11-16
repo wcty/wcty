@@ -1,21 +1,20 @@
 import { Layer } from '@urbica/react-map-gl';
 import { atoms, useLayout } from 'common';
-import { Map, InitiativeCard } from 'components';
+import { InitiativeCard } from 'components';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { Popup } from './styles';
-import { useContext } from 'react';
 
 export default function MapContents(){
-  const [cursor, setCursor] = useRecoilState(Map.cursor)
-  const [selected, setSelected] = useRecoilState(Map.selected)
-  const [viewport, setViewport] = useRecoilState(Map.viewport)
-  const [layers] = useRecoilState(Map.layers)
+  const [cursor, setCursor] = useRecoilState(atoms.cursor)
+  const [selected, setSelected] = useRecoilState(atoms.selected)
+  const [viewport, setViewport] = useRecoilState(atoms.viewport)
+  const [layers] = useRecoilState(atoms.layers)
   const layout = useLayout()
   const router = useRouter()
   const isEntryCreation = router.pathname.includes('/create-initiative')
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
-  // const {map} = useContext(Map.Context)
+  // const {map} = useContext(atoms.Context)
   // const isSourceLoading = true//!map?.getSource('entries')
 
   return <>

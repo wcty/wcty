@@ -1,7 +1,6 @@
-import { useAddress } from 'common'
+import { atoms, useAddress } from 'common'
 import { useRecoilState } from "recoil"
 import { ListItem } from "./styles"
-import { Map } from 'components'
 import { InitiativeCardFragment } from 'generated'
 
 export function ListRow({ data:v, onClick:_onClick }:{
@@ -9,8 +8,8 @@ export function ListRow({ data:v, onClick:_onClick }:{
   onClick?: ()=>void
 }){
   const address = useAddress(v?.geometry?.coordinates||[0,0])
-  const [selected, setSelected] = useRecoilState(Map.selected)
-  const [viewport, setViewport] = useRecoilState(Map.viewport)
+  const [selected, setSelected] = useRecoilState(atoms.selected)
+  const [viewport, setViewport] = useRecoilState(atoms.viewport)
   
 
   if(!v.id){

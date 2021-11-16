@@ -2,7 +2,6 @@ import { atoms, useI18n, useLayout, useUser } from 'common';
 import { UserIconRow, List } from "../styles";
 import { useInitiativesNearbyListQuery, useMyInitiativeListQuery } from "generated";
 import { useRecoilState } from "recoil";
-import { Map } from 'components'
 import { useEffect, useState } from "react";
 import { ListRow } from "components";
 import Sidepanel from "..";
@@ -13,7 +12,7 @@ import { useRouter } from 'next/router';
 export default function InitiativesDrawer(){
   const user = useUser()
   const i18n = useI18n()
-  const [view] = useRecoilState(Map.viewport)
+  const [view] = useRecoilState(atoms.viewport)
   
   const location = {
     type: 'Point',
@@ -25,7 +24,7 @@ export default function InitiativesDrawer(){
   const [open, setOpen] = useRecoilState(Sidepanel.open)
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
   const [slideIndex, setSlideIndex] = useRecoilState(Slides.index)
-  const [viewport, setViewport] = useRecoilState(Map.viewport)
+  const [viewport, setViewport] = useRecoilState(atoms.viewport)
 
   const layout = useLayout()
 

@@ -6,8 +6,10 @@ import { getLangServerSideProps, ServerI18nProps, useServerI18n } from 'common'
 import Head from 'next/head'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
 import { MapWrapper } from 'styles'
-import MapContents from 'containers/MapContents'
-import Map from 'components/Map'
+
+import { lazy, Suspense } from 'react'
+const MapContents = lazy(()=>import('containers/MapContents'))
+const Map = lazy(()=>import('components/Map'))
 
 export const getServerSideProps = getLangServerSideProps
 export default function CreateInitiative(props:ServerI18nProps){
@@ -29,9 +31,11 @@ export default function CreateInitiative(props:ServerI18nProps){
       <meta property="twitter:description" content={description} />
     </Head>
     <MapWrapper>
+      <Suspense fallback={null}>
         <Map>
           <MapContents/>
         </Map>
+      </Suspense>
     </MapWrapper>
     <FloatButtons bottom/>
     <FloatPanel/>

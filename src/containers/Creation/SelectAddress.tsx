@@ -6,7 +6,6 @@ import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
 import { ReactComponent as Pen } from 'assets/icons/pen.svg'
 import { ReactComponent as PinNew } from 'assets/icons/pin-new.svg'
 import { useEffect, useState } from "react";
-import Map from 'components/Map'
 import { useRecoilState } from "recoil";
 import { TextField } from "components";
 import { Initiative } from ".";
@@ -24,7 +23,7 @@ export default function Creation({
   
   const user = useUser()
   const router = useRouter()
-  const [viewport, setViewport] = useRecoilState(Map.viewport)
+  const [viewport, setViewport] = useRecoilState(atoms.viewport)
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
   const mbAddress = useAddress([viewport.longitude, viewport.latitude], true)
   const [editable, setEditable] = useState(false)

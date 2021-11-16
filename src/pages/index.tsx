@@ -34,7 +34,9 @@ export default function RootPath(props:ServerI18nProps) {
     <MapWrapper>
       <Suspense fallback={null}>
         <Map>
-          <MapContents/>
+          <Suspense fallback={null}>
+            <MapContents/>
+          </Suspense>
         </Map>
       </Suspense>
     </MapWrapper>

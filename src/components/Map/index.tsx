@@ -18,6 +18,7 @@ export default function Map({children}:{children?:ReactNode}){
   const [satellite] = useRecoilState(atoms.satellite)
   const [cursor] = useRecoilState(atoms.cursor)
   const [selected,setSelected] = useRecoilState(atoms.selected)
+  const [lang] = useRecoilState(atoms.lang)
 
   useEffect(()=>{
     if(selected?.geometry?.coordinates)
@@ -35,6 +36,8 @@ export default function Map({children}:{children?:ReactNode}){
           onViewportChange={(v:any)=>setViewport({...viewport, ...v})}
           attributionControl={false}
           cursorStyle={cursor}
+          locale={lang}
+          refreshExpiredTiles={true}
           // hash
           {...viewport}
           onClick={(e:any)=>{

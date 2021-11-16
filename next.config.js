@@ -12,7 +12,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   target: "serverless",
   reactStrictMode: true,
   experimental: {
-    reactMode: 'concurrent'
+    reactRoot: true
     //concurrentFeatures: true,
   },
   webpack: (config, options) => {

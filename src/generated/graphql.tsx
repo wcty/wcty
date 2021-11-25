@@ -9834,6 +9834,11 @@ export type InitiativePublicByPkQueryVariables = Exact<{
 
 export type InitiativePublicByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, description?: string | null | undefined, geometry?: any | null | undefined, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }>, tasks: Array<{ id: number, status?: string | null | undefined, description?: string | null | undefined, volunteers_needed?: any | null | undefined, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } }>, donations_aggregate: { aggregate?: { count: number, sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, expenses: Array<{ status?: string | null | undefined, amount: any, currency?: string | null | undefined, description?: string | null | undefined, link?: string | null | undefined, link_name?: string | null | undefined }>, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
 
+export type InitiativesSitemapQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type InitiativesSitemapQuery = { initiatives: Array<{ id: any }> };
+
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {
   geom
@@ -11326,6 +11331,40 @@ export function useInitiativePublicByPkLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type InitiativePublicByPkQueryHookResult = ReturnType<typeof useInitiativePublicByPkQuery>;
 export type InitiativePublicByPkLazyQueryHookResult = ReturnType<typeof useInitiativePublicByPkLazyQuery>;
 export type InitiativePublicByPkQueryResult = Apollo.QueryResult<InitiativePublicByPkQuery, InitiativePublicByPkQueryVariables>;
+export const InitiativesSitemapDocument = gql`
+    query InitiativesSitemap {
+  initiatives {
+    id
+  }
+}
+    `;
+
+/**
+ * __useInitiativesSitemapQuery__
+ *
+ * To run a query within a React component, call `useInitiativesSitemapQuery` and pass it any options that fit your needs.
+ * When your component renders, `useInitiativesSitemapQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useInitiativesSitemapQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useInitiativesSitemapQuery(baseOptions?: Apollo.QueryHookOptions<InitiativesSitemapQuery, InitiativesSitemapQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<InitiativesSitemapQuery, InitiativesSitemapQueryVariables>(InitiativesSitemapDocument, options);
+      }
+export function useInitiativesSitemapLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<InitiativesSitemapQuery, InitiativesSitemapQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<InitiativesSitemapQuery, InitiativesSitemapQueryVariables>(InitiativesSitemapDocument, options);
+        }
+export type InitiativesSitemapQueryHookResult = ReturnType<typeof useInitiativesSitemapQuery>;
+export type InitiativesSitemapLazyQueryHookResult = ReturnType<typeof useInitiativesSitemapLazyQuery>;
+export type InitiativesSitemapQueryResult = Apollo.QueryResult<InitiativesSitemapQuery, InitiativesSitemapQueryVariables>;
 export type entriesKeySpecifier = ('created_at' | 'description' | 'geom' | 'id' | 'image' | 'members_count' | 'modified_at' | 'name' | 'type' | entriesKeySpecifier)[];
 export type entriesFieldPolicy = {
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,

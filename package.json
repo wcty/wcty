@@ -111,6 +111,7 @@
     "dotenv-cli": "^4.0.0",
     "eslint": "<8.0.0",
     "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.25.3",
     "iv": "^0.0.1",
     "next-sitemap": "^1.6.203",

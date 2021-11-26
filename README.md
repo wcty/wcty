@@ -15,6 +15,7 @@ We.city is a web app to:
 #### Amazing open source tech that we use:
 
   ###### Backend services and data management:
+  Nextjs
   Hasura GraphQL Engine, to generate all our api's: https://hasura.io/docs/latest/graphql/core/index.html
   NHost Hasura Backend Plus, to authorise users and store files on remote server: https://github.com/nhost/hasura-backend-plus
   NHost JS SDK, to authorise and upload files from browser: https://docs.nhost.io/libraries/nhost-js-sdk

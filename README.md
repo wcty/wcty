@@ -34,7 +34,7 @@ Matching will happen in two ways — organisations or individuals can look throu
   <img width="50%" src="/public/assets/groups_min.png" />
 </div>
 
-#### What problem does the project address? 
+#### What problem does the project address?  
 
 ​Our mission is to fight against urban apathy and "learned helplessness", to develop a sense of strength and opportunities for change in people.
 In the psychology of today's citizens there are many reasons for apathy. For example, lack of money is often used as an excuse to do nothing, while public funds to improve public space or to solve local social problems are usually not really enough. Apathy may derive from the questions on the legitimacy of the initiative, appropriation of space or taking over institutional competencies. Therefore, it is important to remember about the value of the public space for the local inhabitants in the first place. We.city is designed to engage them to find solutions and make them implemented - with the help of crowdfunding, investments from local businesses, expert help and volunteer labour.

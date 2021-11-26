@@ -27,7 +27,7 @@ We.city is a web app to:
   Mapbox GL JS, to render beautiful maps: https://docs.mapbox.com/mapbox-gl-js/api/
   Urbica Martin, to serve vector tiles for our maps from our database: https://martin.urbica.co/
 
-  ###### User Interfaces
+  ###### User Interfaces 
   Material UI, to start of with well thought through design system: https://material-ui.com/
   React-Spring, to make nice animations: https://www.react-spring.io/
   React-Swipeable-Views, to swipe our initiative cards.

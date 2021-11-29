@@ -4,7 +4,7 @@ import { cookies, atoms, useI18n } from 'common'
 import { Select } from './styles'
 const useForceUpdate = () => useState()[1];
 
-export default ({toggleDrawer, ...props}:any)=>{
+export default function LangSelect ({toggleDrawer, ...props}:any){
     const i18n = useI18n()
     const [lang, setLang] = useRecoilState(atoms.lang);
     const forceUpdate = useForceUpdate();

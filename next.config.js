@@ -9,13 +9,12 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
  * @type {import('next').NextConfig}
  **/
  const nextConfig = {
-  target: "serverless",
   reactStrictMode: true,
   generateBuildId: () => 'build',
   experimental: {
     reactRoot: true,
-    styledComponents: true
-    //concurrentFeatures: true,
+    styledComponents: true,
+    // concurrentFeatures: true,
   },
   webpack: (config, options) => {
     config.resolve.fallback = { fs: false, path: false, os: false, module: false };

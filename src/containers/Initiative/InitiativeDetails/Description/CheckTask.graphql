@@ -1,7 +1,7 @@
 mutation CheckTask(
   $initiative_id:uuid!, 
   $task_id:Int!,
-  $value: String!="PENDING"
+  $value: task_statuses_enum!=PENDING
 ){
   update_initiative_tasks_by_pk(
     pk_columns: {id: $task_id, initiative_id: $initiative_id},

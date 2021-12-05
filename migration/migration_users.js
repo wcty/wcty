@@ -3,6 +3,10 @@ require('dotenv').config()
 const { ApolloClient, gql, InMemoryCache } = require('@apollo/client');
 const users = require('./users/firebase_users_mapped.json')
 
+const unique_emails = [...new Set(users.map(user=>user.email || user.providerUserInfo.email))];
+console.log('Number of unique emails: ', unique_emails.length);
+console.log('Number of user records: ', users.length);
+
 const formatDate = (epoch)=> new Date(Number(epoch)).toISOString();
 
 const client = new ApolloClient({

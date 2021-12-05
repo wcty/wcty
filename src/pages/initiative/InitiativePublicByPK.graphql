@@ -17,7 +17,6 @@ query InitiativePublicByPK($id:uuid!){
     modified_at
     created_at
     image
-    description
     address
     tasks {
       id

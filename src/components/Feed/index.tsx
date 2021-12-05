@@ -10,6 +10,7 @@ import { atoms } from "common";
 function Feed({posts}:{posts:FeedFragment[]}) {
   const { id } = useRouter().query;
   const { data } = useFirstMemberQuery({variables:{id}});
+  console.log('In the feed')
 
   const [lang] = useRecoilState(atoms.lang)
   const f:DateTimeFormatOptions = {month: 'long', day: 'numeric', year:'numeric'};

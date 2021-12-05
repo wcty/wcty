@@ -14,7 +14,11 @@ export default function DynamicInitiative(props:ServerI18nProps&InitiativeProps)
   const router = useRouter()
   const layout = useLayout()
   const name = props.initiative?.name||'Initiative'
-  const description = props.initiative?.description||props.initiative?.infos[0].problem||'Initiative from Wecity platform'
+  const description = 
+    props.initiative?.infos[0].problem? (props.initiative?.infos[0].problem + '\n'):'' + 
+    props.initiative?.infos[0].goal? (props.initiative?.infos[0].goal + '\n'):'' + 
+    props.initiative?.infos[0].context||''
+    ||'Initiative from Wecity platform'
   const image = props.initiative?.image
 
   return <> 

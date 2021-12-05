@@ -15,7 +15,7 @@ export default function MapContents(){
         properties:{},
         geometry: {
           type: 'Point',
-          coordinates: focus||[0,0]
+          coordinates: focus||[30.52,50.45]
         }
       }}
     />

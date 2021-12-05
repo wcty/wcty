@@ -5,7 +5,6 @@ fragment InitiativeFields on initiatives {
   name
   id
   image
-  description
   created_at
   members {
     user_id

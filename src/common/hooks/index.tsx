@@ -169,7 +169,7 @@ export function useAddress(coords:[ number, number ], watch = false) {
       }
     }
     return ()=>{
-      controller.abort()
+      //controller.abort()
     }
   }, [addressString, setAddress, coords])
 

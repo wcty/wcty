@@ -5,6 +5,8 @@ import { cacheConfig, Fonts, theme, useLayout } from 'common'
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from 'common'
+// import { NhostApolloProvider } from '@nhost/react-apollo'
+
 import { ThemeProvider } from 'styled-components'
 import { InMemoryCache } from '@apollo/client';
 import * as nhost from 'common/nhost'

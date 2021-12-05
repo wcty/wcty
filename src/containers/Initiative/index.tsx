@@ -8,12 +8,21 @@ import Header from "./Header";
 import Join, { LoginToJoin } from "./Join";
 import { useRouter } from "next/router";
 import Redirect from "components/Redirect";
+import { useEffect, useState } from "react";
+import React from "react";
+import ClientOnly from "components/ClientOnly";
 
 function FeedBlock({isMember=false}) {
   const user = useUser()
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => {
+    if (user) {
+      setTimeout(()=>setLoaded(true), 5000)
+    }
+  }, [user])
   return  user ? (
       isMember?
-      <Feed/>:
+      (loaded?<ClientOnly><Feed/></ClientOnly>:null):
       <Join/>
     ): <LoginToJoin/> 
 }

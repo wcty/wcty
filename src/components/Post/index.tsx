@@ -6,8 +6,9 @@ import { ReactComponent as LikeIco} from 'assets/icons/like.svg'
 import { FeedFragment, Reactions_Enum, useReactionToPostMutation } from "generated";
 import { fixAvatar, useUser } from "common";
 
-function Post({user: author, id: post_id, message, comments_aggregate, reactions}: FeedFragment ) {
-
+function Post(props: FeedFragment ) {
+    const {user: author, id: post_id, message, comments_aggregate, reactions} = props;
+    console.log(props)
     const user = useUser();
     const [likePost] = useReactionToPostMutation({variables:{ user_id: user?.id, post_id, reaction: Reactions_Enum.Like}});
     const isReactionNotExistForCurrentUser = reactions.find(reaction => reaction.user_id ===  user?.id) === undefined;
@@ -20,7 +21,8 @@ function Post({user: author, id: post_id, message, comments_aggregate, reactions
               date={new Date()}
             />
             <Content>
-                <Message>{message}</Message>
+                <Message>{message?.replaceAll('\\n', `
+                `)}</Message>
                 {/* <Tags>#{[].join(' ')}</Tags> */}
             </Content>
             <Actions> 

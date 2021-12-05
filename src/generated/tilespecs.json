@@ -36,7 +36,6 @@
     "properties": {
       "address": "text",
       "created_at": "timestamptz",
-      "description": "text",
       "id": "uuid",
       "image": "text",
       "modified_at": "timestamptz",

@@ -4,7 +4,6 @@ fragment InitiativeCard on initiatives {
   name
   geometry:geom
   created_at
-  description
 }
 
 fragment OrganizationCard on orgs {

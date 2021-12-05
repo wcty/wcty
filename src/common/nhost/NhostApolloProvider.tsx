@@ -185,6 +185,8 @@ export function NhostApolloProvider({
     if (nhost && webSocketClient) {
       nhost.auth.onTokenChanged(() => {
         if (webSocketClient.status === 1) {
+          console.log('reconnecting websocket');
+
           //@ts-ignore
           webSocketClient.tryReconnect();
         }
@@ -195,12 +197,14 @@ export function NhostApolloProvider({
         // reconnect ws connection with new auth headers for the logged in/out user
         if (webSocketClient.status === 1) {
           // must close first to avoid race conditions
+          console.log('reset store')
           webSocketClient.close();
           // reconnect
           //@ts-ignore
           webSocketClient.tryReconnect();
         }
         if (!loggedIn) {
+          console.log('reset store')
           await client.resetStore().catch((error) => {
             console.error('Error resetting Apollo client cache');
             console.error(error);

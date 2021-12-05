@@ -3,7 +3,6 @@
 mutation AddInitiative(
   $geom: geometry!, 
   $name: String!
-  $description: String!, 
   $user_id: uuid!, 
   $problem: String = "", 
   $goal: String = "", 
@@ -12,12 +11,10 @@ mutation AddInitiative(
 ) {
   insert_initiatives_one(
     object: {
-      description: $description, 
       geom: $geom, 
       image: $image, 
       members: {
         data: {
-          initiator: true, 
           user_id: $user_id
         }
       }, 
@@ -37,7 +34,6 @@ mutation AddInitiative(
     }
   ){
     created_at
-    description
     geom
     id
     image
@@ -63,8 +59,8 @@ mutation DeleteInitiativeMember($initiative_id: uuid!, $user_id: uuid!) {
   }
 }
 
-mutation AddInitiativeMember($initiative_id: uuid!, $user_id: uuid!, $contractor: Boolean, $donator: Boolean, $volunteer: Boolean ) {
-  insert_initiative_members_one(object: {initiative_id:$initiative_id, user_id:$user_id, contractor:$contractor, donator:$donator, volunteer:$volunteer }) {
+mutation AddInitiativeMember($initiative_id: uuid!, $user_id: uuid!) {
+  insert_initiative_members_one(object: {initiative_id:$initiative_id, user_id:$user_id}) {
     user_id
     initiative_id
   }

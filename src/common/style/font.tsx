@@ -58,8 +58,8 @@ export const font = {
           t3: css<{}>`${font}; font-size:14px;`,
           /** font-size: 12 */
           t4: css<{}>`${font}; font-size:12px;`,
-          /** font-size: 10 */
-          t5: css<{}>`${font}; font-size:10px;`,
+          /** font-size: 11 */
+          t5: css<{}>`${font}; font-size:11px;`,
         })
       })(),
 
@@ -78,8 +78,8 @@ export const font = {
           t3: css<{}>`${font}; font-size:14px;`,
           /** font-size: 12 */
           t4: css<{}>`${font}; font-size:12px;`,
-          /** font-size: 10 */
-          t5: css<{}>`${font}; font-size:10px;`,
+          /** font-size: 11 */
+          t5: css<{}>`${font}; font-size:11px;`,
         })
       })()
     } 

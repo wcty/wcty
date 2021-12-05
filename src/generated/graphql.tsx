@@ -9737,7 +9737,7 @@ export type TasksQueryVariables = Exact<{
 
 export type TasksQuery = { initiative_tasks: Array<{ id: number, description?: string | null | undefined, volunteers_needed?: any | null | undefined, status?: Task_Statuses_Enum | null | undefined, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } }> };
 
-export type InitiativeCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined };
+export type InitiativeCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> };
 
 export type OrganizationCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
 
@@ -9755,14 +9755,14 @@ export type InitiativesNearbyListQueryVariables = Exact<{
 }>;
 
 
-export type InitiativesNearbyListQuery = { initiatives: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined }> };
+export type InitiativesNearbyListQuery = { initiatives: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> }> };
 
 export type MyInitiativeListQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyInitiativeListQuery = { initiatives: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined }> };
+export type MyInitiativeListQuery = { initiatives: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> }> };
 
 export type OrganizationNearbyListQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -9880,6 +9880,11 @@ export const InitiativeCardFragmentDoc = gql`
   name
   geometry: geom
   created_at
+  infos(order_by: {approved_at: desc}, limit: 1) {
+    problem
+    goal
+    context
+  }
 }
     `;
 export const OrganizationCardFragmentDoc = gql`

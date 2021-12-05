@@ -17,6 +17,10 @@ export function ListRow({ data:v, onClick:_onClick }:{
   }
   
   function onClick(){
+    const description = 
+      v.infos[0].problem? (v.infos[0].problem + '\n'):'' + 
+      v.infos[0].goal? (v.infos[0].goal + '\n'):'' + 
+      v.infos[0].context||''
     setSelected({
       id: v.id,
       type: 'Feature',
@@ -25,7 +29,7 @@ export function ListRow({ data:v, onClick:_onClick }:{
       properties: {
         name: v.name||'',
         image: v.image||'',
-        description: v.description||'',
+        description,
         created_at: v.created_at,
         id: v.id,
         modified_at: '',

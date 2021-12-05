@@ -1,6 +1,6 @@
 import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
 import { useI18n, useUser } from "common";
-import { TasksDocument, useCheckTaskMutation, useTasksQuery } from "generated";
+import { TasksDocument, Task_Statuses_Enum, useCheckTaskMutation, useTasksQuery } from "generated";
 import { useState } from "react";
 import { FinishedTasks, List, ProgressBar, Task } from "./styles";
 import { Checkbox } from 'components';
@@ -15,15 +15,15 @@ export default function TaskList() {
   const [check] = useCheckTaskMutation({refetchQueries: [TasksDocument]});
 
   const onChange = (v:{status?:string|null, id:number})=>{
-    if(v.status==='COMPLETED'){
+    if(v.status===Task_Statuses_Enum.Completed){
       check({variables:{
-        initiative_id:id, task_id: v.id, value:'PENDING'}})
+        initiative_id:id, task_id: v.id, value:Task_Statuses_Enum.Pending}})
     }else{
       check({variables:{
-          initiative_id:id, task_id: v.id, value:'COMPLETED'}})             
+          initiative_id:id, task_id: v.id, value:Task_Statuses_Enum.Completed}})             
     }
   }
-  const tasksCompleted = data?.initiative_tasks.filter(t=>t.status==='COMPLETED').length ||0
+  const tasksCompleted = data?.initiative_tasks.filter(t=>t.status===Task_Statuses_Enum.Completed).length ||0
   const tasksNumber = data?.initiative_tasks.length ||0
 
   return (<>
@@ -44,7 +44,7 @@ export default function TaskList() {
           data?.initiative_tasks?.map((v,i)=>
             <Task key={i}>
               <Checkbox 
-                checked={v.status==='COMPLETED'} 
+                checked={v.status===Task_Statuses_Enum.Completed} 
                 value={v.description}
                 disabled={!user}
                 onChange={()=>onChange(v) }/>

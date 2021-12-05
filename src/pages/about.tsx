@@ -1,6 +1,5 @@
 import { getLangServerSideProps, ServerI18nProps, useLayout, useServerI18n } from "common"
 import Head from "next/head"
-import Image from "next/image"
 import { useRouter } from "next/router"
 import frog_wcty from "assets/images/frog_wcty.png"
 import { Burger, ContentWrapper } from 'styles'
@@ -10,7 +9,7 @@ import About from "components/About"
 
 export const getServerSideProps = getLangServerSideProps
 
-export default function about(props:ServerI18nProps) { 
+export default function AboutPage(props:ServerI18nProps) { 
   useServerI18n(props)
   const router = useRouter()
   const layout = useLayout()

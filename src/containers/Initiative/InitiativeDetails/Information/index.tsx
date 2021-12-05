@@ -25,12 +25,5 @@ export default function Information({initiative}:InitiativeProps) {
       <h5><Flag/>{i18n('context')}</h5>
       <span>{initiative.infos[0].context}</span>
     </Block>}
-  </div>: 
-  initiative?.description?
-  <div>
-    <Block>
-      <h5><Lightbulb/>{i18n('problem_or_idea')}</h5>
-      <span>{initiative?.description}</span>
-    </Block>
-  </div>: null
+  </div> : null
 }

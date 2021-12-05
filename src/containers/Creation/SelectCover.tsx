@@ -3,7 +3,7 @@ import { FileInput } from "./styles";
 import { ReactComponent as Steps } from 'assets/icons/steps2.svg'
 import { Initiative } from ".";
 import { ChangeEvent, useEffect } from "react";
-import { useInsertInitiativeMutation } from "generated";
+import { Task_Statuses_Enum, useInsertInitiativeMutation } from "generated";
 import { userInfo } from "os";
 import { useI18n, useUser } from "common";
 import { useRouter } from "next/router";
@@ -73,7 +73,7 @@ export default function Creation({
                         tasks:{
                           data:[{
                             description: 'Create initiative',
-                            status: 'COMPLETED',
+                            status: Task_Statuses_Enum.Completed,
                             volunteers:{
                               data:[{
                                 user_id: user?.id

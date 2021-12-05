@@ -54,7 +54,7 @@ export default function Organization(){
       <List>
         {organizations?.orgs.map((v,key)=>
           layout==='desktop'?
-          <ListRow onClick={()=>setOpen(false)} data={{...v, type: 'organization'}} {...{key}}/>:
+          <ListRow onClick={()=>setOpen(false)} data={{...v, infos:[{problem: v.description}], type: 'organization'}} {...{key}}/>:
           <ListRow onClick={
             ()=>{
               setOpen(false)
@@ -66,7 +66,7 @@ export default function Organization(){
                 viewportChangeMethod: 'easeTo'
               })
               setSlideIndex(0)
-          }} data={{...v, type: 'organization'}} {...{key}}/>
+          }} data={{...v, infos:[{problem: v.description}], type: 'organization'}} {...{key}}/>
         )}
       </List>
     </div>

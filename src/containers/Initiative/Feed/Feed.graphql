@@ -1,0 +1,27 @@
+subscription Feed($id: uuid){
+  posts: initiative_posts(where:{initiative_id: {_eq: $id}}) {
+    ...Feed
+  }
+}
+
+fragment Feed on initiative_posts {
+  id
+  user{
+    avatar_url
+    display_name
+  }
+  created_at
+  modified_at
+  message
+  type
+  thread_id
+  reactions {
+    type
+    user_id
+  }
+  comments_aggregate {
+    aggregate {
+      count
+    }
+  }
+}

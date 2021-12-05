@@ -1,3 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
+# *
 User-agent: *
-Disallow:
+Allow: /
+
+# Host
+Host: https://weee.city
+
+# Sitemaps
+Sitemap: https://weee.city/sitemap.xml
+Sitemap: https://weee.city/server-sitemap.xml

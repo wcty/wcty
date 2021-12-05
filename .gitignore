@@ -30,3 +30,19 @@ yarn-error.log*
 
 *.rdb
 skylight.pid
+package-lock.json
+firebase_users*
+mongo_initiatives*
+
+# Ignore (and don't ignore) for dotenv.
+.env
+.env.me
+!.env.project
+.env.development
+src/generated/tilespecs.json
+src/generated/tilespecs.json
+src/generated/graphql.tsx
+src/generated/graphql.schema.json
+
+.next
+.next/*

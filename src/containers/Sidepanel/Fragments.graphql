@@ -1,0 +1,28 @@
+fragment InitiativeCard on initiatives {
+  id
+  image
+  name
+  geometry:geom
+  created_at
+}
+
+fragment OrganizationCard on orgs {
+  id
+  image
+  name
+  geometry:geom
+  created_at
+  description
+}
+
+fragment EntryCard on entries {
+  id
+  image
+  name
+  geometry:geom
+  created_at
+  description
+  type
+  members_count
+  modified_at
+}

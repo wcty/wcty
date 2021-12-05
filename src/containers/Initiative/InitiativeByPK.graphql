@@ -1,0 +1,58 @@
+query InitiativeByPK($id:uuid!, $user_id:uuid="00000000-0000-0000-0000-000000000000"){
+  initiative:initiatives_by_pk(id:$id){
+    id
+    # name
+    members(where:{user_id:{_eq:$user_id}}){
+      user_id
+    }
+    # members_aggregate{
+    #   aggregate{
+    #     count
+    #   }
+    # }
+    # address
+    # infos(order_by: {approved_at: desc}, limit:1) {
+    #   problem
+    #   goal
+    #   context
+    # }
+    # geometry:geom
+    # modified_at
+    # created_at
+    # image
+    # description
+    # address
+    # tasks {
+    #   id
+    #   status
+    #   description
+    #   volunteers_needed
+    #   volunteers_aggregate {
+    #     aggregate {
+    #       count
+    #     }
+    #   }
+    # }
+    # donations_aggregate {
+    #   aggregate {
+    #     sum {
+    #       amount
+    #     }
+    #     count
+    #   }
+    # }
+    # expenses{
+    #   status
+    #   amount
+    #   currency
+    #   description
+    #   link
+    #   link_name
+    # }
+    # volunteers_aggregate{
+    #   aggregate{
+    #     count
+    #   }
+    # }
+  }
+}

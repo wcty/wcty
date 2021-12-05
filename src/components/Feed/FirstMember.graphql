@@ -1,0 +1,13 @@
+query FirstMember($id: uuid!){
+  initiative_members(
+    where:{initiative_id: {_eq:$id}},
+    order_by:{created_at: asc},
+    limit: 1
+  ){
+    created_at
+    user{
+      display_name
+      avatar_url
+    }
+  }
+}

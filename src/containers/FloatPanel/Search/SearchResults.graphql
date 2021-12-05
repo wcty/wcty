@@ -1,0 +1,19 @@
+query SearchResults(
+  $layers:[String!]=["initiative","organization"],
+  $keyword: String!
+){
+  entries(
+    where:{
+      _and:[
+        {type:{_in:$layers}},
+        {_or:[
+          {name:{_ilike: $keyword }},
+          {description:{_ilike: $keyword }}
+        ]}
+      ]
+    },
+    limit: 5
+  ) {
+    ...EntryCard
+  }
+}

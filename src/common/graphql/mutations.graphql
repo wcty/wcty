@@ -1,0 +1,81 @@
+# Initiative mutations:
+
+mutation AddInitiative(
+  $geom: geometry!, 
+  $name: String!
+  $user_id: uuid!, 
+  $problem: String = "", 
+  $goal: String = "", 
+  $context: String = "", 
+  $image: String = ""
+) {
+  insert_initiatives_one(
+    object: {
+      geom: $geom, 
+      image: $image, 
+      members: {
+        data: {
+          user_id: $user_id
+        }
+      }, 
+      infos: {
+        data: {
+          context: $context, 
+          goal: $goal, 
+          problem: $problem
+        }
+      }, 
+      visits: {
+        data: {
+          user_id: $user_id
+        }
+      }, 
+      name: $name
+    }
+  ){
+    created_at
+    geom
+    id
+    image
+    name
+  }
+}
+
+mutation DeleteInitiative($initiative_id: uuid!){
+  delete_initiatives_by_pk(id: $initiative_id) {
+    id
+  }
+}
+
+# Initiative members mutations:
+
+mutation DeleteInitiativeMember($initiative_id: uuid!, $user_id: uuid!) {
+  delete_initiative_members(where: {initiative_id:{_eq:$initiative_id}, user_id:{_eq:$user_id} }) {
+    affected_rows
+    returning {
+      initiative_id
+      user_id
+    }
+  }
+}
+
+mutation AddInitiativeMember($initiative_id: uuid!, $user_id: uuid!) {
+  insert_initiative_members_one(object: {initiative_id:$initiative_id, user_id:$user_id}) {
+    user_id
+    initiative_id
+  }
+}
+
+
+
+# Initiative visits mutations:
+
+mutation AddInitiativeVisit($initiative_id: uuid!, $user_id: uuid!) {
+  insert_initiative_visits_one(object: {initiative_id: $initiative_id, user_id: $user_id}) {
+    initiative {
+      id
+    }
+  }
+}
+
+

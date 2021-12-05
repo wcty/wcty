@@ -1,0 +1,5 @@
+query InitiativesSitemap {
+    initiatives{
+        id
+    }
+}

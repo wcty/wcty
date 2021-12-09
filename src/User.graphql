@@ -4,5 +4,9 @@ query User ($user_id: uuid!) {
     avatar_url
     created_at
     display_name
+    subscriptions {
+      id
+      subscription
+    }
   }
 }

@@ -4,7 +4,10 @@ import { atoms, auth, mapboxToken } from 'common'
 import { DictionaryQuery, useUserQuery } from 'generated'
 import { useRouter } from 'next/router'
 import { useNhostAuth } from '@nhost/react-auth'
+
+
 export * from './useUploader'
+export * from './usePushNotifications'
 
 export function useUser(){
   const [user] = useRecoilState(atoms.user)

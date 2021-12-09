@@ -113,4 +113,18 @@ Burger = styled.div.attrs({
   top: 29px;
   left: 0;
   z-index: 1;
+`,
+
+Center = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => props.theme.colors.primary};
+  text-align: center;
 `

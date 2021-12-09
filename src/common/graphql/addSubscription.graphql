@@ -1,0 +1,11 @@
+mutation addSubscription($subscription: initiative_subscriptions_insert_input!){ 
+  insert_initiative_subscriptions_one(
+    object: $subscription,
+    on_conflict: {
+      constraint: initiative_subscriptions_pkey,
+      update_columns: []
+    }
+  ) {
+    id
+  }
+}

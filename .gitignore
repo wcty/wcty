@@ -46,3 +46,10 @@ src/generated/graphql.schema.json
 
 .next
 .next/*
+
+**/public/workbox-*.js
+**/public/workbox-*.js.map
+**/public/sw.js
+**/public/sw.js.map
+**/public/worker-*.js
+**/public/fallback-development.js

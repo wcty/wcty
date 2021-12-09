@@ -1,5 +1,5 @@
 // @ts-check
-
+const withPWA = require('next-pwa')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -24,10 +24,13 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
     });
 
     return config;
+  },
+  pwa: {
+    dest: 'public'
   }
 }
 if(process.env.ANALYZE === 'true'){
   module.exports = withBundleAnalyzer(nextConfig)
 }else{
-  module.exports = nextConfig
+  module.exports = withPWA(nextConfig)
 }

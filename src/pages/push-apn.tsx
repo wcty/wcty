@@ -1,4 +1,4 @@
-import { subscribeAPN, useUser } from "common";
+import { subscribeAPN, useAPNPushNotifications, useUser } from "common";
 import ClientOnly from "components/ClientOnly";
 import React from "react";
 
@@ -6,7 +6,8 @@ import React from "react";
 function PushNotificationDemo() {
   
   const user = useUser()
-
+  const sub_id = useAPNPushNotifications()
+  console.log(sub_id, 'here')
   return (
     <main>
 

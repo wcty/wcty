@@ -1,3 +1,4 @@
+import { useSubscription } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { useUser } from ".";
 import { http } from "../functions";
@@ -70,20 +71,21 @@ export function usePushNotifications() {
    * it uses the setSuserConsent state, to set the consent of the user
    * If the user denies the consent, an error is created with the setError hook
    */
-  const onClickAskUserPermission = () => {
+  const onClickAskUserPermission = async () => {
     setLoading(true);
     setError(false);
-    askUserPermission().then(consent => {
-      setSuserConsent(consent);
-      if (consent !== "granted") {
-        setError({
-          name: "Consent denied",
-          message: "You denied the consent to receive notifications",
-          code: 0
-        });
-      }
-      setLoading(false);
-    });
+    const consent = await askUserPermission()
+    setSuserConsent(consent);
+    if (consent !== "granted") {
+      setError({
+        name: "Consent denied",
+        message: "You denied the consent to receive notifications",
+        code: 0
+      });
+    }
+    setLoading(false);
+    return consent
+    
   };
   //
 
@@ -91,39 +93,46 @@ export function usePushNotifications() {
    * define a click handler that creates a push notification subscription.
    * Once the subscription is created, it uses the setUserSubscription hook
    */
-  const onClickSusbribeToPushNotification = () => {
+  const onClickSusbribeToPushNotification = async () => {
     setLoading(true);
     setError(false);
-    createNotificationSubscription()
-      .then(function(subscrition) {
-        setUserSubscription(subscrition);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Couldn't create the notification subscription", err, "name:", err.name, "message:", err.message, "code:", err.code);
-        setError(err);
-        setLoading(false);
-      });
+    try{
+    const subscrition = await createNotificationSubscription()
+      setUserSubscription(subscrition);
+      setLoading(false);
+      return subscrition;
+    }catch(err:any){
+      console.error("Couldn't create the notification subscription", err, "name:", err.name, "message:", err.message, "code:", err.code);
+      setError(err);
+      setLoading(false);
+    };
   };
 
   /**
    * define a click handler that sends the push susbcribtion to the push server.
    * Once the subscription ics created on the server, it saves the id using the hook setPushServerSubscriptionId
    */
-  const onClickSendSubscriptionToPushServer = () => {
+  const onClickSendSubscriptionToPushServer = async () => {
     setLoading(true);
     setError(false);
-    http
-      .post("http://localhost:4000/notifications/subscription", userSubscription)
-      .then(function(response) {
+    try{
+    const response = await http.post("/web/subscription", userSubscription)
+    
         setPushServerSubscriptionId(response.id);
         setLoading(false);
-      })
-      .catch(err => {
+        return response.id;
+
+    }catch(err:any){
         setLoading(false);
         setError(err);
-      });
+      };
   };
+
+  const subscribeWebpush = async () => {
+    await onClickAskUserPermission()
+    await onClickSusbribeToPushNotification()
+    await onClickSendSubscriptionToPushServer()
+  }
 
 
   /**
@@ -133,6 +142,7 @@ export function usePushNotifications() {
     onClickAskUserPermission,
     onClickSusbribeToPushNotification,
     onClickSendSubscriptionToPushServer,
+    subscribeWebpush,
     pushServerSubscriptionId,
     userConsent,
     pushNotificationSupported,

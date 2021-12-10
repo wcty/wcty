@@ -4042,6 +4042,8 @@ export type Initiative_Projects_Variance_Order_By = {
  */
 export type Initiative_Subscriptions = {
   id: Scalars['String'];
+  platform?: Maybe<Scalars['String']>;
+  service?: Maybe<Scalars['String']>;
   subscription: Scalars['String'];
   user_id: Scalars['uuid'];
 };
@@ -4059,6 +4061,8 @@ export type Initiative_Subscriptions_Bool_Exp = {
   _not?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
   _or?: InputMaybe<Array<Initiative_Subscriptions_Bool_Exp>>;
   id?: InputMaybe<String_Comparison_Exp>;
+  platform?: InputMaybe<String_Comparison_Exp>;
+  service?: InputMaybe<String_Comparison_Exp>;
   subscription?: InputMaybe<String_Comparison_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
 };
@@ -4072,6 +4076,8 @@ export enum Initiative_Subscriptions_Constraint {
 /** input type for inserting data into table "initiative_subscriptions" */
 export type Initiative_Subscriptions_Insert_Input = {
   id?: InputMaybe<Scalars['String']>;
+  platform?: InputMaybe<Scalars['String']>;
+  service?: InputMaybe<Scalars['String']>;
   subscription?: InputMaybe<Scalars['String']>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -4079,6 +4085,8 @@ export type Initiative_Subscriptions_Insert_Input = {
 /** order by max() on columns of table "initiative_subscriptions" */
 export type Initiative_Subscriptions_Max_Order_By = {
   id?: InputMaybe<Order_By>;
+  platform?: InputMaybe<Order_By>;
+  service?: InputMaybe<Order_By>;
   subscription?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -4086,6 +4094,8 @@ export type Initiative_Subscriptions_Max_Order_By = {
 /** order by min() on columns of table "initiative_subscriptions" */
 export type Initiative_Subscriptions_Min_Order_By = {
   id?: InputMaybe<Order_By>;
+  platform?: InputMaybe<Order_By>;
+  service?: InputMaybe<Order_By>;
   subscription?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -4108,6 +4118,8 @@ export type Initiative_Subscriptions_On_Conflict = {
 /** Ordering options when selecting data from "initiative_subscriptions". */
 export type Initiative_Subscriptions_Order_By = {
   id?: InputMaybe<Order_By>;
+  platform?: InputMaybe<Order_By>;
+  service?: InputMaybe<Order_By>;
   subscription?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -4122,6 +4134,10 @@ export enum Initiative_Subscriptions_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Platform = 'platform',
+  /** column name */
+  Service = 'service',
+  /** column name */
   Subscription = 'subscription',
   /** column name */
   UserId = 'user_id'
@@ -4130,6 +4146,8 @@ export enum Initiative_Subscriptions_Select_Column {
 /** input type for updating data in table "initiative_subscriptions" */
 export type Initiative_Subscriptions_Set_Input = {
   id?: InputMaybe<Scalars['String']>;
+  platform?: InputMaybe<Scalars['String']>;
+  service?: InputMaybe<Scalars['String']>;
   subscription?: InputMaybe<Scalars['String']>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -4138,6 +4156,10 @@ export type Initiative_Subscriptions_Set_Input = {
 export enum Initiative_Subscriptions_Update_Column {
   /** column name */
   Id = 'id',
+  /** column name */
+  Platform = 'platform',
+  /** column name */
+  Service = 'service',
   /** column name */
   Subscription = 'subscription',
   /** column name */
@@ -9044,6 +9066,7 @@ export type Task_Statuses_Bool_Exp = {
 };
 
 export enum Task_Statuses_Enum {
+  Cancelled = 'CANCELLED',
   Completed = 'COMPLETED',
   InProgress = 'IN_PROGRESS',
   Pending = 'PENDING'
@@ -12142,9 +12165,11 @@ export type initiative_projects_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_subscriptionsKeySpecifier = ('id' | 'subscription' | 'user_id' | initiative_subscriptionsKeySpecifier)[];
+export type initiative_subscriptionsKeySpecifier = ('id' | 'platform' | 'service' | 'subscription' | 'user_id' | initiative_subscriptionsKeySpecifier)[];
 export type initiative_subscriptionsFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
+	platform?: FieldPolicy<any> | FieldReadFunction<any>,
+	service?: FieldPolicy<any> | FieldReadFunction<any>,
 	subscription?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>
 };

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { useUser } from ".";
 import { apn, wp } from "../functions";
+import UAParser from "ua-parser-js"
+
 
 export function usePushNotifications() {
   const [sub, setSub] = useState<{
@@ -25,10 +27,11 @@ export function usePushNotifications() {
     code: string | number,
   }|null>(null);
 
-  const [ add ] = useAddSubscriptionMutation()
+  const [ add, {  error:addingError } ] = useAddSubscriptionMutation()
   const user = useUser();
 
   function upsertSub(subInfo: typeof sub){
+    console.log('upsert')
     //Upsert subscription information the server
     if( user && subInfo && subInfo.service && subInfo.id && subInfo.subscription ){
       add({
@@ -37,7 +40,8 @@ export function usePushNotifications() {
             service: subInfo.service,
             id: subInfo.id,
             subscription: JSON.stringify(subInfo.subscription),
-            user_id: user?.id 
+            user_id: user?.id,
+            platform: JSON.stringify(new UAParser())
           },
         }
       })
@@ -76,6 +80,7 @@ export function usePushNotifications() {
           }: null;
         }else{
           const subscriptionId = await apn.checkAPNPermission();
+          console.log('Subscription ID', subscriptionId);
           if(typeof subscriptionId==='string'){
             subInfo = {
               id: subscriptionId,
@@ -86,7 +91,10 @@ export function usePushNotifications() {
             subscriptionId && setError(subscriptionId);
           }
         }
+
+        
         if( subInfo ){
+          console.log('Here subscribed')
           setSub(subInfo);
           upsertSub(subInfo);
           setIsSubscribed(true);
@@ -113,6 +121,7 @@ export function usePushNotifications() {
     if(func){
       const result = await func();
       if(!result){
+        console.log('No result')
         return;
       }
       if(typeof result === 'string'){

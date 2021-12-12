@@ -1,4 +1,3 @@
-import UAParser from "ua-parser-js"
 
 const host = "https://admin.weee.city";
 const pushServerPublicKey = "BBgcI28RO8krLOGVcKwaiXQkBz_rKFyjQrxf2746y4QMGlfxrvFw9aM6N-mGhcq6XGQ59_5_XGXs-IOKPQfURGY";

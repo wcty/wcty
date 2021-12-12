@@ -7,8 +7,6 @@ import { useNhostAuth } from '@nhost/react-auth'
 
 
 export * from './useUploader'
-export * from './useWebPushNotifications'
-export * from './useAPNPushNotifications'
 export * from './usePushNotifications'
 
 export function useUser(){

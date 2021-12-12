@@ -9752,7 +9752,7 @@ export type UserQueryVariables = Exact<{
 }>;
 
 
-export type UserQuery = { users_by_pk?: { id: any, avatar_url?: string | null | undefined, created_at: any, display_name?: string | null | undefined, subscriptions: Array<{ id: string, subscription: string }> } | null | undefined };
+export type UserQuery = { users_by_pk?: { id: any, avatar_url?: string | null | undefined, created_at: any, display_name?: string | null | undefined, subscriptions: Array<{ id: string, subscription: string, service?: string | null | undefined }> } | null | undefined };
 
 export type AddSubscriptionMutationVariables = Exact<{
   subscription: Initiative_Subscriptions_Insert_Input;
@@ -10181,6 +10181,7 @@ export const UserDocument = gql`
     subscriptions {
       id
       subscription
+      service
     }
   }
 }

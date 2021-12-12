@@ -7,8 +7,9 @@ import { useNhostAuth } from '@nhost/react-auth'
 
 
 export * from './useUploader'
-export * from './usePushNotifications'
+export * from './useWebPushNotifications'
 export * from './useAPNPushNotifications'
+export * from './usePushNotifications'
 
 export function useUser(){
   const [user] = useRecoilState(atoms.user)

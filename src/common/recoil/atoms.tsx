@@ -73,4 +73,8 @@ export const layers = atom({
   default: layers_list
 })
 
+export const isSubscribed = atom({
+  key: 'isSubscribed',
+  default: null as boolean|null
+})
 

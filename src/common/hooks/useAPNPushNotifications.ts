@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useUser } from ".";
-import { checkAPNPermission } from "../functions";
+import { apn } from "../functions";
 import { useAddSubscriptionMutation } from "generated";
 
 
@@ -12,10 +12,12 @@ export function useAPNPushNotifications() {
 
   useEffect(()=>{
     if(!pushServerSubscriptionId && user){
-      const subscriptionId = checkAPNPermission();
-      setPushServerSubscriptionId(subscriptionId)
-      console.log('subscription exists')
-      add({variables:{subscription:{service: 'apn', id: subscriptionId, user_id: user.id, subscription: '{}'}}})
+      const subscriptionId = apn.checkAPNPermission();
+      if(typeof subscriptionId === "string"){
+        setPushServerSubscriptionId(subscriptionId)
+        console.log('subscription exists')
+        add({variables:{subscription:{service: 'apn', id: subscriptionId, user_id: user.id, subscription: '{}'}}})
+      }
     }
   }, [user?.subscriptions, pushServerSubscriptionId])
   

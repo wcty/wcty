@@ -20,6 +20,7 @@ export function usePushNotifications() {
       apn.isSupported()? 'apn':
       null
   });
+  const [loading, setLoading] = useState(false);
   const [isSubscribed, setIsSubscribed] = useRecoilState(atoms.isSubscribed);
   const [error, setError] = useState<{
     name: string,
@@ -31,7 +32,7 @@ export function usePushNotifications() {
   const user = useUser();
 
   function upsertSub(subInfo: typeof sub){
-    console.log('upsert')
+    // console.log('upsert')
     //Upsert subscription information the server
     if( user && subInfo && subInfo.service && subInfo.id && subInfo.subscription ){
       add({
@@ -62,7 +63,7 @@ export function usePushNotifications() {
         //Check if the user has a subscription
         if( sub.service==='web' ){
           const permission = window.Notification.permission;
-          console.log('Current permission', permission);
+          // console.log('Current permission', permission);
           if( permission!=='granted' && permission!=='default' ){
             setError({
               name: 'Permission Denied',
@@ -80,7 +81,7 @@ export function usePushNotifications() {
           }: null;
         }else{
           const subscriptionId = await apn.checkAPNPermission();
-          console.log('Subscription ID', subscriptionId);
+          // console.log('Subscription ID', subscriptionId);
           if(typeof subscriptionId==='string'){
             subInfo = {
               id: subscriptionId,
@@ -150,6 +151,9 @@ export function usePushNotifications() {
       }
       
       return result;
+    }else{
+      console.log('No func')
+      return;
     }
   }
 

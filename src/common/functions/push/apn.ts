@@ -13,8 +13,11 @@ export async function subscribeAPN() {
   if (isSupported()) {
     // @ts-ignore
     const permissionData = await window.safari.pushNotification.permission(APN_ID);
-    return await requestPermissions(permissionData);
+    const result = await requestPermissions(permissionData);
+    console.log('subscribeAPN result', result);
+    return result;
   } else {
+    console.log('Browser not supported')
     return {
       message: 'Browser is not safari, use safari to proceed. If you are using safari you might not have support for push notifications enabled.',
       name: 'Not safari',
@@ -23,13 +26,13 @@ export async function subscribeAPN() {
   }
 }
 
-var requestPermissions = async function(permissionData:any){
+async function requestPermissions(permissionData:any){
   return new Promise((resolve, reject)=> 
-    checkRemotePermission(permissionData, resolve, reject)
+    requestRemotePermission(permissionData, resolve, reject)
   )
 };
 
-export function checkRemotePermission(
+export function requestRemotePermission(
   permissionData:any, 
   resolve:(value:unknown)=>void, 
   reject:(reason:any)=>void
@@ -42,10 +45,14 @@ export function checkRemotePermission(
       'https://admin.weee.city/apn',
       APN_ID,          
       {"user_id": 'user_id'},       // Data that you choose to send to your server to help you identify the user.
-      (prop:any)=>checkRemotePermission(prop, resolve, reject)
+      (prop:any)=>{
+        console.log('Request permission callback', prop);
+        requestRemotePermission(prop, resolve, reject)
+      }
     );
   }
   else if (permissionData.permission === 'denied') {
+    console.log('Rejected - Permission denied')
     reject({
       name: 'Permission is denied',
       message: 'Permission is denied',
@@ -53,18 +60,19 @@ export function checkRemotePermission(
     })
   }
   else if (permissionData.permission === 'granted') {
-    console.log('Permission is granted');
+    console.log('Resolved - Permission is granted');
     resolve(permissionData.deviceToken);
   }
 }
 
 export async function checkAPNPermission() {
-  console.log('Checking permission for push notification');
+  // console.log('Checking permission for push notification');
   // @ts-ignore
   const permissionData = await window.safari?.pushNotification.permission(APN_ID);
 
   if (permissionData.permission === 'default') {
-    console.log('Permission is default - first time request');
+    console.log('Permission is default');
+    return null;
   }
   else if (permissionData.permission === 'denied') {
     console.log('Permission is denied');

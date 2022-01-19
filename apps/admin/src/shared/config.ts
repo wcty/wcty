@@ -1,5 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config()
 
 export const APPLICATION = {
   HASURA_ENDPOINT: process.env.HASURA_ENDPOINT || 'http://localhost:3000/v1/graphql',

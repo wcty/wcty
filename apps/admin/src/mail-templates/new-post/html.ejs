@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin='true'/>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet"/>     
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>     
+  <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        padding: 82px 74px;
+      }
+      * {
+        font-family: 'IBM Plex Mono', 'Montserrat','Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+        box-sizing: border-box;
+        font-size: 12px;
+      }
+      h3{
+        font-size: 18px;
+        font-weight: 400;
+      }
+      h3 > span.bold{
+        font-size: 18px;
+        font-weight: 600;
+      }
+      h3 > a > span.bold{
+        font-size: 18px;
+        font-weight: 600;
+      }
+      b{
+        font-weight: 600;
+      }
+      a{
+        color: unset;
+        text-decoration: none;
+      }
+      a:hover{
+        text-decoration: underline;
+      }
+      @media screen and (max-width: 600px) {
+        body {
+          padding: 60px 20px;
+        }
+      }
+
+      div#content{
+        padding: 1rem;
+        display: flex;
+        position: relative;
+        /* align-items: center; */
+        border-radius: 3px;
+        border: solid 2px #eaeaea;
+      }
+      div#content > div:first-child{
+        flex: 0 0 60px;
+        justify-content: center;
+        align-items: flex-start;
+        display: flex;
+      }
+      div#content > div:first-child >div{
+        background-color: black;
+        background-image: url('<%= userAvatarUrl %>');
+        background-size: cover;
+        border-radius: 13px;
+        width: 26px;
+        height: 26px;
+        margin-top: 1rem;
+      }
+
+      div#content > div:last-child{
+        flex: 1;
+      }
+      button{
+        background-color: #010202;
+        border: none;
+        border-radius: 3px;
+        padding: 1rem 2rem;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-top: 1.5rem;
+        color: white;
+        font-family: 'Montserrat', Courier, monospace;
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      h4{
+        font-family: 'Montserrat', Courier, monospace;
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0;
+
+      }
+
+      div#notifications{
+        padding: 0.2rem 2rem;
+        display: flex;
+        position: relative;
+        /* align-items: center; */
+        border-radius: 3px;
+        background-color: #eaeaea;
+        margin-top: 1.5rem;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      div#notifications> svg{
+        margin-right: 1rem;
+      }
+      div#notifications> a{
+        margin: 0;
+        padding: 0;
+      }
+        
+    </style>
+  </head>
+
+  <body>
+    <div id='header'>
+      <svg width="120" height="30" viewBox="0 0 120 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_2261_13518)">
+          <path d="M52.6662 11.7522C51.8468 6.98663 47.518 5.17856 42.6658 5.16995C37.2731 5.16134 32.511 7.38269 32.5025 13.4311C32.4939 19.4839 37.2474 21.7181 42.6444 21.7268C45.7719 21.7311 48.848 21.1671 50.7485 19.359L47.8955 16.2896C46.424 17.8781 44.0301 18.1235 42.6487 18.1192C40.5722 18.1149 38.6932 17.2841 38.0582 15.1531L47.2477 15.166L52.6619 15.1746H52.8035L52.8078 13.4613C52.8078 12.8543 52.7606 12.286 52.6662 11.7522ZM38.0625 11.7307C38.7017 9.59973 40.5851 8.77318 42.6616 8.77749C44.738 8.78179 46.6171 9.61265 47.252 11.7436L38.0625 11.7307Z" fill="#010202"/>
+          <path d="M83.3257 6.01794L77.7656 6.00977L77.7435 21.189L83.3035 21.1972L83.3257 6.01794Z" fill="#010202"/>
+          <path d="M83.3335 0.00805062L77.7734 0L77.7675 4.02512L83.3275 4.03317L83.3335 0.00805062Z" fill="#010202"/>
+          <path d="M98.7766 9.37587L98.7808 5.95344L94.9884 5.94913L94.9969 0.783203H93.3195L86.5625 7.68833V9.35865L89.4283 9.36295L89.4197 16.5866C89.4154 20.5429 92.2212 21.2101 93.4096 21.2145L98.7637 21.2231L98.768 16.9741L96.6229 16.9698C95.3144 16.9655 94.9755 16.5953 94.9755 15.8634L94.9841 9.37156L98.7766 9.37587Z" fill="#010202"/>
+          <path d="M114.384 5.63086L110.802 17.6847L107.357 5.97956L101.745 5.97095L106.228 21.2104L109.751 21.2191L107.434 29.011L113.045 29.0196L120 5.63947L114.384 5.63086Z" fill="#010202"/>
+          <path d="M65.8928 18.2319C63.3316 18.2276 61.0707 16.9663 61.075 13.5524C61.0793 10.1386 63.3445 8.88158 65.9057 8.88589C67.9821 8.89019 69.8612 9.72105 70.4962 11.852L75.6057 10.681C74.3187 6.80229 70.3331 5.28696 65.91 5.27835C60.5172 5.26974 55.7552 7.49109 55.7466 13.5395C55.738 19.5923 60.4915 21.8265 65.8842 21.8352C70.3074 21.8438 74.2972 20.337 75.5972 16.4626L70.4876 15.2744C69.8483 17.4097 67.9692 18.2319 65.8928 18.2319Z" fill="#010202"/>
+          <path d="M25.4878 5.81641L21.7511 14.7147L18.5378 5.81641H18.1903H13.5397H13.1922L9.88881 14.9601L6.04483 5.81641H0L6.41379 21.0817H7.67938H12.4586H12.6731L15.865 12.2523L19.0526 21.0817H19.074H24.0506H25.1189L31.537 5.81641H25.4878Z" fill="#010202"/>
+        </g>
+        <defs>
+          <clipPath id="clip0_2261_13518">
+            <rect width="120" height="29.0196" fill="white"/>
+          </clipPath>
+        </defs>
+      </svg>
+        
+      <h3>
+        Новий допис в ініціативі 
+        <a href="<%= initiativeURL %>">
+          <span class='bold'>
+            <%= initiativeName %>
+          </span>
+        </a>
+      </h3>
+    </div>
+    <div id='content'>
+      <div><div></div></div>
+      <div>
+        <p>
+          <a href="<%= userProfileURL %>"><b><%= userName %></b></a> написав/ла в вашій ініціативі:
+        </p>
+        <p>
+          <%= postMessage %>
+        </p>
+      </div>
+    </div>
+    <a href="<%= replyURL %>">
+      <button>
+        <h4>Відповісти</h4>
+      </button>
+    </a>
+    <a href='<%= notificationConfigURL %>'>
+      <div id='notifications'>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19.1401 12.9404C19.1801 12.6404 19.2001 12.3304 19.2001 12.0004C19.2001 11.6804 19.1801 11.3604 19.1301 11.0604L21.1601 9.48039C21.3401 9.34039 21.3901 9.07039 21.2801 8.87039L19.3601 5.55039C19.2401 5.33039 18.9901 5.26039 18.7701 5.33039L16.3801 6.29039C15.8801 5.91039 15.3501 5.59039 14.7601 5.35039L14.4001 2.81039C14.3601 2.57039 14.1601 2.40039 13.9201 2.40039H10.0801C9.84011 2.40039 9.65011 2.57039 9.61011 2.81039L9.25011 5.35039C8.66011 5.59039 8.12011 5.92039 7.63011 6.29039L5.24011 5.33039C5.02011 5.25039 4.77011 5.33039 4.65011 5.55039L2.74011 8.87039C2.62011 9.08039 2.66011 9.34039 2.86011 9.48039L4.89011 11.0604C4.84011 11.3604 4.80011 11.6904 4.80011 12.0004C4.80011 12.3104 4.82011 12.6404 4.87011 12.9404L2.84011 14.5204C2.66011 14.6604 2.61011 14.9304 2.72011 15.1304L4.64011 18.4504C4.76011 18.6704 5.01011 18.7404 5.23011 18.6704L7.62011 17.7104C8.12011 18.0904 8.65011 18.4104 9.24011 18.6504L9.60011 21.1904C9.65011 21.4304 9.84011 21.6004 10.0801 21.6004H13.9201C14.1601 21.6004 14.3601 21.4304 14.3901 21.1904L14.7501 18.6504C15.3401 18.4104 15.8801 18.0904 16.3701 17.7104L18.7601 18.6704C18.9801 18.7504 19.2301 18.6704 19.3501 18.4504L21.2701 15.1304C21.3901 14.9104 21.3401 14.6604 21.1501 14.5204L19.1401 12.9404ZM12.0001 15.6004C10.0201 15.6004 8.40011 13.9804 8.40011 12.0004C8.40011 10.0204 10.0201 8.40039 12.0001 8.40039C13.9801 8.40039 15.6001 10.0204 15.6001 12.0004C15.6001 13.9804 13.9801 15.6004 12.0001 15.6004Z" fill="#010202"/>
+        </svg>
+        <h4 class='bold'>Керувати сповіщеннями</h4>
+      </div>
+    </a>
+  </body>
+</html>

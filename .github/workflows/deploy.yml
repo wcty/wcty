@@ -1,0 +1,41 @@
+name: Deployment
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'apps/fe/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Deploy
+      uses: germanmitish/action-ssh@master
+      env:
+        DB_LOGIN: ${{ secrets.DB_LOGIN }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+        FACEBOOK_CLIENT_SECRET: ${{ secrets.FACEBOOK_CLIENT_SECRET }}
+        GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+        SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        JWT_PRIVATE_KEY: ${{ secrets.JWT_PRIVATE_KEY }}
+        VAPID_PRIVATE: ${{ secrets.VAPID_PRIVATE }}
+        VAPID_PUBLIC: ${{ secrets.VAPID_PUBLIC }}
+        AUTH_KEY: ${{ secrets.AUTH_KEY }}
+      with:
+        hosts: ${{ secrets.HOST }}
+        privateKey: ${{ secrets.KEY }}
+        command: |
+          cd ~/wcty
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/id_ed25519
+          git pull 
+          yarn
+          yarn nx affected --target=deploy --base=main~1 --head=main --parallel --exclude=fe
+          yarn nx serve be

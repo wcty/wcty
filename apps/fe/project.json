@@ -1,0 +1,105 @@
+{
+  "root": "apps/fe",
+  "sourceRoot": "apps/fe",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/fe",
+        "outputPath": "dist/apps/fe"
+      },
+      "prebuild": "nx i18n fe && nx tiles fe && nx gql fe",
+      "postbuild": "next-sitemap --configuration=production --output=./dist/apps/fe/sitemap.xml",
+      "configurations": {
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "fe:build",
+        "dev": true,
+        "port": 3000
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "fe:build:production",
+          "dev": false
+        }
+      }
+    },
+    "start": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "nx tiles fe && concurrently \"nx serve fe\" \"nx gql-watch fe\""
+      }
+    },
+    "export": {
+      "executor": "@nrwl/next:export",
+      "options": {
+        "buildTarget": "fe:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/fe"],
+      "options": {
+        "jestConfig": "apps/fe/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/fe/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "gql": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "apps/fe",
+        "command": "dotenv -- graphql-codegen --config scripts/codegen.yml"
+      }
+    },
+    "gql-watch": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "apps/fe",
+        "command": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch"
+      }
+    },
+    "i18n": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "apps/fe",
+        "command": "node scripts/i18n.js"
+      }
+    },
+    "tiles": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "apps/fe",
+        "command": "node scripts/tilespecs.js"
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "apps/fe",
+        "command": "start-storybook -p 6006 -s public"
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "apps/fe",
+        "command": "build-storybook -s public"
+      }
+    }
+  },
+  "tags": []
+}

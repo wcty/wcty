@@ -1,0 +1,22 @@
+{
+  "name": "admin",
+  "license": "MIT",
+  "version": "2.3.0",
+  "main": "src/main.ts",
+  "_moduleAliases": {
+    "@shared": "./dist/shared",
+    "@generated": "./dist/generated"
+  },
+  "lint-staged": {
+    "*.js,*.ts,*.md,*.json": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-unused-vars": 0,
+      "@typescript-eslint/no-unused-vars": 0
+    }
+  }
+}

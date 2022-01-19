@@ -1,0 +1,10 @@
+query user($id: uuid!) {
+  user: users_by_pk(id: $id) {
+    id
+    display_name
+    avatar_url
+    account {
+      email
+    }
+  }
+}

@@ -1,0 +1,5 @@
+mutation deleteSubscription($id: String!) {
+  delete_initiative_subscriptions_by_pk(id: $id) {
+    id
+  }
+}

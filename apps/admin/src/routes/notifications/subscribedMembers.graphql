@@ -1,0 +1,35 @@
+query subscribedMembers($initiative_id: uuid!) {
+  initiative_members(
+    where: {
+      _and: [
+        { initiative_id: { _eq: $initiative_id } }
+        {
+          _or: [
+            { email_notifications_permission: { _eq: true } }
+            { push_notifications_permission: { _eq: true } }
+          ]
+        }
+      ]
+    }
+  ) {
+    initiative {
+      name
+    }
+    initiative_id
+    push_notifications_permission
+    email_notifications_permission
+    user {
+      id
+      subscriptions {
+        id
+        subscription
+        service
+        platform
+      }
+      display_name
+      account {
+        email
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "projects": {
+    "fe": "apps/fe",
+    "be": "apps/be",
+    "admin": "apps/admin"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "root": "apps/be",
+  "sourceRoot": "apps/be/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx deploy admin",
+          "nx deploy jupyter"
+        ]
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose -f apps/be/docker-compose.yml up -d --always-recreate-deps"
+        ]
+      }
+    },
+    "deploy-caddy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose -f apps/be/docker-compose.yml restart caddy"
+        ]
+      }
+    },
+    "deploy-hbp": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose -f apps/be/docker-compose.yml restart hasura-backend-plus-local hasura-backend-plus-dev hasura-backend-plus"
+        ]
+      }
+    },
+    "deploy-postgres": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose -f apps/be/docker-compose.yml restart postgres"
+        ]
+      }
+    },
+    "deploy": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "nx affected --base=main~1 --head=main --target=deploy-caddy --files=apps/be/Caddyfile",
+          "nx affected --base=main~1 --head=main --target=deploy-hbp --files=apps/be/mail-templates/*,apps/be/storage-rules/*",
+          "nx affected --base=main~1 --head=main --target=deploy-postgres --files=apps/be/postgres/*"
+        ]
+      }
+    },
+    
+    "unmount": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose -f apps/be/docker-compose.yml down"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,117 +1,94 @@
-<h1>We.city</h1>
-<h2>Digital platform for civic self-governance</h2>
-
-We.city is a web app to:
-- Connect people in geographical proximity around common causes - to form civic initiatives
-- Organise intuitive, open and horisontal decision-making process inside the initiatives
-- Match initiatives (and help them to make agreements) with people/organisations that provide goods or services, needed for their realization.
-- Collectively gather resources needed for initiative realization.
-- Be an experimental horisontal social governance system independent from any formal institutions, private entities or governmental bodies
-
-<div align="center">
-  <img width="50%" src="/public/assets/chat_min.png" />
-</div>
-
-#### Amazing open source tech that we use:
-
-  ###### Backend services and data management:
-  Nextjs
-  Hasura GraphQL Engine, to generate all our api's: https://hasura.io/docs/latest/graphql/core/index.html
-  NHost Hasura Backend Plus, to authorise users and store files on remote server: https://github.com/nhost/hasura-backend-plus
-  NHost JS SDK, to authorise and upload files from browser: https://docs.nhost.io/libraries/nhost-js-sdk
-  Apollo Client, to consume our api's from browser: https://www.apollographql.com/docs/react/
-  Recoil, to manage state in React app: https://recoiljs.org/
-
-  ###### Maps
-  Urbica React Map GL, to wrap Mapbox GL JS in components: https://urbica.github.io/react-map-gl/
-  Mapbox GL JS, to render beautiful maps: https://docs.mapbox.com/mapbox-gl-js/api/
-  Urbica Martin, to serve vector tiles for our maps from our database: https://martin.urbica.co/
-
-  ###### User Interfaces 
-  Material UI, to start of with well thought through design system: https://material-ui.com/
-  React-Spring, to make nice animations: https://www.react-spring.io/
-  React-Swipeable-Views, to swipe our initiative cards.
-
-#### For whom?
-
-​It is for those who would like to see positive changes around them, but do not have the time, energy or knowledge to implement them on their own. It is an online platform for public networking around common urban problems, to find solutions, resources and contractors for them collectively. Our goal is to prove that changing the space around is easy if doing it together.
-
-#### Where does it come from?
-
-The project is based on the 11 principles of the international movement Project for Public Places, which was founded in 1975 to improve cities around the world through the efforts of ordinary people and local communities. For us the most important ones are:  “The community is the expert”, “You can’t do it alone”, “Money is not the issue”. Our main hypothesis — if an initiative is really relevant, a community will find means to implement it in the best way — provided that there are convenient tools for collaboration and expert seeking like We.City web application.
-
-#### What is the core idea?
-
-The core interface is the Map, that allows any user to propose and pin their initiative to it. It can be anything — a user can pinpoint the problem or propose their vision for the development of a certain place. From there the map allows other users to explore and join initiatives around them, swiping them one-by-one in an order defined by proximity of the proposals. 
-
-Initiative consists of public page, with the general description, current tasks and a button allowing users to join and become members. It also has a private group for members with the chat and a dashboard to manage it. Members inside of the group can start discussions on different topics and make proposals - to order certain goods or services or to to change the initiative's description, current tasks or status. The voting for any proposal or change is carried in the chat.
-
-The map also features markers for organisations and individuals providing goods or services for civic initiatives. They can optionally show up in the same feed as initiatives, and be swiped among them or separately one-by-one in an order defined by proximity to the user. Upon selecting one, the profile of the organisation will be shown, as well as the list of the goods or services, that it is capable to provide. They can be reposted by the user, as new initiatives, or proposed as tasks in the existing ones. Similarly organisation can be invited to make a proposal in certain initiative, in the response to one of its declared tasks.
-
-Matching will happen in two ways — organisations or individuals can look through civic initiatives around, and propose them their goods or services, or the members of the initiative can look through organisations, and invite them to help out. The last screen is a Crowdfunding page, where members of the initiative can collect resources to order voted goods or services. It is the final phase of the initiative development, after which comes the actual ordering, implementation and reporting in the group chat. The members of the initiative can share the link to it with their friends or colleagues to find support, or to invite certain organisations to submit their proposal for a certin task. 
-
-<div align="center">
-  <img width="50%" src="/public/assets/groups_min.png" />
-</div>
-
-#### What problem does the project address?  
-
-​Our mission is to fight against urban apathy and "learned helplessness", to develop a sense of strength and opportunities for change in people.
-In the psychology of today's citizens there are many reasons for apathy. For example, lack of money is often used as an excuse to do nothing, while public funds to improve public space or to solve local social problems are usually not really enough. Apathy may derive from the questions on the legitimacy of the initiative, appropriation of space or taking over institutional competencies. Therefore, it is important to remember about the value of the public space for the local inhabitants in the first place. We.city is designed to engage them to find solutions and make them implemented - with the help of crowdfunding, investments from local businesses, expert help and volunteer labour.
-
-Another reason for apathy is the lack of socially acceptable communication channels with people, who don’t have any affiliation with us except for geography. But, in order to achieve something in our own interests, we often need to team up with strangers around. This is especially true when it comes to public space - for example, if we want to make any changes in it, e.g. to install new benches. This is different from the situation when we need to make benches in the yard of our own private house, or when new benches are built as part of a city wide renovation project. In contrast to these situations, our case requires significant resources, time and management from ourselves, while the outcomes are understood to be used by other people. And if there is no possibility to share this workload among multitude of future users, then such a workload becomes unbearable for anyone alone. To establish effective communication and cooperation between strangers, who are united by location and common needs, we create the We.City platform.
 
 
-#### What is innovative about our project idea?
+# Wcty
 
-The problem that our organization is called to solve is the lack of available platforms for informal local self-governance. At first glance, We City may seem similar to many of today's crowdfunding platforms, but there are fundamental differences that make it stand out:
+This project was generated using [Nx](https://nx.dev).
 
-- It doesn’t matter in what form the idea is - whether it is just one sentence, sketch or complete project blueprint - it can be published as an initiative. Professional experience, available materials, resources, organizational or marketing capacities of the initiators do not matter. The only thing that matters is the relevance of the idea in a context where it was proposed.
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
-- The location of the initiative is very important, because users will first of all see and interact with the nearest initiatives - the ones that are related to their daily lives the most. In the modern city, the local scale is becoming increasingly important, and our goal is to have all the necessary social, economic and leisure infrastructure in every district, within walking distance.
+🔎 **Smart, Fast and Extensible Build System**
 
-- The initiative exists as long as its audience exists, i.e. people who are actively interested in its implementation, regardless of the availability of resources. Thus, it exists until it is implemented or until it loses its relevance.
+## Adding capabilities to your workspace
 
-- The initiative exists independently of its executors. The Contractor may be chosen or changed on the basis of an open competition  through the voting of the initiative participants.
+Nx supports many plugins which add capabilities for developing different types of applications and different tools.
 
-- The only source of legitimacy for making any decisions in the initiative is the collective voting of the participants of the initiative.
+These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+
+Below are our core plugins:
+
+- [React](https://reactjs.org)
+  - `npm install --save-dev @nrwl/react`
+- Web (no framework frontends)
+  - `npm install --save-dev @nrwl/web`
+- [Angular](https://angular.io)
+  - `npm install --save-dev @nrwl/angular`
+- [Nest](https://nestjs.com)
+  - `npm install --save-dev @nrwl/nest`
+- [Express](https://expressjs.com)
+  - `npm install --save-dev @nrwl/express`
+- [Node](https://nodejs.org)
+  - `npm install --save-dev @nrwl/node`
+
+There are also many [community plugins](https://nx.dev/community) you could add.
+
+## Generate an application
+
+Run `nx g @nrwl/react:app my-app` to generate an application.
+
+> You can use any of the plugins above to generate applications as well.
+
+When using Nx, you can create multiple applications and libraries in the same workspace.
+
+## Generate a library
+
+Run `nx g @nrwl/react:lib my-lib` to generate a library.
+
+> You can also use any of the plugins above to generate libraries as well.
+
+Libraries are shareable across libraries and applications. They can be imported from `@wcty/mylib`.
+
+## Development server
+
+Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+
+## Build
+
+Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+
+Run `nx affected:test` to execute the unit tests affected by a change.
+
+## Running end-to-end tests
+
+Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+
+Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+
+## Understand your workspace
+
+Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+
+## Further help
+
+Visit the [Nx Documentation](https://nx.dev) to learn more.
 
 
-#### Theoretical background:
 
-The application has a set of interfaces, and each of them represents different types of user interactions, necessary to implement local initiatives. They correspond to four types of behaviour in civic initiatives: initiation, expansion, contraction and coding (realization) (2015, Boonstra) and four archetypes of group cooperation: crowcreation, crowdrating, crowdsolving, crowdprocessing (2014, Geiger, Schader). 
+## ☁ Nx Cloud
 
-The Map corresponds to crowdcreation, and is necessary to produce a global bank of heterogeneous ideas, for as many contexts and issues as possible. The user action of pinning the initiative on the map reflects the initiation behaviour primordial to any civic initiative. The Map also allows users to explore and join the ideas around them, thus realizing the expansion behaviour of the initiative.
-The organisations feed is the embodiment of two concepts: expansion and contraction, as it is a tool to search for the potential partners of initiative, and at the same time every good or service published in itself is a template of the contract with the conditions of possible collaboration. It corresponds to the crowdsolving model of group collaboration.
+### Distributed Computation Caching & Distributed Task Execution
 
-The Voting chat is the tool for the contraction inside of the initiative, it is how the group of people narrow down the wide scope of possibilities to the best fitting option — reaching the boundary consensus. It corresponds to the crowdrating model of group collaboration.
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
 
-The Crowdfunding page is the implementation for the idea of coding — when an abstract idea starts to take a form, as a set of resources directed toward becoming an object or space of everyday life. That interface corresponds to the crowdprocessing model of group collaboration, that allows to employ numerous homogeneous contributions for the implementation of common good. Financing mechanics implies a high level of complexity from the technical and juridical points of view, thus it is not included in the roadmap for the alpha version of the app.
+Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
 
-Some related reading:
+Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
 
-- [Thesis work (Mitish, 2018) describing theoretical background of the app](https://trepo.tuni.fi/bitstream/handle/123456789/26735/Mitish.pdf)
-
-
-#### Does it have limitations?
-
-It is only limited to the creativity of its contributors✨
-
-#### What is the team behind?
-
-The core team consists of:
-
-- Herman Mitish, architect and urban planner by education, converted to web developer in the end of 2019.
-
-- Ivan Milaev, beard man and experienced developer.
-
-- Maryna Osnach, architect by education, graphic designer by the calling.
-
-- Mariia Kolomiitseva, architect and a very talented person - in illustration and not only.
-
-The team is radically open to everyone interested to contribute!
-
-# How to contribute
-
-All contributions are welcome as well as donations to [Biggggidea](https://biggggidea.com/project/wecity-platform/).
-If you are the experienced developer, and know how to improve and structure the whole project, your advices or pull requests are even more welcome! The maintainer of this repo has a very limited development experience, and is eager to find a team and to learn from them the best coding/collaboration practices!
+Visit [Nx Cloud](https://nx.app/) to learn more.

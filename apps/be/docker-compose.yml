@@ -79,7 +79,7 @@ services:
       AUTO_MIGRATE: 'true'
       COOKIE_SAME_SITE: 'none'
       COOKIE_SECURE: 'true'
-      COOKIE_SECRET: ${COOKIE_SECRET}'
+      COOKIE_SECRET: '${COOKIE_SECRET}'
       VERIFY_EMAILS: 'true'
       EMAILS_ENABLED: 'true'
       SMTP_HOST: 'email-smtp.eu-west-1.amazonaws.com'
@@ -132,7 +132,7 @@ services:
       AUTO_MIGRATE: 'true'
       COOKIE_SAME_SITE: 'none'
       COOKIE_SECURE: 'true'
-      COOKIE_SECRET: ${COOKIE_SECRET}'
+      COOKIE_SECRET: '${COOKIE_SECRET}'
       VERIFY_EMAILS: 'true'
       EMAILS_ENABLED: 'true'
       SMTP_HOST: 'email-smtp.eu-west-1.amazonaws.com'
@@ -185,7 +185,7 @@ services:
       AUTO_MIGRATE: 'true'
       COOKIE_SAME_SITE: 'none'
       COOKIE_SECURE: 'true'
-      COOKIE_SECRET: ${COOKIE_SECRET}'
+      COOKIE_SECRET: '${COOKIE_SECRET}'
       VERIFY_EMAILS: 'true'
       EMAILS_ENABLED: 'true'
       SMTP_HOST: 'email-smtp.eu-west-1.amazonaws.com'
@@ -212,7 +212,7 @@ services:
       PORT: 4000
       HASURA_ENDPOINT: http://hasura:8080/v1/graphql
       HASURA_GRAPHQL_ADMIN_SECRET: "$DB_PASSWORD"
-      COOKIE_SECRET: ${COOKIE_SECRET}'
+      COOKIE_SECRET: '${COOKIE_SECRET}'
       COOKIE_SECURE: 'true'
       COOKIE_SAME_SITE: 'none'
       SMTP_HOST: 'email-smtp.eu-west-1.amazonaws.com'

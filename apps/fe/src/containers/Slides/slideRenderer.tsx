@@ -1,7 +1,7 @@
 import { toSelected } from 'common';
 import { InitiativeCard } from 'components';
-import { NearbyEntriesQuery } from 'generated';
-import { SlideRenderProps } from 'react-swipeable-views-utils';
+import type { NearbyEntriesQuery } from 'generated';
+import type { SlideRenderProps } from 'react-swipeable-views-utils';
 
 declare module "react-swipeable-views-utils" {
   interface SlideRenderProps {

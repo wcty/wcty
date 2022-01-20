@@ -1,4 +1,4 @@
-import { NearbyEntriesQuery } from "generated";
+import type { NearbyEntriesQuery } from "generated";
 
 export * from './push'
 

@@ -39,10 +39,6 @@ mongo_initiatives*
 .env.me
 !.env.project
 .env.development
-src/generated/tilespecs.json
-src/generated/tilespecs.json
-src/generated/graphql.tsx
-src/generated/graphql.schema.json
 
 .next
 .next/*

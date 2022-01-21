@@ -70,8 +70,10 @@ FileInput = styled.label.attrs(
   outline: none;
   box-shadow: none;
   background-image: url(${p=>p.src? p.src+'?w=150&h=300&q=90': Placeholder});
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-color: #f0f4f8;
   border-radius: 3px;
   position: relative;
   >input[type="file"]{

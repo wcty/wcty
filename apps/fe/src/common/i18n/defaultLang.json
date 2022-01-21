@@ -185,5 +185,7 @@
  "address_of_initiative": "Address of initiative",
  "login_or_register_full": "In order to join or create an initiative, you need to register or log in to your own account",
  "create_poll": "Create poll",
- "channels": "Channels"
+ "channels": "Channels",
+ "about_platform": "About Platform",
+ "welcome_back": "Welcome back!"
 }

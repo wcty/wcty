@@ -41,6 +41,9 @@ export const GlobalStyle = createGlobalStyle`
     color: black;
     text-decoration: none;
     text-transform: none;
+    :hover{
+      text-decoration: underline;
+    }
   }
   html {
     overflow: hidden;

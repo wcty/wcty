@@ -39,7 +39,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
           {...{nhost}}
           cache={new InMemoryCache( cacheConfig )}
           publicRole='anonymous'
-          graphqlUrl={`https://hasura-aws.weee.city/v1/graphql`}
+          graphqlUrl={`https://gql.weee.city/v1/graphql`}
         >
           <RecoilRoot>
               <MapContext.Provider value={{map:undefined}}>

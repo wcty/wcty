@@ -8,12 +8,7 @@ export function CenterPanel({children, onClose}:{children:ReactNode, onClose?:()
   return <>
     <Wrapper>
       <Box>
-        {layout==='desktop'&&
-          <>
-            <Logo/>
             <Close onClick={()=>onClose&&onClose()}/>
-          </>
-        }
         {children}
       </Box>
     </Wrapper>

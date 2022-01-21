@@ -33,11 +33,11 @@ api-local.weee.city {
   reverse_proxy @not_jwk hasura-backend-plus-local:4000
 }
 
-hasura-aws.weee.city {
+gql.weee.city {
   reverse_proxy * hasura:8080
 }
 
-gql.weee.city {
+hasura-aws.weee.city {
   reverse_proxy * hasura:8080
 }
 

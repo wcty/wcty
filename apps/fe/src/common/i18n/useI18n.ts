@@ -91,7 +91,7 @@ export function useI18nDictionary(){
 
 export const client = new ApolloClient({
   ssrMode: true,
-  uri: "https://hasura-aws.weee.city/v1/graphql",
+  uri: "https://gql.weee.city/v1/graphql",
   cache: new InMemoryCache(),
 })
 

@@ -26,27 +26,31 @@ Box = styled.div`
       width: 100%;
       height: 100%;`:
     css<{}>`
-      width: 600px;
+      width: 350px;
       height: 600px;`}
-  background-color: #F4EADE;
+  /* background-color: #F4EADE; */
+  background-color: #ffffff;
   max-height: 100%;
   box-shadow: 3px 3px 3px rgba(0,0,0,0.15);
-  padding: 3rem 4rem;
+  padding: 44px;
   position: relative;
 `,
 
 Close = styled.div`
   width: 2rem;
   height: 2rem;
-  background-color: #F4EADE;
-  color: #a09b9b;
+  /* background-color: #F4EADE;
+  color: #a09b9b; */
+  background-color: #ffffff;
+  color: #000000;
+
   display: flex;
   justify-content: center;
   align-items: center;
   content: '✕';
   position: absolute;
-  right: 2.5rem;
-  top: 2rem;
+  right: 44px;
+  top: 50px;
   border-radius: 2px;
   cursor: pointer;
   :after{
@@ -56,6 +60,6 @@ Close = styled.div`
     padding-bottom:3px;
   }
   :hover{
-    background-color: #e6dcd0;
+    background-color: #ebebeb;
   }
 `

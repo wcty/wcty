@@ -22,7 +22,7 @@ export default function Creation({
             Щоби швидко дізнаватися про всі оновлення в ваших ініціативах та організаціях увімніть доступ до сповіщень
           </span>
         </div>
-        <img src={Cover.src}/>
+        <img src={Cover}/>
     </>
   )
 }

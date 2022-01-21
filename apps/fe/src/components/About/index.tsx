@@ -39,14 +39,14 @@ export default function About(props:ServerI18nProps) {
           <div>
             <p>Читай про останні новини платформи в соціальних мережах</p>
             <div>
-              <FB/>
-              <IG/>
+              <a href="https://www.facebook.com/we.city.platform"><FB/></a>
+              <a href="https://www.instagram.com/we.city.platform"><IG/></a>
             </div>
           </div>
           <div>
             <p>Привітайся з нами — пиши на пошту hi@weee.city</p>
             <div/>
-            <a>Політика конфіденційності</a>
+            <a href="privacy_policy.pdf">Політика конфіденційності</a>
           </div>
         </Footer>
       </Block>

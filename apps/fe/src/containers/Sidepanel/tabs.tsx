@@ -33,10 +33,10 @@ export const tabs = (user:boolean, creation:boolean=false)=>(
     key: 'myOrganisations',
     icon: <OrgIcon/>
   },
-  // {
-  //   key: 'settings',
-  //   icon: <Settings/>
-  // }
+  {
+    key: 'settings',
+    icon: <Settings/>
+  }
 ]:
 [
   {

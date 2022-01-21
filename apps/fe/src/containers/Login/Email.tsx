@@ -5,9 +5,6 @@ import { Button, FormControl, TextField, Label, Header, Text } from "./styles";
 import BurgerFab from "containers/FloatPanel/BurgerFab";
 import { useRouter } from "next/router";
 import Cookies from 'universal-cookie'
-import {ReactComponent as GoogleIcon} from 'assets/icons/google.svg'
-import {ReactComponent as FbIcon} from 'assets/icons/fb.svg'
-import {ReactComponent as EmailIcon} from 'assets/icons/email.svg'
 
 const cookies = new Cookies()
 
@@ -59,34 +56,57 @@ export default function Login (){
         <Header>
           {i18n('welcome_back')}
         </Header>
-        {loginMethod && <Text mt="5rem">
+        {loginMethod && <Text>
           Last login from this device was made with Google.
         </Text>}
       <FormControl>
-          <Button 
-            onClick={(e)=>{
+        <Label id="email">
+          Your email:
+        </Label>
+        <TextField 
+          id="email" 
+          type="text"
+          value={credentials.email}
+          onChange={(e)=>setCredentials({...credentials, email:e.target.value})}
+        />
+        <Label id="password" >
+          Your password:
+        </Label>
+        <TextField 
+          id="password" 
+          type="password" 
+          value={credentials.password}
+          onChange={(e)=>setCredentials({...credentials, password:e.target.value})}
+        />
+          <div>
+          {layout==='desktop'? 
+            <Button>
+              <LoginButton credentials={credentials}/>
+              <RegisterButton credentials={credentials}/>
+            </Button>:
+          <>
+            <Button>
+              <LoginButton credentials={credentials}/>
+            </Button>
+            <Button>
+              <RegisterButton credentials={credentials}/>
+            </Button>
+          </>
+          }
+          <Button>
+            <button onClick={(e)=>{
               e.preventDefault()
               auth.login({ provider: 'google' })
-          }}> 
-              <GoogleIcon/>
-              <Text semibold>Log in with Google</Text>
-          </Button>
-          <Button 
-            onClick={(e)=>{
+            }}>
+              <span>Google</span>
+            </button>
+            <button onClick={(e)=>{
               e.preventDefault()      
-              auth.login({ provider: 'facebook' })
-          }}>
-            <FbIcon/>
-            <Text semibold>Log in with Facebook</Text>
+              auth.login({ provider: 'facebook' })}}>
+              <span>Facebook</span>
+            </button>
           </Button>
-          <Button 
-            onClick={(e)=>{
-              e.preventDefault()      
-              router.push('/login/email')
-          }}>
-            <EmailIcon/>
-            <Text semibold>Log in with Email</Text>
-          </Button>
+          </div>
         </FormControl>
     </CenterPanel>
   )

@@ -5,23 +5,21 @@ export const
 FormControl = styled.form`
   width: 100%;
   height: 100%;
-  margin-top: 2rem;
-  >h2{
-    display: flex;
-    margin: 5rem 0rem;
-    >button:only-child {
-      margin-left: 0rem;
-    }
-  }
-  ${p=>p.theme.layout==='mobile'? 
-    css`
-      padding: 2rem 0rem;
-      background-color: ${props=>props.theme.colors.primary};
-    `:
-    css`
-      padding-top: 1rem;
-    `
-  }
+  display: flex;
+  flex-direction: column;
+`,
+
+Header = styled.h3`
+  margin-top: 44px;
+  text-align: center;
+`,
+
+Text = styled.h3<{semibold?:boolean, mt?:string}>`
+  ${p=>p.semibold?
+    p.theme.font.body.semibold.t4:
+    p.theme.font.body.regular.t4 }
+  text-align: center; 
+  ${p=>p.mt && css`margin-top: ${p.mt};`}
 `,
 
 TextField = styled.input`
@@ -40,46 +38,20 @@ Label = styled.label`
   margin-bottom: 0.5rem;
 `,
 
-ButtonGroup = styled.div`
-  margin-top: 0.25rem;
-  width: 100%;
-  display: flex;
-  &:first-child{
-    margin-top: 1.5rem;
-  }
-  button{
-    border: 1px solid rgba(0,0,0,0.3);
-    outline: none;
-    border-radius: none;
-    min-height: 3rem;
-    min-width: 8rem;
-    flex: 1 1 50%;
-    background: none;
-    margin: 0.5rem 0.25rem;
-    cursor: pointer;
-    position: relative;
-    span {
-      transform: translate(0px,0px);
-      transition: transform 0.5s;
-      position: absolute;
-      left: 0%;
-      right:0%;
-      top:0.8rem;
-    }
-    :hover{
-      background:rgba(0,0,0,0.02);
-      span {
-        transform: translate(2px,2px);
-      }
-    }
-    &:first-child{
-      margin: 0.5rem 0.5rem 0.5rem 0rem;
-    }
-    &:last-child{
-      margin: 0.5rem 0rem 0.5rem 0.5rem;
-    }
-    &:only-child{
-      margin:0.5rem 0rem;
-    }
+Button = styled.button`
+  margin-top: 1rem;
+  border: 1px solid rgba(0,0,0,1);
+  outline: none;
+  border-radius: 3px;
+  height: 40px;
+  /* flex: 1 1 100%; */
+  background: none;
+  cursor: pointer;
+  position: relative;
+  >svg{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
   }
 `

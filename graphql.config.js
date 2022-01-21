@@ -13,7 +13,7 @@ module.exports = {
       extensions: {
         endpoints: {
           default: {
-            url: 'https://hasura-aws.weee.city/v1/graphql',
+            url: 'https://gql.weee.city/v1/graphql',
             headers: {
               "X-Hasura-Admin-Secret": `${process.env.HASURA_GRAPHQL_ADMIN_SECRET}`,
             }
@@ -32,7 +32,7 @@ module.exports = {
       extensions: {
         endpoints: {
           default: {
-            url: 'https://hasura-aws.weee.city/v1/graphql',
+            url: 'https://gql.weee.city/v1/graphql',
             headers: {
               "X-Hasura-Admin-Secret": `${process.env.HASURA_GRAPHQL_ADMIN_SECRET}`,
               "X-Hasura-Role": "user"   

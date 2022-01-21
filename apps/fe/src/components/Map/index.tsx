@@ -8,9 +8,9 @@ import Satellite from './Satellite'
 import mapStyle from './mapStyle.json'
 import { ReactNode, useContext, useEffect } from 'react'
 // import { MapGL } from './styles'
-import Cookies from 'universal-cookie'
 import { useRouter } from 'next/router'
 import ContextProvider from './ContextProvider'
+import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 export default function Map({children}:{children?:ReactNode}){

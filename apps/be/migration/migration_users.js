@@ -13,7 +13,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache({
     addTypename: false
   }),
-  uri: 'https://hasura-aws.weee.city/v1/graphql',
+  uri: 'https://gql.weee.city/v1/graphql',
   headers: {
     "x-hasura-admin-secret": process.env.HASURA_GRAPHQL_ADMIN_SECRET
   },

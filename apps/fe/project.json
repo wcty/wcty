@@ -87,17 +87,34 @@
       }
     },
     "storybook": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "@nrwl/storybook:storybook",
       "options": {
-        "cwd": "apps/fe",
-        "command": "start-storybook -p 6006 -s public"
+        "uiFramework": "@storybook/react",
+        "port": 4400,
+        "config": {
+          "configFolder": "apps/fe/.storybook"
+        }
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
       }
     },
     "build-storybook": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "cwd": "apps/fe",
-        "command": "build-storybook -s public"
+        "uiFramework": "@storybook/react",
+        "outputPath": "dist/storybook/fe",
+        "config": {
+          "configFolder": "apps/fe/.storybook"
+        }
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
       }
     }
   },

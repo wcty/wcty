@@ -119,6 +119,14 @@ export default function Sidepanel (){
             )}
           </div>
           <div>
+          <UserIconRow style={{border:'none'}} 
+            {...{...props('about_platform'),
+              onClick:()=>{router.push('/about'); setOpen(false);}}}>
+                <span>
+                  {i18n('about_platform')}
+                </span>
+                
+            </UserIconRow>
           {user&&
             <UserIconRow style={{border:'none'}} 
             {...{...props('exit'),

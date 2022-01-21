@@ -2,18 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": "src/",
-    "typeRoots": [
-      "src/types",
-      "src/common/types",
-      "node_modules/@types"
-    ],
+    "typeRoots": ["src/types", "src/common/types", "node_modules/@types"],
     "strict": true,
     "skipLibCheck": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "preserve",
     "noFallthroughCasesInSwitch": true,
     "incremental": true,
@@ -26,10 +18,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.stories.ts",
+    "**/*.stories.js",
+    "**/*.stories.jsx",
+    "**/*.stories.tsx"
+  ],
+  "references": [
+    {
+      "path": "./.storybook/tsconfig.json"
+    }
   ]
 }

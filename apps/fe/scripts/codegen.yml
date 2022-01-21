@@ -1,6 +1,6 @@
 overwrite: true
 schema: 
-  - "https://hasura-aws.weee.city/v1/graphql":
+  - "https://gql.weee.city/v1/graphql":
       headers:
         X-Hasura-Admin-Secret: ${HASURA_GRAPHQL_ADMIN_SECRET}
         X-Hasura-Role: user

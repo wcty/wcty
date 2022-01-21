@@ -1,8 +1,8 @@
 {
   "version": 2,
   "projects": {
-    "fe": "apps/fe",
+    "admin": "apps/admin",
     "be": "apps/be",
-    "admin": "apps/admin"
+    "fe": "apps/fe"
   }
 }

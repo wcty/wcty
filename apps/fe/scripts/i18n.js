@@ -1,5 +1,6 @@
 (async function Main(){
     const fetch = await (await import('node-fetch')).default;
+    global.fetch = fetch;
     const fs = await import('fs');
     const { ApolloClient, gql, InMemoryCache } = await import('@apollo/client');
 
@@ -7,7 +8,7 @@
         cache: new InMemoryCache({
             addTypename: false
             }),
-        uri: 'https://hasura-aws.weee.city/v1/graphql',
+        uri: 'https://gql.weee.city/v1/graphql',
 
     })
     const GetKeys = gql`

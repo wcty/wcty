@@ -19,7 +19,7 @@ export default function Creation({
           Для того, щоб бачити відстань від вас до ініціатив та організацій, будь ласка, надайте доступ до вашої геолокації.
           </span>
         </div>
-        <img src={Cover.src}/>
+        <img src={Cover}/>
     </>
   )
 }

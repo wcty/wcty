@@ -4,9 +4,9 @@ import { ReactComponent as LoginIcon } from 'assets/icons/login.svg'
 import { ReactComponent as CloseIcon } from 'assets/icons/close-icon.svg'
 import { ReactComponent as WecityText } from 'assets/icons/wecity-text.svg'
 import { ReactComponent as AnonIcon } from 'assets/icons/anon-icon.svg'
+import { Trans } from '@lingui/macro'
 
-import { useState, useEffect } from 'react'
-import { fixAvatar, useI18n, useLayout, useUser } from 'common'
+import { fixAvatar,  useLayout, useUser } from 'common'
 import { Tabs } from './tabs'
 import { useRecoilState } from 'recoil'
 import Sidepanel from '.'
@@ -26,7 +26,6 @@ type MenuHeaderProps = {
 
 export default function MenuHeader ({props}:MenuHeaderProps){
   const user = useUser()
-  const i18n = useI18n()
   const router = useRouter()
   
   const [open, setOpen] = useRecoilState(Sidepanel.open)
@@ -45,7 +44,7 @@ export default function MenuHeader ({props}:MenuHeaderProps){
         </span>:
       <>
         <span>
-          {i18n('enter')}
+          <Trans>Login</Trans>
         </span>
         <span>
           <LoginIcon/>
@@ -75,7 +74,7 @@ export default function MenuHeader ({props}:MenuHeaderProps){
       <>
         <span>
           <AnonIcon/>
-          {i18n('enter')}
+          <Trans>Login</Trans>
         </span>
         <span>
           <LoginIcon/>

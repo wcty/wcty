@@ -1,0 +1,247 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2022-01-21 16:07-0500\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: uk\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: apps/fe/src/containers/Sidepanel/index.tsx:126
+msgid "About platform"
+msgstr "Про платформу"
+
+#: apps/fe/src/containers/Creation/SelectCover.tsx:45
+msgid "Add photo"
+msgstr "Додати фото"
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:48
+msgid "Address of initiative"
+msgstr "Адреса ініціативи"
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:89
+msgid "Approve address"
+msgstr "Підтвердити адресу"
+
+#: apps/fe/src/containers/Creation/SelectCover.tsx:55
+#: apps/fe/src/containers/Creation/SelectName.tsx:36
+msgid "Back"
+msgstr "Назад"
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:74
+msgid "Cancel"
+msgstr "Відмінити"
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:58
+msgid "Change"
+msgstr "Змінити"
+
+#: apps/fe/src/containers/Creation/SelectCover.tsx:44
+msgid "Change photo"
+msgstr "Змінити фото"
+
+#: apps/fe/src/components/Post/CreatePost.tsx:34
+msgid "Channels"
+msgstr "Канали"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:143
+msgid "Choose one of the tasks you can perform, or suggest your own."
+msgstr "Оберіть одне з завдань яке ви зможете виконувати, або запропонуйте власне."
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:140
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:145
+msgid "Collected {sum}UAH from planned {total}"
+msgstr "Зібрано {sum} з необхідних {total}"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Information/index.tsx:25
+msgid "Context"
+msgstr "Передумови"
+
+#: apps/fe/src/containers/Creation/SelectCover.tsx:103
+msgid "Create initiative"
+msgstr "Створити ініціативу"
+
+#: apps/fe/src/components/Post/CreatePost.tsx:40
+msgid "Create poll"
+msgstr "Створити голосування"
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:40
+#: apps/fe/src/containers/Creation/SelectCover.tsx:38
+#: apps/fe/src/containers/Creation/SelectName.tsx:20
+msgid "Creation of initiative"
+msgstr "Створення ініціативи"
+
+#: apps/fe/src/containers/Creation/SelectName.tsx:32
+msgid "Describe your idea or problem that you are trying to solve"
+msgstr "Опишіть свою ідею або проблему що ви намагаєтеся вирішити"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/index.tsx:36
+msgid "Description of initiative"
+msgstr "Опис ініціативи"
+
+#: apps/fe/src/components/LangSelect/index.tsx:15
+msgid "EN"
+msgstr "EN"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:126
+msgid "Enter sum"
+msgstr "Введіть суму"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:19
+msgid "Expenses were not added yet"
+msgstr "Витрати ще не були додані"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:289
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:294
+msgid "Finsihed {tasks} tasks from {total}"
+msgstr "Виконано {tasks} завдань з {total}"
+
+#: apps/fe/src/containers/Sidepanel/index.tsx:148
+msgid "For any question please contact us at hi@weee.city"
+msgstr "За будь-яких питань пишіть нам на пошту hi@weee.city"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Information/index.tsx:21
+msgid "Goal"
+msgstr "Мета"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:21
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/TaskList.tsx:38
+msgid "Hide"
+msgstr "Згорнути"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:107
+msgid "I am ready to donate"
+msgstr "Я готова/ий пожертвувати гроші"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:139
+msgid "I am ready to volunteer"
+msgstr "Я готова/ий бути волонтером"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/index.tsx:42
+msgid "Implemented of the project"
+msgstr "Реалізовано від проекту"
+
+#: apps/fe/src/containers/Creation/Unauthorized.tsx:22
+#: apps/fe/src/containers/Initiative/Join/LoginToJoin.tsx:16
+msgid "In order to join or create an initiative, you need to register or log in to your own account"
+msgstr "Для того, щоб приєднатися або створити ініціативу, вам необхідно зареєструватися або увійти в обліковий запис"
+
+#: apps/fe/src/containers/Initiative/Header/index.tsx:77
+msgid "Initiative created at"
+msgstr "Ініціатива створена"
+
+#: apps/fe/src/containers/FloatPanel/Search/Buttons.tsx:14
+msgid "Initiatives"
+msgstr "Ініціативи"
+
+#: apps/fe/src/containers/Initiative/Header/index.tsx:44
+#: apps/fe/src/containers/Initiative/Join/index.tsx:186
+msgid "Join"
+msgstr "Приєднатися"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:95
+msgid "Join the initiative"
+msgstr "Приєднатися до ініціативи"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:18
+msgid "List of expenses"
+msgstr "Статті та суми витрат"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/TaskList.tsx:36
+msgid "List of tasks"
+msgstr "Поточні завдання"
+
+#: apps/fe/src/containers/Creation/Unauthorized.tsx:36
+#: apps/fe/src/containers/Initiative/Join/LoginToJoin.tsx:35
+#: apps/fe/src/containers/Sidepanel/MenuHeader.tsx:47
+#: apps/fe/src/containers/Sidepanel/MenuHeader.tsx:77
+msgid "Login"
+msgstr "Увійти"
+
+#: apps/fe/src/containers/Sidepanel/index.tsx:135
+msgid "Logout"
+msgstr "Вийти"
+
+#: apps/fe/src/containers/Sidepanel/Initiatives/index.tsx:50
+msgid "My initiatives"
+msgstr "Мої ініціативи"
+
+#: apps/fe/src/containers/Creation/SelectName.tsx:27
+msgid "Name of your initiative"
+msgstr "Назва вашої ініціативи"
+
+#: apps/fe/src/containers/Creation/SelectName.tsx:41
+msgid "Next"
+msgstr "Далі"
+
+#: apps/fe/src/containers/FloatPanel/Search/Buttons.tsx:17
+#: apps/fe/src/containers/Sidepanel/Organizations/index.tsx:48
+msgid "Organisations"
+msgstr "Організації"
+
+#: apps/fe/src/components/LangSelect/index.tsx:21
+msgid "PS"
+msgstr "PS"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Images/index.tsx:17
+msgid "Photos"
+msgstr "Світлини"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Information/index.tsx:17
+msgid "Problem or idea"
+msgstr "Проблема або ідея"
+
+#: apps/fe/src/containers/Creation/Unauthorized.tsx:31
+#: apps/fe/src/containers/Initiative/Join/LoginToJoin.tsx:26
+msgid "Register"
+msgstr "Зареєструватися"
+
+#: apps/fe/src/containers/FloatPanel/Search/index.tsx:40
+msgid "Search"
+msgstr "Пошук"
+
+#: apps/fe/src/containers/Initiative/Header/index.tsx:43
+msgid "Share"
+msgstr "Поділитися"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:21
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/TaskList.tsx:38
+msgid "Show"
+msgstr "Розгорнути"
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Images/index.tsx:18
+msgid "Show all"
+msgstr "Переглянути всі"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:175
+msgid "Suggest a relevant task for the initiative that you can perform"
+msgstr "Запропонуйте актуальне для ініціативи завдання яке ви можете виконувати"
+
+#: apps/fe/src/components/LangSelect/index.tsx:16
+msgid "UK"
+msgstr "UK"
+
+#: apps/fe/src/containers/Login/Email.tsx:56
+#: apps/fe/src/containers/Login/index.tsx:59
+msgid "Welcome back!"
+msgstr "З поверненням!"
+
+#: apps/fe/src/components/InitiativeCard/index.tsx:36
+#: apps/fe/src/containers/Initiative/Header/index.tsx:31
+msgid "km from me"
+msgstr "км від мене"
+
+#: apps/fe/src/components/InitiativeCard/index.tsx:35
+#: apps/fe/src/containers/Initiative/Header/index.tsx:30
+msgid "m from me"
+msgstr "м від мене"
+
+#: apps/fe/src/containers/Initiative/Header/index.tsx:87
+msgid "Initiative created"
+msgstr "Ініціатива створена"

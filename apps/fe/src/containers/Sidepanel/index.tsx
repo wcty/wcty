@@ -2,9 +2,9 @@
 import { SidepanelWrapper, Stripe, UserIconCell, Menu, UserIconRow, IconCell, IconRow, LangCell, UserPhoto, BottomPanel } from './styles'
 import { ReactComponent as UserIcon } from 'assets/icons/user.svg'
 import { ReactComponent as LogoutIcon } from 'assets/icons/logout.svg'
-
+import { Trans } from '@lingui/macro'
 import { useState, useEffect } from 'react'
-import { auth, useI18n, useLayout, useUser } from 'common'
+import { auth,  useLayout, useUser } from 'common'
 import { LangSelect } from 'components'
 import { tabs, Tabs } from './tabs'
 import Organizations from './Organizations'
@@ -17,7 +17,6 @@ const cookies = new Cookies();
 
 export default function Sidepanel (){
   const user = useUser()
-  const i18n = useI18n()
   const router = useRouter()
   const isEntryCreation = router.pathname.includes('/create-initiative')
 
@@ -77,7 +76,7 @@ export default function Sidepanel (){
                   onClick:()=>{
                     setOpen(false);
                     setSelected(null);
-                    router.push('/',undefined,{shallow:true})
+                    router.push('/')
                   }
                 })
               }}>
@@ -109,11 +108,12 @@ export default function Sidepanel (){
                   onClick:()=>{
                     setOpen(false);
                     setSelected(null)
-                    router.push('/',undefined,{shallow:true})
+                    router.push('/')
                   }})
               }} >
                   <span>
-                    {i18n(v.key)}
+                    {/* <Trans>{v.en}</Trans> */}
+                    {v.en}
                   </span>
               </IconRow>
             )}
@@ -123,7 +123,7 @@ export default function Sidepanel (){
             {...{...props('about_platform'),
               onClick:()=>{router.push('/about'); setOpen(false);}}}>
                 <span>
-                  {i18n('about_platform')}
+                  <Trans>About platform</Trans>
                 </span>
                 
             </UserIconRow>
@@ -132,7 +132,7 @@ export default function Sidepanel (){
             {...{...props('exit'),
               onClick:()=>{auth.logout()}}}>
                 <span>
-                  {i18n('exit')}
+                  <Trans>Logout</Trans>
                 </span>
                 <span>
                   <LogoutIcon/>
@@ -145,7 +145,7 @@ export default function Sidepanel (){
                 <LangSelect/>
               </div>
               <div>
-                {i18n('write_us')}
+                <Trans>For any question please contact us at hi@weee.city</Trans>
               </div>
             </BottomPanel>}
           </div>

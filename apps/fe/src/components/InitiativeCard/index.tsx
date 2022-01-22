@@ -1,10 +1,11 @@
 import { Card, Thumbnail, Content, TopBar, BottomPanel, Button, Metrics, Icon } from "./styles";
 import { ReactComponent as People } from 'assets/icons/popupPeople.svg'
 import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
-import { useGeolocation, useI18n, atoms } from 'common';
+import { useGeolocation,  atoms } from 'common';
 import distance from '@turf/distance'
 import { format } from 'd3-format'
 import { useRouter } from 'next/router';
+import { Trans, t } from '@lingui/macro'
 
 const formatMeters = format(',.2r')
 
@@ -18,7 +19,6 @@ export default function InitiativeCard({entry}:InitiativeProps){
     [loc.longitude, loc.latitude],
     { units:'meters' }
   )
-  const i18n = useI18n()
   const router = useRouter()
 
   return entry && 
@@ -32,8 +32,8 @@ export default function InitiativeCard({entry}:InitiativeProps){
               <div>
                 <Icon><Location/></Icon>
                 { dist<1000?
-                  formatMeters(dist) + i18n('initiativeDistanceFromMeM'):
-                  formatMeters(dist/1000) + i18n('initiativeDistanceFromMeKM')
+                  formatMeters(dist) + t`m from me`:
+                  formatMeters(dist/1000) + t`km from me`
                 }
               </div>}
           </Metrics> 

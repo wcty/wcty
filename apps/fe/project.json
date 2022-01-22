@@ -62,14 +62,14 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "cwd": "apps/fe",
-        "command": "dotenv -- graphql-codegen --config scripts/codegen.yml"
+        "command": "dotenv -- graphql-codegen --config scripts/codegen.yml --silent"
       }
     },
     "gql-watch": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "cwd": "apps/fe",
-        "command": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch"
+        "command": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch --silent"
       }
     },
     "i18n": {
@@ -84,6 +84,18 @@
       "options": {
         "cwd": "apps/fe",
         "command": "node scripts/tilespecs.js"
+      }
+    },
+    "lingui":{
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "apps/fe",
+        "command": "lingui extract"
+      },
+      "configurations": {
+        "compile": {
+          "command": "lingui compile"
+        }
       }
     },
     "storybook": {

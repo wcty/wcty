@@ -1,20 +1,7 @@
-import { atoms, useI18n, useUser } from "common";
-import { useRecoilState } from "recoil";
-import { useRouter } from "next/router";
 import Cover from 'assets/images/intro_cover.png'
 
-export default function Creation({
-  index, setIndex
-}:{
-  index:number, setIndex:(index:number) => void
-}) {
+export default function Creation() {
   
-  const user = useUser()
-  const router = useRouter()
-  const [viewport, setViewport] = useRecoilState(atoms.viewport)
-  const [focus, setFocus] = useRecoilState(atoms.focalPoint)
-  const i18n = useI18n()
-console.log(Cover)
 
   return (
     <>

@@ -1,13 +1,12 @@
 import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
-import { useI18n, useUser } from "common";
-import { useInitiativeByPkQuery } from "generated";
 import { useState } from "react";
 import { Expense, List } from "./styles";
 import {ReactComponent as LinkIcon} from 'assets/icons/link.svg';
 import { InitiativeProps } from 'containers/Initiative';
+import { Trans } from '@lingui/macro'
+
 export default function ExpenseList({initiative}:InitiativeProps) {
 
-  const i18n = useI18n()
   const [ open, setOpen ] = useState(true);
   const isAvailable = initiative && initiative.expenses.length>0
   
@@ -16,10 +15,10 @@ export default function ExpenseList({initiative}:InitiativeProps) {
       <span onClick={()=>setOpen(!open)}>
         <span>{
           isAvailable?
-          i18n('list_of_expenses'):
-          i18n('expenses_absent')}</span>
-        {isAvailable&&<span>
-          {open?i18n('hide'):i18n('show')}
+          <Trans>List of expenses</Trans>:
+          <Trans>Expenses were not added yet</Trans>}</span>
+        {isAvailable && <span>
+          {open? <Trans>Hide</Trans>:<Trans>Show</Trans>}
           <ArrowDropDown/>
         </span>}
       </span>

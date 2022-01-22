@@ -1,4 +1,4 @@
-import { atoms, useI18n, useLayout, useUser } from 'common';
+import { atoms,  useLayout, useUser } from 'common';
 import { UserIconRow, List } from "../styles";
 import { useMyOrganizationListQuery, useOrganizationNearbyListQuery } from "generated";
 import { useRecoilState } from "recoil";
@@ -7,9 +7,9 @@ import { ListRow } from "components";
 import Sidepanel from "..";
 import BurgerFab from 'containers/FloatPanel/BurgerFab';
 import Slides from 'containers/Slides';
+import { Trans } from '@lingui/macro'
 
 export default function Organization(){
-  const i18n = useI18n()
   const [view] = useRecoilState(atoms.viewport)
   const user = useUser()
   
@@ -45,7 +45,7 @@ export default function Organization(){
       <UserIconRow>
           <span>
             {layout==='mobile' && <BurgerFab/>}
-            {i18n('organisations')}
+            <Trans>Organisations</Trans>
           </span>
           <span style={{fontSize: 10}}>
             {/* {'1111 organizations'} */}

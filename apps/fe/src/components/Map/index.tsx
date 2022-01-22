@@ -1,6 +1,6 @@
 import MapGL, { AttributionControl, FeatureProps, MapContext, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
 import type { Map as MapType } from 'mapbox-gl'
-import { atoms, mapboxToken } from 'common'
+import { atoms, mapboxToken, useLang } from 'common'
 import { useRecoilState } from 'recoil'
 import LocationIcon from './LocationIcon'
 import LoadIcons from './LoadIcons'
@@ -18,8 +18,8 @@ export default function Map({children}:{children?:ReactNode}){
   const [satellite] = useRecoilState(atoms.satellite)
   const [cursor] = useRecoilState(atoms.cursor)
   const [selected,setSelected] = useRecoilState(atoms.selected)
-  const [lang] = useRecoilState(atoms.lang)
-
+  const lang = useLang()  
+  
   useEffect(()=>{
     if(selected?.geometry?.coordinates)
     cookies.set('focus', selected.geometry.coordinates , { path: '/' });
@@ -42,7 +42,7 @@ export default function Map({children}:{children?:ReactNode}){
           {...viewport}
           onClick={(e:any)=>{
             if(!router.pathname.includes('/create-initiative')){
-              router.push('/',undefined,{shallow:true}); 
+              router.push('/'); 
               setSelected(null)   
             }
           }}

@@ -1,10 +1,10 @@
 import { CenterPanel } from "components/CenterPanel";
-import { auth, endpoint, useI18n, useLayout } from 'common';
+import { auth, useLayout } from 'common';
 import { useState } from "react";
 import { Button, FormControl, TextField, Label, Header, Text } from "./styles";
-import BurgerFab from "containers/FloatPanel/BurgerFab";
 import { useRouter } from "next/router";
 import Cookies from 'universal-cookie'
+import { Trans } from '@lingui/macro'
 
 const cookies = new Cookies()
 
@@ -20,7 +20,7 @@ const LoginButton = ({credentials={email:'', password:''}})=>{
           console.log(error);
           return alert("login failed");
         }
-        router.push('/',undefined,{shallow:true})
+        router.push('/')
       }
     }}>
       <span>Login</span>
@@ -43,7 +43,6 @@ const RegisterButton = ({credentials={email:'', password:''}})=>{
 }
 
 export default function Login (){
-  const i18n = useI18n()
   const [credentials, setCredentials] = useState({email:'', password:''})
   const router = useRouter()
   const layout = useLayout()
@@ -54,7 +53,7 @@ export default function Login (){
   return (
     <CenterPanel onClose={()=>router.back()}>
         <Header>
-          {i18n('welcome_back')}
+          <Trans>Welcome back!</Trans>
         </Header>
         {loginMethod && <Text>
           Last login from this device was made with Google.

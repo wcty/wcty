@@ -8,7 +8,13 @@ const intercept = require("intercept-stdout")
 
 // safely ignore recoil stdout warning messages 
 function interceptStdout(text) {
-  if (text.includes('Duplicate atom key')||text.includes('GenerateSW has been called multiple times')) {
+  if (
+    text.includes('Duplicate atom key')||
+    text.includes('GenerateSW has been called multiple times') ||
+    // text.includes('Plurals for locale') ||
+    text.includes('DeprecationWarning: Use of deprecated folder mapping "./"') ||
+    text.includes('is an experimental feature')
+  ) {
     return ''
   }
   return text
@@ -42,8 +48,23 @@ intercept(interceptStdout)
 
     return config;
   },
+  i18n: {
+    locales: ['uk', 'en', 'pseudo'],
+    defaultLocale: 'en'
+  },
+  domains: [
+    {
+      domain: 'weee.city',
+      defaultLocale: 'en',
+    },
+    {
+      domain: 'uk.weee.city',
+      defaultLocale: 'uk',
+    }
+  ],
   pwa: {
-    dest: 'public'
+    dest: 'public',
+    disable: process.env.NODE_ENV === 'development',
   }
 }
 if(process.env.ANALYZE === 'true'){

@@ -9906,15 +9906,6 @@ export type DeleteFilesMutationVariables = Exact<{
 
 export type DeleteFilesMutation = { delete_files?: { affected_rows: number } | null | undefined };
 
-export type DictionaryQueryVariables = Exact<{
-  en?: InputMaybe<Scalars['Boolean']>;
-  uk?: InputMaybe<Scalars['Boolean']>;
-  fr?: InputMaybe<Scalars['Boolean']>;
-}>;
-
-
-export type DictionaryQuery = { i18n: Array<{ key?: string | null | undefined, en?: string | null | undefined, uk?: string | null | undefined, fr?: string | null | undefined }> };
-
 export type FirstMemberQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -10858,46 +10849,6 @@ export function useDeleteFilesMutation(baseOptions?: Apollo.MutationHookOptions<
 export type DeleteFilesMutationHookResult = ReturnType<typeof useDeleteFilesMutation>;
 export type DeleteFilesMutationResult = Apollo.MutationResult<DeleteFilesMutation>;
 export type DeleteFilesMutationOptions = Apollo.BaseMutationOptions<DeleteFilesMutation, DeleteFilesMutationVariables>;
-export const DictionaryDocument = gql`
-    query Dictionary($en: Boolean = false, $uk: Boolean = false, $fr: Boolean = false) {
-  i18n(order_by: {key: asc}) {
-    key
-    en @include(if: $en)
-    uk @include(if: $uk)
-    fr @include(if: $fr)
-  }
-}
-    `;
-
-/**
- * __useDictionaryQuery__
- *
- * To run a query within a React component, call `useDictionaryQuery` and pass it any options that fit your needs.
- * When your component renders, `useDictionaryQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useDictionaryQuery({
- *   variables: {
- *      en: // value for 'en'
- *      uk: // value for 'uk'
- *      fr: // value for 'fr'
- *   },
- * });
- */
-export function useDictionaryQuery(baseOptions?: Apollo.QueryHookOptions<DictionaryQuery, DictionaryQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<DictionaryQuery, DictionaryQueryVariables>(DictionaryDocument, options);
-      }
-export function useDictionaryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<DictionaryQuery, DictionaryQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<DictionaryQuery, DictionaryQueryVariables>(DictionaryDocument, options);
-        }
-export type DictionaryQueryHookResult = ReturnType<typeof useDictionaryQuery>;
-export type DictionaryLazyQueryHookResult = ReturnType<typeof useDictionaryLazyQuery>;
-export type DictionaryQueryResult = Apollo.QueryResult<DictionaryQuery, DictionaryQueryVariables>;
 export const FirstMemberDocument = gql`
     query FirstMember($id: uuid!) {
   initiative_members(

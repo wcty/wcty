@@ -1,4 +1,4 @@
-import { getLangServerSideProps, ServerI18nProps, useLayout, useServerI18n } from "common"
+import { getLangServerSideProps, loadTranslation, ServerI18nProps, useLayout, useServerI18n } from "common"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import frog_wcty from "assets/images/frog_wcty.png"
@@ -6,11 +6,23 @@ import { Burger, ContentWrapper } from 'styles'
 import Sidepanel from "containers/Sidepanel"
 import { FixedBottom } from 'react-fixed-bottom'
 import About from "components/About"
+import { GetStaticProps } from "next"
 
-export const getServerSideProps = getLangServerSideProps
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const translation = await loadTranslation(
+    ctx.locale!,
+    process.env.NODE_ENV === 'production'
+  )
 
-export default function AboutPage(props:ServerI18nProps) { 
-  useServerI18n(props)
+  return {
+    props: {
+      translation
+    }
+  }
+}
+
+
+export default function AboutPage() { 
   const router = useRouter()
   const layout = useLayout()
 

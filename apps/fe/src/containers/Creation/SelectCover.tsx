@@ -5,8 +5,9 @@ import { Initiative } from ".";
 import { ChangeEvent, useEffect } from "react";
 import { Task_Statuses_Enum, useInsertInitiativeMutation } from "generated";
 import { userInfo } from "os";
-import { useI18n, useUser } from "common";
+import {  useUser } from "common";
 import { useRouter } from "next/router";
+import { Trans, t } from '@lingui/macro'
 
 export default function Creation({
   initiative,
@@ -21,7 +22,6 @@ export default function Creation({
   const router = useRouter()
   const user = useUser()
   const [insert, {error, data}] = useInsertInitiativeMutation()
-  const i18n = useI18n()
 
   useEffect(()=>{
     const id = data?.insert_initiatives_one?.id
@@ -35,14 +35,14 @@ export default function Creation({
   return (
     <>
         <div>
-          {i18n('creation_of_initiative')}
+          <Trans>Creation of initiative</Trans>
           <Steps/>
         </div>
         <FileInput 
           title={
             initiative.url?
-            i18n('change_photo'):
-            i18n('add_photo')} 
+            t`Change photo`:
+            t`Add photo`} 
           src={
             initiative.url!==''?
             initiative.url+`#${initiative.timeUpdated}`:
@@ -52,7 +52,7 @@ export default function Creation({
           <Button 
             customType='secondary' 
             onClick={()=>setIndex(index-1)}>
-              {i18n('back')}
+              <Trans>Back</Trans>
           </Button>
           <Button 
             disabled={!(initiative.url&&initiative.path)}
@@ -100,7 +100,7 @@ export default function Creation({
                   }
                 }})
             }}>
-              {i18n('create_initiative')}
+              <Trans>Create initiative</Trans>
             </Button>
         </div>
     </>

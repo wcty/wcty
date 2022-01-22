@@ -1,4 +1,4 @@
-import { atoms, useI18n, useLayout, useUser } from 'common';
+import { atoms,  useLayout, useUser } from 'common';
 import { UserIconRow, List } from "../styles";
 import { useInitiativesNearbyListQuery, useMyInitiativeListQuery } from "generated";
 import { useRecoilState } from "recoil";
@@ -8,10 +8,10 @@ import Sidepanel from "..";
 import Slides from 'containers/Slides';
 import BurgerFab from 'containers/FloatPanel/BurgerFab';
 import { useRouter } from 'next/router';
+import { Trans } from '@lingui/macro'
 
 export default function InitiativesDrawer(){
   const user = useUser()
-  const i18n = useI18n()
   const [view] = useRecoilState(atoms.viewport)
   
   const location = {
@@ -47,7 +47,7 @@ export default function InitiativesDrawer(){
       <UserIconRow>
           <span>
             {layout==='mobile' && <BurgerFab/>}
-            {i18n('myInitiatives')}
+            <Trans>My initiatives</Trans>
           </span>
           <span style={{fontSize: 10}}>
             {/* {'1111 initiatives'} */}

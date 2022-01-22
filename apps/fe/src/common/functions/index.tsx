@@ -59,3 +59,16 @@ export const fixAvatar = (url?:string|null) => {
     url||''
   return link.replace('http://', 'https://')
 }
+
+export const memoize = (func:any) => {
+  let cache:any = {};
+  return (...args:any) => {
+    let key = JSON.stringify(args);
+    if (cache[key]) {
+      return cache[key];
+    }
+    let result = func(...args);
+    cache[key] = result;
+    return result;
+  };
+};

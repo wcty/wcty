@@ -1,6 +1,7 @@
-import { describeArc, selectWords, useI18n } from 'common';
+import { selectWords } from 'common';
 import { animated, Interpolation } from 'react-spring';
 import styled, { css } from 'styled-components';
+import { Trans, t } from '@lingui/macro'
 
 export const
 InitiativeDescription = styled.div<{open:boolean, layout:string}>`
@@ -122,28 +123,26 @@ GaugeBlock = styled.div`
 `,
 
 CollectedSum = styled.div.attrs(
-  (p:{
+  ({
+    sum,
+    total,
+    ...p
+  }:{
     sum:number,
     total:number
   })=>({
-    sum:p.sum, 
-    total:p.total,
+    sum, 
+    total,
     children: 
     <>
       <span>
         {selectWords(
-          useI18n()('collected_sum_from_sum', 
-          `${p.sum} ${useI18n()('UAH')}`, 
-          `${p.total} ${useI18n()('UAH')}`
-          ), 0, 3
+          t`Collected ${sum}UAH from planned ${total}`, 0, 3
         )} 
       </span> 
-      {p.total!==0 && <span>
+      {total!==0 && <span>
         {selectWords(
-          useI18n()('collected_sum_from_sum', 
-          `${p.sum} ${useI18n()('UAH')}`, 
-          `${p.total} ${useI18n()('UAH')}`
-          ), 3
+          t`Collected ${sum}UAH from planned ${total}`, 3
         )}
       </span>}
     </>
@@ -274,28 +273,25 @@ Expense = styled.div`
 `,
 
 FinishedTasks = styled.div.attrs(
-  (p:{
+  ({
+    tasks,
+    total
+  }:{
     tasks:number,
     total:number
   })=>({
-    tasks:p.tasks, 
-    total:p.total,
+    tasks, 
+    total,
     children: 
     <>
       <span>
         {selectWords(
-          useI18n()('finished_tasks_from_total', 
-          `${p.tasks}`, 
-          `${p.total}`
-          ), 0, 3
+          t`Finsihed ${tasks} tasks from ${total}`, 0, 3
         )} 
       </span> 
       <span>
         {selectWords(
-          useI18n()('finished_tasks_from_total', 
-          `${p.tasks}`, 
-          `${p.total}`
-          ), 3
+          t`Finsihed ${tasks} tasks from ${total}`, 3
         )}
       </span>
     </>

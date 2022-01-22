@@ -1,20 +1,20 @@
-import { atoms, useI18n } from 'common';
+import { atoms } from 'common';
 import { ButtonWrapper } from "../styles";
 import { useRecoilState } from "recoil";
 import { ReactComponent as InitiativeIcon } from 'assets/icons/initiatives.svg'
 import { ReactComponent as OrgIcon } from 'assets/icons/orgs.svg'
+import { Trans } from '@lingui/macro'
 
 export default function Buttons(){
   const [layers, setLayers] = useRecoilState(atoms.layers)
-  const i18n = useI18n()
 
   const dict = {
     initiative: <>
       <InitiativeIcon/>
-      <span>{i18n('initiatives')}</span></>,
+      <span><Trans>Initiatives</Trans></span></>,
     organization: <>
       <OrgIcon/>
-      <span>{i18n('organisations')}</span></>
+      <span><Trans>Organisations</Trans></span></>
   }
 
   return <>

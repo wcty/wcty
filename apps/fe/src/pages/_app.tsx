@@ -1,7 +1,7 @@
 import 'resize-observer-polyfill/dist/ResizeObserver.global'
 import { AppProps } from 'next/app'
 import { GlobalStyle } from 'styles'
-import { cacheConfig, Fonts, theme, useLayout } from 'common'
+import { cacheConfig, Fonts, memoize, theme, useLayout, useUserData } from 'common'
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from 'common'
@@ -12,13 +12,34 @@ import { InMemoryCache } from '@apollo/client';
 import * as nhost from 'common/nhost'
 import MapContext from 'components/Map/ContextProvider'
 import ClientOnly from 'components/ClientOnly'
-import Auth from 'components/Auth'
 import Head from 'next/head'
+import { i18n } from '@lingui/core'
+import { initTranslation } from 'common'
+import { useRouter } from 'next/router'
+import { useEffect, useRef } from 'react'
+import { I18nProvider } from '@lingui/react'
 
+initTranslation(i18n)
 
 export default function AppWrapper({ Component, pageProps }:AppProps) {
   const layout = useLayout()
+  const router = useRouter()
+  const locale = router.locale || router.defaultLocale || 'en'
+  const firstRender = useRef(true)
   
+  if (pageProps.translation && firstRender.current) {
+    i18n.load(locale, pageProps.translation)
+    i18n.activate(locale)
+    firstRender.current = false
+  }
+
+  useEffect(() => {
+    if (pageProps.translation) {
+      i18n.load(locale, pageProps.translation)
+      i18n.activate(locale)
+    }
+  }, [locale, pageProps.translation])
+
   return (
     <>
       <Head>
@@ -46,8 +67,12 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
                 <ThemeProvider {...{theme:{...theme, layout}}}>
                     <GlobalStyle />
                     <Fonts/>
-                    <ClientSetup/>
-                    <Component {...pageProps} />
+                    <ClientOnly>
+                      <ClientSetup/>
+                    </ClientOnly>
+                    <I18nProvider i18n={i18n}>
+                      <Component {...pageProps} />
+                    </I18nProvider>
                 </ThemeProvider>
               </MapContext.Provider>
           </RecoilRoot>
@@ -58,34 +83,25 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
 }
 
 function ClientSetup(props:any){
-
-  return (<>
-    <ClientOnly>
-      <Auth/>
-    </ClientOnly>
-  </>)
+  useUserData()
+  return null
 }
-// Memoize function is used to cache the result of the function.
-
-const memoize = (func:any) => {
-  let cache:any = {};
-  return (...args:any) => {
-    let key = JSON.stringify(args);
-    if (cache[key]) {
-      return cache[key];
-    }
-    let result = func(...args);
-    cache[key] = result;
-    return result;
-  };
-};
 
 // ignore in-browser next/js recoil warnings until its fixed.
 const mutedConsole = memoize((console:any) => ({
   ...console,
-  warn: (...args:any) => (args[0].includes('Duplicate atom key') || args[0].includes('GenerateSW has been called multiple times'))
+  warn: (...args:any) => (
+    args[0].includes('Duplicate atom key') || 
+    args[0].includes('GenerateSW has been called multiple times') //||
+    //args[0]?.includes('Plurals for locale')
+  )
     ? null
-    : console.warn(...args)
+    : console.warn(...args),
+  // error: (...args:any) => (
+  //   args[0]?.includes('Plurals for locale')
+  // )
+  //   ? null
+  //   : console.warn(...args)
 }))
 
 global.console = mutedConsole(global.console);

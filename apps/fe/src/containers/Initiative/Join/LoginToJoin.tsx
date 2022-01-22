@@ -1,19 +1,19 @@
-import { useI18n } from "common";
 import Button from "components/Button";
 import { useRouter } from "next/router";
 import { Container, ButtonContainer, TextContainer, Form } from "./styles";
 import Cookies from 'universal-cookie';
+import { Trans } from '@lingui/macro'
+
 const cookies = new Cookies();
 
 
 export default function LoginToJoin() {
   const router = useRouter();
-  const i18n = useI18n();
 
   return <Container>
     <Form>
       <br/><br/>
-      <TextContainer>{i18n('login_or_register_full')}</TextContainer>
+      <TextContainer><Trans>In order to join or create an initiative, you need to register or log in to your own account</Trans></TextContainer>
       <ButtonContainer>
         <Button
           size='medium'
@@ -23,7 +23,7 @@ export default function LoginToJoin() {
             const { pathname, query } = router
             cookies.set('callbackUrl', { pathname, query }, { path: '/' });   
             router.push('/login');
-          }}>{i18n('register')}</Button>
+          }}><Trans>Register</Trans></Button>
         <Button
           size='medium'
           customType='secondary'
@@ -32,7 +32,7 @@ export default function LoginToJoin() {
             const { pathname, query } = router
             cookies.set('callbackUrl', { pathname, query }, { path: '/' });   
             router.push('/login');
-          }}>{i18n('login')}</Button>
+          }}><Trans>Login</Trans></Button>
       </ButtonContainer>
     </Form>
   </Container>

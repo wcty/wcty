@@ -1,8 +1,0 @@
-query Dictionary( $en:Boolean=false, $uk:Boolean=false, $fr:Boolean=false ){
-  i18n(order_by: {key: asc}) {
-    key
-    en @include(if: $en)
-    uk @include(if: $uk)
-    fr @include(if: $fr)
-  }
-}

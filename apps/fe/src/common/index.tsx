@@ -2,7 +2,6 @@ import { InitiativesLastVisitedQuery, InitiativesNearbyQuery } from 'generated';
 import type { SetterOrUpdater } from 'recoil';
 import Cookies from 'universal-cookie';
 
-export * from './i18n'
 export * from './recoil'
 export * from './style'
 export * from './hooks'
@@ -11,6 +10,7 @@ export * from './nhost'
 export * from './types'
 export * from './apollo'
 export * from './fonts'
+export * from './translations'
 
 export const mapboxToken = 'pk.eyJ1Ijoic3dpdGNoOSIsImEiOiJjamozeGV2bnkxajV2M3FvNnpod3h4ODlpIn0.CTt2IXV8II6finbTlxEddg'
 

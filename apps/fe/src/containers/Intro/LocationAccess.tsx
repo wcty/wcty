@@ -1,13 +1,6 @@
-import { useI18n } from "common";
-import { ReactComponent as Steps } from 'assets/icons/steps1.svg'
 import Cover from 'assets/images/intro_cover.png'
 
-export default function Creation({
-  index, setIndex
-}:{
-  index:number, setIndex:(index:number) => void
-}) {
-  const i18n = useI18n()
+export default function Creation() {
 
   return (
     <>

@@ -1,16 +1,16 @@
 import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
-import { useI18n, useUser } from "common";
+import {  useUser } from "common";
 import { TasksDocument, Task_Statuses_Enum, useCheckTaskMutation, useTasksQuery } from "generated";
 import { useState } from "react";
 import { FinishedTasks, List, ProgressBar, Task } from "./styles";
 import { Checkbox } from 'components';
 import { useRouter } from 'next/router';
+import { Trans } from '@lingui/macro'
 
 export default function TaskList() {
   const { id } = useRouter().query;
   const user = useUser()
   const {data} = useTasksQuery({variables:{id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
-  const i18n = useI18n()
   const [open, setOpen] = useState(true);
   const [check] = useCheckTaskMutation({refetchQueries: [TasksDocument]});
 
@@ -33,9 +33,9 @@ export default function TaskList() {
       tasksCompleted/tasksNumber*100||0}/>
     <List {...{open}}>
       <span onClick={()=>setOpen(!open)}>
-        <span>{i18n('list_of_tasks')}</span>
+        <span><Trans>List of tasks</Trans></span>
         <span>
-          {open?i18n('hide'):i18n('show')}
+          {open? <Trans>Hide</Trans>:<Trans>Show</Trans>}
           <ArrowDropDown/>
         </span>
       </span>

@@ -1,0 +1,247 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2022-01-21 16:07-0500\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: pseudo\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: apps/fe/src/containers/Sidepanel/index.tsx:126
+msgid "About platform"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectCover.tsx:45
+msgid "Add photo"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:48
+msgid "Address of initiative"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:89
+msgid "Approve address"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectCover.tsx:55
+#: apps/fe/src/containers/Creation/SelectName.tsx:36
+msgid "Back"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:74
+msgid "Cancel"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:58
+msgid "Change"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectCover.tsx:44
+msgid "Change photo"
+msgstr ""
+
+#: apps/fe/src/components/Post/CreatePost.tsx:34
+msgid "Channels"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:143
+msgid "Choose one of the tasks you can perform, or suggest your own."
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:140
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:145
+msgid "Collected {sum}UAH from planned {total}"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Information/index.tsx:25
+msgid "Context"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectCover.tsx:103
+msgid "Create initiative"
+msgstr ""
+
+#: apps/fe/src/components/Post/CreatePost.tsx:40
+msgid "Create poll"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:40
+#: apps/fe/src/containers/Creation/SelectCover.tsx:38
+#: apps/fe/src/containers/Creation/SelectName.tsx:20
+msgid "Creation of initiative"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectName.tsx:32
+msgid "Describe your idea or problem that you are trying to solve"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/index.tsx:36
+msgid "Description of initiative"
+msgstr ""
+
+#: apps/fe/src/components/LangSelect/index.tsx:15
+msgid "EN"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:126
+msgid "Enter sum"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:19
+msgid "Expenses were not added yet"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:289
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:294
+msgid "Finsihed {tasks} tasks from {total}"
+msgstr ""
+
+#: apps/fe/src/containers/Sidepanel/index.tsx:148
+msgid "For any question please contact us at hi@weee.city"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Information/index.tsx:21
+msgid "Goal"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:21
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/TaskList.tsx:38
+msgid "Hide"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:107
+msgid "I am ready to donate"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:139
+msgid "I am ready to volunteer"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/index.tsx:42
+msgid "Implemented of the project"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/Unauthorized.tsx:22
+#: apps/fe/src/containers/Initiative/Join/LoginToJoin.tsx:16
+msgid "In order to join or create an initiative, you need to register or log in to your own account"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/Header/index.tsx:77
+msgid "Initiative created at"
+msgstr ""
+
+#: apps/fe/src/containers/FloatPanel/Search/Buttons.tsx:14
+msgid "Initiatives"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/Header/index.tsx:44
+#: apps/fe/src/containers/Initiative/Join/index.tsx:186
+msgid "Join"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:95
+msgid "Join the initiative"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:18
+msgid "List of expenses"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/TaskList.tsx:36
+msgid "List of tasks"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/Unauthorized.tsx:36
+#: apps/fe/src/containers/Initiative/Join/LoginToJoin.tsx:35
+#: apps/fe/src/containers/Sidepanel/MenuHeader.tsx:47
+#: apps/fe/src/containers/Sidepanel/MenuHeader.tsx:77
+msgid "Login"
+msgstr ""
+
+#: apps/fe/src/containers/Sidepanel/index.tsx:135
+msgid "Logout"
+msgstr ""
+
+#: apps/fe/src/containers/Sidepanel/Initiatives/index.tsx:50
+msgid "My initiatives"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectName.tsx:27
+msgid "Name of your initiative"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/SelectName.tsx:41
+msgid "Next"
+msgstr ""
+
+#: apps/fe/src/containers/FloatPanel/Search/Buttons.tsx:17
+#: apps/fe/src/containers/Sidepanel/Organizations/index.tsx:48
+msgid "Organisations"
+msgstr ""
+
+#: apps/fe/src/components/LangSelect/index.tsx:21
+msgid "PS"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Images/index.tsx:17
+msgid "Photos"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Information/index.tsx:17
+msgid "Problem or idea"
+msgstr ""
+
+#: apps/fe/src/containers/Creation/Unauthorized.tsx:31
+#: apps/fe/src/containers/Initiative/Join/LoginToJoin.tsx:26
+msgid "Register"
+msgstr ""
+
+#: apps/fe/src/containers/FloatPanel/Search/index.tsx:40
+msgid "Search"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/Header/index.tsx:43
+msgid "Share"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:21
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Description/TaskList.tsx:38
+msgid "Show"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/InitiativeDetails/Images/index.tsx:18
+msgid "Show all"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:175
+msgid "Suggest a relevant task for the initiative that you can perform"
+msgstr ""
+
+#: apps/fe/src/components/LangSelect/index.tsx:16
+msgid "UK"
+msgstr ""
+
+#: apps/fe/src/containers/Login/Email.tsx:56
+#: apps/fe/src/containers/Login/index.tsx:59
+msgid "Welcome back!"
+msgstr ""
+
+#: apps/fe/src/components/InitiativeCard/index.tsx:36
+#: apps/fe/src/containers/Initiative/Header/index.tsx:31
+msgid "km from me"
+msgstr ""
+
+#: apps/fe/src/components/InitiativeCard/index.tsx:35
+#: apps/fe/src/containers/Initiative/Header/index.tsx:30
+msgid "m from me"
+msgstr ""
+
+#: apps/fe/src/containers/Initiative/Header/index.tsx:87
+msgid "Ініціатива створена"
+msgstr ""

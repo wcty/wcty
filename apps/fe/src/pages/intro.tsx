@@ -1,6 +1,6 @@
 import FloatButtons from 'containers/FloatButtons'
 import Slides from 'containers/Slides'
-import { getLangServerSideProps, ServerI18nProps, useServerI18n } from 'common'
+import { getLangServerSideProps, loadTranslation, ServerI18nProps, useServerI18n } from 'common'
 import FloatPanel from 'containers/FloatPanel'
 import Sidepanel from 'containers/Sidepanel'
 import Head from 'next/head'
@@ -8,13 +8,24 @@ import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
 import Intro from 'containers/Intro'
 import { MapWrapper } from 'styles'
 import { lazy, Suspense } from 'react'
+import { GetStaticProps } from 'next'
 const MapContents = lazy(()=>import('containers/MapContents'))
 const Map = lazy(()=>import('components/Map'))
 
-export const getServerSideProps = getLangServerSideProps
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const translation = await loadTranslation(
+    ctx.locale!,
+    process.env.NODE_ENV === 'production'
+  )
 
-export default function RootPath(props:ServerI18nProps) {
-  useServerI18n(props)
+  return {
+    props: {
+      translation
+    }
+  }
+}
+
+export default function RootPath() {
   const name = "Welcome to Wecity platform"
   const description = "A small introduction into how Wecity works."
 

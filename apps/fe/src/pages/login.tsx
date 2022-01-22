@@ -1,17 +1,29 @@
-import { getLangServerSideProps, ServerI18nProps, useLayout, useServerI18n } from "common"
+import { getLangServerSideProps, loadTranslation, ServerI18nProps, useLayout, useServerI18n } from "common"
 import Login from "containers/Login"
 import Sidepanel from "containers/Sidepanel"
 import Head from 'next/head'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
 import { MapWrapper } from "styles"
 import { lazy, Suspense } from 'react'
+import { GetStaticProps } from "next"
 const MapContents = lazy(()=>import('containers/MapContents'))
 const Map = lazy(()=>import('components/Map'))
 
-export const getServerSideProps = getLangServerSideProps
-export default function LoginRoute(props:ServerI18nProps) {
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const translation = await loadTranslation(
+    ctx.locale!,
+    process.env.NODE_ENV === 'production'
+  )
+
+  return {
+    props: {
+      translation
+    }
+  }
+}
+
+export default function LoginRoute() {
   const layout = useLayout()
-  useServerI18n(props)
   const name = "Login"
   const description = "Login to Wecity to create and join initiatives, and improve the world around you."
 

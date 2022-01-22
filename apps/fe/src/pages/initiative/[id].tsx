@@ -1,4 +1,4 @@
-import { client, ServerI18nProps, useLayout, useServerI18n, useUser } from 'common'
+import { client, loadTranslation, ServerI18nProps, useLayout, useServerI18n, useUser } from 'common'
 import Initiative, { InitiativeProps } from 'containers/Initiative'
 import { Burger, ContentWrapper } from 'styles'
 import Sidepanel from 'containers/Sidepanel'
@@ -6,11 +6,10 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { DictionaryDocument, DictionaryQuery, InitiativePublicByPkDocument, InitiativePublicByPkQuery } from 'generated'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
-import { GetServerSideProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import { FixedBottom } from 'react-fixed-bottom'
 
 export default function DynamicInitiative(props:ServerI18nProps&InitiativeProps) {
-  useServerI18n(props)
   const router = useRouter()
   const layout = useLayout()
   const name = props.initiative?.name||'Initiative'
@@ -46,15 +45,8 @@ export default function DynamicInitiative(props:ServerI18nProps&InitiativeProps)
 
 export const getServerSideProps:GetServerSideProps = async (ctx) => {
   const { req:{ cookies }, res, query } = ctx
-  let serverDictData: DictionaryQuery | undefined
   let initiative: InitiativePublicByPkQuery['initiative'] | undefined
 
-  if(cookies.lang){
-    serverDictData = (await client.query<DictionaryQuery | undefined>({
-      query: DictionaryDocument,
-      variables:{[cookies.lang]: true},
-    })).data;
-  } 
   if(query.id){
     initiative = (await client.query<InitiativePublicByPkQuery | undefined>({
       query: InitiativePublicByPkDocument,
@@ -62,5 +54,10 @@ export const getServerSideProps:GetServerSideProps = async (ctx) => {
     })).data?.initiative;
   }
 
-  return { props: { serverDictData, lang:cookies.lang, initiative } }
+  const translation = await loadTranslation(
+    ctx.locale!,
+    process.env.NODE_ENV === 'production'
+  )
+
+  return { props: { initiative, translation } }
 }

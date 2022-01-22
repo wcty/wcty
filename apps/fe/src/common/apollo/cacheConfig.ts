@@ -13,10 +13,6 @@ export default {
             }
             return merged;
           },
-        },
-        i18n:{
-          keyArgs: (args,v)=>Object.entries(v.variables||{})
-            .reduce((agg,v)=>v[1]?v[0]:agg,'en')
         }
       }
     },

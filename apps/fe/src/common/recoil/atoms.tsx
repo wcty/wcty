@@ -1,16 +1,10 @@
 import { atom } from 'recoil';
-import { defineLang } from '../i18n'
 import Cookies from 'universal-cookie'
 import type { FeatureProps, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl';
 import type { AnimationOptions } from 'mapbox-gl';
 import { UserQuery } from 'generated';
 
 const cookies = new Cookies()
-
-export const lang = atom({
-  key: 'language',
-  default: defineLang(), 
-})
 
 /** 
  * This is a point, around which initiatives/organisations will be searched. 

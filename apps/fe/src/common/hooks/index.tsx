@@ -1,7 +1,7 @@
 import { useState, useEffect, MutableRefObject, useRef, useLayoutEffect, useCallback, RefObject } from 'react'
 import { useRecoilState } from 'recoil'
 import { atoms, auth, mapboxToken } from 'common'
-import { DictionaryQuery, useUserQuery } from 'generated'
+import { useUserQuery } from 'generated'
 import { useRouter } from 'next/router'
 import { useNhostAuth } from '@nhost/react-auth'
 
@@ -25,7 +25,7 @@ export function useUserData(){
     if(!user && userData && isAuthenticated){
       setUser(userData?.users_by_pk)
       if(router.pathname==='/oauth/success'){
-        router.push('/',undefined,{shallow:true})
+        router.push('/')
       }
     }
   },[userData, user, isAuthenticated])
@@ -139,7 +139,7 @@ export function useWindowDimensions() {
 export function useAddress(coords:[ number, number ], watch = false) {
 
   const [addressString, setAddress] = useState<string>()
-  const [lang] = useRecoilState(atoms.lang)
+  const lang = useLang()  
   useEffect(()=>{
 
     const controller = new AbortController();
@@ -237,3 +237,8 @@ export const useSize = (): Size&Ref => {
   return { ref, width, height }
 }
 
+export function useLang(){
+  const locale = useRouter().locale
+  
+  return (locale==='pseudo'? 'en': locale) || 'en' 
+}

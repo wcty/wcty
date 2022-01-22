@@ -1,4 +1,4 @@
-import { atoms, useI18n, useLayout } from 'common';
+import { atoms,  useLayout } from 'common';
 import { SearchInput, SearchWrapper, FieldWrapper, SearchResults } from "../styles";
 import { ReactComponent as SearchIcon } from 'assets/icons/search.svg'
 import { ReactComponent as CancelIcon } from 'assets/icons/cancel.svg'
@@ -8,9 +8,9 @@ import { useSearchResultsQuery } from 'generated'
 import { useRecoilState } from "recoil";
 import { ListRow } from 'components'
 import Slides from 'containers/Slides';
+import { t, Trans } from '@lingui/macro'
 
 export default function Search(){
-  const i18n = useI18n()
   const [keyword, setKeyword] = useState('')
   const [layers, setLayers] = useRecoilState(atoms.layers)
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
@@ -37,7 +37,7 @@ export default function Search(){
           type='text' 
           value={keyword} 
           onChange={(e)=>setKeyword(e.target.value)} 
-          placeholder={i18n('search')}/>
+          placeholder={t`Search`}/>
         <div><SearchIcon/></div>
         <div><button onClick={()=>setKeyword('')}><CancelIcon/></button></div>
       </FieldWrapper>

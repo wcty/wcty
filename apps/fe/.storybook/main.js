@@ -13,13 +13,7 @@ module.exports = {
   addons: [...rootMain.addons, '@nrwl/react/plugins/storybook'],
   babel: async (options) => ({
     ...options,
-    presets: [...options.presets, [
-      "@nrwl/react/babel",
-      {
-        "runtime": "automatic",
-        "useBuiltIns": "usage"
-      }
-    ]],
+    presets: [...options.presets, ["next/babel"]],
     plugins: [
       ["babel-plugin-styled-components", { "pure": true, "ssr": true }]
     ]

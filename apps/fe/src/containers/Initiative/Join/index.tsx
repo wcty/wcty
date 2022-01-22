@@ -1,15 +1,15 @@
-import { useI18n, useUser } from 'common';
+import {  useUser } from 'common';
 import Button from 'components/Button';
 import { Checkbox, TextArea, TextField } from 'components';
 import { InitiativeByPkDocument, useJoinMutation, useTasksQuery } from 'generated';
 import { useState } from 'react';
 import { Container, DonationMenu, Form, TaskSelection } from './styles';
 import { useRouter } from 'next/router';
+import { t, Trans } from '@lingui/macro'
 
 export default function Join() {
   const { id } = useRouter().query;
   const user = useUser()
-  const i18n = useI18n();
   const {data:tasks} = useTasksQuery({variables:{id}, fetchPolicy:'cache-first', nextFetchPolicy: 'cache-only'})
   
   const [commitments, setCommitments] = useState({
@@ -92,7 +92,7 @@ export default function Join() {
   return (
     <Container>
       <Form>
-        <h3>{i18n('joinTheInitiative')}</h3>
+        <h3><Trans>Join the initiative</Trans></h3>
         <div>
           <Checkbox 
             checked={commitments.donation.checked} 
@@ -104,7 +104,7 @@ export default function Join() {
                 checked: !commitments.donation.checked
               }
             })}/>
-          {i18n('i_am_ready_to_donate')}
+          <Trans>I am ready to donate</Trans>
         </div>
         <DonationMenu>
           <TextField 
@@ -123,7 +123,7 @@ export default function Join() {
                 }
               })
           }}
-            placeholder={i18n('enter_sum')}/>
+            placeholder={t`Enter sum`}/>
         </DonationMenu>
         <div>
           <Checkbox 
@@ -136,11 +136,11 @@ export default function Join() {
                   checked: !commitments.task.checked
                 }
               })}/>
-            {i18n('i_am_ready_to_volunteer')}
+            <Trans>I am ready to volunteer</Trans>
         </div>
         {tasks?.initiative_tasks && 
           <TaskSelection>
-            <span>{i18n('choose_one_task')}</span>
+            <span><Trans>Choose one of the tasks you can perform, or suggest your own.</Trans></span>
             {tasks?.initiative_tasks.map((t,key)=>
               <span {...{key}}>
                 <Checkbox 
@@ -172,7 +172,7 @@ export default function Join() {
               description: e.target.value
             }
           })}
-          placeholder={i18n('suggest_relevant_task')}/>
+          placeholder={t`Suggest a relevant task for the initiative that you can perform`}/>
         <div>
           <Button
             size='medium'
@@ -183,7 +183,7 @@ export default function Join() {
                 e.preventDefault();
                 join() 
               }
-            }}>{i18n('join')}</Button>
+            }}><Trans>Join</Trans></Button>
         </div>
 
       </Form>

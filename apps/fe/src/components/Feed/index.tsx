@@ -4,15 +4,13 @@ import { FeedFragment, useFirstMemberQuery } from "generated";
 import { useRouter } from "next/router";
 import { CheckedChannels, Container, Footer } from "./styles";
 import { DateTime, DateTimeFormatOptions } from 'luxon'
-import { useRecoilState } from "recoil";
-import { atoms } from "common";
+import { useLang } from "common";
 
 function Feed({posts}:{posts:FeedFragment[]}) {
   const { id } = useRouter().query;
   const { data } = useFirstMemberQuery({variables:{id}});
-  console.log('In the feed')
 
-  const [lang] = useRecoilState(atoms.lang)
+  const lang = useLang()  
   const f:DateTimeFormatOptions = {month: 'long', day: 'numeric', year:'numeric'};
   const date_created = DateTime
     .fromISO(data?.initiative_members[0].created_at)

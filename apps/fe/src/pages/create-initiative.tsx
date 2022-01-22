@@ -2,19 +2,30 @@ import FloatButtons from 'containers/FloatButtons'
 import Creation from 'containers/Creation'
 import FloatPanel from 'containers/FloatPanel'
 import Sidepanel from 'containers/Sidepanel'
-import { getLangServerSideProps, ServerI18nProps, useServerI18n } from 'common'
+import { getLangServerSideProps, loadTranslation, ServerI18nProps, useServerI18n } from 'common'
 import Head from 'next/head'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
 import { MapWrapper } from 'styles'
 
 import { lazy, Suspense } from 'react'
+import { GetStaticProps } from 'next'
 const MapContents = lazy(()=>import('containers/MapContents'))
 const Map = lazy(()=>import('components/Map'))
 
-export const getServerSideProps = getLangServerSideProps
-export default function CreateInitiative(props:ServerI18nProps){
-  console.log('here')
-  useServerI18n(props)
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const translation = await loadTranslation(
+    ctx.locale!,
+    process.env.NODE_ENV === 'production'
+  )
+
+  return {
+    props: {
+      translation
+    }
+  }
+}
+
+export default function CreateInitiative(){
   const name = "Create initiative"
   const description = "Select the location in your city, and describe what would you like to change there. Create initiatives and find support in Wecity platform."
   return <>

@@ -4,8 +4,9 @@ import { InitiativeCard } from 'components';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { Popup } from './styles';
+import { Map } from 'mapbox-gl'
 
-export default function MapContents(){
+export default function MapContents({map}:{map:Map}){
   const [cursor, setCursor] = useRecoilState(atoms.cursor)
   const [selected, setSelected] = useRecoilState(atoms.selected)
   const [viewport, setViewport] = useRecoilState(atoms.viewport)
@@ -32,7 +33,7 @@ export default function MapContents(){
         }}
       />
     </>:<>
-    <Layer
+    {map.getSource('entries') && <Layer
       id='entries'
       source='entries'
       source-layer='public.entries'
@@ -91,8 +92,8 @@ export default function MapContents(){
         ['case', ['==',['get','type'],'initiative'], true, false]:
         ['case', ['==',['get','type'],'organization'], true, false]
       }
-    />
-    <Layer
+    />}
+    {map.getSource('selected_entry') && <Layer
       id='selected_entry'
       source='selected_entry'
       type='symbol'
@@ -131,7 +132,7 @@ export default function MapContents(){
         ['case', ['==',['get','type'],'initiative'], true, false]:
         ['case', ['==',['get','type'],'organization'], true, false]
       }
-    />
+    />}
     <>{ selected && selected?.geometry?.coordinates && layout==='desktop' &&
       <Popup 
         closeButton={false} 

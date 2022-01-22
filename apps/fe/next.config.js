@@ -13,7 +13,9 @@ function interceptStdout(text) {
     text.includes('GenerateSW has been called multiple times') ||
     // text.includes('Plurals for locale') ||
     text.includes('DeprecationWarning: Use of deprecated folder mapping "./"') ||
-    text.includes('is an experimental feature')
+    text.includes('is an experimental feature') ||
+    text.includes('[PWA]') ||
+    text.includes('[BABEL]')
   ) {
     return ''
   }
@@ -36,8 +38,7 @@ intercept(interceptStdout)
   generateBuildId: () => 'build',
   experimental: {
     reactRoot: true,
-    styledComponents: true,
-    // concurrentFeatures: true,
+    styledComponents: true
   },
   webpack: (config, options) => {
     config.resolve.fallback = { fs: false, path: false, os: false, module: false };
@@ -50,23 +51,25 @@ intercept(interceptStdout)
   },
   i18n: {
     locales: ['uk', 'en', 'pseudo'],
-    defaultLocale: 'en'
+    defaultLocale: 'en',
+    localeDetection: false,
+    domains: [
+      {
+        domain: 'weee.city',
+        defaultLocale: 'en',
+      },
+      {
+        domain: 'uk.weee.city',
+        defaultLocale: 'uk',
+      }
+    ]
   },
-  domains: [
-    {
-      domain: 'weee.city',
-      defaultLocale: 'en',
-    },
-    {
-      domain: 'uk.weee.city',
-      defaultLocale: 'uk',
-    }
-  ],
   pwa: {
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
   }
 }
+
 if(process.env.ANALYZE === 'true'){
   module.exports = withBundleAnalyzer(nextConfig)
 }else{

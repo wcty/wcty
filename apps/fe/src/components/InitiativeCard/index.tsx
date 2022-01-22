@@ -12,7 +12,7 @@ const formatMeters = format(',.2r')
 type InitiativeProps = { entry: atoms.Entry }
 
 export default function InitiativeCard({entry}:InitiativeProps){
-
+  const locale = useRouter().locale
   const loc = useGeolocation()
   const dist = entry && loc && distance(
     entry?.geometry?.coordinates, 
@@ -22,7 +22,12 @@ export default function InitiativeCard({entry}:InitiativeProps){
   const router = useRouter()
 
   return entry && 
-    <Card onClick={()=>entry?.properties?.type==='initiative' && router.push({pathname: `/initiative/[id]`, query: { id:entry.id }})}>
+    <Card 
+      onClick={()=>
+        entry?.properties?.type==='initiative' && 
+        entry.id && 
+        router.push({pathname: `/initiative/[id]`, query: { id: entry.id }}, `/initiative/${entry.id}`, { locale })
+    }>
       <Thumbnail src={entry?.properties?.image+'?w=100&h=100&q=90'}/>
       <Content>
         <TopBar>

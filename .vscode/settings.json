@@ -1,0 +1,6 @@
+{
+  "search.exclude": {
+    "**/tsconfig.tsbuildinfo": true,
+    "**/yarn.lock": true
+  }
+}

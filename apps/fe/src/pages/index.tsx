@@ -1,6 +1,6 @@
 import FloatButtons from 'containers/FloatButtons'
 import Slides from 'containers/Slides'
-import { getLangServerSideProps, loadTranslation, ServerI18nProps, useServerI18n } from 'common'
+import { loadTranslation} from 'common'
 import FloatPanel from 'containers/FloatPanel'
 import Sidepanel from 'containers/Sidepanel'
 import Head from 'next/head'

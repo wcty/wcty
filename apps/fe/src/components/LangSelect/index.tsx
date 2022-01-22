@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Select } from './styles'
 import { useRouter } from 'next/router'
 import { t } from '@lingui/macro'
@@ -21,8 +21,17 @@ export default function LangSelect ({toggleDrawer, ...props}:any){
       languages['pseudo'] = t`PS`
     }
 
+    const changed = useRef(false)
     useEffect(() => {
-      router.push(router.pathname, router.pathname, { locale })
+      
+      if(locale!==router.locale && !changed.current){
+        console.log('locale changed', locale)
+        changed.current = true
+        //const {pathname, asPath, query} = router
+        router.push(router.pathname, router.asPath, { locale }).then(() => {
+          changed.current = false
+        })
+      }
     }, [locale, router])
 
     

@@ -4,6 +4,7 @@ import { ReactComponent as MapIcon } from 'assets/icons/map.svg'
 import { ReactComponent as OrgIcon } from 'assets/icons/orgs.svg'
 import { ReactComponent as ProjectIcon } from 'assets/icons/projects.svg'
 import { ReactElement } from 'react'
+import { t } from '@lingui/macro'
 
 export type Tabs = readonly {
   key: any
@@ -16,7 +17,7 @@ export const tabs = (user:boolean, creation:boolean=false)=>(
 [
   {
     key: 'initiativeMap',
-    en: "Map of initiatives",
+    en: t`Map of initiatives`,
     icon: <MapIcon/>
   }
 ]:
@@ -24,39 +25,39 @@ export const tabs = (user:boolean, creation:boolean=false)=>(
 [
   {
     key: 'initiativeMap',
-    en: "Map of initiatives",
+    en: t`Map of initiatives`,
     icon: <MapIcon/>
   },
   {
     key: 'myInitiatives',
-    en: "My initiatives",
+    en: t`My initiatives`,
     icon: <Initiatives/>
   },
   {
     key: 'myOrganisations',
-    en: "My organisations",
+    en: t`My organisations`,
     icon: <OrgIcon/>
   },
   {
     key: 'settings',
-    en: "Settings",
+    en: t`Settings`,
     icon: <Settings/>
   }
 ]:
 [
   {
     key: 'initiativeMap',
-    en: "Map of initiatives",
+    en: t`Map of initiatives`,
     icon: <MapIcon/>
   },
   {
     key: 'initiatives',
-    en: "Initiatives",
+    en: t`Initiatives`,
     icon: <Initiatives/>
   },
   {
     key: 'organisations',
-    en: "Organisations",
+    en: t`Organisations`,
     icon: <OrgIcon/>
   }
 ]) as Tabs

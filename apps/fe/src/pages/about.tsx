@@ -1,4 +1,4 @@
-import { getLangServerSideProps, loadTranslation, ServerI18nProps, useLayout, useServerI18n } from "common"
+import { loadTranslation, useLayout } from "common"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import frog_wcty from "assets/images/frog_wcty.png"

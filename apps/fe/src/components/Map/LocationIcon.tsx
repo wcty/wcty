@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { Source, Layer, MapContext } from '@urbica/react-map-gl'
 import { Map, CustomLayerInterface } from 'mapbox-gl'
 import { useGeolocation } from 'common'
@@ -98,14 +98,26 @@ export default ()=>{
           if(!loaded.current){
             map.addImage('pulsing-dot', pulsingDot(map), { pixelRatio: 2 });
             loaded.current=true
+            if(!map.getSource('points')){
+
+            }
             return;  
           }
         }}
+    
       </MapContext.Consumer>
-      <Source
-        id='points'
-        type='geojson'
-        data={{
+    </>
+  )
+}
+
+function PointsLayer({map}:{map:Map}){
+  const location = useGeolocation()
+
+  useEffect(()=>{
+    if(!map.getSource('points')){
+      map.addSource('points', {
+        type: 'geojson',
+        data: {
           type: 'FeatureCollection',
           features: location?[
             {
@@ -117,17 +129,54 @@ export default ()=>{
               properties:{}
             }
           ]:[]
-        }}
-      />
-      <Layer
-        id='points'
-        type='symbol'
-        source='points'
-        layout={{
-          'icon-image': 'pulsing-dot',
-        }}
-        before='markers'
-      />
-    </>
-  )
+        }
+      })
+    }
+  },[map])
+
+  useEffect(()=>{
+    // @ts-ignore
+    map.getSource('points')?.setData({
+      type: 'FeatureCollection',
+      features: location?[
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [location.longitude, location.latitude]
+          },
+          properties:{}
+        }
+      ]:[]
+    })
+  },[map, location])
+
+  return <>
+    {/* <Source
+      id='points'
+      type='geojson'
+      data={{
+        type: 'FeatureCollection',
+        features: location?[
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [location.longitude, location.latitude]
+            },
+            properties:{}
+          }
+        ]:[]
+      }}
+    /> */}
+    {map.getSource('points') && <Layer
+      id='points'
+      type='symbol'
+      source='points'
+      layout={{
+        'icon-image': 'pulsing-dot',
+      }}
+      before='markers'
+    />}
+  </>
 }

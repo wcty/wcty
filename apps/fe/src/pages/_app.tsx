@@ -18,6 +18,7 @@ import { initTranslation } from 'common'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { I18nProvider } from '@lingui/react'
+import { en, uk } from 'make-plural'
 
 initTranslation(i18n)
 
@@ -32,6 +33,12 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
     i18n.activate(locale)
     firstRender.current = false
   }
+
+  useEffect(() => {
+    //initTranslation(i18n)
+    i18n.loadLocaleData(locale, { plurals: locale==='en'?en:locale==='uk'?uk:en })
+    // console.log('Loaded plurals', locale)
+  },[])
 
   useEffect(() => {
     if (pageProps.translation) {
@@ -91,17 +98,16 @@ function ClientSetup(props:any){
 const mutedConsole = memoize((console:any) => ({
   ...console,
   warn: (...args:any) => (
-    args[0].includes('Duplicate atom key') || 
-    args[0].includes('GenerateSW has been called multiple times') //||
-    //args[0]?.includes('Plurals for locale')
+    args[0].includes?.('Duplicate atom key') || 
+    args[0].includes?.('GenerateSW has been called multiple times') ||
+    args[0]?.includes?.('Plurals for locale')
   )
     ? null
     : console.warn(...args),
-  // error: (...args:any) => (
-  //   args[0]?.includes('Plurals for locale')
-  // )
-  //   ? null
-  //   : console.warn(...args)
+  error: (...args:any) => (
+    args[0]?.includes?.('Plurals for locale')
+  )
+    ? null
+    : console.error(...args)
 }))
-
 global.console = mutedConsole(global.console);

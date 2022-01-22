@@ -17,7 +17,7 @@ msgstr ""
 msgid "About platform"
 msgstr "Про платформу"
 
-#: apps/fe/src/containers/Creation/SelectCover.tsx:45
+#: apps/fe/src/containers/Creation/SelectCover.tsx:43
 msgid "Add photo"
 msgstr "Додати фото"
 
@@ -29,7 +29,7 @@ msgstr "Адреса ініціативи"
 msgid "Approve address"
 msgstr "Підтвердити адресу"
 
-#: apps/fe/src/containers/Creation/SelectCover.tsx:55
+#: apps/fe/src/containers/Creation/SelectCover.tsx:53
 #: apps/fe/src/containers/Creation/SelectName.tsx:36
 msgid "Back"
 msgstr "Назад"
@@ -42,7 +42,7 @@ msgstr "Відмінити"
 msgid "Change"
 msgstr "Змінити"
 
-#: apps/fe/src/containers/Creation/SelectCover.tsx:44
+#: apps/fe/src/containers/Creation/SelectCover.tsx:42
 msgid "Change photo"
 msgstr "Змінити фото"
 
@@ -63,7 +63,7 @@ msgstr "Зібрано {sum} з необхідних {total}"
 msgid "Context"
 msgstr "Передумови"
 
-#: apps/fe/src/containers/Creation/SelectCover.tsx:103
+#: apps/fe/src/containers/Creation/SelectCover.tsx:101
 msgid "Create initiative"
 msgstr "Створити ініціативу"
 
@@ -72,7 +72,7 @@ msgid "Create poll"
 msgstr "Створити голосування"
 
 #: apps/fe/src/containers/Creation/SelectAddress.tsx:40
-#: apps/fe/src/containers/Creation/SelectCover.tsx:38
+#: apps/fe/src/containers/Creation/SelectCover.tsx:36
 #: apps/fe/src/containers/Creation/SelectName.tsx:20
 msgid "Creation of initiative"
 msgstr "Створення ініціативи"
@@ -132,11 +132,16 @@ msgstr "Реалізовано від проекту"
 msgid "In order to join or create an initiative, you need to register or log in to your own account"
 msgstr "Для того, щоб приєднатися або створити ініціативу, вам необхідно зареєструватися або увійти в обліковий запис"
 
+#: apps/fe/src/containers/Initiative/Header/index.tsx:87
+msgid "Initiative created"
+msgstr "Ініціатива створена"
+
 #: apps/fe/src/containers/Initiative/Header/index.tsx:77
 msgid "Initiative created at"
 msgstr "Ініціатива створена"
 
 #: apps/fe/src/containers/FloatPanel/Search/Buttons.tsx:14
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:55
 msgid "Initiatives"
 msgstr "Ініціативи"
 
@@ -168,9 +173,19 @@ msgstr "Увійти"
 msgid "Logout"
 msgstr "Вийти"
 
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:20
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:50
+msgid "Map of initiatives"
+msgstr "Мапа ініціатив"
+
 #: apps/fe/src/containers/Sidepanel/Initiatives/index.tsx:50
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:33
 msgid "My initiatives"
 msgstr "Мої ініціативи"
+
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:38
+msgid "My organisations"
+msgstr "Мої організації"
 
 #: apps/fe/src/containers/Creation/SelectName.tsx:27
 msgid "Name of your initiative"
@@ -182,6 +197,7 @@ msgstr "Далі"
 
 #: apps/fe/src/containers/FloatPanel/Search/Buttons.tsx:17
 #: apps/fe/src/containers/Sidepanel/Organizations/index.tsx:48
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:60
 msgid "Organisations"
 msgstr "Організації"
 
@@ -205,6 +221,10 @@ msgstr "Зареєструватися"
 #: apps/fe/src/containers/FloatPanel/Search/index.tsx:40
 msgid "Search"
 msgstr "Пошук"
+
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:43
+msgid "Settings"
+msgstr "Налаштування"
 
 #: apps/fe/src/containers/Initiative/Header/index.tsx:43
 msgid "Share"
@@ -232,16 +252,12 @@ msgstr "UK"
 msgid "Welcome back!"
 msgstr "З поверненням!"
 
-#: apps/fe/src/components/InitiativeCard/index.tsx:36
+#: apps/fe/src/components/InitiativeCard/index.tsx:41
 #: apps/fe/src/containers/Initiative/Header/index.tsx:31
 msgid "km from me"
 msgstr "км від мене"
 
-#: apps/fe/src/components/InitiativeCard/index.tsx:35
+#: apps/fe/src/components/InitiativeCard/index.tsx:40
 #: apps/fe/src/containers/Initiative/Header/index.tsx:30
 msgid "m from me"
 msgstr "м від мене"
-
-#: apps/fe/src/containers/Initiative/Header/index.tsx:87
-msgid "Initiative created"
-msgstr "Ініціатива створена"

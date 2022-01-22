@@ -1,4 +1,4 @@
-import { getLangServerSideProps, loadTranslation, ServerI18nProps, useLayout, useServerI18n } from "common"
+import { loadTranslation, useLayout } from "common"
 import Login from "containers/Login"
 import Sidepanel from "containers/Sidepanel"
 import Head from 'next/head'

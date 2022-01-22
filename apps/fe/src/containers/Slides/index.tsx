@@ -1,6 +1,7 @@
 import { useLayout, useUser } from 'common';
 import IconButton from 'components/IconButton';
-import { SlideRenderProps } from 'react-swipeable-views-utils';
+// @ts-ignore
+import { SlideRenderProps } from 'react-swipeable-views-workspace/packages/react-swipeable-views-utils';
 import { atom } from 'recoil';
 import { slideRenderer } from './slideRenderer';
 import { LeftArrow, RightArrow, SwipeableViews } from './styles';

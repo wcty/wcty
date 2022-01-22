@@ -4,8 +4,7 @@ import { ReactComponent as Steps } from 'assets/icons/steps2.svg'
 import { Initiative } from ".";
 import { ChangeEvent, useEffect } from "react";
 import { Task_Statuses_Enum, useInsertInitiativeMutation } from "generated";
-import { userInfo } from "os";
-import {  useUser } from "common";
+import { useUser } from "common";
 import { useRouter } from "next/router";
 import { Trans, t } from '@lingui/macro'
 
@@ -26,10 +25,9 @@ export default function Creation({
   useEffect(()=>{
     const id = data?.insert_initiatives_one?.id
     if(id){
-      console.log(id)
-      router.push({pathname: `/initiative/[id]`, query: { id }})
+      console.log(id, 'Clicked here')
+      router.push({pathname: `/initiative/[id]`, query: { id }}, `/initiative/${id}`, { locale: router.locale })
     }
-
   },[data?.insert_initiatives_one?.id])
 
   return (

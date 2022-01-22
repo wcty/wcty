@@ -1,6 +1,8 @@
 import styled from 'styled-components'
-import SwipeableViewsUnstyled from 'react-swipeable-views';
-import { virtualize, bindKeyboard } from 'react-swipeable-views-utils';
+//@ts-ignore
+import SwipeableViewsUnstyled from '@gromy/react-swipeable-views';
+//@ts-ignore
+import { virtualize } from '@gromy/react-swipeable-views-utils';
 
 const VirtualizeSwipeableViews = virtualize(SwipeableViewsUnstyled);
 

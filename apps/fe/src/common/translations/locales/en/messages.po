@@ -17,7 +17,7 @@ msgstr ""
 msgid "About platform"
 msgstr "About platform"
 
-#: apps/fe/src/containers/Creation/SelectCover.tsx:45
+#: apps/fe/src/containers/Creation/SelectCover.tsx:43
 msgid "Add photo"
 msgstr "Add photo"
 
@@ -29,7 +29,7 @@ msgstr "Address of initiative"
 msgid "Approve address"
 msgstr "Approve address"
 
-#: apps/fe/src/containers/Creation/SelectCover.tsx:55
+#: apps/fe/src/containers/Creation/SelectCover.tsx:53
 #: apps/fe/src/containers/Creation/SelectName.tsx:36
 msgid "Back"
 msgstr "Back"
@@ -42,7 +42,7 @@ msgstr "Cancel"
 msgid "Change"
 msgstr "Change"
 
-#: apps/fe/src/containers/Creation/SelectCover.tsx:44
+#: apps/fe/src/containers/Creation/SelectCover.tsx:42
 msgid "Change photo"
 msgstr "Change photo"
 
@@ -63,7 +63,7 @@ msgstr "Collected {sum}UAH from planned {total}"
 msgid "Context"
 msgstr "Context"
 
-#: apps/fe/src/containers/Creation/SelectCover.tsx:103
+#: apps/fe/src/containers/Creation/SelectCover.tsx:101
 msgid "Create initiative"
 msgstr "Create initiative"
 
@@ -72,7 +72,7 @@ msgid "Create poll"
 msgstr "Create poll"
 
 #: apps/fe/src/containers/Creation/SelectAddress.tsx:40
-#: apps/fe/src/containers/Creation/SelectCover.tsx:38
+#: apps/fe/src/containers/Creation/SelectCover.tsx:36
 #: apps/fe/src/containers/Creation/SelectName.tsx:20
 msgid "Creation of initiative"
 msgstr "Creation of initiative"
@@ -132,11 +132,16 @@ msgstr "Implemented of the project"
 msgid "In order to join or create an initiative, you need to register or log in to your own account"
 msgstr "In order to join or create an initiative, you need to register or log in to your own account"
 
+#: apps/fe/src/containers/Initiative/Header/index.tsx:87
+msgid "Initiative created"
+msgstr "Initiative created"
+
 #: apps/fe/src/containers/Initiative/Header/index.tsx:77
 msgid "Initiative created at"
 msgstr "Initiative created at"
 
 #: apps/fe/src/containers/FloatPanel/Search/Buttons.tsx:14
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:55
 msgid "Initiatives"
 msgstr "Initiatives"
 
@@ -168,9 +173,19 @@ msgstr "Login"
 msgid "Logout"
 msgstr "Logout"
 
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:20
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:50
+msgid "Map of initiatives"
+msgstr "Map of initiatives"
+
 #: apps/fe/src/containers/Sidepanel/Initiatives/index.tsx:50
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:33
 msgid "My initiatives"
 msgstr "My initiatives"
+
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:38
+msgid "My organisations"
+msgstr "My organisations"
 
 #: apps/fe/src/containers/Creation/SelectName.tsx:27
 msgid "Name of your initiative"
@@ -182,6 +197,7 @@ msgstr "Next"
 
 #: apps/fe/src/containers/FloatPanel/Search/Buttons.tsx:17
 #: apps/fe/src/containers/Sidepanel/Organizations/index.tsx:48
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:60
 msgid "Organisations"
 msgstr "Organisations"
 
@@ -205,6 +221,10 @@ msgstr "Register"
 #: apps/fe/src/containers/FloatPanel/Search/index.tsx:40
 msgid "Search"
 msgstr "Search"
+
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:43
+msgid "Settings"
+msgstr "Settings"
 
 #: apps/fe/src/containers/Initiative/Header/index.tsx:43
 msgid "Share"
@@ -232,16 +252,12 @@ msgstr "UK"
 msgid "Welcome back!"
 msgstr "Welcome back!"
 
-#: apps/fe/src/components/InitiativeCard/index.tsx:36
+#: apps/fe/src/components/InitiativeCard/index.tsx:41
 #: apps/fe/src/containers/Initiative/Header/index.tsx:31
 msgid "km from me"
 msgstr "km from me"
 
-#: apps/fe/src/components/InitiativeCard/index.tsx:35
+#: apps/fe/src/components/InitiativeCard/index.tsx:40
 #: apps/fe/src/containers/Initiative/Header/index.tsx:30
 msgid "m from me"
 msgstr "m from me"
-
-#: apps/fe/src/containers/Initiative/Header/index.tsx:87
-msgid "Initiative created"
-msgstr "Ініціатива створена"

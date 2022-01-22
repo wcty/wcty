@@ -72,13 +72,7 @@
         "command": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch --silent"
       }
     },
-    "i18n": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "cwd": "apps/fe",
-        "command": "node scripts/i18n.js"
-      }
-    },
+
     "tiles": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

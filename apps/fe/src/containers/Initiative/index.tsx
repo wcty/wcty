@@ -6,11 +6,11 @@ import { InitiativePublicByPkQuery, useInitiativeByPkQuery } from "generated";
 import { useLayout, useUser } from "common";
 import Header from "./Header";
 import Join, { LoginToJoin } from "./Join";
-import { useRouter } from "next/router";
 import Redirect from "components/Redirect";
 import { useEffect, useState } from "react";
 import React from "react";
 import ClientOnly from "components/ClientOnly";
+import { useRouter } from "next/router";
 
 function FeedBlock({isMember=false}) {
   const user = useUser()
@@ -32,7 +32,7 @@ export type InitiativeProps = {initiative?:InitiativePublicByPkQuery['initiative
 export default function Initiative({initiative}:InitiativeProps) {
   const { id } = useRouter().query;
   const user = useUser()
-  const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
+  const { data } = useInitiativeByPkQuery({variables:{id:initiative?.id,user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
   const isMember = !!data?.initiative?.members?.length
   const layout = useLayout()
 

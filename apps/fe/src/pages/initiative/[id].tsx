@@ -1,15 +1,15 @@
-import { client, loadTranslation, ServerI18nProps, useLayout, useServerI18n, useUser } from 'common'
+import { client, loadTranslation, useLayout } from 'common'
 import Initiative, { InitiativeProps } from 'containers/Initiative'
 import { Burger, ContentWrapper } from 'styles'
 import Sidepanel from 'containers/Sidepanel'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { DictionaryDocument, DictionaryQuery, InitiativePublicByPkDocument, InitiativePublicByPkQuery } from 'generated'
+import { InitiativePublicByPkDocument, InitiativePublicByPkQuery } from 'generated'
 import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import { FixedBottom } from 'react-fixed-bottom'
 
-export default function DynamicInitiative(props:ServerI18nProps&InitiativeProps) {
+export default function DynamicInitiative(props:InitiativeProps) {
   const router = useRouter()
   const layout = useLayout()
   const name = props.initiative?.name||'Initiative'

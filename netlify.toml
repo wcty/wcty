@@ -1,2 +1,2 @@
 [build]
-  ignore = "git diff --quiet HEAD^ HEAD apps/fe/"
+  ignore = "git diff --quiet main~1 main apps/fe/ libs/ui/* libs/assets/*"

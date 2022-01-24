@@ -43,18 +43,7 @@
           "docker-compose -f apps/be/docker-compose.yml restart postgres"
         ]
       }
-    },
-    "deploy": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "commands": [
-          "nx affected --base=main~1 --head=main --target=deploy-caddy --files=apps/be/Caddyfile",
-          "nx affected --base=main~1 --head=main --target=deploy-hbp --files=apps/be/mail-templates/*,apps/be/storage-rules/*",
-          "nx affected --base=main~1 --head=main --target=deploy-postgres --files=apps/be/postgres/*"
-        ]
-      }
-    },
-    
+    },    
     "unmount": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

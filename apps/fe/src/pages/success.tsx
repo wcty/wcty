@@ -24,11 +24,11 @@ export default function AuthSuccess(){
   useEffect(()=>{
     const callbackUrl = cookies.get('callbackUrl');
     if(callbackUrl){
-      router.push(callbackUrl)
+      setTimeout(()=>router.push(callbackUrl), 5000)
       // console.log(callbackUrl)
       // cookies.remove('callbackUrl')
     }else{
-      router.push('/')
+      setTimeout(()=>router.push('/'), 5000)
     }
   },[])
   return null

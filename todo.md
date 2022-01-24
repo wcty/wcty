@@ -5,7 +5,7 @@
 ——————————————
 This is urgent:
 ———————————————————
-  - Login
+  - Login - debug, loading states, errors
   - Settings: emails, push, language
   - Posts and Comments
   - Private Messages

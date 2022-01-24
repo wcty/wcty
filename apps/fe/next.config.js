@@ -52,7 +52,6 @@ intercept(interceptStdout)
   i18n: {
     locales: ['uk', 'en', 'pseudo'],
     defaultLocale: 'en',
-    localeDetection: false,
     domains: [
       {
         domain: 'www.weee.city',

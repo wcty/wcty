@@ -61,6 +61,7 @@ intercept(interceptStdout)
       {
         domain: 'www.uk.weee.city',
         defaultLocale: 'uk',
+        locales: ['uk'],
       }
     ]
   },

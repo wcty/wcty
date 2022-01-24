@@ -1,8 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Toggle from "components/Toggle";
-
-
-
+import { Toggle } from "@ui";
 
 export default {
     title: 'Other/Toggle',

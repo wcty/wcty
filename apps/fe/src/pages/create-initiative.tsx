@@ -4,7 +4,7 @@ import FloatPanel from 'containers/FloatPanel'
 import Sidepanel from 'containers/Sidepanel'
 import { loadTranslation } from 'common'
 import Head from 'next/head'
-import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
+import DefaultInitiativeCover from '@assets/images/wecity_chat_512.png'
 import { MapWrapper } from 'styles'
 
 import { lazy, Suspense } from 'react'
@@ -33,7 +33,7 @@ export default function CreateInitiative(){
       <title>{`${name} | Wecity`}</title>
       <meta name="description" content={description} />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content={DefaultInitiativeCover} />
+      <meta property="og:image" content={DefaultInitiativeCover.src} />
       <meta property="og:title" content={name} />
       <meta property="og:description" content={description} />
       <meta property="og:site_name" content="Wecity" />

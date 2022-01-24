@@ -5,7 +5,7 @@ import Sidepanel from 'containers/Sidepanel'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { InitiativePublicByPkDocument, InitiativePublicByPkQuery } from 'generated'
-import DefaultInitiativeCover from 'assets/images/wecity_chat_512.png'
+import DefaultInitiativeCover from '@assets/images/wecity_chat_512.png'
 import { GetServerSideProps, GetStaticProps } from 'next'
 import { FixedBottom } from 'react-fixed-bottom'
 

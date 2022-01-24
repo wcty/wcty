@@ -72,3 +72,7 @@ export const isSubscribed = atom({
   default: null as boolean|null
 })
 
+export const credentialsLogin = atom({
+  key: 'credentialsLogin',
+  default: {email:''}  as {email:string, password?:string}
+})

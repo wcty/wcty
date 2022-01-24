@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
-import Cover from 'assets/images/intro_cover.png'
+import Cover from '@assets/images/intro_cover.png'
+import { IndexProps } from ".";
 
-export default function Creation() {
+export default function Creation(props:IndexProps) {
   const router = useRouter()
 
   return (
@@ -14,7 +15,7 @@ export default function Creation() {
             Щоби швидко дізнаватися про всі оновлення в ваших ініціативах та організаціях увімніть доступ до сповіщень
           </span>
         </div>
-        <img src={Cover}/>
+        <img src={Cover.src}/>
     </>
   )
 }

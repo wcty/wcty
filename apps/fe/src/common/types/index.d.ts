@@ -7,5 +7,9 @@ declare module '*.svg' {
   export default src;
 }
 
-declare module '*.png'
+declare module '*.png' {
+  const src: {src: string};
+  export default src;
+}
+
 declare module 'react-fixed-bottom'

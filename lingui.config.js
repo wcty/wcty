@@ -12,15 +12,10 @@ module.exports = {
         '<rootDir>/apps/fe/src/containers',
         '<rootDir>/apps/fe/src/components',
         '<rootDir>/apps/fe/src/pages',
+        '<rootDir>/libs/ui/src/lib',
       ],
       exclude: ["**/node_modules/**"]
     }
   ],
-  // "compileNamespace": "cjs",
-  // "extractBabelOptions": {
-  //   "rootMode": "upward",
-  // },
-  // "rootDir": ".",
-  // "runtimeConfigModule": ["@lingui/core", "i18n"],
   format: 'po'
 }

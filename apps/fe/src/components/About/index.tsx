@@ -1,16 +1,15 @@
-import { getLangServerSideProps, ServerI18nProps, useLayout } from "common"
+import { useLayout } from "common"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import frog_wcty from "assets/images/frog_wcty.png"
-import partners from "assets/images/partners/partners.png"
+import frog_wcty from "@assets/images/frog_wcty.png"
+import partners from "@assets/images/partners/partners.png"
 import { Block, Footer, Wrapper } from "./styles"
-import {ReactComponent as FB} from "assets/icons/facebook.svg"
-import {ReactComponent as IG} from "assets/icons/instagram.svg"
+import { ReactComponent as FB } from "@assets/icons/facebook.svg"
+import { ReactComponent as IG } from "@assets/icons/instagram.svg"
 import { Container } from 'containers/Initiative/styles'
 
-export const getServerSideProps = getLangServerSideProps
 
-export default function About(props:ServerI18nProps) { 
+export default function About() { 
   const router = useRouter()
   const layout = useLayout()
 

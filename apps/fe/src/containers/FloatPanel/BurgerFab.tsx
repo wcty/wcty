@@ -1,5 +1,5 @@
 import { Fab } from "./styles";
-import { ReactComponent as Burger } from 'assets/icons/burger.svg'
+import { ReactComponent as Burger } from '@assets/icons/burger.svg'
 import { useRecoilState } from "recoil";
 import Sidebar from "containers/Sidepanel";
 

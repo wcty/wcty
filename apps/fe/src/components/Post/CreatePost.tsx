@@ -1,13 +1,9 @@
-import Avatar from "components/Avatar";
-import { TextField } from "components";
+import { Avatar, TextField, Button, IconButton, SectionTab } from "@ui";
 import { Actions, Channels, Container, InputContent } from "./styles";
-import { ReactComponent as VoteIco} from "assets/icons/vote.svg";
-import Button from "components/Button";
+import { ReactComponent as VoteIco} from "@assets/icons/vote.svg";
 import { useCreatePostMutation } from "generated";
 import { fixAvatar,  useUser } from "common";
 import { useState } from "react";
-import IconButton from "components/IconButton";
-import SectionTab from "components/SectionTab";
 import { useRouter } from "next/router";
 import { Trans } from '@lingui/macro'
 

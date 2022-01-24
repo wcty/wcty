@@ -1,112 +1,66 @@
-import { CenterPanel } from "components/CenterPanel";
-import { auth, useLayout } from 'common';
-import { useState } from "react";
-import { Button, FormControl, TextField, Label, Header, Text } from "./styles";
+import { CenterPanel } from "@ui";
+import { atoms, auth, useLayout } from 'common';
+import { useState, useEffect } from "react";
+import { Button, FormControl, TextField, Label, Header } from "./styles";
 import { useRouter } from "next/router";
 import Cookies from 'universal-cookie'
 import { Trans } from '@lingui/macro'
+import {ReactComponent as ArrowLeft} from '@assets/icons/arrow-left2.svg'
+import Link from "next/link";
+import { useRecoilState } from "recoil";
+import { Text } from '@ui'
 
 const cookies = new Cookies()
 
-const LoginButton = ({credentials={email:'', password:''}})=>{
-  const router = useRouter()
-  return (
-    <button onClick={async (e)=>{
-      e.preventDefault()
-      if( credentials.email && credentials.password ) {
-        try{
-          await auth.login(credentials)
-        } catch (error) {
-          console.log(error);
-          return alert("login failed");
-        }
-        router.push('/')
-      }
-    }}>
-      <span>Login</span>
-    </button>
-  )
-}
-
-const RegisterButton = ({credentials={email:'', password:''}})=>{
-
-  return (
-    <button onClick={(e)=>{
-        e.preventDefault()
-        if( credentials.email && credentials.password ) {
-          auth.register(credentials)
-        }
-      }}>
-        <span>Register</span>
-    </button>
-  )
-}
 
 export default function Login (){
-  const [credentials, setCredentials] = useState({email:'', password:''})
+  const [credentials, setCredentials] = useRecoilState(atoms.credentialsLogin)
   const router = useRouter()
-  const layout = useLayout()
-  const loginMethod = cookies.get('loginMethod')
-
+  const [error, setError] = useState<any>('')
   //cookies.set('loginMethod', lm, { path: '/' });
+  useEffect(()=>{
+    if(error){
+      console.log('Error: ', error)
+    }
+  },[error])
 
   return (
-    <CenterPanel onClose={()=>router.back()}>
+    <CenterPanel onClose={()=>router.push('/')}>
         <Header>
-          <Trans>Welcome back!</Trans>
+          <Trans>Login with email</Trans>
         </Header>
-        {loginMethod && <Text>
-          Last login from this device was made with Google.
-        </Text>}
+        <Text mb="2rem">
+          <Trans>Enter your email address to log in</Trans>
+        </Text>
       <FormControl>
-        <Label id="email">
-          Your email:
-        </Label>
         <TextField 
           id="email" 
           type="text"
+          placeholder="Your e-mail"
           value={credentials.email}
           onChange={(e)=>setCredentials({...credentials, email:e.target.value})}
         />
-        <Label id="password" >
-          Your password:
-        </Label>
-        <TextField 
-          id="password" 
-          type="password" 
-          value={credentials.password}
-          onChange={(e)=>setCredentials({...credentials, password:e.target.value})}
-        />
-          <div>
-          {layout==='desktop'? 
-            <Button>
-              <LoginButton credentials={credentials}/>
-              <RegisterButton credentials={credentials}/>
-            </Button>:
-          <>
-            <Button>
-              <LoginButton credentials={credentials}/>
-            </Button>
-            <Button>
-              <RegisterButton credentials={credentials}/>
-            </Button>
-          </>
-          }
-          <Button>
-            <button onClick={(e)=>{
-              e.preventDefault()
-              auth.login({ provider: 'google' })
-            }}>
-              <span>Google</span>
-            </button>
-            <button onClick={(e)=>{
-              e.preventDefault()      
-              auth.login({ provider: 'facebook' })}}>
-              <span>Facebook</span>
-            </button>
-          </Button>
-          </div>
+        <Button style={{background: 'black'}}
+          onClick={(e)=>{
+            e.preventDefault()
+            if( credentials.email && credentials.password ) {
+              auth.register(credentials).then(()=>{
+                router.push('/login/check-email')
+              }).catch((err)=>{
+                setError(err)
+              })
+            }
+          }}>
+          <Text color="white" semibold ><Trans>Continue</Trans></Text>
+        </Button>
         </FormControl>
+        <Link href="/login" >
+          <a>
+            <Text mt="5rem" style={{display:'flex', alignItems:'center'}}>
+              <ArrowLeft/> <Trans>All log in options</Trans>
+            </Text>
+          </a>
+        </Link>
     </CenterPanel>
   )
 }

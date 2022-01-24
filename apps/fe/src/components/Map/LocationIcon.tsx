@@ -95,12 +95,9 @@ export default ()=>{
     <>
       <MapContext.Consumer>
         {(map:Map) => {
-          if(!loaded.current){
+          if(map && !loaded.current && !map?.hasImage?.('pulsing-dot')){
             map.addImage('pulsing-dot', pulsingDot(map), { pixelRatio: 2 });
             loaded.current=true
-            if(!map.getSource('points')){
-
-            }
             return;  
           }
         }}

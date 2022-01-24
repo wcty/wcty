@@ -1,9 +1,9 @@
 
 import { UserIconRow, LogoRow, CloseButton } from './styles'
-import { ReactComponent as LoginIcon } from 'assets/icons/login.svg'
-import { ReactComponent as CloseIcon } from 'assets/icons/close-icon.svg'
-import { ReactComponent as WecityText } from 'assets/icons/wecity-text.svg'
-import { ReactComponent as AnonIcon } from 'assets/icons/anon-icon.svg'
+import { ReactComponent as LoginIcon } from '@assets/icons/login.svg'
+import { ReactComponent as CloseIcon } from '@assets/icons/close-icon.svg'
+import { ReactComponent as WecityText } from '@assets/icons/wecity-text.svg'
+import { ReactComponent as AnonIcon } from '@assets/icons/anon-icon.svg'
 import { Trans } from '@lingui/macro'
 
 import { fixAvatar,  useLayout, useUser } from 'common'

@@ -4,22 +4,15 @@ import styled, { css } from "styled-components"
 export const 
 FormControl = styled.form`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  align-self: center;
 `,
 
 Header = styled.h3`
   margin-top: 44px;
   text-align: center;
-`,
-
-Text = styled.h3<{semibold?:boolean, mt?:string}>`
-  ${p=>p.semibold?
-    p.theme.font.body.semibold.t4:
-    p.theme.font.body.regular.t4 }
-  text-align: center; 
-  ${p=>p.mt && css`margin-top: ${p.mt};`}
+  margin-bottom: 44px;
 `,
 
 TextField = styled.input`
@@ -54,4 +47,12 @@ Button = styled.button`
     transform: translateY(-50%);
     left: 1rem;
   }
+`,
+
+Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background: rgba(0,0,0,0.1);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 `

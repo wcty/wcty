@@ -1,7 +1,7 @@
 import { atoms,  useLayout } from 'common';
 import { SearchInput, SearchWrapper, FieldWrapper, SearchResults } from "../styles";
-import { ReactComponent as SearchIcon } from 'assets/icons/search.svg'
-import { ReactComponent as CancelIcon } from 'assets/icons/cancel.svg'
+import { ReactComponent as SearchIcon } from '@assets/icons/search.svg'
+import { ReactComponent as CancelIcon } from '@assets/icons/cancel.svg'
 import { useEffect, useState } from "react";
 import Buttons from "./Buttons";
 import { useSearchResultsQuery } from 'generated'

@@ -2,8 +2,8 @@ import { IBaseComment, IComment } from "./IComment";
 import { Container } from "../styles";
 import Author from "../Author";
 import { Actions, Footer, Likes,  Time , Content, Message, Info, Offset} from "./styles";
-import Button from "components/Button";
-import {ReactComponent as Like} from 'assets/icons/like.svg'
+import { Button } from "@ui";
+import { ReactComponent as Like } from '@assets/icons/like.svg'
 
 export interface ICommentProps extends IComment {}
 

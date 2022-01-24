@@ -1,8 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import SectionTab from "components/SectionTab";
-
-
-
+import { SectionTab } from "@ui";
 
 export default {
     title: 'Other/SectionTab',

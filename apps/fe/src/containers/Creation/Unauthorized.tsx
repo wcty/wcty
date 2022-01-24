@@ -1,6 +1,6 @@
-import Button from "components/Button";
+import { Button } from "@ui";
 import { FloatingContainer } from "./styles";
-import { ReactComponent as Cross } from 'assets/icons/cross.svg'
+import { ReactComponent as Cross } from '@assets/icons/cross.svg'
 import { useRouter } from "next/router";
 import Cookie from 'universal-cookie'
 import { Trans } from '@lingui/macro'

@@ -4,10 +4,11 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_NO_WARNINGS=1 nx start fe",
-    "build": "nx build",
+    "build": "yarn run compile && nx build fe",
     "test": "nx test",
     "extract": "NODE_ENV=development yarn lingui extract --overwrite",
-    "compile": "yarn lingui compile"
+    "compile": "yarn lingui compile",
+    "storybook": "nx run ui:storybook"
   },
   "private": true,
   "dependencies": {

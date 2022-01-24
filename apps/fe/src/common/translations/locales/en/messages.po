@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: apps/fe/src/containers/Sidepanel/index.tsx:126
+#: apps/fe/src/containers/Sidepanel/index.tsx:129
 msgid "About platform"
 msgstr "About platform"
 
@@ -21,24 +21,36 @@ msgstr "About platform"
 msgid "Add photo"
 msgstr "Add photo"
 
-#: apps/fe/src/containers/Creation/SelectAddress.tsx:48
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:47
 msgid "Address of initiative"
 msgstr "Address of initiative"
 
-#: apps/fe/src/containers/Creation/SelectAddress.tsx:89
+#: apps/fe/src/containers/Login/Email.tsx:60
+msgid "All log in options"
+msgstr "All log in options"
+
+#: apps/fe/src/containers/Register/Email.tsx:62
+msgid "All sign up options"
+msgstr "All sign up options"
+
+#: apps/fe/src/containers/Register/index.tsx:62
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:88
 msgid "Approve address"
 msgstr "Approve address"
 
 #: apps/fe/src/containers/Creation/SelectCover.tsx:53
-#: apps/fe/src/containers/Creation/SelectName.tsx:36
+#: apps/fe/src/containers/Creation/SelectName.tsx:35
 msgid "Back"
 msgstr "Back"
 
-#: apps/fe/src/containers/Creation/SelectAddress.tsx:74
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:73
 msgid "Cancel"
 msgstr "Cancel"
 
-#: apps/fe/src/containers/Creation/SelectAddress.tsx:58
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:57
 msgid "Change"
 msgstr "Change"
 
@@ -46,13 +58,34 @@ msgstr "Change"
 msgid "Change photo"
 msgstr "Change photo"
 
-#: apps/fe/src/components/Post/CreatePost.tsx:34
+#: apps/fe/src/components/Post/CreatePost.tsx:30
 msgid "Channels"
 msgstr "Channels"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:143
+#: apps/fe/src/containers/Login/CheckInbox.tsx:26
+#: apps/fe/src/containers/Register/CheckInbox.tsx:27
+msgid "Check your Inbox"
+msgstr "Check your Inbox"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:142
 msgid "Choose one of the tasks you can perform, or suggest your own."
 msgstr "Choose one of the tasks you can perform, or suggest your own."
+
+#: apps/fe/src/containers/Login/index.tsx:71
+msgid "Click \"Log In\" to agree to Wecity's <0>Terms of Service</0>and acknowledge that Wecity's <1>Privacy Policy</1> applies to you."
+msgstr "Click \"Log In\" to agree to Wecity's <0>Terms of Service</0>and acknowledge that Wecity's <1>Privacy Policy</1> applies to you."
+
+#: apps/fe/src/containers/Register/index.tsx:65
+msgid "Click \"Sign Up\" to agree to Wecity's <0>Terms of Service</0>and acknowledge that Wecity's <1>Privacy Policy</1> applies to you."
+msgstr "Click \"Sign Up\" to agree to Wecity's <0>Terms of Service</0>and acknowledge that Wecity's <1>Privacy Policy</1> applies to you."
+
+#: apps/fe/src/containers/Register/CheckInbox.tsx:30
+msgid "Click the link we've sent to {0} to complete your account set-up."
+msgstr "Click the link we've sent to {0} to complete your account set-up."
+
+#: apps/fe/src/containers/Login/CheckInbox.tsx:29
+msgid "Click the link we've sent to {0} to complete your sign-in."
+msgstr "Click the link we've sent to {0} to complete your sign-in."
 
 #: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:140
 #: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:145
@@ -63,21 +96,30 @@ msgstr "Collected {sum}UAH from planned {total}"
 msgid "Context"
 msgstr "Context"
 
+#: apps/fe/src/containers/Login/Email.tsx:54
+#: apps/fe/src/containers/Register/Email.tsx:56
+msgid "Continue"
+msgstr "Continue"
+
 #: apps/fe/src/containers/Creation/SelectCover.tsx:101
 msgid "Create initiative"
 msgstr "Create initiative"
 
-#: apps/fe/src/components/Post/CreatePost.tsx:40
+#: apps/fe/src/containers/Login/index.tsx:68
+msgid "Create one"
+msgstr "Create one"
+
+#: apps/fe/src/components/Post/CreatePost.tsx:36
 msgid "Create poll"
 msgstr "Create poll"
 
-#: apps/fe/src/containers/Creation/SelectAddress.tsx:40
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:39
 #: apps/fe/src/containers/Creation/SelectCover.tsx:36
-#: apps/fe/src/containers/Creation/SelectName.tsx:20
+#: apps/fe/src/containers/Creation/SelectName.tsx:19
 msgid "Creation of initiative"
 msgstr "Creation of initiative"
 
-#: apps/fe/src/containers/Creation/SelectName.tsx:32
+#: apps/fe/src/containers/Creation/SelectName.tsx:31
 msgid "Describe your idea or problem that you are trying to solve"
 msgstr "Describe your idea or problem that you are trying to solve"
 
@@ -89,9 +131,27 @@ msgstr "Description of initiative"
 msgid "EN"
 msgstr "EN"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:126
+#: apps/fe/src/containers/Sidepanel/Settings/index.tsx:52
+#: apps/fe/src/containers/Sidepanel/Settings/index.tsx:60
+msgid "Enable email notifications"
+msgstr "Enable email notifications"
+
+#: apps/fe/src/containers/Sidepanel/Settings/index.tsx:66
+#: apps/fe/src/containers/Sidepanel/Settings/index.tsx:74
+msgid "Enable push notifications"
+msgstr "Enable push notifications"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:125
 msgid "Enter sum"
 msgstr "Enter sum"
+
+#: apps/fe/src/containers/Register/Email.tsx:35
+msgid "Enter your email address to create an account"
+msgstr "Enter your email address to create an account"
+
+#: apps/fe/src/containers/Login/Email.tsx:33
+msgid "Enter your email address to log in"
+msgstr "Enter your email address to log in"
 
 #: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:19
 msgid "Expenses were not added yet"
@@ -102,7 +162,7 @@ msgstr "Expenses were not added yet"
 msgid "Finsihed {tasks} tasks from {total}"
 msgstr "Finsihed {tasks} tasks from {total}"
 
-#: apps/fe/src/containers/Sidepanel/index.tsx:148
+#: apps/fe/src/containers/Sidepanel/index.tsx:151
 msgid "For any question please contact us at hi@weee.city"
 msgstr "For any question please contact us at hi@weee.city"
 
@@ -115,11 +175,11 @@ msgstr "Goal"
 msgid "Hide"
 msgstr "Hide"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:107
+#: apps/fe/src/containers/Initiative/Join/index.tsx:106
 msgid "I am ready to donate"
 msgstr "I am ready to donate"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:139
+#: apps/fe/src/containers/Initiative/Join/index.tsx:138
 msgid "I am ready to volunteer"
 msgstr "I am ready to volunteer"
 
@@ -132,11 +192,11 @@ msgstr "Implemented of the project"
 msgid "In order to join or create an initiative, you need to register or log in to your own account"
 msgstr "In order to join or create an initiative, you need to register or log in to your own account"
 
-#: apps/fe/src/containers/Initiative/Header/index.tsx:87
+#: apps/fe/src/containers/Initiative/Header/index.tsx:86
 msgid "Initiative created"
 msgstr "Initiative created"
 
-#: apps/fe/src/containers/Initiative/Header/index.tsx:77
+#: apps/fe/src/containers/Initiative/Header/index.tsx:76
 msgid "Initiative created at"
 msgstr "Initiative created at"
 
@@ -145,14 +205,26 @@ msgstr "Initiative created at"
 msgid "Initiatives"
 msgstr "Initiatives"
 
-#: apps/fe/src/containers/Initiative/Header/index.tsx:44
-#: apps/fe/src/containers/Initiative/Join/index.tsx:186
+#: apps/fe/src/containers/Initiative/Header/index.tsx:43
+#: apps/fe/src/containers/Initiative/Join/index.tsx:185
 msgid "Join"
 msgstr "Join"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:95
+#: apps/fe/src/containers/Register/index.tsx:27
+msgid "Join Wecity"
+msgstr "Join Wecity"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:94
 msgid "Join the initiative"
 msgstr "Join the initiative"
+
+#: apps/fe/src/containers/Register/Email.tsx:32
+msgid "Join with email"
+msgstr "Join with email"
+
+#: apps/fe/src/containers/Login/index.tsx:28
+msgid "Last login on this device was via"
+msgstr "Last login on this device was via"
 
 #: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:18
 msgid "List of expenses"
@@ -162,6 +234,18 @@ msgstr "List of expenses"
 msgid "List of tasks"
 msgstr "List of tasks"
 
+#: apps/fe/src/containers/Login/index.tsx:63
+msgid "Log in with Email"
+msgstr "Log in with Email"
+
+#: apps/fe/src/containers/Login/index.tsx:52
+msgid "Log in with Facebook"
+msgstr "Log in with Facebook"
+
+#: apps/fe/src/containers/Login/index.tsx:41
+msgid "Log in with Google"
+msgstr "Log in with Google"
+
 #: apps/fe/src/containers/Creation/Unauthorized.tsx:36
 #: apps/fe/src/containers/Initiative/Join/LoginToJoin.tsx:35
 #: apps/fe/src/containers/Sidepanel/MenuHeader.tsx:47
@@ -169,11 +253,16 @@ msgstr "List of tasks"
 msgid "Login"
 msgstr "Login"
 
-#: apps/fe/src/containers/Sidepanel/index.tsx:135
+#: apps/fe/src/containers/Login/Email.tsx:30
+msgid "Login with email"
+msgstr "Login with email"
+
+#: apps/fe/src/containers/Sidepanel/index.tsx:138
 msgid "Logout"
 msgstr "Logout"
 
 #: apps/fe/src/containers/Sidepanel/tabs.tsx:20
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:28
 #: apps/fe/src/containers/Sidepanel/tabs.tsx:50
 msgid "Map of initiatives"
 msgstr "Map of initiatives"
@@ -187,13 +276,22 @@ msgstr "My initiatives"
 msgid "My organisations"
 msgstr "My organisations"
 
-#: apps/fe/src/containers/Creation/SelectName.tsx:27
+#: apps/fe/src/containers/Creation/SelectName.tsx:26
 msgid "Name of your initiative"
 msgstr "Name of your initiative"
 
-#: apps/fe/src/containers/Creation/SelectName.tsx:41
+#: apps/fe/src/containers/Creation/SelectName.tsx:40
 msgid "Next"
 msgstr "Next"
+
+#: apps/fe/src/containers/Login/index.tsx:68
+msgid "No account?"
+msgstr "No account?"
+
+#: apps/fe/src/containers/Login/CheckInbox.tsx:40
+#: apps/fe/src/containers/Register/CheckInbox.tsx:41
+msgid "Ok"
+msgstr "Ok"
 
 #: apps/fe/src/containers/FloatPanel/Search/Buttons.tsx:17
 #: apps/fe/src/containers/Sidepanel/Organizations/index.tsx:48
@@ -222,11 +320,12 @@ msgstr "Register"
 msgid "Search"
 msgstr "Search"
 
+#: apps/fe/src/containers/Sidepanel/Settings/index.tsx:41
 #: apps/fe/src/containers/Sidepanel/tabs.tsx:43
 msgid "Settings"
 msgstr "Settings"
 
-#: apps/fe/src/containers/Initiative/Header/index.tsx:43
+#: apps/fe/src/containers/Initiative/Header/index.tsx:42
 msgid "Share"
 msgstr "Share"
 
@@ -239,7 +338,23 @@ msgstr "Show"
 msgid "Show all"
 msgstr "Show all"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:175
+#: apps/fe/src/containers/Register/index.tsx:62
+msgid "Sign in"
+msgstr "Sign in"
+
+#: apps/fe/src/containers/Register/index.tsx:59
+msgid "Sign up with Email"
+msgstr "Sign up with Email"
+
+#: apps/fe/src/containers/Register/index.tsx:49
+msgid "Sign up with Facebook"
+msgstr "Sign up with Facebook"
+
+#: apps/fe/src/containers/Register/index.tsx:39
+msgid "Sign up with Google"
+msgstr "Sign up with Google"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:174
 msgid "Suggest a relevant task for the initiative that you can perform"
 msgstr "Suggest a relevant task for the initiative that you can perform"
 
@@ -247,17 +362,16 @@ msgstr "Suggest a relevant task for the initiative that you can perform"
 msgid "UK"
 msgstr "UK"
 
-#: apps/fe/src/containers/Login/Email.tsx:56
-#: apps/fe/src/containers/Login/index.tsx:59
+#: apps/fe/src/containers/Login/index.tsx:25
 msgid "Welcome back!"
 msgstr "Welcome back!"
 
 #: apps/fe/src/components/InitiativeCard/index.tsx:41
-#: apps/fe/src/containers/Initiative/Header/index.tsx:31
+#: apps/fe/src/containers/Initiative/Header/index.tsx:30
 msgid "km from me"
 msgstr "km from me"
 
 #: apps/fe/src/components/InitiativeCard/index.tsx:40
-#: apps/fe/src/containers/Initiative/Header/index.tsx:30
+#: apps/fe/src/containers/Initiative/Header/index.tsx:29
 msgid "m from me"
 msgstr "m from me"

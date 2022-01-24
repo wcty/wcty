@@ -1,9 +1,9 @@
-import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
+import { ReactComponent as ArrowDropDown } from '@assets/icons/arrow-drop-down.svg'
 import {  useUser } from "common";
 import { TasksDocument, Task_Statuses_Enum, useCheckTaskMutation, useTasksQuery } from "generated";
 import { useState } from "react";
 import { FinishedTasks, List, ProgressBar, Task } from "./styles";
-import { Checkbox } from 'components';
+import { Checkbox } from '@ui';
 import { useRouter } from 'next/router';
 import { Trans } from '@lingui/macro'
 

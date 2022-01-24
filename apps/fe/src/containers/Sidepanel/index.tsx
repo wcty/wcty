@@ -1,7 +1,7 @@
 
 import { SidepanelWrapper, Stripe, UserIconCell, Menu, UserIconRow, IconCell, IconRow, LangCell, UserPhoto, BottomPanel } from './styles'
-import { ReactComponent as UserIcon } from 'assets/icons/user.svg'
-import { ReactComponent as LogoutIcon } from 'assets/icons/logout.svg'
+import { ReactComponent as UserIcon } from '@assets/icons/user.svg'
+import { ReactComponent as LogoutIcon } from '@assets/icons/logout.svg'
 import { Trans } from '@lingui/macro'
 import { useState, useEffect } from 'react'
 import { auth,  useLayout, useUser } from 'common'
@@ -9,6 +9,7 @@ import { LangSelect } from 'components'
 import { tabs, Tabs } from './tabs'
 import Organizations from './Organizations'
 import Initiatives from './Initiatives'
+import Settings from './Settings'
 import { atom, useRecoilState } from 'recoil'
 import MenuHeader from './MenuHeader'
 import { useRouter } from 'next/router'
@@ -94,8 +95,10 @@ export default function Sidepanel (){
           {
             (selected==='myInitiatives'||selected==='initiatives')?
               <Initiatives/>:
-            (selected==='myOrganisations'||selected==='organisations')?
+              (selected==='myOrganisations'||selected==='organisations')?
               <Organizations/>:
+              (selected==='settings'||selected==='organisations')?
+              <Settings/>:
               null
           }
         </Menu>:

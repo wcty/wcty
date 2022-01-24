@@ -4,7 +4,6 @@
     "baseUrl": "src/",
     "typeRoots": ["src/types", "src/common/types", "node_modules/@types"],
     "strict": true,
-    "skipLibCheck": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "preserve",
     "noFallthroughCasesInSwitch": true,
@@ -16,19 +15,15 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": {
+      "@ui": ["../../../libs/ui/src/index.ts"],
+      "@ui/*": ["../../../libs/ui/src/*"],
+      "@assets/*": ["../../../libs/assets/*"],
+    }
   },
   "include": ["src"],
   "exclude": [
-    "node_modules",
-    "**/*.stories.ts",
-    "**/*.stories.js",
-    "**/*.stories.jsx",
-    "**/*.stories.tsx"
-  ],
-  "references": [
-    {
-      "path": "./.storybook/tsconfig.json"
-    }
-  ] 
+    "node_modules"  
+  ]
 }

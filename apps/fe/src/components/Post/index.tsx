@@ -1,8 +1,8 @@
 import { IPost } from "./types/IPost";
 import {  Actions, CommentCounter,  Container, Content, LikeCounter, Likes, Message, Tags, ToComment } from "./styles";
 import Author from "./Author";
-import CommentIco from 'assets/icons/comment.svg'
-import { ReactComponent as LikeIco} from 'assets/icons/like.svg'
+import CommentIco from '@assets/icons/comment.svg'
+import { ReactComponent as LikeIco} from '@assets/icons/like.svg'
 import { FeedFragment, Reactions_Enum, useReactionToPostMutation } from "generated";
 import { fixAvatar, useUser } from "common";
 

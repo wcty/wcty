@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { MapContext } from  '@urbica/react-map-gl'
 import { Map, CustomLayerInterface } from 'mapbox-gl'
-import Initiative from 'assets/icons/initiative.svg'
-import Org from 'assets/icons/org.svg'
-import PinNew from 'assets/icons/pin-new.svg'
+import Initiative from '@assets/icons/initiative.svg'
+import Org from '@assets/icons/org.svg'
+import PinNew from '@assets/icons/pin-new.svg'
 
-import MarkerActive from 'assets/images/markerActive.svg'
-import Marker from 'assets/images/marker.svg'
+import MarkerActive from '@assets/images/markerActive.svg'
+import Marker from '@assets/images/marker.svg'
 
 type MarkerSVG = CustomLayerInterface & {
   offset: number,
@@ -57,7 +57,7 @@ export default function LoadIcons () {
   return (
     <MapContext.Consumer>
       {(map:Map) => {
-        if(!loaded.current){
+        if(map && (!loaded.current) && (!map?.hasImage?.('marker-fixed'))){
           loadMarker(map, Marker, 'marker-fixed', 40, )
           loadMarker(map, MarkerActive, 'marker-active', 60)
           loadMarker(map, Initiative, 'initiative', 40, )

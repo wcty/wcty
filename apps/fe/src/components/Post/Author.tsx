@@ -1,6 +1,6 @@
 import { AuthorContainer, UserInfo } from "./styles";
 import { IAuthor } from "./types/IAuthor";
-import Avatar from "components/Avatar";
+import { Avatar } from "@ui";
 
 export interface IAuthorProps extends IAuthor {} 
 

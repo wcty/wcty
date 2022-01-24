@@ -1,6 +1,6 @@
 import { Card, Thumbnail, Content, TopBar, BottomPanel, Button, Metrics, Icon } from "./styles";
-import { ReactComponent as People } from 'assets/icons/popupPeople.svg'
-import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
+import { ReactComponent as People } from '@assets/icons/popupPeople.svg'
+import { ReactComponent as Location } from '@assets/icons/popupLocation.svg'
 import { useGeolocation,  atoms } from 'common';
 import distance from '@turf/distance'
 import { format } from 'd3-format'

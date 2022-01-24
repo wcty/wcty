@@ -1,7 +1,7 @@
 import { loadTranslation, useLayout } from "common"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import frog_wcty from "assets/images/frog_wcty.png"
+import frog_wcty from "@assets/images/frog_wcty.png"
 import { Burger, ContentWrapper } from 'styles'
 import Sidepanel from "containers/Sidepanel"
 import { FixedBottom } from 'react-fixed-bottom'
@@ -31,7 +31,7 @@ export default function AboutPage() {
       <title>{`About | Wecity`}</title>
       <meta name="description" content="Partners and sponsors of Wecity" />
       <meta property="og:type" content="article" />
-      <meta property="og:image" content={frog_wcty} />
+      <meta property="og:image" content={frog_wcty.src} />
       <meta property="og:title" content="About Wecity" />
       <meta property="og:description" content="Partners and sponsors of Wecity" />
       <meta property="og:site_name" content="Wecity" />

@@ -1,9 +1,9 @@
 import {  useLayout, useUser } from "common";
 import { InitiativePublicByPkQuery } from "generated";
 import { Block } from "./styles";
-import {ReactComponent as Flag} from "assets/icons/flag.svg"
-import {ReactComponent as Lightbulb} from "assets/icons/lightbulb.svg"
-import {ReactComponent as BuildCircle} from "assets/icons/build_circle.svg"
+import {ReactComponent as Flag} from "@assets/icons/flag.svg"
+import {ReactComponent as Lightbulb} from "@assets/icons/lightbulb.svg"
+import {ReactComponent as BuildCircle} from "@assets/icons/build_circle.svg"
 import { useRouter } from "next/router";
 import { InitiativeProps } from "containers/Initiative";
 import { Trans } from '@lingui/macro'

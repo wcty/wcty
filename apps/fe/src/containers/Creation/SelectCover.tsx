@@ -1,6 +1,6 @@
-import Button from "components/Button";
+import { Button } from "@ui";
 import { FileInput } from "./styles";
-import { ReactComponent as Steps } from 'assets/icons/steps2.svg'
+import { ReactComponent as Steps } from '@assets/icons/steps2.svg'
 import { Initiative } from ".";
 import { ChangeEvent, useEffect } from "react";
 import { Task_Statuses_Enum, useInsertInitiativeMutation } from "generated";

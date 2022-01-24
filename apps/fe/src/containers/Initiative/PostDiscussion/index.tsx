@@ -4,7 +4,7 @@ import { IPostDiscussion } from "./IPostDiscussion";
 import { Channels, Comments, Container, Expander, Header, Post, Title } from "./styles";
 import Comment from 'components/Post/Comment'
 
-import {ReactComponent as ArrowDownIco} from  'assets/icons/arrow-down.svg'
+import {ReactComponent as ArrowDownIco} from  '@assets/icons/arrow-down.svg'
 
 const post = {
     author: {name: "Анатолій Бойко", date : new Date(), roles: ['спеціаліст', 'волонтер', 'інвестор']},

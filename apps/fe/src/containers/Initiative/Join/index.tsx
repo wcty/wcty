@@ -1,6 +1,5 @@
 import {  useUser } from 'common';
-import Button from 'components/Button';
-import { Checkbox, TextArea, TextField } from 'components';
+import { Button, Checkbox, TextArea, TextField } from "@ui";
 import { InitiativeByPkDocument, useJoinMutation, useTasksQuery } from 'generated';
 import { useState } from 'react';
 import { Container, DonationMenu, Form, TaskSelection } from './styles';

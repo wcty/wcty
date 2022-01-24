@@ -1,7 +1,7 @@
 import {  useLayout, useUser } from "common";
 import { InitiativePublicByPkQuery } from "generated";
 import { Container, Grid, Img } from "./styles";
-import { ReactComponent as MediaIcon } from "assets/icons/media.svg"
+import { ReactComponent as MediaIcon } from "@assets/icons/media.svg"
 import { useRouter } from "next/router";
 import { InitiativeProps } from "containers/Initiative";
 import { Trans } from '@lingui/macro'

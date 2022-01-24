@@ -1,0 +1,25 @@
+subscription Settings($id:uuid!){
+  settings:user_settings_by_pk(user_id: $id) {
+    email_notifications
+    push_notifications
+  }
+}
+
+mutation UpdateSettings($id:uuid!, $email_notifications:Boolean!, $push_notifications:Boolean!){
+  settings:insert_user_settings(
+    objects: {
+      push_notifications: $push_notifications,
+      email_notifications: $email_notifications
+      user_id: $id
+    }
+    on_conflict: {
+      constraint: user_settings_pkey,
+      update_columns: [push_notifications, email_notifications]
+    }
+  ) {
+    setting:returning {
+      email_notifications
+      push_notifications
+    }
+  }
+}

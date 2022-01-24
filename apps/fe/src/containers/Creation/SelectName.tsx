@@ -1,6 +1,5 @@
-import Button from "components/Button";
-import { ReactComponent as Steps } from 'assets/icons/steps1.svg'
-import { TextArea, TextField } from "components";
+import { Button, TextArea, TextField } from "@ui";
+import { ReactComponent as Steps } from '@assets/icons/steps1.svg'
 import { Initiative } from ".";
 import { t, Trans } from '@lingui/macro'
 

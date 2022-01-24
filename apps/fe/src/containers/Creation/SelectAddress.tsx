@@ -1,13 +1,12 @@
-import Button from "components/Button";
 import { Center, LocationCard } from "./styles";
 import { atoms, useAddress,  useUser } from "common";
-import { ReactComponent as Steps } from 'assets/icons/steps.svg'
-import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
-import { ReactComponent as Pen } from 'assets/icons/pen.svg'
-import { ReactComponent as PinNew } from 'assets/icons/pin-new.svg'
+import { ReactComponent as Steps } from '@assets/icons/steps.svg'
+import { ReactComponent as Location } from '@assets/icons/popupLocation.svg'
+import { ReactComponent as Pen } from '@assets/icons/pen.svg'
+import { ReactComponent as PinNew } from '@assets/icons/pin-new.svg'
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { TextField } from "components";
+import { TextField, Button } from "@ui";
 import { Initiative } from ".";
 import { useRouter } from "next/router";
 import { Trans, t } from '@lingui/macro'

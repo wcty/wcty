@@ -5919,6 +5919,10 @@ export type Mutation_Root = {
   delete_tenders?: Maybe<Tenders_Mutation_Response>;
   /** delete single row from the table: "tenders" */
   delete_tenders_by_pk?: Maybe<Tenders>;
+  /** delete data from the table: "user_settings" */
+  delete_user_settings?: Maybe<User_Settings_Mutation_Response>;
+  /** delete single row from the table: "user_settings" */
+  delete_user_settings_by_pk?: Maybe<User_Settings>;
   /** insert data into the table: "files" */
   insert_files?: Maybe<Files_Mutation_Response>;
   /** insert a single row into the table: "files" */
@@ -6007,6 +6011,10 @@ export type Mutation_Root = {
   insert_tenders?: Maybe<Tenders_Mutation_Response>;
   /** insert a single row into the table: "tenders" */
   insert_tenders_one?: Maybe<Tenders>;
+  /** insert data into the table: "user_settings" */
+  insert_user_settings?: Maybe<User_Settings_Mutation_Response>;
+  /** insert a single row into the table: "user_settings" */
+  insert_user_settings_one?: Maybe<User_Settings>;
   /** update data of the table: "files" */
   update_files?: Maybe<Files_Mutation_Response>;
   /** update single row of the table: "files" */
@@ -6091,6 +6099,14 @@ export type Mutation_Root = {
   update_tenders?: Maybe<Tenders_Mutation_Response>;
   /** update single row of the table: "tenders" */
   update_tenders_by_pk?: Maybe<Tenders>;
+  /** update data of the table: "user_settings" */
+  update_user_settings?: Maybe<User_Settings_Mutation_Response>;
+  /** update single row of the table: "user_settings" */
+  update_user_settings_by_pk?: Maybe<User_Settings>;
+  /** update data of the table: "users" */
+  update_users?: Maybe<Users_Mutation_Response>;
+  /** update single row of the table: "users" */
+  update_users_by_pk?: Maybe<Users>;
 };
 
 
@@ -6345,6 +6361,18 @@ export type Mutation_RootDelete_TendersArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Tenders_By_PkArgs = {
   id: Scalars['bigint'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_User_SettingsArgs = {
+  where: User_Settings_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_User_Settings_By_PkArgs = {
+  user_id: Scalars['uuid'];
 };
 
 
@@ -6653,6 +6681,20 @@ export type Mutation_RootInsert_TendersArgs = {
 export type Mutation_RootInsert_Tenders_OneArgs = {
   object: Tenders_Insert_Input;
   on_conflict?: InputMaybe<Tenders_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_User_SettingsArgs = {
+  objects: Array<User_Settings_Insert_Input>;
+  on_conflict?: InputMaybe<User_Settings_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_User_Settings_OneArgs = {
+  object: User_Settings_Insert_Input;
+  on_conflict?: InputMaybe<User_Settings_On_Conflict>;
 };
 
 
@@ -6981,6 +7023,34 @@ export type Mutation_RootUpdate_Tenders_By_PkArgs = {
   _inc?: InputMaybe<Tenders_Inc_Input>;
   _set?: InputMaybe<Tenders_Set_Input>;
   pk_columns: Tenders_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_SettingsArgs = {
+  _set?: InputMaybe<User_Settings_Set_Input>;
+  where: User_Settings_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_Settings_By_PkArgs = {
+  _set?: InputMaybe<User_Settings_Set_Input>;
+  pk_columns: User_Settings_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_UsersArgs = {
+  _set?: InputMaybe<Users_Set_Input>;
+  where: Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Users_By_PkArgs = {
+  _set?: InputMaybe<Users_Set_Input>;
+  pk_columns: Users_Pk_Columns_Input;
 };
 
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
@@ -7700,6 +7770,10 @@ export type Query_Root = {
   tenders: Array<Tenders>;
   /** fetch data from the table: "tenders" using primary key columns */
   tenders_by_pk?: Maybe<Tenders>;
+  /** fetch data from the table: "user_settings" */
+  user_settings: Array<User_Settings>;
+  /** fetch data from the table: "user_settings" using primary key columns */
+  user_settings_by_pk?: Maybe<User_Settings>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch data from the table: "users" using primary key columns */
@@ -8235,6 +8309,20 @@ export type Query_RootTenders_By_PkArgs = {
 };
 
 
+export type Query_RootUser_SettingsArgs = {
+  distinct_on?: InputMaybe<Array<User_Settings_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Settings_Order_By>>;
+  where?: InputMaybe<User_Settings_Bool_Exp>;
+};
+
+
+export type Query_RootUser_Settings_By_PkArgs = {
+  user_id: Scalars['uuid'];
+};
+
+
 export type Query_RootUsersArgs = {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -8416,6 +8504,10 @@ export type Subscription_Root = {
   tenders: Array<Tenders>;
   /** fetch data from the table: "tenders" using primary key columns */
   tenders_by_pk?: Maybe<Tenders>;
+  /** fetch data from the table: "user_settings" */
+  user_settings: Array<User_Settings>;
+  /** fetch data from the table: "user_settings" using primary key columns */
+  user_settings_by_pk?: Maybe<User_Settings>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch data from the table: "users" using primary key columns */
@@ -8951,6 +9043,20 @@ export type Subscription_RootTenders_By_PkArgs = {
 };
 
 
+export type Subscription_RootUser_SettingsArgs = {
+  distinct_on?: InputMaybe<Array<User_Settings_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Settings_Order_By>>;
+  where?: InputMaybe<User_Settings_Bool_Exp>;
+};
+
+
+export type Subscription_RootUser_Settings_By_PkArgs = {
+  user_id: Scalars['uuid'];
+};
+
+
 export type Subscription_RootUsersArgs = {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -9368,6 +9474,94 @@ export type Timetz_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['timetz']>>;
 };
 
+/** columns and relationships of "user_settings" */
+export type User_Settings = {
+  email_notifications?: Maybe<Scalars['Boolean']>;
+  push_notifications?: Maybe<Scalars['Boolean']>;
+  /** An object relationship */
+  user: Users;
+  user_id: Scalars['uuid'];
+};
+
+/** Boolean expression to filter rows from the table "user_settings". All fields are combined with a logical 'AND'. */
+export type User_Settings_Bool_Exp = {
+  _and?: InputMaybe<Array<User_Settings_Bool_Exp>>;
+  _not?: InputMaybe<User_Settings_Bool_Exp>;
+  _or?: InputMaybe<Array<User_Settings_Bool_Exp>>;
+  email_notifications?: InputMaybe<Boolean_Comparison_Exp>;
+  push_notifications?: InputMaybe<Boolean_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+  user_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "user_settings" */
+export enum User_Settings_Constraint {
+  /** unique or primary key constraint */
+  UserSettingsPkey = 'user_settings_pkey'
+}
+
+/** input type for inserting data into table "user_settings" */
+export type User_Settings_Insert_Input = {
+  email_notifications?: InputMaybe<Scalars['Boolean']>;
+  push_notifications?: InputMaybe<Scalars['Boolean']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "user_settings" */
+export type User_Settings_Mutation_Response = {
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<User_Settings>;
+};
+
+/** on conflict condition type for table "user_settings" */
+export type User_Settings_On_Conflict = {
+  constraint: User_Settings_Constraint;
+  update_columns?: Array<User_Settings_Update_Column>;
+  where?: InputMaybe<User_Settings_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "user_settings". */
+export type User_Settings_Order_By = {
+  email_notifications?: InputMaybe<Order_By>;
+  push_notifications?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: user_settings */
+export type User_Settings_Pk_Columns_Input = {
+  user_id: Scalars['uuid'];
+};
+
+/** select columns of table "user_settings" */
+export enum User_Settings_Select_Column {
+  /** column name */
+  EmailNotifications = 'email_notifications',
+  /** column name */
+  PushNotifications = 'push_notifications',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** input type for updating data in table "user_settings" */
+export type User_Settings_Set_Input = {
+  email_notifications?: InputMaybe<Scalars['Boolean']>;
+  push_notifications?: InputMaybe<Scalars['Boolean']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "user_settings" */
+export enum User_Settings_Update_Column {
+  /** column name */
+  EmailNotifications = 'email_notifications',
+  /** column name */
+  PushNotifications = 'push_notifications',
+  /** column name */
+  UserId = 'user_id'
+}
+
 /** columns and relationships of "users" */
 export type Users = {
   avatar_url?: Maybe<Scalars['String']>;
@@ -9412,6 +9606,8 @@ export type Users = {
   posts: Array<Initiative_Posts>;
   /** An array relationship */
   projects: Array<Initiative_Projects>;
+  /** An object relationship */
+  settings?: Maybe<User_Settings>;
   /** An array relationship */
   subscriptions: Array<Initiative_Subscriptions>;
   /** An array relationship */
@@ -9689,11 +9885,20 @@ export type Users_Bool_Exp = {
   post_reactions?: InputMaybe<Initiative_Post_Reactions_Bool_Exp>;
   posts?: InputMaybe<Initiative_Posts_Bool_Exp>;
   projects?: InputMaybe<Initiative_Projects_Bool_Exp>;
+  settings?: InputMaybe<User_Settings_Bool_Exp>;
   subscriptions?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
   tasks?: InputMaybe<Initiative_Tasks_Bool_Exp>;
   tenders?: InputMaybe<Tenders_Bool_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   votes?: InputMaybe<Initiative_Poll_Votes_Bool_Exp>;
+};
+
+/** response of any mutation on the table "users" */
+export type Users_Mutation_Response = {
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Users>;
 };
 
 /** Ordering options when selecting data from "users". */
@@ -9717,11 +9922,17 @@ export type Users_Order_By = {
   post_reactions_aggregate?: InputMaybe<Initiative_Post_Reactions_Aggregate_Order_By>;
   posts_aggregate?: InputMaybe<Initiative_Posts_Aggregate_Order_By>;
   projects_aggregate?: InputMaybe<Initiative_Projects_Aggregate_Order_By>;
+  settings?: InputMaybe<User_Settings_Order_By>;
   subscriptions_aggregate?: InputMaybe<Initiative_Subscriptions_Aggregate_Order_By>;
   tasks_aggregate?: InputMaybe<Initiative_Tasks_Aggregate_Order_By>;
   tenders_aggregate?: InputMaybe<Tenders_Aggregate_Order_By>;
   updated_at?: InputMaybe<Order_By>;
   votes_aggregate?: InputMaybe<Initiative_Poll_Votes_Aggregate_Order_By>;
+};
+
+/** primary key columns input for table: users */
+export type Users_Pk_Columns_Input = {
+  id: Scalars['uuid'];
 };
 
 /** select columns of table "users" */
@@ -9737,6 +9948,13 @@ export enum Users_Select_Column {
   /** column name */
   UpdatedAt = 'updated_at'
 }
+
+/** input type for updating data in table "users" */
+export type Users_Set_Input = {
+  avatar_url?: InputMaybe<Scalars['String']>;
+  display_name?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 export type Uuid_Comparison_Exp = {
@@ -10040,6 +10258,22 @@ export type MyOrganizationListQueryVariables = Exact<{
 
 
 export type MyOrganizationListQuery = { orgs: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
+
+export type SettingsSubscriptionVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type SettingsSubscription = { settings?: { email_notifications?: boolean | null | undefined, push_notifications?: boolean | null | undefined } | null | undefined };
+
+export type UpdateSettingsMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  email_notifications: Scalars['Boolean'];
+  push_notifications: Scalars['Boolean'];
+}>;
+
+
+export type UpdateSettingsMutation = { settings?: { setting: Array<{ email_notifications?: boolean | null | undefined, push_notifications?: boolean | null | undefined }> } | null | undefined };
 
 export type LastEntriesQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']>;
@@ -11391,6 +11625,78 @@ export function useMyOrganizationListLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type MyOrganizationListQueryHookResult = ReturnType<typeof useMyOrganizationListQuery>;
 export type MyOrganizationListLazyQueryHookResult = ReturnType<typeof useMyOrganizationListLazyQuery>;
 export type MyOrganizationListQueryResult = Apollo.QueryResult<MyOrganizationListQuery, MyOrganizationListQueryVariables>;
+export const SettingsDocument = gql`
+    subscription Settings($id: uuid!) {
+  settings: user_settings_by_pk(user_id: $id) {
+    email_notifications
+    push_notifications
+  }
+}
+    `;
+
+/**
+ * __useSettingsSubscription__
+ *
+ * To run a query within a React component, call `useSettingsSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useSettingsSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSettingsSubscription({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useSettingsSubscription(baseOptions: Apollo.SubscriptionHookOptions<SettingsSubscription, SettingsSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<SettingsSubscription, SettingsSubscriptionVariables>(SettingsDocument, options);
+      }
+export type SettingsSubscriptionHookResult = ReturnType<typeof useSettingsSubscription>;
+export type SettingsSubscriptionResult = Apollo.SubscriptionResult<SettingsSubscription>;
+export const UpdateSettingsDocument = gql`
+    mutation UpdateSettings($id: uuid!, $email_notifications: Boolean!, $push_notifications: Boolean!) {
+  settings: insert_user_settings(
+    objects: {push_notifications: $push_notifications, email_notifications: $email_notifications, user_id: $id}
+    on_conflict: {constraint: user_settings_pkey, update_columns: [push_notifications, email_notifications]}
+  ) {
+    setting: returning {
+      email_notifications
+      push_notifications
+    }
+  }
+}
+    `;
+export type UpdateSettingsMutationFn = Apollo.MutationFunction<UpdateSettingsMutation, UpdateSettingsMutationVariables>;
+
+/**
+ * __useUpdateSettingsMutation__
+ *
+ * To run a mutation, you first call `useUpdateSettingsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateSettingsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateSettingsMutation, { data, loading, error }] = useUpdateSettingsMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      email_notifications: // value for 'email_notifications'
+ *      push_notifications: // value for 'push_notifications'
+ *   },
+ * });
+ */
+export function useUpdateSettingsMutation(baseOptions?: Apollo.MutationHookOptions<UpdateSettingsMutation, UpdateSettingsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateSettingsMutation, UpdateSettingsMutationVariables>(UpdateSettingsDocument, options);
+      }
+export type UpdateSettingsMutationHookResult = ReturnType<typeof useUpdateSettingsMutation>;
+export type UpdateSettingsMutationResult = Apollo.MutationResult<UpdateSettingsMutation>;
+export type UpdateSettingsMutationOptions = Apollo.BaseMutationOptions<UpdateSettingsMutation, UpdateSettingsMutationVariables>;
 export const LastEntriesDocument = gql`
     query LastEntries($limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $user_id: uuid!) {
   entry_visits(
@@ -12442,7 +12748,7 @@ export type map_entriesFieldPolicy = {
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	type?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type mutation_rootKeySpecifier = ('delete_files' | 'delete_files_by_pk' | 'delete_initiative_comment_reactions' | 'delete_initiative_comment_reactions_by_pk' | 'delete_initiative_comments' | 'delete_initiative_comments_by_pk' | 'delete_initiative_donations' | 'delete_initiative_donations_by_pk' | 'delete_initiative_edits' | 'delete_initiative_edits_by_pk' | 'delete_initiative_expenses' | 'delete_initiative_expenses_by_pk' | 'delete_initiative_info' | 'delete_initiative_info_by_pk' | 'delete_initiative_members' | 'delete_initiative_members_by_pk' | 'delete_initiative_poll_votes' | 'delete_initiative_poll_votes_by_pk' | 'delete_initiative_polls' | 'delete_initiative_polls_by_pk' | 'delete_initiative_post_reactions' | 'delete_initiative_post_reactions_by_pk' | 'delete_initiative_posts' | 'delete_initiative_posts_by_pk' | 'delete_initiative_projects' | 'delete_initiative_projects_by_pk' | 'delete_initiative_subscriptions' | 'delete_initiative_subscriptions_by_pk' | 'delete_initiative_tags' | 'delete_initiative_tags_by_pk' | 'delete_initiative_tasks' | 'delete_initiative_tasks_by_pk' | 'delete_initiative_threads' | 'delete_initiative_threads_by_pk' | 'delete_initiative_visits' | 'delete_initiative_visits_by_pk' | 'delete_initiative_volunteers' | 'delete_initiative_volunteers_by_pk' | 'delete_initiatives' | 'delete_initiatives_by_pk' | 'delete_tenders' | 'delete_tenders_by_pk' | 'insert_files' | 'insert_files_one' | 'insert_initiative_comment_reactions' | 'insert_initiative_comment_reactions_one' | 'insert_initiative_comments' | 'insert_initiative_comments_one' | 'insert_initiative_donations' | 'insert_initiative_donations_one' | 'insert_initiative_edits' | 'insert_initiative_edits_one' | 'insert_initiative_expenses' | 'insert_initiative_expenses_one' | 'insert_initiative_info' | 'insert_initiative_info_one' | 'insert_initiative_members' | 'insert_initiative_members_one' | 'insert_initiative_poll_votes' | 'insert_initiative_poll_votes_one' | 'insert_initiative_polls' | 'insert_initiative_polls_one' | 'insert_initiative_post_reactions' | 'insert_initiative_post_reactions_one' | 'insert_initiative_posts' | 'insert_initiative_posts_one' | 'insert_initiative_projects' | 'insert_initiative_projects_one' | 'insert_initiative_subscriptions' | 'insert_initiative_subscriptions_one' | 'insert_initiative_tags' | 'insert_initiative_tags_one' | 'insert_initiative_tasks' | 'insert_initiative_tasks_one' | 'insert_initiative_threads' | 'insert_initiative_threads_one' | 'insert_initiative_visits' | 'insert_initiative_visits_one' | 'insert_initiative_volunteers' | 'insert_initiative_volunteers_one' | 'insert_initiatives' | 'insert_initiatives_one' | 'insert_tags' | 'insert_tags_one' | 'insert_tenders' | 'insert_tenders_one' | 'update_files' | 'update_files_by_pk' | 'update_initiative_comment_reactions' | 'update_initiative_comment_reactions_by_pk' | 'update_initiative_comments' | 'update_initiative_comments_by_pk' | 'update_initiative_donations' | 'update_initiative_donations_by_pk' | 'update_initiative_edits' | 'update_initiative_edits_by_pk' | 'update_initiative_expenses' | 'update_initiative_expenses_by_pk' | 'update_initiative_info' | 'update_initiative_info_by_pk' | 'update_initiative_members' | 'update_initiative_members_by_pk' | 'update_initiative_poll_votes' | 'update_initiative_poll_votes_by_pk' | 'update_initiative_polls' | 'update_initiative_polls_by_pk' | 'update_initiative_post_reactions' | 'update_initiative_post_reactions_by_pk' | 'update_initiative_posts' | 'update_initiative_posts_by_pk' | 'update_initiative_projects' | 'update_initiative_projects_by_pk' | 'update_initiative_subscriptions' | 'update_initiative_subscriptions_by_pk' | 'update_initiative_tags' | 'update_initiative_tags_by_pk' | 'update_initiative_tasks' | 'update_initiative_tasks_by_pk' | 'update_initiative_threads' | 'update_initiative_threads_by_pk' | 'update_initiative_visits' | 'update_initiative_visits_by_pk' | 'update_initiative_volunteers' | 'update_initiative_volunteers_by_pk' | 'update_initiatives' | 'update_initiatives_by_pk' | 'update_tenders' | 'update_tenders_by_pk' | mutation_rootKeySpecifier)[];
+export type mutation_rootKeySpecifier = ('delete_files' | 'delete_files_by_pk' | 'delete_initiative_comment_reactions' | 'delete_initiative_comment_reactions_by_pk' | 'delete_initiative_comments' | 'delete_initiative_comments_by_pk' | 'delete_initiative_donations' | 'delete_initiative_donations_by_pk' | 'delete_initiative_edits' | 'delete_initiative_edits_by_pk' | 'delete_initiative_expenses' | 'delete_initiative_expenses_by_pk' | 'delete_initiative_info' | 'delete_initiative_info_by_pk' | 'delete_initiative_members' | 'delete_initiative_members_by_pk' | 'delete_initiative_poll_votes' | 'delete_initiative_poll_votes_by_pk' | 'delete_initiative_polls' | 'delete_initiative_polls_by_pk' | 'delete_initiative_post_reactions' | 'delete_initiative_post_reactions_by_pk' | 'delete_initiative_posts' | 'delete_initiative_posts_by_pk' | 'delete_initiative_projects' | 'delete_initiative_projects_by_pk' | 'delete_initiative_subscriptions' | 'delete_initiative_subscriptions_by_pk' | 'delete_initiative_tags' | 'delete_initiative_tags_by_pk' | 'delete_initiative_tasks' | 'delete_initiative_tasks_by_pk' | 'delete_initiative_threads' | 'delete_initiative_threads_by_pk' | 'delete_initiative_visits' | 'delete_initiative_visits_by_pk' | 'delete_initiative_volunteers' | 'delete_initiative_volunteers_by_pk' | 'delete_initiatives' | 'delete_initiatives_by_pk' | 'delete_tenders' | 'delete_tenders_by_pk' | 'delete_user_settings' | 'delete_user_settings_by_pk' | 'insert_files' | 'insert_files_one' | 'insert_initiative_comment_reactions' | 'insert_initiative_comment_reactions_one' | 'insert_initiative_comments' | 'insert_initiative_comments_one' | 'insert_initiative_donations' | 'insert_initiative_donations_one' | 'insert_initiative_edits' | 'insert_initiative_edits_one' | 'insert_initiative_expenses' | 'insert_initiative_expenses_one' | 'insert_initiative_info' | 'insert_initiative_info_one' | 'insert_initiative_members' | 'insert_initiative_members_one' | 'insert_initiative_poll_votes' | 'insert_initiative_poll_votes_one' | 'insert_initiative_polls' | 'insert_initiative_polls_one' | 'insert_initiative_post_reactions' | 'insert_initiative_post_reactions_one' | 'insert_initiative_posts' | 'insert_initiative_posts_one' | 'insert_initiative_projects' | 'insert_initiative_projects_one' | 'insert_initiative_subscriptions' | 'insert_initiative_subscriptions_one' | 'insert_initiative_tags' | 'insert_initiative_tags_one' | 'insert_initiative_tasks' | 'insert_initiative_tasks_one' | 'insert_initiative_threads' | 'insert_initiative_threads_one' | 'insert_initiative_visits' | 'insert_initiative_visits_one' | 'insert_initiative_volunteers' | 'insert_initiative_volunteers_one' | 'insert_initiatives' | 'insert_initiatives_one' | 'insert_tags' | 'insert_tags_one' | 'insert_tenders' | 'insert_tenders_one' | 'insert_user_settings' | 'insert_user_settings_one' | 'update_files' | 'update_files_by_pk' | 'update_initiative_comment_reactions' | 'update_initiative_comment_reactions_by_pk' | 'update_initiative_comments' | 'update_initiative_comments_by_pk' | 'update_initiative_donations' | 'update_initiative_donations_by_pk' | 'update_initiative_edits' | 'update_initiative_edits_by_pk' | 'update_initiative_expenses' | 'update_initiative_expenses_by_pk' | 'update_initiative_info' | 'update_initiative_info_by_pk' | 'update_initiative_members' | 'update_initiative_members_by_pk' | 'update_initiative_poll_votes' | 'update_initiative_poll_votes_by_pk' | 'update_initiative_polls' | 'update_initiative_polls_by_pk' | 'update_initiative_post_reactions' | 'update_initiative_post_reactions_by_pk' | 'update_initiative_posts' | 'update_initiative_posts_by_pk' | 'update_initiative_projects' | 'update_initiative_projects_by_pk' | 'update_initiative_subscriptions' | 'update_initiative_subscriptions_by_pk' | 'update_initiative_tags' | 'update_initiative_tags_by_pk' | 'update_initiative_tasks' | 'update_initiative_tasks_by_pk' | 'update_initiative_threads' | 'update_initiative_threads_by_pk' | 'update_initiative_visits' | 'update_initiative_visits_by_pk' | 'update_initiative_volunteers' | 'update_initiative_volunteers_by_pk' | 'update_initiatives' | 'update_initiatives_by_pk' | 'update_tenders' | 'update_tenders_by_pk' | 'update_user_settings' | 'update_user_settings_by_pk' | 'update_users' | 'update_users_by_pk' | mutation_rootKeySpecifier)[];
 export type mutation_rootFieldPolicy = {
 	delete_files?: FieldPolicy<any> | FieldReadFunction<any>,
 	delete_files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12486,6 +12792,8 @@ export type mutation_rootFieldPolicy = {
 	delete_initiatives_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	delete_tenders?: FieldPolicy<any> | FieldReadFunction<any>,
 	delete_tenders_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
+	delete_user_settings?: FieldPolicy<any> | FieldReadFunction<any>,
+	delete_user_settings_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	insert_files?: FieldPolicy<any> | FieldReadFunction<any>,
 	insert_files_one?: FieldPolicy<any> | FieldReadFunction<any>,
 	insert_initiative_comment_reactions?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12530,6 +12838,8 @@ export type mutation_rootFieldPolicy = {
 	insert_tags_one?: FieldPolicy<any> | FieldReadFunction<any>,
 	insert_tenders?: FieldPolicy<any> | FieldReadFunction<any>,
 	insert_tenders_one?: FieldPolicy<any> | FieldReadFunction<any>,
+	insert_user_settings?: FieldPolicy<any> | FieldReadFunction<any>,
+	insert_user_settings_one?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_files?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_initiative_comment_reactions?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12571,7 +12881,11 @@ export type mutation_rootFieldPolicy = {
 	update_initiatives?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_initiatives_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_tenders?: FieldPolicy<any> | FieldReadFunction<any>,
-	update_tenders_by_pk?: FieldPolicy<any> | FieldReadFunction<any>
+	update_tenders_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
+	update_user_settings?: FieldPolicy<any> | FieldReadFunction<any>,
+	update_user_settings_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
+	update_users?: FieldPolicy<any> | FieldReadFunction<any>,
+	update_users_by_pk?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type org_membersKeySpecifier = ('created_at' | 'id' | 'org' | 'org_id' | 'role' | 'role_description' | 'user' | 'user_id' | org_membersKeySpecifier)[];
 export type org_membersFieldPolicy = {
@@ -12618,7 +12932,7 @@ export type orgsFieldPolicy = {
 	tags?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type query_rootKeySpecifier = ('entries' | 'entries_nearby' | 'entry_members' | 'entry_visits' | 'files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_comment_reactions' | 'initiative_comment_reactions_by_pk' | 'initiative_comments' | 'initiative_comments_aggregate' | 'initiative_comments_by_pk' | 'initiative_donations' | 'initiative_donations_aggregate' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_post_reactions' | 'initiative_post_reactions_by_pk' | 'initiative_posts' | 'initiative_posts_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_subscriptions' | 'initiative_subscriptions_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_aggregate' | 'initiative_tasks_by_pk' | 'initiative_threads' | 'initiative_threads_aggregate' | 'initiative_threads_by_pk' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'task_statuses' | 'task_statuses_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
+export type query_rootKeySpecifier = ('entries' | 'entries_nearby' | 'entry_members' | 'entry_visits' | 'files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_comment_reactions' | 'initiative_comment_reactions_by_pk' | 'initiative_comments' | 'initiative_comments_aggregate' | 'initiative_comments_by_pk' | 'initiative_donations' | 'initiative_donations_aggregate' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_post_reactions' | 'initiative_post_reactions_by_pk' | 'initiative_posts' | 'initiative_posts_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_subscriptions' | 'initiative_subscriptions_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_aggregate' | 'initiative_tasks_by_pk' | 'initiative_threads' | 'initiative_threads_aggregate' | 'initiative_threads_by_pk' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'task_statuses' | 'task_statuses_by_pk' | 'tenders' | 'tenders_by_pk' | 'user_settings' | 'user_settings_by_pk' | 'users' | 'users_by_pk' | query_rootKeySpecifier)[];
 export type query_rootFieldPolicy = {
 	entries?: FieldPolicy<any> | FieldReadFunction<any>,
 	entries_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12691,10 +13005,12 @@ export type query_rootFieldPolicy = {
 	task_statuses_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_settings?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_settings_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	users?: FieldPolicy<any> | FieldReadFunction<any>,
 	users_by_pk?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type subscription_rootKeySpecifier = ('entries' | 'entries_nearby' | 'entry_members' | 'entry_visits' | 'files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_comment_reactions' | 'initiative_comment_reactions_by_pk' | 'initiative_comments' | 'initiative_comments_aggregate' | 'initiative_comments_by_pk' | 'initiative_donations' | 'initiative_donations_aggregate' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_post_reactions' | 'initiative_post_reactions_by_pk' | 'initiative_posts' | 'initiative_posts_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_subscriptions' | 'initiative_subscriptions_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_aggregate' | 'initiative_tasks_by_pk' | 'initiative_threads' | 'initiative_threads_aggregate' | 'initiative_threads_by_pk' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'task_statuses' | 'task_statuses_by_pk' | 'tenders' | 'tenders_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
+export type subscription_rootKeySpecifier = ('entries' | 'entries_nearby' | 'entry_members' | 'entry_visits' | 'files' | 'files_by_pk' | 'i18n' | 'i18n_by_pk' | 'i18n_categories' | 'i18n_categories_by_pk' | 'initiative_comment_reactions' | 'initiative_comment_reactions_by_pk' | 'initiative_comments' | 'initiative_comments_aggregate' | 'initiative_comments_by_pk' | 'initiative_donations' | 'initiative_donations_aggregate' | 'initiative_donations_by_pk' | 'initiative_edits' | 'initiative_edits_by_pk' | 'initiative_expenses' | 'initiative_expenses_by_pk' | 'initiative_info' | 'initiative_info_by_pk' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_members_by_pk' | 'initiative_poll_votes' | 'initiative_poll_votes_by_pk' | 'initiative_polls' | 'initiative_polls_by_pk' | 'initiative_post_reactions' | 'initiative_post_reactions_by_pk' | 'initiative_posts' | 'initiative_posts_by_pk' | 'initiative_projects' | 'initiative_projects_by_pk' | 'initiative_subscriptions' | 'initiative_subscriptions_by_pk' | 'initiative_tags' | 'initiative_tags_by_pk' | 'initiative_tasks' | 'initiative_tasks_aggregate' | 'initiative_tasks_by_pk' | 'initiative_threads' | 'initiative_threads_aggregate' | 'initiative_threads_by_pk' | 'initiative_visits' | 'initiative_visits_by_pk' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'initiative_volunteers_by_pk' | 'initiatives' | 'initiatives_by_pk' | 'initiatives_nearby' | 'map_entries' | 'org_members' | 'org_members_by_pk' | 'org_projects' | 'org_projects_by_pk' | 'org_tags' | 'org_tags_by_pk' | 'orgs' | 'orgs_by_pk' | 'orgs_nearby' | 'tags' | 'tags_by_pk' | 'task_statuses' | 'task_statuses_by_pk' | 'tenders' | 'tenders_by_pk' | 'user_settings' | 'user_settings_by_pk' | 'users' | 'users_by_pk' | subscription_rootKeySpecifier)[];
 export type subscription_rootFieldPolicy = {
 	entries?: FieldPolicy<any> | FieldReadFunction<any>,
 	entries_nearby?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12767,6 +13083,8 @@ export type subscription_rootFieldPolicy = {
 	task_statuses_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_settings?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_settings_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	users?: FieldPolicy<any> | FieldReadFunction<any>,
 	users_by_pk?: FieldPolicy<any> | FieldReadFunction<any>
 };
@@ -12804,7 +13122,19 @@ export type tenders_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type usersKeySpecifier = ('avatar_url' | 'comment_reactions' | 'comments' | 'comments_aggregate' | 'created_at' | 'display_name' | 'donations' | 'donations_aggregate' | 'edits' | 'expenses' | 'files' | 'id' | 'initiative_infos' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_visits' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'org_members' | 'org_projects' | 'post_reactions' | 'posts' | 'projects' | 'subscriptions' | 'tasks' | 'tasks_aggregate' | 'tenders' | 'updated_at' | 'votes' | usersKeySpecifier)[];
+export type user_settingsKeySpecifier = ('email_notifications' | 'push_notifications' | 'user' | 'user_id' | user_settingsKeySpecifier)[];
+export type user_settingsFieldPolicy = {
+	email_notifications?: FieldPolicy<any> | FieldReadFunction<any>,
+	push_notifications?: FieldPolicy<any> | FieldReadFunction<any>,
+	user?: FieldPolicy<any> | FieldReadFunction<any>,
+	user_id?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type user_settings_mutation_responseKeySpecifier = ('affected_rows' | 'returning' | user_settings_mutation_responseKeySpecifier)[];
+export type user_settings_mutation_responseFieldPolicy = {
+	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
+	returning?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type usersKeySpecifier = ('avatar_url' | 'comment_reactions' | 'comments' | 'comments_aggregate' | 'created_at' | 'display_name' | 'donations' | 'donations_aggregate' | 'edits' | 'expenses' | 'files' | 'id' | 'initiative_infos' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_visits' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'org_members' | 'org_projects' | 'post_reactions' | 'posts' | 'projects' | 'settings' | 'subscriptions' | 'tasks' | 'tasks_aggregate' | 'tenders' | 'updated_at' | 'votes' | usersKeySpecifier)[];
 export type usersFieldPolicy = {
 	avatar_url?: FieldPolicy<any> | FieldReadFunction<any>,
 	comment_reactions?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12829,12 +13159,18 @@ export type usersFieldPolicy = {
 	post_reactions?: FieldPolicy<any> | FieldReadFunction<any>,
 	posts?: FieldPolicy<any> | FieldReadFunction<any>,
 	projects?: FieldPolicy<any> | FieldReadFunction<any>,
+	settings?: FieldPolicy<any> | FieldReadFunction<any>,
 	subscriptions?: FieldPolicy<any> | FieldReadFunction<any>,
 	tasks?: FieldPolicy<any> | FieldReadFunction<any>,
 	tasks_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
 	updated_at?: FieldPolicy<any> | FieldReadFunction<any>,
 	votes?: FieldPolicy<any> | FieldReadFunction<any>
+};
+export type users_mutation_responseKeySpecifier = ('affected_rows' | 'returning' | users_mutation_responseKeySpecifier)[];
+export type users_mutation_responseFieldPolicy = {
+	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
+	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type StrictTypedTypePolicies = {
 	entries?: Omit<TypePolicy, "fields" | "keyFields"> & {
@@ -13325,9 +13661,21 @@ export type StrictTypedTypePolicies = {
 		keyFields?: false | tenders_mutation_responseKeySpecifier | (() => undefined | tenders_mutation_responseKeySpecifier),
 		fields?: tenders_mutation_responseFieldPolicy,
 	},
+	user_settings?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | user_settingsKeySpecifier | (() => undefined | user_settingsKeySpecifier),
+		fields?: user_settingsFieldPolicy,
+	},
+	user_settings_mutation_response?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | user_settings_mutation_responseKeySpecifier | (() => undefined | user_settings_mutation_responseKeySpecifier),
+		fields?: user_settings_mutation_responseFieldPolicy,
+	},
 	users?: Omit<TypePolicy, "fields" | "keyFields"> & {
 		keyFields?: false | usersKeySpecifier | (() => undefined | usersKeySpecifier),
 		fields?: usersFieldPolicy,
+	},
+	users_mutation_response?: Omit<TypePolicy, "fields" | "keyFields"> & {
+		keyFields?: false | users_mutation_responseKeySpecifier | (() => undefined | users_mutation_responseKeySpecifier),
+		fields?: users_mutation_responseFieldPolicy,
 	}
 };
 export type TypedTypePolicies = StrictTypedTypePolicies & TypePolicies;

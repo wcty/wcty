@@ -22,7 +22,8 @@
       "options": {
         "buildTarget": "fe:build",
         "dev": true,
-        "port": 3000
+        "port": 3000,
+        "buildLibsFromSource": true
       },
       "configurations": {
         "production": {
@@ -62,14 +63,14 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "cwd": "apps/fe",
-        "command": "dotenv -- graphql-codegen --config scripts/codegen.yml --silent"
+        "command": "NODE_NO_WARNINGS=1 dotenv -- graphql-codegen --config scripts/codegen.yml --silent"
       }
     },
     "gql-watch": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "cwd": "apps/fe",
-        "command": "dotenv -- graphql-codegen --config scripts/codegen.yml --watch --silent"
+        "command": "NODE_NO_WARNINGS=1 dotenv -- graphql-codegen --config scripts/codegen.yml --watch --silent"
       }
     },
 
@@ -89,37 +90,6 @@
       "configurations": {
         "compile": {
           "command": "lingui compile"
-        }
-      }
-    },
-    "storybook": {
-      "executor": "@nrwl/storybook:storybook",
-      "options": {
-        "uiFramework": "@storybook/react",
-        "port": 4400,
-        "config": {
-          "configFolder": "apps/fe/.storybook"
-        }
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "build-storybook": {
-      "executor": "@nrwl/storybook:build",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "uiFramework": "@storybook/react",
-        "outputPath": "dist/storybook/fe",
-        "config": {
-          "configFolder": "apps/fe/.storybook"
-        }
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
         }
       }
     }

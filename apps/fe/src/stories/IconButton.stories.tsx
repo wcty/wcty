@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import IconButton from "components/IconButton";
+import { IconButton } from "@ui";
 
 
 

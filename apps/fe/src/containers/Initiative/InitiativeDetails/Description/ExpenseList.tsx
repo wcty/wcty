@@ -1,7 +1,7 @@
-import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
+import { ReactComponent as ArrowDropDown } from '@assets/icons/arrow-drop-down.svg'
 import { useState } from "react";
 import { Expense, List } from "./styles";
-import {ReactComponent as LinkIcon} from 'assets/icons/link.svg';
+import {ReactComponent as LinkIcon} from '@assets/icons/link.svg';
 import { InitiativeProps } from 'containers/Initiative';
 import { Trans } from '@lingui/macro'
 

@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: apps/fe/src/containers/Sidepanel/index.tsx:126
+#: apps/fe/src/containers/Sidepanel/index.tsx:129
 msgid "About platform"
 msgstr "Про платформу"
 
@@ -21,24 +21,36 @@ msgstr "Про платформу"
 msgid "Add photo"
 msgstr "Додати фото"
 
-#: apps/fe/src/containers/Creation/SelectAddress.tsx:48
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:47
 msgid "Address of initiative"
 msgstr "Адреса ініціативи"
 
-#: apps/fe/src/containers/Creation/SelectAddress.tsx:89
+#: apps/fe/src/containers/Login/Email.tsx:60
+msgid "All log in options"
+msgstr "Всі варіанти входу"
+
+#: apps/fe/src/containers/Register/Email.tsx:62
+msgid "All sign up options"
+msgstr "Всі варіанти реєстрації"
+
+#: apps/fe/src/containers/Register/index.tsx:62
+msgid "Already have an account?"
+msgstr "Вже маєте акаунт?"
+
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:88
 msgid "Approve address"
 msgstr "Підтвердити адресу"
 
 #: apps/fe/src/containers/Creation/SelectCover.tsx:53
-#: apps/fe/src/containers/Creation/SelectName.tsx:36
+#: apps/fe/src/containers/Creation/SelectName.tsx:35
 msgid "Back"
 msgstr "Назад"
 
-#: apps/fe/src/containers/Creation/SelectAddress.tsx:74
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:73
 msgid "Cancel"
 msgstr "Відмінити"
 
-#: apps/fe/src/containers/Creation/SelectAddress.tsx:58
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:57
 msgid "Change"
 msgstr "Змінити"
 
@@ -46,13 +58,34 @@ msgstr "Змінити"
 msgid "Change photo"
 msgstr "Змінити фото"
 
-#: apps/fe/src/components/Post/CreatePost.tsx:34
+#: apps/fe/src/components/Post/CreatePost.tsx:30
 msgid "Channels"
 msgstr "Канали"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:143
+#: apps/fe/src/containers/Login/CheckInbox.tsx:26
+#: apps/fe/src/containers/Register/CheckInbox.tsx:27
+msgid "Check your Inbox"
+msgstr "Перевірте свою пошту"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:142
 msgid "Choose one of the tasks you can perform, or suggest your own."
 msgstr "Оберіть одне з завдань яке ви зможете виконувати, або запропонуйте власне."
+
+#: apps/fe/src/containers/Login/index.tsx:71
+msgid "Click \"Log In\" to agree to Wecity's <0>Terms of Service</0>and acknowledge that Wecity's <1>Privacy Policy</1> applies to you."
+msgstr "Натисніть \"Увійти\" щоб погодитися з <0>Умовами користування</0> та підтвердити, що <1>Політика конфіденційності</1> застосовується до вас."
+
+#: apps/fe/src/containers/Register/index.tsx:65
+msgid "Click \"Sign Up\" to agree to Wecity's <0>Terms of Service</0>and acknowledge that Wecity's <1>Privacy Policy</1> applies to you."
+msgstr "Натисніть \"Зареєструватися\" щоб погодитися з <0>Умовами користування</0> та підтвердити, що <1>Політика конфіденційності</1> застосовується до вас."
+
+#: apps/fe/src/containers/Register/CheckInbox.tsx:30
+msgid "Click the link we've sent to {0} to complete your account set-up."
+msgstr "Натисніть посилання яке ми надіслали на {0} щоб завершити налаштування вашого акаунту."
+
+#: apps/fe/src/containers/Login/CheckInbox.tsx:29
+msgid "Click the link we've sent to {0} to complete your sign-in."
+msgstr "Натисніть посилання яке ми надіслали на {0} щоб завершити вхід."
 
 #: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:140
 #: apps/fe/src/containers/Initiative/InitiativeDetails/Description/styles.tsx:145
@@ -63,21 +96,30 @@ msgstr "Зібрано {sum} з необхідних {total}"
 msgid "Context"
 msgstr "Передумови"
 
+#: apps/fe/src/containers/Login/Email.tsx:54
+#: apps/fe/src/containers/Register/Email.tsx:56
+msgid "Continue"
+msgstr "Продовжити"
+
 #: apps/fe/src/containers/Creation/SelectCover.tsx:101
 msgid "Create initiative"
 msgstr "Створити ініціативу"
 
-#: apps/fe/src/components/Post/CreatePost.tsx:40
+#: apps/fe/src/containers/Login/index.tsx:68
+msgid "Create one"
+msgstr "Створити"
+
+#: apps/fe/src/components/Post/CreatePost.tsx:36
 msgid "Create poll"
 msgstr "Створити голосування"
 
-#: apps/fe/src/containers/Creation/SelectAddress.tsx:40
+#: apps/fe/src/containers/Creation/SelectAddress.tsx:39
 #: apps/fe/src/containers/Creation/SelectCover.tsx:36
-#: apps/fe/src/containers/Creation/SelectName.tsx:20
+#: apps/fe/src/containers/Creation/SelectName.tsx:19
 msgid "Creation of initiative"
 msgstr "Створення ініціативи"
 
-#: apps/fe/src/containers/Creation/SelectName.tsx:32
+#: apps/fe/src/containers/Creation/SelectName.tsx:31
 msgid "Describe your idea or problem that you are trying to solve"
 msgstr "Опишіть свою ідею або проблему що ви намагаєтеся вирішити"
 
@@ -89,9 +131,27 @@ msgstr "Опис ініціативи"
 msgid "EN"
 msgstr "EN"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:126
+#: apps/fe/src/containers/Sidepanel/Settings/index.tsx:52
+#: apps/fe/src/containers/Sidepanel/Settings/index.tsx:60
+msgid "Enable email notifications"
+msgstr "Увімкнути сповіщення по електронній пошті"
+
+#: apps/fe/src/containers/Sidepanel/Settings/index.tsx:66
+#: apps/fe/src/containers/Sidepanel/Settings/index.tsx:74
+msgid "Enable push notifications"
+msgstr "Увімкнути пуш-сповіщення"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:125
 msgid "Enter sum"
 msgstr "Введіть суму"
+
+#: apps/fe/src/containers/Register/Email.tsx:35
+msgid "Enter your email address to create an account"
+msgstr "Введіть вашу електронну пошту для створення акаунту"
+
+#: apps/fe/src/containers/Login/Email.tsx:33
+msgid "Enter your email address to log in"
+msgstr "Введіть вашу електронну пошту для входу"
 
 #: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:19
 msgid "Expenses were not added yet"
@@ -102,7 +162,7 @@ msgstr "Витрати ще не були додані"
 msgid "Finsihed {tasks} tasks from {total}"
 msgstr "Виконано {tasks} завдань з {total}"
 
-#: apps/fe/src/containers/Sidepanel/index.tsx:148
+#: apps/fe/src/containers/Sidepanel/index.tsx:151
 msgid "For any question please contact us at hi@weee.city"
 msgstr "За будь-яких питань пишіть нам на пошту hi@weee.city"
 
@@ -115,11 +175,11 @@ msgstr "Мета"
 msgid "Hide"
 msgstr "Згорнути"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:107
+#: apps/fe/src/containers/Initiative/Join/index.tsx:106
 msgid "I am ready to donate"
 msgstr "Я готова/ий пожертвувати гроші"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:139
+#: apps/fe/src/containers/Initiative/Join/index.tsx:138
 msgid "I am ready to volunteer"
 msgstr "Я готова/ий бути волонтером"
 
@@ -132,11 +192,11 @@ msgstr "Реалізовано від проекту"
 msgid "In order to join or create an initiative, you need to register or log in to your own account"
 msgstr "Для того, щоб приєднатися або створити ініціативу, вам необхідно зареєструватися або увійти в обліковий запис"
 
-#: apps/fe/src/containers/Initiative/Header/index.tsx:87
+#: apps/fe/src/containers/Initiative/Header/index.tsx:86
 msgid "Initiative created"
 msgstr "Ініціатива створена"
 
-#: apps/fe/src/containers/Initiative/Header/index.tsx:77
+#: apps/fe/src/containers/Initiative/Header/index.tsx:76
 msgid "Initiative created at"
 msgstr "Ініціатива створена"
 
@@ -145,14 +205,26 @@ msgstr "Ініціатива створена"
 msgid "Initiatives"
 msgstr "Ініціативи"
 
-#: apps/fe/src/containers/Initiative/Header/index.tsx:44
-#: apps/fe/src/containers/Initiative/Join/index.tsx:186
+#: apps/fe/src/containers/Initiative/Header/index.tsx:43
+#: apps/fe/src/containers/Initiative/Join/index.tsx:185
 msgid "Join"
 msgstr "Приєднатися"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:95
+#: apps/fe/src/containers/Register/index.tsx:27
+msgid "Join Wecity"
+msgstr "Приєднатися до Wecity"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:94
 msgid "Join the initiative"
 msgstr "Приєднатися до ініціативи"
+
+#: apps/fe/src/containers/Register/Email.tsx:32
+msgid "Join with email"
+msgstr "Приєднатися з електронною поштою"
+
+#: apps/fe/src/containers/Login/index.tsx:28
+msgid "Last login on this device was via"
+msgstr "Останній вхід на цьому пристрої був через"
 
 #: apps/fe/src/containers/Initiative/InitiativeDetails/Description/ExpenseList.tsx:18
 msgid "List of expenses"
@@ -162,6 +234,18 @@ msgstr "Статті та суми витрат"
 msgid "List of tasks"
 msgstr "Поточні завдання"
 
+#: apps/fe/src/containers/Login/index.tsx:63
+msgid "Log in with Email"
+msgstr "Увійти з електронною поштою"
+
+#: apps/fe/src/containers/Login/index.tsx:52
+msgid "Log in with Facebook"
+msgstr "Увійти з Facebook"
+
+#: apps/fe/src/containers/Login/index.tsx:41
+msgid "Log in with Google"
+msgstr "Увійти з Google"
+
 #: apps/fe/src/containers/Creation/Unauthorized.tsx:36
 #: apps/fe/src/containers/Initiative/Join/LoginToJoin.tsx:35
 #: apps/fe/src/containers/Sidepanel/MenuHeader.tsx:47
@@ -169,11 +253,16 @@ msgstr "Поточні завдання"
 msgid "Login"
 msgstr "Увійти"
 
-#: apps/fe/src/containers/Sidepanel/index.tsx:135
+#: apps/fe/src/containers/Login/Email.tsx:30
+msgid "Login with email"
+msgstr "Увійти з електронною поштою"
+
+#: apps/fe/src/containers/Sidepanel/index.tsx:138
 msgid "Logout"
 msgstr "Вийти"
 
 #: apps/fe/src/containers/Sidepanel/tabs.tsx:20
+#: apps/fe/src/containers/Sidepanel/tabs.tsx:28
 #: apps/fe/src/containers/Sidepanel/tabs.tsx:50
 msgid "Map of initiatives"
 msgstr "Мапа ініціатив"
@@ -187,13 +276,22 @@ msgstr "Мої ініціативи"
 msgid "My organisations"
 msgstr "Мої організації"
 
-#: apps/fe/src/containers/Creation/SelectName.tsx:27
+#: apps/fe/src/containers/Creation/SelectName.tsx:26
 msgid "Name of your initiative"
 msgstr "Назва вашої ініціативи"
 
-#: apps/fe/src/containers/Creation/SelectName.tsx:41
+#: apps/fe/src/containers/Creation/SelectName.tsx:40
 msgid "Next"
 msgstr "Далі"
+
+#: apps/fe/src/containers/Login/index.tsx:68
+msgid "No account?"
+msgstr "Немає облікового запису?"
+
+#: apps/fe/src/containers/Login/CheckInbox.tsx:40
+#: apps/fe/src/containers/Register/CheckInbox.tsx:41
+msgid "Ok"
+msgstr "Ок"
 
 #: apps/fe/src/containers/FloatPanel/Search/Buttons.tsx:17
 #: apps/fe/src/containers/Sidepanel/Organizations/index.tsx:48
@@ -222,11 +320,12 @@ msgstr "Зареєструватися"
 msgid "Search"
 msgstr "Пошук"
 
+#: apps/fe/src/containers/Sidepanel/Settings/index.tsx:41
 #: apps/fe/src/containers/Sidepanel/tabs.tsx:43
 msgid "Settings"
 msgstr "Налаштування"
 
-#: apps/fe/src/containers/Initiative/Header/index.tsx:43
+#: apps/fe/src/containers/Initiative/Header/index.tsx:42
 msgid "Share"
 msgstr "Поділитися"
 
@@ -239,7 +338,23 @@ msgstr "Розгорнути"
 msgid "Show all"
 msgstr "Переглянути всі"
 
-#: apps/fe/src/containers/Initiative/Join/index.tsx:175
+#: apps/fe/src/containers/Register/index.tsx:62
+msgid "Sign in"
+msgstr "Увійти"
+
+#: apps/fe/src/containers/Register/index.tsx:59
+msgid "Sign up with Email"
+msgstr "Зареєструватись з електронною поштою"
+
+#: apps/fe/src/containers/Register/index.tsx:49
+msgid "Sign up with Facebook"
+msgstr "Зареєструватись з Facebook"
+
+#: apps/fe/src/containers/Register/index.tsx:39
+msgid "Sign up with Google"
+msgstr "Зареєструватись з Google"
+
+#: apps/fe/src/containers/Initiative/Join/index.tsx:174
 msgid "Suggest a relevant task for the initiative that you can perform"
 msgstr "Запропонуйте актуальне для ініціативи завдання яке ви можете виконувати"
 
@@ -247,17 +362,16 @@ msgstr "Запропонуйте актуальне для ініціативи 
 msgid "UK"
 msgstr "UK"
 
-#: apps/fe/src/containers/Login/Email.tsx:56
-#: apps/fe/src/containers/Login/index.tsx:59
+#: apps/fe/src/containers/Login/index.tsx:25
 msgid "Welcome back!"
 msgstr "З поверненням!"
 
 #: apps/fe/src/components/InitiativeCard/index.tsx:41
-#: apps/fe/src/containers/Initiative/Header/index.tsx:31
+#: apps/fe/src/containers/Initiative/Header/index.tsx:30
 msgid "km from me"
 msgstr "км від мене"
 
 #: apps/fe/src/components/InitiativeCard/index.tsx:40
-#: apps/fe/src/containers/Initiative/Header/index.tsx:30
+#: apps/fe/src/containers/Initiative/Header/index.tsx:29
 msgid "m from me"
 msgstr "м від мене"

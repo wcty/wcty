@@ -1,8 +1,8 @@
 import { atoms } from 'common';
 import { ButtonWrapper } from "../styles";
 import { useRecoilState } from "recoil";
-import { ReactComponent as InitiativeIcon } from 'assets/icons/initiatives.svg'
-import { ReactComponent as OrgIcon } from 'assets/icons/orgs.svg'
+import { ReactComponent as InitiativeIcon } from '@assets/icons/initiatives.svg'
+import { ReactComponent as OrgIcon } from '@assets/icons/orgs.svg'
 import { Trans } from '@lingui/macro'
 
 export default function Buttons(){

@@ -1,14 +1,13 @@
-import { atoms, useAddress, useGeolocation,  useLang,  useLayout, useUser } from "common";
+import { useAddress, useGeolocation,  useLang,  useLayout, useUser } from "common";
 import { Header, Icon, MetricsRow, ShareJoin, Stats } from "./styles";
 
 import { format } from 'd3-format'
 import { DateTime, DateTimeFormatOptions } from 'luxon'
-import { useRecoilState } from "recoil";
-import { ReactComponent as People } from 'assets/icons/popupPeople.svg'
-import { ReactComponent as Location } from 'assets/icons/popupLocation.svg'
+import { ReactComponent as People } from '@assets/icons/popupPeople.svg'
+import { ReactComponent as Location } from '@assets/icons/popupLocation.svg'
 import distance from "@turf/distance";
 import { useRouter } from "next/router";
-import Button from "components/Button";
+import { Button } from "@ui";
 import { InitiativeProps } from "..";
 import { useInitiativeByPkQuery } from "generated";
 import { t, Trans } from '@lingui/macro'

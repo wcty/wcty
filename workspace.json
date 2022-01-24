@@ -2,7 +2,9 @@
   "version": 2,
   "projects": {
     "admin": "apps/admin",
+    "assets": "libs/assets",
     "be": "apps/be",
-    "fe": "apps/fe"
+    "fe": "apps/fe",
+    "ui": "libs/ui"
   }
 }

@@ -40,9 +40,7 @@ export default function MapContents({map}:{map:Map}){
       type='symbol'
       onClick={({features})=>{
         const feature = JSON.parse(JSON.stringify(features[0])) as typeof features[number]
-        console.log(feature)
         if(feature.id!==selected?.id){
-          console.log(feature.id)
           setViewport({
             longitude: feature.geometry.coordinates[0],
             latitude: feature.geometry.coordinates[1],

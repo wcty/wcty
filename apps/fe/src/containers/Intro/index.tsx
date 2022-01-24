@@ -3,10 +3,9 @@ import { useState } from "react";
 import Welcome from "./Welcome";
 import LocationAccess from "./LocationAccess";
 import Explore from "./Explore";
-import { CenterPanel } from "components/CenterPanel";
+import { CenterPanel, IconButton } from "@ui";
 import { useRouter } from "next/router";
 import { Wrapper } from "./styles";
-import IconButton from "components/IconButton";
 import { RightArrow } from "containers/Slides/styles";
 
 export type Initiative = {
@@ -20,6 +19,8 @@ export type Initiative = {
   path: string,
   timeUpdated: number,
 }
+
+export type IndexProps = {index:number, setIndex:(index:number)=>void}
 
 export default function Intro() {
   const router = useRouter()

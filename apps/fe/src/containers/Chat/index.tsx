@@ -1,13 +1,10 @@
 
 import { IChat } from "./IChat";
 import { ChatMessages, CompanionMessage, CompanionMessageWrapper, Container, CreateMessage, Divider, HeaderSpace, Initiative, InputContent, Manager, ManagerHeader, Messages, MessagesHeader, MyMessage, MyMessageWrapper, Search, SpaceBuffer, Title, UserCard, Users } from "./styles";
-import SearchInput from 'components/Inputs/Search'
-import Button from "components/Button";
+import { Button, Avatar, TextField,  Search as SearchInput } from "@ui";
 import Author from "components/Post/Author";
-import Avatar from "components/Avatar";
-import { TextField } from "components";
 
-import {ReactComponent as SendIco} from "assets/icons/send-message.svg";
+import {ReactComponent as SendIco} from "@assets/icons/send-message.svg";
 
 const authors = [
     {name: "Ольга Мельник", date : new Date(),  roles: ['iніціатор', 'волонтер', 'інвестор'] },

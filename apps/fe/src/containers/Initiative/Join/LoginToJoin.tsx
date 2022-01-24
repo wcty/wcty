@@ -1,4 +1,4 @@
-import Button from "components/Button";
+import { Button } from "@ui";
 import { useRouter } from "next/router";
 import { Container, ButtonContainer, TextContainer, Form } from "./styles";
 import Cookies from 'universal-cookie';

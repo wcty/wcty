@@ -1,6 +1,6 @@
 import {  useLayout, useSize, useUser } from "common";
 import { InitiativeByPkQuery, InitiativePublicByPkQuery } from "generated";
-import { ReactComponent as ArrowDropDown } from 'assets/icons/arrow-drop-down.svg'
+import { ReactComponent as ArrowDropDown } from '@assets/icons/arrow-drop-down.svg'
 import { config, useSpring } from 'react-spring'
 import { useState } from "react";
 import { InitiativeDescription, CollectedSum, Gauge, GaugeBlock, ProgressBar, FinishedTasks } from "./styles";

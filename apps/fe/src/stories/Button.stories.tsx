@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Button from 'components/Button';
-import {IButtonProps} from 'components/Button/styles'
+import { Button } from '@ui';
 
 
 export default {

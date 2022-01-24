@@ -34,9 +34,7 @@ export default function RegisterWithEmail (){
         <Button style={{background: 'black', padding: '0 2rem', marginBottom: '2rem'}}
           onClick={(e)=>{
             e.preventDefault()
-            if( credentials.email && credentials.password ) {
-              router.push('/')
-            }
+            router.push('/')
           }}>
           <Text color="white" semibold ><Trans>Ok</Trans></Text>
         </Button>

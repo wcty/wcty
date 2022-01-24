@@ -242,3 +242,8 @@ export function useLang(){
   
   return (locale==='pseudo'? 'en': locale) || 'en' 
 }
+
+export function useQuery(){
+  const query = useRouter().query
+  return query
+}

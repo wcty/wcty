@@ -88,7 +88,7 @@ services:
       SMTP_USER: 'AKIA2IYHTX7JSRJLISNC'
       SMTP_PORT: '587'
       SMTP_SECURE: 'false'
-      SMTP_SENDER: 'hi@weee.city'
+      SMTP_SENDER: 'Wecity Platform <hi@weee.city>'
       NOTIFY_EMAIL_CHANGE: 'true'
       AUTO_ACTIVATE_NEW_USERS: 'false'
       REDIRECT_URL_SUCCESS: 'https://weee.city/success'
@@ -142,7 +142,7 @@ services:
       SMTP_USER: 'AKIA2IYHTX7JSRJLISNC'
       SMTP_PORT: '587'
       SMTP_SECURE: 'false'
-      SMTP_SENDER: 'hi@weee.city'
+      SMTP_SENDER: 'Wecity Platform <hi@weee.city>'
       NOTIFY_EMAIL_CHANGE: 'true'
       AUTO_ACTIVATE_NEW_USERS: 'false'
       REDIRECT_URL_SUCCESS: 'http://dev.weee.city/success'
@@ -196,7 +196,7 @@ services:
       SMTP_USER: 'AKIA2IYHTX7JSRJLISNC'
       SMTP_PORT: '587'
       SMTP_SECURE: 'false'
-      SMTP_SENDER: 'hi@weee.city'
+      SMTP_SENDER: 'Wecity Platform <hi@weee.city>'
       NOTIFY_EMAIL_CHANGE: 'true'
       AUTO_ACTIVATE_NEW_USERS: 'false'
       REDIRECT_URL_SUCCESS: 'http://localhost:3000/success'
@@ -222,7 +222,7 @@ services:
       SMTP_USER: 'AKIA2IYHTX7JSRJLISNC'
       SMTP_PASS: '${SMTP_PASS}'
       SMTP_SECURE: 'true'
-      SMTP_SENDER: 'hi@weee.city'
+      SMTP_SENDER: 'Wecity Platform <hi@weee.city>'
       SMTP_PORT: 465
       RECEIVER_ADDRESS: hi@weee.city
       REDIRECT_URL_SUCCESS: https://weee.city

@@ -55,11 +55,11 @@ intercept(interceptStdout)
     localeDetection: false,
     domains: [
       {
-        domain: 'weee.city',
+        domain: 'www.weee.city',
         defaultLocale: 'en',
       },
       {
-        domain: 'uk.weee.city',
+        domain: 'www.uk.weee.city',
         defaultLocale: 'uk',
       }
     ]

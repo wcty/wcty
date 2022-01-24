@@ -267,10 +267,6 @@ msgstr ""
 msgid "Map of initiatives"
 msgstr ""
 
-#: apps/fe/src/containers/Sidepanel/tabs.tsx:28
-#~ msgid "Map of initiativest"
-#~ msgstr ""
-
 #: apps/fe/src/containers/Sidepanel/Initiatives/index.tsx:50
 #: apps/fe/src/containers/Sidepanel/tabs.tsx:33
 msgid "My initiatives"

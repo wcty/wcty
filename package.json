@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_NO_WARNINGS=1 nx start fe",
-    "build": "yarn run compile && nx build fe",
+    "build": "NODE_ENV=production yarn run compile && nx build fe",
     "test": "nx test",
     "extract": "NODE_ENV=development yarn lingui extract --overwrite",
     "compile": "yarn lingui compile",

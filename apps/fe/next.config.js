@@ -52,17 +52,17 @@ intercept(interceptStdout)
   i18n: {
     locales: ['uk', 'en', 'pseudo'],
     defaultLocale: 'en',
-    domains: [
-      {
-        domain: 'www.weee.city',
-        defaultLocale: 'en',
-      },
-      {
-        domain: 'www.uk.weee.city',
-        defaultLocale: 'uk',
-        locales: ['uk'],
-      }
-    ]
+    // domains: [
+    //   {
+    //     domain: 'www.weee.city',
+    //     defaultLocale: 'en',
+    //   },
+    //   {
+    //     domain: 'www.uk.weee.city',
+    //     defaultLocale: 'uk',
+    //     locales: ['uk'],
+    //   }
+    // ]
   },
   pwa: {
     dest: 'public',

@@ -52,19 +52,19 @@ jobs:
           git pull 
           yarn
 
-          if [ git diff --quiet main~1 main apps/be/Caddyfile ]; 
+          if [ -z "$(git diff --quiet main~1 main apps/be/Caddyfile)" ]; 
           then 
             echo "Updated Caddyfile"
             yarn nx deploy-caddy be
           fi
 
-          if [ git diff --quiet main~1 main apps/be/mail-templates/* apps/be/storage-rules/* ]; 
+          if [ -z "$(git diff --quiet main~1 main apps/be/mail-templates/* apps/be/storage-rules/*)" ]; 
           then 
             echo "Updated HBP"
             yarn nx deploy-hbp be
           fi
 
-          if [ git diff --quiet main~1 main apps/be/postgres/* ]; 
+          if [ -z "$(git diff --quiet main~1 main apps/be/postgres/*)" ]; 
           then 
             echo "Updated postgres"
             yarn nx deploy-postgres be

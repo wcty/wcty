@@ -43,8 +43,8 @@ export default function Login (){
         <Button style={{background: 'black'}}
           onClick={(e)=>{
             e.preventDefault()
-            if( credentials.email && credentials.password ) {
-              auth.register(credentials).then(()=>{
+            if( credentials.email ) {
+              auth.login(credentials).then(()=>{
                 router.push('/login/check-email')
               }).catch((err)=>{
                 setError(err)

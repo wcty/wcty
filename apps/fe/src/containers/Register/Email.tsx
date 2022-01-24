@@ -45,9 +45,9 @@ export default function RegisterWithEmail (){
         <Button style={{background: 'black'}}
           onClick={(e)=>{
             e.preventDefault()
-            if( credentials.email && credentials.password ) {
+            if( credentials.email ) {
               auth.register(credentials).then(()=>{
-                router.push('/login/check-email')
+                router.push('/register/check-email')
               }).catch((err)=>{
                 setError(err)
               })

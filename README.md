@@ -9,7 +9,7 @@ We.city is a web app to:
 - Be an experimental horisontal social governance system independent from any formal institutions, private entities or governmental bodies
 
 <div align="center">
-  <img width="50%" src="/public/assets/chat_min.png" />
+  <img width="50%" src="/apps/fe/public/assets/chat_min.png" />
 </div>
 
 #### Amazing open source tech that we use:
@@ -35,7 +35,11 @@ We.city is a web app to:
 
 #### For whom?
 
-​It is for those who would like to see positive changes around them, but do not have the time, energy or knowledge to implement them on their own. It is an online platform for public networking around common urban problems, to find solutions, resources and contractors for them collectively. Our goal is to prove that changing the space around is easy if doing it together.
+​It is for those who would like to see positive changes around them, but do not have the time, energy or knowledge to implement them on their own. It is an online platform for 
+
+
+
+networking around common urban problems, to find solutions, resources and contractors for them collectively. Our goal is to prove that changing the space around is easy if doing it together.
 
 #### Where does it come from?
 
@@ -114,5 +118,4 @@ The team is radically open to everyone interested to contribute!
 
 # How to contribute
 
-All contributions are welcome as well as donations to [Biggggidea](https://biggggidea.com/project/wecity-platform/).
-If you are the experienced developer, and know how to improve and structure the whole project, your advices or pull requests are even more welcome! The maintainer of this repo has a very limited development experience, and is eager to find a team and to learn from them the best coding/collaboration practices!
+If you are the experienced developer, and know how to improve and structure the whole project, your advices or pull requests are even more welcome! The maintainers of this repo are eager to expand the team!

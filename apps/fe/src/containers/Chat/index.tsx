@@ -1,8 +1,8 @@
 
 import { IChat } from "./IChat";
 import { ChatMessages, CompanionMessage, CompanionMessageWrapper, Container, CreateMessage, Divider, HeaderSpace, Initiative, InputContent, Manager, ManagerHeader, Messages, MessagesHeader, MyMessage, MyMessageWrapper, Search, SpaceBuffer, Title, UserCard, Users } from "./styles";
-import { Button, Avatar, TextField,  Search as SearchInput } from "@ui";
-import Author from "components/Post/Author";
+import { Avatar, TextField,  Search as SearchInput } from "@ui";
+import Author from "containers/Initiative/Feed/Post/Author";
 
 import {ReactComponent as SendIco} from "@assets/icons/send-message.svg";
 

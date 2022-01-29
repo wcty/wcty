@@ -5,6 +5,7 @@
 ——————————————
 This is urgent:
 ———————————————————
+  - Community moderation for new initiatives
   - Login - debug, loading states, errors
   - Settings: emails, push, language
   - Posts and Comments

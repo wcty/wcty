@@ -5,7 +5,7 @@ import frog_wcty from "@assets/images/frog_wcty.png"
 import { Burger, ContentWrapper } from 'styles'
 import Sidepanel from "containers/Sidepanel"
 import { FixedBottom } from 'react-fixed-bottom'
-import About from "components/About"
+import About from "containers/About"
 import { GetStaticProps } from "next"
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
@@ -20,7 +20,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     }
   }
 }
-
 
 export default function AboutPage() { 
   const router = useRouter()

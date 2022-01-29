@@ -1,6 +1,21 @@
-import { usePushNotifications, useUser } from "common";
+import { loadTranslation, usePushNotifications, useUser } from "common";
 import ClientOnly from "components/ClientOnly";
+import { GetStaticProps } from "next";
 import React from "react";
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const translation = await loadTranslation(
+    ctx.locale!,
+    process.env.NODE_ENV === 'production'
+  )
+
+  return {
+    props: {
+      translation
+    }
+  }
+}
+
 
 export default function PushNotificationDemo() {
   const user = useUser()

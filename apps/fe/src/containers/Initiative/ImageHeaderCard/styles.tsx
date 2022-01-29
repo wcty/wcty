@@ -33,25 +33,6 @@ Image = styled.div.attrs((props:{
   `}
 `,
 
-Actions = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: 1px ${props => props.theme.colors.titleActive};
-    border-style: solid none;
-    padding: 10px 0;
-`,
-
-Buttons = styled.div`
-    display: flex;
-    flex-direction: row;
-`,
-
-Icons  =  styled.div`
-    display: flex;
-    flex-direction: row;
-`,
-
 ArrowUpIcon = styled(ArrowUp)`
   position: absolute;
   left: 17px;

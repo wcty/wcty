@@ -23,7 +23,7 @@ export const Checkbox = styled.label.attrs((p:CheckboxProps)=>({
         <Checkmark />
       </span>
     </>
-}))<{checked:boolean}>`
+}))<{checked:boolean, disabled?: boolean}>`
   position: relative;
   display: inline-block;
   width: 20px;

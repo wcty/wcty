@@ -23,11 +23,12 @@ export default function InitiativeCard({entry}:InitiativeProps){
 
   return entry && 
     <Card 
-      onClick={()=>
-        entry?.properties?.type==='initiative' && 
+      onClick={()=> {
+        console.log('clicked', entry.id, entry?.properties?.type)
+        return entry?.properties?.type==='initiative' && 
         entry.id && 
         router.push({pathname: `/initiative/[id]`, query: { id: entry.id }}, `/initiative/${entry.id}`, { locale })
-    }>
+      }}>
       <Thumbnail src={entry?.properties?.image+'?w=100&h=100&q=90'}/>
       <Content>
         <TopBar>

@@ -82,7 +82,11 @@ BottomPanel = styled.div`
   align-items: center;
   display: flex;
   flex: 1 1 auto;
+  transition: transform 0.5s ease-in-out;
   span {
     cursor: pointer;
+  }
+  :hover{
+    transform: translate(2.2px,2.2px);
   }
 `

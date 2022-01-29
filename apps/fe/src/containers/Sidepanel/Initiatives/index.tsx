@@ -3,7 +3,7 @@ import { UserIconRow, List } from "../styles";
 import { useInitiativesNearbyListQuery, useMyInitiativeListQuery } from "generated";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
-import { ListRow } from "components";
+import ListRow from 'components/ListRow';
 import Sidepanel from "..";
 import Slides from 'containers/Slides';
 import BurgerFab from 'containers/FloatPanel/BurgerFab';

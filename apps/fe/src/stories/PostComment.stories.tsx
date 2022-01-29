@@ -1,8 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Comment from 'components/Post/Comment'
-
-
-
+import Comment from 'containers/Initiative/Feed/Post/Comment'
 
 export default {
     title: 'Post/Comment',

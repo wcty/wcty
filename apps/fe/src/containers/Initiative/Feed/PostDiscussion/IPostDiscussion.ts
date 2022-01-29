@@ -1,4 +1,4 @@
-import { IPost } from "components/Post/types/IPost";
+import { IPost } from "../Post/types/IPost";
 
 export interface IPostDiscussion {
     post: IPost;

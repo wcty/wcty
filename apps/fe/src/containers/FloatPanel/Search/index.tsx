@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Buttons from "./Buttons";
 import { useSearchResultsQuery } from 'generated'
 import { useRecoilState } from "recoil";
-import { ListRow } from 'components'
+import ListRow from 'components/ListRow';
 import Slides from 'containers/Slides';
 import { t, Trans } from '@lingui/macro'
 

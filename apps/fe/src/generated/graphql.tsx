@@ -10124,13 +10124,6 @@ export type DeleteFilesMutationVariables = Exact<{
 
 export type DeleteFilesMutation = { delete_files?: { affected_rows: number } | null | undefined };
 
-export type FirstMemberQueryVariables = Exact<{
-  id: Scalars['uuid'];
-}>;
-
-
-export type FirstMemberQuery = { initiative_members: Array<{ created_at: any, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined }> };
-
 export type CreatePostMutationVariables = Exact<{
   message: Scalars['String'];
   user_id: Scalars['uuid'];
@@ -10175,6 +10168,13 @@ export type FeedSubscriptionVariables = Exact<{
 export type FeedSubscription = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
 
 export type FeedFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
+
+export type FirstMemberQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type FirstMemberQuery = { initiative_members: Array<{ created_at: any, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined }> };
 
 export type InitiativeByPkQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -11083,49 +11083,6 @@ export function useDeleteFilesMutation(baseOptions?: Apollo.MutationHookOptions<
 export type DeleteFilesMutationHookResult = ReturnType<typeof useDeleteFilesMutation>;
 export type DeleteFilesMutationResult = Apollo.MutationResult<DeleteFilesMutation>;
 export type DeleteFilesMutationOptions = Apollo.BaseMutationOptions<DeleteFilesMutation, DeleteFilesMutationVariables>;
-export const FirstMemberDocument = gql`
-    query FirstMember($id: uuid!) {
-  initiative_members(
-    where: {initiative_id: {_eq: $id}}
-    order_by: {created_at: asc}
-    limit: 1
-  ) {
-    created_at
-    user {
-      display_name
-      avatar_url
-    }
-  }
-}
-    `;
-
-/**
- * __useFirstMemberQuery__
- *
- * To run a query within a React component, call `useFirstMemberQuery` and pass it any options that fit your needs.
- * When your component renders, `useFirstMemberQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useFirstMemberQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useFirstMemberQuery(baseOptions: Apollo.QueryHookOptions<FirstMemberQuery, FirstMemberQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FirstMemberQuery, FirstMemberQueryVariables>(FirstMemberDocument, options);
-      }
-export function useFirstMemberLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FirstMemberQuery, FirstMemberQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FirstMemberQuery, FirstMemberQueryVariables>(FirstMemberDocument, options);
-        }
-export type FirstMemberQueryHookResult = ReturnType<typeof useFirstMemberQuery>;
-export type FirstMemberLazyQueryHookResult = ReturnType<typeof useFirstMemberLazyQuery>;
-export type FirstMemberQueryResult = Apollo.QueryResult<FirstMemberQuery, FirstMemberQueryVariables>;
 export const CreatePostDocument = gql`
     mutation CreatePost($message: String!, $user_id: uuid!, $initiative_id: uuid!, $thread_id: String! = "main") {
   insert_initiative_posts_one(
@@ -11305,6 +11262,49 @@ export function useFeedSubscription(baseOptions?: Apollo.SubscriptionHookOptions
       }
 export type FeedSubscriptionHookResult = ReturnType<typeof useFeedSubscription>;
 export type FeedSubscriptionResult = Apollo.SubscriptionResult<FeedSubscription>;
+export const FirstMemberDocument = gql`
+    query FirstMember($id: uuid!) {
+  initiative_members(
+    where: {initiative_id: {_eq: $id}}
+    order_by: {created_at: asc}
+    limit: 1
+  ) {
+    created_at
+    user {
+      display_name
+      avatar_url
+    }
+  }
+}
+    `;
+
+/**
+ * __useFirstMemberQuery__
+ *
+ * To run a query within a React component, call `useFirstMemberQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFirstMemberQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFirstMemberQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useFirstMemberQuery(baseOptions: Apollo.QueryHookOptions<FirstMemberQuery, FirstMemberQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FirstMemberQuery, FirstMemberQueryVariables>(FirstMemberDocument, options);
+      }
+export function useFirstMemberLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FirstMemberQuery, FirstMemberQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FirstMemberQuery, FirstMemberQueryVariables>(FirstMemberDocument, options);
+        }
+export type FirstMemberQueryHookResult = ReturnType<typeof useFirstMemberQuery>;
+export type FirstMemberLazyQueryHookResult = ReturnType<typeof useFirstMemberLazyQuery>;
+export type FirstMemberQueryResult = Apollo.QueryResult<FirstMemberQuery, FirstMemberQueryVariables>;
 export const InitiativeByPkDocument = gql`
     query InitiativeByPK($id: uuid!, $user_id: uuid = "00000000-0000-0000-0000-000000000000") {
   initiative: initiatives_by_pk(id: $id) {

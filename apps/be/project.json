@@ -7,8 +7,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "nx deploy admin",
-          "nx deploy jupyter"
+          "nx deploy admin"
         ]
       }
     },
@@ -49,6 +48,22 @@
       "options": {
         "commands": [
           "docker-compose -f apps/be/docker-compose.yml down"
+        ]
+      }
+    },
+    "start": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose -f apps/be/docker-compose.mac.yml up -d --always-recreate-deps"
+        ]
+      }
+    },
+    "stop": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "docker-compose -f apps/be/docker-compose.mac.yml down"
         ]
       }
     }

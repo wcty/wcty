@@ -288,8 +288,8 @@ msgstr ""
 msgid "No account?"
 msgstr ""
 
-#: apps/fe/src/containers/Login/CheckInbox.tsx:40
-#: apps/fe/src/containers/Register/CheckInbox.tsx:41
+#: apps/fe/src/containers/Login/CheckInbox.tsx:38
+#: apps/fe/src/containers/Register/CheckInbox.tsx:39
 msgid "Ok"
 msgstr ""
 

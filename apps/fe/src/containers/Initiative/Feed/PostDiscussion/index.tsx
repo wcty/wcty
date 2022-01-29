@@ -1,8 +1,6 @@
-
-import  UserPost from "components/Post";
 import { IPostDiscussion } from "./IPostDiscussion";
 import { Channels, Comments, Container, Expander, Header, Post, Title } from "./styles";
-import Comment from 'components/Post/Comment'
+import Comment from '../Post/Comment'
 
 import {ReactComponent as ArrowDownIco} from  '@assets/icons/arrow-down.svg'
 

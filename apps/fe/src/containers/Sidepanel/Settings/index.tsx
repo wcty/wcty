@@ -1,7 +1,6 @@
-import { atoms,  useLayout, useUser } from 'common';
+import { useLayout, useUser } from 'common';
 import { UserIconRow, List } from "../styles";
-import { useInitiativesNearbyListQuery, useMyInitiativeListQuery, useUpdateSettingsMutation } from "generated";
-import { useRecoilState } from "recoil";
+import { useUpdateSettingsMutation } from "generated";
 import { useEffect, useState } from "react";
 import BurgerFab from 'containers/FloatPanel/BurgerFab';
 import { t, Trans } from '@lingui/macro'
@@ -15,7 +14,7 @@ export default function InitiativesDrawer(){
 
   const { data, loading } = useSettingsSubscription({variables:{id: user?.id||''}});
   const [ settings, setSettings] = useState(data?.settings)
-  const [ updateSettings ] = useUpdateSettingsMutation();
+  const [ updateSettings, { loading:updating } ] = useUpdateSettingsMutation();
 
   useEffect(()=>{
     if(!loading)
@@ -48,6 +47,7 @@ export default function InitiativesDrawer(){
       {loading? 'Loading...': <>
       <Settings>
         <Checkbox 
+          disabled={loading}
           checked={Boolean(settings?.email_notifications)} 
           value={t`Enable email notifications`}
           onChange={()=>setSettings({
@@ -62,16 +62,17 @@ export default function InitiativesDrawer(){
 
       <Settings>
       <Checkbox 
-          checked={Boolean(settings?.push_notifications)} 
-          value={t`Enable push notifications`}
-          onChange={()=>setSettings({
-            ...settings, 
-            push_notifications: !settings?.push_notifications}) }/>
-                <span
-                  onClick={()=>setSettings({
-                    ...settings, 
-                    push_notifications: !settings?.push_notifications}) }
-                ><Trans>Enable push notifications</Trans></span>
+        disabled={loading}
+        checked={Boolean(settings?.push_notifications)} 
+        value={t`Enable push notifications`}
+        onChange={()=>setSettings({
+          ...settings, 
+          push_notifications: !settings?.push_notifications}) }/>
+              <span
+                onClick={()=>setSettings({
+                  ...settings, 
+                  push_notifications: !settings?.push_notifications}) }
+              ><Trans>Enable push notifications</Trans></span>
       </Settings>
       </>}
     </div>

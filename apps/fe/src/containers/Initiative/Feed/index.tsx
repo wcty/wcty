@@ -1,15 +1,19 @@
 import { useUser } from "common";
-import { Feed } from "components";
-import { useFeedSubscription } from "generated";
-import { useRouter } from "next/router";
+import Feed from "./Feed";
+import ClientOnly from "components/ClientOnly";
+import Join, { LoginToJoin } from "../Join";
 
- const IniativeFeed = () => {
-  
-  const { id } = useRouter().query;
+function FeedBlock({isMember=false}) {
   const user = useUser()
-  const { data:postsData, error } = useFeedSubscription({variables:{id}})
-
-  return postsData ? <Feed posts={postsData.posts}/>: null
+  
+  return  user ? (
+      isMember?
+        <ClientOnly>
+          <Feed/>
+        </ClientOnly>:
+        <Join/>
+    ): <LoginToJoin/> 
 }
 
-export default IniativeFeed;
+
+export default FeedBlock;

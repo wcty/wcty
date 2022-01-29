@@ -1,6 +1,6 @@
 import { Layer } from '@urbica/react-map-gl';
 import { atoms, useLayout } from 'common';
-import { InitiativeCard } from 'components';
+import InitiativeCard from 'components/InitiativeCard';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { Popup } from './styles';

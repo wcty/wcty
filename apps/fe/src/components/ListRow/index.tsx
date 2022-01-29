@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil"
 import { ListItem } from "./styles"
 import { InitiativeCardFragment } from 'generated'
 
-export function ListRow({ data:v, onClick:_onClick }:{
+export default function ListRow({ data:v, onClick:_onClick }:{
   data: InitiativeCardFragment&{type: string},
   onClick?: ()=>void
 }){
@@ -33,7 +33,8 @@ export function ListRow({ data:v, onClick:_onClick }:{
         created_at: v.created_at,
         id: v.id,
         modified_at: '',
-        address: ''
+        address: '',
+        type: v.type
       }
     })
     if(v?.geometry?.coordinates){

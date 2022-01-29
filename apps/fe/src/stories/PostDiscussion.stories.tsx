@@ -1,8 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import PostDiscussion from "containers/Initiative/PostDiscussion";
-
-
-
+import PostDiscussion from "containers/Initiative/Feed/PostDiscussion";
 
 
 export default {

@@ -1,31 +1,13 @@
-import ImageHeaderCard from "components/ImageHeaderCard";
+import ImageHeaderCard from "./ImageHeaderCard";
 import Feed from "./Feed";
 import InitiativeDetails from "./InitiativeDetails";
 import { Body, Container,  LeftColumn,  RightColumn } from "./styles";
 import { InitiativePublicByPkQuery, useInitiativeByPkQuery } from "generated";
 import { useLayout, useUser } from "common";
 import Header from "./Header";
-import Join, { LoginToJoin } from "./Join";
 import Redirect from "components/Redirect";
-import { useEffect, useState } from "react";
 import React from "react";
-import ClientOnly from "components/ClientOnly";
 import { useRouter } from "next/router";
-
-function FeedBlock({isMember=false}) {
-  const user = useUser()
-  const [loaded, setLoaded] = useState(false)
-  useEffect(() => {
-    if (user) {
-      setTimeout(()=>setLoaded(true), 5000)
-    }
-  }, [user])
-  return  user ? (
-      isMember?
-      (loaded?<ClientOnly><Feed/></ClientOnly>:null):
-      <Join/>
-    ): <LoginToJoin/> 
-}
 
 export type InitiativeProps = {initiative?:InitiativePublicByPkQuery['initiative']}
 
@@ -47,14 +29,14 @@ export default function Initiative({initiative}:InitiativeProps) {
             <InitiativeDetails {...{initiative}}/>
           </LeftColumn>
           <RightColumn>
-            <FeedBlock {...{isMember}}/>
+            <Feed {...{isMember}}/>
           </RightColumn>
         </Body>:
         <>
           <Body>
             <InitiativeDetails {...{initiative}}/>
           </Body>
-          <FeedBlock {...{isMember}}/>
+          <Feed {...{isMember}}/>
         </>}
     </Container>
   )

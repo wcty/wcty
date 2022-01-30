@@ -1,6 +1,6 @@
 mutation DeleteLike (
     $user_id: uuid!
-    $post_id: Int!
+    $post_id: bigint!
 ) {
     delete_initiative_post_reactions(
       where: {_and:[

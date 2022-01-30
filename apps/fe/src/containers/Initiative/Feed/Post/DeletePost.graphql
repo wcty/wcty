@@ -1,0 +1,7 @@
+mutation DeletePost (
+    $post_id: bigint!
+) {
+    delete_initiative_posts_by_pk(id: $post_id) {
+      id
+    }
+}

@@ -31,7 +31,7 @@ export default function Creation({
           placeholder={t`Describe your idea or problem that you are trying to solve`}/>
         <div>
           <Button 
-            customType='secondary' 
+            customType='outlined' 
             onClick={()=>setIndex(index-1)}><Trans>Back</Trans></Button>
           <Button 
             disabled={initiative.name.length<2||initiative.problem.length<2}

@@ -39,7 +39,7 @@ function Buttons({isMember=false}){
     <ShareJoin>
       <Button 
         onClick={()=>copyToClipboard(window.location.href)}
-        customType="secondary"><Trans>Share</Trans></Button>
+        customType="outlined"><Trans>Share</Trans></Button>
       {!isMember && <Button><Trans>Join</Trans></Button>}
     </ShareJoin>
   )

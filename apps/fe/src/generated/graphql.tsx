@@ -3176,7 +3176,7 @@ export type Initiative_Post_Reactions = {
   id: Scalars['bigint'];
   /** An object relationship */
   post?: Maybe<Initiative_Posts>;
-  post_id?: Maybe<Scalars['Int']>;
+  post_id?: Maybe<Scalars['bigint']>;
   type?: Maybe<Reactions_Enum>;
   /** An object relationship */
   user?: Maybe<Users>;
@@ -3218,7 +3218,7 @@ export type Initiative_Post_Reactions_Bool_Exp = {
   _or?: InputMaybe<Array<Initiative_Post_Reactions_Bool_Exp>>;
   id?: InputMaybe<Bigint_Comparison_Exp>;
   post?: InputMaybe<Initiative_Posts_Bool_Exp>;
-  post_id?: InputMaybe<Int_Comparison_Exp>;
+  post_id?: InputMaybe<Bigint_Comparison_Exp>;
   type?: InputMaybe<Reactions_Enum_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -3235,14 +3235,14 @@ export enum Initiative_Post_Reactions_Constraint {
 /** input type for incrementing numeric columns in table "initiative_post_reactions" */
 export type Initiative_Post_Reactions_Inc_Input = {
   id?: InputMaybe<Scalars['bigint']>;
-  post_id?: InputMaybe<Scalars['Int']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
 };
 
 /** input type for inserting data into table "initiative_post_reactions" */
 export type Initiative_Post_Reactions_Insert_Input = {
   id?: InputMaybe<Scalars['bigint']>;
   post?: InputMaybe<Initiative_Posts_Obj_Rel_Insert_Input>;
-  post_id?: InputMaybe<Scalars['Int']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
   type?: InputMaybe<Reactions_Enum>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -3306,7 +3306,7 @@ export enum Initiative_Post_Reactions_Select_Column {
 /** input type for updating data in table "initiative_post_reactions" */
 export type Initiative_Post_Reactions_Set_Input = {
   id?: InputMaybe<Scalars['bigint']>;
-  post_id?: InputMaybe<Scalars['Int']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
   type?: InputMaybe<Reactions_Enum>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -10167,9 +10167,9 @@ export type FeedSubscriptionVariables = Exact<{
 }>;
 
 
-export type FeedSubscription = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
+export type FeedSubscription = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
 
-export type FeedFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
+export type FeedFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
 
 export type FirstMemberQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -10190,20 +10190,27 @@ export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | n
 
 export type DeleteLikeMutationVariables = Exact<{
   user_id: Scalars['uuid'];
-  post_id: Scalars['Int'];
+  post_id: Scalars['bigint'];
 }>;
 
 
-export type DeleteLikeMutation = { delete_initiative_post_reactions?: { returning: Array<{ post_id?: number | null | undefined, user_id?: any | null | undefined }> } | null | undefined };
+export type DeleteLikeMutation = { delete_initiative_post_reactions?: { returning: Array<{ post_id?: any | null | undefined, user_id?: any | null | undefined }> } | null | undefined };
+
+export type DeletePostMutationVariables = Exact<{
+  post_id: Scalars['bigint'];
+}>;
+
+
+export type DeletePostMutation = { delete_initiative_posts_by_pk?: { id: any } | null | undefined };
 
 export type ReactionToPostMutationVariables = Exact<{
   user_id: Scalars['uuid'];
-  post_id: Scalars['Int'];
+  post_id: Scalars['bigint'];
   reaction: Reactions_Enum;
 }>;
 
 
-export type ReactionToPostMutation = { insert_initiative_post_reactions_one?: { user_id?: any | null | undefined, post_id?: number | null | undefined, type?: Reactions_Enum | null | undefined } | null | undefined };
+export type ReactionToPostMutation = { insert_initiative_post_reactions_one?: { user_id?: any | null | undefined, post_id?: any | null | undefined, type?: Reactions_Enum | null | undefined } | null | undefined };
 
 export type PostFragment = { type: Post_Types_Enum, message?: string | null | undefined, comments_count: { aggregate?: { count: number } | null | undefined }, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined };
 
@@ -10362,6 +10369,7 @@ export const FeedFragmentDoc = gql`
   user {
     avatar_url
     display_name
+    id
   }
   created_at
   modified_at
@@ -11298,7 +11306,7 @@ export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutati
 export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
 export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
 export const DeleteLikeDocument = gql`
-    mutation DeleteLike($user_id: uuid!, $post_id: Int!) {
+    mutation DeleteLike($user_id: uuid!, $post_id: bigint!) {
   delete_initiative_post_reactions(
     where: {_and: [{post_id: {_eq: $post_id}}, {user_id: {_eq: $user_id}}]}
   ) {
@@ -11336,8 +11344,41 @@ export function useDeleteLikeMutation(baseOptions?: Apollo.MutationHookOptions<D
 export type DeleteLikeMutationHookResult = ReturnType<typeof useDeleteLikeMutation>;
 export type DeleteLikeMutationResult = Apollo.MutationResult<DeleteLikeMutation>;
 export type DeleteLikeMutationOptions = Apollo.BaseMutationOptions<DeleteLikeMutation, DeleteLikeMutationVariables>;
+export const DeletePostDocument = gql`
+    mutation DeletePost($post_id: bigint!) {
+  delete_initiative_posts_by_pk(id: $post_id) {
+    id
+  }
+}
+    `;
+export type DeletePostMutationFn = Apollo.MutationFunction<DeletePostMutation, DeletePostMutationVariables>;
+
+/**
+ * __useDeletePostMutation__
+ *
+ * To run a mutation, you first call `useDeletePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeletePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deletePostMutation, { data, loading, error }] = useDeletePostMutation({
+ *   variables: {
+ *      post_id: // value for 'post_id'
+ *   },
+ * });
+ */
+export function useDeletePostMutation(baseOptions?: Apollo.MutationHookOptions<DeletePostMutation, DeletePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeletePostMutation, DeletePostMutationVariables>(DeletePostDocument, options);
+      }
+export type DeletePostMutationHookResult = ReturnType<typeof useDeletePostMutation>;
+export type DeletePostMutationResult = Apollo.MutationResult<DeletePostMutation>;
+export type DeletePostMutationOptions = Apollo.BaseMutationOptions<DeletePostMutation, DeletePostMutationVariables>;
 export const ReactionToPostDocument = gql`
-    mutation ReactionToPost($user_id: uuid!, $post_id: Int!, $reaction: reactions_enum!) {
+    mutation ReactionToPost($user_id: uuid!, $post_id: bigint!, $reaction: reactions_enum!) {
   insert_initiative_post_reactions_one(
     object: {user_id: $user_id, type: $reaction, post_id: $post_id}
   ) {

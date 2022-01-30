@@ -9,6 +9,7 @@ fragment Feed on initiative_posts {
   user{
     avatar_url
     display_name
+    id
   }
   created_at
   modified_at

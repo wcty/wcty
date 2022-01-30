@@ -48,7 +48,7 @@ export default function Creation({
           onInputChange={(e)=>onInputChangeSubmit(e,false)}/>
         <div>
           <Button 
-            customType='secondary' 
+            customType='outlined' 
             onClick={()=>setIndex(index-1)}>
               <Trans>Back</Trans>
           </Button>

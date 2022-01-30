@@ -26,7 +26,7 @@ export default function LoginToJoin() {
           }}><Trans>Register</Trans></Button>
         <Button
           size='medium'
-          customType='secondary'
+          customType='outlined'
           onClick={(e)=>{
             e.preventDefault()
             const { pathname, query } = router

@@ -1,9 +1,9 @@
 import { ElementArgs, ElementProps } from "common";
 import styled, { css } from "styled-components";
-
+import { position, layout } from 'styled-system'
 export interface ButtonProps  {
   size?: 'small' | 'medium' | 'large',
-  customType?: 'primary' | 'secondary' | 'subtle' | 'text'
+  customType?: 'primary' | 'secondary' | 'outlined' | 'subtle' | 'text'
 }
 
 export const Button = styled.button<ButtonProps & ElementProps>`
@@ -25,5 +25,6 @@ export const Button = styled.button<ButtonProps & ElementProps>`
   ${props => props.theme.font.body.semibold.t4};
   ${p=>p.theme.buttonTypes[p.customType||'primary']};
   ${p=>p.theme.buttonSizes[p.size||'medium']};
-  ${ElementArgs}
+  ${position}
+  ${layout}
 `;

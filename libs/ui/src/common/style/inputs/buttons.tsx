@@ -26,7 +26,33 @@ buttonTypes = {
       }
     }
   `,
+
   secondary: css`
+    background-color: #ffffff;
+    color: ${colors.titleActive};
+    &:hover{
+      background-color: ${colors.backgroundActive};
+      color: #174AFF;
+      >svg{
+        fill: #174AFF;
+      }
+    }
+    &:active {
+      background-color: ${colors.backgroundActive};
+      color: #002FD3;
+      >svg{
+        fill: #002FD3;
+      }
+    }
+    &:disabled{
+      background-color: #ffffff;
+      >svg{
+        fill: ${colors.titleActive};
+      }
+    }
+  `,
+
+  outlined: css`
     color: ${colors.titleActive};
     background-color:  ${colors.backgroundTransparent};
     border: 1px solid ${colors.titleActive};
@@ -52,6 +78,7 @@ buttonTypes = {
       }
     }
   `,
+  
   subtle: css`
     color: ${colors.titleActive};
     background-color:  ${colors.backgroundTransparent};

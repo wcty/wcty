@@ -175,7 +175,7 @@ export default function Join() {
           placeholder={t`Suggest a relevant task for the initiative that you can perform`}/>
         <div>
           <Button
-            size='medium'
+            customSize='medium'
             customType='primary'
             disabled={ disabled }
             onClick={(e)=>{

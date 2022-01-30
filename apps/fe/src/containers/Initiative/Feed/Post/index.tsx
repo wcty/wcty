@@ -27,7 +27,7 @@ export default function Post(props: FeedFragment ) {
         date={new Date()}
       />
       {props?.user?.id===user?.id && <>
-        <Button customType='text' size='small' position="absolute" top='1rem' right='0rem'>
+        <Button customType='text' customSize='small' position="absolute" top='1rem' right='0rem'>
           <OptionsButton onClick={()=>setOptions(!options)}/>
         </Button>
         {options && 
@@ -49,7 +49,7 @@ export default function Post(props: FeedFragment ) {
         <CommentCounter>
           <Trans>Comments:</Trans> {comments_aggregate?.aggregate?.count}
         </CommentCounter>
-        <Button customType="text" size="small">
+        <Button customType="text" customSize="small">
             <CommentIco/>
             <Trans>Comment</Trans>
         </Button>

@@ -7,7 +7,7 @@ import { LayoutProps, PositionProps } from 'styled-system'
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-export function TextArea(props:TextAreaProps & LayoutProps & PositionProps &{withImage?: boolean}){
+export function TextArea(props:TextAreaProps & LayoutProps & PositionProps &{ withImage?: boolean, extendable?: boolean }){
   return(
     <FieldWrapper>
       <TextAreaInput {...props}/>

@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
-import { position, layout } from 'styled-system'
+import { position, layout, PositionProps, LayoutProps } from 'styled-system'
 export interface ButtonProps  {
-  size?: 'small' | 'medium' | 'large',
+  customSize?: 'small' | 'medium' | 'large'
   customType?: 'primary' | 'secondary' | 'outlined' | 'subtle' | 'text'
 }
 
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.button<ButtonProps&PositionProps&LayoutProps>`
   border: 0;
   outline: 0;
   display: flex;
@@ -22,8 +22,8 @@ export const Button = styled.button<ButtonProps>`
     margin-left: 5px;
   }
   ${props => props.theme.font.body.semibold.t4};
-  ${p=>p.theme.buttonTypes[p.customType||'primary']};
-  ${p=>p.theme.buttonSizes[p.size||'medium']};
+  ${({customType = 'primary', theme})=>theme.buttonTypes[customType]};
+  ${({customSize = 'medium', theme})=> theme.buttonSizes[customSize]};
   ${position}
   ${layout}
 `;

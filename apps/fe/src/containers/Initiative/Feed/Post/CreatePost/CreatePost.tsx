@@ -36,10 +36,10 @@ function CreatePost({channels}:ICreatePostProps){
   return (
       <Container>
         <InputContent> 
-            <Avatar size={'small'} picture={
+            <Avatar customSize={'small'} picture={
               fixAvatar(user?.avatar_url)
             }/>
-            <TextArea extendable row={1} h="1rem" withImage value={message} onChange={(e:any)=>setMessage(e.target.value)}/>
+            <TextArea extendable rows={1} height="1rem" withImage value={message} onChange={(e:any)=>setMessage(e.target.value)}/>
             <IconButton style={{alignSelf: 'start', marginTop:'0.5rem'}} aria-disabled={message.length<2} icon="send" size="small" onClick={submit}/>
         </InputContent>
         <Actions>
@@ -50,7 +50,7 @@ function CreatePost({channels}:ICreatePostProps){
               '#general'
             }
           </Channels>}</div>
-            <Button customType='text' size='small'><VoteIco/><Trans>Create poll</Trans></Button>
+            <Button customType='text' customSize='small'><VoteIco/><Trans>Create poll</Trans></Button>
         </Actions>
       </Container>
   )

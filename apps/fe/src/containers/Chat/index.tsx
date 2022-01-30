@@ -81,7 +81,7 @@ function Chat({}: IChatProps) {
 
                 <CreateMessage>
                     <InputContent> 
-                        <Avatar size={'small'}/>
+                        <Avatar customSize={'small'}/>
                         <TextField/>
                         <SendIco/>
                     </InputContent> 

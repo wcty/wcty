@@ -16,7 +16,7 @@ export default function LoginToJoin() {
       <TextContainer><Trans>In order to join or create an initiative, you need to register or log in to your own account</Trans></TextContainer>
       <ButtonContainer>
         <Button
-          size='medium'
+          customSize='medium'
           customType='primary'
           onClick={(e)=>{
             e.preventDefault()
@@ -25,7 +25,7 @@ export default function LoginToJoin() {
             router.push('/login');
           }}><Trans>Register</Trans></Button>
         <Button
-          size='medium'
+          customSize='medium'
           customType='outlined'
           onClick={(e)=>{
             e.preventDefault()

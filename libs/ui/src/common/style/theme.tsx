@@ -1,10 +1,8 @@
-import styled, {css as css_, ThemedCssFunction} from "styled-components";
 
-import {colors} from './colors'
-import {buttonTypes, buttonSizes} from './inputs/buttons';
-import {font} from './font'
-
-const css = css_ as ThemedCssFunction<{}>
+import { colors } from './colors'
+import { buttonTypes, buttonSizes } from './inputs/buttons';
+import { font } from './font'
+import { css } from './css';
 
 export const theme = {
   id:"T-001",

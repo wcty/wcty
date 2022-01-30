@@ -1,3 +1,4 @@
+import { ElementArgs, ElementProps } from 'common'
 import styled, { css } from 'styled-components'
 
 export const 
@@ -67,7 +68,7 @@ FieldWrapper = styled.div`
   }
 `,
 
-TextInput = styled.input`
+TextInputParams = css`
   height: 100%;
   width: 100%;
   padding: 1rem 2.5rem 1rem 1.5rem;
@@ -88,27 +89,21 @@ TextInput = styled.input`
       background-color: #ffffff;
     }
   }
+  ${ElementArgs}
 `,
 
-TextAreaInput = styled.textarea`
-  height: 100%;
-  width: 100%;
-  padding: 1rem 2.5rem 1rem 1.5rem;
-  background-color: white;
-  border-radius: 3px 3px 3px 3px;
-  border: none;
-  transition: border-radius 0.2s;
-  outline: none;
-  border: 1px solid ${p=>p.theme.colors.line};
-  :hover{
-    background-color: #F7F9FB;
-    border: 1px solid ${p=>p.theme.colors.secondary};
-  }
-  &:focus {
-    border: 1px solid ${p=>p.theme.colors.secondary};
-    color: ${p=>p.theme.colors.secondary};
-    :hover{
-      background-color: #ffffff;
+TextInput = styled.input<ElementProps>`
+  ${TextInputParams}
+`,
+
+TextAreaInput = styled.textarea<ElementProps & { extendable?: boolean}>`
+  ${TextInputParams}
+  resize: none;
+  transition: height 0.2s ease-in-out;
+  ${({ extendable }) => extendable && css`
+    height: 4rem;
+    :focus{
+      height: 8rem;
     }
-  }
+  `}
 `

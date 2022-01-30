@@ -3,7 +3,6 @@ import type { SetterOrUpdater } from 'recoil';
 import Cookies from 'universal-cookie';
 
 export * from './recoil'
-export * from './style'
 export * from './hooks'
 export * from './functions'
 export * from './nhost'

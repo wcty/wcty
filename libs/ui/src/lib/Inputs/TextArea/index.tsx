@@ -1,14 +1,16 @@
 import { ChangeEvent, TextareaHTMLAttributes } from "react";
 import { ReactComponent as CancelIcon } from '@assets/icons/cancel.svg'
+import { ReactComponent as PIcon}  from '@assets/icons/create-post-icon.svg'
 
 import { FieldWrapper, TextAreaInput } from "./styles";
+import { ElementProps } from "common";
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-export function TextArea(props:TextAreaProps){
+export function TextArea(props:TextAreaProps & ElementProps & {withImage?: boolean}){
   return(
     <FieldWrapper>
-       <TextAreaInput {...props}/>
+      <TextAreaInput {...props}/>
       <div>
         <button onClick={
           (e)=>{
@@ -19,7 +21,7 @@ export function TextArea(props:TextAreaProps){
               }
             } as ChangeEvent<HTMLTextAreaElement>)
           }}>
-            <CancelIcon/>
+            {props.withImage?<PIcon/>: <CancelIcon/>}
         </button>
       </div>
     </FieldWrapper>

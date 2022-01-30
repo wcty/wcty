@@ -3227,7 +3227,9 @@ export type Initiative_Post_Reactions_Bool_Exp = {
 /** unique or primary key constraints on table "initiative_post_reactions" */
 export enum Initiative_Post_Reactions_Constraint {
   /** unique or primary key constraint */
-  InitiativePostReactionsPkey = 'initiative_post_reactions_pkey'
+  InitiativePostReactionsPkey = 'initiative_post_reactions_pkey',
+  /** unique or primary key constraint */
+  InitiativePostReactionsUserIdPostIdKey = 'initiative_post_reactions_user_id_post_id_key'
 }
 
 /** input type for incrementing numeric columns in table "initiative_post_reactions" */
@@ -6095,6 +6097,10 @@ export type Mutation_Root = {
   update_initiatives?: Maybe<Initiatives_Mutation_Response>;
   /** update single row of the table: "initiatives" */
   update_initiatives_by_pk?: Maybe<Initiatives>;
+  /** update data of the table: "tags" */
+  update_tags?: Maybe<Tags_Mutation_Response>;
+  /** update single row of the table: "tags" */
+  update_tags_by_pk?: Maybe<Tags>;
   /** update data of the table: "tenders" */
   update_tenders?: Maybe<Tenders_Mutation_Response>;
   /** update single row of the table: "tenders" */
@@ -7007,6 +7013,18 @@ export type Mutation_RootUpdate_InitiativesArgs = {
 export type Mutation_RootUpdate_Initiatives_By_PkArgs = {
   _set?: InputMaybe<Initiatives_Set_Input>;
   pk_columns: Initiatives_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_TagsArgs = {
+  where: Tags_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Tags_By_PkArgs = {
+  pk_columns: Tags_Pk_Columns_Input;
 };
 
 
@@ -9150,6 +9168,11 @@ export type Tags_Order_By = {
   tag?: InputMaybe<Order_By>;
 };
 
+/** primary key columns input for table: tags */
+export type Tags_Pk_Columns_Input = {
+  tag: Scalars['String'];
+};
+
 /** select columns of table "tags" */
 export enum Tags_Select_Column {
   /** column name */
@@ -10124,27 +10147,6 @@ export type DeleteFilesMutationVariables = Exact<{
 
 export type DeleteFilesMutation = { delete_files?: { affected_rows: number } | null | undefined };
 
-export type CreatePostMutationVariables = Exact<{
-  message: Scalars['String'];
-  user_id: Scalars['uuid'];
-  initiative_id: Scalars['uuid'];
-  thread_id?: Scalars['String'];
-}>;
-
-
-export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
-
-export type ReactionToPostMutationVariables = Exact<{
-  user_id: Scalars['uuid'];
-  post_id: Scalars['Int'];
-  reaction: Reactions_Enum;
-}>;
-
-
-export type ReactionToPostMutation = { insert_initiative_post_reactions_one?: { user_id?: any | null | undefined, post_id?: number | null | undefined, type?: Reactions_Enum | null | undefined } | null | undefined };
-
-export type PostFragment = { type: Post_Types_Enum, message?: string | null | undefined, comments_count: { aggregate?: { count: number } | null | undefined }, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined };
-
 export type InsertInitiativeMutationVariables = Exact<{
   initiative: Initiatives_Insert_Input;
 }>;
@@ -10175,6 +10177,35 @@ export type FirstMemberQueryVariables = Exact<{
 
 
 export type FirstMemberQuery = { initiative_members: Array<{ created_at: any, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined }> };
+
+export type CreatePostMutationVariables = Exact<{
+  message: Scalars['String'];
+  user_id: Scalars['uuid'];
+  initiative_id: Scalars['uuid'];
+  thread_id?: Scalars['String'];
+}>;
+
+
+export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
+
+export type DeleteLikeMutationVariables = Exact<{
+  user_id: Scalars['uuid'];
+  post_id: Scalars['Int'];
+}>;
+
+
+export type DeleteLikeMutation = { delete_initiative_post_reactions?: { returning: Array<{ post_id?: number | null | undefined, user_id?: any | null | undefined }> } | null | undefined };
+
+export type ReactionToPostMutationVariables = Exact<{
+  user_id: Scalars['uuid'];
+  post_id: Scalars['Int'];
+  reaction: Reactions_Enum;
+}>;
+
+
+export type ReactionToPostMutation = { insert_initiative_post_reactions_one?: { user_id?: any | null | undefined, post_id?: number | null | undefined, type?: Reactions_Enum | null | undefined } | null | undefined };
+
+export type PostFragment = { type: Post_Types_Enum, message?: string | null | undefined, comments_count: { aggregate?: { count: number } | null | undefined }, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined };
 
 export type InitiativeByPkQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -10325,21 +10356,6 @@ export const InitiativeFieldsFragmentDoc = gql`
   }
 }
     `;
-export const PostFragmentDoc = gql`
-    fragment Post on initiative_posts {
-  comments_count: comments_aggregate {
-    aggregate {
-      count
-    }
-  }
-  type
-  message
-  user {
-    display_name
-    avatar_url
-  }
-}
-    `;
 export const FeedFragmentDoc = gql`
     fragment Feed on initiative_posts {
   id
@@ -10360,6 +10376,21 @@ export const FeedFragmentDoc = gql`
     aggregate {
       count
     }
+  }
+}
+    `;
+export const PostFragmentDoc = gql`
+    fragment Post on initiative_posts {
+  comments_count: comments_aggregate {
+    aggregate {
+      count
+    }
+  }
+  type
+  message
+  user {
+    display_name
+    avatar_url
   }
 }
     `;
@@ -11083,83 +11114,6 @@ export function useDeleteFilesMutation(baseOptions?: Apollo.MutationHookOptions<
 export type DeleteFilesMutationHookResult = ReturnType<typeof useDeleteFilesMutation>;
 export type DeleteFilesMutationResult = Apollo.MutationResult<DeleteFilesMutation>;
 export type DeleteFilesMutationOptions = Apollo.BaseMutationOptions<DeleteFilesMutation, DeleteFilesMutationVariables>;
-export const CreatePostDocument = gql`
-    mutation CreatePost($message: String!, $user_id: uuid!, $initiative_id: uuid!, $thread_id: String! = "main") {
-  insert_initiative_posts_one(
-    object: {type: message, message: $message, user_id: $user_id, initiative_id: $initiative_id, thread_id: $thread_id}
-  ) {
-    id
-  }
-}
-    `;
-export type CreatePostMutationFn = Apollo.MutationFunction<CreatePostMutation, CreatePostMutationVariables>;
-
-/**
- * __useCreatePostMutation__
- *
- * To run a mutation, you first call `useCreatePostMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreatePostMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createPostMutation, { data, loading, error }] = useCreatePostMutation({
- *   variables: {
- *      message: // value for 'message'
- *      user_id: // value for 'user_id'
- *      initiative_id: // value for 'initiative_id'
- *      thread_id: // value for 'thread_id'
- *   },
- * });
- */
-export function useCreatePostMutation(baseOptions?: Apollo.MutationHookOptions<CreatePostMutation, CreatePostMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreatePostMutation, CreatePostMutationVariables>(CreatePostDocument, options);
-      }
-export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
-export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
-export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
-export const ReactionToPostDocument = gql`
-    mutation ReactionToPost($user_id: uuid!, $post_id: Int!, $reaction: reactions_enum!) {
-  insert_initiative_post_reactions_one(
-    object: {user_id: $user_id, type: $reaction, post_id: $post_id}
-  ) {
-    user_id
-    post_id
-    type
-  }
-}
-    `;
-export type ReactionToPostMutationFn = Apollo.MutationFunction<ReactionToPostMutation, ReactionToPostMutationVariables>;
-
-/**
- * __useReactionToPostMutation__
- *
- * To run a mutation, you first call `useReactionToPostMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useReactionToPostMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [reactionToPostMutation, { data, loading, error }] = useReactionToPostMutation({
- *   variables: {
- *      user_id: // value for 'user_id'
- *      post_id: // value for 'post_id'
- *      reaction: // value for 'reaction'
- *   },
- * });
- */
-export function useReactionToPostMutation(baseOptions?: Apollo.MutationHookOptions<ReactionToPostMutation, ReactionToPostMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<ReactionToPostMutation, ReactionToPostMutationVariables>(ReactionToPostDocument, options);
-      }
-export type ReactionToPostMutationHookResult = ReturnType<typeof useReactionToPostMutation>;
-export type ReactionToPostMutationResult = Apollo.MutationResult<ReactionToPostMutation>;
-export type ReactionToPostMutationOptions = Apollo.BaseMutationOptions<ReactionToPostMutation, ReactionToPostMutationVariables>;
 export const InsertInitiativeDocument = gql`
     mutation InsertInitiative($initiative: initiatives_insert_input!) {
   insert_initiatives_one(object: $initiative) {
@@ -11305,6 +11259,122 @@ export function useFirstMemberLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type FirstMemberQueryHookResult = ReturnType<typeof useFirstMemberQuery>;
 export type FirstMemberLazyQueryHookResult = ReturnType<typeof useFirstMemberLazyQuery>;
 export type FirstMemberQueryResult = Apollo.QueryResult<FirstMemberQuery, FirstMemberQueryVariables>;
+export const CreatePostDocument = gql`
+    mutation CreatePost($message: String!, $user_id: uuid!, $initiative_id: uuid!, $thread_id: String! = "main") {
+  insert_initiative_posts_one(
+    object: {type: message, message: $message, user_id: $user_id, initiative_id: $initiative_id, thread_id: $thread_id}
+  ) {
+    id
+  }
+}
+    `;
+export type CreatePostMutationFn = Apollo.MutationFunction<CreatePostMutation, CreatePostMutationVariables>;
+
+/**
+ * __useCreatePostMutation__
+ *
+ * To run a mutation, you first call `useCreatePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createPostMutation, { data, loading, error }] = useCreatePostMutation({
+ *   variables: {
+ *      message: // value for 'message'
+ *      user_id: // value for 'user_id'
+ *      initiative_id: // value for 'initiative_id'
+ *      thread_id: // value for 'thread_id'
+ *   },
+ * });
+ */
+export function useCreatePostMutation(baseOptions?: Apollo.MutationHookOptions<CreatePostMutation, CreatePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreatePostMutation, CreatePostMutationVariables>(CreatePostDocument, options);
+      }
+export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
+export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
+export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
+export const DeleteLikeDocument = gql`
+    mutation DeleteLike($user_id: uuid!, $post_id: Int!) {
+  delete_initiative_post_reactions(
+    where: {_and: [{post_id: {_eq: $post_id}}, {user_id: {_eq: $user_id}}]}
+  ) {
+    returning {
+      post_id
+      user_id
+    }
+  }
+}
+    `;
+export type DeleteLikeMutationFn = Apollo.MutationFunction<DeleteLikeMutation, DeleteLikeMutationVariables>;
+
+/**
+ * __useDeleteLikeMutation__
+ *
+ * To run a mutation, you first call `useDeleteLikeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteLikeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteLikeMutation, { data, loading, error }] = useDeleteLikeMutation({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *      post_id: // value for 'post_id'
+ *   },
+ * });
+ */
+export function useDeleteLikeMutation(baseOptions?: Apollo.MutationHookOptions<DeleteLikeMutation, DeleteLikeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteLikeMutation, DeleteLikeMutationVariables>(DeleteLikeDocument, options);
+      }
+export type DeleteLikeMutationHookResult = ReturnType<typeof useDeleteLikeMutation>;
+export type DeleteLikeMutationResult = Apollo.MutationResult<DeleteLikeMutation>;
+export type DeleteLikeMutationOptions = Apollo.BaseMutationOptions<DeleteLikeMutation, DeleteLikeMutationVariables>;
+export const ReactionToPostDocument = gql`
+    mutation ReactionToPost($user_id: uuid!, $post_id: Int!, $reaction: reactions_enum!) {
+  insert_initiative_post_reactions_one(
+    object: {user_id: $user_id, type: $reaction, post_id: $post_id}
+  ) {
+    user_id
+    post_id
+    type
+  }
+}
+    `;
+export type ReactionToPostMutationFn = Apollo.MutationFunction<ReactionToPostMutation, ReactionToPostMutationVariables>;
+
+/**
+ * __useReactionToPostMutation__
+ *
+ * To run a mutation, you first call `useReactionToPostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useReactionToPostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [reactionToPostMutation, { data, loading, error }] = useReactionToPostMutation({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *      post_id: // value for 'post_id'
+ *      reaction: // value for 'reaction'
+ *   },
+ * });
+ */
+export function useReactionToPostMutation(baseOptions?: Apollo.MutationHookOptions<ReactionToPostMutation, ReactionToPostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ReactionToPostMutation, ReactionToPostMutationVariables>(ReactionToPostDocument, options);
+      }
+export type ReactionToPostMutationHookResult = ReturnType<typeof useReactionToPostMutation>;
+export type ReactionToPostMutationResult = Apollo.MutationResult<ReactionToPostMutation>;
+export type ReactionToPostMutationOptions = Apollo.BaseMutationOptions<ReactionToPostMutation, ReactionToPostMutationVariables>;
 export const InitiativeByPkDocument = gql`
     query InitiativeByPK($id: uuid!, $user_id: uuid = "00000000-0000-0000-0000-000000000000") {
   initiative: initiatives_by_pk(id: $id) {
@@ -12748,7 +12818,7 @@ export type map_entriesFieldPolicy = {
 	name?: FieldPolicy<any> | FieldReadFunction<any>,
 	type?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type mutation_rootKeySpecifier = ('delete_files' | 'delete_files_by_pk' | 'delete_initiative_comment_reactions' | 'delete_initiative_comment_reactions_by_pk' | 'delete_initiative_comments' | 'delete_initiative_comments_by_pk' | 'delete_initiative_donations' | 'delete_initiative_donations_by_pk' | 'delete_initiative_edits' | 'delete_initiative_edits_by_pk' | 'delete_initiative_expenses' | 'delete_initiative_expenses_by_pk' | 'delete_initiative_info' | 'delete_initiative_info_by_pk' | 'delete_initiative_members' | 'delete_initiative_members_by_pk' | 'delete_initiative_poll_votes' | 'delete_initiative_poll_votes_by_pk' | 'delete_initiative_polls' | 'delete_initiative_polls_by_pk' | 'delete_initiative_post_reactions' | 'delete_initiative_post_reactions_by_pk' | 'delete_initiative_posts' | 'delete_initiative_posts_by_pk' | 'delete_initiative_projects' | 'delete_initiative_projects_by_pk' | 'delete_initiative_subscriptions' | 'delete_initiative_subscriptions_by_pk' | 'delete_initiative_tags' | 'delete_initiative_tags_by_pk' | 'delete_initiative_tasks' | 'delete_initiative_tasks_by_pk' | 'delete_initiative_threads' | 'delete_initiative_threads_by_pk' | 'delete_initiative_visits' | 'delete_initiative_visits_by_pk' | 'delete_initiative_volunteers' | 'delete_initiative_volunteers_by_pk' | 'delete_initiatives' | 'delete_initiatives_by_pk' | 'delete_tenders' | 'delete_tenders_by_pk' | 'delete_user_settings' | 'delete_user_settings_by_pk' | 'insert_files' | 'insert_files_one' | 'insert_initiative_comment_reactions' | 'insert_initiative_comment_reactions_one' | 'insert_initiative_comments' | 'insert_initiative_comments_one' | 'insert_initiative_donations' | 'insert_initiative_donations_one' | 'insert_initiative_edits' | 'insert_initiative_edits_one' | 'insert_initiative_expenses' | 'insert_initiative_expenses_one' | 'insert_initiative_info' | 'insert_initiative_info_one' | 'insert_initiative_members' | 'insert_initiative_members_one' | 'insert_initiative_poll_votes' | 'insert_initiative_poll_votes_one' | 'insert_initiative_polls' | 'insert_initiative_polls_one' | 'insert_initiative_post_reactions' | 'insert_initiative_post_reactions_one' | 'insert_initiative_posts' | 'insert_initiative_posts_one' | 'insert_initiative_projects' | 'insert_initiative_projects_one' | 'insert_initiative_subscriptions' | 'insert_initiative_subscriptions_one' | 'insert_initiative_tags' | 'insert_initiative_tags_one' | 'insert_initiative_tasks' | 'insert_initiative_tasks_one' | 'insert_initiative_threads' | 'insert_initiative_threads_one' | 'insert_initiative_visits' | 'insert_initiative_visits_one' | 'insert_initiative_volunteers' | 'insert_initiative_volunteers_one' | 'insert_initiatives' | 'insert_initiatives_one' | 'insert_tags' | 'insert_tags_one' | 'insert_tenders' | 'insert_tenders_one' | 'insert_user_settings' | 'insert_user_settings_one' | 'update_files' | 'update_files_by_pk' | 'update_initiative_comment_reactions' | 'update_initiative_comment_reactions_by_pk' | 'update_initiative_comments' | 'update_initiative_comments_by_pk' | 'update_initiative_donations' | 'update_initiative_donations_by_pk' | 'update_initiative_edits' | 'update_initiative_edits_by_pk' | 'update_initiative_expenses' | 'update_initiative_expenses_by_pk' | 'update_initiative_info' | 'update_initiative_info_by_pk' | 'update_initiative_members' | 'update_initiative_members_by_pk' | 'update_initiative_poll_votes' | 'update_initiative_poll_votes_by_pk' | 'update_initiative_polls' | 'update_initiative_polls_by_pk' | 'update_initiative_post_reactions' | 'update_initiative_post_reactions_by_pk' | 'update_initiative_posts' | 'update_initiative_posts_by_pk' | 'update_initiative_projects' | 'update_initiative_projects_by_pk' | 'update_initiative_subscriptions' | 'update_initiative_subscriptions_by_pk' | 'update_initiative_tags' | 'update_initiative_tags_by_pk' | 'update_initiative_tasks' | 'update_initiative_tasks_by_pk' | 'update_initiative_threads' | 'update_initiative_threads_by_pk' | 'update_initiative_visits' | 'update_initiative_visits_by_pk' | 'update_initiative_volunteers' | 'update_initiative_volunteers_by_pk' | 'update_initiatives' | 'update_initiatives_by_pk' | 'update_tenders' | 'update_tenders_by_pk' | 'update_user_settings' | 'update_user_settings_by_pk' | 'update_users' | 'update_users_by_pk' | mutation_rootKeySpecifier)[];
+export type mutation_rootKeySpecifier = ('delete_files' | 'delete_files_by_pk' | 'delete_initiative_comment_reactions' | 'delete_initiative_comment_reactions_by_pk' | 'delete_initiative_comments' | 'delete_initiative_comments_by_pk' | 'delete_initiative_donations' | 'delete_initiative_donations_by_pk' | 'delete_initiative_edits' | 'delete_initiative_edits_by_pk' | 'delete_initiative_expenses' | 'delete_initiative_expenses_by_pk' | 'delete_initiative_info' | 'delete_initiative_info_by_pk' | 'delete_initiative_members' | 'delete_initiative_members_by_pk' | 'delete_initiative_poll_votes' | 'delete_initiative_poll_votes_by_pk' | 'delete_initiative_polls' | 'delete_initiative_polls_by_pk' | 'delete_initiative_post_reactions' | 'delete_initiative_post_reactions_by_pk' | 'delete_initiative_posts' | 'delete_initiative_posts_by_pk' | 'delete_initiative_projects' | 'delete_initiative_projects_by_pk' | 'delete_initiative_subscriptions' | 'delete_initiative_subscriptions_by_pk' | 'delete_initiative_tags' | 'delete_initiative_tags_by_pk' | 'delete_initiative_tasks' | 'delete_initiative_tasks_by_pk' | 'delete_initiative_threads' | 'delete_initiative_threads_by_pk' | 'delete_initiative_visits' | 'delete_initiative_visits_by_pk' | 'delete_initiative_volunteers' | 'delete_initiative_volunteers_by_pk' | 'delete_initiatives' | 'delete_initiatives_by_pk' | 'delete_tenders' | 'delete_tenders_by_pk' | 'delete_user_settings' | 'delete_user_settings_by_pk' | 'insert_files' | 'insert_files_one' | 'insert_initiative_comment_reactions' | 'insert_initiative_comment_reactions_one' | 'insert_initiative_comments' | 'insert_initiative_comments_one' | 'insert_initiative_donations' | 'insert_initiative_donations_one' | 'insert_initiative_edits' | 'insert_initiative_edits_one' | 'insert_initiative_expenses' | 'insert_initiative_expenses_one' | 'insert_initiative_info' | 'insert_initiative_info_one' | 'insert_initiative_members' | 'insert_initiative_members_one' | 'insert_initiative_poll_votes' | 'insert_initiative_poll_votes_one' | 'insert_initiative_polls' | 'insert_initiative_polls_one' | 'insert_initiative_post_reactions' | 'insert_initiative_post_reactions_one' | 'insert_initiative_posts' | 'insert_initiative_posts_one' | 'insert_initiative_projects' | 'insert_initiative_projects_one' | 'insert_initiative_subscriptions' | 'insert_initiative_subscriptions_one' | 'insert_initiative_tags' | 'insert_initiative_tags_one' | 'insert_initiative_tasks' | 'insert_initiative_tasks_one' | 'insert_initiative_threads' | 'insert_initiative_threads_one' | 'insert_initiative_visits' | 'insert_initiative_visits_one' | 'insert_initiative_volunteers' | 'insert_initiative_volunteers_one' | 'insert_initiatives' | 'insert_initiatives_one' | 'insert_tags' | 'insert_tags_one' | 'insert_tenders' | 'insert_tenders_one' | 'insert_user_settings' | 'insert_user_settings_one' | 'update_files' | 'update_files_by_pk' | 'update_initiative_comment_reactions' | 'update_initiative_comment_reactions_by_pk' | 'update_initiative_comments' | 'update_initiative_comments_by_pk' | 'update_initiative_donations' | 'update_initiative_donations_by_pk' | 'update_initiative_edits' | 'update_initiative_edits_by_pk' | 'update_initiative_expenses' | 'update_initiative_expenses_by_pk' | 'update_initiative_info' | 'update_initiative_info_by_pk' | 'update_initiative_members' | 'update_initiative_members_by_pk' | 'update_initiative_poll_votes' | 'update_initiative_poll_votes_by_pk' | 'update_initiative_polls' | 'update_initiative_polls_by_pk' | 'update_initiative_post_reactions' | 'update_initiative_post_reactions_by_pk' | 'update_initiative_posts' | 'update_initiative_posts_by_pk' | 'update_initiative_projects' | 'update_initiative_projects_by_pk' | 'update_initiative_subscriptions' | 'update_initiative_subscriptions_by_pk' | 'update_initiative_tags' | 'update_initiative_tags_by_pk' | 'update_initiative_tasks' | 'update_initiative_tasks_by_pk' | 'update_initiative_threads' | 'update_initiative_threads_by_pk' | 'update_initiative_visits' | 'update_initiative_visits_by_pk' | 'update_initiative_volunteers' | 'update_initiative_volunteers_by_pk' | 'update_initiatives' | 'update_initiatives_by_pk' | 'update_tags' | 'update_tags_by_pk' | 'update_tenders' | 'update_tenders_by_pk' | 'update_user_settings' | 'update_user_settings_by_pk' | 'update_users' | 'update_users_by_pk' | mutation_rootKeySpecifier)[];
 export type mutation_rootFieldPolicy = {
 	delete_files?: FieldPolicy<any> | FieldReadFunction<any>,
 	delete_files_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12880,6 +12950,8 @@ export type mutation_rootFieldPolicy = {
 	update_initiative_volunteers_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_initiatives?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_initiatives_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
+	update_tags?: FieldPolicy<any> | FieldReadFunction<any>,
+	update_tags_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_tenders?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_tenders_by_pk?: FieldPolicy<any> | FieldReadFunction<any>,
 	update_user_settings?: FieldPolicy<any> | FieldReadFunction<any>,

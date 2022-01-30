@@ -1,15 +1,7 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { IUserInfo } from './types/IUserInfo'
 
-export const Container = styled.div`
-    width: 100%;    
-    display: flex;
-    flex-direction: column;
-    background-color: ${props =>  props.theme.colors.backgroundLighter};
-    box-shadow: 0px 0px 2px rgba(137, 150, 159, 0.1), 0px 2px 2px rgba(137, 150, 159, 0.1), 0px 1px 3px rgba(137, 150, 159, 0.1);
-    border-radius: 3px;
-    margin-bottom: 6px;
-    `,
+export const 
 
 AuthorContainer  = styled.div`
     display: flex;
@@ -71,13 +63,7 @@ Tags = styled.div`
     color: ${props => props.theme.colors.label}
 `,
 
-Actions = styled.div`
-    padding: 15px 19px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-`,
+
 
 CommentCounter = styled.div`
 color: ${props => props.theme.colors.label}
@@ -98,35 +84,37 @@ LikeCounter = styled.div`
     padding-right: 4px;
 `,
 
-Likes  = styled.div`
+Likes  = styled.div<{ liked?: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    color: ${props => props.theme.colors.label};
-    /* & > svg {
-        padding-left: 8px;
-    } */
-`,
-
-InputContent =  styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 19px 0 19px;
-
-    & > img {
-        padding-left: 4px;
+    color: ${p => p.theme.colors.label};
+    >svg{
+      ${p=>p.liked? 
+        css`fill: ${p => p.theme.colors.titleActive};`:
+        css`fill: ${p => p.theme.colors.label};`}
+    }
+    :hover {
+      color: ${p => p.theme.colors.secondary};
+      >svg{
+        fill: ${p => p.theme.colors.secondary} !important;
+      }
+    }
+    :active {
+      color: ${p => p.theme.colors.secondaryAccent};
+      >svg{
+        fill: ${p => p.theme.colors.secondaryAccent} !important;
+      }
+    }
+    :disabled {
+      color: ${p => p.theme.colors.placeholder};
+      >svg{
+        fill: ${p => p.theme.colors.placeholder} !important;
+      }
     }
 `,
 
-Channels  = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: ${props => props.theme.colors.label};
-`,
 
 CreateVote = styled.div`
     display: flex;
@@ -144,6 +132,23 @@ Chip = styled.div`
     background-color: ${props => props.theme.colors.backgroundActive};
     padding: 5px;
     margin-right: 10px;
+`,
+
+Actions = styled.div`
+  padding: 15px 19px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`,
+
+Container = styled.div`
+  width: 100%;    
+  display: flex;
+  flex-direction: column;
+  background-color: ${props =>  props.theme.colors.backgroundLighter};
+  box-shadow: 0px 0px 2px rgba(137, 150, 159, 0.1), 0px 2px 2px rgba(137, 150, 159, 0.1), 0px 1px 3px rgba(137, 150, 159, 0.1);
+  border-radius: 3px;
+  margin-bottom: 6px;
 `
 
 

@@ -1,7 +1,8 @@
 import 'resize-observer-polyfill/dist/ResizeObserver.global'
 import { AppProps } from 'next/app'
 import { GlobalStyle } from 'styles'
-import { cacheConfig, Fonts, memoize, theme, useLayout, useUserData } from 'common'
+import { cacheConfig, Fonts, memoize, useLayout, useUserData } from 'common'
+import { theme } from '@ui/common'
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
 import { NhostApolloProvider } from 'common'
@@ -62,7 +63,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
         <link rel="manifest" href="/manifest.json" />
         <title>We.City</title>
       </Head>
-      <NhostAuthProvider {...{nhost}}>
+      <NhostAuthProvider {...{nhost:nhost as any}}>
         <NhostApolloProvider
           {...{nhost}}
           cache={new InMemoryCache( cacheConfig )}
@@ -71,7 +72,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
         >
           <RecoilRoot>
               <MapContext.Provider value={{map:undefined}}>
-                <ThemeProvider {...{theme:{...theme, layout}}}>
+                <ThemeProvider {...{theme:{...theme, layout} }}>
                     <GlobalStyle />
                     <Fonts/>
                     <ClientOnly>

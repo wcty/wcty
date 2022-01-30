@@ -1,5 +1,5 @@
 import "styled-components";
-import { theme } from '../style/theme'
+import { theme } from '@ui/common'
 type Theme = typeof theme
 
 declare module "styled-components" {

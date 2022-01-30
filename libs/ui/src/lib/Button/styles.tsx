@@ -1,26 +1,12 @@
-import styled, {css} from "styled-components";
-import { variant } from 'styled-system'
+import { ElementArgs, ElementProps } from "common";
+import styled, { css } from "styled-components";
 
-
-export const buttonSize = variant({
-  prop: 'size',
-  key: 'buttonSizes'
-});
-
-
-export const buttonType = variant({
-  prop: 'customType',
-  key: 'buttonTypes'
-})
-
-export interface IButtonProps  {
+export interface ButtonProps  {
   size?: 'small' | 'medium' | 'large',
   customType?: 'primary' | 'secondary' | 'subtle' | 'text'
 }
 
-
-
-export const Button = styled.button<IButtonProps>`
+export const Button = styled.button<ButtonProps & ElementProps>`
   border: 0;
   outline: 0;
   display: flex;
@@ -30,12 +16,14 @@ export const Button = styled.button<IButtonProps>`
   padding: 0 15px;
   cursor: pointer;
   border-radius: 3px;
+  >svg:first-child{
+    margin-right: 5px;
+  }
+  >svg:last-child{
+    margin-left: 5px;
+  }
   ${props => props.theme.font.body.semibold.t4};
-  ${buttonType};
-  ${buttonSize};
+  ${p=>p.theme.buttonTypes[p.customType||'primary']};
+  ${p=>p.theme.buttonSizes[p.size||'medium']};
+  ${ElementArgs}
 `;
-
-Button.defaultProps = {
-  size: 'medium',
-  customType: 'primary'
-}

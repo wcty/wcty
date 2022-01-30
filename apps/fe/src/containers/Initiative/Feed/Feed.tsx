@@ -1,5 +1,5 @@
 import Post from "./Post";
-import CreatePost from "containers/Initiative/Feed/Post/CreatePost";
+import CreatePost from "containers/Initiative/Feed/Post/CreatePost/CreatePost";
 import { useFeedSubscription, useFirstMemberQuery } from "generated";
 import { useRouter } from "next/router";
 import { CheckedChannels, Container, Footer } from "./styles";
@@ -28,10 +28,10 @@ function Feed() {
   return(
     <Container>
       <CheckedChannels>
-          { channels }
+          {/* { channels } */}
       </CheckedChannels>
-      <CreatePost {...{channels}}/>
-      { postsData?.posts.map((post,  key) => <Post  {...post} key={key}/>) }
+      <CreatePost/>
+      { [...postsData?.posts||[]].reverse().map((post,  key) => <Post  {...post} key={key}/>) }
       <Footer>
         <div>{date_created}</div>
         <div>{data?.initiative_members[0].user?.display_name} створила/ив ініціативу</div>

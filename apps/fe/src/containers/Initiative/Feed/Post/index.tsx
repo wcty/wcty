@@ -1,20 +1,22 @@
 import { IPost } from "./types/IPost";
 import {  Actions, CommentCounter,  Container, Content, LikeCounter, Likes, Message, Tags, ToComment } from "./styles";
 import Author from "./Author";
-import CommentIco from '@assets/icons/comment.svg'
+import { ReactComponent as CommentIco } from '@assets/icons/comment.svg'
 import { ReactComponent as LikeIco} from '@assets/icons/like.svg'
-import { FeedFragment, Reactions_Enum, useReactionToPostMutation } from "generated";
+import { FeedFragment, Reactions_Enum, useReactionToPostMutation, useDeleteLikeMutation } from "generated";
 import { fixAvatar, useUser } from "common";
+import { Trans } from "@lingui/macro";
+import { Button } from "@ui";
 
 function Post(props: FeedFragment ) {
     const {user: author, id: post_id, message, comments_aggregate, reactions} = props;
-    console.log(props)
     const user = useUser();
+    const [deleteLike] = useDeleteLikeMutation({variables:{ user_id: user?.id, post_id }});
     const [likePost] = useReactionToPostMutation({variables:{ user_id: user?.id, post_id, reaction: Reactions_Enum.Like}});
-    const isReactionNotExistForCurrentUser = reactions.find(reaction => reaction.user_id ===  user?.id) === undefined;
+    const liked = !!reactions.find(reaction => reaction.user_id ===  user?.id);
+    
     return(
         <Container>
-          
             <Author
               avatar={fixAvatar(author?.avatar_url)}
               name={author?.display_name||''}
@@ -27,18 +29,17 @@ function Post(props: FeedFragment ) {
             </Content>
             <Actions> 
                 <CommentCounter>
-                    Коментарів: {comments_aggregate?.aggregate?.count}
+                  <Trans>Comments:</Trans> {comments_aggregate?.aggregate?.count}
                 </CommentCounter>
-                <ToComment>
-                    <img src={CommentIco} alt="comment"/>
-                    Коментувати
-                </ToComment>
-                <Likes>
+                <Button customType="text" size="small">
+                    <CommentIco/>
+                    <Trans>Comment</Trans>
+                </Button>
+                <Likes liked={liked}>
                     <LikeCounter>{reactions.length}</LikeCounter>
-                    <LikeIco onClick={()=> isReactionNotExistForCurrentUser &&likePost()}/>
+                    <LikeIco onClick={()=>liked? deleteLike(): likePost() }/>
                 </Likes>
             </Actions>
-           
         </Container>
     )
 }

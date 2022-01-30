@@ -35,7 +35,6 @@ Img = styled.div.attrs((p:{src:string, alt:string})=>({
   src: p.src,
   alt: p.alt,
 }))`
-  background-color: red;
   position: relative;
   background-image: url(${p=>p.src});
   background-size: cover;

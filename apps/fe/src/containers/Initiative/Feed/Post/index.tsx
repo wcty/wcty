@@ -32,10 +32,10 @@ export default function Post(props: FeedFragment ) {
         </Button>
         {options && 
           <OptionsMenu >
-            <Button style={{pointerEvents:'all'}} onClick={()=>{ console.log('click'); setOptions(false); }} width='100%' customType='secondary' onClick={()=>{}}>
+            <Button style={{pointerEvents:'all'}} onClick={()=>{ console.log('click'); setOptions(false); }} width='100%' customType='secondary'>
               <Trans>Edit</Trans>
             </Button>
-            <Button style={{pointerEvents:'all'}} onClick={()=>{ deletePost(); setOptions(false); }} width='100%' customType='secondary' onClick={()=>{}}>
+            <Button style={{pointerEvents:'all'}} onClick={()=>{ deletePost(); setOptions(false); }} width='100%' customType='secondary'>
               <Trans>Delete</Trans>
             </Button>
           </OptionsMenu>}

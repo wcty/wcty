@@ -29,11 +29,13 @@ export default function Creation() {
             router.push('/login')
           }
         }><Trans>Register</Trans></Button>
-        <Button customType='outlined' onClick={(e)=>{
-          cookies.set('callbackUrl', {pathname, query}, { path: '/' });
-          e.preventDefault()
-          router.push('/login')
-        }}><Trans>Login</Trans></Button>
+        <Button customType='outlined' onClick={
+          (e)=>{
+            cookies.set('callbackUrl', {pathname, query}, { path: '/' });
+            e.preventDefault()
+            router.push('/login')
+          }
+        }><Trans>Login</Trans></Button>
       </div>
     </FloatingContainer>
   );

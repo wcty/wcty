@@ -1,4 +1,3 @@
-import { ElementArgs, ElementProps } from "common";
 import styled, { css } from "styled-components";
 import { position, layout } from 'styled-system'
 export interface ButtonProps  {
@@ -6,7 +5,7 @@ export interface ButtonProps  {
   customType?: 'primary' | 'secondary' | 'outlined' | 'subtle' | 'text'
 }
 
-export const Button = styled.button<ButtonProps & ElementProps>`
+export const Button = styled.button<ButtonProps>`
   border: 0;
   outline: 0;
   display: flex;

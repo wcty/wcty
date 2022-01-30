@@ -4,7 +4,7 @@ import {ReactComponent as VoteIco} from '@assets/icons/vote.svg'
 import {ReactComponent as LikeIco} from '@assets/icons/like.svg'
 import {ReactComponent as ArrowLeft} from '@assets/icons/arrow-left.svg'
 import {ReactComponent as ArrowRight} from '@assets/icons/arrow-right.svg'
-import { ElementArgs, ElementProps } from 'common';
+import { position, layout } from 'styled-system';
 
 const variants = {
   'send': <SendIco/>,
@@ -43,7 +43,7 @@ const handleSize =  {
 
 export const IconButton =  styled.div.attrs(
   ({icon = 'send', size = 'medium'}: IconButtonProps)=>
-  ({size, children: variants[icon]}))<IconButtonProps & ElementProps>`
+  ({size, children: variants[icon]}))<IconButtonProps>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,5 +66,6 @@ export const IconButton =  styled.div.attrs(
     &:disabled {
         background-color: ${props => props.theme.colors.body};
     }
-    ${ElementArgs}
+    ${position}
+    ${layout}
 `

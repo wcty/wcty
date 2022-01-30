@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Container, DonationMenu, Form, TaskSelection } from './styles';
 import { useRouter } from 'next/router';
 import { t, Trans } from '@lingui/macro'
+import { position, layout } from 'styled-system'
 
 export default function Join() {
   const { id } = useRouter().query;

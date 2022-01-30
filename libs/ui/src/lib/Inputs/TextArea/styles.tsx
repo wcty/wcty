@@ -1,5 +1,5 @@
-import { ElementArgs, ElementProps } from 'common'
 import styled, { css } from 'styled-components'
+import { position, layout } from 'styled-system'
 
 export const 
 FieldWrapper = styled.div`
@@ -89,15 +89,18 @@ TextInputParams = css`
       background-color: #ffffff;
     }
   }
-  ${ElementArgs}
 `,
 
-TextInput = styled.input<ElementProps>`
+TextInput = styled.input`
   ${TextInputParams}
+  ${position}
+  ${layout}
 `,
 
-TextAreaInput = styled.textarea<ElementProps & { extendable?: boolean}>`
+TextAreaInput = styled.textarea<{ extendable?: boolean}>`
   ${TextInputParams}
+  ${position}
+  ${layout}
   resize: none;
   transition: height 0.2s ease-in-out;
   ${({ extendable }) => extendable && css`

@@ -3,11 +3,11 @@ import { ReactComponent as CancelIcon } from '@assets/icons/cancel.svg'
 import { ReactComponent as PIcon}  from '@assets/icons/create-post-icon.svg'
 
 import { FieldWrapper, TextAreaInput } from "./styles";
-import { ElementProps } from "common";
+import { LayoutProps, PositionProps } from 'styled-system'
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-export function TextArea(props:TextAreaProps & ElementProps & {withImage?: boolean}){
+export function TextArea(props:TextAreaProps & LayoutProps & PositionProps &{withImage?: boolean}){
   return(
     <FieldWrapper>
       <TextAreaInput {...props}/>

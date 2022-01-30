@@ -49,7 +49,8 @@ jobs:
           cd ~/wcty
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_rsa
-          git pull 
+          git fetch --all
+          git reset --hard origin/main
           yarn
 
           git diff --quiet main~1 main apps/be/Caddyfile

@@ -12,5 +12,7 @@ export const theme = {
   buttonTypes,
   buttonSizes,
   font
-} 
+} as const;
+
+export type Theme = typeof theme;
 

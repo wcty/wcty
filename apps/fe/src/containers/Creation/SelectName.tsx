@@ -26,6 +26,7 @@ export default function Creation({
           placeholder={t`Name of your initiative`}/>
         <TextArea
           rows={3}
+          withCancel
           value={initiative.problem}
           onChange={(e)=>setInitiative({...initiative, problem: e.target.value})}
           placeholder={t`Describe your idea or problem that you are trying to solve`}/>

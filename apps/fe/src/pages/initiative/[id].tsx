@@ -46,7 +46,7 @@ export default function DynamicInitiative(props:InitiativeProps) {
 export const getServerSideProps:GetServerSideProps = async (ctx) => {
   const { req:{ cookies }, res, query } = ctx
   let initiative: InitiativePublicByPkQuery['initiative'] | undefined
-
+  
   if(query.id){
     initiative = (await client.query<InitiativePublicByPkQuery | undefined>({
       query: InitiativePublicByPkDocument,

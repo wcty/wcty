@@ -1,7 +1,7 @@
 import { Card, Thumbnail, Content, TopBar, BottomPanel, Button, Metrics, Icon } from "./styles";
 import { ReactComponent as People } from '@assets/icons/popupPeople.svg'
 import { ReactComponent as Location } from '@assets/icons/popupLocation.svg'
-import { useGeolocation,  atoms } from 'common';
+import { useGeolocation,  atoms, auth } from 'common';
 import distance from '@turf/distance'
 import { format } from 'd3-format'
 import { useRouter } from 'next/router';
@@ -39,7 +39,8 @@ export default function InitiativeCard({entry}:InitiativeProps){
         await router.push(
           { 
             pathname: `/initiative/[id]`, 
-            query: { id: entry.id }
+            query: { id: entry.id },
+            auth: auth.getJWTToken()
           }, `/initiative/${entry.id}`, { locale } )
         setLoading(false)
       }catch(e){

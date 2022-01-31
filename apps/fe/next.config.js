@@ -41,7 +41,7 @@ intercept(interceptStdout)
     styledComponents: true
   },
   webpack: (config, options) => {
-    config.resolve.fallback = { fs: false, path: false, os: false, module: false };
+    config.resolve.fallback = { fs: false, document:false, path: false, os: false, module: false };
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack", "url-loader"],

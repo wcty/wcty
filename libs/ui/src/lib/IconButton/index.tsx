@@ -4,7 +4,9 @@ import {ReactComponent as VoteIco} from '@assets/icons/vote.svg'
 import {ReactComponent as LikeIco} from '@assets/icons/like.svg'
 import {ReactComponent as ArrowLeft} from '@assets/icons/arrow-left.svg'
 import {ReactComponent as ArrowRight} from '@assets/icons/arrow-right.svg'
-import { position, layout } from 'styled-system';
+import { ReactComponent as CloseIcon } from '@assets/icons/close-icon.svg'
+
+import { position, layout, space, SpaceProps, LayoutProps, PositionProps } from 'styled-system';
 
 const variants = {
   'send': <SendIco/>,
@@ -13,11 +15,13 @@ const variants = {
   'like': <LikeIco/>,
   'arrow-left': <ArrowLeft/>,
   'arrow-right': <ArrowRight/>,
+  'close': <CloseIcon/>,
 }
 
 interface  IconButtonProps {
   icon?: keyof typeof variants;
-  size?: 'small' |  'medium' |  'large'
+  customSize?: 'small' |  'medium' |  'large',
+  customType?: 'primary' | 'secondary' | 'outlined' | 'subtle' | 'text'
 }
 
 const small = css<{}>`
@@ -42,8 +46,8 @@ const handleSize =  {
 }
 
 export const IconButton =  styled.div.attrs(
-  ({icon = 'send', size = 'medium'}: IconButtonProps)=>
-  ({size, children: variants[icon]}))<IconButtonProps>`
+  ({icon = 'send', customSize = 'medium'}: IconButtonProps)=>
+  ({customSize, children: variants[icon]}))<IconButtonProps & SpaceProps & LayoutProps & PositionProps>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,11 +56,11 @@ export const IconButton =  styled.div.attrs(
     margin-left: 5px;
     border-radius: 50%;
     cursor: pointer;
-    
+    padding: 0 !important;
+
     & > svg {
-        width: 60%;
+      margin: 0 !important;
     }
-    ${({size})  => handleSize[size!]}
     &:hover {
         background-color: ${props => props.theme.colors.secondary};
     };
@@ -66,6 +70,10 @@ export const IconButton =  styled.div.attrs(
     &:disabled {
         background-color: ${props => props.theme.colors.body};
     }
+    ${({customSize})  => handleSize[customSize!]}
+    ${({customType = 'primary', theme})=>theme.buttonTypes[customType]};
+
     ${position}
     ${layout}
+    ${space}
 `

@@ -7,6 +7,7 @@ import { fixAvatar, useUser } from "common";
 import { Trans } from "@lingui/macro";
 import { Button } from "@ui";
 import { useState } from "react";
+import { ReactComponent as OptionsIcon} from '@assets/icons/post-options.svg'
 
 export default function Post(props: FeedFragment ) {
   const {user: author, id: post_id, message, comments_aggregate, reactions} = props;
@@ -27,9 +28,10 @@ export default function Post(props: FeedFragment ) {
         date={new Date()}
       />
       {props?.user?.id===user?.id && <>
-        <Button customType='text' customSize='small' position="absolute" top='1rem' right='0rem'>
-          <OptionsButton onClick={()=>setOptions(!options)}/>
-        </Button>
+        <OptionsButton
+          customType='secondary' 
+          onClick={()=>setOptions(!options)} 
+          customSize='small'/>
         {options && 
           <OptionsMenu >
             <Button style={{pointerEvents:'all'}} onClick={()=>{ console.log('click'); setOptions(false); }} width='100%' customType='secondary'>
@@ -41,9 +43,11 @@ export default function Post(props: FeedFragment ) {
           </OptionsMenu>}
       </>}
       <Content>
-        <Message>{message?.replaceAll('\\n', `
-        `)}</Message>
-        {/* <Tags>#{[].join(' ')}</Tags> */}
+        <Message>{
+          message?.replaceAll(
+            '\\n', `
+          `)
+        }</Message>
       </Content>
       <Actions> 
         <CommentCounter>

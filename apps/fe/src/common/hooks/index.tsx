@@ -10,46 +10,41 @@ export * from './useUploader'
 export * from './usePushNotifications'
 
 export function useUser(){
-  const [user] = useRecoilState(atoms.user)
+  const [user, setUser] = useRecoilState(atoms.user)
   return user
 }
 
 export function useUserData(){
   const [user, setUser] = useRecoilState(atoms.user)
   const [user_id, setUserId] = useState<string>()
-  const router = useRouter()
-  const { isAuthenticated } = useNhostAuth()
+
   const { data:userData } = useUserQuery({variables:{user_id}, skip: !user_id})
-  
+  const router = useRouter()
+
   useEffect(()=>{
-    if(!user && userData && isAuthenticated){
+    if(!user && userData && auth.isAuthenticated()){
       setUser(userData?.users_by_pk)
       if(router.pathname==='/oauth/success'){
         router.push('/')
       }
     }
-  },[userData, user, isAuthenticated])
+  },[userData, user, auth.isAuthenticated])
 
-  useEffect(()=>{
-    if(isAuthenticated){
-      const user_id = auth.getClaim("x-hasura-user-id");
-      if(typeof user_id==='string'){
-        setUserId(user_id)
-      }
-      if(router.pathname==='/login'){
-        router.back()
-      }
-    }else{
-      setUser(null)
-      setUserId(undefined)
-    }
-  },[isAuthenticated])
 
   useEffect(()=>{
     auth.onAuthStateChanged(loggedIn=>{
+      console.log('auth state changed', loggedIn)
       if(!loggedIn){
         setUser(null)
         setUserId(undefined)
+      }else{
+        const user_id = auth.getClaim("x-hasura-user-id");
+        if(typeof user_id==='string'){
+          setUserId(user_id)
+        }
+        if(router.pathname==='/login'){
+          router.back()
+        }
       }
     })
   },[])

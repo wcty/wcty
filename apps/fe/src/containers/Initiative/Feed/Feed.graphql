@@ -1,5 +1,8 @@
 subscription Feed($id: uuid){
-  posts: initiative_posts(where:{initiative_id: {_eq: $id}}) {
+  posts: initiative_posts(
+    where:{initiative_id: {_eq: $id}}
+    order_by: {created_at: desc}
+  ) {
     ...Feed
   }
 }

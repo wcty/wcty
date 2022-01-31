@@ -10162,6 +10162,26 @@ export type SearchResultsQueryVariables = Exact<{
 
 export type SearchResultsQuery = { entries: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
 
+export type CreateCommentMutationVariables = Exact<{
+  message: Scalars['String'];
+  user_id: Scalars['uuid'];
+  initiative_id: Scalars['uuid'];
+  thread_id?: Scalars['String'];
+}>;
+
+
+export type CreateCommentMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
+
+export type CreatePostMutationVariables = Exact<{
+  message: Scalars['String'];
+  user_id: Scalars['uuid'];
+  initiative_id: Scalars['uuid'];
+  thread_id?: Scalars['String'];
+}>;
+
+
+export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
+
 export type FeedSubscriptionVariables = Exact<{
   id?: InputMaybe<Scalars['uuid']>;
 }>;
@@ -10177,16 +10197,6 @@ export type FirstMemberQueryVariables = Exact<{
 
 
 export type FirstMemberQuery = { initiative_members: Array<{ created_at: any, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined }> };
-
-export type CreatePostMutationVariables = Exact<{
-  message: Scalars['String'];
-  user_id: Scalars['uuid'];
-  initiative_id: Scalars['uuid'];
-  thread_id?: Scalars['String'];
-}>;
-
-
-export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
 
 export type DeleteLikeMutationVariables = Exact<{
   user_id: Scalars['uuid'];
@@ -11194,9 +11204,88 @@ export function useSearchResultsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type SearchResultsQueryHookResult = ReturnType<typeof useSearchResultsQuery>;
 export type SearchResultsLazyQueryHookResult = ReturnType<typeof useSearchResultsLazyQuery>;
 export type SearchResultsQueryResult = Apollo.QueryResult<SearchResultsQuery, SearchResultsQueryVariables>;
+export const CreateCommentDocument = gql`
+    mutation CreateComment($message: String!, $user_id: uuid!, $initiative_id: uuid!, $thread_id: String! = "main") {
+  insert_initiative_posts_one(
+    object: {type: message, message: $message, user_id: $user_id, initiative_id: $initiative_id, thread_id: $thread_id}
+  ) {
+    id
+  }
+}
+    `;
+export type CreateCommentMutationFn = Apollo.MutationFunction<CreateCommentMutation, CreateCommentMutationVariables>;
+
+/**
+ * __useCreateCommentMutation__
+ *
+ * To run a mutation, you first call `useCreateCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCommentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createCommentMutation, { data, loading, error }] = useCreateCommentMutation({
+ *   variables: {
+ *      message: // value for 'message'
+ *      user_id: // value for 'user_id'
+ *      initiative_id: // value for 'initiative_id'
+ *      thread_id: // value for 'thread_id'
+ *   },
+ * });
+ */
+export function useCreateCommentMutation(baseOptions?: Apollo.MutationHookOptions<CreateCommentMutation, CreateCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCommentMutation, CreateCommentMutationVariables>(CreateCommentDocument, options);
+      }
+export type CreateCommentMutationHookResult = ReturnType<typeof useCreateCommentMutation>;
+export type CreateCommentMutationResult = Apollo.MutationResult<CreateCommentMutation>;
+export type CreateCommentMutationOptions = Apollo.BaseMutationOptions<CreateCommentMutation, CreateCommentMutationVariables>;
+export const CreatePostDocument = gql`
+    mutation CreatePost($message: String!, $user_id: uuid!, $initiative_id: uuid!, $thread_id: String! = "main") {
+  insert_initiative_posts_one(
+    object: {type: message, message: $message, user_id: $user_id, initiative_id: $initiative_id, thread_id: $thread_id}
+  ) {
+    id
+  }
+}
+    `;
+export type CreatePostMutationFn = Apollo.MutationFunction<CreatePostMutation, CreatePostMutationVariables>;
+
+/**
+ * __useCreatePostMutation__
+ *
+ * To run a mutation, you first call `useCreatePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createPostMutation, { data, loading, error }] = useCreatePostMutation({
+ *   variables: {
+ *      message: // value for 'message'
+ *      user_id: // value for 'user_id'
+ *      initiative_id: // value for 'initiative_id'
+ *      thread_id: // value for 'thread_id'
+ *   },
+ * });
+ */
+export function useCreatePostMutation(baseOptions?: Apollo.MutationHookOptions<CreatePostMutation, CreatePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreatePostMutation, CreatePostMutationVariables>(CreatePostDocument, options);
+      }
+export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
+export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
+export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
 export const FeedDocument = gql`
     subscription Feed($id: uuid) {
-  posts: initiative_posts(where: {initiative_id: {_eq: $id}}) {
+  posts: initiative_posts(
+    where: {initiative_id: {_eq: $id}}
+    order_by: {created_at: desc}
+  ) {
     ...Feed
   }
 }
@@ -11267,44 +11356,6 @@ export function useFirstMemberLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type FirstMemberQueryHookResult = ReturnType<typeof useFirstMemberQuery>;
 export type FirstMemberLazyQueryHookResult = ReturnType<typeof useFirstMemberLazyQuery>;
 export type FirstMemberQueryResult = Apollo.QueryResult<FirstMemberQuery, FirstMemberQueryVariables>;
-export const CreatePostDocument = gql`
-    mutation CreatePost($message: String!, $user_id: uuid!, $initiative_id: uuid!, $thread_id: String! = "main") {
-  insert_initiative_posts_one(
-    object: {type: message, message: $message, user_id: $user_id, initiative_id: $initiative_id, thread_id: $thread_id}
-  ) {
-    id
-  }
-}
-    `;
-export type CreatePostMutationFn = Apollo.MutationFunction<CreatePostMutation, CreatePostMutationVariables>;
-
-/**
- * __useCreatePostMutation__
- *
- * To run a mutation, you first call `useCreatePostMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreatePostMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createPostMutation, { data, loading, error }] = useCreatePostMutation({
- *   variables: {
- *      message: // value for 'message'
- *      user_id: // value for 'user_id'
- *      initiative_id: // value for 'initiative_id'
- *      thread_id: // value for 'thread_id'
- *   },
- * });
- */
-export function useCreatePostMutation(baseOptions?: Apollo.MutationHookOptions<CreatePostMutation, CreatePostMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreatePostMutation, CreatePostMutationVariables>(CreatePostDocument, options);
-      }
-export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
-export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
-export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
 export const DeleteLikeDocument = gql`
     mutation DeleteLike($user_id: uuid!, $post_id: bigint!) {
   delete_initiative_post_reactions(

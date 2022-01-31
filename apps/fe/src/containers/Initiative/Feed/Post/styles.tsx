@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import { IUserInfo } from './types/IUserInfo'
 import { ReactComponent as OptionsIcon} from '@assets/icons/post-options.svg'
+import { Button } from "@ui";
 
 export const 
 AuthorContainer  = styled.div`
@@ -139,10 +140,15 @@ Container = styled.div`
   position: relative;
 `,
 
-OptionsButton = styled.div.attrs({
+OptionsButton = styled(Button).attrs({
   children: <OptionsIcon/>
 })`
   padding: 0;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
   margin: 0;
   border: none;
   display: flex;
@@ -150,12 +156,8 @@ OptionsButton = styled.div.attrs({
   justify-content: center;
   cursor: pointer;
   border-radius: 50%;
-  background-color: ${p=>p.theme.colors.backgroundActive};
-  :hover {
-    background-color: ${p=>p.theme.colors.line};
-  }
-  :active{
-    background-color: ${p=>p.theme.colors.placeholder};
+  >svg{
+    margin: 0px !important;
   }
 `,
 

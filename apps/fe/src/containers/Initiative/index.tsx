@@ -17,7 +17,7 @@ export default function Initiative({initiative}:InitiativeProps) {
   const { data } = useInitiativeByPkQuery({variables:{id:initiative?.id,user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
   const isMember = !!data?.initiative?.members?.length
   const layout = useLayout()
-
+  
   return (initiative && !initiative?.id)? 
     <Redirect to='/'/>  :(
     <Container>
@@ -36,7 +36,7 @@ export default function Initiative({initiative}:InitiativeProps) {
           <Body>
             <InitiativeDetails {...{initiative}}/>
           </Body>
-          <Feed {...{isMember}}/>
+          <Feed {...{isMember, initiative}}/>
         </>}
     </Container>
   )

@@ -4,7 +4,7 @@ import { ReactComponent as UserIcon } from '@assets/icons/user.svg'
 import { ReactComponent as LogoutIcon } from '@assets/icons/logout.svg'
 import { Trans } from '@lingui/macro'
 import { useState, useEffect } from 'react'
-import { auth,  useLayout, useUser } from 'common'
+import { atoms, auth,  client,  useLayout, useUser } from 'common'
 import LangSelect from './LangSelect'
 import { tabs, Tabs } from './tabs'
 import Organizations from './Organizations'
@@ -18,6 +18,7 @@ const cookies = new Cookies();
 
 export default function Sidepanel (){
   const user = useUser()
+
   const router = useRouter()
   const isEntryCreation = router.pathname.includes('/create-initiative')
 
@@ -133,7 +134,7 @@ export default function Sidepanel (){
           {user&&
             <UserIconRow style={{border:'none'}} 
             {...{...props('exit'),
-              onClick:()=>{auth.logout()}}}>
+              onClick:()=>{auth.logout();}}}>
                 <span>
                   <Trans>Logout</Trans>
                 </span>

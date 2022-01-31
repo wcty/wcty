@@ -1,8 +1,9 @@
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { Source, Layer, MapContext } from '@urbica/react-map-gl'
-import { Map, CustomLayerInterface } from 'mapbox-gl'
+import { Map as MapType, CustomLayerInterface } from 'mapbox-gl'
 import { useGeolocation } from 'common'
 import { useRouter } from 'next/router'
+import Map from './'
 
 type PulsingDot = CustomLayerInterface & {
   width:number,
@@ -11,7 +12,7 @@ type PulsingDot = CustomLayerInterface & {
   context?: CanvasRenderingContext2D,
 }
 
-const pulsingDot = (map:Map):PulsingDot =>{
+const pulsingDot = (map:MapType):PulsingDot =>{
   var size = 60;
   
   // implementation of CustomLayerInterface to draw a pulsing dot icon on the map
@@ -88,26 +89,26 @@ const pulsingDot = (map:Map):PulsingDot =>{
 }
 
 export default ()=>{
-  const loaded =  useRef(false)
   const location = useGeolocation()
-  
-  return (
-    <>
-      <MapContext.Consumer>
-        {(map:Map) => {
-          if(map && !loaded.current && !map?.hasImage?.('pulsing-dot')){
-            map.addImage('pulsing-dot', pulsingDot(map), { pixelRatio: 2 });
-            loaded.current=true
-            return;  
-          }
-        }}
-    
-      </MapContext.Consumer>
-    </>
-  )
+  const loadedRef = useRef(false)
+  const [loaded, setLoaded] = useState(false)
+  const context = useContext(Map.Context)
+
+  useEffect(()=>{
+    if(context.map){
+      const map = context.map
+      if(map && !loaded && !loadedRef.current ){
+        map.addImage('pulsing-dot', pulsingDot(map), { pixelRatio: 2 });
+        loadedRef.current=true
+        setLoaded(true)  
+      }
+    }
+  },[context.map])
+
+  return null
 }
 
-function PointsLayer({map}:{map:Map}){
+function PointsLayer({map}:{map:MapType}){
   const location = useGeolocation()
 
   useEffect(()=>{

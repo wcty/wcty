@@ -1,6 +1,12 @@
-import { FunctionComponent, useEffect, useState } from "react";
+import { FunctionComponent, ReactNode, useEffect, useState } from "react";
 
-export default function ClientOnly({ children, ...delegated }:any) {
+export default function ClientOnly({ 
+  children = ()=><></> , 
+  ...delegated 
+}:{
+  children?:ReactNode|((args:any)=>ReactNode), 
+  delegated?:any
+}) {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -15,5 +21,10 @@ export default function ClientOnly({ children, ...delegated }:any) {
     return null;
   }
 
-  return <div {...delegated}>{children}</div>;
+  if(typeof children === 'function'){
+    return children(delegated);
+  }else{
+    return children;
+  }
+
 }

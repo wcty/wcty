@@ -6,7 +6,7 @@ import LocationIcon from './LocationIcon'
 import LoadIcons from './LoadIcons'
 import Satellite from './Satellite'
 import mapStyle from './mapStyle.json'
-import { ReactNode, useContext, useEffect } from 'react'
+import { ReactNode, useContext, useEffect, useState } from 'react'
 // import { MapGL } from './styles'
 import { useRouter } from 'next/router'
 import ContextProvider from './ContextProvider'
@@ -19,11 +19,18 @@ export default function Map({children}:{children?:ReactNode}){
   const [cursor] = useRecoilState(atoms.cursor)
   const [selected,setSelected] = useRecoilState(atoms.selected)
   const lang = useLang()  
-  
+  const [loaded, setLoaded] = useState(false)
+
   useEffect(()=>{
     if(selected?.geometry?.coordinates)
     cookies.set('focus', selected.geometry.coordinates , { path: '/' });
   },[selected])
+
+  useEffect(()=>{
+    return ()=>{
+      setLoaded(false)
+    }
+  },[])
 
   const router = useRouter()
  
@@ -38,6 +45,9 @@ export default function Map({children}:{children?:ReactNode}){
           cursorStyle={cursor}
           locale={lang}
           refreshExpiredTiles={true}
+          onLoad={()=>{
+            setLoaded(true)
+          }}
           // hash
           {...viewport}
           onClick={(e:any)=>{
@@ -47,15 +57,17 @@ export default function Map({children}:{children?:ReactNode}){
             }
           }}
         >
-          <ContextSetter/>
-          <AttributionControl
-            compact={true}
-            position='bottom-left'
-          />
-          <>{ children }</>
-          <LoadIcons />
-          <>{ satellite && <Satellite /> }</>
-          <LocationIcon />
+          {loaded && <>
+            <ContextSetter/>
+            <AttributionControl
+              compact={true}
+              position='bottom-left'
+            />
+            <>{ children }</>
+            <LoadIcons />
+            <>{ satellite && <Satellite /> }</>
+            <LocationIcon />
+          </>}
         </MapGL>
       </>
     )
@@ -66,10 +78,21 @@ Map.Context = ContextProvider
 function ContextSetter (){
   const map:MapType = useContext(MapContext)
   const context = useContext(Map.Context)
+
   useEffect(()=>{
     if(map){
       context.map = map
+    }else{
+      console.log('unmounting')
+      context.map = undefined
+    }
+    return ()=>{
+      if(!map){
+        console.log('unmounting')
+        context.map = undefined
+      }
     }
   },[map, context])
+
   return null
 }

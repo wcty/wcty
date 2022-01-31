@@ -12,10 +12,6 @@ export default function Join() {
   const user = useUser()
   const { data:tasks, error } = useTasksQuery({variables:{id}, fetchPolicy:'cache-first', nextFetchPolicy: 'cache-only' })
   
-  useEffect(()=>{
-    console.log('user', user)
-  },[user])
-  
   const [commitments, setCommitments] = useState({
     donation: {
       value: '',
@@ -167,6 +163,7 @@ export default function Join() {
           </TaskSelection>}
         <TextArea
           cols={40} rows={3}
+          withCancel
           value={commitments.task.description||''}
           onChange={(e)=>setCommitments({
             ...commitments, 

@@ -1,19 +1,29 @@
 import styled, { css } from "styled-components"
 
-export const 
+import { theme } from "@ui/common"
+import { space, layout, position, SpaceProps, LayoutProps, PositionProps } from "styled-system"
 
-Text = styled.span<{semibold?:boolean, mt?:string, mb?:string, color?:string}>`
+type colorTypes = keyof typeof theme.colors
+const colors:colorTypes[] = Object.keys(theme.colors) as colorTypes[]
+
+
+export const 
+Text = styled.span<{semibold?:boolean, customColor?: colorTypes } & SpaceProps & LayoutProps & PositionProps >`
   ${p=>p.semibold?
     p.theme.font.body.semibold.t4:
     p.theme.font.body.regular.t4 }
   text-align: center; 
-  ${p=>p.mt && css`margin-top: ${p.mt};`}
-  ${p=>p.mb && css`margin-bottom: ${p.mb};`}
-  ${p=>p.color && css`color: ${p.color};`}
-
+  ${p=>p.customColor && (
+    colors.includes(p.customColor) ?
+      css`color: ${p.theme.colors[p.customColor]};`:
+      css`color: ${p.customColor};`
+  )}
   >svg{
     margin-right: 8px;
   }
+  ${space}
+  ${layout}
+  ${position}
 `,
 
 Divider = styled.div`

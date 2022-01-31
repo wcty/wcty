@@ -1,6 +1,6 @@
 import { Avatar, TextField, TextArea, Button, IconButton, SectionTab } from "@ui";
 import { Channels, InputContent } from "./styles";
-import { Actions, Container } from "../styles";
+import { Actions, Container } from "../Post/styles";
 import { ReactComponent as VoteIco} from "@assets/icons/vote.svg";
 import { useCreatePostMutation } from "generated";
 import { fixAvatar, useUser } from "common";
@@ -8,11 +8,8 @@ import { KeyboardEventHandler, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Trans } from '@lingui/macro'
 
-export interface ICreatePostProps{
-  channels?: string[]
-}
 
-function CreatePost({channels}:ICreatePostProps){
+function CreatePost(){
   
   const { id } = useRouter().query;
   const user = useUser();
@@ -43,14 +40,8 @@ function CreatePost({channels}:ICreatePostProps){
             <IconButton style={{alignSelf: 'start', marginTop:'0.5rem'}} aria-disabled={message.length<2} icon="send" size="small" onClick={submit}/>
         </InputContent>
         <Actions>
-          <div>{channels && <Channels>
-            <Trans>Channels</Trans>: {
-              channels?.length>0?
-              channels.map((channel, i) => <SectionTab key={i} label={`#${channel}`}/>):
-              '#general'
-            }
-          </Channels>}</div>
-            <Button customType='text' customSize='small'><VoteIco/><Trans>Create poll</Trans></Button>
+          <div/>
+          <Button customType='text' customSize='small'><VoteIco/><Trans>Create poll</Trans></Button>
         </Actions>
       </Container>
   )

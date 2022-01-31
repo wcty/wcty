@@ -7,7 +7,7 @@ export function CenterPanel({children, onClose}:{children?:ReactNode, onClose?:(
   return <>
     <Wrapper>
       <Box>
-            <Close onClick={()=>onClose&&onClose()}/>
+          <Close onClick={()=>onClose&&onClose()}/>
         {children}
       </Box>
     </Wrapper>

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { position, layout } from 'styled-system'
+import { position, layout, space, PositionProps, LayoutProps, SpaceProps } from 'styled-system'
 
 export const 
 FieldWrapper = styled.div`
@@ -101,6 +101,7 @@ TextAreaInput = styled.textarea<{ extendable?: boolean}>`
   ${TextInputParams}
   ${position}
   ${layout}
+  ${space}
   resize: none;
   transition: height 0.2s ease-in-out;
   ${({ extendable }) => extendable && css`
@@ -109,4 +110,47 @@ TextAreaInput = styled.textarea<{ extendable?: boolean}>`
       height: 8rem;
     }
   `}
+`,
+
+IconWrapper = styled.button<PositionProps & LayoutProps & SpaceProps>`
+  width: 16px;
+  height: 16px;
+  background: none;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute !important;
+  >svg{
+    margin: 0;
+    position: absolute;
+    left: 0px;
+    circle{
+      transition: fill 0.2s;
+    }
+    :hover{
+      circle {
+        fill: #e0e8f0;
+      } 
+    }
+    :active{
+      circle {
+        fill: #b8c6d4;
+      } 
+    }
+  }
+  ${position}
+  ${layout}
+  ${space}
+`,
+
+EmojiWrapper = styled.div`
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  overflow: visible;
+  min-width: 250px;
 `

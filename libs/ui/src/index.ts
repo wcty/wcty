@@ -7,3 +7,4 @@ export * from './lib/Inputs';
 export * from './lib/SectionTab';
 export * from './lib/Toggle';
 export * from './lib/Text';
+export * from './lib/Loader';

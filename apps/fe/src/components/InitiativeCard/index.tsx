@@ -6,6 +6,9 @@ import distance from '@turf/distance'
 import { format } from 'd3-format'
 import { useRouter } from 'next/router';
 import { Trans, t } from '@lingui/macro'
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Loader } from "@ui";
 
 const formatMeters = format(',.2r')
 
@@ -21,14 +24,33 @@ export default function InitiativeCard({entry}:InitiativeProps){
   )
   const router = useRouter()
 
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if( entry?.properties?.type==='initiative' && entry.id ){
+      router.prefetch(`/initiative/${entry.id}`)
+    }
+  }, [])
+  
+  const onClick = async ()=> {
+    setLoading(true)
+    if( entry?.properties?.type==='initiative' && entry.id ){
+      try {
+        await router.push(
+          { 
+            pathname: `/initiative/[id]`, 
+            query: { id: entry.id }
+          }, `/initiative/${entry.id}`, { locale } )
+        setLoading(false)
+      }catch(e){
+        setLoading(false)
+      }
+    }
+  }
+
   return entry && 
-    <Card 
-      onClick={()=> {
-        console.log('clicked', entry.id, entry?.properties?.type)
-        return entry?.properties?.type==='initiative' && 
-        entry.id && 
-        router.push({pathname: `/initiative/[id]`, query: { id: entry.id }}, `/initiative/${entry.id}`, { locale })
-      }}>
+    <Card {...{onClick}}>
+      {loading && <Loader left='5px' top='5px'/>}
       <Thumbnail src={entry?.properties?.image+'?w=100&h=100&q=90'}/>
       <Content>
         <TopBar>

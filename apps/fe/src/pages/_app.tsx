@@ -1,7 +1,7 @@
 import 'resize-observer-polyfill/dist/ResizeObserver.global'
 import { AppProps } from 'next/app'
 import { GlobalStyle } from 'styles'
-import { cacheConfig, Fonts, memoize, useLayout, useUserData } from 'common'
+import { cacheConfig, Fonts, memoize, useLayout } from 'common'
 import { theme } from '@ui/common'
 import { RecoilRoot, } from 'recoil'
 import { NhostAuthProvider } from '@nhost/react-auth'
@@ -20,6 +20,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
 import { I18nProvider } from '@lingui/react'
 import { en, uk } from 'make-plural'
+import ClientSetup from "common/ClientSetup";
 
 initTranslation(i18n)
 
@@ -75,9 +76,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
                 <ThemeProvider {...{theme:{...theme, layout} }}>
                     <GlobalStyle />
                     <Fonts/>
-                    <ClientOnly>
-                      <ClientSetup/>
-                    </ClientOnly>
+                    <ClientSetup/>
                     <I18nProvider i18n={i18n}>
                       <Component {...pageProps} />
                     </I18nProvider>
@@ -90,10 +89,6 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
   )
 }
 
-function ClientSetup(props:any){
-  useUserData()
-  return null
-}
 
 // ignore in-browser next/js recoil warnings until its fixed.
 const mutedConsole = memoize((console:any) => ({
@@ -111,4 +106,7 @@ const mutedConsole = memoize((console:any) => ({
     ? null
     : console.error(...args)
 }))
-global.console = mutedConsole(global.console);
+
+if(process.env.NODE_ENV === 'development'){
+  global.console = mutedConsole(global.console);
+}

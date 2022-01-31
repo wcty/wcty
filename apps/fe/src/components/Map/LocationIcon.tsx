@@ -89,24 +89,34 @@ const pulsingDot = (map:MapType):PulsingDot =>{
 }
 
 export default ()=>{
-  const location = useGeolocation()
+  // const location = useGeolocation()
   const loadedRef = useRef(false)
-  const [loaded, setLoaded] = useState(false)
-  const context = useContext(Map.Context)
+  // const [loaded, setLoaded] = useState(false)
+  // const context = useContext(Map.Context)
 
-  useEffect(()=>{
-    if(context.map){
-      const map = context.map
-      if(map && !loaded && !loadedRef.current ){
-        map.addImage('pulsing-dot', pulsingDot(map), { pixelRatio: 2 });
-        loadedRef.current=true
-        setLoaded(true)  
-      }
-    }
-  },[context.map])
+  // useEffect(()=>{
+  //   if(context.map && !loaded && !loadedRef.current){
+  //     setLoaded(true) 
+  //   }
+  // },[])
 
-  return null
+  return (
+    <>
+      <MapContext.Consumer>
+        {(map:MapType) => {
+          if(map && (!loadedRef.current)){
+            map.addImage('pulsing-dot', pulsingDot(map), { pixelRatio: 2 });
+            loadedRef.current=true
+    
+            return null;  
+          }
+        }}
+    
+      </MapContext.Consumer>
+    </>
+  )
 }
+
 
 function PointsLayer({map}:{map:MapType}){
   const location = useGeolocation()

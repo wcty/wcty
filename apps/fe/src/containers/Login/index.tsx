@@ -20,7 +20,7 @@ export default function Login (){
   const loginMethod = cookies.get('loginMethod')
 
   return (
-    <CenterPanel onClose={()=>router.push('/')}>
+    <CenterPanel onClose={()=>{console.log('redirect'); router.push('/')}}>
         <Header>
           <Trans>Welcome back!</Trans>
         </Header>

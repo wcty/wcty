@@ -8,16 +8,18 @@ const intercept = require("intercept-stdout")
 
 // safely ignore recoil stdout warning messages 
 function interceptStdout(text) {
-  if (
-    text.includes('Duplicate atom key')||
-    text.includes('GenerateSW has been called multiple times') ||
-    // text.includes('Plurals for locale') ||
-    text.includes('DeprecationWarning: Use of deprecated folder mapping "./"') ||
-    text.includes('is an experimental feature') ||
-    text.includes('[PWA]') ||
-    text.includes('[BABEL]')
-  ) {
-    return ''
+  if(process.env.NODE_ENV === 'development'){
+    if (
+      text.includes('Duplicate atom key')||
+      text.includes('GenerateSW has been called multiple times') ||
+      // text.includes('Plurals for locale') ||
+      text.includes('DeprecationWarning: Use of deprecated folder mapping "./"') ||
+      text.includes('is an experimental feature') ||
+      text.includes('[PWA]') ||
+      text.includes('[BABEL]')
+    ) {
+      return ''
+    }
   }
   return text
 }
@@ -41,17 +43,16 @@ intercept(interceptStdout)
     styledComponents: true
   },
   webpack: (config, options) => {
-    config.resolve.fallback = { fs: false, document:false, path: false, os: false, module: false };
+    config.resolve.fallback = { fs: false, path: false, os: false, module: false };
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack", "url-loader"],
     });
-
     return config;
   },
   i18n: {
     locales: ['uk', 'en', 'pseudo'],
-    defaultLocale: 'en',
+    defaultLocale: 'en'
   },
   pwa: {
     dest: 'public',

@@ -41,7 +41,8 @@ Box = styled.div`
   align-items: center;
 `,
 
-Close = styled.div`
+Close = styled.button`
+  border: none;
   width: 2rem;
   height: 2rem;
   /* background-color: #F4EADE;

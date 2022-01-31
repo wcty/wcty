@@ -14,7 +14,16 @@ const Picker = dynamic(() => import("emoji-picker-react"), {
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
-export function TextArea(props:TextAreaProps & SpaceProps & LayoutProps & PositionProps & { 
+export function TextArea({
+  withCancel,
+  withImage,
+  withEmoji,
+  onEmojiClick,
+  emojiOpen,
+  setEmojiOpen,
+  inputRef,
+  ...props
+}:TextAreaProps & SpaceProps & LayoutProps & PositionProps & { 
   withCancel?: boolean, 
   withImage?: boolean, 
   withEmoji?: boolean, 
@@ -27,9 +36,9 @@ export function TextArea(props:TextAreaProps & SpaceProps & LayoutProps & Positi
 
   return(
     <FieldWrapper>
-      <TextAreaInput {...props} ref={props.inputRef}/>
+      <TextAreaInput {...props} ref={inputRef}/>
       <div>
-        {props?.withCancel &&<button onClick={
+        {withCancel &&<button onClick={
           (e)=>{
             e.preventDefault();
             props.onChange?.({
@@ -41,16 +50,16 @@ export function TextArea(props:TextAreaProps & SpaceProps & LayoutProps & Positi
             <CancelIcon/>
         </button> }
       </div>
-      {props?.withImage && 
+      {withImage && 
         <IconWrapper position='absolute' right='1rem' bottom='1rem'>
           <PIcon/>
         </IconWrapper>}
-      {props?.withEmoji && 
-        <IconWrapper onClick={()=>props?.setEmojiOpen?.(true)} position='absolute' right='3.2rem' bottom='1.2rem'>
+      {withEmoji && 
+        <IconWrapper onClick={()=>setEmojiOpen?.(true)} position='absolute' right='3.2rem' bottom='1.2rem'>
           <SmileIcon/>
         </IconWrapper>}
-      {props?.withEmoji && props?.emojiOpen && <EmojiWrapper>
-        {props.onEmojiClick && <Picker onEmojiClick={(e,d)=>{props.onEmojiClick?.(e,d); props?.setEmojiOpen?.(false)}} />}
+      {withEmoji && emojiOpen && <EmojiWrapper>
+        {onEmojiClick && <Picker onEmojiClick={(e,d)=>{onEmojiClick?.(e,d); setEmojiOpen?.(false)}} />}
       </EmojiWrapper>}
     </FieldWrapper>
   )

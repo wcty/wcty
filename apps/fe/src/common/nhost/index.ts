@@ -14,3 +14,4 @@ export const { auth, storage } = createClient({
 });
 
 export * from './NhostApolloProvider'
+export * from './useUserData'

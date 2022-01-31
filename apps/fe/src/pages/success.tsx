@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router'
 import Cookies from 'universal-cookie';
 import { GetStaticProps } from "next";
-import { auth, loadTranslation } from "common";
+import { auth, loadTranslation, useUserData } from "common";
 const cookies = new Cookies();
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
@@ -21,21 +21,20 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 export default function AuthSuccess(){
   const router = useRouter()
-  const refresh_token = (useRouter().query.refresh_token as string) || cookies.get('refresh_token')
+  const { user } = useUserData(true)
 
   useEffect(()=>{
+    if(user){
       const callbackUrl = cookies.get('callbackUrl');
-      console.log('refresh_token', refresh_token)
-
       if(callbackUrl){
         router.push(callbackUrl, undefined , {shallow: false})
         console.log(callbackUrl)
         // cookies.remove('callbackUrl')
       }else{
-        router.push('/?loggedIn=true')
+        router.push('/')
       }
-      
-  },[refresh_token])
+    }      
+  },[user])
 
   return null
 }

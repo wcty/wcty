@@ -86,7 +86,7 @@ function PostEditor({onClose = ()=>{}, initiativeName = ''}){
           </div>
           <IconButton customSize="small" position='absolute' top='2rem' right='2rem' customType="secondary" icon="close" onClick={onClose}/>
         </EditorHeader>
-        <TextArea {...{inputRef, onEmojiClick}} {...{emojiOpen, setEmojiOpen}} withImage withEmoji value={message} onChange={(e:any)=>setMessage(e.target.value)}/>
+        <TextArea onClick={()=>setEmojiOpen(false)} {...{inputRef, onEmojiClick}} {...{emojiOpen, setEmojiOpen}} withImage withEmoji value={message} onChange={(e:any)=>setMessage(e.target.value)}/>
         <Button mt='1rem' pr="3rem" pl="3rem" customSize="large" onClick={submit} aria-disabled={message.length<2}>
           Publish
         </Button>

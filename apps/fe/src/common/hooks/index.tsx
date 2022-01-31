@@ -14,44 +14,6 @@ export function useUser(){
   return user
 }
 
-export function useUserData(){
-  const [user, setUser] = useRecoilState(atoms.user)
-  const [user_id, setUserId] = useState<string>()
-
-  const { data:userData } = useUserQuery({variables:{user_id}, skip: !user_id})
-  const router = useRouter()
-
-  useEffect(()=>{
-    if(!user && userData && auth.isAuthenticated()){
-      setUser(userData?.users_by_pk)
-      if(router.pathname==='/oauth/success'){
-        router.push('/')
-      }
-    }
-  },[userData, user, auth.isAuthenticated])
-
-
-  useEffect(()=>{
-    auth.onAuthStateChanged(loggedIn=>{
-      console.log('auth state changed', loggedIn)
-      if(!loggedIn){
-        setUser(null)
-        setUserId(undefined)
-      }else{
-        const user_id = auth.getClaim("x-hasura-user-id");
-        if(typeof user_id==='string'){
-          setUserId(user_id)
-        }
-        if(router.pathname==='/login'){
-          router.back()
-        }
-      }
-    })
-  },[])
-
-  return {user}
-}
-
 const defaultSettings = {
   enableHighAccuracy: false,
   timeout: Infinity,

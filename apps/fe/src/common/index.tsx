@@ -85,3 +85,4 @@ export const rearrangeCards = ({ initiative_id, setNext, setLast}:{
     return other
   })
 }
+

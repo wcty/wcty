@@ -1,7 +1,7 @@
 import {  useUser } from 'common';
 import { Button, Checkbox, TextArea, TextField } from "@ui";
 import { InitiativeByPkDocument, useJoinMutation, useTasksQuery } from 'generated';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, DonationMenu, Form, TaskSelection } from './styles';
 import { useRouter } from 'next/router';
 import { t, Trans } from '@lingui/macro'
@@ -10,7 +10,11 @@ import { position, layout } from 'styled-system'
 export default function Join() {
   const { id } = useRouter().query;
   const user = useUser()
-  const {data:tasks} = useTasksQuery({variables:{id}, fetchPolicy:'cache-first', nextFetchPolicy: 'cache-only'})
+  const { data:tasks, error } = useTasksQuery({variables:{id}, fetchPolicy:'cache-first', nextFetchPolicy: 'cache-only' })
+  
+  useEffect(()=>{
+    console.log('user', user)
+  },[user])
   
   const [commitments, setCommitments] = useState({
     donation: {

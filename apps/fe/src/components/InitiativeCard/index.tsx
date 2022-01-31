@@ -28,7 +28,7 @@ export default function InitiativeCard({entry}:InitiativeProps){
 
   useEffect(() => {
     if( entry?.properties?.type==='initiative' && entry.id ){
-      router.prefetch(`/initiative/${entry.id}`)
+      // router.prefetch(`/initiative/[id]`, `/initiative/${entry.id}`, { locale } )
     }
   }, [])
   

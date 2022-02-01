@@ -16,7 +16,7 @@ export type Initiative = {
   image: string,
   id: string,
   url: string,
-  imageUUID?: string,
+  blob?: string,
   path: string,
   timeUpdated: number,
 }
@@ -37,12 +37,15 @@ export default function Creation() {
     timeUpdated: Date.now()
   })
 
-  const {onInputChangeSubmit, results:{0:{ url, path, uuid }}} = useUploader(initiative.id)
+  const { onInputChange, submit, results, filesData } = useUploader(initiative.id)
+  const { url=undefined, path=undefined } = results?.[0] || {}
+
+  console.log(filesData)
   const [index, setIndex] = useState(0)
   
   useEffect(()=>{
     if(url&&path){
-      setInitiative({...initiative, url, path, imageUUID: uuid, timeUpdated: Date.now()})
+      setInitiative({...initiative, url, path, timeUpdated: Date.now()})
     }
   },[url,path])
 
@@ -53,7 +56,7 @@ export default function Creation() {
       index===1?
         <SelectName {...{initiative, setInitiative, index, setIndex}}/>:
       index===2?
-        <SelectCover {...{initiative, setInitiative, index, setIndex, onInputChangeSubmit}}/>:
+        <SelectCover {...{initiative, setInitiative, index, setIndex, onInputChange, submit, blob: filesData?.[0]?.blob}}/>:
       null
     }</CreationContainer>:  
     <Unauthorized/>

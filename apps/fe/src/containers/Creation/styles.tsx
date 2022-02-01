@@ -59,23 +59,30 @@ FloatingContainer = styled.div`
 FileInput = styled.label.attrs(
   (p:{
     src?:string,
-    onInputChange?:(e:React.ChangeEvent<HTMLInputElement>)=>void
+    $onInputChange?:(e:React.ChangeEvent<HTMLInputElement>)=>void,
+    disabled?:boolean,
   }&InputHTMLAttributes<HTMLInputElement>)=>({
-    onInputChange:p.onInputChange,
-    children: <><input type="file" onChange={p.onInputChange} /><div><Cross/>{p.title}</div></>
+    $onInputChange:p.$onInputChange,
+    disabled:p.disabled,
+    ariaDisabled:p.disabled,
+    children: <><input type="file" onChange={p.$onInputChange} /><div><Cross/>{p.title}</div></>
 }))<{src?:string}>`
   width: 100%;
   height: 150px;
   border: none;
   outline: none;
   box-shadow: none;
-  background-image: url(${p=>p.src? p.src+'?w=150&h=300&q=90': Placeholder});
+  background-image: url(${p=>p.src? p.src: Placeholder});
   background-size: contain;
-  background-position: left bottom;
+  background-position: ${p=>p.src? css`center`: css`left bottom`};
   background-repeat: no-repeat;
   background-color: #f0f4f8;
   border-radius: 3px;
   position: relative;
+  ${p=>p.disabled && css`
+    pointer-events: none;
+    cursor: none;
+  `}
   >input[type="file"]{
     display: none;
   }
@@ -93,9 +100,14 @@ FileInput = styled.label.attrs(
     ${p=>p.theme.shadow}
     transform: translate(0px,0px);
     transition: transform 0.3s ease-in-out;
-    &:hover{
-      transform: translate(3px,3px);
-    }
+    ${p=>p.disabled?
+      css`
+        color: ${p=>p.theme.colors.label} !important;
+        >svg{
+          fill: ${p=>p.theme.colors.label} !important;
+        }
+      `:
+      css`&:hover{ transform: translate(3px,3px); }`}
     >svg{
       height: 14px;
       margin: 0.5rem;

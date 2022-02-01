@@ -2,8 +2,13 @@ query InitiativeByPK($id:uuid!, $user_id:uuid="00000000-0000-0000-0000-000000000
   initiative:initiatives_by_pk(id:$id){
     id
     # name
-    members(where:{user_id:{_eq:$user_id}}){
+    isMember:members(where:{user_id:{_eq:$user_id}}){
       user_id
+    }
+    members_aggregate {
+      aggregate {
+        count
+      }
     }
     # members_aggregate{
     #   aggregate{

@@ -18,7 +18,7 @@ export default function CreatePost({initiative}:InitiativeProps){
 
   return (
       <>
-            {editorOpen && <PostEditor {...{initiative}} onClose={()=>setEditorOpen(false)}/>}
+      {editorOpen && <PostEditor {...{initiative}} onClose={()=>setEditorOpen(false)}/>}
 
       <Container>
         <InputContent> 

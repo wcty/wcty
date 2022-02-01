@@ -1,0 +1,19 @@
+mutation DeleteInitiativeMember( 
+  $initiative_id: uuid!, 
+  $user_id: uuid! ) {
+  delete_initiative_members(
+    where: {
+      _and:[
+        {
+          initiative_id: {_eq: $initiative_id}
+        },
+        {
+          user_id: {_eq: $user_id}
+        }
+      ]
+    }
+  )
+  {
+    affected_rows
+  }
+}

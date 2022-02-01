@@ -42,7 +42,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "cwd": "apps/fe",
-        "command": "NODE_NO_WARNINGS=1 dotenv -- graphql-codegen --config scripts/codegen.yml --silent"
+        "command": "NODE_NO_WARNINGS=1 dotenv -- graphql-codegen --config scripts/codegen.yml"
       }
     },
     "gql-watch": {

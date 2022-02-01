@@ -10019,21 +10019,6 @@ export type AddInitiativeMutationVariables = Exact<{
 
 export type AddInitiativeMutation = { insert_initiatives_one?: { created_at: any, geom?: any | null | undefined, id: any, image?: string | null | undefined, name?: string | null | undefined } | null | undefined };
 
-export type DeleteInitiativeMutationVariables = Exact<{
-  initiative_id: Scalars['uuid'];
-}>;
-
-
-export type DeleteInitiativeMutation = { delete_initiatives_by_pk?: { id: any } | null | undefined };
-
-export type DeleteInitiativeMemberMutationVariables = Exact<{
-  initiative_id: Scalars['uuid'];
-  user_id: Scalars['uuid'];
-}>;
-
-
-export type DeleteInitiativeMemberMutation = { delete_initiative_members?: { affected_rows: number, returning: Array<{ initiative_id: any, user_id?: any | null | undefined }> } | null | undefined };
-
 export type AddInitiativeMemberMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
   user_id: Scalars['uuid'];
@@ -10224,13 +10209,28 @@ export type ReactionToPostMutation = { insert_initiative_post_reactions_one?: { 
 
 export type PostFragment = { type: Post_Types_Enum, message?: string | null | undefined, comments_count: { aggregate?: { count: number } | null | undefined }, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined };
 
+export type DeleteInitiativeMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteInitiativeMutation = { delete_initiatives_by_pk?: { name?: string | null | undefined } | null | undefined };
+
+export type DeleteInitiativeMemberMutationVariables = Exact<{
+  initiative_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
+}>;
+
+
+export type DeleteInitiativeMemberMutation = { delete_initiative_members?: { affected_rows: number } | null | undefined };
+
 export type InitiativeByPkQueryVariables = Exact<{
   id: Scalars['uuid'];
   user_id?: InputMaybe<Scalars['uuid']>;
 }>;
 
 
-export type InitiativeByPkQuery = { initiative?: { id: any, members: Array<{ user_id?: any | null | undefined }> } | null | undefined };
+export type InitiativeByPkQuery = { initiative?: { id: any, isMember: Array<{ user_id?: any | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
 
 export type CheckTaskMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -10573,79 +10573,6 @@ export function useAddInitiativeMutation(baseOptions?: Apollo.MutationHookOption
 export type AddInitiativeMutationHookResult = ReturnType<typeof useAddInitiativeMutation>;
 export type AddInitiativeMutationResult = Apollo.MutationResult<AddInitiativeMutation>;
 export type AddInitiativeMutationOptions = Apollo.BaseMutationOptions<AddInitiativeMutation, AddInitiativeMutationVariables>;
-export const DeleteInitiativeDocument = gql`
-    mutation DeleteInitiative($initiative_id: uuid!) {
-  delete_initiatives_by_pk(id: $initiative_id) {
-    id
-  }
-}
-    `;
-export type DeleteInitiativeMutationFn = Apollo.MutationFunction<DeleteInitiativeMutation, DeleteInitiativeMutationVariables>;
-
-/**
- * __useDeleteInitiativeMutation__
- *
- * To run a mutation, you first call `useDeleteInitiativeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteInitiativeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteInitiativeMutation, { data, loading, error }] = useDeleteInitiativeMutation({
- *   variables: {
- *      initiative_id: // value for 'initiative_id'
- *   },
- * });
- */
-export function useDeleteInitiativeMutation(baseOptions?: Apollo.MutationHookOptions<DeleteInitiativeMutation, DeleteInitiativeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteInitiativeMutation, DeleteInitiativeMutationVariables>(DeleteInitiativeDocument, options);
-      }
-export type DeleteInitiativeMutationHookResult = ReturnType<typeof useDeleteInitiativeMutation>;
-export type DeleteInitiativeMutationResult = Apollo.MutationResult<DeleteInitiativeMutation>;
-export type DeleteInitiativeMutationOptions = Apollo.BaseMutationOptions<DeleteInitiativeMutation, DeleteInitiativeMutationVariables>;
-export const DeleteInitiativeMemberDocument = gql`
-    mutation DeleteInitiativeMember($initiative_id: uuid!, $user_id: uuid!) {
-  delete_initiative_members(
-    where: {initiative_id: {_eq: $initiative_id}, user_id: {_eq: $user_id}}
-  ) {
-    affected_rows
-    returning {
-      initiative_id
-      user_id
-    }
-  }
-}
-    `;
-export type DeleteInitiativeMemberMutationFn = Apollo.MutationFunction<DeleteInitiativeMemberMutation, DeleteInitiativeMemberMutationVariables>;
-
-/**
- * __useDeleteInitiativeMemberMutation__
- *
- * To run a mutation, you first call `useDeleteInitiativeMemberMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteInitiativeMemberMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteInitiativeMemberMutation, { data, loading, error }] = useDeleteInitiativeMemberMutation({
- *   variables: {
- *      initiative_id: // value for 'initiative_id'
- *      user_id: // value for 'user_id'
- *   },
- * });
- */
-export function useDeleteInitiativeMemberMutation(baseOptions?: Apollo.MutationHookOptions<DeleteInitiativeMemberMutation, DeleteInitiativeMemberMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteInitiativeMemberMutation, DeleteInitiativeMemberMutationVariables>(DeleteInitiativeMemberDocument, options);
-      }
-export type DeleteInitiativeMemberMutationHookResult = ReturnType<typeof useDeleteInitiativeMemberMutation>;
-export type DeleteInitiativeMemberMutationResult = Apollo.MutationResult<DeleteInitiativeMemberMutation>;
-export type DeleteInitiativeMemberMutationOptions = Apollo.BaseMutationOptions<DeleteInitiativeMemberMutation, DeleteInitiativeMemberMutationVariables>;
 export const AddInitiativeMemberDocument = gql`
     mutation AddInitiativeMember($initiative_id: uuid!, $user_id: uuid!) {
   insert_initiative_members_one(
@@ -11467,12 +11394,86 @@ export function useReactionToPostMutation(baseOptions?: Apollo.MutationHookOptio
 export type ReactionToPostMutationHookResult = ReturnType<typeof useReactionToPostMutation>;
 export type ReactionToPostMutationResult = Apollo.MutationResult<ReactionToPostMutation>;
 export type ReactionToPostMutationOptions = Apollo.BaseMutationOptions<ReactionToPostMutation, ReactionToPostMutationVariables>;
+export const DeleteInitiativeDocument = gql`
+    mutation DeleteInitiative($id: uuid!) {
+  delete_initiatives_by_pk(id: $id) {
+    name
+  }
+}
+    `;
+export type DeleteInitiativeMutationFn = Apollo.MutationFunction<DeleteInitiativeMutation, DeleteInitiativeMutationVariables>;
+
+/**
+ * __useDeleteInitiativeMutation__
+ *
+ * To run a mutation, you first call `useDeleteInitiativeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteInitiativeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteInitiativeMutation, { data, loading, error }] = useDeleteInitiativeMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteInitiativeMutation(baseOptions?: Apollo.MutationHookOptions<DeleteInitiativeMutation, DeleteInitiativeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteInitiativeMutation, DeleteInitiativeMutationVariables>(DeleteInitiativeDocument, options);
+      }
+export type DeleteInitiativeMutationHookResult = ReturnType<typeof useDeleteInitiativeMutation>;
+export type DeleteInitiativeMutationResult = Apollo.MutationResult<DeleteInitiativeMutation>;
+export type DeleteInitiativeMutationOptions = Apollo.BaseMutationOptions<DeleteInitiativeMutation, DeleteInitiativeMutationVariables>;
+export const DeleteInitiativeMemberDocument = gql`
+    mutation DeleteInitiativeMember($initiative_id: uuid!, $user_id: uuid!) {
+  delete_initiative_members(
+    where: {_and: [{initiative_id: {_eq: $initiative_id}}, {user_id: {_eq: $user_id}}]}
+  ) {
+    affected_rows
+  }
+}
+    `;
+export type DeleteInitiativeMemberMutationFn = Apollo.MutationFunction<DeleteInitiativeMemberMutation, DeleteInitiativeMemberMutationVariables>;
+
+/**
+ * __useDeleteInitiativeMemberMutation__
+ *
+ * To run a mutation, you first call `useDeleteInitiativeMemberMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteInitiativeMemberMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteInitiativeMemberMutation, { data, loading, error }] = useDeleteInitiativeMemberMutation({
+ *   variables: {
+ *      initiative_id: // value for 'initiative_id'
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useDeleteInitiativeMemberMutation(baseOptions?: Apollo.MutationHookOptions<DeleteInitiativeMemberMutation, DeleteInitiativeMemberMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteInitiativeMemberMutation, DeleteInitiativeMemberMutationVariables>(DeleteInitiativeMemberDocument, options);
+      }
+export type DeleteInitiativeMemberMutationHookResult = ReturnType<typeof useDeleteInitiativeMemberMutation>;
+export type DeleteInitiativeMemberMutationResult = Apollo.MutationResult<DeleteInitiativeMemberMutation>;
+export type DeleteInitiativeMemberMutationOptions = Apollo.BaseMutationOptions<DeleteInitiativeMemberMutation, DeleteInitiativeMemberMutationVariables>;
 export const InitiativeByPkDocument = gql`
     query InitiativeByPK($id: uuid!, $user_id: uuid = "00000000-0000-0000-0000-000000000000") {
   initiative: initiatives_by_pk(id: $id) {
     id
-    members(where: {user_id: {_eq: $user_id}}) {
+    isMember: members(where: {user_id: {_eq: $user_id}}) {
       user_id
+    }
+    members_aggregate {
+      aggregate {
+        count
+      }
     }
   }
 }

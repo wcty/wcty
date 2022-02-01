@@ -15,7 +15,9 @@ export default function Initiative({initiative}:InitiativeProps) {
   const { id } = useRouter().query;
   const user = useUser()
   const { data } = useInitiativeByPkQuery({variables:{id:initiative?.id,user_id:user?.id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
-  const isMember = !!data?.initiative?.members?.length
+  const isMember = !!data?.initiative?.isMember?.length
+  const isOnlyMember = data?.initiative?.members_aggregate.aggregate?.count === 1
+
   const layout = useLayout()
   
   return (initiative && !initiative?.id)? 

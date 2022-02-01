@@ -1,0 +1,5 @@
+mutation DeleteInitiative( $id: uuid! ) {
+  delete_initiatives_by_pk(id: $id) {
+    name
+  }
+}

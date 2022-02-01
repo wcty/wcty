@@ -59,8 +59,7 @@ ShareJoin = styled.div`
         border-radius: 3px 3px 3px 3px;
       }`:
     css<{}>`
-      width: 254px;
-      min-width: 254px;
+      min-width: 284px;
       height: 40px;`}
 `,
 

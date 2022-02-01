@@ -4,7 +4,7 @@ import { ReactComponent as Steps } from '@assets/icons/steps2.svg'
 import { Initiative } from ".";
 import { ChangeEvent, useEffect } from "react";
 import { Task_Statuses_Enum, useInsertInitiativeMutation } from "generated";
-import { useUser } from "common";
+import { UploaderOptions, useUser } from "common";
 import { useRouter } from "next/router";
 import { Trans, t } from '@lingui/macro'
 
@@ -16,7 +16,9 @@ export default function Creation({
   initiative:Initiative,
   setInitiative: (initiative:Initiative) => void,
   index:number, setIndex:(index:number) => void,
-  onInputChangeSubmit: (e: ChangeEvent<HTMLInputElement>, createRecord?: boolean) => void
+  onInputChangeSubmit: (
+    e: ChangeEvent<HTMLInputElement>, 
+    options: UploaderOptions) => void
 }) {
   const router = useRouter()
   const user = useUser()
@@ -45,7 +47,10 @@ export default function Creation({
             initiative.url!==''?
             initiative.url+`#${initiative.timeUpdated}`:
             undefined} 
-          onInputChange={(e)=>onInputChangeSubmit(e,false)}/>
+          onInputChange={(e)=>onInputChangeSubmit(e, {
+            createRecord: false,
+            currentUuid: initiative.imageUUID
+          } )}/>
         <div>
           <Button 
             customType='outlined' 

@@ -16,6 +16,7 @@ export type Initiative = {
   image: string,
   id: string,
   url: string,
+  imageUUID?: string,
   path: string,
   timeUpdated: number,
 }
@@ -36,12 +37,12 @@ export default function Creation() {
     timeUpdated: Date.now()
   })
 
-  const {onInputChangeSubmit, url, path} = useUploader(initiative.id)
+  const {onInputChangeSubmit, results:{0:{ url, path, uuid }}} = useUploader(initiative.id)
   const [index, setIndex] = useState(0)
   
   useEffect(()=>{
     if(url&&path){
-      setInitiative({...initiative, url, path, timeUpdated: Date.now()})
+      setInitiative({...initiative, url, path, imageUUID: uuid, timeUpdated: Date.now()})
     }
   },[url,path])
 

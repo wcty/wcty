@@ -1,3 +1,4 @@
+import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 export const 
@@ -64,4 +65,19 @@ Names = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+`,
+
+FileInput = styled.label.attrs(
+  (p:{
+    src?:string,
+    onInputChange?:(e:React.ChangeEvent<HTMLInputElement>)=>void
+  }&InputHTMLAttributes<HTMLInputElement>)=>({
+    onInputChange: p.onInputChange,
+    children: <input type="file" onChange={p.onInputChange} />
+}))<{src?:string}>`
+  position: absolute;
+  display: none;
+  >input[type="file"]{
+    display: none;
+  }
 `

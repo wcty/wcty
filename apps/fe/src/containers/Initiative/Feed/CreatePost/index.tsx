@@ -3,7 +3,7 @@ import { Channels, EditorContainer, EditorHeader, EditorWrapper, InputContent, N
 import { Actions, Container } from "../Post/styles";
 import { ReactComponent as VoteIco} from "@assets/icons/vote.svg";
 import { useCreatePostMutation } from "generated";
-import { fixAvatar, useUser } from "common";
+import { fixAvatar, useUploader, useUser } from "common";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { Trans } from '@lingui/macro'
@@ -18,7 +18,7 @@ export default function CreatePost({initiative}:InitiativeProps){
 
   return (
       <>
-            {editorOpen && <PostEditor initiativeName={initiative?.name||''} onClose={()=>setEditorOpen(false)}/>}
+            {editorOpen && <PostEditor {...{initiative}} onClose={()=>setEditorOpen(false)}/>}
 
       <Container>
         <InputContent> 
@@ -37,7 +37,10 @@ export default function CreatePost({initiative}:InitiativeProps){
   )
 }
 
-function PostEditor({onClose = ()=>{}, initiativeName = ''}){
+function PostEditor({
+  onClose = ()=>{}, 
+  initiative
+}: InitiativeProps & { onClose:()=>void }){
   const user = useUser();
   const { id } = useRouter().query;
   const [message, setMessage] = useState('')
@@ -51,6 +54,9 @@ function PostEditor({onClose = ()=>{}, initiativeName = ''}){
       setMessage(text);
   };
 
+  const {onInputChangeSubmit, results } = useUploader(initiative?.id)
+
+  console.log('Upload results: ', results)
   const [addPost] = useCreatePostMutation({variables:{initiative_id:id, user_id: user?.id, message}})
   
   const submit = ()=>{ addPost(); setMessage(''); onClose() }
@@ -80,13 +86,21 @@ function PostEditor({onClose = ()=>{}, initiativeName = ''}){
                 {user?.display_name}
               </Text>
               <Text customColor='label'>
-                {initiativeName}
+                {initiative?.name||''}
               </Text>
             </Names>
           </div>
           <IconButton customSize="small" position='absolute' top='2rem' right='2rem' customType="secondary" icon="close" onClick={onClose}/>
         </EditorHeader>
-        <TextArea onClick={()=>setEmojiOpen(false)} {...{inputRef, onEmojiClick}} {...{emojiOpen, setEmojiOpen}} withImage withEmoji value={message} onChange={(e:any)=>setMessage(e.target.value)}/>
+        <TextArea 
+          onClick={()=>setEmojiOpen(false)} 
+          {...{inputRef, onEmojiClick}} 
+          {...{emojiOpen, setEmojiOpen}} 
+          onImageSubmit={onInputChangeSubmit}
+          withImage 
+          withEmoji 
+          value={message} 
+          onChange={(e:any)=>setMessage(e.target.value)}/>
         <Button mt='1rem' pr="3rem" pl="3rem" customSize="large" onClick={submit} aria-disabled={message.length<2}>
           Publish
         </Button>

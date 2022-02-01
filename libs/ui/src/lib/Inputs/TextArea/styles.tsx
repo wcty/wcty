@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { position, layout, space, PositionProps, LayoutProps, SpaceProps } from 'styled-system'
+import { InputHTMLAttributes } from 'react'
 
 export const 
 FieldWrapper = styled.div`
@@ -153,4 +154,22 @@ EmojiWrapper = styled.div`
   right: 1.5rem;
   overflow: visible;
   min-width: 250px;
+`,
+
+FileInput = styled.label.attrs(
+  (p:{
+    $onInputChange?:(e:React.ChangeEvent<HTMLInputElement>)=>void
+  } & InputHTMLAttributes<HTMLInputElement> &LayoutProps & PositionProps & SpaceProps )=>({
+    $onInputChange: p.$onInputChange,
+    children: <>
+      <input type="file" multiple onChange={p.$onInputChange} />
+      {p.children}
+    </>
+}))<{src?:string}>`
+  >input[type="file"]{
+    display: none;
+  }
+  ${position}
+  ${layout}
+  ${space}
 `

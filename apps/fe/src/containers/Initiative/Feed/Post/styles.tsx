@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import { IUserInfo } from './types/IUserInfo'
 import { ReactComponent as OptionsIcon} from '@assets/icons/post-options.svg'
 import { Button } from "@ui";
+import { layout, LayoutProps } from 'styled-system';
 
 export const 
 AuthorContainer  = styled.div`
@@ -170,4 +171,35 @@ OptionsMenu = styled.div`
   background-color: white;
   padding: 0.5rem;
   box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+`,
+
+ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background-color: #f0f0f0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 1.5rem;
+`,
+
+ImageWrapper = styled.div<{ url:string }& LayoutProps>`
+  min-width: 40%;
+  ${layout}
+  color: white;
+  margin: 0 1px 1px 0;
+  font-family: system-ui;
+  font-weight: 900;
+  font-size: 2rem;
+  flex: 1 0 auto;
+  background-image: url(${p=>p.url});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
 `

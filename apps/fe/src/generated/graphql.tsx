@@ -268,6 +268,20 @@ export enum Entry_Visits_Select_Column {
   VisitedAt = 'visited_at'
 }
 
+export enum File_Types_Enum {
+  Document = 'document',
+  Image = 'image'
+}
+
+/** Boolean expression to compare columns of type "file_types_enum". All fields are combined with logical 'AND'. */
+export type File_Types_Enum_Comparison_Exp = {
+  _eq?: InputMaybe<File_Types_Enum>;
+  _in?: InputMaybe<Array<File_Types_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<File_Types_Enum>;
+  _nin?: InputMaybe<Array<File_Types_Enum>>;
+};
+
 /** columns and relationships of "files" */
 export type Files = {
   created_at?: Maybe<Scalars['timetz']>;
@@ -277,6 +291,8 @@ export type Files = {
   /** An object relationship */
   initiative?: Maybe<Initiatives>;
   initiative_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['bigint']>;
+  type: File_Types_Enum;
   /** An object relationship */
   user?: Maybe<Users>;
   user_id?: Maybe<Scalars['uuid']>;
@@ -284,9 +300,17 @@ export type Files = {
 
 /** order by aggregate values of table "files" */
 export type Files_Aggregate_Order_By = {
+  avg?: InputMaybe<Files_Avg_Order_By>;
   count?: InputMaybe<Order_By>;
   max?: InputMaybe<Files_Max_Order_By>;
   min?: InputMaybe<Files_Min_Order_By>;
+  stddev?: InputMaybe<Files_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Files_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Files_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Files_Sum_Order_By>;
+  var_pop?: InputMaybe<Files_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Files_Var_Samp_Order_By>;
+  variance?: InputMaybe<Files_Variance_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "files" */
@@ -294,6 +318,11 @@ export type Files_Arr_Rel_Insert_Input = {
   data: Array<Files_Insert_Input>;
   /** on conflict condition */
   on_conflict?: InputMaybe<Files_On_Conflict>;
+};
+
+/** order by avg() on columns of table "files" */
+export type Files_Avg_Order_By = {
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "files". All fields are combined with a logical 'AND'. */
@@ -307,6 +336,8 @@ export type Files_Bool_Exp = {
   id?: InputMaybe<Uuid_Comparison_Exp>;
   initiative?: InputMaybe<Initiatives_Bool_Exp>;
   initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
+  post_id?: InputMaybe<Bigint_Comparison_Exp>;
+  type?: InputMaybe<File_Types_Enum_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
 };
@@ -317,6 +348,11 @@ export enum Files_Constraint {
   FilesPkey = 'files_pkey'
 }
 
+/** input type for incrementing numeric columns in table "files" */
+export type Files_Inc_Input = {
+  post_id?: InputMaybe<Scalars['bigint']>;
+};
+
 /** input type for inserting data into table "files" */
 export type Files_Insert_Input = {
   created_at?: InputMaybe<Scalars['timetz']>;
@@ -325,6 +361,8 @@ export type Files_Insert_Input = {
   id?: InputMaybe<Scalars['uuid']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
+  type?: InputMaybe<File_Types_Enum>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
 
@@ -335,6 +373,7 @@ export type Files_Max_Order_By = {
   file_path?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   initiative_id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
@@ -345,6 +384,7 @@ export type Files_Min_Order_By = {
   file_path?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   initiative_id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
@@ -371,6 +411,8 @@ export type Files_Order_By = {
   id?: InputMaybe<Order_By>;
   initiative?: InputMaybe<Initiatives_Order_By>;
   initiative_id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
+  type?: InputMaybe<Order_By>;
   user?: InputMaybe<Users_Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -393,6 +435,10 @@ export enum Files_Select_Column {
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
+  PostId = 'post_id',
+  /** column name */
+  Type = 'type',
+  /** column name */
   UserId = 'user_id'
 }
 
@@ -403,7 +449,29 @@ export type Files_Set_Input = {
   file_path?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['uuid']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
+  type?: InputMaybe<File_Types_Enum>;
   user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** order by stddev() on columns of table "files" */
+export type Files_Stddev_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
+
+/** order by stddev_pop() on columns of table "files" */
+export type Files_Stddev_Pop_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
+
+/** order by stddev_samp() on columns of table "files" */
+export type Files_Stddev_Samp_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
+
+/** order by sum() on columns of table "files" */
+export type Files_Sum_Order_By = {
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "files" */
@@ -419,8 +487,27 @@ export enum Files_Update_Column {
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
+  PostId = 'post_id',
+  /** column name */
+  Type = 'type',
+  /** column name */
   UserId = 'user_id'
 }
+
+/** order by var_pop() on columns of table "files" */
+export type Files_Var_Pop_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
+
+/** order by var_samp() on columns of table "files" */
+export type Files_Var_Samp_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
+
+/** order by variance() on columns of table "files" */
+export type Files_Variance_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
 
 export type Geography_Cast_Exp = {
   geometry?: InputMaybe<Geometry_Comparison_Exp>;
@@ -3376,6 +3463,8 @@ export type Initiative_Posts = {
   edits: Array<Initiative_Edits>;
   /** An array relationship */
   expenses: Array<Initiative_Expenses>;
+  /** An array relationship */
+  files: Array<Files>;
   id: Scalars['bigint'];
   /** An object relationship */
   initiative: Initiatives;
@@ -3439,6 +3528,16 @@ export type Initiative_PostsExpensesArgs = {
 
 
 /** columns and relationships of "initiative_posts" */
+export type Initiative_PostsFilesArgs = {
+  distinct_on?: InputMaybe<Array<Files_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Files_Order_By>>;
+  where?: InputMaybe<Files_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiative_posts" */
 export type Initiative_PostsProjectsArgs = {
   distinct_on?: InputMaybe<Array<Initiative_Projects_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -3493,6 +3592,7 @@ export type Initiative_Posts_Bool_Exp = {
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   edits?: InputMaybe<Initiative_Edits_Bool_Exp>;
   expenses?: InputMaybe<Initiative_Expenses_Bool_Exp>;
+  files?: InputMaybe<Files_Bool_Exp>;
   id?: InputMaybe<Bigint_Comparison_Exp>;
   initiative?: InputMaybe<Initiatives_Bool_Exp>;
   initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -3526,6 +3626,7 @@ export type Initiative_Posts_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   edits?: InputMaybe<Initiative_Edits_Arr_Rel_Insert_Input>;
   expenses?: InputMaybe<Initiative_Expenses_Arr_Rel_Insert_Input>;
+  files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
   id?: InputMaybe<Scalars['bigint']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
@@ -3595,6 +3696,7 @@ export type Initiative_Posts_Order_By = {
   created_at?: InputMaybe<Order_By>;
   edits_aggregate?: InputMaybe<Initiative_Edits_Aggregate_Order_By>;
   expenses_aggregate?: InputMaybe<Initiative_Expenses_Aggregate_Order_By>;
+  files_aggregate?: InputMaybe<Files_Aggregate_Order_By>;
   id?: InputMaybe<Order_By>;
   initiative?: InputMaybe<Initiatives_Order_By>;
   initiative_id?: InputMaybe<Order_By>;
@@ -6706,6 +6808,7 @@ export type Mutation_RootInsert_User_Settings_OneArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_FilesArgs = {
+  _inc?: InputMaybe<Files_Inc_Input>;
   _set?: InputMaybe<Files_Set_Input>;
   where: Files_Bool_Exp;
 };
@@ -6713,6 +6816,7 @@ export type Mutation_RootUpdate_FilesArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Files_By_PkArgs = {
+  _inc?: InputMaybe<Files_Inc_Input>;
   _set?: InputMaybe<Files_Set_Input>;
   pk_columns: Files_Pk_Columns_Input;
 };
@@ -10162,6 +10266,7 @@ export type CreatePostMutationVariables = Exact<{
   user_id: Scalars['uuid'];
   initiative_id: Scalars['uuid'];
   thread_id?: Scalars['String'];
+  files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
 }>;
 
 
@@ -10172,9 +10277,9 @@ export type FeedSubscriptionVariables = Exact<{
 }>;
 
 
-export type FeedSubscription = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
+export type FeedSubscription = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
 
-export type FeedFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
+export type FeedFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
 
 export type FirstMemberQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -10386,6 +10491,11 @@ export const FeedFragmentDoc = gql`
   message
   type
   thread_id
+  files {
+    downloadable_url
+    type
+    id
+  }
   reactions {
     type
     user_id
@@ -11170,9 +11280,9 @@ export type CreateCommentMutationHookResult = ReturnType<typeof useCreateComment
 export type CreateCommentMutationResult = Apollo.MutationResult<CreateCommentMutation>;
 export type CreateCommentMutationOptions = Apollo.BaseMutationOptions<CreateCommentMutation, CreateCommentMutationVariables>;
 export const CreatePostDocument = gql`
-    mutation CreatePost($message: String!, $user_id: uuid!, $initiative_id: uuid!, $thread_id: String! = "main") {
+    mutation CreatePost($message: String!, $user_id: uuid!, $initiative_id: uuid!, $thread_id: String! = "main", $files: files_arr_rel_insert_input) {
   insert_initiative_posts_one(
-    object: {type: message, message: $message, user_id: $user_id, initiative_id: $initiative_id, thread_id: $thread_id}
+    object: {type: message, message: $message, user_id: $user_id, initiative_id: $initiative_id, thread_id: $thread_id, files: $files}
   ) {
     id
   }
@@ -11197,6 +11307,7 @@ export type CreatePostMutationFn = Apollo.MutationFunction<CreatePostMutation, C
  *      user_id: // value for 'user_id'
  *      initiative_id: // value for 'initiative_id'
  *      thread_id: // value for 'thread_id'
+ *      files: // value for 'files'
  *   },
  * });
  */
@@ -12102,7 +12213,7 @@ export type entry_visitsFieldPolicy = {
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	visited_at?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type filesKeySpecifier = ('created_at' | 'downloadable_url' | 'file_path' | 'id' | 'initiative' | 'initiative_id' | 'user' | 'user_id' | filesKeySpecifier)[];
+export type filesKeySpecifier = ('created_at' | 'downloadable_url' | 'file_path' | 'id' | 'initiative' | 'initiative_id' | 'post_id' | 'type' | 'user' | 'user_id' | filesKeySpecifier)[];
 export type filesFieldPolicy = {
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
 	downloadable_url?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -12110,6 +12221,8 @@ export type filesFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	post_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	type?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>
 };
@@ -12539,13 +12652,14 @@ export type initiative_post_reactions_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_postsKeySpecifier = ('comments' | 'comments_aggregate' | 'created_at' | 'edits' | 'expenses' | 'id' | 'initiative' | 'initiative_id' | 'message' | 'modified_at' | 'projects' | 'reactions' | 'thread' | 'thread_id' | 'type' | 'user' | 'user_avatar' | 'user_id' | 'user_name' | initiative_postsKeySpecifier)[];
+export type initiative_postsKeySpecifier = ('comments' | 'comments_aggregate' | 'created_at' | 'edits' | 'expenses' | 'files' | 'id' | 'initiative' | 'initiative_id' | 'message' | 'modified_at' | 'projects' | 'reactions' | 'thread' | 'thread_id' | 'type' | 'user' | 'user_avatar' | 'user_id' | 'user_name' | initiative_postsKeySpecifier)[];
 export type initiative_postsFieldPolicy = {
 	comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	comments_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
 	edits?: FieldPolicy<any> | FieldReadFunction<any>,
 	expenses?: FieldPolicy<any> | FieldReadFunction<any>,
+	files?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,

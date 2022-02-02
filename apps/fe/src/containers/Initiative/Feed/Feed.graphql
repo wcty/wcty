@@ -19,6 +19,11 @@ fragment Feed on initiative_posts {
   message
   type
   thread_id
+  files {
+    downloadable_url
+    type
+    id
+  }
   reactions {
     type
     user_id

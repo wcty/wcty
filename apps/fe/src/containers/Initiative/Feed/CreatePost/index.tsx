@@ -4,7 +4,7 @@ import { Actions, Container } from "../Post/styles";
 import { ReactComponent as VoteIco} from "@assets/icons/vote.svg";
 import { useCreatePostMutation } from "generated";
 import { fixAvatar, useUploader, useUser } from "common";
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { Trans } from '@lingui/macro'
 import { InitiativeProps } from "containers/Initiative";
@@ -54,18 +54,40 @@ function PostEditor({
       setMessage(text);
   };
 
-  const {onInputChangeSubmit, results } = useUploader(initiative?.id)
+  const {onInputChange, filesData, submit } = useUploader(initiative?.id)
 
-  console.log('Upload results: ', results)
-  const [addPost] = useCreatePostMutation({variables:{initiative_id:id, user_id: user?.id, message}})
+  const [addPost] = useCreatePostMutation()
   
-  const submit = ()=>{ addPost(); setMessage(''); onClose() }
+  const submitPost = async ()=>{ 
+    const results = await submit({
+      createRecord: false,
+      multiple: true
+    })
+
+    await addPost({
+      variables:{
+        initiative_id:id, 
+        user_id: user?.id, 
+        message,
+        files: {
+          data: 
+            results?.map(file=>({
+              downloadable_url: file.url,
+              file_path: file.path,
+              user_id: user?.id,
+            }))||[]
+        }
+    }}); 
+
+    setMessage(''); 
+    onClose() 
+  }
 
   useEffect(()=>{
     window.onkeydown = (e)=>{
       if(e.key === 'Enter' && (e.ctrlKey || e.metaKey) && message?.length >= 2){
         console.log('fired')
-        submit()
+        submitPost()
       }
     }
     return ()=>{
@@ -96,12 +118,22 @@ function PostEditor({
           onClick={()=>setEmojiOpen(false)} 
           {...{inputRef, onEmojiClick}} 
           {...{emojiOpen, setEmojiOpen}} 
-          onImageSubmit={onInputChangeSubmit}
+          onImageSubmit={onInputChange}
           withImage 
           withEmoji 
           value={message} 
+          images={filesData?.map(v=>v.blob)}
+          deleteImage={(index)=>{
+            const newFilesData = filesData?.filter((v, i)=>i!==index)
+            console.log(newFilesData)
+            onInputChange({
+              target:{
+                files: newFilesData?.map(v=>v.file) as unknown as FileList|null
+              }
+            } as ChangeEvent<HTMLInputElement>)
+          }}
           onChange={(e:any)=>setMessage(e.target.value)}/>
-        <Button mt='1rem' pr="3rem" pl="3rem" customSize="large" onClick={submit} aria-disabled={message.length<2}>
+        <Button mt='1rem' pr="3rem" pl="3rem" customSize="large" onClick={submitPost} aria-disabled={message.length<2}>
           Publish
         </Button>
       </EditorContainer>

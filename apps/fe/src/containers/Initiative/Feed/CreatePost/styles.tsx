@@ -39,7 +39,7 @@ EditorWrapper = styled.div`
 EditorContainer = styled.div`
   width: 450px;
   max-width: calc(100vw - 4rem);
-  height: 370px;
+  min-height: 370px;
   max-height: calc(100vh - 8rem);
   display: flex;
   border-radius: 5px;

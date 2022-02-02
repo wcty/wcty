@@ -9,7 +9,7 @@ import distance from "@turf/distance";
 import { useRouter } from "next/router";
 import { Button } from "@ui";
 import { InitiativeProps } from "..";
-import { useDeleteInitiativeMemberMutation, useDeleteInitiativeMutation, useInitiativeByPkQuery } from "generated";
+import { InitiativeByPkDocument, useDeleteInitiativeMemberMutation, useDeleteInitiativeMutation, useInitiativeByPkQuery } from "generated";
 import { t, Trans } from '@lingui/macro'
 
 const formatMeters = format(',.2r')
@@ -37,7 +37,13 @@ function Buttons({isMember=false, isOnlyMember=false, id=''}){
   const router = useRouter()
   const user = useUser()
   const [deleteInitiative] = useDeleteInitiativeMutation({variables:{id:router.query.id}})
-  const [leaveInitiative] = useDeleteInitiativeMemberMutation({variables:{ initiative_id:router.query.id, user_id: user?.id }})
+  const [leaveInitiative] = useDeleteInitiativeMemberMutation({
+    variables:{ 
+      initiative_id:router.query.id, 
+      user_id: user?.id 
+    },
+    refetchQueries: [InitiativeByPkDocument]
+  })
   
   return (
     <ShareJoin>
@@ -53,7 +59,6 @@ function Buttons({isMember=false, isOnlyMember=false, id=''}){
        <>{isMember && <Button onClick={async ()=>{
          await leaveInitiative();
          router.push('/');
-         //Update cache!
        }}><Trans>Leave initiative</Trans></Button> }</>
       }
     </ShareJoin>

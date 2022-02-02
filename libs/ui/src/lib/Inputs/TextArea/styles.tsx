@@ -3,6 +3,35 @@ import { position, layout, space, PositionProps, LayoutProps, SpaceProps } from 
 import { InputHTMLAttributes } from 'react'
 
 export const 
+FieldWrapperParams = css`
+  height: 100%;
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+
+  /* background-color: white; */
+  outline: none;
+  border-radius: 3px 3px 3px 3px;
+  border: 1px solid ${p=>p.theme.colors.line};
+  :hover{
+    background-color: ${p=>p.theme.colors.backgroundActive};
+    border: 1px solid ${p=>p.theme.colors.secondary};
+  }
+  :focus {
+    border: 1px solid ${p=>p.theme.colors.secondary};
+    color: ${p=>p.theme.colors.secondary};
+    background-color: #ffffff;
+    :hover{
+      background-color: #ffffff;
+    }
+  }
+  :focus-within {
+    background-color: #ffffff;
+  }
+  :active {
+    background-color: #ffffff;
+  }
+`,
+
 FieldWrapper = styled.div`
   height: 100%;
   width: 100%;
@@ -67,29 +96,15 @@ FieldWrapper = styled.div`
       }
     }
   }
+  ${FieldWrapperParams}
 `,
 
 TextInputParams = css`
   height: 100%;
   width: 100%;
-  padding: 1rem 2.5rem 1rem 1.5rem;
-  background-color: white;
-  border-radius: 3px 3px 3px 3px;
   border: none;
-  transition: border-radius 0.2s;
   outline: none;
-  border: 1px solid ${p=>p.theme.colors.line};
-  :hover{
-    background-color: #F7F9FB;
-    border: 1px solid ${p=>p.theme.colors.secondary};
-  }
-  &:focus {
-    border: 1px solid ${p=>p.theme.colors.secondary};
-    color: ${p=>p.theme.colors.secondary};
-    :hover{
-      background-color: #ffffff;
-    }
-  }
+  background: none;
 `,
 
 TextInput = styled.input`
@@ -98,7 +113,7 @@ TextInput = styled.input`
   ${layout}
 `,
 
-TextAreaInput = styled.textarea<{ extendable?: boolean}>`
+TextAreaInput = styled.textarea<{ extendable?: boolean } & LayoutProps & PositionProps & SpaceProps>`
   ${TextInputParams}
   ${position}
   ${layout}
@@ -158,11 +173,13 @@ EmojiWrapper = styled.div`
 
 FileInput = styled.label.attrs(
   (p:{
+    $value?: string,
     $onInputChange?:(e:React.ChangeEvent<HTMLInputElement>)=>void
   } & InputHTMLAttributes<HTMLInputElement> &LayoutProps & PositionProps & SpaceProps )=>({
     $onInputChange: p.$onInputChange,
+    $value: p.$value,
     children: <>
-      <input type="file" multiple onChange={p.$onInputChange} />
+      <input type="file" value={p.$value} multiple onChange={p.$onInputChange} />
       {p.children}
     </>
 }))<{src?:string}>`
@@ -172,4 +189,58 @@ FileInput = styled.label.attrs(
   ${position}
   ${layout}
   ${space}
+`,
+
+ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background-color: #f0f0f0;
+  margin-bottom: 1.5rem;
+  border-radius: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  border-radius: 8px;
+  overflow: hidden;
+`,
+
+
+ImageWrapper = styled.div<{ url:string }& LayoutProps>`
+  min-width: 40%;
+  ${layout}
+  color: white;
+  margin: 0 1px 1px 0;
+  font-family: system-ui;
+  font-weight: 900;
+  font-size: 2rem;
+  flex: 1 0 auto;
+  background-image: url(${p=>p.url});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+`,
+
+DeleteIcon = styled.button`
+  :after{
+    content: '✕';
+  }
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+  :hover{
+    opacity: 0.8;
+  }
 `

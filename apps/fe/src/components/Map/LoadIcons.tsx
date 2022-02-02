@@ -54,30 +54,23 @@ const loadMarker = (map:MapType, Marker:string, name:string, size:number, width?
 
 export default function LoadIcons () {
   const loadedRef = useRef(false)
-  // const [loaded, setLoaded] = useState(false)
-  // const context = useContext(Map.Context)
+  const [loaded, setLoaded] = useState(false)
+  const context = useContext(Map.Context)
 
-  // useEffect(()=>{
-  //   if(context.map && !loaded && !loadedRef.current){
-  //     setLoaded(true) 
-  //   }
-  // },[])
+  useEffect(()=>{
+    if(context.map){
+      const map = context.map
+      if(map && !loaded && !loadedRef.current ){
+        loadMarker(map, Marker, 'marker-fixed', 40, )
+        loadMarker(map, MarkerActive, 'marker-active', 60)
+        loadMarker(map, Initiative, 'initiative', 40, )
+        loadMarker(map, Org, 'org', 40, )
+        loadMarker(map, PinNew, 'pin', 130, 37 )
+        setLoaded(true) 
+        loadedRef.current = true
+      }
+    }
+  },[context.map])
 
-  return (
-    <MapContext.Consumer>
-      {(map:MapType) => {
-        if(map && (!loadedRef.current)){
-          console.log('Load Icons')
-          loadMarker(map, Marker, 'marker-fixed', 40, )
-          loadMarker(map, MarkerActive, 'marker-active', 60)
-          loadMarker(map, Initiative, 'initiative', 40, )
-          loadMarker(map, Org, 'org', 40, )
-          loadMarker(map, PinNew, 'pin', 130, 37 )
-          
-          loadedRef.current = true
-          return null;  
-        }
-      }}
-    </MapContext.Consumer>
-  )
+  return null
 }

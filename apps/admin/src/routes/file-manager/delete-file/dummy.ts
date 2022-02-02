@@ -5,7 +5,7 @@ export default {
       "old": {
         "post_id": "post_id",
         "downloadable_url": "downloadable_url",
-        "file_path": "file_path",
+        "file_path": "/public/initiatives/0ddcc942-3b14-4bdd-866e-7e5679b9db78/37e9d06b-20ba-4f1f-95ef-542764ca348d.jpeg",
         "type": "type",
         "created_at": "created_at",
         "id": "id",

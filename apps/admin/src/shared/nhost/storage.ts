@@ -8,7 +8,7 @@ import {
 import { APPLICATION } from '../config'
 
 interface Headers { 
-  "X-Hasura-Admin-Secret"?: string;
+  "x-admin-secret"?: string;
 }
 
 export default class Storage {
@@ -25,7 +25,7 @@ export default class Storage {
   private generateAuthorizationHeader(): null | Headers {
 
     return {
-      "X-Hasura-Admin-Secret": APPLICATION.HASURA_GRAPHQL_ADMIN_SECRET,
+      "x-admin-secret": APPLICATION.HASURA_GRAPHQL_ADMIN_SECRET,
     };
   }
 

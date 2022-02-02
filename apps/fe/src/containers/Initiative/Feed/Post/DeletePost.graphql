@@ -4,4 +4,9 @@ mutation DeletePost (
     delete_initiative_posts_by_pk(id: $post_id) {
       id
     }
+    delete_files(
+      where: { post_id:{_eq: $post_id} }
+    ) {
+      affected_rows
+    }
 }

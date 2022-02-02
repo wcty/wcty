@@ -3612,7 +3612,9 @@ export type Initiative_Posts_Bool_Exp = {
 /** unique or primary key constraints on table "initiative_posts" */
 export enum Initiative_Posts_Constraint {
   /** unique or primary key constraint */
-  InitiativeMessagePkey = 'initiative_message_pkey'
+  InitiativeMessagePkey = 'initiative_message_pkey',
+  /** unique or primary key constraint */
+  InitiativePostsInitiativeIdIdKey = 'initiative_posts_initiative_id_id_key'
 }
 
 /** input type for incrementing numeric columns in table "initiative_posts" */
@@ -10301,7 +10303,7 @@ export type DeletePostMutationVariables = Exact<{
 }>;
 
 
-export type DeletePostMutation = { delete_initiative_posts_by_pk?: { id: any } | null | undefined };
+export type DeletePostMutation = { delete_initiative_posts_by_pk?: { id: any } | null | undefined, delete_files?: { affected_rows: number } | null | undefined };
 
 export type ReactionToPostMutationVariables = Exact<{
   user_id: Scalars['uuid'];
@@ -11437,6 +11439,9 @@ export const DeletePostDocument = gql`
     mutation DeletePost($post_id: bigint!) {
   delete_initiative_posts_by_pk(id: $post_id) {
     id
+  }
+  delete_files(where: {post_id: {_eq: $post_id}}) {
+    affected_rows
   }
 }
     `;

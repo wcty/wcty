@@ -6,6 +6,6 @@ import deleteFile from './delete-file'
 const router = Router()
 
 router.use(nocache())
-router.get("/delete-file", deleteFile);
+router.post("/delete-file", deleteFile);
 
 export default router

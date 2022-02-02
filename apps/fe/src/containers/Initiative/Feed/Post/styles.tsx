@@ -163,6 +163,7 @@ OptionsButton = styled(Button).attrs({
 `,
 
 OptionsMenu = styled.div`
+  z-index: 1;
   width: 144px;
   border-radius: 3px;
   position: absolute;

@@ -26808,6 +26808,12 @@
             "description": "unique or primary key constraint",
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "initiative_posts_initiative_id_id_key",
+            "description": "unique or primary key constraint",
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "possibleTypes": null

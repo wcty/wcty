@@ -174,15 +174,26 @@ EmojiWrapper = styled.div`
 FileInput = styled.label.attrs(
   (p:{
     $value?: string,
-    $onInputChange?:(e:React.ChangeEvent<HTMLInputElement>)=>void
+    $onInputChange?:(e:React.ChangeEvent<HTMLInputElement>)=>void,
+    disabled?:boolean
   } & InputHTMLAttributes<HTMLInputElement> &LayoutProps & PositionProps & SpaceProps )=>({
     $onInputChange: p.$onInputChange,
     $value: p.$value,
     children: <>
-      <input type="file" value={p.$value} multiple onChange={p.$onInputChange} />
+      <input type="file" disabled={p.disabled} value={p.$value} multiple onChange={p.$onInputChange} />
       {p.children}
-    </>
-}))<{src?:string}>`
+    </>,
+    disabled: p.disabled,
+    ariaDisabled:p.disabled,
+}))<{src?:string, disabled?:boolean}>`
+  ${p=>p.disabled && css`
+    pointer-events: none;
+    cursor: none;
+    color: ${p=>p.theme.colors.label} !important;
+    >svg{
+      fill: ${p=>p.theme.colors.label} !important;
+    }
+  `}
   >input[type="file"]{
     display: none;
   }

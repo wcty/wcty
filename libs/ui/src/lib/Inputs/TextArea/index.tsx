@@ -126,21 +126,23 @@ export function TextArea({
               width={v.width}
               minHeight={v.height}
             >
-              <DeleteIcon onClick={(e)=>{
-                e.preventDefault()
-                deleteImage?.(i);
+              <DeleteIcon
+                disabled={props.disabled}
+                onClick={(e)=>{
+                  e.preventDefault()
+                  deleteImage?.(i);
               }} />
             </ImageWrapper>
           )}
         </ImageContainer>: null }
       {withImage && 
-        <FileInput $value={''} $onInputChange={(e:any)=>onImageSubmit?.(e, { createRecord:true, multiple: true })}>
-          <IconWrapper as='div' position='absolute' right='2rem' bottom='1rem'>
+        <FileInput disabled={props.disabled} $value={''} $onInputChange={(e:any)=>onImageSubmit?.(e, { createRecord:true, multiple: true })}>
+          <IconWrapper  as='div' position='absolute' right='2rem' bottom='1rem'>
             <PIcon/>
           </IconWrapper>
         </FileInput>}
       {withEmoji && 
-        <IconWrapper onClick={()=>setEmojiOpen?.(true)} position='absolute' right='5rem' bottom='1rem'>
+        <IconWrapper disabled={props.disabled} onClick={()=>setEmojiOpen?.(true)} position='absolute' right='5rem' bottom='1rem'>
           <SmileIcon/>
         </IconWrapper>}
       {withEmoji && emojiOpen && <EmojiWrapper>

@@ -1,4 +1,4 @@
-import { Avatar, Text, TextField, TextArea, Button, IconButton, SectionTab } from "@ui";
+import { Avatar, Text, TextField, TextArea, Button, IconButton, SectionTab, Loader } from "@ui";
 import { Channels, EditorContainer, EditorHeader, EditorWrapper, InputContent, Names } from "./styles";
 import { Actions, Container } from "../Post/styles";
 import { ReactComponent as VoteIco} from "@assets/icons/vote.svg";
@@ -46,6 +46,7 @@ function PostEditor({
   const [message, setMessage] = useState('')
   const [emojiOpen, setEmojiOpen] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement|any>();
+  const [loading, setLoading] = useState(false)
 
   const onEmojiClick = (event: React.MouseEvent, emojiObject: IEmojiData) => {
     const cursor = inputRef?.current?.selectionStart;
@@ -56,9 +57,16 @@ function PostEditor({
 
   const {onInputChange, filesData, submit } = useUploader(initiative?.id)
 
-  const [addPost] = useCreatePostMutation()
+  const [addPost, { error }] = useCreatePostMutation()
+  
+  useEffect(()=>{
+    if(error){
+      setLoading(false)
+    }
+  },[error])
   
   const submitPost = async ()=>{ 
+    setLoading(true)
     const results = await submit({
       createRecord: false,
       multiple: true
@@ -115,6 +123,7 @@ function PostEditor({
           <IconButton customSize="small" position='absolute' top='2rem' right='2rem' customType="secondary" icon="close" onClick={onClose}/>
         </EditorHeader>
         <TextArea 
+          disabled={loading}
           onClick={()=>setEmojiOpen(false)} 
           {...{inputRef, onEmojiClick}} 
           {...{emojiOpen, setEmojiOpen}} 
@@ -133,10 +142,11 @@ function PostEditor({
             } as ChangeEvent<HTMLInputElement>)
           }}
           onChange={(e:any)=>setMessage(e.target.value)}/>
-        <Button mt='1rem' pr="3rem" pl="3rem" customSize="large" onClick={submitPost} aria-disabled={message.length<2}>
+        <Button disabled={loading} mt='1rem' pr="3rem" pl="3rem" customSize="large" onClick={submitPost} aria-disabled={message.length<2}>
           Publish
         </Button>
       </EditorContainer>
+      {loading && <Loader center/>}
     </EditorWrapper>
   )
 }

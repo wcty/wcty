@@ -5,7 +5,7 @@ import { ReactComponent as LikeIco} from '@assets/icons/like.svg'
 import { FeedFragment, Reactions_Enum, useReactionToPostMutation, useDeleteLikeMutation, useDeletePostMutation, File_Types_Enum } from "generated";
 import { fixAvatar, useUser } from "common";
 import { Trans } from "@lingui/macro";
-import { Button } from "@ui";
+import { Button, Loader } from "@ui";
 import { useEffect, useState } from "react";
 import { ReactComponent as OptionsIcon} from '@assets/icons/post-options.svg'
 

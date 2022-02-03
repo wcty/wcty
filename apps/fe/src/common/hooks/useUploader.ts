@@ -8,7 +8,9 @@ type Handler = MouseEventHandler<HTMLButtonElement>
 
 export type UploaderOptions = {
   createRecord?:boolean, 
-  multiple?:boolean
+  postId?:string,
+  multiple?:boolean,
+  keepSelected?:boolean,
 }
 
 export type Files = {file:File,blob:string}[]
@@ -21,7 +23,9 @@ export function useUploader(initiativeID: string) {
   const [ results, setResults ] = useState<Result[]>([])
   const [ insertFile ] = useInsertFileMutation()
 
-  const onInputChange = async (e:ChangeEvent<HTMLInputElement>)=>{
+  const onInputChange = async (
+    e:ChangeEvent<HTMLInputElement>,
+    options?:UploaderOptions)=>{
     const files:Files = []
 
     for(let file of e.target.files||[]){
@@ -29,18 +33,24 @@ export function useUploader(initiativeID: string) {
         file: file,
         blob: URL.createObjectURL(file)
       })
-      console.log('Created blob:', file.name)
+      // console.log('Created blob:', file.name)
     }
-    setFilesData(files)
+    if(options?.keepSelected){
+      setFilesData([...(filesData||[]), ...files])
+    }else{
+      setFilesData(files)
+    }
   }
   
   const submitOne = async({
     fileData,
     createRecord,
-    index
+    index,
+    post_id
   }:{
     fileData:File,
     createRecord?:boolean,
+    post_id?:string,
     index: number
   })=>{
     const uuid = uuidv4()
@@ -64,7 +74,8 @@ export function useUploader(initiativeID: string) {
             file_path,
             downloadable_url,
             user_id: user?.id,
-            initiative_id: initiativeID
+            initiative_id: initiativeID,
+            ...(post_id? { post_id }:{})
           },
         },
       });
@@ -74,8 +85,9 @@ export function useUploader(initiativeID: string) {
   }
 
   const submit = async (
-    { createRecord=true, multiple }: UploaderOptions
+    options?: UploaderOptions
   ) => {
+    const { createRecord=true, postId, multiple } = options || {}
     if ( !filesData?.length || !initiativeID ) { return; }
     if ( filesData.length>1 && !multiple ) { console.error("Multiple files not allowed"); return; }
 
@@ -85,6 +97,7 @@ export function useUploader(initiativeID: string) {
       const res = await submitOne({
         fileData,
         createRecord,
+        post_id: postId,
         index: i
       })
       resultsArray.push(res)
@@ -95,8 +108,9 @@ export function useUploader(initiativeID: string) {
 
   const onInputChangeSubmit = async (
     e:ChangeEvent<HTMLInputElement>, 
-    { createRecord=true, multiple }: UploaderOptions
+    options?: UploaderOptions
   )=>{
+    const { createRecord=true, multiple } = options || {}
     const files = e.target.files
 
     if ( !files?.length || !initiativeID ) { return; }

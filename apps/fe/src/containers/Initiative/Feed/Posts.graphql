@@ -1,13 +1,13 @@
-subscription Feed($id: uuid){
+subscription Posts($id: uuid){
   posts: initiative_posts(
     where:{initiative_id: {_eq: $id}}
     order_by: {created_at: desc}
   ) {
-    ...Feed
+    ...Post
   }
 }
 
-fragment Feed on initiative_posts {
+fragment Post on initiative_posts {
   id
   user{
     avatar_url

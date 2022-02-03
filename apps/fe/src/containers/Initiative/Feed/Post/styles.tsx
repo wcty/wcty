@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { IUserInfo } from './types/IUserInfo'
 import { ReactComponent as OptionsIcon} from '@assets/icons/post-options.svg'
 import { Button } from "@ui";
 import { layout, LayoutProps } from 'styled-system';
@@ -38,7 +37,11 @@ Date = styled.div`
 
 UserInfo = styled.div.attrs(({
   name, roles, date
-}: IUserInfo)=>({
+}: {
+  name: string,
+  roles: string[],
+  date: Date
+})=>({
   name, roles, date,
   children: <>
       <Name>{name}</Name>
@@ -128,6 +131,7 @@ Actions = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `,
 
 Container = styled.div`
@@ -172,6 +176,31 @@ OptionsMenu = styled.div`
   background-color: white;
   padding: 0.5rem;
   box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+`,
+
+DeletionMenu = styled.div`
+  padding: 4rem;
+  z-index: 1;
+  width: 360px;
+  border-radius: 3px;
+  position: absolute;
+  /* top: 3.5rem;
+  right: 0; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+  >div{
+    margin-top: 2rem;
+    display: flex;
+    >:last-child{
+      margin-left: 1rem;
+    }
+    >button{
+      justify-content: center;
+    }
+  }
 `,
 
 ImageContainer = styled.div`

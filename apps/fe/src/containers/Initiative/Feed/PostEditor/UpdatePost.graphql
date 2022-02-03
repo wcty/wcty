@@ -1,0 +1,17 @@
+mutation UpdatePost(
+  $message: String!
+  $post_id: bigint!
+  $now: timestamptz!
+){
+  update_initiative_posts_by_pk (
+    pk_columns: {
+      id: $post_id
+    }
+    _set: {
+      message: $message
+      modified_at: $now
+    }
+  ){
+    ...Post
+  }
+}

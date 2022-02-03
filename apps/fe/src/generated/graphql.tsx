@@ -10238,6 +10238,13 @@ export type DeleteFilesMutationVariables = Exact<{
 
 export type DeleteFilesMutation = { delete_files?: { affected_rows: number } | null | undefined };
 
+export type GetFilesQueryVariables = Exact<{
+  where: Files_Bool_Exp;
+}>;
+
+
+export type GetFilesQuery = { files: Array<{ id: any, downloadable_url?: string | null | undefined, type: File_Types_Enum, user?: { id: any } | null | undefined }> };
+
 export type InsertInitiativeMutationVariables = Exact<{
   initiative: Initiatives_Insert_Input;
 }>;
@@ -10262,26 +10269,6 @@ export type CreateCommentMutationVariables = Exact<{
 
 
 export type CreateCommentMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
-
-export type CreatePostMutationVariables = Exact<{
-  message: Scalars['String'];
-  user_id: Scalars['uuid'];
-  initiative_id: Scalars['uuid'];
-  thread_id?: Scalars['String'];
-  files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
-}>;
-
-
-export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
-
-export type FeedSubscriptionVariables = Exact<{
-  id?: InputMaybe<Scalars['uuid']>;
-}>;
-
-
-export type FeedSubscription = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
-
-export type FeedFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
 
 export type FirstMemberQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -10314,7 +10301,34 @@ export type ReactionToPostMutationVariables = Exact<{
 
 export type ReactionToPostMutation = { insert_initiative_post_reactions_one?: { user_id?: any | null | undefined, post_id?: any | null | undefined, type?: Reactions_Enum | null | undefined } | null | undefined };
 
-export type PostFragment = { type: Post_Types_Enum, message?: string | null | undefined, comments_count: { aggregate?: { count: number } | null | undefined }, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined };
+export type CreatePostMutationVariables = Exact<{
+  message: Scalars['String'];
+  user_id: Scalars['uuid'];
+  initiative_id: Scalars['uuid'];
+  thread_id?: Scalars['String'];
+  files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
+}>;
+
+
+export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
+
+export type UpdatePostMutationVariables = Exact<{
+  message: Scalars['String'];
+  post_id: Scalars['bigint'];
+  now: Scalars['timestamptz'];
+}>;
+
+
+export type UpdatePostMutation = { update_initiative_posts_by_pk?: { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
+
+export type PostsSubscriptionVariables = Exact<{
+  id?: InputMaybe<Scalars['uuid']>;
+}>;
+
+
+export type PostsSubscription = { posts: Array<{ id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
+
+export type PostFragment = { id: any, created_at: any, modified_at: any, message?: string | null | undefined, type: Post_Types_Enum, thread_id: string, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
 
 export type DeleteInitiativeMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -10480,8 +10494,8 @@ export const InitiativeFieldsFragmentDoc = gql`
   }
 }
     `;
-export const FeedFragmentDoc = gql`
-    fragment Feed on initiative_posts {
+export const PostFragmentDoc = gql`
+    fragment Post on initiative_posts {
   id
   user {
     avatar_url
@@ -10506,21 +10520,6 @@ export const FeedFragmentDoc = gql`
     aggregate {
       count
     }
-  }
-}
-    `;
-export const PostFragmentDoc = gql`
-    fragment Post on initiative_posts {
-  comments_count: comments_aggregate {
-    aggregate {
-      count
-    }
-  }
-  type
-  message
-  user {
-    display_name
-    avatar_url
   }
 }
     `;
@@ -11171,6 +11170,46 @@ export function useDeleteFilesMutation(baseOptions?: Apollo.MutationHookOptions<
 export type DeleteFilesMutationHookResult = ReturnType<typeof useDeleteFilesMutation>;
 export type DeleteFilesMutationResult = Apollo.MutationResult<DeleteFilesMutation>;
 export type DeleteFilesMutationOptions = Apollo.BaseMutationOptions<DeleteFilesMutation, DeleteFilesMutationVariables>;
+export const GetFilesDocument = gql`
+    query getFiles($where: files_bool_exp!) {
+  files(where: $where) {
+    id
+    downloadable_url
+    type
+    user {
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetFilesQuery__
+ *
+ * To run a query within a React component, call `useGetFilesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetFilesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetFilesQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useGetFilesQuery(baseOptions: Apollo.QueryHookOptions<GetFilesQuery, GetFilesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetFilesQuery, GetFilesQueryVariables>(GetFilesDocument, options);
+      }
+export function useGetFilesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetFilesQuery, GetFilesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetFilesQuery, GetFilesQueryVariables>(GetFilesDocument, options);
+        }
+export type GetFilesQueryHookResult = ReturnType<typeof useGetFilesQuery>;
+export type GetFilesLazyQueryHookResult = ReturnType<typeof useGetFilesLazyQuery>;
+export type GetFilesQueryResult = Apollo.QueryResult<GetFilesQuery, GetFilesQueryVariables>;
 export const InsertInitiativeDocument = gql`
     mutation InsertInitiative($initiative: initiatives_insert_input!) {
   insert_initiatives_one(object: $initiative) {
@@ -11281,78 +11320,6 @@ export function useCreateCommentMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateCommentMutationHookResult = ReturnType<typeof useCreateCommentMutation>;
 export type CreateCommentMutationResult = Apollo.MutationResult<CreateCommentMutation>;
 export type CreateCommentMutationOptions = Apollo.BaseMutationOptions<CreateCommentMutation, CreateCommentMutationVariables>;
-export const CreatePostDocument = gql`
-    mutation CreatePost($message: String!, $user_id: uuid!, $initiative_id: uuid!, $thread_id: String! = "main", $files: files_arr_rel_insert_input) {
-  insert_initiative_posts_one(
-    object: {type: message, message: $message, user_id: $user_id, initiative_id: $initiative_id, thread_id: $thread_id, files: $files}
-  ) {
-    id
-  }
-}
-    `;
-export type CreatePostMutationFn = Apollo.MutationFunction<CreatePostMutation, CreatePostMutationVariables>;
-
-/**
- * __useCreatePostMutation__
- *
- * To run a mutation, you first call `useCreatePostMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreatePostMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createPostMutation, { data, loading, error }] = useCreatePostMutation({
- *   variables: {
- *      message: // value for 'message'
- *      user_id: // value for 'user_id'
- *      initiative_id: // value for 'initiative_id'
- *      thread_id: // value for 'thread_id'
- *      files: // value for 'files'
- *   },
- * });
- */
-export function useCreatePostMutation(baseOptions?: Apollo.MutationHookOptions<CreatePostMutation, CreatePostMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreatePostMutation, CreatePostMutationVariables>(CreatePostDocument, options);
-      }
-export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
-export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
-export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
-export const FeedDocument = gql`
-    subscription Feed($id: uuid) {
-  posts: initiative_posts(
-    where: {initiative_id: {_eq: $id}}
-    order_by: {created_at: desc}
-  ) {
-    ...Feed
-  }
-}
-    ${FeedFragmentDoc}`;
-
-/**
- * __useFeedSubscription__
- *
- * To run a query within a React component, call `useFeedSubscription` and pass it any options that fit your needs.
- * When your component renders, `useFeedSubscription` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useFeedSubscription({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useFeedSubscription(baseOptions?: Apollo.SubscriptionHookOptions<FeedSubscription, FeedSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<FeedSubscription, FeedSubscriptionVariables>(FeedDocument, options);
-      }
-export type FeedSubscriptionHookResult = ReturnType<typeof useFeedSubscription>;
-export type FeedSubscriptionResult = Apollo.SubscriptionResult<FeedSubscription>;
 export const FirstMemberDocument = gql`
     query FirstMember($id: uuid!) {
   initiative_members(
@@ -11510,6 +11477,116 @@ export function useReactionToPostMutation(baseOptions?: Apollo.MutationHookOptio
 export type ReactionToPostMutationHookResult = ReturnType<typeof useReactionToPostMutation>;
 export type ReactionToPostMutationResult = Apollo.MutationResult<ReactionToPostMutation>;
 export type ReactionToPostMutationOptions = Apollo.BaseMutationOptions<ReactionToPostMutation, ReactionToPostMutationVariables>;
+export const CreatePostDocument = gql`
+    mutation CreatePost($message: String!, $user_id: uuid!, $initiative_id: uuid!, $thread_id: String! = "main", $files: files_arr_rel_insert_input) {
+  insert_initiative_posts_one(
+    object: {type: message, message: $message, user_id: $user_id, initiative_id: $initiative_id, thread_id: $thread_id, files: $files}
+  ) {
+    id
+  }
+}
+    `;
+export type CreatePostMutationFn = Apollo.MutationFunction<CreatePostMutation, CreatePostMutationVariables>;
+
+/**
+ * __useCreatePostMutation__
+ *
+ * To run a mutation, you first call `useCreatePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createPostMutation, { data, loading, error }] = useCreatePostMutation({
+ *   variables: {
+ *      message: // value for 'message'
+ *      user_id: // value for 'user_id'
+ *      initiative_id: // value for 'initiative_id'
+ *      thread_id: // value for 'thread_id'
+ *      files: // value for 'files'
+ *   },
+ * });
+ */
+export function useCreatePostMutation(baseOptions?: Apollo.MutationHookOptions<CreatePostMutation, CreatePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreatePostMutation, CreatePostMutationVariables>(CreatePostDocument, options);
+      }
+export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
+export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
+export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
+export const UpdatePostDocument = gql`
+    mutation UpdatePost($message: String!, $post_id: bigint!, $now: timestamptz!) {
+  update_initiative_posts_by_pk(
+    pk_columns: {id: $post_id}
+    _set: {message: $message, modified_at: $now}
+  ) {
+    ...Post
+  }
+}
+    ${PostFragmentDoc}`;
+export type UpdatePostMutationFn = Apollo.MutationFunction<UpdatePostMutation, UpdatePostMutationVariables>;
+
+/**
+ * __useUpdatePostMutation__
+ *
+ * To run a mutation, you first call `useUpdatePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePostMutation, { data, loading, error }] = useUpdatePostMutation({
+ *   variables: {
+ *      message: // value for 'message'
+ *      post_id: // value for 'post_id'
+ *      now: // value for 'now'
+ *   },
+ * });
+ */
+export function useUpdatePostMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePostMutation, UpdatePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePostMutation, UpdatePostMutationVariables>(UpdatePostDocument, options);
+      }
+export type UpdatePostMutationHookResult = ReturnType<typeof useUpdatePostMutation>;
+export type UpdatePostMutationResult = Apollo.MutationResult<UpdatePostMutation>;
+export type UpdatePostMutationOptions = Apollo.BaseMutationOptions<UpdatePostMutation, UpdatePostMutationVariables>;
+export const PostsDocument = gql`
+    subscription Posts($id: uuid) {
+  posts: initiative_posts(
+    where: {initiative_id: {_eq: $id}}
+    order_by: {created_at: desc}
+  ) {
+    ...Post
+  }
+}
+    ${PostFragmentDoc}`;
+
+/**
+ * __usePostsSubscription__
+ *
+ * To run a query within a React component, call `usePostsSubscription` and pass it any options that fit your needs.
+ * When your component renders, `usePostsSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostsSubscription({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePostsSubscription(baseOptions?: Apollo.SubscriptionHookOptions<PostsSubscription, PostsSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<PostsSubscription, PostsSubscriptionVariables>(PostsDocument, options);
+      }
+export type PostsSubscriptionHookResult = ReturnType<typeof usePostsSubscription>;
+export type PostsSubscriptionResult = Apollo.SubscriptionResult<PostsSubscription>;
 export const DeleteInitiativeDocument = gql`
     mutation DeleteInitiative($id: uuid!) {
   delete_initiatives_by_pk(id: $id) {

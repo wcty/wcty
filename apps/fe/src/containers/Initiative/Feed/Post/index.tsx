@@ -1,14 +1,13 @@
-import {  Actions, CommentCounter,  Container, Content, ImageContainer, ImageWrapper, LikeCounter, Likes, Message, OptionsButton, OptionsMenu, Tags } from "./styles";
-import Author from "./Author";
+import { AuthorContainer, UserInfo, Actions, CommentCounter,  Container, Content, ImageContainer, ImageWrapper, LikeCounter, Likes, Message, OptionsButton, OptionsMenu, Tags, DeletionMenu } from "./styles";
 import { ReactComponent as CommentIco } from '@assets/icons/comment.svg'
 import { ReactComponent as LikeIco} from '@assets/icons/like.svg'
-import { FeedFragment, Reactions_Enum, useReactionToPostMutation, useDeleteLikeMutation, useDeletePostMutation, File_Types_Enum } from "generated";
+import { PostFragment, Reactions_Enum, useReactionToPostMutation, useDeleteLikeMutation, useDeletePostMutation, File_Types_Enum, GetFilesDocument } from "generated";
 import { fixAvatar, useUser } from "common";
 import { Trans } from "@lingui/macro";
-import { Button, Loader } from "@ui";
+import { Button, Loader, Avatar } from "@ui";
 import { useEffect, useState } from "react";
-import { ReactComponent as OptionsIcon} from '@assets/icons/post-options.svg'
-
+import PostEditor from "../PostEditor";
+import { InitiativeProps } from "containers/Initiative";
 
 type ImageType = {
   url: string,
@@ -22,20 +21,47 @@ type CSSImageType = {
   height: number|string
 }
 
-export default function Post(props: FeedFragment ) {
-  const {user: author, id: post_id, message, files, comments_aggregate, reactions} = props;
+export default function Post({
+  initiative, 
+  post
+}: 
+  InitiativeProps & {
+    post: PostFragment 
+}){
+
+  const {
+    user: author, 
+    id: post_id, 
+    message, 
+    files, 
+    comments_aggregate, 
+    reactions,
+    ...props
+  } = post;
+
   const user = useUser();
-  const [deletePost, {error}] = useDeletePostMutation({variables:{ post_id }});
-  const [deleteLike] = useDeleteLikeMutation({variables:{ user_id: user?.id, post_id }});
-  const [likePost] = useReactionToPostMutation({variables:{ user_id: user?.id, post_id, reaction: Reactions_Enum.Like}});
+  const [deletePost, {error}] = useDeletePostMutation({
+    variables:{ post_id },
+    refetchQueries: [ GetFilesDocument ]
+  });
+  const [deleteLike] = useDeleteLikeMutation({
+    variables:{ 
+      user_id: user?.id, 
+      post_id }
+  });
+  const [likePost] = useReactionToPostMutation({
+    variables:{ 
+      user_id: user?.id, 
+      post_id, 
+      reaction: Reactions_Enum.Like },
+  });
   const liked = !!reactions.find(reaction => reaction.user_id ===  user?.id);
   const [options, setOptions] = useState(false)
+  const [deletion, setDeletion] = useState(false)
 
-  // console.log(error)
+  const [editorOpen, setEditorOpen] = useState(false)
 
   const [imageParams, setImageParams] = useState<CSSImageType[]>()
-  console.log('files', files)
-  console.log('params', imageParams)
 
   useEffect(()=>{
 
@@ -78,27 +104,76 @@ export default function Post(props: FeedFragment ) {
     })()
   },[files])
 
-  return(
-    <Container >
-      <Author
-        avatar={fixAvatar(author?.avatar_url)}
-        name={author?.display_name||''}
-        date={new Date()}
-      />
-      {props?.user?.id===user?.id && <>
+  return(<>
+    {editorOpen && <PostEditor {...{initiative, post}} onClose={()=>setEditorOpen(false)} /> }
+    <Container onClick={()=>options && setOptions(!options)} >
+      <AuthorContainer>
+        <Avatar picture={fixAvatar(author?.avatar_url)}/>
+        <UserInfo name={author?.display_name||''}  date={new Date()}/>
+      </AuthorContainer>
+      {author?.id===user?.id && <>
         <OptionsButton
           customType='secondary' 
-          onClick={()=>setOptions(!options)} 
+          onClick={()=>{
+            setOptions(!options)
+            setDeletion(false)
+          }} 
           customSize='small'/>
+        
         {options && 
           <OptionsMenu >
-            <Button style={{pointerEvents:'all'}} onClick={()=>{ console.log('click'); setOptions(false); }} width='100%' customType='secondary'>
-              <Trans>Edit</Trans>
+            <Button 
+              style={{pointerEvents:'all'}} 
+              onClick={()=>{ 
+                console.log('click'); 
+                setEditorOpen(true)
+                setOptions(false); 
+              }} 
+              width='100%' 
+              customType='secondary'>
+                <Trans>Edit</Trans>
             </Button>
-            <Button style={{pointerEvents:'all'}} onClick={()=>{ deletePost(); setOptions(false); }} width='100%' customType='secondary'>
-              <Trans>Delete</Trans>
+            <Button 
+              style={{pointerEvents:'all'}} 
+              onClick={()=>{ 
+                setDeletion(true)
+                setOptions(false); 
+              }} 
+              width='100%' 
+              customType='secondary'>
+                <Trans>Delete</Trans>
             </Button>
           </OptionsMenu>}
+        {deletion && 
+          <DeletionMenu>
+            <span>
+              You will not be able to restore the post after deleting it. 
+              Are you sure you want to proceed?
+            </span>
+            <div>
+              <Button 
+                style={{pointerEvents:'all'}} 
+                onClick={()=>{ 
+                  deletePost(); 
+                  setOptions(false); 
+                  setDeletion(false);
+                }} 
+                width='100%' 
+                customType='primary'>
+                  <Trans>Delete</Trans>
+              </Button>
+              <Button 
+                style={{pointerEvents:'all'}} 
+                onClick={()=>{ 
+                  setOptions(false); 
+                  setDeletion(false);
+                }} 
+                width='100%' 
+                customType='outlined'>
+                  <Trans>Return</Trans>
+              </Button>
+            </div>
+          </DeletionMenu>}
       </>}
       <Content>
         <Message>{
@@ -119,18 +194,20 @@ export default function Post(props: FeedFragment ) {
         </ImageContainer>: null }
       </Content>
       <Actions> 
-        <CommentCounter>
-          <Trans>Comments:</Trans> {comments_aggregate?.aggregate?.count}
-        </CommentCounter>
-        <Button customType="text" customSize="small">
-            <CommentIco/>
-            <Trans>Comment</Trans>
-        </Button>
+        <div style={{display:'flex', alignItems: 'center'}}>
+          <CommentCounter>
+            <Trans>Comments:</Trans> {comments_aggregate?.aggregate?.count}
+          </CommentCounter>
+          <Button customType="text" customSize="small">
+              <CommentIco/>
+              <Trans>Comment</Trans>
+          </Button>
+        </div>
         <Likes liked={liked}>
             <LikeCounter>{reactions.length}</LikeCounter>
             <LikeIco onClick={()=>liked? deleteLike(): likePost() }/>
         </Likes>
       </Actions>
     </Container>
-  )
+  </>)
 }

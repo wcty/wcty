@@ -3,7 +3,7 @@ import Join, { LoginToJoin } from "../Join";
 
 import Post from "./Post";
 import CreatePost from "containers/Initiative/Feed/CreatePost";
-import { useFeedSubscription, useFirstMemberQuery } from "generated";
+import { usePostsSubscription, useFirstMemberQuery } from "generated";
 import { useRouter } from "next/router";
 import { CheckedChannels, Container, Footer } from "./styles";
 import { DateTime, DateTimeFormatOptions } from 'luxon'
@@ -39,7 +39,7 @@ FeedBlock.atom = atom({
 function Feed({initiative}:InitiativeProps) {
   const { id } = useRouter().query;
   const user = useUser()
-  const { data:postsData, error } = useFeedSubscription({variables:{id}})
+  const { data:postsData, error } = usePostsSubscription({variables:{id}})
 
   const { data } = useFirstMemberQuery({variables:{id}});
 
@@ -56,7 +56,7 @@ function Feed({initiative}:InitiativeProps) {
           {/* { channels } */}
       </CheckedChannels>
       <CreatePost {...{initiative}}/>
-      { [...postsData?.posts||[]].map((post,  key) => <Post  {...post} key={key}/>) }
+      { [...postsData?.posts||[]].map((post,  key) => <Post  {...{initiative, post}} key={key}/>) }
       <Footer>
         <div>{date_created}</div>
         <div>{data?.initiative_members[0].user?.display_name} створила/ив ініціативу</div>

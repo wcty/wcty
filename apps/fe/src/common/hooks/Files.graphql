@@ -20,3 +20,14 @@ mutation deleteFiles($where: files_bool_exp!) {
     affected_rows
   }
 }
+
+query getFiles($where: files_bool_exp!) {
+  files(where: $where) {
+    id
+    downloadable_url
+    type
+    user {
+      id
+    }
+  }
+}

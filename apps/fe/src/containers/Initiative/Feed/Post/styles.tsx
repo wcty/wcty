@@ -220,6 +220,7 @@ ImageContainer = styled.div`
 
 ImageWrapper = styled.div<{ url:string }& LayoutProps>`
   min-width: 40%;
+  cursor: pointer;
   ${layout}
   color: white;
   margin: 0 1px 1px 0;
@@ -232,4 +233,7 @@ ImageWrapper = styled.div<{ url:string }& LayoutProps>`
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
+  :hover{
+    opacity: 0.9;
+  }
 `

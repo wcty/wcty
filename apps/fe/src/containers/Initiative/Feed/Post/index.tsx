@@ -4,10 +4,11 @@ import { ReactComponent as LikeIco} from '@assets/icons/like.svg'
 import { PostFragment, Reactions_Enum, useReactionToPostMutation, useDeleteLikeMutation, useDeletePostMutation, File_Types_Enum, GetFilesDocument } from "generated";
 import { fixAvatar, useUser } from "common";
 import { Trans } from "@lingui/macro";
-import { Button, Loader, Avatar } from "@ui";
+import { Button, Avatar } from "@ui";
 import { useEffect, useState } from "react";
 import PostEditor from "../PostEditor";
 import { InitiativeProps } from "containers/Initiative";
+import { FullscreenCarousel, GalleryImage } from "components/Gallery";
 
 type ImageType = {
   url: string,
@@ -40,29 +41,34 @@ export default function Post({
   } = post;
 
   const user = useUser();
+
   const [deletePost, {error}] = useDeletePostMutation({
     variables:{ post_id },
     refetchQueries: [ GetFilesDocument ]
   });
+
   const [deleteLike] = useDeleteLikeMutation({
     variables:{ 
       user_id: user?.id, 
       post_id }
   });
+
   const [likePost] = useReactionToPostMutation({
     variables:{ 
       user_id: user?.id, 
       post_id, 
       reaction: Reactions_Enum.Like },
   });
+
   const liked = !!reactions.find(reaction => reaction.user_id ===  user?.id);
   const [options, setOptions] = useState(false)
   const [deletion, setDeletion] = useState(false)
-
   const [editorOpen, setEditorOpen] = useState(false)
-
   const [imageParams, setImageParams] = useState<CSSImageType[]>()
-
+  const [fullscreen, setFullscreen] = useState<{
+    images: GalleryImage[],
+    defaultIndex: number
+  }>()
   useEffect(()=>{
 
     (async function getImageParams(){
@@ -189,6 +195,14 @@ export default function Post({
               url={v.url} 
               width={v.width}
               minHeight={v.height}
+              onClick={()=>{
+                setFullscreen({
+                  images: imageParams.map(v=>({
+                    url: v.url
+                  })),
+                  defaultIndex: key
+                })
+              }}
             />
           )}
         </ImageContainer>: null }
@@ -209,5 +223,9 @@ export default function Post({
         </Likes>
       </Actions>
     </Container>
+    {/* {fullscreen && 
+      <FullscreenCarousel 
+        {...fullscreen} 
+        onClose={()=>setFullscreen(undefined)} />} */}
   </>)
 }

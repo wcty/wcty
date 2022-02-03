@@ -78,9 +78,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
                     <Fonts/>
                     <ClientSetup/>
                     <I18nProvider i18n={i18n}>
-                      <div className='body' style={{position:'fixed'}}>
                         <Component {...pageProps} />
-                      </div>
                     </I18nProvider>
                 </ThemeProvider>
               </MapContext.Provider>

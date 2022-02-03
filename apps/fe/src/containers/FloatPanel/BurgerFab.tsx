@@ -6,8 +6,10 @@ import Sidebar from "containers/Sidepanel";
 export default function BurgerFab(){
   
   const [,setSidebar] = useRecoilState(Sidebar.open)
+  const [visible] = useRecoilState(Sidebar.visible)
 
-  return <Fab onClick={()=>setSidebar('menu')}>
+  return visible? 
+  <Fab onClick={()=>setSidebar('menu')}>
     <Burger/>
-  </Fab>
+  </Fab>: null
 }

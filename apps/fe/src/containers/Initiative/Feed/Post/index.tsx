@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import PostEditor from "../PostEditor";
 import { InitiativeProps } from "containers/Initiative";
 import { FullscreenCarousel, GalleryImage } from "components/Gallery";
+import { useRecoilState } from 'recoil';
+import Sidepanel from "containers/Sidepanel";
 
 type ImageType = {
   url: string,
@@ -69,6 +71,8 @@ export default function Post({
     images: GalleryImage[],
     defaultIndex: number
   }>()
+  const [_, setSidebarVisible] = useRecoilState(Sidepanel.visible)
+
   useEffect(()=>{
 
     (async function getImageParams(){
@@ -196,6 +200,7 @@ export default function Post({
               width={v.width}
               minHeight={v.height}
               onClick={()=>{
+                setSidebarVisible(false)
                 setFullscreen({
                   images: imageParams.map(v=>({
                     url: v.url
@@ -223,9 +228,12 @@ export default function Post({
         </Likes>
       </Actions>
     </Container>
-    {/* {fullscreen && 
+    {fullscreen && 
       <FullscreenCarousel 
         {...fullscreen} 
-        onClose={()=>setFullscreen(undefined)} />} */}
+        onClose={()=>{
+          setFullscreen(undefined)
+          setSidebarVisible(true)
+        }} />}
   </>)
 }

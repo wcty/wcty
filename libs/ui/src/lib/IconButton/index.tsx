@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
-import {ReactComponent as SendIco} from '@assets/icons/arrow-up-2.svg'
-import {ReactComponent as VoteIco} from '@assets/icons/vote.svg'
-import {ReactComponent as LikeIco} from '@assets/icons/like.svg'
-import {ReactComponent as ArrowLeft} from '@assets/icons/arrow-left.svg'
-import {ReactComponent as ArrowRight} from '@assets/icons/arrow-right.svg'
+import { ReactComponent as SendIco } from '@assets/icons/arrow-up-2.svg'
+import { ReactComponent as VoteIco } from '@assets/icons/vote.svg'
+import { ReactComponent as LikeIco } from '@assets/icons/like.svg'
+import { ReactComponent as ArrowLeft } from '@assets/icons/arrow-left.svg'
+import { ReactComponent as ArrowRight } from '@assets/icons/arrow-right.svg'
 import { ReactComponent as CloseIcon } from '@assets/icons/close-icon.svg'
+import { ReactComponent as GalleryIcon } from '@assets/icons/gallery.svg'
 
 import { position, layout, space, SpaceProps, LayoutProps, PositionProps } from 'styled-system';
 
@@ -16,6 +17,7 @@ const variants = {
   'arrow-left': <ArrowLeft/>,
   'arrow-right': <ArrowRight/>,
   'close': <CloseIcon/>,
+  'gallery': <GalleryIcon/>,
 }
 
 interface  IconButtonProps {

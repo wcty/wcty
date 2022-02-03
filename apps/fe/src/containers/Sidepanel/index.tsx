@@ -27,6 +27,7 @@ export default function Sidepanel (){
   const [hovered, setHovered] = useState<null|Tabs[number]['key']>(null)
 
   const [open, setOpen] = useRecoilState(Sidepanel.open)
+  const [visible, setVisible] = useRecoilState(Sidepanel.visible)
   const layout = useLayout()
   
   function props(key:Tabs[number]['key']){
@@ -52,7 +53,7 @@ export default function Sidepanel (){
   },[open])
 
   return <>
-    <SidepanelWrapper 
+    { visible && <SidepanelWrapper 
       onMouseOver={()=>!open&&layout!=='mobile'&&setOpen('menu')} 
       onMouseLeave={()=>open==='menu'&&layout!=='mobile'&&setOpen(false)} 
       open={open}>
@@ -154,11 +155,16 @@ export default function Sidepanel (){
             </BottomPanel>}
           </div>
         </Menu>}
-    </SidepanelWrapper>
+    </SidepanelWrapper> }
   </>
 }
 
 Sidepanel.open = atom({
   key:'sidepanelOpen',
   default: false as false|'menu'|'wide'
+})
+
+Sidepanel.visible = atom({
+  key:'sidepanelVisible',
+  default: true
 })

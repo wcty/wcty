@@ -1,4 +1,4 @@
-import FloatButtons from 'containers/FloatButtons'
+import FloatButtons from 'containers/FloatButtonsMap'
 import { loadTranslation } from 'common'
 import FloatPanel from 'containers/FloatPanel'
 import Sidepanel from 'containers/Sidepanel'

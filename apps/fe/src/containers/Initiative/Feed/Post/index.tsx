@@ -118,6 +118,8 @@ export default function Post({
     {editorOpen && <PostEditor {...{initiative, post}} onClose={()=>setEditorOpen(false)} /> }
     <Container onClick={()=>options && setOptions(!options)} >
       <Author
+        ml='1.5rem'
+        mt='1.5rem'
         picture={fixAvatar(author?.avatar_url)}
         name={author?.display_name||''}  
         date={new Date(props.created_at)}/>      

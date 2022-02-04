@@ -199,15 +199,21 @@ List = styled.div<{open:boolean}>`
   flex-direction: column;
   border-radius: 3px;
   overflow: hidden;
-  >span{
-    >span{ 
-      ${p=>p.theme.font.body.semibold.t5}
-    }
+  >button{
+    border: none;
+    background: none;
+    padding: 1rem 0;
     flex: 1 1 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    >span{ 
+      ${p=>p.theme.font.body.semibold.t5}
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
     >span:first-child{
       transition: transform 0.2s;
       transform: translate(0px,0px);
@@ -216,7 +222,7 @@ List = styled.div<{open:boolean}>`
       >svg{
         transform: ${p=>p.open ? css<{}>`rotate(180deg)` : css<{}>`rotate(0deg)`};
         transition: transform 0.2s;
-        margin-left: 10px;
+        margin: 0 10px;
       }
     }
     &:hover{

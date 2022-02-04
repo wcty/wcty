@@ -1,14 +1,14 @@
 import styled, { css } from "styled-components"
 
 import { theme } from "@ui/common"
-import { space, layout, position, SpaceProps, LayoutProps, PositionProps } from "styled-system"
+import { space, layout, position, SpaceProps, LayoutProps, PositionProps, flexbox, FlexboxProps } from "styled-system"
 
 type colorTypes = keyof typeof theme.colors
 const colors:colorTypes[] = Object.keys(theme.colors) as colorTypes[]
 
 
 export const 
-Text = styled.span<{semibold?:boolean, customColor?: colorTypes } & SpaceProps & LayoutProps & PositionProps >`
+Text = styled.span<{semibold?:boolean, customColor?: colorTypes } & SpaceProps & FlexboxProps & LayoutProps & PositionProps >`
   ${p=>p.semibold?
     p.theme.font.body.semibold.t4:
     p.theme.font.body.regular.t4 }
@@ -24,12 +24,22 @@ Text = styled.span<{semibold?:boolean, customColor?: colorTypes } & SpaceProps &
   ${space}
   ${layout}
   ${position}
+  ${flexbox}
 `,
 
-Divider = styled.div`
+Divider = styled.div<{ customColor?: colorTypes } & SpaceProps & FlexboxProps & LayoutProps & PositionProps>`
   width: 100%;
   height: 1px;
   background: rgba(0,0,0,0.1);
   margin-top: 2rem;
   margin-bottom: 1rem;
+  ${p=>p.customColor && (
+    colors.includes(p.customColor) ?
+      css`background: ${p.theme.colors[p.customColor]};`:
+      css`background: ${p.customColor};`
+  )}
+  ${space}
+  ${layout}
+  ${position}
+  ${flexbox}
 `

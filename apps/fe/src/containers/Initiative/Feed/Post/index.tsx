@@ -1,10 +1,10 @@
-import { AuthorContainer, UserInfo, Actions, CommentCounter,  Container, Content, ImageContainer, ImageWrapper, LikeCounter, Likes, Message, OptionsButton, OptionsMenu, Tags, DeletionMenu } from "./styles";
+import { Actions, CommentCounter,  Container, Content, ImageContainer, ImageWrapper, LikeCounter, Likes, Message, OptionsButton, OptionsMenu, Tags, DeletionMenu } from "./styles";
 import { ReactComponent as CommentIco } from '@assets/icons/comment.svg'
 import { ReactComponent as LikeIco} from '@assets/icons/like.svg'
 import { PostFragment, Reactions_Enum, useReactionToPostMutation, useDeleteLikeMutation, useDeletePostMutation, File_Types_Enum, GetFilesDocument } from "generated";
 import { fixAvatar, useUser } from "common";
 import { Trans } from "@lingui/macro";
-import { Button, Avatar } from "@ui";
+import { Button, Author } from "@ui";
 import { useEffect, useState } from "react";
 import PostEditor from "../PostEditor";
 import { InitiativeProps } from "containers/Initiative";
@@ -117,10 +117,10 @@ export default function Post({
   return(<>
     {editorOpen && <PostEditor {...{initiative, post}} onClose={()=>setEditorOpen(false)} /> }
     <Container onClick={()=>options && setOptions(!options)} >
-      <AuthorContainer>
-        <Avatar picture={fixAvatar(author?.avatar_url)}/>
-        <UserInfo name={author?.display_name||''}  date={new Date()}/>
-      </AuthorContainer>
+      <Author
+        picture={fixAvatar(author?.avatar_url)}
+        name={author?.display_name||''}  
+        date={new Date(props.created_at)}/>      
       {author?.id===user?.id && <>
         <OptionsButton
           customType='secondary' 

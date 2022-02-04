@@ -7,8 +7,19 @@ export const Container = styled.div`
   };
   border-top: 1px solid #000000;
   border-bottom: 1px solid #000000;
-  >span{
+  >button{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border: none;
+    background: none;
+    width: 100%;
     >span{
+      border: none;
+      background: none;
+      transition: transform 0.2s;
+      cursor: pointer;
       >svg{
         margin-right: 1rem;
       }
@@ -16,11 +27,17 @@ export const Container = styled.div`
       align-items: center;
       display: flex;
     }
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
+    &:hover{
+      >span{
+        transform: translate(2px,2px);
+      }
+    }
   }
+`,
+
+ShowAll = styled.button`
+  border: none;
+
 `,
 
 Grid = styled.div`
@@ -40,11 +57,15 @@ Img = styled.div.attrs((p:{src:string, alt:string})=>({
   background-size: cover;
   background-position: center;
   border-radius: 3px;
+  cursor: pointer;
   &:before {
     content: "";
     display: block;
     height: 0;
     width: 0;
     padding-bottom: calc(90/123 * 100%);
+  }
+  :hover{
+    opacity: 0.975;
   }
 `

@@ -10243,7 +10243,7 @@ export type GetFilesQueryVariables = Exact<{
 }>;
 
 
-export type GetFilesQuery = { files: Array<{ id: any, downloadable_url?: string | null | undefined, type: File_Types_Enum, user?: { id: any } | null | undefined }> };
+export type GetFilesQuery = { files: Array<{ id: any, downloadable_url?: string | null | undefined, type: File_Types_Enum, post_id?: any | null | undefined, created_at?: any | null | undefined, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }> };
 
 export type InsertInitiativeMutationVariables = Exact<{
   initiative: Initiatives_Insert_Input;
@@ -11178,7 +11178,11 @@ export const GetFilesDocument = gql`
     type
     user {
       id
+      avatar_url
+      display_name
     }
+    post_id
+    created_at
   }
 }
     `;

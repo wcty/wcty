@@ -11,6 +11,7 @@ import { useLang, useUser } from "common";
 import { InitiativeProps } from "..";
 import { useEffect, useRef, useState } from "react";
 import { atom, useRecoilState } from "recoil";
+import { Trans } from "@lingui/macro";
 
 export default function FeedBlock({ isMember=false, initiative:data }:{ isMember?:boolean } & InitiativeProps ) {
   const user = useUser()
@@ -59,7 +60,7 @@ function Feed({initiative}:InitiativeProps) {
       { [...postsData?.posts||[]].map((post,  key) => <Post  {...{initiative, post}} key={key}/>) }
       <Footer>
         <div>{date_created}</div>
-        <div>{data?.initiative_members[0].user?.display_name} створила/ив ініціативу</div>
+        <div>{data?.initiative_members[0].user?.display_name + ' '} <Trans>created initiative</Trans></div>
       </Footer>
     </Container>
   )

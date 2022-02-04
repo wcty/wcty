@@ -4,11 +4,6 @@ import { Button } from "@ui";
 import { layout, LayoutProps } from 'styled-system';
 
 export const 
-AuthorContainer  = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 16px 16px 0 16px;
-`,
 
 Avatar = styled.div`
   flex-shrink: 0;
@@ -19,39 +14,6 @@ Info  =  styled.div`
  display: flex;
  flex-direction: column;
 `,
-
-Name = styled.div`
-  ${props => props.theme.font.body.semibold.t5};
-`,
-
-Roles = styled.div`
-  ${props => props.theme.font.body.regular.t5}
-  color: ${props => props.theme.colors.label};
-  text-transform: capitalize;
-`,
-
-Date = styled.div`
-  ${props => props.theme.font.body.regular.t5}
-  color: ${props => props.theme.colors.label}
-`,
-
-UserInfo = styled.div.attrs(({
-  name, roles, date
-}: {
-  name: string,
-  roles: string[],
-  date: Date
-})=>({
-  name, roles, date,
-  children: <>
-      <Name>{name}</Name>
-      <Roles>{roles?.join()}</Roles>
-      <Date>{date.toDateString()}</Date>
-    </>
-}))`
-  display: flex;
-  flex-direction: column;
-`, 
 
 Content = styled.div`
   padding: 15px 19px 0 19px;
@@ -234,6 +196,6 @@ ImageWrapper = styled.div<{ url:string }& LayoutProps>`
   background-repeat: no-repeat;
   position: relative;
   :hover{
-    opacity: 0.9;
+    opacity: 0.975;
   }
 `

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { position, layout, space, PositionProps, LayoutProps, SpaceProps } from 'styled-system'
+import { position, layout, space, PositionProps, LayoutProps, SpaceProps, flexbox, FlexboxProps } from 'styled-system'
 import { InputHTMLAttributes } from 'react'
 
 export const 
@@ -113,11 +113,12 @@ TextInput = styled.input`
   ${layout}
 `,
 
-TextAreaInput = styled.textarea<{ extendable?: boolean } & LayoutProps & PositionProps & SpaceProps>`
+TextAreaInput = styled.textarea<{ extendable?: boolean } & LayoutProps & FlexboxProps & PositionProps & SpaceProps>`
   ${TextInputParams}
   ${position}
   ${layout}
   ${space}
+  ${flexbox}
   resize: none;
   transition: height 0.2s ease-in-out;
   ${({ extendable }) => extendable && css`
@@ -128,7 +129,7 @@ TextAreaInput = styled.textarea<{ extendable?: boolean } & LayoutProps & Positio
   `}
 `,
 
-IconWrapper = styled.button<PositionProps & LayoutProps & SpaceProps>`
+IconWrapper = styled.button<PositionProps & FlexboxProps & LayoutProps & SpaceProps>`
   width: 16px;
   height: 16px;
   background: none;
@@ -161,6 +162,7 @@ IconWrapper = styled.button<PositionProps & LayoutProps & SpaceProps>`
   ${position}
   ${layout}
   ${space}
+  ${flexbox}
 `,
 
 EmojiWrapper = styled.div`
@@ -176,7 +178,7 @@ FileInput = styled.label.attrs(
     $value?: string,
     $onInputChange?:(e:React.ChangeEvent<HTMLInputElement>)=>void,
     disabled?:boolean
-  } & InputHTMLAttributes<HTMLInputElement> &LayoutProps & PositionProps & SpaceProps )=>({
+  } & InputHTMLAttributes<HTMLInputElement> & LayoutProps & FlexboxProps & PositionProps & SpaceProps )=>({
     $onInputChange: p.$onInputChange,
     $value: p.$value,
     children: <>
@@ -200,6 +202,7 @@ FileInput = styled.label.attrs(
   ${position}
   ${layout}
   ${space}
+  ${flexbox}
 `,
 
 ImageContainer = styled.div`

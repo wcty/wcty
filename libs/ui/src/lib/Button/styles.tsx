@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
-import { position, layout, space, SpaceProps, PositionProps, LayoutProps } from 'styled-system'
+import { position, layout, space, SpaceProps, PositionProps, LayoutProps, flexbox, FlexboxProps } from 'styled-system'
 export interface ButtonProps  {
   customSize?: 'small' | 'medium' | 'large'
   customType?: 'primary' | 'secondary' | 'outlined' | 'subtle' | 'text'
 }
 
-export const Button = styled.button<ButtonProps&PositionProps&SpaceProps&LayoutProps>`
+export const Button = styled.button<ButtonProps & FlexboxProps & PositionProps&SpaceProps&LayoutProps>`
   border: 0;
   outline: 0;
   display: flex;
@@ -27,4 +27,5 @@ export const Button = styled.button<ButtonProps&PositionProps&SpaceProps&LayoutP
   ${position}
   ${layout}
   ${space}
+  ${flexbox}
 `;

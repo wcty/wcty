@@ -6,8 +6,9 @@ import { ReactComponent as ArrowLeft } from '@assets/icons/arrow-left.svg'
 import { ReactComponent as ArrowRight } from '@assets/icons/arrow-right.svg'
 import { ReactComponent as CloseIcon } from '@assets/icons/close-icon.svg'
 import { ReactComponent as GalleryIcon } from '@assets/icons/gallery.svg'
+import { ReactComponent as FullscreenIcon } from '@assets/icons/fullscreen.svg'
 
-import { position, layout, space, SpaceProps, LayoutProps, PositionProps } from 'styled-system';
+import { position, layout, space, SpaceProps, LayoutProps, PositionProps, flexbox, FlexboxProps } from 'styled-system';
 
 const variants = {
   'send': <SendIco/>,
@@ -18,6 +19,7 @@ const variants = {
   'arrow-right': <ArrowRight/>,
   'close': <CloseIcon/>,
   'gallery': <GalleryIcon/>,
+  'fullscreen': <FullscreenIcon/>
 }
 
 interface  IconButtonProps {
@@ -49,7 +51,7 @@ const handleSize =  {
 
 export const IconButton =  styled.div.attrs(
   ({icon = 'send', customSize = 'medium'}: IconButtonProps)=>
-  ({customSize, children: variants[icon]}))<IconButtonProps & SpaceProps & LayoutProps & PositionProps>`
+  ({customSize, children: variants[icon]}))<IconButtonProps & FlexboxProps & SpaceProps & LayoutProps & PositionProps>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,4 +80,5 @@ export const IconButton =  styled.div.attrs(
     ${position}
     ${layout}
     ${space}
+    ${flexbox}
 `

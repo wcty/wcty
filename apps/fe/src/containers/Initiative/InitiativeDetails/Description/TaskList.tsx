@@ -32,13 +32,13 @@ export default function TaskList() {
       tasksNumber===0? 0:
       tasksCompleted/tasksNumber*100||0}/>
     <List {...{open}}>
-      <span onClick={()=>setOpen(!open)}>
+      <button onClick={()=>setOpen(!open)}>
         <span><Trans>List of tasks</Trans></span>
         <span>
           {open? <Trans>Hide</Trans>:<Trans>Show</Trans>}
           <ArrowDropDown/>
         </span>
-      </span>
+      </button>
       <div>
         {
           data?.initiative_tasks?.map((v,i)=>

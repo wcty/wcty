@@ -25,7 +25,6 @@ export type Scalars = {
   numeric: any;
   timestamp: any;
   timestamptz: any;
-  timetz: any;
   uuid: any;
 };
 
@@ -132,7 +131,7 @@ export type Auth_Account_Providers_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "auth.account_providers" */
 export type Auth_Account_Providers_Arr_Rel_Insert_Input = {
   data: Array<Auth_Account_Providers_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Auth_Account_Providers_On_Conflict>;
 };
 
@@ -221,7 +220,7 @@ export type Auth_Account_Providers_Mutation_Response = {
   returning: Array<Auth_Account_Providers>;
 };
 
-/** on conflict condition type for table "auth.account_providers" */
+/** on_conflict condition type for table "auth.account_providers" */
 export type Auth_Account_Providers_On_Conflict = {
   constraint: Auth_Account_Providers_Constraint;
   update_columns?: Array<Auth_Account_Providers_Update_Column>;
@@ -329,7 +328,7 @@ export type Auth_Account_Roles_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "auth.account_roles" */
 export type Auth_Account_Roles_Arr_Rel_Insert_Input = {
   data: Array<Auth_Account_Roles_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Auth_Account_Roles_On_Conflict>;
 };
 
@@ -404,7 +403,7 @@ export type Auth_Account_Roles_Mutation_Response = {
   returning: Array<Auth_Account_Roles>;
 };
 
-/** on conflict condition type for table "auth.account_roles" */
+/** on_conflict condition type for table "auth.account_roles" */
 export type Auth_Account_Roles_On_Conflict = {
   constraint: Auth_Account_Roles_Constraint;
   update_columns?: Array<Auth_Account_Roles_Update_Column>;
@@ -594,7 +593,7 @@ export type Auth_Accounts_Append_Input = {
 /** input type for inserting array relation for remote table "auth.accounts" */
 export type Auth_Accounts_Arr_Rel_Insert_Input = {
   data: Array<Auth_Accounts_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Auth_Accounts_On_Conflict>;
 };
 
@@ -747,11 +746,11 @@ export type Auth_Accounts_Mutation_Response = {
 /** input type for inserting object relation for remote table "auth.accounts" */
 export type Auth_Accounts_Obj_Rel_Insert_Input = {
   data: Auth_Accounts_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Auth_Accounts_On_Conflict>;
 };
 
-/** on conflict condition type for table "auth.accounts" */
+/** on_conflict condition type for table "auth.accounts" */
 export type Auth_Accounts_On_Conflict = {
   constraint: Auth_Accounts_Constraint;
   update_columns?: Array<Auth_Accounts_Update_Column>;
@@ -976,7 +975,7 @@ export type Auth_Migrations_Mutation_Response = {
   returning: Array<Auth_Migrations>;
 };
 
-/** on conflict condition type for table "auth.migrations" */
+/** on_conflict condition type for table "auth.migrations" */
 export type Auth_Migrations_On_Conflict = {
   constraint: Auth_Migrations_Constraint;
   update_columns?: Array<Auth_Migrations_Update_Column>;
@@ -1154,11 +1153,11 @@ export type Auth_Providers_Mutation_Response = {
 /** input type for inserting object relation for remote table "auth.providers" */
 export type Auth_Providers_Obj_Rel_Insert_Input = {
   data: Auth_Providers_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Auth_Providers_On_Conflict>;
 };
 
-/** on conflict condition type for table "auth.providers" */
+/** on_conflict condition type for table "auth.providers" */
 export type Auth_Providers_On_Conflict = {
   constraint: Auth_Providers_Constraint;
   update_columns?: Array<Auth_Providers_Update_Column>;
@@ -1233,7 +1232,7 @@ export type Auth_Refresh_Tokens_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "auth.refresh_tokens" */
 export type Auth_Refresh_Tokens_Arr_Rel_Insert_Input = {
   data: Array<Auth_Refresh_Tokens_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Auth_Refresh_Tokens_On_Conflict>;
 };
 
@@ -1304,7 +1303,7 @@ export type Auth_Refresh_Tokens_Mutation_Response = {
   returning: Array<Auth_Refresh_Tokens>;
 };
 
-/** on conflict condition type for table "auth.refresh_tokens" */
+/** on_conflict condition type for table "auth.refresh_tokens" */
 export type Auth_Refresh_Tokens_On_Conflict = {
   constraint: Auth_Refresh_Tokens_Constraint;
   update_columns?: Array<Auth_Refresh_Tokens_Update_Column>;
@@ -1474,11 +1473,11 @@ export type Auth_Roles_Mutation_Response = {
 /** input type for inserting object relation for remote table "auth.roles" */
 export type Auth_Roles_Obj_Rel_Insert_Input = {
   data: Auth_Roles_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Auth_Roles_On_Conflict>;
 };
 
-/** on conflict condition type for table "auth.roles" */
+/** on_conflict condition type for table "auth.roles" */
 export type Auth_Roles_On_Conflict = {
   constraint: Auth_Roles_Constraint;
   update_columns?: Array<Auth_Roles_Update_Column>;
@@ -1996,15 +1995,127 @@ export type Entry_Visits_Variance_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
+/** columns and relationships of "file_types" */
+export type File_Types = {
+  type: Scalars['String'];
+};
+
+/** aggregated selection of "file_types" */
+export type File_Types_Aggregate = {
+  aggregate?: Maybe<File_Types_Aggregate_Fields>;
+  nodes: Array<File_Types>;
+};
+
+/** aggregate fields of "file_types" */
+export type File_Types_Aggregate_Fields = {
+  count: Scalars['Int'];
+  max?: Maybe<File_Types_Max_Fields>;
+  min?: Maybe<File_Types_Min_Fields>;
+};
+
+
+/** aggregate fields of "file_types" */
+export type File_Types_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<File_Types_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "file_types". All fields are combined with a logical 'AND'. */
+export type File_Types_Bool_Exp = {
+  _and?: InputMaybe<Array<File_Types_Bool_Exp>>;
+  _not?: InputMaybe<File_Types_Bool_Exp>;
+  _or?: InputMaybe<Array<File_Types_Bool_Exp>>;
+  type?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "file_types" */
+export enum File_Types_Constraint {
+  /** unique or primary key constraint */
+  FileTypesPkey = 'file_types_pkey'
+}
+
+export enum File_Types_Enum {
+  Document = 'document',
+  Image = 'image'
+}
+
+/** Boolean expression to compare columns of type "file_types_enum". All fields are combined with logical 'AND'. */
+export type File_Types_Enum_Comparison_Exp = {
+  _eq?: InputMaybe<File_Types_Enum>;
+  _in?: InputMaybe<Array<File_Types_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<File_Types_Enum>;
+  _nin?: InputMaybe<Array<File_Types_Enum>>;
+};
+
+/** input type for inserting data into table "file_types" */
+export type File_Types_Insert_Input = {
+  type?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type File_Types_Max_Fields = {
+  type?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type File_Types_Min_Fields = {
+  type?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "file_types" */
+export type File_Types_Mutation_Response = {
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<File_Types>;
+};
+
+/** on_conflict condition type for table "file_types" */
+export type File_Types_On_Conflict = {
+  constraint: File_Types_Constraint;
+  update_columns?: Array<File_Types_Update_Column>;
+  where?: InputMaybe<File_Types_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "file_types". */
+export type File_Types_Order_By = {
+  type?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: file_types */
+export type File_Types_Pk_Columns_Input = {
+  type: Scalars['String'];
+};
+
+/** select columns of table "file_types" */
+export enum File_Types_Select_Column {
+  /** column name */
+  Type = 'type'
+}
+
+/** input type for updating data in table "file_types" */
+export type File_Types_Set_Input = {
+  type?: InputMaybe<Scalars['String']>;
+};
+
+/** update columns of table "file_types" */
+export enum File_Types_Update_Column {
+  /** column name */
+  Type = 'type'
+}
+
 /** columns and relationships of "files" */
 export type Files = {
-  created_at?: Maybe<Scalars['timetz']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
   downloadable_url?: Maybe<Scalars['String']>;
   file_path?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   /** An object relationship */
   initiative?: Maybe<Initiatives>;
   initiative_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['bigint']>;
+  type: File_Types_Enum;
   /** An object relationship */
   user?: Maybe<Users>;
   user_id?: Maybe<Scalars['uuid']>;
@@ -2018,9 +2129,17 @@ export type Files_Aggregate = {
 
 /** aggregate fields of "files" */
 export type Files_Aggregate_Fields = {
+  avg?: Maybe<Files_Avg_Fields>;
   count: Scalars['Int'];
   max?: Maybe<Files_Max_Fields>;
   min?: Maybe<Files_Min_Fields>;
+  stddev?: Maybe<Files_Stddev_Fields>;
+  stddev_pop?: Maybe<Files_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Files_Stddev_Samp_Fields>;
+  sum?: Maybe<Files_Sum_Fields>;
+  var_pop?: Maybe<Files_Var_Pop_Fields>;
+  var_samp?: Maybe<Files_Var_Samp_Fields>;
+  variance?: Maybe<Files_Variance_Fields>;
 };
 
 
@@ -2032,16 +2151,34 @@ export type Files_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "files" */
 export type Files_Aggregate_Order_By = {
+  avg?: InputMaybe<Files_Avg_Order_By>;
   count?: InputMaybe<Order_By>;
   max?: InputMaybe<Files_Max_Order_By>;
   min?: InputMaybe<Files_Min_Order_By>;
+  stddev?: InputMaybe<Files_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Files_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Files_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Files_Sum_Order_By>;
+  var_pop?: InputMaybe<Files_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Files_Var_Samp_Order_By>;
+  variance?: InputMaybe<Files_Variance_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "files" */
 export type Files_Arr_Rel_Insert_Input = {
   data: Array<Files_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Files_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Files_Avg_Fields = {
+  post_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "files" */
+export type Files_Avg_Order_By = {
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "files". All fields are combined with a logical 'AND'. */
@@ -2049,12 +2186,14 @@ export type Files_Bool_Exp = {
   _and?: InputMaybe<Array<Files_Bool_Exp>>;
   _not?: InputMaybe<Files_Bool_Exp>;
   _or?: InputMaybe<Array<Files_Bool_Exp>>;
-  created_at?: InputMaybe<Timetz_Comparison_Exp>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   downloadable_url?: InputMaybe<String_Comparison_Exp>;
   file_path?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   initiative?: InputMaybe<Initiatives_Bool_Exp>;
   initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
+  post_id?: InputMaybe<Bigint_Comparison_Exp>;
+  type?: InputMaybe<File_Types_Enum_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
 };
@@ -2065,25 +2204,33 @@ export enum Files_Constraint {
   FilesPkey = 'files_pkey'
 }
 
+/** input type for incrementing numeric columns in table "files" */
+export type Files_Inc_Input = {
+  post_id?: InputMaybe<Scalars['bigint']>;
+};
+
 /** input type for inserting data into table "files" */
 export type Files_Insert_Input = {
-  created_at?: InputMaybe<Scalars['timetz']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
   downloadable_url?: InputMaybe<Scalars['String']>;
   file_path?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['uuid']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
+  type?: InputMaybe<File_Types_Enum>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
 
 /** aggregate max on columns */
 export type Files_Max_Fields = {
-  created_at?: Maybe<Scalars['timetz']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
   downloadable_url?: Maybe<Scalars['String']>;
   file_path?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   initiative_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['bigint']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -2094,16 +2241,18 @@ export type Files_Max_Order_By = {
   file_path?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   initiative_id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Files_Min_Fields = {
-  created_at?: Maybe<Scalars['timetz']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
   downloadable_url?: Maybe<Scalars['String']>;
   file_path?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   initiative_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['bigint']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -2114,6 +2263,7 @@ export type Files_Min_Order_By = {
   file_path?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   initiative_id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
@@ -2125,7 +2275,7 @@ export type Files_Mutation_Response = {
   returning: Array<Files>;
 };
 
-/** on conflict condition type for table "files" */
+/** on_conflict condition type for table "files" */
 export type Files_On_Conflict = {
   constraint: Files_Constraint;
   update_columns?: Array<Files_Update_Column>;
@@ -2140,6 +2290,8 @@ export type Files_Order_By = {
   id?: InputMaybe<Order_By>;
   initiative?: InputMaybe<Initiatives_Order_By>;
   initiative_id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
+  type?: InputMaybe<Order_By>;
   user?: InputMaybe<Users_Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -2162,17 +2314,63 @@ export enum Files_Select_Column {
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
+  PostId = 'post_id',
+  /** column name */
+  Type = 'type',
+  /** column name */
   UserId = 'user_id'
 }
 
 /** input type for updating data in table "files" */
 export type Files_Set_Input = {
-  created_at?: InputMaybe<Scalars['timetz']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
   downloadable_url?: InputMaybe<Scalars['String']>;
   file_path?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['uuid']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
+  type?: InputMaybe<File_Types_Enum>;
   user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate stddev on columns */
+export type Files_Stddev_Fields = {
+  post_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "files" */
+export type Files_Stddev_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Files_Stddev_Pop_Fields = {
+  post_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "files" */
+export type Files_Stddev_Pop_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Files_Stddev_Samp_Fields = {
+  post_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "files" */
+export type Files_Stddev_Samp_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Files_Sum_Fields = {
+  post_id?: Maybe<Scalars['bigint']>;
+};
+
+/** order by sum() on columns of table "files" */
+export type Files_Sum_Order_By = {
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "files" */
@@ -2188,8 +2386,42 @@ export enum Files_Update_Column {
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
+  PostId = 'post_id',
+  /** column name */
+  Type = 'type',
+  /** column name */
   UserId = 'user_id'
 }
+
+/** aggregate var_pop on columns */
+export type Files_Var_Pop_Fields = {
+  post_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "files" */
+export type Files_Var_Pop_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Files_Var_Samp_Fields = {
+  post_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "files" */
+export type Files_Var_Samp_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Files_Variance_Fields = {
+  post_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "files" */
+export type Files_Variance_Order_By = {
+  post_id?: InputMaybe<Order_By>;
+};
 
 export type Geography_Cast_Exp = {
   geometry?: InputMaybe<Geometry_Comparison_Exp>;
@@ -2635,7 +2867,7 @@ export type I18n_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "i18n" */
 export type I18n_Arr_Rel_Insert_Input = {
   data: Array<I18n_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<I18n_On_Conflict>;
 };
 
@@ -2756,11 +2988,11 @@ export type I18n_Categories_Mutation_Response = {
 /** input type for inserting object relation for remote table "i18n_categories" */
 export type I18n_Categories_Obj_Rel_Insert_Input = {
   data: I18n_Categories_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<I18n_Categories_On_Conflict>;
 };
 
-/** on conflict condition type for table "i18n_categories" */
+/** on_conflict condition type for table "i18n_categories" */
 export type I18n_Categories_On_Conflict = {
   constraint: I18n_Categories_Constraint;
   update_columns?: Array<I18n_Categories_Update_Column>;
@@ -2869,7 +3101,7 @@ export type I18n_Mutation_Response = {
   returning: Array<I18n>;
 };
 
-/** on conflict condition type for table "i18n" */
+/** on_conflict condition type for table "i18n" */
 export type I18n_On_Conflict = {
   constraint: I18n_Constraint;
   update_columns?: Array<I18n_Update_Column>;
@@ -3008,8 +3240,10 @@ export type I18n_Variance_Order_By = {
 export type Initiative_Comment_Reactions = {
   /** An object relationship */
   comment?: Maybe<Initiative_Comments>;
-  comment_id?: Maybe<Scalars['Int']>;
+  comment_id: Scalars['Int'];
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
   type?: Maybe<Reactions_Enum>;
   /** An object relationship */
   user?: Maybe<Users>;
@@ -3062,7 +3296,7 @@ export type Initiative_Comment_Reactions_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_comment_reactions" */
 export type Initiative_Comment_Reactions_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Comment_Reactions_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Comment_Reactions_On_Conflict>;
 };
 
@@ -3070,12 +3304,14 @@ export type Initiative_Comment_Reactions_Arr_Rel_Insert_Input = {
 export type Initiative_Comment_Reactions_Avg_Fields = {
   comment_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  post_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "initiative_comment_reactions" */
 export type Initiative_Comment_Reactions_Avg_Order_By = {
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "initiative_comment_reactions". All fields are combined with a logical 'AND'. */
@@ -3086,6 +3322,8 @@ export type Initiative_Comment_Reactions_Bool_Exp = {
   comment?: InputMaybe<Initiative_Comments_Bool_Exp>;
   comment_id?: InputMaybe<Int_Comparison_Exp>;
   id?: InputMaybe<Bigint_Comparison_Exp>;
+  initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
+  post_id?: InputMaybe<Bigint_Comparison_Exp>;
   type?: InputMaybe<Reactions_Enum_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -3101,6 +3339,7 @@ export enum Initiative_Comment_Reactions_Constraint {
 export type Initiative_Comment_Reactions_Inc_Input = {
   comment_id?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['bigint']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
 };
 
 /** input type for inserting data into table "initiative_comment_reactions" */
@@ -3108,6 +3347,8 @@ export type Initiative_Comment_Reactions_Insert_Input = {
   comment?: InputMaybe<Initiative_Comments_Obj_Rel_Insert_Input>;
   comment_id?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['bigint']>;
+  initiative_id?: InputMaybe<Scalars['uuid']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
   type?: InputMaybe<Reactions_Enum>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   user_id?: InputMaybe<Scalars['uuid']>;
@@ -3117,6 +3358,8 @@ export type Initiative_Comment_Reactions_Insert_Input = {
 export type Initiative_Comment_Reactions_Max_Fields = {
   comment_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['bigint']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['bigint']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -3124,6 +3367,8 @@ export type Initiative_Comment_Reactions_Max_Fields = {
 export type Initiative_Comment_Reactions_Max_Order_By = {
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
@@ -3131,6 +3376,8 @@ export type Initiative_Comment_Reactions_Max_Order_By = {
 export type Initiative_Comment_Reactions_Min_Fields = {
   comment_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['bigint']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['bigint']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -3138,6 +3385,8 @@ export type Initiative_Comment_Reactions_Min_Fields = {
 export type Initiative_Comment_Reactions_Min_Order_By = {
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
@@ -3149,7 +3398,7 @@ export type Initiative_Comment_Reactions_Mutation_Response = {
   returning: Array<Initiative_Comment_Reactions>;
 };
 
-/** on conflict condition type for table "initiative_comment_reactions" */
+/** on_conflict condition type for table "initiative_comment_reactions" */
 export type Initiative_Comment_Reactions_On_Conflict = {
   constraint: Initiative_Comment_Reactions_Constraint;
   update_columns?: Array<Initiative_Comment_Reactions_Update_Column>;
@@ -3161,6 +3410,8 @@ export type Initiative_Comment_Reactions_Order_By = {
   comment?: InputMaybe<Initiative_Comments_Order_By>;
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
   type?: InputMaybe<Order_By>;
   user?: InputMaybe<Users_Order_By>;
   user_id?: InputMaybe<Order_By>;
@@ -3168,7 +3419,10 @@ export type Initiative_Comment_Reactions_Order_By = {
 
 /** primary key columns input for table: initiative_comment_reactions */
 export type Initiative_Comment_Reactions_Pk_Columns_Input = {
+  comment_id: Scalars['Int'];
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
 };
 
 /** select columns of table "initiative_comment_reactions" */
@@ -3177,6 +3431,10 @@ export enum Initiative_Comment_Reactions_Select_Column {
   CommentId = 'comment_id',
   /** column name */
   Id = 'id',
+  /** column name */
+  InitiativeId = 'initiative_id',
+  /** column name */
+  PostId = 'post_id',
   /** column name */
   Type = 'type',
   /** column name */
@@ -3187,6 +3445,8 @@ export enum Initiative_Comment_Reactions_Select_Column {
 export type Initiative_Comment_Reactions_Set_Input = {
   comment_id?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['bigint']>;
+  initiative_id?: InputMaybe<Scalars['uuid']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
   type?: InputMaybe<Reactions_Enum>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -3195,48 +3455,56 @@ export type Initiative_Comment_Reactions_Set_Input = {
 export type Initiative_Comment_Reactions_Stddev_Fields = {
   comment_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  post_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "initiative_comment_reactions" */
 export type Initiative_Comment_Reactions_Stddev_Order_By = {
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Initiative_Comment_Reactions_Stddev_Pop_Fields = {
   comment_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  post_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "initiative_comment_reactions" */
 export type Initiative_Comment_Reactions_Stddev_Pop_Order_By = {
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Initiative_Comment_Reactions_Stddev_Samp_Fields = {
   comment_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  post_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "initiative_comment_reactions" */
 export type Initiative_Comment_Reactions_Stddev_Samp_Order_By = {
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate sum on columns */
 export type Initiative_Comment_Reactions_Sum_Fields = {
   comment_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['bigint']>;
+  post_id?: Maybe<Scalars['bigint']>;
 };
 
 /** order by sum() on columns of table "initiative_comment_reactions" */
 export type Initiative_Comment_Reactions_Sum_Order_By = {
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "initiative_comment_reactions" */
@@ -3245,6 +3513,10 @@ export enum Initiative_Comment_Reactions_Update_Column {
   CommentId = 'comment_id',
   /** column name */
   Id = 'id',
+  /** column name */
+  InitiativeId = 'initiative_id',
+  /** column name */
+  PostId = 'post_id',
   /** column name */
   Type = 'type',
   /** column name */
@@ -3255,55 +3527,61 @@ export enum Initiative_Comment_Reactions_Update_Column {
 export type Initiative_Comment_Reactions_Var_Pop_Fields = {
   comment_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  post_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "initiative_comment_reactions" */
 export type Initiative_Comment_Reactions_Var_Pop_Order_By = {
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
 export type Initiative_Comment_Reactions_Var_Samp_Fields = {
   comment_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  post_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "initiative_comment_reactions" */
 export type Initiative_Comment_Reactions_Var_Samp_Order_By = {
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
 export type Initiative_Comment_Reactions_Variance_Fields = {
   comment_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
+  post_id?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "initiative_comment_reactions" */
 export type Initiative_Comment_Reactions_Variance_Order_By = {
   comment_id?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  post_id?: InputMaybe<Order_By>;
 };
 
 /** columns and relationships of "initiative_comments" */
 export type Initiative_Comments = {
   created_at: Scalars['timestamptz'];
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
   message?: Maybe<Scalars['String']>;
+  modified_at?: Maybe<Scalars['timestamptz']>;
   /** An object relationship */
   post?: Maybe<Initiative_Posts>;
-  post_id?: Maybe<Scalars['Int']>;
+  post_id: Scalars['Int'];
   /** An array relationship */
   reactions: Array<Initiative_Comment_Reactions>;
   /** An aggregate relationship */
   reactions_aggregate: Initiative_Comment_Reactions_Aggregate;
   /** An object relationship */
   user?: Maybe<Users>;
-  user_avatar?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  user_name?: Maybe<Scalars['String']>;
 };
 
 
@@ -3372,7 +3650,7 @@ export type Initiative_Comments_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_comments" */
 export type Initiative_Comments_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Comments_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Comments_On_Conflict>;
 };
 
@@ -3395,14 +3673,14 @@ export type Initiative_Comments_Bool_Exp = {
   _or?: InputMaybe<Array<Initiative_Comments_Bool_Exp>>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
+  initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
   message?: InputMaybe<String_Comparison_Exp>;
+  modified_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   post?: InputMaybe<Initiative_Posts_Bool_Exp>;
   post_id?: InputMaybe<Int_Comparison_Exp>;
   reactions?: InputMaybe<Initiative_Comment_Reactions_Bool_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
-  user_avatar?: InputMaybe<String_Comparison_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
-  user_name?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "initiative_comments" */
@@ -3421,58 +3699,58 @@ export type Initiative_Comments_Inc_Input = {
 export type Initiative_Comments_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   id?: InputMaybe<Scalars['Int']>;
+  initiative_id?: InputMaybe<Scalars['uuid']>;
   message?: InputMaybe<Scalars['String']>;
+  modified_at?: InputMaybe<Scalars['timestamptz']>;
   post?: InputMaybe<Initiative_Posts_Obj_Rel_Insert_Input>;
   post_id?: InputMaybe<Scalars['Int']>;
   reactions?: InputMaybe<Initiative_Comment_Reactions_Arr_Rel_Insert_Input>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
-  user_avatar?: InputMaybe<Scalars['String']>;
   user_id?: InputMaybe<Scalars['uuid']>;
-  user_name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type Initiative_Comments_Max_Fields = {
   created_at?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
+  modified_at?: Maybe<Scalars['timestamptz']>;
   post_id?: Maybe<Scalars['Int']>;
-  user_avatar?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  user_name?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "initiative_comments" */
 export type Initiative_Comments_Max_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   message?: InputMaybe<Order_By>;
+  modified_at?: InputMaybe<Order_By>;
   post_id?: InputMaybe<Order_By>;
-  user_avatar?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
-  user_name?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Initiative_Comments_Min_Fields = {
   created_at?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['Int']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
+  modified_at?: Maybe<Scalars['timestamptz']>;
   post_id?: Maybe<Scalars['Int']>;
-  user_avatar?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  user_name?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "initiative_comments" */
 export type Initiative_Comments_Min_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   message?: InputMaybe<Order_By>;
+  modified_at?: InputMaybe<Order_By>;
   post_id?: InputMaybe<Order_By>;
-  user_avatar?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
-  user_name?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "initiative_comments" */
@@ -3486,11 +3764,11 @@ export type Initiative_Comments_Mutation_Response = {
 /** input type for inserting object relation for remote table "initiative_comments" */
 export type Initiative_Comments_Obj_Rel_Insert_Input = {
   data: Initiative_Comments_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Comments_On_Conflict>;
 };
 
-/** on conflict condition type for table "initiative_comments" */
+/** on_conflict condition type for table "initiative_comments" */
 export type Initiative_Comments_On_Conflict = {
   constraint: Initiative_Comments_Constraint;
   update_columns?: Array<Initiative_Comments_Update_Column>;
@@ -3501,19 +3779,21 @@ export type Initiative_Comments_On_Conflict = {
 export type Initiative_Comments_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   message?: InputMaybe<Order_By>;
+  modified_at?: InputMaybe<Order_By>;
   post?: InputMaybe<Initiative_Posts_Order_By>;
   post_id?: InputMaybe<Order_By>;
   reactions_aggregate?: InputMaybe<Initiative_Comment_Reactions_Aggregate_Order_By>;
   user?: InputMaybe<Users_Order_By>;
-  user_avatar?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
-  user_name?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: initiative_comments */
 export type Initiative_Comments_Pk_Columns_Input = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['Int'];
 };
 
 /** select columns of table "initiative_comments" */
@@ -3523,26 +3803,26 @@ export enum Initiative_Comments_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  InitiativeId = 'initiative_id',
+  /** column name */
   Message = 'message',
+  /** column name */
+  ModifiedAt = 'modified_at',
   /** column name */
   PostId = 'post_id',
   /** column name */
-  UserAvatar = 'user_avatar',
-  /** column name */
-  UserId = 'user_id',
-  /** column name */
-  UserName = 'user_name'
+  UserId = 'user_id'
 }
 
 /** input type for updating data in table "initiative_comments" */
 export type Initiative_Comments_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   id?: InputMaybe<Scalars['Int']>;
+  initiative_id?: InputMaybe<Scalars['uuid']>;
   message?: InputMaybe<Scalars['String']>;
+  modified_at?: InputMaybe<Scalars['timestamptz']>;
   post_id?: InputMaybe<Scalars['Int']>;
-  user_avatar?: InputMaybe<Scalars['String']>;
   user_id?: InputMaybe<Scalars['uuid']>;
-  user_name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
@@ -3600,15 +3880,15 @@ export enum Initiative_Comments_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  InitiativeId = 'initiative_id',
+  /** column name */
   Message = 'message',
+  /** column name */
+  ModifiedAt = 'modified_at',
   /** column name */
   PostId = 'post_id',
   /** column name */
-  UserAvatar = 'user_avatar',
-  /** column name */
-  UserId = 'user_id',
-  /** column name */
-  UserName = 'user_name'
+  UserId = 'user_id'
 }
 
 /** aggregate var_pop on columns */
@@ -3660,9 +3940,7 @@ export type Initiative_Donations = {
   status: Scalars['String'];
   /** An object relationship */
   user?: Maybe<Users>;
-  user_avatar?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  user_name?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "initiative_donations" */
@@ -3711,7 +3989,7 @@ export type Initiative_Donations_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_donations" */
 export type Initiative_Donations_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Donations_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Donations_On_Conflict>;
 };
 
@@ -3741,9 +4019,7 @@ export type Initiative_Donations_Bool_Exp = {
   recurrent?: InputMaybe<Boolean_Comparison_Exp>;
   status?: InputMaybe<String_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
-  user_avatar?: InputMaybe<String_Comparison_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
-  user_name?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "initiative_donations" */
@@ -3769,9 +4045,7 @@ export type Initiative_Donations_Insert_Input = {
   recurrent?: InputMaybe<Scalars['Boolean']>;
   status?: InputMaybe<Scalars['String']>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
-  user_avatar?: InputMaybe<Scalars['String']>;
   user_id?: InputMaybe<Scalars['uuid']>;
-  user_name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -3782,9 +4056,7 @@ export type Initiative_Donations_Max_Fields = {
   id?: Maybe<Scalars['Int']>;
   initiative_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
-  user_avatar?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  user_name?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "initiative_donations" */
@@ -3795,9 +4067,7 @@ export type Initiative_Donations_Max_Order_By = {
   id?: InputMaybe<Order_By>;
   initiative_id?: InputMaybe<Order_By>;
   status?: InputMaybe<Order_By>;
-  user_avatar?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
-  user_name?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -3808,9 +4078,7 @@ export type Initiative_Donations_Min_Fields = {
   id?: Maybe<Scalars['Int']>;
   initiative_id?: Maybe<Scalars['uuid']>;
   status?: Maybe<Scalars['String']>;
-  user_avatar?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  user_name?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "initiative_donations" */
@@ -3821,9 +4089,7 @@ export type Initiative_Donations_Min_Order_By = {
   id?: InputMaybe<Order_By>;
   initiative_id?: InputMaybe<Order_By>;
   status?: InputMaybe<Order_By>;
-  user_avatar?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
-  user_name?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "initiative_donations" */
@@ -3834,7 +4100,7 @@ export type Initiative_Donations_Mutation_Response = {
   returning: Array<Initiative_Donations>;
 };
 
-/** on conflict condition type for table "initiative_donations" */
+/** on_conflict condition type for table "initiative_donations" */
 export type Initiative_Donations_On_Conflict = {
   constraint: Initiative_Donations_Constraint;
   update_columns?: Array<Initiative_Donations_Update_Column>;
@@ -3852,14 +4118,13 @@ export type Initiative_Donations_Order_By = {
   recurrent?: InputMaybe<Order_By>;
   status?: InputMaybe<Order_By>;
   user?: InputMaybe<Users_Order_By>;
-  user_avatar?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
-  user_name?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: initiative_donations */
 export type Initiative_Donations_Pk_Columns_Input = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_donations" */
@@ -3879,11 +4144,7 @@ export enum Initiative_Donations_Select_Column {
   /** column name */
   Status = 'status',
   /** column name */
-  UserAvatar = 'user_avatar',
-  /** column name */
-  UserId = 'user_id',
-  /** column name */
-  UserName = 'user_name'
+  UserId = 'user_id'
 }
 
 /** input type for updating data in table "initiative_donations" */
@@ -3895,9 +4156,7 @@ export type Initiative_Donations_Set_Input = {
   initiative_id?: InputMaybe<Scalars['uuid']>;
   recurrent?: InputMaybe<Scalars['Boolean']>;
   status?: InputMaybe<Scalars['String']>;
-  user_avatar?: InputMaybe<Scalars['String']>;
   user_id?: InputMaybe<Scalars['uuid']>;
-  user_name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
@@ -3965,11 +4224,7 @@ export enum Initiative_Donations_Update_Column {
   /** column name */
   Status = 'status',
   /** column name */
-  UserAvatar = 'user_avatar',
-  /** column name */
-  UserId = 'user_id',
-  /** column name */
-  UserName = 'user_name'
+  UserId = 'user_id'
 }
 
 /** aggregate var_pop on columns */
@@ -4013,7 +4268,7 @@ export type Initiative_Edits = {
   description?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   /** An object relationship */
-  info: Initiative_Info;
+  info?: Maybe<Initiative_Info>;
   info_id: Scalars['Int'];
   /** An object relationship */
   initiative: Initiatives;
@@ -4022,7 +4277,7 @@ export type Initiative_Edits = {
   poll?: Maybe<Initiative_Polls>;
   poll_id?: Maybe<Scalars['Int']>;
   /** An object relationship */
-  post: Initiative_Posts;
+  post?: Maybe<Initiative_Posts>;
   post_id: Scalars['bigint'];
   status?: Maybe<Scalars['String']>;
   /** An object relationship */
@@ -4076,7 +4331,7 @@ export type Initiative_Edits_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_edits" */
 export type Initiative_Edits_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Edits_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Edits_On_Conflict>;
 };
 
@@ -4205,7 +4460,7 @@ export type Initiative_Edits_Mutation_Response = {
   returning: Array<Initiative_Edits>;
 };
 
-/** on conflict condition type for table "initiative_edits" */
+/** on_conflict condition type for table "initiative_edits" */
 export type Initiative_Edits_On_Conflict = {
   constraint: Initiative_Edits_Constraint;
   update_columns?: Array<Initiative_Edits_Update_Column>;
@@ -4232,6 +4487,7 @@ export type Initiative_Edits_Order_By = {
 /** primary key columns input for table: initiative_edits */
 export type Initiative_Edits_Pk_Columns_Input = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_edits" */
@@ -4413,7 +4669,7 @@ export type Initiative_Expenses = {
   poll?: Maybe<Initiative_Polls>;
   poll_id?: Maybe<Scalars['Int']>;
   /** An object relationship */
-  post: Initiative_Posts;
+  post?: Maybe<Initiative_Posts>;
   post_id: Scalars['bigint'];
   status?: Maybe<Scalars['String']>;
   /** An object relationship */
@@ -4467,7 +4723,7 @@ export type Initiative_Expenses_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_expenses" */
 export type Initiative_Expenses_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Expenses_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Expenses_On_Conflict>;
 };
 
@@ -4612,7 +4868,7 @@ export type Initiative_Expenses_Mutation_Response = {
   returning: Array<Initiative_Expenses>;
 };
 
-/** on conflict condition type for table "initiative_expenses" */
+/** on_conflict condition type for table "initiative_expenses" */
 export type Initiative_Expenses_On_Conflict = {
   constraint: Initiative_Expenses_Constraint;
   update_columns?: Array<Initiative_Expenses_Update_Column>;
@@ -4641,6 +4897,7 @@ export type Initiative_Expenses_Order_By = {
 /** primary key columns input for table: initiative_expenses */
 export type Initiative_Expenses_Pk_Columns_Input = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_expenses" */
@@ -4909,7 +5166,7 @@ export type Initiative_Info_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_info" */
 export type Initiative_Info_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Info_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Info_On_Conflict>;
 };
 
@@ -5032,11 +5289,11 @@ export type Initiative_Info_Mutation_Response = {
 /** input type for inserting object relation for remote table "initiative_info" */
 export type Initiative_Info_Obj_Rel_Insert_Input = {
   data: Initiative_Info_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Info_On_Conflict>;
 };
 
-/** on conflict condition type for table "initiative_info" */
+/** on_conflict condition type for table "initiative_info" */
 export type Initiative_Info_On_Conflict = {
   constraint: Initiative_Info_Constraint;
   update_columns?: Array<Initiative_Info_Update_Column>;
@@ -5062,6 +5319,7 @@ export type Initiative_Info_Order_By = {
 /** primary key columns input for table: initiative_info */
 export type Initiative_Info_Pk_Columns_Input = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_info" */
@@ -5323,7 +5581,7 @@ export type Initiative_Members_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_members" */
 export type Initiative_Members_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Members_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Members_On_Conflict>;
 };
 
@@ -5421,7 +5679,7 @@ export type Initiative_Members_Mutation_Response = {
   returning: Array<Initiative_Members>;
 };
 
-/** on conflict condition type for table "initiative_members" */
+/** on_conflict condition type for table "initiative_members" */
 export type Initiative_Members_On_Conflict = {
   constraint: Initiative_Members_Constraint;
   update_columns?: Array<Initiative_Members_Update_Column>;
@@ -5446,6 +5704,7 @@ export type Initiative_Members_Order_By = {
 /** primary key columns input for table: initiative_members */
 export type Initiative_Members_Pk_Columns_Input = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_members" */
@@ -5563,8 +5822,9 @@ export type Initiative_Members_Variance_Order_By = {
 /** columns and relationships of "initiative_poll_votes" */
 export type Initiative_Poll_Votes = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
   /** An object relationship */
-  poll: Initiative_Polls;
+  poll?: Maybe<Initiative_Polls>;
   poll_id: Scalars['Int'];
   /** An object relationship */
   user: Users;
@@ -5618,7 +5878,7 @@ export type Initiative_Poll_Votes_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_poll_votes" */
 export type Initiative_Poll_Votes_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Poll_Votes_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Poll_Votes_On_Conflict>;
 };
 
@@ -5640,6 +5900,7 @@ export type Initiative_Poll_Votes_Bool_Exp = {
   _not?: InputMaybe<Initiative_Poll_Votes_Bool_Exp>;
   _or?: InputMaybe<Array<Initiative_Poll_Votes_Bool_Exp>>;
   id?: InputMaybe<Bigint_Comparison_Exp>;
+  initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
   poll?: InputMaybe<Initiative_Polls_Bool_Exp>;
   poll_id?: InputMaybe<Int_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
@@ -5662,6 +5923,7 @@ export type Initiative_Poll_Votes_Inc_Input = {
 /** input type for inserting data into table "initiative_poll_votes" */
 export type Initiative_Poll_Votes_Insert_Input = {
   id?: InputMaybe<Scalars['bigint']>;
+  initiative_id?: InputMaybe<Scalars['uuid']>;
   poll?: InputMaybe<Initiative_Polls_Obj_Rel_Insert_Input>;
   poll_id?: InputMaybe<Scalars['Int']>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
@@ -5672,6 +5934,7 @@ export type Initiative_Poll_Votes_Insert_Input = {
 /** aggregate max on columns */
 export type Initiative_Poll_Votes_Max_Fields = {
   id?: Maybe<Scalars['bigint']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
   poll_id?: Maybe<Scalars['Int']>;
   user_id?: Maybe<Scalars['uuid']>;
   value?: Maybe<Scalars['String']>;
@@ -5680,6 +5943,7 @@ export type Initiative_Poll_Votes_Max_Fields = {
 /** order by max() on columns of table "initiative_poll_votes" */
 export type Initiative_Poll_Votes_Max_Order_By = {
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   poll_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
   value?: InputMaybe<Order_By>;
@@ -5688,6 +5952,7 @@ export type Initiative_Poll_Votes_Max_Order_By = {
 /** aggregate min on columns */
 export type Initiative_Poll_Votes_Min_Fields = {
   id?: Maybe<Scalars['bigint']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
   poll_id?: Maybe<Scalars['Int']>;
   user_id?: Maybe<Scalars['uuid']>;
   value?: Maybe<Scalars['String']>;
@@ -5696,6 +5961,7 @@ export type Initiative_Poll_Votes_Min_Fields = {
 /** order by min() on columns of table "initiative_poll_votes" */
 export type Initiative_Poll_Votes_Min_Order_By = {
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   poll_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
   value?: InputMaybe<Order_By>;
@@ -5709,7 +5975,7 @@ export type Initiative_Poll_Votes_Mutation_Response = {
   returning: Array<Initiative_Poll_Votes>;
 };
 
-/** on conflict condition type for table "initiative_poll_votes" */
+/** on_conflict condition type for table "initiative_poll_votes" */
 export type Initiative_Poll_Votes_On_Conflict = {
   constraint: Initiative_Poll_Votes_Constraint;
   update_columns?: Array<Initiative_Poll_Votes_Update_Column>;
@@ -5719,6 +5985,7 @@ export type Initiative_Poll_Votes_On_Conflict = {
 /** Ordering options when selecting data from "initiative_poll_votes". */
 export type Initiative_Poll_Votes_Order_By = {
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   poll?: InputMaybe<Initiative_Polls_Order_By>;
   poll_id?: InputMaybe<Order_By>;
   user?: InputMaybe<Users_Order_By>;
@@ -5729,12 +5996,16 @@ export type Initiative_Poll_Votes_Order_By = {
 /** primary key columns input for table: initiative_poll_votes */
 export type Initiative_Poll_Votes_Pk_Columns_Input = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  poll_id: Scalars['Int'];
 };
 
 /** select columns of table "initiative_poll_votes" */
 export enum Initiative_Poll_Votes_Select_Column {
   /** column name */
   Id = 'id',
+  /** column name */
+  InitiativeId = 'initiative_id',
   /** column name */
   PollId = 'poll_id',
   /** column name */
@@ -5746,6 +6017,7 @@ export enum Initiative_Poll_Votes_Select_Column {
 /** input type for updating data in table "initiative_poll_votes" */
 export type Initiative_Poll_Votes_Set_Input = {
   id?: InputMaybe<Scalars['bigint']>;
+  initiative_id?: InputMaybe<Scalars['uuid']>;
   poll_id?: InputMaybe<Scalars['Int']>;
   user_id?: InputMaybe<Scalars['uuid']>;
   value?: InputMaybe<Scalars['String']>;
@@ -5803,6 +6075,8 @@ export type Initiative_Poll_Votes_Sum_Order_By = {
 export enum Initiative_Poll_Votes_Update_Column {
   /** column name */
   Id = 'id',
+  /** column name */
+  InitiativeId = 'initiative_id',
   /** column name */
   PollId = 'poll_id',
   /** column name */
@@ -5998,7 +6272,7 @@ export type Initiative_Polls_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_polls" */
 export type Initiative_Polls_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Polls_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Polls_On_Conflict>;
 };
 
@@ -6089,11 +6363,11 @@ export type Initiative_Polls_Mutation_Response = {
 /** input type for inserting object relation for remote table "initiative_polls" */
 export type Initiative_Polls_Obj_Rel_Insert_Input = {
   data: Initiative_Polls_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Polls_On_Conflict>;
 };
 
-/** on conflict condition type for table "initiative_polls" */
+/** on_conflict condition type for table "initiative_polls" */
 export type Initiative_Polls_On_Conflict = {
   constraint: Initiative_Polls_Constraint;
   update_columns?: Array<Initiative_Polls_Update_Column>;
@@ -6115,6 +6389,7 @@ export type Initiative_Polls_Order_By = {
 /** primary key columns input for table: initiative_polls */
 export type Initiative_Polls_Pk_Columns_Input = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_polls" */
@@ -6217,9 +6492,10 @@ export type Initiative_Polls_Variance_Order_By = {
 /** columns and relationships of "initiative_post_reactions" */
 export type Initiative_Post_Reactions = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
   /** An object relationship */
   post?: Maybe<Initiative_Posts>;
-  post_id?: Maybe<Scalars['Int']>;
+  post_id: Scalars['bigint'];
   type?: Maybe<Reactions_Enum>;
   /** An object relationship */
   user?: Maybe<Users>;
@@ -6272,7 +6548,7 @@ export type Initiative_Post_Reactions_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_post_reactions" */
 export type Initiative_Post_Reactions_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Post_Reactions_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Post_Reactions_On_Conflict>;
 };
 
@@ -6294,8 +6570,9 @@ export type Initiative_Post_Reactions_Bool_Exp = {
   _not?: InputMaybe<Initiative_Post_Reactions_Bool_Exp>;
   _or?: InputMaybe<Array<Initiative_Post_Reactions_Bool_Exp>>;
   id?: InputMaybe<Bigint_Comparison_Exp>;
+  initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
   post?: InputMaybe<Initiative_Posts_Bool_Exp>;
-  post_id?: InputMaybe<Int_Comparison_Exp>;
+  post_id?: InputMaybe<Bigint_Comparison_Exp>;
   type?: InputMaybe<Reactions_Enum_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -6304,20 +6581,23 @@ export type Initiative_Post_Reactions_Bool_Exp = {
 /** unique or primary key constraints on table "initiative_post_reactions" */
 export enum Initiative_Post_Reactions_Constraint {
   /** unique or primary key constraint */
-  InitiativePostReactionsPkey = 'initiative_post_reactions_pkey'
+  InitiativePostReactionsPkey = 'initiative_post_reactions_pkey',
+  /** unique or primary key constraint */
+  InitiativePostReactionsUserIdPostIdKey = 'initiative_post_reactions_user_id_post_id_key'
 }
 
 /** input type for incrementing numeric columns in table "initiative_post_reactions" */
 export type Initiative_Post_Reactions_Inc_Input = {
   id?: InputMaybe<Scalars['bigint']>;
-  post_id?: InputMaybe<Scalars['Int']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
 };
 
 /** input type for inserting data into table "initiative_post_reactions" */
 export type Initiative_Post_Reactions_Insert_Input = {
   id?: InputMaybe<Scalars['bigint']>;
+  initiative_id?: InputMaybe<Scalars['uuid']>;
   post?: InputMaybe<Initiative_Posts_Obj_Rel_Insert_Input>;
-  post_id?: InputMaybe<Scalars['Int']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
   type?: InputMaybe<Reactions_Enum>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   user_id?: InputMaybe<Scalars['uuid']>;
@@ -6326,13 +6606,15 @@ export type Initiative_Post_Reactions_Insert_Input = {
 /** aggregate max on columns */
 export type Initiative_Post_Reactions_Max_Fields = {
   id?: Maybe<Scalars['bigint']>;
-  post_id?: Maybe<Scalars['Int']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['bigint']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "initiative_post_reactions" */
 export type Initiative_Post_Reactions_Max_Order_By = {
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   post_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -6340,13 +6622,15 @@ export type Initiative_Post_Reactions_Max_Order_By = {
 /** aggregate min on columns */
 export type Initiative_Post_Reactions_Min_Fields = {
   id?: Maybe<Scalars['bigint']>;
-  post_id?: Maybe<Scalars['Int']>;
+  initiative_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['bigint']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "initiative_post_reactions" */
 export type Initiative_Post_Reactions_Min_Order_By = {
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   post_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -6359,7 +6643,7 @@ export type Initiative_Post_Reactions_Mutation_Response = {
   returning: Array<Initiative_Post_Reactions>;
 };
 
-/** on conflict condition type for table "initiative_post_reactions" */
+/** on_conflict condition type for table "initiative_post_reactions" */
 export type Initiative_Post_Reactions_On_Conflict = {
   constraint: Initiative_Post_Reactions_Constraint;
   update_columns?: Array<Initiative_Post_Reactions_Update_Column>;
@@ -6369,6 +6653,7 @@ export type Initiative_Post_Reactions_On_Conflict = {
 /** Ordering options when selecting data from "initiative_post_reactions". */
 export type Initiative_Post_Reactions_Order_By = {
   id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   post?: InputMaybe<Initiative_Posts_Order_By>;
   post_id?: InputMaybe<Order_By>;
   type?: InputMaybe<Order_By>;
@@ -6379,12 +6664,16 @@ export type Initiative_Post_Reactions_Order_By = {
 /** primary key columns input for table: initiative_post_reactions */
 export type Initiative_Post_Reactions_Pk_Columns_Input = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
 };
 
 /** select columns of table "initiative_post_reactions" */
 export enum Initiative_Post_Reactions_Select_Column {
   /** column name */
   Id = 'id',
+  /** column name */
+  InitiativeId = 'initiative_id',
   /** column name */
   PostId = 'post_id',
   /** column name */
@@ -6396,7 +6685,8 @@ export enum Initiative_Post_Reactions_Select_Column {
 /** input type for updating data in table "initiative_post_reactions" */
 export type Initiative_Post_Reactions_Set_Input = {
   id?: InputMaybe<Scalars['bigint']>;
-  post_id?: InputMaybe<Scalars['Int']>;
+  initiative_id?: InputMaybe<Scalars['uuid']>;
+  post_id?: InputMaybe<Scalars['bigint']>;
   type?: InputMaybe<Reactions_Enum>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -6440,7 +6730,7 @@ export type Initiative_Post_Reactions_Stddev_Samp_Order_By = {
 /** aggregate sum on columns */
 export type Initiative_Post_Reactions_Sum_Fields = {
   id?: Maybe<Scalars['bigint']>;
-  post_id?: Maybe<Scalars['Int']>;
+  post_id?: Maybe<Scalars['bigint']>;
 };
 
 /** order by sum() on columns of table "initiative_post_reactions" */
@@ -6453,6 +6743,8 @@ export type Initiative_Post_Reactions_Sum_Order_By = {
 export enum Initiative_Post_Reactions_Update_Column {
   /** column name */
   Id = 'id',
+  /** column name */
+  InitiativeId = 'initiative_id',
   /** column name */
   PostId = 'post_id',
   /** column name */
@@ -6512,6 +6804,10 @@ export type Initiative_Posts = {
   expenses: Array<Initiative_Expenses>;
   /** An aggregate relationship */
   expenses_aggregate: Initiative_Expenses_Aggregate;
+  /** An array relationship */
+  files: Array<Files>;
+  /** An aggregate relationship */
+  files_aggregate: Files_Aggregate;
   id: Scalars['bigint'];
   /** An object relationship */
   initiative: Initiatives;
@@ -6526,15 +6822,10 @@ export type Initiative_Posts = {
   reactions: Array<Initiative_Post_Reactions>;
   /** An aggregate relationship */
   reactions_aggregate: Initiative_Post_Reactions_Aggregate;
-  /** An object relationship */
-  thread?: Maybe<Initiative_Threads>;
-  thread_id: Scalars['String'];
   type: Post_Types_Enum;
   /** An object relationship */
   user?: Maybe<Users>;
-  user_avatar?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  user_name?: Maybe<Scalars['String']>;
 };
 
 
@@ -6595,6 +6886,26 @@ export type Initiative_PostsExpenses_AggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Initiative_Expenses_Order_By>>;
   where?: InputMaybe<Initiative_Expenses_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiative_posts" */
+export type Initiative_PostsFilesArgs = {
+  distinct_on?: InputMaybe<Array<Files_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Files_Order_By>>;
+  where?: InputMaybe<Files_Bool_Exp>;
+};
+
+
+/** columns and relationships of "initiative_posts" */
+export type Initiative_PostsFiles_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Files_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Files_Order_By>>;
+  where?: InputMaybe<Files_Bool_Exp>;
 };
 
 
@@ -6683,7 +6994,7 @@ export type Initiative_Posts_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_posts" */
 export type Initiative_Posts_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Posts_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Posts_On_Conflict>;
 };
 
@@ -6706,6 +7017,7 @@ export type Initiative_Posts_Bool_Exp = {
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   edits?: InputMaybe<Initiative_Edits_Bool_Exp>;
   expenses?: InputMaybe<Initiative_Expenses_Bool_Exp>;
+  files?: InputMaybe<Files_Bool_Exp>;
   id?: InputMaybe<Bigint_Comparison_Exp>;
   initiative?: InputMaybe<Initiatives_Bool_Exp>;
   initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -6713,19 +7025,17 @@ export type Initiative_Posts_Bool_Exp = {
   modified_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   projects?: InputMaybe<Initiative_Projects_Bool_Exp>;
   reactions?: InputMaybe<Initiative_Post_Reactions_Bool_Exp>;
-  thread?: InputMaybe<Initiative_Threads_Bool_Exp>;
-  thread_id?: InputMaybe<String_Comparison_Exp>;
   type?: InputMaybe<Post_Types_Enum_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
-  user_avatar?: InputMaybe<String_Comparison_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
-  user_name?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "initiative_posts" */
 export enum Initiative_Posts_Constraint {
   /** unique or primary key constraint */
-  InitiativeMessagePkey = 'initiative_message_pkey'
+  InitiativeMessagePkey = 'initiative_message_pkey',
+  /** unique or primary key constraint */
+  InitiativePostsInitiativeIdIdKey = 'initiative_posts_initiative_id_id_key'
 }
 
 /** input type for incrementing numeric columns in table "initiative_posts" */
@@ -6739,6 +7049,7 @@ export type Initiative_Posts_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   edits?: InputMaybe<Initiative_Edits_Arr_Rel_Insert_Input>;
   expenses?: InputMaybe<Initiative_Expenses_Arr_Rel_Insert_Input>;
+  files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
   id?: InputMaybe<Scalars['bigint']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
@@ -6746,13 +7057,9 @@ export type Initiative_Posts_Insert_Input = {
   modified_at?: InputMaybe<Scalars['timestamptz']>;
   projects?: InputMaybe<Initiative_Projects_Arr_Rel_Insert_Input>;
   reactions?: InputMaybe<Initiative_Post_Reactions_Arr_Rel_Insert_Input>;
-  thread?: InputMaybe<Initiative_Threads_Obj_Rel_Insert_Input>;
-  thread_id?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Post_Types_Enum>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
-  user_avatar?: InputMaybe<Scalars['String']>;
   user_id?: InputMaybe<Scalars['uuid']>;
-  user_name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
@@ -6762,10 +7069,7 @@ export type Initiative_Posts_Max_Fields = {
   initiative_id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
   modified_at?: Maybe<Scalars['timestamptz']>;
-  thread_id?: Maybe<Scalars['String']>;
-  user_avatar?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  user_name?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "initiative_posts" */
@@ -6775,10 +7079,7 @@ export type Initiative_Posts_Max_Order_By = {
   initiative_id?: InputMaybe<Order_By>;
   message?: InputMaybe<Order_By>;
   modified_at?: InputMaybe<Order_By>;
-  thread_id?: InputMaybe<Order_By>;
-  user_avatar?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
-  user_name?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -6788,10 +7089,7 @@ export type Initiative_Posts_Min_Fields = {
   initiative_id?: Maybe<Scalars['uuid']>;
   message?: Maybe<Scalars['String']>;
   modified_at?: Maybe<Scalars['timestamptz']>;
-  thread_id?: Maybe<Scalars['String']>;
-  user_avatar?: Maybe<Scalars['String']>;
   user_id?: Maybe<Scalars['uuid']>;
-  user_name?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "initiative_posts" */
@@ -6801,10 +7099,7 @@ export type Initiative_Posts_Min_Order_By = {
   initiative_id?: InputMaybe<Order_By>;
   message?: InputMaybe<Order_By>;
   modified_at?: InputMaybe<Order_By>;
-  thread_id?: InputMaybe<Order_By>;
-  user_avatar?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
-  user_name?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "initiative_posts" */
@@ -6818,11 +7113,11 @@ export type Initiative_Posts_Mutation_Response = {
 /** input type for inserting object relation for remote table "initiative_posts" */
 export type Initiative_Posts_Obj_Rel_Insert_Input = {
   data: Initiative_Posts_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Posts_On_Conflict>;
 };
 
-/** on conflict condition type for table "initiative_posts" */
+/** on_conflict condition type for table "initiative_posts" */
 export type Initiative_Posts_On_Conflict = {
   constraint: Initiative_Posts_Constraint;
   update_columns?: Array<Initiative_Posts_Update_Column>;
@@ -6835,6 +7130,7 @@ export type Initiative_Posts_Order_By = {
   created_at?: InputMaybe<Order_By>;
   edits_aggregate?: InputMaybe<Initiative_Edits_Aggregate_Order_By>;
   expenses_aggregate?: InputMaybe<Initiative_Expenses_Aggregate_Order_By>;
+  files_aggregate?: InputMaybe<Files_Aggregate_Order_By>;
   id?: InputMaybe<Order_By>;
   initiative?: InputMaybe<Initiatives_Order_By>;
   initiative_id?: InputMaybe<Order_By>;
@@ -6842,18 +7138,15 @@ export type Initiative_Posts_Order_By = {
   modified_at?: InputMaybe<Order_By>;
   projects_aggregate?: InputMaybe<Initiative_Projects_Aggregate_Order_By>;
   reactions_aggregate?: InputMaybe<Initiative_Post_Reactions_Aggregate_Order_By>;
-  thread?: InputMaybe<Initiative_Threads_Order_By>;
-  thread_id?: InputMaybe<Order_By>;
   type?: InputMaybe<Order_By>;
   user?: InputMaybe<Users_Order_By>;
-  user_avatar?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
-  user_name?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: initiative_posts */
 export type Initiative_Posts_Pk_Columns_Input = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_posts" */
@@ -6869,15 +7162,9 @@ export enum Initiative_Posts_Select_Column {
   /** column name */
   ModifiedAt = 'modified_at',
   /** column name */
-  ThreadId = 'thread_id',
-  /** column name */
   Type = 'type',
   /** column name */
-  UserAvatar = 'user_avatar',
-  /** column name */
-  UserId = 'user_id',
-  /** column name */
-  UserName = 'user_name'
+  UserId = 'user_id'
 }
 
 /** input type for updating data in table "initiative_posts" */
@@ -6887,11 +7174,8 @@ export type Initiative_Posts_Set_Input = {
   initiative_id?: InputMaybe<Scalars['uuid']>;
   message?: InputMaybe<Scalars['String']>;
   modified_at?: InputMaybe<Scalars['timestamptz']>;
-  thread_id?: InputMaybe<Scalars['String']>;
   type?: InputMaybe<Post_Types_Enum>;
-  user_avatar?: InputMaybe<Scalars['String']>;
   user_id?: InputMaybe<Scalars['uuid']>;
-  user_name?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
@@ -6947,15 +7231,9 @@ export enum Initiative_Posts_Update_Column {
   /** column name */
   ModifiedAt = 'modified_at',
   /** column name */
-  ThreadId = 'thread_id',
-  /** column name */
   Type = 'type',
   /** column name */
-  UserAvatar = 'user_avatar',
-  /** column name */
-  UserId = 'user_id',
-  /** column name */
-  UserName = 'user_name'
+  UserId = 'user_id'
 }
 
 /** aggregate var_pop on columns */
@@ -7001,6 +7279,8 @@ export type Initiative_Projects = {
   org_id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   org_project?: Maybe<Org_Projects>;
+  /** An object relationship */
+  post?: Maybe<Initiative_Posts>;
   post_id: Scalars['bigint'];
   reference_project_id?: Maybe<Scalars['Int']>;
   status?: Maybe<Scalars['String']>;
@@ -7059,7 +7339,7 @@ export type Initiative_Projects_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_projects" */
 export type Initiative_Projects_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Projects_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Projects_On_Conflict>;
 };
 
@@ -7096,6 +7376,7 @@ export type Initiative_Projects_Bool_Exp = {
   org?: InputMaybe<Orgs_Bool_Exp>;
   org_id?: InputMaybe<Uuid_Comparison_Exp>;
   org_project?: InputMaybe<Org_Projects_Bool_Exp>;
+  post?: InputMaybe<Initiative_Posts_Bool_Exp>;
   post_id?: InputMaybe<Bigint_Comparison_Exp>;
   reference_project_id?: InputMaybe<Int_Comparison_Exp>;
   status?: InputMaybe<String_Comparison_Exp>;
@@ -7134,6 +7415,7 @@ export type Initiative_Projects_Insert_Input = {
   org?: InputMaybe<Orgs_Obj_Rel_Insert_Input>;
   org_id?: InputMaybe<Scalars['uuid']>;
   org_project?: InputMaybe<Org_Projects_Obj_Rel_Insert_Input>;
+  post?: InputMaybe<Initiative_Posts_Obj_Rel_Insert_Input>;
   post_id?: InputMaybe<Scalars['bigint']>;
   reference_project_id?: InputMaybe<Scalars['Int']>;
   status?: InputMaybe<Scalars['String']>;
@@ -7212,7 +7494,7 @@ export type Initiative_Projects_Mutation_Response = {
   returning: Array<Initiative_Projects>;
 };
 
-/** on conflict condition type for table "initiative_projects" */
+/** on_conflict condition type for table "initiative_projects" */
 export type Initiative_Projects_On_Conflict = {
   constraint: Initiative_Projects_Constraint;
   update_columns?: Array<Initiative_Projects_Update_Column>;
@@ -7229,6 +7511,7 @@ export type Initiative_Projects_Order_By = {
   org?: InputMaybe<Orgs_Order_By>;
   org_id?: InputMaybe<Order_By>;
   org_project?: InputMaybe<Org_Projects_Order_By>;
+  post?: InputMaybe<Initiative_Posts_Order_By>;
   post_id?: InputMaybe<Order_By>;
   reference_project_id?: InputMaybe<Order_By>;
   status?: InputMaybe<Order_By>;
@@ -7242,6 +7525,7 @@ export type Initiative_Projects_Order_By = {
 /** primary key columns input for table: initiative_projects */
 export type Initiative_Projects_Pk_Columns_Input = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_projects" */
@@ -7451,190 +7735,12 @@ export type Initiative_Projects_Variance_Order_By = {
   volunteers?: InputMaybe<Order_By>;
 };
 
-/**
- * Push subscriptions
- *
- *
- * columns and relationships of "initiative_subscriptions"
- *
- */
-export type Initiative_Subscriptions = {
-  id: Scalars['String'];
-  platform?: Maybe<Scalars['String']>;
-  service?: Maybe<Scalars['String']>;
-  subscription: Scalars['String'];
-  user_id: Scalars['uuid'];
-};
-
-/** aggregated selection of "initiative_subscriptions" */
-export type Initiative_Subscriptions_Aggregate = {
-  aggregate?: Maybe<Initiative_Subscriptions_Aggregate_Fields>;
-  nodes: Array<Initiative_Subscriptions>;
-};
-
-/** aggregate fields of "initiative_subscriptions" */
-export type Initiative_Subscriptions_Aggregate_Fields = {
-  count: Scalars['Int'];
-  max?: Maybe<Initiative_Subscriptions_Max_Fields>;
-  min?: Maybe<Initiative_Subscriptions_Min_Fields>;
-};
-
-
-/** aggregate fields of "initiative_subscriptions" */
-export type Initiative_Subscriptions_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Initiative_Subscriptions_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "initiative_subscriptions" */
-export type Initiative_Subscriptions_Aggregate_Order_By = {
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Initiative_Subscriptions_Max_Order_By>;
-  min?: InputMaybe<Initiative_Subscriptions_Min_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "initiative_subscriptions" */
-export type Initiative_Subscriptions_Arr_Rel_Insert_Input = {
-  data: Array<Initiative_Subscriptions_Insert_Input>;
-  /** on conflict condition */
-  on_conflict?: InputMaybe<Initiative_Subscriptions_On_Conflict>;
-};
-
-/** Boolean expression to filter rows from the table "initiative_subscriptions". All fields are combined with a logical 'AND'. */
-export type Initiative_Subscriptions_Bool_Exp = {
-  _and?: InputMaybe<Array<Initiative_Subscriptions_Bool_Exp>>;
-  _not?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
-  _or?: InputMaybe<Array<Initiative_Subscriptions_Bool_Exp>>;
-  id?: InputMaybe<String_Comparison_Exp>;
-  platform?: InputMaybe<String_Comparison_Exp>;
-  service?: InputMaybe<String_Comparison_Exp>;
-  subscription?: InputMaybe<String_Comparison_Exp>;
-  user_id?: InputMaybe<Uuid_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "initiative_subscriptions" */
-export enum Initiative_Subscriptions_Constraint {
-  /** unique or primary key constraint */
-  InitiativeSubscriptionsPkey = 'initiative_subscriptions_pkey'
-}
-
-/** input type for inserting data into table "initiative_subscriptions" */
-export type Initiative_Subscriptions_Insert_Input = {
-  id?: InputMaybe<Scalars['String']>;
-  platform?: InputMaybe<Scalars['String']>;
-  service?: InputMaybe<Scalars['String']>;
-  subscription?: InputMaybe<Scalars['String']>;
-  user_id?: InputMaybe<Scalars['uuid']>;
-};
-
-/** aggregate max on columns */
-export type Initiative_Subscriptions_Max_Fields = {
-  id?: Maybe<Scalars['String']>;
-  platform?: Maybe<Scalars['String']>;
-  service?: Maybe<Scalars['String']>;
-  subscription?: Maybe<Scalars['String']>;
-  user_id?: Maybe<Scalars['uuid']>;
-};
-
-/** order by max() on columns of table "initiative_subscriptions" */
-export type Initiative_Subscriptions_Max_Order_By = {
-  id?: InputMaybe<Order_By>;
-  platform?: InputMaybe<Order_By>;
-  service?: InputMaybe<Order_By>;
-  subscription?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Initiative_Subscriptions_Min_Fields = {
-  id?: Maybe<Scalars['String']>;
-  platform?: Maybe<Scalars['String']>;
-  service?: Maybe<Scalars['String']>;
-  subscription?: Maybe<Scalars['String']>;
-  user_id?: Maybe<Scalars['uuid']>;
-};
-
-/** order by min() on columns of table "initiative_subscriptions" */
-export type Initiative_Subscriptions_Min_Order_By = {
-  id?: InputMaybe<Order_By>;
-  platform?: InputMaybe<Order_By>;
-  service?: InputMaybe<Order_By>;
-  subscription?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
-
-/** response of any mutation on the table "initiative_subscriptions" */
-export type Initiative_Subscriptions_Mutation_Response = {
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Initiative_Subscriptions>;
-};
-
-/** on conflict condition type for table "initiative_subscriptions" */
-export type Initiative_Subscriptions_On_Conflict = {
-  constraint: Initiative_Subscriptions_Constraint;
-  update_columns?: Array<Initiative_Subscriptions_Update_Column>;
-  where?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
-};
-
-/** Ordering options when selecting data from "initiative_subscriptions". */
-export type Initiative_Subscriptions_Order_By = {
-  id?: InputMaybe<Order_By>;
-  platform?: InputMaybe<Order_By>;
-  service?: InputMaybe<Order_By>;
-  subscription?: InputMaybe<Order_By>;
-  user_id?: InputMaybe<Order_By>;
-};
-
-/** primary key columns input for table: initiative_subscriptions */
-export type Initiative_Subscriptions_Pk_Columns_Input = {
-  id: Scalars['String'];
-};
-
-/** select columns of table "initiative_subscriptions" */
-export enum Initiative_Subscriptions_Select_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Platform = 'platform',
-  /** column name */
-  Service = 'service',
-  /** column name */
-  Subscription = 'subscription',
-  /** column name */
-  UserId = 'user_id'
-}
-
-/** input type for updating data in table "initiative_subscriptions" */
-export type Initiative_Subscriptions_Set_Input = {
-  id?: InputMaybe<Scalars['String']>;
-  platform?: InputMaybe<Scalars['String']>;
-  service?: InputMaybe<Scalars['String']>;
-  subscription?: InputMaybe<Scalars['String']>;
-  user_id?: InputMaybe<Scalars['uuid']>;
-};
-
-/** update columns of table "initiative_subscriptions" */
-export enum Initiative_Subscriptions_Update_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Platform = 'platform',
-  /** column name */
-  Service = 'service',
-  /** column name */
-  Subscription = 'subscription',
-  /** column name */
-  UserId = 'user_id'
-}
-
 /** columns and relationships of "initiative_tags" */
 export type Initiative_Tags = {
   id: Scalars['Int'];
   /** An object relationship */
-  initiative?: Maybe<Initiatives>;
-  initiative_id?: Maybe<Scalars['uuid']>;
+  initiative: Initiatives;
+  initiative_id: Scalars['uuid'];
   tag?: Maybe<Scalars['String']>;
   /** An object relationship */
   tags?: Maybe<Tags>;
@@ -7686,7 +7792,7 @@ export type Initiative_Tags_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_tags" */
 export type Initiative_Tags_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Tags_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Tags_On_Conflict>;
 };
 
@@ -7768,7 +7874,7 @@ export type Initiative_Tags_Mutation_Response = {
   returning: Array<Initiative_Tags>;
 };
 
-/** on conflict condition type for table "initiative_tags" */
+/** on_conflict condition type for table "initiative_tags" */
 export type Initiative_Tags_On_Conflict = {
   constraint: Initiative_Tags_Constraint;
   update_columns?: Array<Initiative_Tags_Update_Column>;
@@ -7787,6 +7893,7 @@ export type Initiative_Tags_Order_By = {
 /** primary key columns input for table: initiative_tags */
 export type Initiative_Tags_Pk_Columns_Input = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_tags" */
@@ -7974,7 +8081,7 @@ export type Initiative_Tasks_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_tasks" */
 export type Initiative_Tasks_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Tasks_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Tasks_On_Conflict>;
 };
 
@@ -8095,11 +8202,11 @@ export type Initiative_Tasks_Mutation_Response = {
 /** input type for inserting object relation for remote table "initiative_tasks" */
 export type Initiative_Tasks_Obj_Rel_Insert_Input = {
   data: Initiative_Tasks_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Tasks_On_Conflict>;
 };
 
-/** on conflict condition type for table "initiative_tasks" */
+/** on_conflict condition type for table "initiative_tasks" */
 export type Initiative_Tasks_On_Conflict = {
   constraint: Initiative_Tasks_Constraint;
   update_columns?: Array<Initiative_Tasks_Update_Column>;
@@ -8278,164 +8385,6 @@ export type Initiative_Tasks_Variance_Order_By = {
   volunteers_needed?: InputMaybe<Order_By>;
 };
 
-/** columns and relationships of "initiative_threads" */
-export type Initiative_Threads = {
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id: Scalars['String'];
-  /** An object relationship */
-  initiative?: Maybe<Initiatives>;
-  initiative_id: Scalars['uuid'];
-  /** An array relationship */
-  posts: Array<Initiative_Posts>;
-  /** An aggregate relationship */
-  posts_aggregate: Initiative_Posts_Aggregate;
-};
-
-
-/** columns and relationships of "initiative_threads" */
-export type Initiative_ThreadsPostsArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Posts_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Posts_Order_By>>;
-  where?: InputMaybe<Initiative_Posts_Bool_Exp>;
-};
-
-
-/** columns and relationships of "initiative_threads" */
-export type Initiative_ThreadsPosts_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Posts_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Posts_Order_By>>;
-  where?: InputMaybe<Initiative_Posts_Bool_Exp>;
-};
-
-/** aggregated selection of "initiative_threads" */
-export type Initiative_Threads_Aggregate = {
-  aggregate?: Maybe<Initiative_Threads_Aggregate_Fields>;
-  nodes: Array<Initiative_Threads>;
-};
-
-/** aggregate fields of "initiative_threads" */
-export type Initiative_Threads_Aggregate_Fields = {
-  count: Scalars['Int'];
-  max?: Maybe<Initiative_Threads_Max_Fields>;
-  min?: Maybe<Initiative_Threads_Min_Fields>;
-};
-
-
-/** aggregate fields of "initiative_threads" */
-export type Initiative_Threads_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Initiative_Threads_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** Boolean expression to filter rows from the table "initiative_threads". All fields are combined with a logical 'AND'. */
-export type Initiative_Threads_Bool_Exp = {
-  _and?: InputMaybe<Array<Initiative_Threads_Bool_Exp>>;
-  _not?: InputMaybe<Initiative_Threads_Bool_Exp>;
-  _or?: InputMaybe<Array<Initiative_Threads_Bool_Exp>>;
-  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
-  id?: InputMaybe<String_Comparison_Exp>;
-  initiative?: InputMaybe<Initiatives_Bool_Exp>;
-  initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
-  posts?: InputMaybe<Initiative_Posts_Bool_Exp>;
-};
-
-/** unique or primary key constraints on table "initiative_threads" */
-export enum Initiative_Threads_Constraint {
-  /** unique or primary key constraint */
-  InitiativeThreadsPkey = 'initiative_threads_pkey'
-}
-
-/** input type for inserting data into table "initiative_threads" */
-export type Initiative_Threads_Insert_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  id?: InputMaybe<Scalars['String']>;
-  initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
-  initiative_id?: InputMaybe<Scalars['uuid']>;
-  posts?: InputMaybe<Initiative_Posts_Arr_Rel_Insert_Input>;
-};
-
-/** aggregate max on columns */
-export type Initiative_Threads_Max_Fields = {
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['String']>;
-  initiative_id?: Maybe<Scalars['uuid']>;
-};
-
-/** aggregate min on columns */
-export type Initiative_Threads_Min_Fields = {
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['String']>;
-  initiative_id?: Maybe<Scalars['uuid']>;
-};
-
-/** response of any mutation on the table "initiative_threads" */
-export type Initiative_Threads_Mutation_Response = {
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Initiative_Threads>;
-};
-
-/** input type for inserting object relation for remote table "initiative_threads" */
-export type Initiative_Threads_Obj_Rel_Insert_Input = {
-  data: Initiative_Threads_Insert_Input;
-  /** on conflict condition */
-  on_conflict?: InputMaybe<Initiative_Threads_On_Conflict>;
-};
-
-/** on conflict condition type for table "initiative_threads" */
-export type Initiative_Threads_On_Conflict = {
-  constraint: Initiative_Threads_Constraint;
-  update_columns?: Array<Initiative_Threads_Update_Column>;
-  where?: InputMaybe<Initiative_Threads_Bool_Exp>;
-};
-
-/** Ordering options when selecting data from "initiative_threads". */
-export type Initiative_Threads_Order_By = {
-  created_at?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  initiative?: InputMaybe<Initiatives_Order_By>;
-  initiative_id?: InputMaybe<Order_By>;
-  posts_aggregate?: InputMaybe<Initiative_Posts_Aggregate_Order_By>;
-};
-
-/** primary key columns input for table: initiative_threads */
-export type Initiative_Threads_Pk_Columns_Input = {
-  id: Scalars['String'];
-  initiative_id: Scalars['uuid'];
-};
-
-/** select columns of table "initiative_threads" */
-export enum Initiative_Threads_Select_Column {
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  InitiativeId = 'initiative_id'
-}
-
-/** input type for updating data in table "initiative_threads" */
-export type Initiative_Threads_Set_Input = {
-  created_at?: InputMaybe<Scalars['timestamptz']>;
-  id?: InputMaybe<Scalars['String']>;
-  initiative_id?: InputMaybe<Scalars['uuid']>;
-};
-
-/** update columns of table "initiative_threads" */
-export enum Initiative_Threads_Update_Column {
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  InitiativeId = 'initiative_id'
-}
-
 /** columns and relationships of "initiative_visits" */
 export type Initiative_Visits = {
   id: Scalars['bigint'];
@@ -8494,7 +8443,7 @@ export type Initiative_Visits_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_visits" */
 export type Initiative_Visits_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Visits_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Visits_On_Conflict>;
 };
 
@@ -8584,7 +8533,7 @@ export type Initiative_Visits_Mutation_Response = {
   returning: Array<Initiative_Visits>;
 };
 
-/** on conflict condition type for table "initiative_visits" */
+/** on_conflict condition type for table "initiative_visits" */
 export type Initiative_Visits_On_Conflict = {
   constraint: Initiative_Visits_Constraint;
   update_columns?: Array<Initiative_Visits_Update_Column>;
@@ -8604,6 +8553,7 @@ export type Initiative_Visits_Order_By = {
 /** primary key columns input for table: initiative_visits */
 export type Initiative_Visits_Pk_Columns_Input = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_visits" */
@@ -8769,7 +8719,7 @@ export type Initiative_Volunteers_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "initiative_volunteers" */
 export type Initiative_Volunteers_Arr_Rel_Insert_Input = {
   data: Array<Initiative_Volunteers_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiative_Volunteers_On_Conflict>;
 };
 
@@ -8868,7 +8818,7 @@ export type Initiative_Volunteers_Mutation_Response = {
   returning: Array<Initiative_Volunteers>;
 };
 
-/** on conflict condition type for table "initiative_volunteers" */
+/** on_conflict condition type for table "initiative_volunteers" */
 export type Initiative_Volunteers_On_Conflict = {
   constraint: Initiative_Volunteers_Constraint;
   update_columns?: Array<Initiative_Volunteers_Update_Column>;
@@ -8890,6 +8840,7 @@ export type Initiative_Volunteers_Order_By = {
 /** primary key columns input for table: initiative_volunteers */
 export type Initiative_Volunteers_Pk_Columns_Input = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 /** select columns of table "initiative_volunteers" */
@@ -9481,11 +9432,11 @@ export type Initiatives_Nearby_Args = {
 /** input type for inserting object relation for remote table "initiatives" */
 export type Initiatives_Obj_Rel_Insert_Input = {
   data: Initiatives_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Initiatives_On_Conflict>;
 };
 
-/** on conflict condition type for table "initiatives" */
+/** on_conflict condition type for table "initiatives" */
 export type Initiatives_On_Conflict = {
   constraint: Initiatives_Constraint;
   update_columns?: Array<Initiatives_Update_Column>;
@@ -9934,6 +9885,10 @@ export type Mutation_Root = {
   delete_auth_roles?: Maybe<Auth_Roles_Mutation_Response>;
   /** delete single row from the table: "auth.roles" */
   delete_auth_roles_by_pk?: Maybe<Auth_Roles>;
+  /** delete data from the table: "file_types" */
+  delete_file_types?: Maybe<File_Types_Mutation_Response>;
+  /** delete single row from the table: "file_types" */
+  delete_file_types_by_pk?: Maybe<File_Types>;
   /** delete data from the table: "files" */
   delete_files?: Maybe<Files_Mutation_Response>;
   /** delete single row from the table: "files" */
@@ -9996,10 +9951,6 @@ export type Mutation_Root = {
   delete_initiative_projects?: Maybe<Initiative_Projects_Mutation_Response>;
   /** delete single row from the table: "initiative_projects" */
   delete_initiative_projects_by_pk?: Maybe<Initiative_Projects>;
-  /** delete data from the table: "initiative_subscriptions" */
-  delete_initiative_subscriptions?: Maybe<Initiative_Subscriptions_Mutation_Response>;
-  /** delete single row from the table: "initiative_subscriptions" */
-  delete_initiative_subscriptions_by_pk?: Maybe<Initiative_Subscriptions>;
   /** delete data from the table: "initiative_tags" */
   delete_initiative_tags?: Maybe<Initiative_Tags_Mutation_Response>;
   /** delete single row from the table: "initiative_tags" */
@@ -10008,10 +9959,6 @@ export type Mutation_Root = {
   delete_initiative_tasks?: Maybe<Initiative_Tasks_Mutation_Response>;
   /** delete single row from the table: "initiative_tasks" */
   delete_initiative_tasks_by_pk?: Maybe<Initiative_Tasks>;
-  /** delete data from the table: "initiative_threads" */
-  delete_initiative_threads?: Maybe<Initiative_Threads_Mutation_Response>;
-  /** delete single row from the table: "initiative_threads" */
-  delete_initiative_threads_by_pk?: Maybe<Initiative_Threads>;
   /** delete data from the table: "initiative_visits" */
   delete_initiative_visits?: Maybe<Initiative_Visits_Mutation_Response>;
   /** delete single row from the table: "initiative_visits" */
@@ -10036,6 +9983,8 @@ export type Mutation_Root = {
   delete_org_tags?: Maybe<Org_Tags_Mutation_Response>;
   /** delete single row from the table: "org_tags" */
   delete_org_tags_by_pk?: Maybe<Org_Tags>;
+  /** delete data from the table: "org_visits" */
+  delete_org_visits?: Maybe<Org_Visits_Mutation_Response>;
   /** delete data from the table: "orgs" */
   delete_orgs?: Maybe<Orgs_Mutation_Response>;
   /** delete single row from the table: "orgs" */
@@ -10064,6 +10013,14 @@ export type Mutation_Root = {
   delete_tenders?: Maybe<Tenders_Mutation_Response>;
   /** delete single row from the table: "tenders" */
   delete_tenders_by_pk?: Maybe<Tenders>;
+  /** delete data from the table: "user_settings" */
+  delete_user_settings?: Maybe<User_Settings_Mutation_Response>;
+  /** delete single row from the table: "user_settings" */
+  delete_user_settings_by_pk?: Maybe<User_Settings>;
+  /** delete data from the table: "user_subscriptions" */
+  delete_user_subscriptions?: Maybe<User_Subscriptions_Mutation_Response>;
+  /** delete single row from the table: "user_subscriptions" */
+  delete_user_subscriptions_by_pk?: Maybe<User_Subscriptions>;
   /** delete data from the table: "users" */
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
@@ -10096,6 +10053,10 @@ export type Mutation_Root = {
   insert_auth_roles?: Maybe<Auth_Roles_Mutation_Response>;
   /** insert a single row into the table: "auth.roles" */
   insert_auth_roles_one?: Maybe<Auth_Roles>;
+  /** insert data into the table: "file_types" */
+  insert_file_types?: Maybe<File_Types_Mutation_Response>;
+  /** insert a single row into the table: "file_types" */
+  insert_file_types_one?: Maybe<File_Types>;
   /** insert data into the table: "files" */
   insert_files?: Maybe<Files_Mutation_Response>;
   /** insert a single row into the table: "files" */
@@ -10160,10 +10121,6 @@ export type Mutation_Root = {
   insert_initiative_projects?: Maybe<Initiative_Projects_Mutation_Response>;
   /** insert a single row into the table: "initiative_projects" */
   insert_initiative_projects_one?: Maybe<Initiative_Projects>;
-  /** insert data into the table: "initiative_subscriptions" */
-  insert_initiative_subscriptions?: Maybe<Initiative_Subscriptions_Mutation_Response>;
-  /** insert a single row into the table: "initiative_subscriptions" */
-  insert_initiative_subscriptions_one?: Maybe<Initiative_Subscriptions>;
   /** insert data into the table: "initiative_tags" */
   insert_initiative_tags?: Maybe<Initiative_Tags_Mutation_Response>;
   /** insert a single row into the table: "initiative_tags" */
@@ -10172,10 +10129,6 @@ export type Mutation_Root = {
   insert_initiative_tasks?: Maybe<Initiative_Tasks_Mutation_Response>;
   /** insert a single row into the table: "initiative_tasks" */
   insert_initiative_tasks_one?: Maybe<Initiative_Tasks>;
-  /** insert data into the table: "initiative_threads" */
-  insert_initiative_threads?: Maybe<Initiative_Threads_Mutation_Response>;
-  /** insert a single row into the table: "initiative_threads" */
-  insert_initiative_threads_one?: Maybe<Initiative_Threads>;
   /** insert data into the table: "initiative_visits" */
   insert_initiative_visits?: Maybe<Initiative_Visits_Mutation_Response>;
   /** insert a single row into the table: "initiative_visits" */
@@ -10200,6 +10153,10 @@ export type Mutation_Root = {
   insert_org_tags?: Maybe<Org_Tags_Mutation_Response>;
   /** insert a single row into the table: "org_tags" */
   insert_org_tags_one?: Maybe<Org_Tags>;
+  /** insert data into the table: "org_visits" */
+  insert_org_visits?: Maybe<Org_Visits_Mutation_Response>;
+  /** insert a single row into the table: "org_visits" */
+  insert_org_visits_one?: Maybe<Org_Visits>;
   /** insert data into the table: "orgs" */
   insert_orgs?: Maybe<Orgs_Mutation_Response>;
   /** insert a single row into the table: "orgs" */
@@ -10228,6 +10185,14 @@ export type Mutation_Root = {
   insert_tenders?: Maybe<Tenders_Mutation_Response>;
   /** insert a single row into the table: "tenders" */
   insert_tenders_one?: Maybe<Tenders>;
+  /** insert data into the table: "user_settings" */
+  insert_user_settings?: Maybe<User_Settings_Mutation_Response>;
+  /** insert a single row into the table: "user_settings" */
+  insert_user_settings_one?: Maybe<User_Settings>;
+  /** insert data into the table: "user_subscriptions" */
+  insert_user_subscriptions?: Maybe<User_Subscriptions_Mutation_Response>;
+  /** insert a single row into the table: "user_subscriptions" */
+  insert_user_subscriptions_one?: Maybe<User_Subscriptions>;
   /** insert data into the table: "users" */
   insert_users?: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
@@ -10260,6 +10225,10 @@ export type Mutation_Root = {
   update_auth_roles?: Maybe<Auth_Roles_Mutation_Response>;
   /** update single row of the table: "auth.roles" */
   update_auth_roles_by_pk?: Maybe<Auth_Roles>;
+  /** update data of the table: "file_types" */
+  update_file_types?: Maybe<File_Types_Mutation_Response>;
+  /** update single row of the table: "file_types" */
+  update_file_types_by_pk?: Maybe<File_Types>;
   /** update data of the table: "files" */
   update_files?: Maybe<Files_Mutation_Response>;
   /** update single row of the table: "files" */
@@ -10322,10 +10291,6 @@ export type Mutation_Root = {
   update_initiative_projects?: Maybe<Initiative_Projects_Mutation_Response>;
   /** update single row of the table: "initiative_projects" */
   update_initiative_projects_by_pk?: Maybe<Initiative_Projects>;
-  /** update data of the table: "initiative_subscriptions" */
-  update_initiative_subscriptions?: Maybe<Initiative_Subscriptions_Mutation_Response>;
-  /** update single row of the table: "initiative_subscriptions" */
-  update_initiative_subscriptions_by_pk?: Maybe<Initiative_Subscriptions>;
   /** update data of the table: "initiative_tags" */
   update_initiative_tags?: Maybe<Initiative_Tags_Mutation_Response>;
   /** update single row of the table: "initiative_tags" */
@@ -10334,10 +10299,6 @@ export type Mutation_Root = {
   update_initiative_tasks?: Maybe<Initiative_Tasks_Mutation_Response>;
   /** update single row of the table: "initiative_tasks" */
   update_initiative_tasks_by_pk?: Maybe<Initiative_Tasks>;
-  /** update data of the table: "initiative_threads" */
-  update_initiative_threads?: Maybe<Initiative_Threads_Mutation_Response>;
-  /** update single row of the table: "initiative_threads" */
-  update_initiative_threads_by_pk?: Maybe<Initiative_Threads>;
   /** update data of the table: "initiative_visits" */
   update_initiative_visits?: Maybe<Initiative_Visits_Mutation_Response>;
   /** update single row of the table: "initiative_visits" */
@@ -10362,6 +10323,8 @@ export type Mutation_Root = {
   update_org_tags?: Maybe<Org_Tags_Mutation_Response>;
   /** update single row of the table: "org_tags" */
   update_org_tags_by_pk?: Maybe<Org_Tags>;
+  /** update data of the table: "org_visits" */
+  update_org_visits?: Maybe<Org_Visits_Mutation_Response>;
   /** update data of the table: "orgs" */
   update_orgs?: Maybe<Orgs_Mutation_Response>;
   /** update single row of the table: "orgs" */
@@ -10390,6 +10353,14 @@ export type Mutation_Root = {
   update_tenders?: Maybe<Tenders_Mutation_Response>;
   /** update single row of the table: "tenders" */
   update_tenders_by_pk?: Maybe<Tenders>;
+  /** update data of the table: "user_settings" */
+  update_user_settings?: Maybe<User_Settings_Mutation_Response>;
+  /** update single row of the table: "user_settings" */
+  update_user_settings_by_pk?: Maybe<User_Settings>;
+  /** update data of the table: "user_subscriptions" */
+  update_user_subscriptions?: Maybe<User_Subscriptions_Mutation_Response>;
+  /** update single row of the table: "user_subscriptions" */
+  update_user_subscriptions_by_pk?: Maybe<User_Subscriptions>;
   /** update data of the table: "users" */
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
@@ -10482,6 +10453,18 @@ export type Mutation_RootDelete_Auth_Roles_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_File_TypesArgs = {
+  where: File_Types_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_File_Types_By_PkArgs = {
+  type: Scalars['String'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_FilesArgs = {
   where: Files_Bool_Exp;
 };
@@ -10531,7 +10514,10 @@ export type Mutation_RootDelete_Initiative_Comment_ReactionsArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Comment_Reactions_By_PkArgs = {
+  comment_id: Scalars['Int'];
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
 };
 
 
@@ -10544,6 +10530,8 @@ export type Mutation_RootDelete_Initiative_CommentsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Comments_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['Int'];
 };
 
 
@@ -10556,6 +10544,7 @@ export type Mutation_RootDelete_Initiative_DonationsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Donations_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10568,6 +10557,7 @@ export type Mutation_RootDelete_Initiative_EditsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Edits_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10580,6 +10570,7 @@ export type Mutation_RootDelete_Initiative_ExpensesArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Expenses_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10592,6 +10583,7 @@ export type Mutation_RootDelete_Initiative_InfoArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Info_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10604,6 +10596,7 @@ export type Mutation_RootDelete_Initiative_MembersArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Members_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10616,6 +10609,8 @@ export type Mutation_RootDelete_Initiative_Poll_VotesArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Poll_Votes_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  poll_id: Scalars['Int'];
 };
 
 
@@ -10628,6 +10623,7 @@ export type Mutation_RootDelete_Initiative_PollsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Polls_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10640,6 +10636,8 @@ export type Mutation_RootDelete_Initiative_Post_ReactionsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Post_Reactions_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
 };
 
 
@@ -10652,6 +10650,7 @@ export type Mutation_RootDelete_Initiative_PostsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Posts_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10664,18 +10663,7 @@ export type Mutation_RootDelete_Initiative_ProjectsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Projects_By_PkArgs = {
   id: Scalars['Int'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Initiative_SubscriptionsArgs = {
-  where: Initiative_Subscriptions_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Initiative_Subscriptions_By_PkArgs = {
-  id: Scalars['String'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10688,6 +10676,7 @@ export type Mutation_RootDelete_Initiative_TagsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Tags_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10705,19 +10694,6 @@ export type Mutation_RootDelete_Initiative_Tasks_By_PkArgs = {
 
 
 /** mutation root */
-export type Mutation_RootDelete_Initiative_ThreadsArgs = {
-  where: Initiative_Threads_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Initiative_Threads_By_PkArgs = {
-  id: Scalars['String'];
-  initiative_id: Scalars['uuid'];
-};
-
-
-/** mutation root */
 export type Mutation_RootDelete_Initiative_VisitsArgs = {
   where: Initiative_Visits_Bool_Exp;
 };
@@ -10726,6 +10702,7 @@ export type Mutation_RootDelete_Initiative_VisitsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Visits_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10738,6 +10715,7 @@ export type Mutation_RootDelete_Initiative_VolunteersArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Volunteers_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -10786,6 +10764,12 @@ export type Mutation_RootDelete_Org_TagsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Org_Tags_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Org_VisitsArgs = {
+  where: Org_Visits_Bool_Exp;
 };
 
 
@@ -10870,6 +10854,30 @@ export type Mutation_RootDelete_TendersArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Tenders_By_PkArgs = {
   id: Scalars['bigint'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_User_SettingsArgs = {
+  where: User_Settings_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_User_Settings_By_PkArgs = {
+  user_id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_User_SubscriptionsArgs = {
+  where: User_Subscriptions_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_User_Subscriptions_By_PkArgs = {
+  id: Scalars['String'];
 };
 
 
@@ -10980,6 +10988,20 @@ export type Mutation_RootInsert_Auth_RolesArgs = {
 export type Mutation_RootInsert_Auth_Roles_OneArgs = {
   object: Auth_Roles_Insert_Input;
   on_conflict?: InputMaybe<Auth_Roles_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_File_TypesArgs = {
+  objects: Array<File_Types_Insert_Input>;
+  on_conflict?: InputMaybe<File_Types_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_File_Types_OneArgs = {
+  object: File_Types_Insert_Input;
+  on_conflict?: InputMaybe<File_Types_On_Conflict>;
 };
 
 
@@ -11206,20 +11228,6 @@ export type Mutation_RootInsert_Initiative_Projects_OneArgs = {
 
 
 /** mutation root */
-export type Mutation_RootInsert_Initiative_SubscriptionsArgs = {
-  objects: Array<Initiative_Subscriptions_Insert_Input>;
-  on_conflict?: InputMaybe<Initiative_Subscriptions_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Initiative_Subscriptions_OneArgs = {
-  object: Initiative_Subscriptions_Insert_Input;
-  on_conflict?: InputMaybe<Initiative_Subscriptions_On_Conflict>;
-};
-
-
-/** mutation root */
 export type Mutation_RootInsert_Initiative_TagsArgs = {
   objects: Array<Initiative_Tags_Insert_Input>;
   on_conflict?: InputMaybe<Initiative_Tags_On_Conflict>;
@@ -11244,20 +11252,6 @@ export type Mutation_RootInsert_Initiative_TasksArgs = {
 export type Mutation_RootInsert_Initiative_Tasks_OneArgs = {
   object: Initiative_Tasks_Insert_Input;
   on_conflict?: InputMaybe<Initiative_Tasks_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Initiative_ThreadsArgs = {
-  objects: Array<Initiative_Threads_Insert_Input>;
-  on_conflict?: InputMaybe<Initiative_Threads_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Initiative_Threads_OneArgs = {
-  object: Initiative_Threads_Insert_Input;
-  on_conflict?: InputMaybe<Initiative_Threads_On_Conflict>;
 };
 
 
@@ -11342,6 +11336,18 @@ export type Mutation_RootInsert_Org_TagsArgs = {
 export type Mutation_RootInsert_Org_Tags_OneArgs = {
   object: Org_Tags_Insert_Input;
   on_conflict?: InputMaybe<Org_Tags_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Org_VisitsArgs = {
+  objects: Array<Org_Visits_Insert_Input>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Org_Visits_OneArgs = {
+  object: Org_Visits_Insert_Input;
 };
 
 
@@ -11440,6 +11446,34 @@ export type Mutation_RootInsert_TendersArgs = {
 export type Mutation_RootInsert_Tenders_OneArgs = {
   object: Tenders_Insert_Input;
   on_conflict?: InputMaybe<Tenders_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_User_SettingsArgs = {
+  objects: Array<User_Settings_Insert_Input>;
+  on_conflict?: InputMaybe<User_Settings_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_User_Settings_OneArgs = {
+  object: User_Settings_Insert_Input;
+  on_conflict?: InputMaybe<User_Settings_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_User_SubscriptionsArgs = {
+  objects: Array<User_Subscriptions_Insert_Input>;
+  on_conflict?: InputMaybe<User_Subscriptions_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_User_Subscriptions_OneArgs = {
+  object: User_Subscriptions_Insert_Input;
+  on_conflict?: InputMaybe<User_Subscriptions_On_Conflict>;
 };
 
 
@@ -11568,7 +11602,22 @@ export type Mutation_RootUpdate_Auth_Roles_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_File_TypesArgs = {
+  _set?: InputMaybe<File_Types_Set_Input>;
+  where: File_Types_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_File_Types_By_PkArgs = {
+  _set?: InputMaybe<File_Types_Set_Input>;
+  pk_columns: File_Types_Pk_Columns_Input;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_FilesArgs = {
+  _inc?: InputMaybe<Files_Inc_Input>;
   _set?: InputMaybe<Files_Set_Input>;
   where: Files_Bool_Exp;
 };
@@ -11576,6 +11625,7 @@ export type Mutation_RootUpdate_FilesArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Files_By_PkArgs = {
+  _inc?: InputMaybe<Files_Inc_Input>;
   _set?: InputMaybe<Files_Set_Input>;
   pk_columns: Files_Pk_Columns_Input;
 };
@@ -11812,20 +11862,6 @@ export type Mutation_RootUpdate_Initiative_Projects_By_PkArgs = {
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Initiative_SubscriptionsArgs = {
-  _set?: InputMaybe<Initiative_Subscriptions_Set_Input>;
-  where: Initiative_Subscriptions_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Initiative_Subscriptions_By_PkArgs = {
-  _set?: InputMaybe<Initiative_Subscriptions_Set_Input>;
-  pk_columns: Initiative_Subscriptions_Pk_Columns_Input;
-};
-
-
-/** mutation root */
 export type Mutation_RootUpdate_Initiative_TagsArgs = {
   _inc?: InputMaybe<Initiative_Tags_Inc_Input>;
   _set?: InputMaybe<Initiative_Tags_Set_Input>;
@@ -11854,20 +11890,6 @@ export type Mutation_RootUpdate_Initiative_Tasks_By_PkArgs = {
   _inc?: InputMaybe<Initiative_Tasks_Inc_Input>;
   _set?: InputMaybe<Initiative_Tasks_Set_Input>;
   pk_columns: Initiative_Tasks_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Initiative_ThreadsArgs = {
-  _set?: InputMaybe<Initiative_Threads_Set_Input>;
-  where: Initiative_Threads_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Initiative_Threads_By_PkArgs = {
-  _set?: InputMaybe<Initiative_Threads_Set_Input>;
-  pk_columns: Initiative_Threads_Pk_Columns_Input;
 };
 
 
@@ -11962,6 +11984,14 @@ export type Mutation_RootUpdate_Org_Tags_By_PkArgs = {
   _inc?: InputMaybe<Org_Tags_Inc_Input>;
   _set?: InputMaybe<Org_Tags_Set_Input>;
   pk_columns: Org_Tags_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Org_VisitsArgs = {
+  _inc?: InputMaybe<Org_Visits_Inc_Input>;
+  _set?: InputMaybe<Org_Visits_Set_Input>;
+  where: Org_Visits_Bool_Exp;
 };
 
 
@@ -12064,6 +12094,34 @@ export type Mutation_RootUpdate_Tenders_By_PkArgs = {
   _inc?: InputMaybe<Tenders_Inc_Input>;
   _set?: InputMaybe<Tenders_Set_Input>;
   pk_columns: Tenders_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_SettingsArgs = {
+  _set?: InputMaybe<User_Settings_Set_Input>;
+  where: User_Settings_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_Settings_By_PkArgs = {
+  _set?: InputMaybe<User_Settings_Set_Input>;
+  pk_columns: User_Settings_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_SubscriptionsArgs = {
+  _set?: InputMaybe<User_Subscriptions_Set_Input>;
+  where: User_Subscriptions_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_Subscriptions_By_PkArgs = {
+  _set?: InputMaybe<User_Subscriptions_Set_Input>;
+  pk_columns: User_Subscriptions_Pk_Columns_Input;
 };
 
 
@@ -12182,7 +12240,7 @@ export type Org_Members_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "org_members" */
 export type Org_Members_Arr_Rel_Insert_Input = {
   data: Array<Org_Members_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Org_Members_On_Conflict>;
 };
 
@@ -12282,7 +12340,7 @@ export type Org_Members_Mutation_Response = {
   returning: Array<Org_Members>;
 };
 
-/** on conflict condition type for table "org_members" */
+/** on_conflict condition type for table "org_members" */
 export type Org_Members_On_Conflict = {
   constraint: Org_Members_Constraint;
   update_columns?: Array<Org_Members_Update_Column>;
@@ -12525,7 +12583,7 @@ export type Org_Projects_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "org_projects" */
 export type Org_Projects_Arr_Rel_Insert_Input = {
   data: Array<Org_Projects_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Org_Projects_On_Conflict>;
 };
 
@@ -12626,11 +12684,11 @@ export type Org_Projects_Mutation_Response = {
 /** input type for inserting object relation for remote table "org_projects" */
 export type Org_Projects_Obj_Rel_Insert_Input = {
   data: Org_Projects_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Org_Projects_On_Conflict>;
 };
 
-/** on conflict condition type for table "org_projects" */
+/** on_conflict condition type for table "org_projects" */
 export type Org_Projects_On_Conflict = {
   constraint: Org_Projects_Constraint;
   update_columns?: Array<Org_Projects_Update_Column>;
@@ -12819,7 +12877,7 @@ export type Org_Tags_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "org_tags" */
 export type Org_Tags_Arr_Rel_Insert_Input = {
   data: Array<Org_Tags_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Org_Tags_On_Conflict>;
 };
 
@@ -12901,7 +12959,7 @@ export type Org_Tags_Mutation_Response = {
   returning: Array<Org_Tags>;
 };
 
-/** on conflict condition type for table "org_tags" */
+/** on_conflict condition type for table "org_tags" */
 export type Org_Tags_On_Conflict = {
   constraint: Org_Tags_Constraint;
   update_columns?: Array<Org_Tags_Update_Column>;
@@ -13017,6 +13075,158 @@ export type Org_Tags_Variance_Fields = {
 /** order by variance() on columns of table "org_tags" */
 export type Org_Tags_Variance_Order_By = {
   id?: InputMaybe<Order_By>;
+};
+
+/** columns and relationships of "org_visits" */
+export type Org_Visits = {
+  id: Scalars['bigint'];
+  org_id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  visited_at: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "org_visits" */
+export type Org_Visits_Aggregate = {
+  aggregate?: Maybe<Org_Visits_Aggregate_Fields>;
+  nodes: Array<Org_Visits>;
+};
+
+/** aggregate fields of "org_visits" */
+export type Org_Visits_Aggregate_Fields = {
+  avg?: Maybe<Org_Visits_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Org_Visits_Max_Fields>;
+  min?: Maybe<Org_Visits_Min_Fields>;
+  stddev?: Maybe<Org_Visits_Stddev_Fields>;
+  stddev_pop?: Maybe<Org_Visits_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Org_Visits_Stddev_Samp_Fields>;
+  sum?: Maybe<Org_Visits_Sum_Fields>;
+  var_pop?: Maybe<Org_Visits_Var_Pop_Fields>;
+  var_samp?: Maybe<Org_Visits_Var_Samp_Fields>;
+  variance?: Maybe<Org_Visits_Variance_Fields>;
+};
+
+
+/** aggregate fields of "org_visits" */
+export type Org_Visits_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Org_Visits_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Org_Visits_Avg_Fields = {
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "org_visits". All fields are combined with a logical 'AND'. */
+export type Org_Visits_Bool_Exp = {
+  _and?: InputMaybe<Array<Org_Visits_Bool_Exp>>;
+  _not?: InputMaybe<Org_Visits_Bool_Exp>;
+  _or?: InputMaybe<Array<Org_Visits_Bool_Exp>>;
+  id?: InputMaybe<Bigint_Comparison_Exp>;
+  org_id?: InputMaybe<Uuid_Comparison_Exp>;
+  user_id?: InputMaybe<Uuid_Comparison_Exp>;
+  visited_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** input type for incrementing numeric columns in table "org_visits" */
+export type Org_Visits_Inc_Input = {
+  id?: InputMaybe<Scalars['bigint']>;
+};
+
+/** input type for inserting data into table "org_visits" */
+export type Org_Visits_Insert_Input = {
+  id?: InputMaybe<Scalars['bigint']>;
+  org_id?: InputMaybe<Scalars['uuid']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+  visited_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type Org_Visits_Max_Fields = {
+  id?: Maybe<Scalars['bigint']>;
+  org_id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  visited_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type Org_Visits_Min_Fields = {
+  id?: Maybe<Scalars['bigint']>;
+  org_id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['uuid']>;
+  visited_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "org_visits" */
+export type Org_Visits_Mutation_Response = {
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Org_Visits>;
+};
+
+/** Ordering options when selecting data from "org_visits". */
+export type Org_Visits_Order_By = {
+  id?: InputMaybe<Order_By>;
+  org_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+  visited_at?: InputMaybe<Order_By>;
+};
+
+/** select columns of table "org_visits" */
+export enum Org_Visits_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  OrgId = 'org_id',
+  /** column name */
+  UserId = 'user_id',
+  /** column name */
+  VisitedAt = 'visited_at'
+}
+
+/** input type for updating data in table "org_visits" */
+export type Org_Visits_Set_Input = {
+  id?: InputMaybe<Scalars['bigint']>;
+  org_id?: InputMaybe<Scalars['uuid']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+  visited_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate stddev on columns */
+export type Org_Visits_Stddev_Fields = {
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Org_Visits_Stddev_Pop_Fields = {
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Org_Visits_Stddev_Samp_Fields = {
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Org_Visits_Sum_Fields = {
+  id?: Maybe<Scalars['bigint']>;
+};
+
+/** aggregate var_pop on columns */
+export type Org_Visits_Var_Pop_Fields = {
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Org_Visits_Var_Samp_Fields = {
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Org_Visits_Variance_Fields = {
+  id?: Maybe<Scalars['Float']>;
 };
 
 /** columns and relationships of "orgs" */
@@ -13258,11 +13468,11 @@ export type Orgs_Nearby_Args = {
 /** input type for inserting object relation for remote table "orgs" */
 export type Orgs_Obj_Rel_Insert_Input = {
   data: Orgs_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Orgs_On_Conflict>;
 };
 
-/** on conflict condition type for table "orgs" */
+/** on_conflict condition type for table "orgs" */
 export type Orgs_On_Conflict = {
   constraint: Orgs_Constraint;
   update_columns?: Array<Orgs_Update_Column>;
@@ -13608,7 +13818,7 @@ export type Post_Types_Mutation_Response = {
   returning: Array<Post_Types>;
 };
 
-/** on conflict condition type for table "post_types" */
+/** on_conflict condition type for table "post_types" */
 export type Post_Types_On_Conflict = {
   constraint: Post_Types_Constraint;
   update_columns?: Array<Post_Types_Update_Column>;
@@ -13702,6 +13912,12 @@ export type Query_Root = {
   entry_visits: Array<Entry_Visits>;
   /** fetch aggregated fields from the table: "entry_visits" */
   entry_visits_aggregate: Entry_Visits_Aggregate;
+  /** fetch data from the table: "file_types" */
+  file_types: Array<File_Types>;
+  /** fetch aggregated fields from the table: "file_types" */
+  file_types_aggregate: File_Types_Aggregate;
+  /** fetch data from the table: "file_types" using primary key columns */
+  file_types_by_pk?: Maybe<File_Types>;
   /** An array relationship */
   files: Array<Files>;
   /** An aggregate relationship */
@@ -13800,12 +14016,6 @@ export type Query_Root = {
   initiative_projects_aggregate: Initiative_Projects_Aggregate;
   /** fetch data from the table: "initiative_projects" using primary key columns */
   initiative_projects_by_pk?: Maybe<Initiative_Projects>;
-  /** fetch data from the table: "initiative_subscriptions" */
-  initiative_subscriptions: Array<Initiative_Subscriptions>;
-  /** fetch aggregated fields from the table: "initiative_subscriptions" */
-  initiative_subscriptions_aggregate: Initiative_Subscriptions_Aggregate;
-  /** fetch data from the table: "initiative_subscriptions" using primary key columns */
-  initiative_subscriptions_by_pk?: Maybe<Initiative_Subscriptions>;
   /** An array relationship */
   initiative_tags: Array<Initiative_Tags>;
   /** An aggregate relationship */
@@ -13818,12 +14028,6 @@ export type Query_Root = {
   initiative_tasks_aggregate: Initiative_Tasks_Aggregate;
   /** fetch data from the table: "initiative_tasks" using primary key columns */
   initiative_tasks_by_pk?: Maybe<Initiative_Tasks>;
-  /** fetch data from the table: "initiative_threads" */
-  initiative_threads: Array<Initiative_Threads>;
-  /** fetch aggregated fields from the table: "initiative_threads" */
-  initiative_threads_aggregate: Initiative_Threads_Aggregate;
-  /** fetch data from the table: "initiative_threads" using primary key columns */
-  initiative_threads_by_pk?: Maybe<Initiative_Threads>;
   /** An array relationship */
   initiative_visits: Array<Initiative_Visits>;
   /** An aggregate relationship */
@@ -13872,6 +14076,10 @@ export type Query_Root = {
   org_tags_aggregate: Org_Tags_Aggregate;
   /** fetch data from the table: "org_tags" using primary key columns */
   org_tags_by_pk?: Maybe<Org_Tags>;
+  /** fetch data from the table: "org_visits" */
+  org_visits: Array<Org_Visits>;
+  /** fetch aggregated fields from the table: "org_visits" */
+  org_visits_aggregate: Org_Visits_Aggregate;
   /** fetch data from the table: "orgs" */
   orgs: Array<Orgs>;
   /** fetch aggregated fields from the table: "orgs" */
@@ -13922,6 +14130,18 @@ export type Query_Root = {
   tenders_aggregate: Tenders_Aggregate;
   /** fetch data from the table: "tenders" using primary key columns */
   tenders_by_pk?: Maybe<Tenders>;
+  /** fetch data from the table: "user_settings" */
+  user_settings: Array<User_Settings>;
+  /** fetch aggregated fields from the table: "user_settings" */
+  user_settings_aggregate: User_Settings_Aggregate;
+  /** fetch data from the table: "user_settings" using primary key columns */
+  user_settings_by_pk?: Maybe<User_Settings>;
+  /** fetch data from the table: "user_subscriptions" */
+  user_subscriptions: Array<User_Subscriptions>;
+  /** fetch aggregated fields from the table: "user_subscriptions" */
+  user_subscriptions_aggregate: User_Subscriptions_Aggregate;
+  /** fetch data from the table: "user_subscriptions" using primary key columns */
+  user_subscriptions_by_pk?: Maybe<User_Subscriptions>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -14166,6 +14386,29 @@ export type Query_RootEntry_Visits_AggregateArgs = {
 };
 
 
+export type Query_RootFile_TypesArgs = {
+  distinct_on?: InputMaybe<Array<File_Types_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<File_Types_Order_By>>;
+  where?: InputMaybe<File_Types_Bool_Exp>;
+};
+
+
+export type Query_RootFile_Types_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<File_Types_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<File_Types_Order_By>>;
+  where?: InputMaybe<File_Types_Bool_Exp>;
+};
+
+
+export type Query_RootFile_Types_By_PkArgs = {
+  type: Scalars['String'];
+};
+
+
 export type Query_RootFilesArgs = {
   distinct_on?: InputMaybe<Array<Files_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -14290,7 +14533,10 @@ export type Query_RootInitiative_Comment_Reactions_AggregateArgs = {
 
 
 export type Query_RootInitiative_Comment_Reactions_By_PkArgs = {
+  comment_id: Scalars['Int'];
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
 };
 
 
@@ -14314,6 +14560,8 @@ export type Query_RootInitiative_Comments_AggregateArgs = {
 
 export type Query_RootInitiative_Comments_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['Int'];
 };
 
 
@@ -14337,6 +14585,7 @@ export type Query_RootInitiative_Donations_AggregateArgs = {
 
 export type Query_RootInitiative_Donations_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14360,6 +14609,7 @@ export type Query_RootInitiative_Edits_AggregateArgs = {
 
 export type Query_RootInitiative_Edits_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14383,6 +14633,7 @@ export type Query_RootInitiative_Expenses_AggregateArgs = {
 
 export type Query_RootInitiative_Expenses_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14406,6 +14657,7 @@ export type Query_RootInitiative_Info_AggregateArgs = {
 
 export type Query_RootInitiative_Info_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14429,6 +14681,7 @@ export type Query_RootInitiative_Members_AggregateArgs = {
 
 export type Query_RootInitiative_Members_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14452,6 +14705,8 @@ export type Query_RootInitiative_Poll_Votes_AggregateArgs = {
 
 export type Query_RootInitiative_Poll_Votes_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  poll_id: Scalars['Int'];
 };
 
 
@@ -14475,6 +14730,7 @@ export type Query_RootInitiative_Polls_AggregateArgs = {
 
 export type Query_RootInitiative_Polls_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14498,6 +14754,8 @@ export type Query_RootInitiative_Post_Reactions_AggregateArgs = {
 
 export type Query_RootInitiative_Post_Reactions_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
 };
 
 
@@ -14521,6 +14779,7 @@ export type Query_RootInitiative_Posts_AggregateArgs = {
 
 export type Query_RootInitiative_Posts_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14544,29 +14803,7 @@ export type Query_RootInitiative_Projects_AggregateArgs = {
 
 export type Query_RootInitiative_Projects_By_PkArgs = {
   id: Scalars['Int'];
-};
-
-
-export type Query_RootInitiative_SubscriptionsArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Subscriptions_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Subscriptions_Order_By>>;
-  where?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
-};
-
-
-export type Query_RootInitiative_Subscriptions_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Subscriptions_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Subscriptions_Order_By>>;
-  where?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
-};
-
-
-export type Query_RootInitiative_Subscriptions_By_PkArgs = {
-  id: Scalars['String'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14590,6 +14827,7 @@ export type Query_RootInitiative_Tags_AggregateArgs = {
 
 export type Query_RootInitiative_Tags_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14617,30 +14855,6 @@ export type Query_RootInitiative_Tasks_By_PkArgs = {
 };
 
 
-export type Query_RootInitiative_ThreadsArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Threads_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Threads_Order_By>>;
-  where?: InputMaybe<Initiative_Threads_Bool_Exp>;
-};
-
-
-export type Query_RootInitiative_Threads_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Threads_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Threads_Order_By>>;
-  where?: InputMaybe<Initiative_Threads_Bool_Exp>;
-};
-
-
-export type Query_RootInitiative_Threads_By_PkArgs = {
-  id: Scalars['String'];
-  initiative_id: Scalars['uuid'];
-};
-
-
 export type Query_RootInitiative_VisitsArgs = {
   distinct_on?: InputMaybe<Array<Initiative_Visits_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -14661,6 +14875,7 @@ export type Query_RootInitiative_Visits_AggregateArgs = {
 
 export type Query_RootInitiative_Visits_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14684,6 +14899,7 @@ export type Query_RootInitiative_Volunteers_AggregateArgs = {
 
 export type Query_RootInitiative_Volunteers_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -14832,6 +15048,24 @@ export type Query_RootOrg_Tags_AggregateArgs = {
 
 export type Query_RootOrg_Tags_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Query_RootOrg_VisitsArgs = {
+  distinct_on?: InputMaybe<Array<Org_Visits_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Org_Visits_Order_By>>;
+  where?: InputMaybe<Org_Visits_Bool_Exp>;
+};
+
+
+export type Query_RootOrg_Visits_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Org_Visits_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Org_Visits_Order_By>>;
+  where?: InputMaybe<Org_Visits_Bool_Exp>;
 };
 
 
@@ -15034,6 +15268,52 @@ export type Query_RootTenders_By_PkArgs = {
 };
 
 
+export type Query_RootUser_SettingsArgs = {
+  distinct_on?: InputMaybe<Array<User_Settings_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Settings_Order_By>>;
+  where?: InputMaybe<User_Settings_Bool_Exp>;
+};
+
+
+export type Query_RootUser_Settings_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Settings_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Settings_Order_By>>;
+  where?: InputMaybe<User_Settings_Bool_Exp>;
+};
+
+
+export type Query_RootUser_Settings_By_PkArgs = {
+  user_id: Scalars['uuid'];
+};
+
+
+export type Query_RootUser_SubscriptionsArgs = {
+  distinct_on?: InputMaybe<Array<User_Subscriptions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Subscriptions_Order_By>>;
+  where?: InputMaybe<User_Subscriptions_Bool_Exp>;
+};
+
+
+export type Query_RootUser_Subscriptions_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Subscriptions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Subscriptions_Order_By>>;
+  where?: InputMaybe<User_Subscriptions_Bool_Exp>;
+};
+
+
+export type Query_RootUser_Subscriptions_By_PkArgs = {
+  id: Scalars['String'];
+};
+
+
 export type Query_RootUsersArgs = {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -15184,7 +15464,7 @@ export type Reactions_Mutation_Response = {
   returning: Array<Reactions>;
 };
 
-/** on conflict condition type for table "reactions" */
+/** on_conflict condition type for table "reactions" */
 export type Reactions_On_Conflict = {
   constraint: Reactions_Constraint;
   update_columns?: Array<Reactions_Update_Column>;
@@ -15322,7 +15602,7 @@ export type Spatial_Ref_Sys_Mutation_Response = {
   returning: Array<Spatial_Ref_Sys>;
 };
 
-/** on conflict condition type for table "spatial_ref_sys" */
+/** on_conflict condition type for table "spatial_ref_sys" */
 export type Spatial_Ref_Sys_On_Conflict = {
   constraint: Spatial_Ref_Sys_Constraint;
   update_columns?: Array<Spatial_Ref_Sys_Update_Column>;
@@ -15492,6 +15772,12 @@ export type Subscription_Root = {
   entry_visits: Array<Entry_Visits>;
   /** fetch aggregated fields from the table: "entry_visits" */
   entry_visits_aggregate: Entry_Visits_Aggregate;
+  /** fetch data from the table: "file_types" */
+  file_types: Array<File_Types>;
+  /** fetch aggregated fields from the table: "file_types" */
+  file_types_aggregate: File_Types_Aggregate;
+  /** fetch data from the table: "file_types" using primary key columns */
+  file_types_by_pk?: Maybe<File_Types>;
   /** An array relationship */
   files: Array<Files>;
   /** An aggregate relationship */
@@ -15590,12 +15876,6 @@ export type Subscription_Root = {
   initiative_projects_aggregate: Initiative_Projects_Aggregate;
   /** fetch data from the table: "initiative_projects" using primary key columns */
   initiative_projects_by_pk?: Maybe<Initiative_Projects>;
-  /** fetch data from the table: "initiative_subscriptions" */
-  initiative_subscriptions: Array<Initiative_Subscriptions>;
-  /** fetch aggregated fields from the table: "initiative_subscriptions" */
-  initiative_subscriptions_aggregate: Initiative_Subscriptions_Aggregate;
-  /** fetch data from the table: "initiative_subscriptions" using primary key columns */
-  initiative_subscriptions_by_pk?: Maybe<Initiative_Subscriptions>;
   /** An array relationship */
   initiative_tags: Array<Initiative_Tags>;
   /** An aggregate relationship */
@@ -15608,12 +15888,6 @@ export type Subscription_Root = {
   initiative_tasks_aggregate: Initiative_Tasks_Aggregate;
   /** fetch data from the table: "initiative_tasks" using primary key columns */
   initiative_tasks_by_pk?: Maybe<Initiative_Tasks>;
-  /** fetch data from the table: "initiative_threads" */
-  initiative_threads: Array<Initiative_Threads>;
-  /** fetch aggregated fields from the table: "initiative_threads" */
-  initiative_threads_aggregate: Initiative_Threads_Aggregate;
-  /** fetch data from the table: "initiative_threads" using primary key columns */
-  initiative_threads_by_pk?: Maybe<Initiative_Threads>;
   /** An array relationship */
   initiative_visits: Array<Initiative_Visits>;
   /** An aggregate relationship */
@@ -15662,6 +15936,10 @@ export type Subscription_Root = {
   org_tags_aggregate: Org_Tags_Aggregate;
   /** fetch data from the table: "org_tags" using primary key columns */
   org_tags_by_pk?: Maybe<Org_Tags>;
+  /** fetch data from the table: "org_visits" */
+  org_visits: Array<Org_Visits>;
+  /** fetch aggregated fields from the table: "org_visits" */
+  org_visits_aggregate: Org_Visits_Aggregate;
   /** fetch data from the table: "orgs" */
   orgs: Array<Orgs>;
   /** fetch aggregated fields from the table: "orgs" */
@@ -15712,6 +15990,18 @@ export type Subscription_Root = {
   tenders_aggregate: Tenders_Aggregate;
   /** fetch data from the table: "tenders" using primary key columns */
   tenders_by_pk?: Maybe<Tenders>;
+  /** fetch data from the table: "user_settings" */
+  user_settings: Array<User_Settings>;
+  /** fetch aggregated fields from the table: "user_settings" */
+  user_settings_aggregate: User_Settings_Aggregate;
+  /** fetch data from the table: "user_settings" using primary key columns */
+  user_settings_by_pk?: Maybe<User_Settings>;
+  /** fetch data from the table: "user_subscriptions" */
+  user_subscriptions: Array<User_Subscriptions>;
+  /** fetch aggregated fields from the table: "user_subscriptions" */
+  user_subscriptions_aggregate: User_Subscriptions_Aggregate;
+  /** fetch data from the table: "user_subscriptions" using primary key columns */
+  user_subscriptions_by_pk?: Maybe<User_Subscriptions>;
   /** fetch data from the table: "users" */
   users: Array<Users>;
   /** fetch aggregated fields from the table: "users" */
@@ -15956,6 +16246,29 @@ export type Subscription_RootEntry_Visits_AggregateArgs = {
 };
 
 
+export type Subscription_RootFile_TypesArgs = {
+  distinct_on?: InputMaybe<Array<File_Types_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<File_Types_Order_By>>;
+  where?: InputMaybe<File_Types_Bool_Exp>;
+};
+
+
+export type Subscription_RootFile_Types_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<File_Types_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<File_Types_Order_By>>;
+  where?: InputMaybe<File_Types_Bool_Exp>;
+};
+
+
+export type Subscription_RootFile_Types_By_PkArgs = {
+  type: Scalars['String'];
+};
+
+
 export type Subscription_RootFilesArgs = {
   distinct_on?: InputMaybe<Array<Files_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -16080,7 +16393,10 @@ export type Subscription_RootInitiative_Comment_Reactions_AggregateArgs = {
 
 
 export type Subscription_RootInitiative_Comment_Reactions_By_PkArgs = {
+  comment_id: Scalars['Int'];
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
 };
 
 
@@ -16104,6 +16420,8 @@ export type Subscription_RootInitiative_Comments_AggregateArgs = {
 
 export type Subscription_RootInitiative_Comments_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['Int'];
 };
 
 
@@ -16127,6 +16445,7 @@ export type Subscription_RootInitiative_Donations_AggregateArgs = {
 
 export type Subscription_RootInitiative_Donations_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16150,6 +16469,7 @@ export type Subscription_RootInitiative_Edits_AggregateArgs = {
 
 export type Subscription_RootInitiative_Edits_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16173,6 +16493,7 @@ export type Subscription_RootInitiative_Expenses_AggregateArgs = {
 
 export type Subscription_RootInitiative_Expenses_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16196,6 +16517,7 @@ export type Subscription_RootInitiative_Info_AggregateArgs = {
 
 export type Subscription_RootInitiative_Info_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16219,6 +16541,7 @@ export type Subscription_RootInitiative_Members_AggregateArgs = {
 
 export type Subscription_RootInitiative_Members_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16242,6 +16565,8 @@ export type Subscription_RootInitiative_Poll_Votes_AggregateArgs = {
 
 export type Subscription_RootInitiative_Poll_Votes_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  poll_id: Scalars['Int'];
 };
 
 
@@ -16265,6 +16590,7 @@ export type Subscription_RootInitiative_Polls_AggregateArgs = {
 
 export type Subscription_RootInitiative_Polls_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16288,6 +16614,8 @@ export type Subscription_RootInitiative_Post_Reactions_AggregateArgs = {
 
 export type Subscription_RootInitiative_Post_Reactions_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
 };
 
 
@@ -16311,6 +16639,7 @@ export type Subscription_RootInitiative_Posts_AggregateArgs = {
 
 export type Subscription_RootInitiative_Posts_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16334,29 +16663,7 @@ export type Subscription_RootInitiative_Projects_AggregateArgs = {
 
 export type Subscription_RootInitiative_Projects_By_PkArgs = {
   id: Scalars['Int'];
-};
-
-
-export type Subscription_RootInitiative_SubscriptionsArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Subscriptions_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Subscriptions_Order_By>>;
-  where?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
-};
-
-
-export type Subscription_RootInitiative_Subscriptions_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Subscriptions_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Subscriptions_Order_By>>;
-  where?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
-};
-
-
-export type Subscription_RootInitiative_Subscriptions_By_PkArgs = {
-  id: Scalars['String'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16380,6 +16687,7 @@ export type Subscription_RootInitiative_Tags_AggregateArgs = {
 
 export type Subscription_RootInitiative_Tags_By_PkArgs = {
   id: Scalars['Int'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16407,30 +16715,6 @@ export type Subscription_RootInitiative_Tasks_By_PkArgs = {
 };
 
 
-export type Subscription_RootInitiative_ThreadsArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Threads_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Threads_Order_By>>;
-  where?: InputMaybe<Initiative_Threads_Bool_Exp>;
-};
-
-
-export type Subscription_RootInitiative_Threads_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Threads_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Threads_Order_By>>;
-  where?: InputMaybe<Initiative_Threads_Bool_Exp>;
-};
-
-
-export type Subscription_RootInitiative_Threads_By_PkArgs = {
-  id: Scalars['String'];
-  initiative_id: Scalars['uuid'];
-};
-
-
 export type Subscription_RootInitiative_VisitsArgs = {
   distinct_on?: InputMaybe<Array<Initiative_Visits_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -16451,6 +16735,7 @@ export type Subscription_RootInitiative_Visits_AggregateArgs = {
 
 export type Subscription_RootInitiative_Visits_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16474,6 +16759,7 @@ export type Subscription_RootInitiative_Volunteers_AggregateArgs = {
 
 export type Subscription_RootInitiative_Volunteers_By_PkArgs = {
   id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 };
 
 
@@ -16622,6 +16908,24 @@ export type Subscription_RootOrg_Tags_AggregateArgs = {
 
 export type Subscription_RootOrg_Tags_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+export type Subscription_RootOrg_VisitsArgs = {
+  distinct_on?: InputMaybe<Array<Org_Visits_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Org_Visits_Order_By>>;
+  where?: InputMaybe<Org_Visits_Bool_Exp>;
+};
+
+
+export type Subscription_RootOrg_Visits_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Org_Visits_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Org_Visits_Order_By>>;
+  where?: InputMaybe<Org_Visits_Bool_Exp>;
 };
 
 
@@ -16824,6 +17128,52 @@ export type Subscription_RootTenders_By_PkArgs = {
 };
 
 
+export type Subscription_RootUser_SettingsArgs = {
+  distinct_on?: InputMaybe<Array<User_Settings_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Settings_Order_By>>;
+  where?: InputMaybe<User_Settings_Bool_Exp>;
+};
+
+
+export type Subscription_RootUser_Settings_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Settings_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Settings_Order_By>>;
+  where?: InputMaybe<User_Settings_Bool_Exp>;
+};
+
+
+export type Subscription_RootUser_Settings_By_PkArgs = {
+  user_id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootUser_SubscriptionsArgs = {
+  distinct_on?: InputMaybe<Array<User_Subscriptions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Subscriptions_Order_By>>;
+  where?: InputMaybe<User_Subscriptions_Bool_Exp>;
+};
+
+
+export type Subscription_RootUser_Subscriptions_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Subscriptions_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Subscriptions_Order_By>>;
+  where?: InputMaybe<User_Subscriptions_Bool_Exp>;
+};
+
+
+export type Subscription_RootUser_Subscriptions_By_PkArgs = {
+  id: Scalars['String'];
+};
+
+
 export type Subscription_RootUsersArgs = {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -16963,11 +17313,11 @@ export type Tags_Mutation_Response = {
 /** input type for inserting object relation for remote table "tags" */
 export type Tags_Obj_Rel_Insert_Input = {
   data: Tags_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Tags_On_Conflict>;
 };
 
-/** on conflict condition type for table "tags" */
+/** on_conflict condition type for table "tags" */
 export type Tags_On_Conflict = {
   constraint: Tags_Constraint;
   update_columns?: Array<Tags_Update_Column>;
@@ -17081,7 +17431,7 @@ export type Task_Statuses_Mutation_Response = {
   returning: Array<Task_Statuses>;
 };
 
-/** on conflict condition type for table "task_statuses" */
+/** on_conflict condition type for table "task_statuses" */
 export type Task_Statuses_On_Conflict = {
   constraint: Task_Statuses_Constraint;
   update_columns?: Array<Task_Statuses_Update_Column>;
@@ -17203,7 +17553,7 @@ export type Tenders_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "tenders" */
 export type Tenders_Arr_Rel_Insert_Input = {
   data: Array<Tenders_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Tenders_On_Conflict>;
 };
 
@@ -17315,11 +17665,11 @@ export type Tenders_Mutation_Response = {
 /** input type for inserting object relation for remote table "tenders" */
 export type Tenders_Obj_Rel_Insert_Input = {
   data: Tenders_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Tenders_On_Conflict>;
 };
 
-/** on conflict condition type for table "tenders" */
+/** on_conflict condition type for table "tenders" */
 export type Tenders_On_Conflict = {
   constraint: Tenders_Constraint;
   update_columns?: Array<Tenders_Update_Column>;
@@ -17498,18 +17848,314 @@ export type Timestamptz_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['timestamptz']>>;
 };
 
-/** Boolean expression to compare columns of type "timetz". All fields are combined with logical 'AND'. */
-export type Timetz_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['timetz']>;
-  _gt?: InputMaybe<Scalars['timetz']>;
-  _gte?: InputMaybe<Scalars['timetz']>;
-  _in?: InputMaybe<Array<Scalars['timetz']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['timetz']>;
-  _lte?: InputMaybe<Scalars['timetz']>;
-  _neq?: InputMaybe<Scalars['timetz']>;
-  _nin?: InputMaybe<Array<Scalars['timetz']>>;
+/** columns and relationships of "user_settings" */
+export type User_Settings = {
+  email_notifications?: Maybe<Scalars['Boolean']>;
+  push_notifications?: Maybe<Scalars['Boolean']>;
+  /** An object relationship */
+  user: Users;
+  user_id: Scalars['uuid'];
 };
+
+/** aggregated selection of "user_settings" */
+export type User_Settings_Aggregate = {
+  aggregate?: Maybe<User_Settings_Aggregate_Fields>;
+  nodes: Array<User_Settings>;
+};
+
+/** aggregate fields of "user_settings" */
+export type User_Settings_Aggregate_Fields = {
+  count: Scalars['Int'];
+  max?: Maybe<User_Settings_Max_Fields>;
+  min?: Maybe<User_Settings_Min_Fields>;
+};
+
+
+/** aggregate fields of "user_settings" */
+export type User_Settings_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<User_Settings_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "user_settings". All fields are combined with a logical 'AND'. */
+export type User_Settings_Bool_Exp = {
+  _and?: InputMaybe<Array<User_Settings_Bool_Exp>>;
+  _not?: InputMaybe<User_Settings_Bool_Exp>;
+  _or?: InputMaybe<Array<User_Settings_Bool_Exp>>;
+  email_notifications?: InputMaybe<Boolean_Comparison_Exp>;
+  push_notifications?: InputMaybe<Boolean_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+  user_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "user_settings" */
+export enum User_Settings_Constraint {
+  /** unique or primary key constraint */
+  UserSettingsPkey = 'user_settings_pkey'
+}
+
+/** input type for inserting data into table "user_settings" */
+export type User_Settings_Insert_Input = {
+  email_notifications?: InputMaybe<Scalars['Boolean']>;
+  push_notifications?: InputMaybe<Scalars['Boolean']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type User_Settings_Max_Fields = {
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type User_Settings_Min_Fields = {
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "user_settings" */
+export type User_Settings_Mutation_Response = {
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<User_Settings>;
+};
+
+/** input type for inserting object relation for remote table "user_settings" */
+export type User_Settings_Obj_Rel_Insert_Input = {
+  data: User_Settings_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<User_Settings_On_Conflict>;
+};
+
+/** on_conflict condition type for table "user_settings" */
+export type User_Settings_On_Conflict = {
+  constraint: User_Settings_Constraint;
+  update_columns?: Array<User_Settings_Update_Column>;
+  where?: InputMaybe<User_Settings_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "user_settings". */
+export type User_Settings_Order_By = {
+  email_notifications?: InputMaybe<Order_By>;
+  push_notifications?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: user_settings */
+export type User_Settings_Pk_Columns_Input = {
+  user_id: Scalars['uuid'];
+};
+
+/** select columns of table "user_settings" */
+export enum User_Settings_Select_Column {
+  /** column name */
+  EmailNotifications = 'email_notifications',
+  /** column name */
+  PushNotifications = 'push_notifications',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** input type for updating data in table "user_settings" */
+export type User_Settings_Set_Input = {
+  email_notifications?: InputMaybe<Scalars['Boolean']>;
+  push_notifications?: InputMaybe<Scalars['Boolean']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "user_settings" */
+export enum User_Settings_Update_Column {
+  /** column name */
+  EmailNotifications = 'email_notifications',
+  /** column name */
+  PushNotifications = 'push_notifications',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/**
+ * Push subscriptions
+ *
+ *
+ * columns and relationships of "user_subscriptions"
+ *
+ */
+export type User_Subscriptions = {
+  id: Scalars['String'];
+  platform?: Maybe<Scalars['String']>;
+  service?: Maybe<Scalars['String']>;
+  subscription: Scalars['String'];
+  /** An object relationship */
+  user?: Maybe<Users>;
+  user_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "user_subscriptions" */
+export type User_Subscriptions_Aggregate = {
+  aggregate?: Maybe<User_Subscriptions_Aggregate_Fields>;
+  nodes: Array<User_Subscriptions>;
+};
+
+/** aggregate fields of "user_subscriptions" */
+export type User_Subscriptions_Aggregate_Fields = {
+  count: Scalars['Int'];
+  max?: Maybe<User_Subscriptions_Max_Fields>;
+  min?: Maybe<User_Subscriptions_Min_Fields>;
+};
+
+
+/** aggregate fields of "user_subscriptions" */
+export type User_Subscriptions_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<User_Subscriptions_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "user_subscriptions" */
+export type User_Subscriptions_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<User_Subscriptions_Max_Order_By>;
+  min?: InputMaybe<User_Subscriptions_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "user_subscriptions" */
+export type User_Subscriptions_Arr_Rel_Insert_Input = {
+  data: Array<User_Subscriptions_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<User_Subscriptions_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "user_subscriptions". All fields are combined with a logical 'AND'. */
+export type User_Subscriptions_Bool_Exp = {
+  _and?: InputMaybe<Array<User_Subscriptions_Bool_Exp>>;
+  _not?: InputMaybe<User_Subscriptions_Bool_Exp>;
+  _or?: InputMaybe<Array<User_Subscriptions_Bool_Exp>>;
+  id?: InputMaybe<String_Comparison_Exp>;
+  platform?: InputMaybe<String_Comparison_Exp>;
+  service?: InputMaybe<String_Comparison_Exp>;
+  subscription?: InputMaybe<String_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+  user_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "user_subscriptions" */
+export enum User_Subscriptions_Constraint {
+  /** unique or primary key constraint */
+  UserSubscriptionsPkey = 'user_subscriptions_pkey'
+}
+
+/** input type for inserting data into table "user_subscriptions" */
+export type User_Subscriptions_Insert_Input = {
+  id?: InputMaybe<Scalars['String']>;
+  platform?: InputMaybe<Scalars['String']>;
+  service?: InputMaybe<Scalars['String']>;
+  subscription?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type User_Subscriptions_Max_Fields = {
+  id?: Maybe<Scalars['String']>;
+  platform?: Maybe<Scalars['String']>;
+  service?: Maybe<Scalars['String']>;
+  subscription?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "user_subscriptions" */
+export type User_Subscriptions_Max_Order_By = {
+  id?: InputMaybe<Order_By>;
+  platform?: InputMaybe<Order_By>;
+  service?: InputMaybe<Order_By>;
+  subscription?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type User_Subscriptions_Min_Fields = {
+  id?: Maybe<Scalars['String']>;
+  platform?: Maybe<Scalars['String']>;
+  service?: Maybe<Scalars['String']>;
+  subscription?: Maybe<Scalars['String']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "user_subscriptions" */
+export type User_Subscriptions_Min_Order_By = {
+  id?: InputMaybe<Order_By>;
+  platform?: InputMaybe<Order_By>;
+  service?: InputMaybe<Order_By>;
+  subscription?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "user_subscriptions" */
+export type User_Subscriptions_Mutation_Response = {
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<User_Subscriptions>;
+};
+
+/** on_conflict condition type for table "user_subscriptions" */
+export type User_Subscriptions_On_Conflict = {
+  constraint: User_Subscriptions_Constraint;
+  update_columns?: Array<User_Subscriptions_Update_Column>;
+  where?: InputMaybe<User_Subscriptions_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "user_subscriptions". */
+export type User_Subscriptions_Order_By = {
+  id?: InputMaybe<Order_By>;
+  platform?: InputMaybe<Order_By>;
+  service?: InputMaybe<Order_By>;
+  subscription?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: user_subscriptions */
+export type User_Subscriptions_Pk_Columns_Input = {
+  id: Scalars['String'];
+};
+
+/** select columns of table "user_subscriptions" */
+export enum User_Subscriptions_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Platform = 'platform',
+  /** column name */
+  Service = 'service',
+  /** column name */
+  Subscription = 'subscription',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** input type for updating data in table "user_subscriptions" */
+export type User_Subscriptions_Set_Input = {
+  id?: InputMaybe<Scalars['String']>;
+  platform?: InputMaybe<Scalars['String']>;
+  service?: InputMaybe<Scalars['String']>;
+  subscription?: InputMaybe<Scalars['String']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "user_subscriptions" */
+export enum User_Subscriptions_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Platform = 'platform',
+  /** column name */
+  Service = 'service',
+  /** column name */
+  Subscription = 'subscription',
+  /** column name */
+  UserId = 'user_id'
+}
 
 /** columns and relationships of "users" */
 export type Users = {
@@ -17579,10 +18225,12 @@ export type Users = {
   projects: Array<Initiative_Projects>;
   /** An aggregate relationship */
   projects_aggregate: Initiative_Projects_Aggregate;
+  /** An object relationship */
+  settings?: Maybe<User_Settings>;
   /** An array relationship */
-  subscriptions: Array<Initiative_Subscriptions>;
+  subscriptions: Array<User_Subscriptions>;
   /** An aggregate relationship */
-  subscriptions_aggregate: Initiative_Subscriptions_Aggregate;
+  subscriptions_aggregate: User_Subscriptions_Aggregate;
   /** An array relationship */
   tasks: Array<Initiative_Tasks>;
   /** An aggregate relationship */
@@ -17901,21 +18549,21 @@ export type UsersProjects_AggregateArgs = {
 
 /** columns and relationships of "users" */
 export type UsersSubscriptionsArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Subscriptions_Select_Column>>;
+  distinct_on?: InputMaybe<Array<User_Subscriptions_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Subscriptions_Order_By>>;
-  where?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
+  order_by?: InputMaybe<Array<User_Subscriptions_Order_By>>;
+  where?: InputMaybe<User_Subscriptions_Bool_Exp>;
 };
 
 
 /** columns and relationships of "users" */
 export type UsersSubscriptions_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Initiative_Subscriptions_Select_Column>>;
+  distinct_on?: InputMaybe<Array<User_Subscriptions_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Initiative_Subscriptions_Order_By>>;
-  where?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
+  order_by?: InputMaybe<Array<User_Subscriptions_Order_By>>;
+  where?: InputMaybe<User_Subscriptions_Bool_Exp>;
 };
 
 
@@ -18023,7 +18671,8 @@ export type Users_Bool_Exp = {
   post_reactions?: InputMaybe<Initiative_Post_Reactions_Bool_Exp>;
   posts?: InputMaybe<Initiative_Posts_Bool_Exp>;
   projects?: InputMaybe<Initiative_Projects_Bool_Exp>;
-  subscriptions?: InputMaybe<Initiative_Subscriptions_Bool_Exp>;
+  settings?: InputMaybe<User_Settings_Bool_Exp>;
+  subscriptions?: InputMaybe<User_Subscriptions_Bool_Exp>;
   tasks?: InputMaybe<Initiative_Tasks_Bool_Exp>;
   tenders?: InputMaybe<Tenders_Bool_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -18058,7 +18707,8 @@ export type Users_Insert_Input = {
   post_reactions?: InputMaybe<Initiative_Post_Reactions_Arr_Rel_Insert_Input>;
   posts?: InputMaybe<Initiative_Posts_Arr_Rel_Insert_Input>;
   projects?: InputMaybe<Initiative_Projects_Arr_Rel_Insert_Input>;
-  subscriptions?: InputMaybe<Initiative_Subscriptions_Arr_Rel_Insert_Input>;
+  settings?: InputMaybe<User_Settings_Obj_Rel_Insert_Input>;
+  subscriptions?: InputMaybe<User_Subscriptions_Arr_Rel_Insert_Input>;
   tasks?: InputMaybe<Initiative_Tasks_Arr_Rel_Insert_Input>;
   tenders?: InputMaybe<Tenders_Arr_Rel_Insert_Input>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
@@ -18094,11 +18744,11 @@ export type Users_Mutation_Response = {
 /** input type for inserting object relation for remote table "users" */
 export type Users_Obj_Rel_Insert_Input = {
   data: Users_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Users_On_Conflict>;
 };
 
-/** on conflict condition type for table "users" */
+/** on_conflict condition type for table "users" */
 export type Users_On_Conflict = {
   constraint: Users_Constraint;
   update_columns?: Array<Users_Update_Column>;
@@ -18127,7 +18777,8 @@ export type Users_Order_By = {
   post_reactions_aggregate?: InputMaybe<Initiative_Post_Reactions_Aggregate_Order_By>;
   posts_aggregate?: InputMaybe<Initiative_Posts_Aggregate_Order_By>;
   projects_aggregate?: InputMaybe<Initiative_Projects_Aggregate_Order_By>;
-  subscriptions_aggregate?: InputMaybe<Initiative_Subscriptions_Aggregate_Order_By>;
+  settings?: InputMaybe<User_Settings_Order_By>;
+  subscriptions_aggregate?: InputMaybe<User_Subscriptions_Aggregate_Order_By>;
   tasks_aggregate?: InputMaybe<Initiative_Tasks_Aggregate_Order_By>;
   tenders_aggregate?: InputMaybe<Tenders_Aggregate_Order_By>;
   updated_at?: InputMaybe<Order_By>;
@@ -18456,13 +19107,33 @@ export type ResolversTypes = {
   entry_visits_var_pop_fields: ResolverTypeWrapper<Entry_Visits_Var_Pop_Fields>;
   entry_visits_var_samp_fields: ResolverTypeWrapper<Entry_Visits_Var_Samp_Fields>;
   entry_visits_variance_fields: ResolverTypeWrapper<Entry_Visits_Variance_Fields>;
+  file_types: ResolverTypeWrapper<File_Types>;
+  file_types_aggregate: ResolverTypeWrapper<File_Types_Aggregate>;
+  file_types_aggregate_fields: ResolverTypeWrapper<File_Types_Aggregate_Fields>;
+  file_types_bool_exp: File_Types_Bool_Exp;
+  file_types_constraint: File_Types_Constraint;
+  file_types_enum: File_Types_Enum;
+  file_types_enum_comparison_exp: File_Types_Enum_Comparison_Exp;
+  file_types_insert_input: File_Types_Insert_Input;
+  file_types_max_fields: ResolverTypeWrapper<File_Types_Max_Fields>;
+  file_types_min_fields: ResolverTypeWrapper<File_Types_Min_Fields>;
+  file_types_mutation_response: ResolverTypeWrapper<File_Types_Mutation_Response>;
+  file_types_on_conflict: File_Types_On_Conflict;
+  file_types_order_by: File_Types_Order_By;
+  file_types_pk_columns_input: File_Types_Pk_Columns_Input;
+  file_types_select_column: File_Types_Select_Column;
+  file_types_set_input: File_Types_Set_Input;
+  file_types_update_column: File_Types_Update_Column;
   files: ResolverTypeWrapper<Files>;
   files_aggregate: ResolverTypeWrapper<Files_Aggregate>;
   files_aggregate_fields: ResolverTypeWrapper<Files_Aggregate_Fields>;
   files_aggregate_order_by: Files_Aggregate_Order_By;
   files_arr_rel_insert_input: Files_Arr_Rel_Insert_Input;
+  files_avg_fields: ResolverTypeWrapper<Files_Avg_Fields>;
+  files_avg_order_by: Files_Avg_Order_By;
   files_bool_exp: Files_Bool_Exp;
   files_constraint: Files_Constraint;
+  files_inc_input: Files_Inc_Input;
   files_insert_input: Files_Insert_Input;
   files_max_fields: ResolverTypeWrapper<Files_Max_Fields>;
   files_max_order_by: Files_Max_Order_By;
@@ -18474,7 +19145,21 @@ export type ResolversTypes = {
   files_pk_columns_input: Files_Pk_Columns_Input;
   files_select_column: Files_Select_Column;
   files_set_input: Files_Set_Input;
+  files_stddev_fields: ResolverTypeWrapper<Files_Stddev_Fields>;
+  files_stddev_order_by: Files_Stddev_Order_By;
+  files_stddev_pop_fields: ResolverTypeWrapper<Files_Stddev_Pop_Fields>;
+  files_stddev_pop_order_by: Files_Stddev_Pop_Order_By;
+  files_stddev_samp_fields: ResolverTypeWrapper<Files_Stddev_Samp_Fields>;
+  files_stddev_samp_order_by: Files_Stddev_Samp_Order_By;
+  files_sum_fields: ResolverTypeWrapper<Files_Sum_Fields>;
+  files_sum_order_by: Files_Sum_Order_By;
   files_update_column: Files_Update_Column;
+  files_var_pop_fields: ResolverTypeWrapper<Files_Var_Pop_Fields>;
+  files_var_pop_order_by: Files_Var_Pop_Order_By;
+  files_var_samp_fields: ResolverTypeWrapper<Files_Var_Samp_Fields>;
+  files_var_samp_order_by: Files_Var_Samp_Order_By;
+  files_variance_fields: ResolverTypeWrapper<Files_Variance_Fields>;
+  files_variance_order_by: Files_Variance_Order_By;
   float8: ResolverTypeWrapper<Scalars['float8']>;
   geography: ResolverTypeWrapper<Scalars['geography']>;
   geography_cast_exp: Geography_Cast_Exp;
@@ -19006,25 +19691,6 @@ export type ResolversTypes = {
   initiative_projects_var_samp_order_by: Initiative_Projects_Var_Samp_Order_By;
   initiative_projects_variance_fields: ResolverTypeWrapper<Initiative_Projects_Variance_Fields>;
   initiative_projects_variance_order_by: Initiative_Projects_Variance_Order_By;
-  initiative_subscriptions: ResolverTypeWrapper<Initiative_Subscriptions>;
-  initiative_subscriptions_aggregate: ResolverTypeWrapper<Initiative_Subscriptions_Aggregate>;
-  initiative_subscriptions_aggregate_fields: ResolverTypeWrapper<Initiative_Subscriptions_Aggregate_Fields>;
-  initiative_subscriptions_aggregate_order_by: Initiative_Subscriptions_Aggregate_Order_By;
-  initiative_subscriptions_arr_rel_insert_input: Initiative_Subscriptions_Arr_Rel_Insert_Input;
-  initiative_subscriptions_bool_exp: Initiative_Subscriptions_Bool_Exp;
-  initiative_subscriptions_constraint: Initiative_Subscriptions_Constraint;
-  initiative_subscriptions_insert_input: Initiative_Subscriptions_Insert_Input;
-  initiative_subscriptions_max_fields: ResolverTypeWrapper<Initiative_Subscriptions_Max_Fields>;
-  initiative_subscriptions_max_order_by: Initiative_Subscriptions_Max_Order_By;
-  initiative_subscriptions_min_fields: ResolverTypeWrapper<Initiative_Subscriptions_Min_Fields>;
-  initiative_subscriptions_min_order_by: Initiative_Subscriptions_Min_Order_By;
-  initiative_subscriptions_mutation_response: ResolverTypeWrapper<Initiative_Subscriptions_Mutation_Response>;
-  initiative_subscriptions_on_conflict: Initiative_Subscriptions_On_Conflict;
-  initiative_subscriptions_order_by: Initiative_Subscriptions_Order_By;
-  initiative_subscriptions_pk_columns_input: Initiative_Subscriptions_Pk_Columns_Input;
-  initiative_subscriptions_select_column: Initiative_Subscriptions_Select_Column;
-  initiative_subscriptions_set_input: Initiative_Subscriptions_Set_Input;
-  initiative_subscriptions_update_column: Initiative_Subscriptions_Update_Column;
   initiative_tags: ResolverTypeWrapper<Initiative_Tags>;
   initiative_tags_aggregate: ResolverTypeWrapper<Initiative_Tags_Aggregate>;
   initiative_tags_aggregate_fields: ResolverTypeWrapper<Initiative_Tags_Aggregate_Fields>;
@@ -19098,22 +19764,6 @@ export type ResolversTypes = {
   initiative_tasks_var_samp_order_by: Initiative_Tasks_Var_Samp_Order_By;
   initiative_tasks_variance_fields: ResolverTypeWrapper<Initiative_Tasks_Variance_Fields>;
   initiative_tasks_variance_order_by: Initiative_Tasks_Variance_Order_By;
-  initiative_threads: ResolverTypeWrapper<Initiative_Threads>;
-  initiative_threads_aggregate: ResolverTypeWrapper<Initiative_Threads_Aggregate>;
-  initiative_threads_aggregate_fields: ResolverTypeWrapper<Initiative_Threads_Aggregate_Fields>;
-  initiative_threads_bool_exp: Initiative_Threads_Bool_Exp;
-  initiative_threads_constraint: Initiative_Threads_Constraint;
-  initiative_threads_insert_input: Initiative_Threads_Insert_Input;
-  initiative_threads_max_fields: ResolverTypeWrapper<Initiative_Threads_Max_Fields>;
-  initiative_threads_min_fields: ResolverTypeWrapper<Initiative_Threads_Min_Fields>;
-  initiative_threads_mutation_response: ResolverTypeWrapper<Initiative_Threads_Mutation_Response>;
-  initiative_threads_obj_rel_insert_input: Initiative_Threads_Obj_Rel_Insert_Input;
-  initiative_threads_on_conflict: Initiative_Threads_On_Conflict;
-  initiative_threads_order_by: Initiative_Threads_Order_By;
-  initiative_threads_pk_columns_input: Initiative_Threads_Pk_Columns_Input;
-  initiative_threads_select_column: Initiative_Threads_Select_Column;
-  initiative_threads_set_input: Initiative_Threads_Set_Input;
-  initiative_threads_update_column: Initiative_Threads_Update_Column;
   initiative_visits: ResolverTypeWrapper<Initiative_Visits>;
   initiative_visits_aggregate: ResolverTypeWrapper<Initiative_Visits_Aggregate>;
   initiative_visits_aggregate_fields: ResolverTypeWrapper<Initiative_Visits_Aggregate_Fields>;
@@ -19352,6 +20002,26 @@ export type ResolversTypes = {
   org_tags_var_samp_order_by: Org_Tags_Var_Samp_Order_By;
   org_tags_variance_fields: ResolverTypeWrapper<Org_Tags_Variance_Fields>;
   org_tags_variance_order_by: Org_Tags_Variance_Order_By;
+  org_visits: ResolverTypeWrapper<Org_Visits>;
+  org_visits_aggregate: ResolverTypeWrapper<Org_Visits_Aggregate>;
+  org_visits_aggregate_fields: ResolverTypeWrapper<Org_Visits_Aggregate_Fields>;
+  org_visits_avg_fields: ResolverTypeWrapper<Org_Visits_Avg_Fields>;
+  org_visits_bool_exp: Org_Visits_Bool_Exp;
+  org_visits_inc_input: Org_Visits_Inc_Input;
+  org_visits_insert_input: Org_Visits_Insert_Input;
+  org_visits_max_fields: ResolverTypeWrapper<Org_Visits_Max_Fields>;
+  org_visits_min_fields: ResolverTypeWrapper<Org_Visits_Min_Fields>;
+  org_visits_mutation_response: ResolverTypeWrapper<Org_Visits_Mutation_Response>;
+  org_visits_order_by: Org_Visits_Order_By;
+  org_visits_select_column: Org_Visits_Select_Column;
+  org_visits_set_input: Org_Visits_Set_Input;
+  org_visits_stddev_fields: ResolverTypeWrapper<Org_Visits_Stddev_Fields>;
+  org_visits_stddev_pop_fields: ResolverTypeWrapper<Org_Visits_Stddev_Pop_Fields>;
+  org_visits_stddev_samp_fields: ResolverTypeWrapper<Org_Visits_Stddev_Samp_Fields>;
+  org_visits_sum_fields: ResolverTypeWrapper<Org_Visits_Sum_Fields>;
+  org_visits_var_pop_fields: ResolverTypeWrapper<Org_Visits_Var_Pop_Fields>;
+  org_visits_var_samp_fields: ResolverTypeWrapper<Org_Visits_Var_Samp_Fields>;
+  org_visits_variance_fields: ResolverTypeWrapper<Org_Visits_Variance_Fields>;
   orgs: ResolverTypeWrapper<Orgs>;
   orgs_aggregate: ResolverTypeWrapper<Orgs_Aggregate>;
   orgs_aggregate_fields: ResolverTypeWrapper<Orgs_Aggregate_Fields>;
@@ -19521,8 +20191,41 @@ export type ResolversTypes = {
   timestamp_comparison_exp: Timestamp_Comparison_Exp;
   timestamptz: ResolverTypeWrapper<Scalars['timestamptz']>;
   timestamptz_comparison_exp: Timestamptz_Comparison_Exp;
-  timetz: ResolverTypeWrapper<Scalars['timetz']>;
-  timetz_comparison_exp: Timetz_Comparison_Exp;
+  user_settings: ResolverTypeWrapper<User_Settings>;
+  user_settings_aggregate: ResolverTypeWrapper<User_Settings_Aggregate>;
+  user_settings_aggregate_fields: ResolverTypeWrapper<User_Settings_Aggregate_Fields>;
+  user_settings_bool_exp: User_Settings_Bool_Exp;
+  user_settings_constraint: User_Settings_Constraint;
+  user_settings_insert_input: User_Settings_Insert_Input;
+  user_settings_max_fields: ResolverTypeWrapper<User_Settings_Max_Fields>;
+  user_settings_min_fields: ResolverTypeWrapper<User_Settings_Min_Fields>;
+  user_settings_mutation_response: ResolverTypeWrapper<User_Settings_Mutation_Response>;
+  user_settings_obj_rel_insert_input: User_Settings_Obj_Rel_Insert_Input;
+  user_settings_on_conflict: User_Settings_On_Conflict;
+  user_settings_order_by: User_Settings_Order_By;
+  user_settings_pk_columns_input: User_Settings_Pk_Columns_Input;
+  user_settings_select_column: User_Settings_Select_Column;
+  user_settings_set_input: User_Settings_Set_Input;
+  user_settings_update_column: User_Settings_Update_Column;
+  user_subscriptions: ResolverTypeWrapper<User_Subscriptions>;
+  user_subscriptions_aggregate: ResolverTypeWrapper<User_Subscriptions_Aggregate>;
+  user_subscriptions_aggregate_fields: ResolverTypeWrapper<User_Subscriptions_Aggregate_Fields>;
+  user_subscriptions_aggregate_order_by: User_Subscriptions_Aggregate_Order_By;
+  user_subscriptions_arr_rel_insert_input: User_Subscriptions_Arr_Rel_Insert_Input;
+  user_subscriptions_bool_exp: User_Subscriptions_Bool_Exp;
+  user_subscriptions_constraint: User_Subscriptions_Constraint;
+  user_subscriptions_insert_input: User_Subscriptions_Insert_Input;
+  user_subscriptions_max_fields: ResolverTypeWrapper<User_Subscriptions_Max_Fields>;
+  user_subscriptions_max_order_by: User_Subscriptions_Max_Order_By;
+  user_subscriptions_min_fields: ResolverTypeWrapper<User_Subscriptions_Min_Fields>;
+  user_subscriptions_min_order_by: User_Subscriptions_Min_Order_By;
+  user_subscriptions_mutation_response: ResolverTypeWrapper<User_Subscriptions_Mutation_Response>;
+  user_subscriptions_on_conflict: User_Subscriptions_On_Conflict;
+  user_subscriptions_order_by: User_Subscriptions_Order_By;
+  user_subscriptions_pk_columns_input: User_Subscriptions_Pk_Columns_Input;
+  user_subscriptions_select_column: User_Subscriptions_Select_Column;
+  user_subscriptions_set_input: User_Subscriptions_Set_Input;
+  user_subscriptions_update_column: User_Subscriptions_Update_Column;
   users: ResolverTypeWrapper<Users>;
   users_aggregate: ResolverTypeWrapper<Users_Aggregate>;
   users_aggregate_fields: ResolverTypeWrapper<Users_Aggregate_Fields>;
@@ -19719,12 +20422,28 @@ export type ResolversParentTypes = {
   entry_visits_var_pop_fields: Entry_Visits_Var_Pop_Fields;
   entry_visits_var_samp_fields: Entry_Visits_Var_Samp_Fields;
   entry_visits_variance_fields: Entry_Visits_Variance_Fields;
+  file_types: File_Types;
+  file_types_aggregate: File_Types_Aggregate;
+  file_types_aggregate_fields: File_Types_Aggregate_Fields;
+  file_types_bool_exp: File_Types_Bool_Exp;
+  file_types_enum_comparison_exp: File_Types_Enum_Comparison_Exp;
+  file_types_insert_input: File_Types_Insert_Input;
+  file_types_max_fields: File_Types_Max_Fields;
+  file_types_min_fields: File_Types_Min_Fields;
+  file_types_mutation_response: File_Types_Mutation_Response;
+  file_types_on_conflict: File_Types_On_Conflict;
+  file_types_order_by: File_Types_Order_By;
+  file_types_pk_columns_input: File_Types_Pk_Columns_Input;
+  file_types_set_input: File_Types_Set_Input;
   files: Files;
   files_aggregate: Files_Aggregate;
   files_aggregate_fields: Files_Aggregate_Fields;
   files_aggregate_order_by: Files_Aggregate_Order_By;
   files_arr_rel_insert_input: Files_Arr_Rel_Insert_Input;
+  files_avg_fields: Files_Avg_Fields;
+  files_avg_order_by: Files_Avg_Order_By;
   files_bool_exp: Files_Bool_Exp;
+  files_inc_input: Files_Inc_Input;
   files_insert_input: Files_Insert_Input;
   files_max_fields: Files_Max_Fields;
   files_max_order_by: Files_Max_Order_By;
@@ -19735,6 +20454,20 @@ export type ResolversParentTypes = {
   files_order_by: Files_Order_By;
   files_pk_columns_input: Files_Pk_Columns_Input;
   files_set_input: Files_Set_Input;
+  files_stddev_fields: Files_Stddev_Fields;
+  files_stddev_order_by: Files_Stddev_Order_By;
+  files_stddev_pop_fields: Files_Stddev_Pop_Fields;
+  files_stddev_pop_order_by: Files_Stddev_Pop_Order_By;
+  files_stddev_samp_fields: Files_Stddev_Samp_Fields;
+  files_stddev_samp_order_by: Files_Stddev_Samp_Order_By;
+  files_sum_fields: Files_Sum_Fields;
+  files_sum_order_by: Files_Sum_Order_By;
+  files_var_pop_fields: Files_Var_Pop_Fields;
+  files_var_pop_order_by: Files_Var_Pop_Order_By;
+  files_var_samp_fields: Files_Var_Samp_Fields;
+  files_var_samp_order_by: Files_Var_Samp_Order_By;
+  files_variance_fields: Files_Variance_Fields;
+  files_variance_order_by: Files_Variance_Order_By;
   float8: Scalars['float8'];
   geography: Scalars['geography'];
   geography_cast_exp: Geography_Cast_Exp;
@@ -20222,22 +20955,6 @@ export type ResolversParentTypes = {
   initiative_projects_var_samp_order_by: Initiative_Projects_Var_Samp_Order_By;
   initiative_projects_variance_fields: Initiative_Projects_Variance_Fields;
   initiative_projects_variance_order_by: Initiative_Projects_Variance_Order_By;
-  initiative_subscriptions: Initiative_Subscriptions;
-  initiative_subscriptions_aggregate: Initiative_Subscriptions_Aggregate;
-  initiative_subscriptions_aggregate_fields: Initiative_Subscriptions_Aggregate_Fields;
-  initiative_subscriptions_aggregate_order_by: Initiative_Subscriptions_Aggregate_Order_By;
-  initiative_subscriptions_arr_rel_insert_input: Initiative_Subscriptions_Arr_Rel_Insert_Input;
-  initiative_subscriptions_bool_exp: Initiative_Subscriptions_Bool_Exp;
-  initiative_subscriptions_insert_input: Initiative_Subscriptions_Insert_Input;
-  initiative_subscriptions_max_fields: Initiative_Subscriptions_Max_Fields;
-  initiative_subscriptions_max_order_by: Initiative_Subscriptions_Max_Order_By;
-  initiative_subscriptions_min_fields: Initiative_Subscriptions_Min_Fields;
-  initiative_subscriptions_min_order_by: Initiative_Subscriptions_Min_Order_By;
-  initiative_subscriptions_mutation_response: Initiative_Subscriptions_Mutation_Response;
-  initiative_subscriptions_on_conflict: Initiative_Subscriptions_On_Conflict;
-  initiative_subscriptions_order_by: Initiative_Subscriptions_Order_By;
-  initiative_subscriptions_pk_columns_input: Initiative_Subscriptions_Pk_Columns_Input;
-  initiative_subscriptions_set_input: Initiative_Subscriptions_Set_Input;
   initiative_tags: Initiative_Tags;
   initiative_tags_aggregate: Initiative_Tags_Aggregate;
   initiative_tags_aggregate_fields: Initiative_Tags_Aggregate_Fields;
@@ -20305,19 +21022,6 @@ export type ResolversParentTypes = {
   initiative_tasks_var_samp_order_by: Initiative_Tasks_Var_Samp_Order_By;
   initiative_tasks_variance_fields: Initiative_Tasks_Variance_Fields;
   initiative_tasks_variance_order_by: Initiative_Tasks_Variance_Order_By;
-  initiative_threads: Initiative_Threads;
-  initiative_threads_aggregate: Initiative_Threads_Aggregate;
-  initiative_threads_aggregate_fields: Initiative_Threads_Aggregate_Fields;
-  initiative_threads_bool_exp: Initiative_Threads_Bool_Exp;
-  initiative_threads_insert_input: Initiative_Threads_Insert_Input;
-  initiative_threads_max_fields: Initiative_Threads_Max_Fields;
-  initiative_threads_min_fields: Initiative_Threads_Min_Fields;
-  initiative_threads_mutation_response: Initiative_Threads_Mutation_Response;
-  initiative_threads_obj_rel_insert_input: Initiative_Threads_Obj_Rel_Insert_Input;
-  initiative_threads_on_conflict: Initiative_Threads_On_Conflict;
-  initiative_threads_order_by: Initiative_Threads_Order_By;
-  initiative_threads_pk_columns_input: Initiative_Threads_Pk_Columns_Input;
-  initiative_threads_set_input: Initiative_Threads_Set_Input;
   initiative_visits: Initiative_Visits;
   initiative_visits_aggregate: Initiative_Visits_Aggregate;
   initiative_visits_aggregate_fields: Initiative_Visits_Aggregate_Fields;
@@ -20535,6 +21239,25 @@ export type ResolversParentTypes = {
   org_tags_var_samp_order_by: Org_Tags_Var_Samp_Order_By;
   org_tags_variance_fields: Org_Tags_Variance_Fields;
   org_tags_variance_order_by: Org_Tags_Variance_Order_By;
+  org_visits: Org_Visits;
+  org_visits_aggregate: Org_Visits_Aggregate;
+  org_visits_aggregate_fields: Org_Visits_Aggregate_Fields;
+  org_visits_avg_fields: Org_Visits_Avg_Fields;
+  org_visits_bool_exp: Org_Visits_Bool_Exp;
+  org_visits_inc_input: Org_Visits_Inc_Input;
+  org_visits_insert_input: Org_Visits_Insert_Input;
+  org_visits_max_fields: Org_Visits_Max_Fields;
+  org_visits_min_fields: Org_Visits_Min_Fields;
+  org_visits_mutation_response: Org_Visits_Mutation_Response;
+  org_visits_order_by: Org_Visits_Order_By;
+  org_visits_set_input: Org_Visits_Set_Input;
+  org_visits_stddev_fields: Org_Visits_Stddev_Fields;
+  org_visits_stddev_pop_fields: Org_Visits_Stddev_Pop_Fields;
+  org_visits_stddev_samp_fields: Org_Visits_Stddev_Samp_Fields;
+  org_visits_sum_fields: Org_Visits_Sum_Fields;
+  org_visits_var_pop_fields: Org_Visits_Var_Pop_Fields;
+  org_visits_var_samp_fields: Org_Visits_Var_Samp_Fields;
+  org_visits_variance_fields: Org_Visits_Variance_Fields;
   orgs: Orgs;
   orgs_aggregate: Orgs_Aggregate;
   orgs_aggregate_fields: Orgs_Aggregate_Fields;
@@ -20679,8 +21402,35 @@ export type ResolversParentTypes = {
   timestamp_comparison_exp: Timestamp_Comparison_Exp;
   timestamptz: Scalars['timestamptz'];
   timestamptz_comparison_exp: Timestamptz_Comparison_Exp;
-  timetz: Scalars['timetz'];
-  timetz_comparison_exp: Timetz_Comparison_Exp;
+  user_settings: User_Settings;
+  user_settings_aggregate: User_Settings_Aggregate;
+  user_settings_aggregate_fields: User_Settings_Aggregate_Fields;
+  user_settings_bool_exp: User_Settings_Bool_Exp;
+  user_settings_insert_input: User_Settings_Insert_Input;
+  user_settings_max_fields: User_Settings_Max_Fields;
+  user_settings_min_fields: User_Settings_Min_Fields;
+  user_settings_mutation_response: User_Settings_Mutation_Response;
+  user_settings_obj_rel_insert_input: User_Settings_Obj_Rel_Insert_Input;
+  user_settings_on_conflict: User_Settings_On_Conflict;
+  user_settings_order_by: User_Settings_Order_By;
+  user_settings_pk_columns_input: User_Settings_Pk_Columns_Input;
+  user_settings_set_input: User_Settings_Set_Input;
+  user_subscriptions: User_Subscriptions;
+  user_subscriptions_aggregate: User_Subscriptions_Aggregate;
+  user_subscriptions_aggregate_fields: User_Subscriptions_Aggregate_Fields;
+  user_subscriptions_aggregate_order_by: User_Subscriptions_Aggregate_Order_By;
+  user_subscriptions_arr_rel_insert_input: User_Subscriptions_Arr_Rel_Insert_Input;
+  user_subscriptions_bool_exp: User_Subscriptions_Bool_Exp;
+  user_subscriptions_insert_input: User_Subscriptions_Insert_Input;
+  user_subscriptions_max_fields: User_Subscriptions_Max_Fields;
+  user_subscriptions_max_order_by: User_Subscriptions_Max_Order_By;
+  user_subscriptions_min_fields: User_Subscriptions_Min_Fields;
+  user_subscriptions_min_order_by: User_Subscriptions_Min_Order_By;
+  user_subscriptions_mutation_response: User_Subscriptions_Mutation_Response;
+  user_subscriptions_on_conflict: User_Subscriptions_On_Conflict;
+  user_subscriptions_order_by: User_Subscriptions_Order_By;
+  user_subscriptions_pk_columns_input: User_Subscriptions_Pk_Columns_Input;
+  user_subscriptions_set_input: User_Subscriptions_Set_Input;
   users: Users;
   users_aggregate: Users_Aggregate;
   users_aggregate_fields: Users_Aggregate_Fields;
@@ -21370,13 +22120,49 @@ export type Entry_Visits_Variance_FieldsResolvers<ContextType = any, ParentType 
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type File_TypesResolvers<ContextType = any, ParentType extends ResolversParentTypes['file_types'] = ResolversParentTypes['file_types']> = {
+  type?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type File_Types_AggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['file_types_aggregate'] = ResolversParentTypes['file_types_aggregate']> = {
+  aggregate?: Resolver<Maybe<ResolversTypes['file_types_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['file_types']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type File_Types_Aggregate_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['file_types_aggregate_fields'] = ResolversParentTypes['file_types_aggregate_fields']> = {
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType, RequireFields<File_Types_Aggregate_FieldsCountArgs, never>>;
+  max?: Resolver<Maybe<ResolversTypes['file_types_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<ResolversTypes['file_types_min_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type File_Types_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['file_types_max_fields'] = ResolversParentTypes['file_types_max_fields']> = {
+  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type File_Types_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['file_types_min_fields'] = ResolversParentTypes['file_types_min_fields']> = {
+  type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type File_Types_Mutation_ResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['file_types_mutation_response'] = ResolversParentTypes['file_types_mutation_response']> = {
+  affected_rows?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<ResolversTypes['file_types']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type FilesResolvers<ContextType = any, ParentType extends ResolversParentTypes['files'] = ResolversParentTypes['files']> = {
-  created_at?: Resolver<Maybe<ResolversTypes['timetz']>, ParentType, ContextType>;
+  created_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
   downloadable_url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   file_path?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
   initiative?: Resolver<Maybe<ResolversTypes['initiatives']>, ParentType, ContextType>;
   initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
+  type?: Resolver<ResolversTypes['file_types_enum'], ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -21389,28 +22175,43 @@ export type Files_AggregateResolvers<ContextType = any, ParentType extends Resol
 };
 
 export type Files_Aggregate_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_aggregate_fields'] = ResolversParentTypes['files_aggregate_fields']> = {
+  avg?: Resolver<Maybe<ResolversTypes['files_avg_fields']>, ParentType, ContextType>;
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType, RequireFields<Files_Aggregate_FieldsCountArgs, never>>;
   max?: Resolver<Maybe<ResolversTypes['files_max_fields']>, ParentType, ContextType>;
   min?: Resolver<Maybe<ResolversTypes['files_min_fields']>, ParentType, ContextType>;
+  stddev?: Resolver<Maybe<ResolversTypes['files_stddev_fields']>, ParentType, ContextType>;
+  stddev_pop?: Resolver<Maybe<ResolversTypes['files_stddev_pop_fields']>, ParentType, ContextType>;
+  stddev_samp?: Resolver<Maybe<ResolversTypes['files_stddev_samp_fields']>, ParentType, ContextType>;
+  sum?: Resolver<Maybe<ResolversTypes['files_sum_fields']>, ParentType, ContextType>;
+  var_pop?: Resolver<Maybe<ResolversTypes['files_var_pop_fields']>, ParentType, ContextType>;
+  var_samp?: Resolver<Maybe<ResolversTypes['files_var_samp_fields']>, ParentType, ContextType>;
+  variance?: Resolver<Maybe<ResolversTypes['files_variance_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Files_Avg_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_avg_fields'] = ResolversParentTypes['files_avg_fields']> = {
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Files_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_max_fields'] = ResolversParentTypes['files_max_fields']> = {
-  created_at?: Resolver<Maybe<ResolversTypes['timetz']>, ParentType, ContextType>;
+  created_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
   downloadable_url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   file_path?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Files_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_min_fields'] = ResolversParentTypes['files_min_fields']> = {
-  created_at?: Resolver<Maybe<ResolversTypes['timetz']>, ParentType, ContextType>;
+  created_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
   downloadable_url?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   file_path?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -21418,6 +22219,41 @@ export type Files_Min_FieldsResolvers<ContextType = any, ParentType extends Reso
 export type Files_Mutation_ResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_mutation_response'] = ResolversParentTypes['files_mutation_response']> = {
   affected_rows?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   returning?: Resolver<Array<ResolversTypes['files']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Files_Stddev_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_stddev_fields'] = ResolversParentTypes['files_stddev_fields']> = {
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Files_Stddev_Pop_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_stddev_pop_fields'] = ResolversParentTypes['files_stddev_pop_fields']> = {
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Files_Stddev_Samp_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_stddev_samp_fields'] = ResolversParentTypes['files_stddev_samp_fields']> = {
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Files_Sum_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_sum_fields'] = ResolversParentTypes['files_sum_fields']> = {
+  post_id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Files_Var_Pop_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_var_pop_fields'] = ResolversParentTypes['files_var_pop_fields']> = {
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Files_Var_Samp_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_var_samp_fields'] = ResolversParentTypes['files_var_samp_fields']> = {
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Files_Variance_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['files_variance_fields'] = ResolversParentTypes['files_variance_fields']> = {
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -21765,8 +22601,10 @@ export type I18n_Variance_FieldsResolvers<ContextType = any, ParentType extends 
 
 export type Initiative_Comment_ReactionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions'] = ResolversParentTypes['initiative_comment_reactions']> = {
   comment?: Resolver<Maybe<ResolversTypes['initiative_comments']>, ParentType, ContextType>;
-  comment_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  comment_id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['bigint'], ParentType, ContextType>;
+  initiative_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
+  post_id?: Resolver<ResolversTypes['bigint'], ParentType, ContextType>;
   type?: Resolver<Maybe<ResolversTypes['reactions_enum']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
@@ -21797,12 +22635,15 @@ export type Initiative_Comment_Reactions_Aggregate_FieldsResolvers<ContextType =
 export type Initiative_Comment_Reactions_Avg_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions_avg_fields'] = ResolversParentTypes['initiative_comment_reactions_avg_fields']> = {
   comment_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Initiative_Comment_Reactions_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions_max_fields'] = ResolversParentTypes['initiative_comment_reactions_max_fields']> = {
   comment_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
+  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -21810,6 +22651,8 @@ export type Initiative_Comment_Reactions_Max_FieldsResolvers<ContextType = any, 
 export type Initiative_Comment_Reactions_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions_min_fields'] = ResolversParentTypes['initiative_comment_reactions_min_fields']> = {
   comment_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
+  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -21823,57 +22666,64 @@ export type Initiative_Comment_Reactions_Mutation_ResponseResolvers<ContextType 
 export type Initiative_Comment_Reactions_Stddev_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions_stddev_fields'] = ResolversParentTypes['initiative_comment_reactions_stddev_fields']> = {
   comment_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Initiative_Comment_Reactions_Stddev_Pop_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions_stddev_pop_fields'] = ResolversParentTypes['initiative_comment_reactions_stddev_pop_fields']> = {
   comment_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Initiative_Comment_Reactions_Stddev_Samp_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions_stddev_samp_fields'] = ResolversParentTypes['initiative_comment_reactions_stddev_samp_fields']> = {
   comment_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Initiative_Comment_Reactions_Sum_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions_sum_fields'] = ResolversParentTypes['initiative_comment_reactions_sum_fields']> = {
   comment_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Initiative_Comment_Reactions_Var_Pop_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions_var_pop_fields'] = ResolversParentTypes['initiative_comment_reactions_var_pop_fields']> = {
   comment_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Initiative_Comment_Reactions_Var_Samp_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions_var_samp_fields'] = ResolversParentTypes['initiative_comment_reactions_var_samp_fields']> = {
   comment_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Initiative_Comment_Reactions_Variance_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comment_reactions_variance_fields'] = ResolversParentTypes['initiative_comment_reactions_variance_fields']> = {
   comment_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Initiative_CommentsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comments'] = ResolversParentTypes['initiative_comments']> = {
   created_at?: Resolver<ResolversTypes['timestamptz'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  initiative_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
   message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  modified_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
   post?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType>;
-  post_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  post_id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   reactions?: Resolver<Array<ResolversTypes['initiative_comment_reactions']>, ParentType, ContextType, RequireFields<Initiative_CommentsReactionsArgs, never>>;
   reactions_aggregate?: Resolver<ResolversTypes['initiative_comment_reactions_aggregate'], ParentType, ContextType, RequireFields<Initiative_CommentsReactions_AggregateArgs, never>>;
   user?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType>;
-  user_avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  user_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -21907,22 +22757,22 @@ export type Initiative_Comments_Avg_FieldsResolvers<ContextType = any, ParentTyp
 export type Initiative_Comments_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comments_max_fields'] = ResolversParentTypes['initiative_comments_max_fields']> = {
   created_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  modified_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
   post_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  user_avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  user_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Initiative_Comments_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_comments_min_fields'] = ResolversParentTypes['initiative_comments_min_fields']> = {
   created_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  modified_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
   post_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  user_avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  user_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -21984,9 +22834,7 @@ export type Initiative_DonationsResolvers<ContextType = any, ParentType extends 
   recurrent?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   status?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType>;
-  user_avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  user_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -22024,9 +22872,7 @@ export type Initiative_Donations_Max_FieldsResolvers<ContextType = any, ParentTy
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   status?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  user_avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  user_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -22037,9 +22883,7 @@ export type Initiative_Donations_Min_FieldsResolvers<ContextType = any, ParentTy
   id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   status?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  user_avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  user_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -22094,13 +22938,13 @@ export type Initiative_Donations_Variance_FieldsResolvers<ContextType = any, Par
 export type Initiative_EditsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_edits'] = ResolversParentTypes['initiative_edits']> = {
   description?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  info?: Resolver<ResolversTypes['initiative_info'], ParentType, ContextType>;
+  info?: Resolver<Maybe<ResolversTypes['initiative_info']>, ParentType, ContextType>;
   info_id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   initiative?: Resolver<ResolversTypes['initiatives'], ParentType, ContextType>;
   initiative_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
   poll?: Resolver<Maybe<ResolversTypes['initiative_polls']>, ParentType, ContextType>;
   poll_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  post?: Resolver<ResolversTypes['initiative_posts'], ParentType, ContextType>;
+  post?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType>;
   post_id?: Resolver<ResolversTypes['bigint'], ParentType, ContextType>;
   status?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType>;
@@ -22234,7 +23078,7 @@ export type Initiative_ExpensesResolvers<ContextType = any, ParentType extends R
   link_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   poll?: Resolver<Maybe<ResolversTypes['initiative_polls']>, ParentType, ContextType>;
   poll_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
-  post?: Resolver<ResolversTypes['initiative_posts'], ParentType, ContextType>;
+  post?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType>;
   post_id?: Resolver<ResolversTypes['bigint'], ParentType, ContextType>;
   status?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType>;
@@ -22576,7 +23420,8 @@ export type Initiative_Members_Variance_FieldsResolvers<ContextType = any, Paren
 
 export type Initiative_Poll_VotesResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_poll_votes'] = ResolversParentTypes['initiative_poll_votes']> = {
   id?: Resolver<ResolversTypes['bigint'], ParentType, ContextType>;
-  poll?: Resolver<ResolversTypes['initiative_polls'], ParentType, ContextType>;
+  initiative_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
+  poll?: Resolver<Maybe<ResolversTypes['initiative_polls']>, ParentType, ContextType>;
   poll_id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   user?: Resolver<ResolversTypes['users'], ParentType, ContextType>;
   user_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
@@ -22613,6 +23458,7 @@ export type Initiative_Poll_Votes_Avg_FieldsResolvers<ContextType = any, ParentT
 
 export type Initiative_Poll_Votes_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_poll_votes_max_fields'] = ResolversParentTypes['initiative_poll_votes_max_fields']> = {
   id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
+  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   poll_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   value?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -22621,6 +23467,7 @@ export type Initiative_Poll_Votes_Max_FieldsResolvers<ContextType = any, ParentT
 
 export type Initiative_Poll_Votes_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_poll_votes_min_fields'] = ResolversParentTypes['initiative_poll_votes_min_fields']> = {
   id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
+  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   poll_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   value?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -22774,8 +23621,9 @@ export type Initiative_Polls_Variance_FieldsResolvers<ContextType = any, ParentT
 
 export type Initiative_Post_ReactionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_post_reactions'] = ResolversParentTypes['initiative_post_reactions']> = {
   id?: Resolver<ResolversTypes['bigint'], ParentType, ContextType>;
+  initiative_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
   post?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType>;
-  post_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  post_id?: Resolver<ResolversTypes['bigint'], ParentType, ContextType>;
   type?: Resolver<Maybe<ResolversTypes['reactions_enum']>, ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
@@ -22811,14 +23659,16 @@ export type Initiative_Post_Reactions_Avg_FieldsResolvers<ContextType = any, Par
 
 export type Initiative_Post_Reactions_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_post_reactions_max_fields'] = ResolversParentTypes['initiative_post_reactions_max_fields']> = {
   id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
-  post_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Initiative_Post_Reactions_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_post_reactions_min_fields'] = ResolversParentTypes['initiative_post_reactions_min_fields']> = {
   id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
-  post_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -22849,7 +23699,7 @@ export type Initiative_Post_Reactions_Stddev_Samp_FieldsResolvers<ContextType = 
 
 export type Initiative_Post_Reactions_Sum_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_post_reactions_sum_fields'] = ResolversParentTypes['initiative_post_reactions_sum_fields']> = {
   id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
-  post_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  post_id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -22879,6 +23729,8 @@ export type Initiative_PostsResolvers<ContextType = any, ParentType extends Reso
   edits_aggregate?: Resolver<ResolversTypes['initiative_edits_aggregate'], ParentType, ContextType, RequireFields<Initiative_PostsEdits_AggregateArgs, never>>;
   expenses?: Resolver<Array<ResolversTypes['initiative_expenses']>, ParentType, ContextType, RequireFields<Initiative_PostsExpensesArgs, never>>;
   expenses_aggregate?: Resolver<ResolversTypes['initiative_expenses_aggregate'], ParentType, ContextType, RequireFields<Initiative_PostsExpenses_AggregateArgs, never>>;
+  files?: Resolver<Array<ResolversTypes['files']>, ParentType, ContextType, RequireFields<Initiative_PostsFilesArgs, never>>;
+  files_aggregate?: Resolver<ResolversTypes['files_aggregate'], ParentType, ContextType, RequireFields<Initiative_PostsFiles_AggregateArgs, never>>;
   id?: Resolver<ResolversTypes['bigint'], ParentType, ContextType>;
   initiative?: Resolver<ResolversTypes['initiatives'], ParentType, ContextType>;
   initiative_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
@@ -22888,13 +23740,9 @@ export type Initiative_PostsResolvers<ContextType = any, ParentType extends Reso
   projects_aggregate?: Resolver<ResolversTypes['initiative_projects_aggregate'], ParentType, ContextType, RequireFields<Initiative_PostsProjects_AggregateArgs, never>>;
   reactions?: Resolver<Array<ResolversTypes['initiative_post_reactions']>, ParentType, ContextType, RequireFields<Initiative_PostsReactionsArgs, never>>;
   reactions_aggregate?: Resolver<ResolversTypes['initiative_post_reactions_aggregate'], ParentType, ContextType, RequireFields<Initiative_PostsReactions_AggregateArgs, never>>;
-  thread?: Resolver<Maybe<ResolversTypes['initiative_threads']>, ParentType, ContextType>;
-  thread_id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['post_types_enum'], ParentType, ContextType>;
   user?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType>;
-  user_avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  user_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -22930,10 +23778,7 @@ export type Initiative_Posts_Max_FieldsResolvers<ContextType = any, ParentType e
   initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   modified_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
-  thread_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  user_avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  user_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -22943,10 +23788,7 @@ export type Initiative_Posts_Min_FieldsResolvers<ContextType = any, ParentType e
   initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   modified_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
-  thread_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  user_avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  user_name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23000,6 +23842,7 @@ export type Initiative_ProjectsResolvers<ContextType = any, ParentType extends R
   org?: Resolver<Maybe<ResolversTypes['orgs']>, ParentType, ContextType>;
   org_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
   org_project?: Resolver<Maybe<ResolversTypes['org_projects']>, ParentType, ContextType>;
+  post?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType>;
   post_id?: Resolver<ResolversTypes['bigint'], ParentType, ContextType>;
   reference_project_id?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   status?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -23148,56 +23991,10 @@ export type Initiative_Projects_Variance_FieldsResolvers<ContextType = any, Pare
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type Initiative_SubscriptionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_subscriptions'] = ResolversParentTypes['initiative_subscriptions']> = {
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  platform?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  service?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  subscription?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  user_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_Subscriptions_AggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_subscriptions_aggregate'] = ResolversParentTypes['initiative_subscriptions_aggregate']> = {
-  aggregate?: Resolver<Maybe<ResolversTypes['initiative_subscriptions_aggregate_fields']>, ParentType, ContextType>;
-  nodes?: Resolver<Array<ResolversTypes['initiative_subscriptions']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_Subscriptions_Aggregate_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_subscriptions_aggregate_fields'] = ResolversParentTypes['initiative_subscriptions_aggregate_fields']> = {
-  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType, RequireFields<Initiative_Subscriptions_Aggregate_FieldsCountArgs, never>>;
-  max?: Resolver<Maybe<ResolversTypes['initiative_subscriptions_max_fields']>, ParentType, ContextType>;
-  min?: Resolver<Maybe<ResolversTypes['initiative_subscriptions_min_fields']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_Subscriptions_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_subscriptions_max_fields'] = ResolversParentTypes['initiative_subscriptions_max_fields']> = {
-  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  platform?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  service?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  subscription?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_Subscriptions_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_subscriptions_min_fields'] = ResolversParentTypes['initiative_subscriptions_min_fields']> = {
-  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  platform?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  service?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  subscription?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_Subscriptions_Mutation_ResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_subscriptions_mutation_response'] = ResolversParentTypes['initiative_subscriptions_mutation_response']> = {
-  affected_rows?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  returning?: Resolver<Array<ResolversTypes['initiative_subscriptions']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
 export type Initiative_TagsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_tags'] = ResolversParentTypes['initiative_tags']> = {
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  initiative?: Resolver<Maybe<ResolversTypes['initiatives']>, ParentType, ContextType>;
-  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  initiative?: Resolver<ResolversTypes['initiatives'], ParentType, ContextType>;
+  initiative_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
   tag?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   tags?: Resolver<Maybe<ResolversTypes['tags']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -23403,49 +24200,6 @@ export type Initiative_Tasks_Variance_FieldsResolvers<ContextType = any, ParentT
   id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   poll_id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
   volunteers_needed?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_ThreadsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_threads'] = ResolversParentTypes['initiative_threads']> = {
-  created_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
-  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  initiative?: Resolver<Maybe<ResolversTypes['initiatives']>, ParentType, ContextType>;
-  initiative_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
-  posts?: Resolver<Array<ResolversTypes['initiative_posts']>, ParentType, ContextType, RequireFields<Initiative_ThreadsPostsArgs, never>>;
-  posts_aggregate?: Resolver<ResolversTypes['initiative_posts_aggregate'], ParentType, ContextType, RequireFields<Initiative_ThreadsPosts_AggregateArgs, never>>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_Threads_AggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_threads_aggregate'] = ResolversParentTypes['initiative_threads_aggregate']> = {
-  aggregate?: Resolver<Maybe<ResolversTypes['initiative_threads_aggregate_fields']>, ParentType, ContextType>;
-  nodes?: Resolver<Array<ResolversTypes['initiative_threads']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_Threads_Aggregate_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_threads_aggregate_fields'] = ResolversParentTypes['initiative_threads_aggregate_fields']> = {
-  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType, RequireFields<Initiative_Threads_Aggregate_FieldsCountArgs, never>>;
-  max?: Resolver<Maybe<ResolversTypes['initiative_threads_max_fields']>, ParentType, ContextType>;
-  min?: Resolver<Maybe<ResolversTypes['initiative_threads_min_fields']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_Threads_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_threads_max_fields'] = ResolversParentTypes['initiative_threads_max_fields']> = {
-  created_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
-  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_Threads_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_threads_min_fields'] = ResolversParentTypes['initiative_threads_min_fields']> = {
-  created_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
-  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  initiative_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
-
-export type Initiative_Threads_Mutation_ResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['initiative_threads_mutation_response'] = ResolversParentTypes['initiative_threads_mutation_response']> = {
-  affected_rows?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  returning?: Resolver<Array<ResolversTypes['initiative_threads']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -23940,6 +24694,8 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   delete_auth_refresh_tokens_by_pk?: Resolver<Maybe<ResolversTypes['auth_refresh_tokens']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Auth_Refresh_Tokens_By_PkArgs, 'refresh_token'>>;
   delete_auth_roles?: Resolver<Maybe<ResolversTypes['auth_roles_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Auth_RolesArgs, 'where'>>;
   delete_auth_roles_by_pk?: Resolver<Maybe<ResolversTypes['auth_roles']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Auth_Roles_By_PkArgs, 'role'>>;
+  delete_file_types?: Resolver<Maybe<ResolversTypes['file_types_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_File_TypesArgs, 'where'>>;
+  delete_file_types_by_pk?: Resolver<Maybe<ResolversTypes['file_types']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_File_Types_By_PkArgs, 'type'>>;
   delete_files?: Resolver<Maybe<ResolversTypes['files_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_FilesArgs, 'where'>>;
   delete_files_by_pk?: Resolver<Maybe<ResolversTypes['files']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Files_By_PkArgs, 'id'>>;
   delete_geometry_columns?: Resolver<Maybe<ResolversTypes['geometry_columns_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Geometry_ColumnsArgs, 'where'>>;
@@ -23948,41 +24704,37 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   delete_i18n_categories?: Resolver<Maybe<ResolversTypes['i18n_categories_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_I18n_CategoriesArgs, 'where'>>;
   delete_i18n_categories_by_pk?: Resolver<Maybe<ResolversTypes['i18n_categories']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_I18n_Categories_By_PkArgs, 'category'>>;
   delete_initiative_comment_reactions?: Resolver<Maybe<ResolversTypes['initiative_comment_reactions_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Comment_ReactionsArgs, 'where'>>;
-  delete_initiative_comment_reactions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_comment_reactions']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Comment_Reactions_By_PkArgs, 'id'>>;
+  delete_initiative_comment_reactions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_comment_reactions']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Comment_Reactions_By_PkArgs, 'comment_id' | 'id' | 'initiative_id' | 'post_id'>>;
   delete_initiative_comments?: Resolver<Maybe<ResolversTypes['initiative_comments_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_CommentsArgs, 'where'>>;
-  delete_initiative_comments_by_pk?: Resolver<Maybe<ResolversTypes['initiative_comments']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Comments_By_PkArgs, 'id'>>;
+  delete_initiative_comments_by_pk?: Resolver<Maybe<ResolversTypes['initiative_comments']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Comments_By_PkArgs, 'id' | 'initiative_id' | 'post_id'>>;
   delete_initiative_donations?: Resolver<Maybe<ResolversTypes['initiative_donations_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_DonationsArgs, 'where'>>;
-  delete_initiative_donations_by_pk?: Resolver<Maybe<ResolversTypes['initiative_donations']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Donations_By_PkArgs, 'id'>>;
+  delete_initiative_donations_by_pk?: Resolver<Maybe<ResolversTypes['initiative_donations']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Donations_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_edits?: Resolver<Maybe<ResolversTypes['initiative_edits_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_EditsArgs, 'where'>>;
-  delete_initiative_edits_by_pk?: Resolver<Maybe<ResolversTypes['initiative_edits']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Edits_By_PkArgs, 'id'>>;
+  delete_initiative_edits_by_pk?: Resolver<Maybe<ResolversTypes['initiative_edits']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Edits_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_expenses?: Resolver<Maybe<ResolversTypes['initiative_expenses_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_ExpensesArgs, 'where'>>;
-  delete_initiative_expenses_by_pk?: Resolver<Maybe<ResolversTypes['initiative_expenses']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Expenses_By_PkArgs, 'id'>>;
+  delete_initiative_expenses_by_pk?: Resolver<Maybe<ResolversTypes['initiative_expenses']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Expenses_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_info?: Resolver<Maybe<ResolversTypes['initiative_info_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_InfoArgs, 'where'>>;
-  delete_initiative_info_by_pk?: Resolver<Maybe<ResolversTypes['initiative_info']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Info_By_PkArgs, 'id'>>;
+  delete_initiative_info_by_pk?: Resolver<Maybe<ResolversTypes['initiative_info']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Info_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_members?: Resolver<Maybe<ResolversTypes['initiative_members_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_MembersArgs, 'where'>>;
-  delete_initiative_members_by_pk?: Resolver<Maybe<ResolversTypes['initiative_members']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Members_By_PkArgs, 'id'>>;
+  delete_initiative_members_by_pk?: Resolver<Maybe<ResolversTypes['initiative_members']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Members_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_poll_votes?: Resolver<Maybe<ResolversTypes['initiative_poll_votes_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Poll_VotesArgs, 'where'>>;
-  delete_initiative_poll_votes_by_pk?: Resolver<Maybe<ResolversTypes['initiative_poll_votes']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Poll_Votes_By_PkArgs, 'id'>>;
+  delete_initiative_poll_votes_by_pk?: Resolver<Maybe<ResolversTypes['initiative_poll_votes']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Poll_Votes_By_PkArgs, 'id' | 'initiative_id' | 'poll_id'>>;
   delete_initiative_polls?: Resolver<Maybe<ResolversTypes['initiative_polls_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_PollsArgs, 'where'>>;
-  delete_initiative_polls_by_pk?: Resolver<Maybe<ResolversTypes['initiative_polls']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Polls_By_PkArgs, 'id'>>;
+  delete_initiative_polls_by_pk?: Resolver<Maybe<ResolversTypes['initiative_polls']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Polls_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_post_reactions?: Resolver<Maybe<ResolversTypes['initiative_post_reactions_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Post_ReactionsArgs, 'where'>>;
-  delete_initiative_post_reactions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_post_reactions']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Post_Reactions_By_PkArgs, 'id'>>;
+  delete_initiative_post_reactions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_post_reactions']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Post_Reactions_By_PkArgs, 'id' | 'initiative_id' | 'post_id'>>;
   delete_initiative_posts?: Resolver<Maybe<ResolversTypes['initiative_posts_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_PostsArgs, 'where'>>;
-  delete_initiative_posts_by_pk?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Posts_By_PkArgs, 'id'>>;
+  delete_initiative_posts_by_pk?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Posts_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_projects?: Resolver<Maybe<ResolversTypes['initiative_projects_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_ProjectsArgs, 'where'>>;
-  delete_initiative_projects_by_pk?: Resolver<Maybe<ResolversTypes['initiative_projects']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Projects_By_PkArgs, 'id'>>;
-  delete_initiative_subscriptions?: Resolver<Maybe<ResolversTypes['initiative_subscriptions_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_SubscriptionsArgs, 'where'>>;
-  delete_initiative_subscriptions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_subscriptions']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Subscriptions_By_PkArgs, 'id'>>;
+  delete_initiative_projects_by_pk?: Resolver<Maybe<ResolversTypes['initiative_projects']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Projects_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_tags?: Resolver<Maybe<ResolversTypes['initiative_tags_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_TagsArgs, 'where'>>;
-  delete_initiative_tags_by_pk?: Resolver<Maybe<ResolversTypes['initiative_tags']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Tags_By_PkArgs, 'id'>>;
+  delete_initiative_tags_by_pk?: Resolver<Maybe<ResolversTypes['initiative_tags']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Tags_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_tasks?: Resolver<Maybe<ResolversTypes['initiative_tasks_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_TasksArgs, 'where'>>;
   delete_initiative_tasks_by_pk?: Resolver<Maybe<ResolversTypes['initiative_tasks']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Tasks_By_PkArgs, 'id' | 'initiative_id'>>;
-  delete_initiative_threads?: Resolver<Maybe<ResolversTypes['initiative_threads_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_ThreadsArgs, 'where'>>;
-  delete_initiative_threads_by_pk?: Resolver<Maybe<ResolversTypes['initiative_threads']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Threads_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_visits?: Resolver<Maybe<ResolversTypes['initiative_visits_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_VisitsArgs, 'where'>>;
-  delete_initiative_visits_by_pk?: Resolver<Maybe<ResolversTypes['initiative_visits']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Visits_By_PkArgs, 'id'>>;
+  delete_initiative_visits_by_pk?: Resolver<Maybe<ResolversTypes['initiative_visits']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Visits_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiative_volunteers?: Resolver<Maybe<ResolversTypes['initiative_volunteers_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_VolunteersArgs, 'where'>>;
-  delete_initiative_volunteers_by_pk?: Resolver<Maybe<ResolversTypes['initiative_volunteers']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Volunteers_By_PkArgs, 'id'>>;
+  delete_initiative_volunteers_by_pk?: Resolver<Maybe<ResolversTypes['initiative_volunteers']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiative_Volunteers_By_PkArgs, 'id' | 'initiative_id'>>;
   delete_initiatives?: Resolver<Maybe<ResolversTypes['initiatives_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_InitiativesArgs, 'where'>>;
   delete_initiatives_by_pk?: Resolver<Maybe<ResolversTypes['initiatives']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Initiatives_By_PkArgs, 'id'>>;
   delete_org_members?: Resolver<Maybe<ResolversTypes['org_members_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Org_MembersArgs, 'where'>>;
@@ -23991,6 +24743,7 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   delete_org_projects_by_pk?: Resolver<Maybe<ResolversTypes['org_projects']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Org_Projects_By_PkArgs, 'id'>>;
   delete_org_tags?: Resolver<Maybe<ResolversTypes['org_tags_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Org_TagsArgs, 'where'>>;
   delete_org_tags_by_pk?: Resolver<Maybe<ResolversTypes['org_tags']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Org_Tags_By_PkArgs, 'id'>>;
+  delete_org_visits?: Resolver<Maybe<ResolversTypes['org_visits_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Org_VisitsArgs, 'where'>>;
   delete_orgs?: Resolver<Maybe<ResolversTypes['orgs_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_OrgsArgs, 'where'>>;
   delete_orgs_by_pk?: Resolver<Maybe<ResolversTypes['orgs']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Orgs_By_PkArgs, 'id'>>;
   delete_post_types?: Resolver<Maybe<ResolversTypes['post_types_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Post_TypesArgs, 'where'>>;
@@ -24005,6 +24758,10 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   delete_task_statuses_by_pk?: Resolver<Maybe<ResolversTypes['task_statuses']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Task_Statuses_By_PkArgs, 'status'>>;
   delete_tenders?: Resolver<Maybe<ResolversTypes['tenders_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_TendersArgs, 'where'>>;
   delete_tenders_by_pk?: Resolver<Maybe<ResolversTypes['tenders']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Tenders_By_PkArgs, 'id'>>;
+  delete_user_settings?: Resolver<Maybe<ResolversTypes['user_settings_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_User_SettingsArgs, 'where'>>;
+  delete_user_settings_by_pk?: Resolver<Maybe<ResolversTypes['user_settings']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_User_Settings_By_PkArgs, 'user_id'>>;
+  delete_user_subscriptions?: Resolver<Maybe<ResolversTypes['user_subscriptions_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_User_SubscriptionsArgs, 'where'>>;
+  delete_user_subscriptions_by_pk?: Resolver<Maybe<ResolversTypes['user_subscriptions']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_User_Subscriptions_By_PkArgs, 'id'>>;
   delete_users?: Resolver<Maybe<ResolversTypes['users_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_UsersArgs, 'where'>>;
   delete_users_by_pk?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType, RequireFields<Mutation_RootDelete_Users_By_PkArgs, 'id'>>;
   insert_auth_account_providers?: Resolver<Maybe<ResolversTypes['auth_account_providers_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Auth_Account_ProvidersArgs, 'objects'>>;
@@ -24021,6 +24778,8 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   insert_auth_refresh_tokens_one?: Resolver<Maybe<ResolversTypes['auth_refresh_tokens']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Auth_Refresh_Tokens_OneArgs, 'object'>>;
   insert_auth_roles?: Resolver<Maybe<ResolversTypes['auth_roles_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Auth_RolesArgs, 'objects'>>;
   insert_auth_roles_one?: Resolver<Maybe<ResolversTypes['auth_roles']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Auth_Roles_OneArgs, 'object'>>;
+  insert_file_types?: Resolver<Maybe<ResolversTypes['file_types_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_File_TypesArgs, 'objects'>>;
+  insert_file_types_one?: Resolver<Maybe<ResolversTypes['file_types']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_File_Types_OneArgs, 'object'>>;
   insert_files?: Resolver<Maybe<ResolversTypes['files_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_FilesArgs, 'objects'>>;
   insert_files_one?: Resolver<Maybe<ResolversTypes['files']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Files_OneArgs, 'object'>>;
   insert_geometry_columns?: Resolver<Maybe<ResolversTypes['geometry_columns_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Geometry_ColumnsArgs, 'objects'>>;
@@ -24053,14 +24812,10 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   insert_initiative_posts_one?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_Posts_OneArgs, 'object'>>;
   insert_initiative_projects?: Resolver<Maybe<ResolversTypes['initiative_projects_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_ProjectsArgs, 'objects'>>;
   insert_initiative_projects_one?: Resolver<Maybe<ResolversTypes['initiative_projects']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_Projects_OneArgs, 'object'>>;
-  insert_initiative_subscriptions?: Resolver<Maybe<ResolversTypes['initiative_subscriptions_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_SubscriptionsArgs, 'objects'>>;
-  insert_initiative_subscriptions_one?: Resolver<Maybe<ResolversTypes['initiative_subscriptions']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_Subscriptions_OneArgs, 'object'>>;
   insert_initiative_tags?: Resolver<Maybe<ResolversTypes['initiative_tags_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_TagsArgs, 'objects'>>;
   insert_initiative_tags_one?: Resolver<Maybe<ResolversTypes['initiative_tags']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_Tags_OneArgs, 'object'>>;
   insert_initiative_tasks?: Resolver<Maybe<ResolversTypes['initiative_tasks_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_TasksArgs, 'objects'>>;
   insert_initiative_tasks_one?: Resolver<Maybe<ResolversTypes['initiative_tasks']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_Tasks_OneArgs, 'object'>>;
-  insert_initiative_threads?: Resolver<Maybe<ResolversTypes['initiative_threads_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_ThreadsArgs, 'objects'>>;
-  insert_initiative_threads_one?: Resolver<Maybe<ResolversTypes['initiative_threads']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_Threads_OneArgs, 'object'>>;
   insert_initiative_visits?: Resolver<Maybe<ResolversTypes['initiative_visits_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_VisitsArgs, 'objects'>>;
   insert_initiative_visits_one?: Resolver<Maybe<ResolversTypes['initiative_visits']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_Visits_OneArgs, 'object'>>;
   insert_initiative_volunteers?: Resolver<Maybe<ResolversTypes['initiative_volunteers_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Initiative_VolunteersArgs, 'objects'>>;
@@ -24073,6 +24828,8 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   insert_org_projects_one?: Resolver<Maybe<ResolversTypes['org_projects']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Org_Projects_OneArgs, 'object'>>;
   insert_org_tags?: Resolver<Maybe<ResolversTypes['org_tags_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Org_TagsArgs, 'objects'>>;
   insert_org_tags_one?: Resolver<Maybe<ResolversTypes['org_tags']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Org_Tags_OneArgs, 'object'>>;
+  insert_org_visits?: Resolver<Maybe<ResolversTypes['org_visits_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Org_VisitsArgs, 'objects'>>;
+  insert_org_visits_one?: Resolver<Maybe<ResolversTypes['org_visits']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Org_Visits_OneArgs, 'object'>>;
   insert_orgs?: Resolver<Maybe<ResolversTypes['orgs_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_OrgsArgs, 'objects'>>;
   insert_orgs_one?: Resolver<Maybe<ResolversTypes['orgs']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Orgs_OneArgs, 'object'>>;
   insert_post_types?: Resolver<Maybe<ResolversTypes['post_types_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Post_TypesArgs, 'objects'>>;
@@ -24087,6 +24844,10 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   insert_task_statuses_one?: Resolver<Maybe<ResolversTypes['task_statuses']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Task_Statuses_OneArgs, 'object'>>;
   insert_tenders?: Resolver<Maybe<ResolversTypes['tenders_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_TendersArgs, 'objects'>>;
   insert_tenders_one?: Resolver<Maybe<ResolversTypes['tenders']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Tenders_OneArgs, 'object'>>;
+  insert_user_settings?: Resolver<Maybe<ResolversTypes['user_settings_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_User_SettingsArgs, 'objects'>>;
+  insert_user_settings_one?: Resolver<Maybe<ResolversTypes['user_settings']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_User_Settings_OneArgs, 'object'>>;
+  insert_user_subscriptions?: Resolver<Maybe<ResolversTypes['user_subscriptions_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_User_SubscriptionsArgs, 'objects'>>;
+  insert_user_subscriptions_one?: Resolver<Maybe<ResolversTypes['user_subscriptions']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_User_Subscriptions_OneArgs, 'object'>>;
   insert_users?: Resolver<Maybe<ResolversTypes['users_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_UsersArgs, 'objects'>>;
   insert_users_one?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType, RequireFields<Mutation_RootInsert_Users_OneArgs, 'object'>>;
   update_auth_account_providers?: Resolver<Maybe<ResolversTypes['auth_account_providers_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Auth_Account_ProvidersArgs, 'where'>>;
@@ -24103,6 +24864,8 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   update_auth_refresh_tokens_by_pk?: Resolver<Maybe<ResolversTypes['auth_refresh_tokens']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Auth_Refresh_Tokens_By_PkArgs, 'pk_columns'>>;
   update_auth_roles?: Resolver<Maybe<ResolversTypes['auth_roles_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Auth_RolesArgs, 'where'>>;
   update_auth_roles_by_pk?: Resolver<Maybe<ResolversTypes['auth_roles']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Auth_Roles_By_PkArgs, 'pk_columns'>>;
+  update_file_types?: Resolver<Maybe<ResolversTypes['file_types_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_File_TypesArgs, 'where'>>;
+  update_file_types_by_pk?: Resolver<Maybe<ResolversTypes['file_types']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_File_Types_By_PkArgs, 'pk_columns'>>;
   update_files?: Resolver<Maybe<ResolversTypes['files_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_FilesArgs, 'where'>>;
   update_files_by_pk?: Resolver<Maybe<ResolversTypes['files']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Files_By_PkArgs, 'pk_columns'>>;
   update_geometry_columns?: Resolver<Maybe<ResolversTypes['geometry_columns_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Geometry_ColumnsArgs, 'where'>>;
@@ -24134,14 +24897,10 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   update_initiative_posts_by_pk?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_Posts_By_PkArgs, 'pk_columns'>>;
   update_initiative_projects?: Resolver<Maybe<ResolversTypes['initiative_projects_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_ProjectsArgs, 'where'>>;
   update_initiative_projects_by_pk?: Resolver<Maybe<ResolversTypes['initiative_projects']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_Projects_By_PkArgs, 'pk_columns'>>;
-  update_initiative_subscriptions?: Resolver<Maybe<ResolversTypes['initiative_subscriptions_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_SubscriptionsArgs, 'where'>>;
-  update_initiative_subscriptions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_subscriptions']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_Subscriptions_By_PkArgs, 'pk_columns'>>;
   update_initiative_tags?: Resolver<Maybe<ResolversTypes['initiative_tags_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_TagsArgs, 'where'>>;
   update_initiative_tags_by_pk?: Resolver<Maybe<ResolversTypes['initiative_tags']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_Tags_By_PkArgs, 'pk_columns'>>;
   update_initiative_tasks?: Resolver<Maybe<ResolversTypes['initiative_tasks_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_TasksArgs, 'where'>>;
   update_initiative_tasks_by_pk?: Resolver<Maybe<ResolversTypes['initiative_tasks']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_Tasks_By_PkArgs, 'pk_columns'>>;
-  update_initiative_threads?: Resolver<Maybe<ResolversTypes['initiative_threads_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_ThreadsArgs, 'where'>>;
-  update_initiative_threads_by_pk?: Resolver<Maybe<ResolversTypes['initiative_threads']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_Threads_By_PkArgs, 'pk_columns'>>;
   update_initiative_visits?: Resolver<Maybe<ResolversTypes['initiative_visits_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_VisitsArgs, 'where'>>;
   update_initiative_visits_by_pk?: Resolver<Maybe<ResolversTypes['initiative_visits']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_Visits_By_PkArgs, 'pk_columns'>>;
   update_initiative_volunteers?: Resolver<Maybe<ResolversTypes['initiative_volunteers_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Initiative_VolunteersArgs, 'where'>>;
@@ -24154,6 +24913,7 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   update_org_projects_by_pk?: Resolver<Maybe<ResolversTypes['org_projects']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Org_Projects_By_PkArgs, 'pk_columns'>>;
   update_org_tags?: Resolver<Maybe<ResolversTypes['org_tags_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Org_TagsArgs, 'where'>>;
   update_org_tags_by_pk?: Resolver<Maybe<ResolversTypes['org_tags']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Org_Tags_By_PkArgs, 'pk_columns'>>;
+  update_org_visits?: Resolver<Maybe<ResolversTypes['org_visits_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Org_VisitsArgs, 'where'>>;
   update_orgs?: Resolver<Maybe<ResolversTypes['orgs_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_OrgsArgs, 'where'>>;
   update_orgs_by_pk?: Resolver<Maybe<ResolversTypes['orgs']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Orgs_By_PkArgs, 'pk_columns'>>;
   update_post_types?: Resolver<Maybe<ResolversTypes['post_types_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Post_TypesArgs, 'where'>>;
@@ -24168,6 +24928,10 @@ export type Mutation_RootResolvers<ContextType = any, ParentType extends Resolve
   update_task_statuses_by_pk?: Resolver<Maybe<ResolversTypes['task_statuses']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Task_Statuses_By_PkArgs, 'pk_columns'>>;
   update_tenders?: Resolver<Maybe<ResolversTypes['tenders_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_TendersArgs, 'where'>>;
   update_tenders_by_pk?: Resolver<Maybe<ResolversTypes['tenders']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Tenders_By_PkArgs, 'pk_columns'>>;
+  update_user_settings?: Resolver<Maybe<ResolversTypes['user_settings_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_User_SettingsArgs, 'where'>>;
+  update_user_settings_by_pk?: Resolver<Maybe<ResolversTypes['user_settings']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_User_Settings_By_PkArgs, 'pk_columns'>>;
+  update_user_subscriptions?: Resolver<Maybe<ResolversTypes['user_subscriptions_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_User_SubscriptionsArgs, 'where'>>;
+  update_user_subscriptions_by_pk?: Resolver<Maybe<ResolversTypes['user_subscriptions']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_User_Subscriptions_By_PkArgs, 'pk_columns'>>;
   update_users?: Resolver<Maybe<ResolversTypes['users_mutation_response']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_UsersArgs, 'where'>>;
   update_users_by_pk?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType, RequireFields<Mutation_RootUpdate_Users_By_PkArgs, 'pk_columns'>>;
 };
@@ -24469,6 +25233,97 @@ export type Org_Tags_Variance_FieldsResolvers<ContextType = any, ParentType exte
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type Org_VisitsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits'] = ResolversParentTypes['org_visits']> = {
+  id?: Resolver<ResolversTypes['bigint'], ParentType, ContextType>;
+  org_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  visited_at?: Resolver<ResolversTypes['timestamptz'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_AggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_aggregate'] = ResolversParentTypes['org_visits_aggregate']> = {
+  aggregate?: Resolver<Maybe<ResolversTypes['org_visits_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['org_visits']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Aggregate_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_aggregate_fields'] = ResolversParentTypes['org_visits_aggregate_fields']> = {
+  avg?: Resolver<Maybe<ResolversTypes['org_visits_avg_fields']>, ParentType, ContextType>;
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType, RequireFields<Org_Visits_Aggregate_FieldsCountArgs, never>>;
+  max?: Resolver<Maybe<ResolversTypes['org_visits_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<ResolversTypes['org_visits_min_fields']>, ParentType, ContextType>;
+  stddev?: Resolver<Maybe<ResolversTypes['org_visits_stddev_fields']>, ParentType, ContextType>;
+  stddev_pop?: Resolver<Maybe<ResolversTypes['org_visits_stddev_pop_fields']>, ParentType, ContextType>;
+  stddev_samp?: Resolver<Maybe<ResolversTypes['org_visits_stddev_samp_fields']>, ParentType, ContextType>;
+  sum?: Resolver<Maybe<ResolversTypes['org_visits_sum_fields']>, ParentType, ContextType>;
+  var_pop?: Resolver<Maybe<ResolversTypes['org_visits_var_pop_fields']>, ParentType, ContextType>;
+  var_samp?: Resolver<Maybe<ResolversTypes['org_visits_var_samp_fields']>, ParentType, ContextType>;
+  variance?: Resolver<Maybe<ResolversTypes['org_visits_variance_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Avg_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_avg_fields'] = ResolversParentTypes['org_visits_avg_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_max_fields'] = ResolversParentTypes['org_visits_max_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
+  org_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  visited_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_min_fields'] = ResolversParentTypes['org_visits_min_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
+  org_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  visited_at?: Resolver<Maybe<ResolversTypes['timestamptz']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Mutation_ResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_mutation_response'] = ResolversParentTypes['org_visits_mutation_response']> = {
+  affected_rows?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<ResolversTypes['org_visits']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Stddev_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_stddev_fields'] = ResolversParentTypes['org_visits_stddev_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Stddev_Pop_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_stddev_pop_fields'] = ResolversParentTypes['org_visits_stddev_pop_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Stddev_Samp_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_stddev_samp_fields'] = ResolversParentTypes['org_visits_stddev_samp_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Sum_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_sum_fields'] = ResolversParentTypes['org_visits_sum_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['bigint']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Var_Pop_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_var_pop_fields'] = ResolversParentTypes['org_visits_var_pop_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Var_Samp_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_var_samp_fields'] = ResolversParentTypes['org_visits_var_samp_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type Org_Visits_Variance_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['org_visits_variance_fields'] = ResolversParentTypes['org_visits_variance_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['Float']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type OrgsResolvers<ContextType = any, ParentType extends ResolversParentTypes['orgs'] = ResolversParentTypes['orgs']> = {
   address?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   created_at?: Resolver<ResolversTypes['timestamptz'], ParentType, ContextType>;
@@ -24696,6 +25551,9 @@ export type Query_RootResolvers<ContextType = any, ParentType extends ResolversP
   entry_members_aggregate?: Resolver<ResolversTypes['entry_members_aggregate'], ParentType, ContextType, RequireFields<Query_RootEntry_Members_AggregateArgs, never>>;
   entry_visits?: Resolver<Array<ResolversTypes['entry_visits']>, ParentType, ContextType, RequireFields<Query_RootEntry_VisitsArgs, never>>;
   entry_visits_aggregate?: Resolver<ResolversTypes['entry_visits_aggregate'], ParentType, ContextType, RequireFields<Query_RootEntry_Visits_AggregateArgs, never>>;
+  file_types?: Resolver<Array<ResolversTypes['file_types']>, ParentType, ContextType, RequireFields<Query_RootFile_TypesArgs, never>>;
+  file_types_aggregate?: Resolver<ResolversTypes['file_types_aggregate'], ParentType, ContextType, RequireFields<Query_RootFile_Types_AggregateArgs, never>>;
+  file_types_by_pk?: Resolver<Maybe<ResolversTypes['file_types']>, ParentType, ContextType, RequireFields<Query_RootFile_Types_By_PkArgs, 'type'>>;
   files?: Resolver<Array<ResolversTypes['files']>, ParentType, ContextType, RequireFields<Query_RootFilesArgs, never>>;
   files_aggregate?: Resolver<ResolversTypes['files_aggregate'], ParentType, ContextType, RequireFields<Query_RootFiles_AggregateArgs, never>>;
   files_by_pk?: Resolver<Maybe<ResolversTypes['files']>, ParentType, ContextType, RequireFields<Query_RootFiles_By_PkArgs, 'id'>>;
@@ -24711,58 +25569,52 @@ export type Query_RootResolvers<ContextType = any, ParentType extends ResolversP
   i18n_categories_by_pk?: Resolver<Maybe<ResolversTypes['i18n_categories']>, ParentType, ContextType, RequireFields<Query_RootI18n_Categories_By_PkArgs, 'category'>>;
   initiative_comment_reactions?: Resolver<Array<ResolversTypes['initiative_comment_reactions']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Comment_ReactionsArgs, never>>;
   initiative_comment_reactions_aggregate?: Resolver<ResolversTypes['initiative_comment_reactions_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Comment_Reactions_AggregateArgs, never>>;
-  initiative_comment_reactions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_comment_reactions']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Comment_Reactions_By_PkArgs, 'id'>>;
+  initiative_comment_reactions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_comment_reactions']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Comment_Reactions_By_PkArgs, 'comment_id' | 'id' | 'initiative_id' | 'post_id'>>;
   initiative_comments?: Resolver<Array<ResolversTypes['initiative_comments']>, ParentType, ContextType, RequireFields<Query_RootInitiative_CommentsArgs, never>>;
   initiative_comments_aggregate?: Resolver<ResolversTypes['initiative_comments_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Comments_AggregateArgs, never>>;
-  initiative_comments_by_pk?: Resolver<Maybe<ResolversTypes['initiative_comments']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Comments_By_PkArgs, 'id'>>;
+  initiative_comments_by_pk?: Resolver<Maybe<ResolversTypes['initiative_comments']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Comments_By_PkArgs, 'id' | 'initiative_id' | 'post_id'>>;
   initiative_donations?: Resolver<Array<ResolversTypes['initiative_donations']>, ParentType, ContextType, RequireFields<Query_RootInitiative_DonationsArgs, never>>;
   initiative_donations_aggregate?: Resolver<ResolversTypes['initiative_donations_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Donations_AggregateArgs, never>>;
-  initiative_donations_by_pk?: Resolver<Maybe<ResolversTypes['initiative_donations']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Donations_By_PkArgs, 'id'>>;
+  initiative_donations_by_pk?: Resolver<Maybe<ResolversTypes['initiative_donations']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Donations_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_edits?: Resolver<Array<ResolversTypes['initiative_edits']>, ParentType, ContextType, RequireFields<Query_RootInitiative_EditsArgs, never>>;
   initiative_edits_aggregate?: Resolver<ResolversTypes['initiative_edits_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Edits_AggregateArgs, never>>;
-  initiative_edits_by_pk?: Resolver<Maybe<ResolversTypes['initiative_edits']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Edits_By_PkArgs, 'id'>>;
+  initiative_edits_by_pk?: Resolver<Maybe<ResolversTypes['initiative_edits']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Edits_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_expenses?: Resolver<Array<ResolversTypes['initiative_expenses']>, ParentType, ContextType, RequireFields<Query_RootInitiative_ExpensesArgs, never>>;
   initiative_expenses_aggregate?: Resolver<ResolversTypes['initiative_expenses_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Expenses_AggregateArgs, never>>;
-  initiative_expenses_by_pk?: Resolver<Maybe<ResolversTypes['initiative_expenses']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Expenses_By_PkArgs, 'id'>>;
+  initiative_expenses_by_pk?: Resolver<Maybe<ResolversTypes['initiative_expenses']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Expenses_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_info?: Resolver<Array<ResolversTypes['initiative_info']>, ParentType, ContextType, RequireFields<Query_RootInitiative_InfoArgs, never>>;
   initiative_info_aggregate?: Resolver<ResolversTypes['initiative_info_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Info_AggregateArgs, never>>;
-  initiative_info_by_pk?: Resolver<Maybe<ResolversTypes['initiative_info']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Info_By_PkArgs, 'id'>>;
+  initiative_info_by_pk?: Resolver<Maybe<ResolversTypes['initiative_info']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Info_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_members?: Resolver<Array<ResolversTypes['initiative_members']>, ParentType, ContextType, RequireFields<Query_RootInitiative_MembersArgs, never>>;
   initiative_members_aggregate?: Resolver<ResolversTypes['initiative_members_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Members_AggregateArgs, never>>;
-  initiative_members_by_pk?: Resolver<Maybe<ResolversTypes['initiative_members']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Members_By_PkArgs, 'id'>>;
+  initiative_members_by_pk?: Resolver<Maybe<ResolversTypes['initiative_members']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Members_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_poll_votes?: Resolver<Array<ResolversTypes['initiative_poll_votes']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Poll_VotesArgs, never>>;
   initiative_poll_votes_aggregate?: Resolver<ResolversTypes['initiative_poll_votes_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Poll_Votes_AggregateArgs, never>>;
-  initiative_poll_votes_by_pk?: Resolver<Maybe<ResolversTypes['initiative_poll_votes']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Poll_Votes_By_PkArgs, 'id'>>;
+  initiative_poll_votes_by_pk?: Resolver<Maybe<ResolversTypes['initiative_poll_votes']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Poll_Votes_By_PkArgs, 'id' | 'initiative_id' | 'poll_id'>>;
   initiative_polls?: Resolver<Array<ResolversTypes['initiative_polls']>, ParentType, ContextType, RequireFields<Query_RootInitiative_PollsArgs, never>>;
   initiative_polls_aggregate?: Resolver<ResolversTypes['initiative_polls_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Polls_AggregateArgs, never>>;
-  initiative_polls_by_pk?: Resolver<Maybe<ResolversTypes['initiative_polls']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Polls_By_PkArgs, 'id'>>;
+  initiative_polls_by_pk?: Resolver<Maybe<ResolversTypes['initiative_polls']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Polls_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_post_reactions?: Resolver<Array<ResolversTypes['initiative_post_reactions']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Post_ReactionsArgs, never>>;
   initiative_post_reactions_aggregate?: Resolver<ResolversTypes['initiative_post_reactions_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Post_Reactions_AggregateArgs, never>>;
-  initiative_post_reactions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_post_reactions']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Post_Reactions_By_PkArgs, 'id'>>;
+  initiative_post_reactions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_post_reactions']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Post_Reactions_By_PkArgs, 'id' | 'initiative_id' | 'post_id'>>;
   initiative_posts?: Resolver<Array<ResolversTypes['initiative_posts']>, ParentType, ContextType, RequireFields<Query_RootInitiative_PostsArgs, never>>;
   initiative_posts_aggregate?: Resolver<ResolversTypes['initiative_posts_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Posts_AggregateArgs, never>>;
-  initiative_posts_by_pk?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Posts_By_PkArgs, 'id'>>;
+  initiative_posts_by_pk?: Resolver<Maybe<ResolversTypes['initiative_posts']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Posts_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_projects?: Resolver<Array<ResolversTypes['initiative_projects']>, ParentType, ContextType, RequireFields<Query_RootInitiative_ProjectsArgs, never>>;
   initiative_projects_aggregate?: Resolver<ResolversTypes['initiative_projects_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Projects_AggregateArgs, never>>;
-  initiative_projects_by_pk?: Resolver<Maybe<ResolversTypes['initiative_projects']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Projects_By_PkArgs, 'id'>>;
-  initiative_subscriptions?: Resolver<Array<ResolversTypes['initiative_subscriptions']>, ParentType, ContextType, RequireFields<Query_RootInitiative_SubscriptionsArgs, never>>;
-  initiative_subscriptions_aggregate?: Resolver<ResolversTypes['initiative_subscriptions_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Subscriptions_AggregateArgs, never>>;
-  initiative_subscriptions_by_pk?: Resolver<Maybe<ResolversTypes['initiative_subscriptions']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Subscriptions_By_PkArgs, 'id'>>;
+  initiative_projects_by_pk?: Resolver<Maybe<ResolversTypes['initiative_projects']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Projects_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_tags?: Resolver<Array<ResolversTypes['initiative_tags']>, ParentType, ContextType, RequireFields<Query_RootInitiative_TagsArgs, never>>;
   initiative_tags_aggregate?: Resolver<ResolversTypes['initiative_tags_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Tags_AggregateArgs, never>>;
-  initiative_tags_by_pk?: Resolver<Maybe<ResolversTypes['initiative_tags']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Tags_By_PkArgs, 'id'>>;
+  initiative_tags_by_pk?: Resolver<Maybe<ResolversTypes['initiative_tags']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Tags_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_tasks?: Resolver<Array<ResolversTypes['initiative_tasks']>, ParentType, ContextType, RequireFields<Query_RootInitiative_TasksArgs, never>>;
   initiative_tasks_aggregate?: Resolver<ResolversTypes['initiative_tasks_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Tasks_AggregateArgs, never>>;
   initiative_tasks_by_pk?: Resolver<Maybe<ResolversTypes['initiative_tasks']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Tasks_By_PkArgs, 'id' | 'initiative_id'>>;
-  initiative_threads?: Resolver<Array<ResolversTypes['initiative_threads']>, ParentType, ContextType, RequireFields<Query_RootInitiative_ThreadsArgs, never>>;
-  initiative_threads_aggregate?: Resolver<ResolversTypes['initiative_threads_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Threads_AggregateArgs, never>>;
-  initiative_threads_by_pk?: Resolver<Maybe<ResolversTypes['initiative_threads']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Threads_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_visits?: Resolver<Array<ResolversTypes['initiative_visits']>, ParentType, ContextType, RequireFields<Query_RootInitiative_VisitsArgs, never>>;
   initiative_visits_aggregate?: Resolver<ResolversTypes['initiative_visits_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Visits_AggregateArgs, never>>;
-  initiative_visits_by_pk?: Resolver<Maybe<ResolversTypes['initiative_visits']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Visits_By_PkArgs, 'id'>>;
+  initiative_visits_by_pk?: Resolver<Maybe<ResolversTypes['initiative_visits']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Visits_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_volunteers?: Resolver<Array<ResolversTypes['initiative_volunteers']>, ParentType, ContextType, RequireFields<Query_RootInitiative_VolunteersArgs, never>>;
   initiative_volunteers_aggregate?: Resolver<ResolversTypes['initiative_volunteers_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiative_Volunteers_AggregateArgs, never>>;
-  initiative_volunteers_by_pk?: Resolver<Maybe<ResolversTypes['initiative_volunteers']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Volunteers_By_PkArgs, 'id'>>;
+  initiative_volunteers_by_pk?: Resolver<Maybe<ResolversTypes['initiative_volunteers']>, ParentType, ContextType, RequireFields<Query_RootInitiative_Volunteers_By_PkArgs, 'id' | 'initiative_id'>>;
   initiatives?: Resolver<Array<ResolversTypes['initiatives']>, ParentType, ContextType, RequireFields<Query_RootInitiativesArgs, never>>;
   initiatives_aggregate?: Resolver<ResolversTypes['initiatives_aggregate'], ParentType, ContextType, RequireFields<Query_RootInitiatives_AggregateArgs, never>>;
   initiatives_by_pk?: Resolver<Maybe<ResolversTypes['initiatives']>, ParentType, ContextType, RequireFields<Query_RootInitiatives_By_PkArgs, 'id'>>;
@@ -24781,6 +25633,8 @@ export type Query_RootResolvers<ContextType = any, ParentType extends ResolversP
   org_tags?: Resolver<Array<ResolversTypes['org_tags']>, ParentType, ContextType, RequireFields<Query_RootOrg_TagsArgs, never>>;
   org_tags_aggregate?: Resolver<ResolversTypes['org_tags_aggregate'], ParentType, ContextType, RequireFields<Query_RootOrg_Tags_AggregateArgs, never>>;
   org_tags_by_pk?: Resolver<Maybe<ResolversTypes['org_tags']>, ParentType, ContextType, RequireFields<Query_RootOrg_Tags_By_PkArgs, 'id'>>;
+  org_visits?: Resolver<Array<ResolversTypes['org_visits']>, ParentType, ContextType, RequireFields<Query_RootOrg_VisitsArgs, never>>;
+  org_visits_aggregate?: Resolver<ResolversTypes['org_visits_aggregate'], ParentType, ContextType, RequireFields<Query_RootOrg_Visits_AggregateArgs, never>>;
   orgs?: Resolver<Array<ResolversTypes['orgs']>, ParentType, ContextType, RequireFields<Query_RootOrgsArgs, never>>;
   orgs_aggregate?: Resolver<ResolversTypes['orgs_aggregate'], ParentType, ContextType, RequireFields<Query_RootOrgs_AggregateArgs, never>>;
   orgs_by_pk?: Resolver<Maybe<ResolversTypes['orgs']>, ParentType, ContextType, RequireFields<Query_RootOrgs_By_PkArgs, 'id'>>;
@@ -24806,6 +25660,12 @@ export type Query_RootResolvers<ContextType = any, ParentType extends ResolversP
   tenders?: Resolver<Array<ResolversTypes['tenders']>, ParentType, ContextType, RequireFields<Query_RootTendersArgs, never>>;
   tenders_aggregate?: Resolver<ResolversTypes['tenders_aggregate'], ParentType, ContextType, RequireFields<Query_RootTenders_AggregateArgs, never>>;
   tenders_by_pk?: Resolver<Maybe<ResolversTypes['tenders']>, ParentType, ContextType, RequireFields<Query_RootTenders_By_PkArgs, 'id'>>;
+  user_settings?: Resolver<Array<ResolversTypes['user_settings']>, ParentType, ContextType, RequireFields<Query_RootUser_SettingsArgs, never>>;
+  user_settings_aggregate?: Resolver<ResolversTypes['user_settings_aggregate'], ParentType, ContextType, RequireFields<Query_RootUser_Settings_AggregateArgs, never>>;
+  user_settings_by_pk?: Resolver<Maybe<ResolversTypes['user_settings']>, ParentType, ContextType, RequireFields<Query_RootUser_Settings_By_PkArgs, 'user_id'>>;
+  user_subscriptions?: Resolver<Array<ResolversTypes['user_subscriptions']>, ParentType, ContextType, RequireFields<Query_RootUser_SubscriptionsArgs, never>>;
+  user_subscriptions_aggregate?: Resolver<ResolversTypes['user_subscriptions_aggregate'], ParentType, ContextType, RequireFields<Query_RootUser_Subscriptions_AggregateArgs, never>>;
+  user_subscriptions_by_pk?: Resolver<Maybe<ResolversTypes['user_subscriptions']>, ParentType, ContextType, RequireFields<Query_RootUser_Subscriptions_By_PkArgs, 'id'>>;
   users?: Resolver<Array<ResolversTypes['users']>, ParentType, ContextType, RequireFields<Query_RootUsersArgs, never>>;
   users_aggregate?: Resolver<ResolversTypes['users_aggregate'], ParentType, ContextType, RequireFields<Query_RootUsers_AggregateArgs, never>>;
   users_by_pk?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType, RequireFields<Query_RootUsers_By_PkArgs, 'id'>>;
@@ -24981,6 +25841,9 @@ export type Subscription_RootResolvers<ContextType = any, ParentType extends Res
   entry_members_aggregate?: SubscriptionResolver<ResolversTypes['entry_members_aggregate'], "entry_members_aggregate", ParentType, ContextType, RequireFields<Subscription_RootEntry_Members_AggregateArgs, never>>;
   entry_visits?: SubscriptionResolver<Array<ResolversTypes['entry_visits']>, "entry_visits", ParentType, ContextType, RequireFields<Subscription_RootEntry_VisitsArgs, never>>;
   entry_visits_aggregate?: SubscriptionResolver<ResolversTypes['entry_visits_aggregate'], "entry_visits_aggregate", ParentType, ContextType, RequireFields<Subscription_RootEntry_Visits_AggregateArgs, never>>;
+  file_types?: SubscriptionResolver<Array<ResolversTypes['file_types']>, "file_types", ParentType, ContextType, RequireFields<Subscription_RootFile_TypesArgs, never>>;
+  file_types_aggregate?: SubscriptionResolver<ResolversTypes['file_types_aggregate'], "file_types_aggregate", ParentType, ContextType, RequireFields<Subscription_RootFile_Types_AggregateArgs, never>>;
+  file_types_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['file_types']>, "file_types_by_pk", ParentType, ContextType, RequireFields<Subscription_RootFile_Types_By_PkArgs, 'type'>>;
   files?: SubscriptionResolver<Array<ResolversTypes['files']>, "files", ParentType, ContextType, RequireFields<Subscription_RootFilesArgs, never>>;
   files_aggregate?: SubscriptionResolver<ResolversTypes['files_aggregate'], "files_aggregate", ParentType, ContextType, RequireFields<Subscription_RootFiles_AggregateArgs, never>>;
   files_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['files']>, "files_by_pk", ParentType, ContextType, RequireFields<Subscription_RootFiles_By_PkArgs, 'id'>>;
@@ -24996,58 +25859,52 @@ export type Subscription_RootResolvers<ContextType = any, ParentType extends Res
   i18n_categories_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['i18n_categories']>, "i18n_categories_by_pk", ParentType, ContextType, RequireFields<Subscription_RootI18n_Categories_By_PkArgs, 'category'>>;
   initiative_comment_reactions?: SubscriptionResolver<Array<ResolversTypes['initiative_comment_reactions']>, "initiative_comment_reactions", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Comment_ReactionsArgs, never>>;
   initiative_comment_reactions_aggregate?: SubscriptionResolver<ResolversTypes['initiative_comment_reactions_aggregate'], "initiative_comment_reactions_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Comment_Reactions_AggregateArgs, never>>;
-  initiative_comment_reactions_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_comment_reactions']>, "initiative_comment_reactions_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Comment_Reactions_By_PkArgs, 'id'>>;
+  initiative_comment_reactions_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_comment_reactions']>, "initiative_comment_reactions_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Comment_Reactions_By_PkArgs, 'comment_id' | 'id' | 'initiative_id' | 'post_id'>>;
   initiative_comments?: SubscriptionResolver<Array<ResolversTypes['initiative_comments']>, "initiative_comments", ParentType, ContextType, RequireFields<Subscription_RootInitiative_CommentsArgs, never>>;
   initiative_comments_aggregate?: SubscriptionResolver<ResolversTypes['initiative_comments_aggregate'], "initiative_comments_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Comments_AggregateArgs, never>>;
-  initiative_comments_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_comments']>, "initiative_comments_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Comments_By_PkArgs, 'id'>>;
+  initiative_comments_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_comments']>, "initiative_comments_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Comments_By_PkArgs, 'id' | 'initiative_id' | 'post_id'>>;
   initiative_donations?: SubscriptionResolver<Array<ResolversTypes['initiative_donations']>, "initiative_donations", ParentType, ContextType, RequireFields<Subscription_RootInitiative_DonationsArgs, never>>;
   initiative_donations_aggregate?: SubscriptionResolver<ResolversTypes['initiative_donations_aggregate'], "initiative_donations_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Donations_AggregateArgs, never>>;
-  initiative_donations_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_donations']>, "initiative_donations_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Donations_By_PkArgs, 'id'>>;
+  initiative_donations_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_donations']>, "initiative_donations_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Donations_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_edits?: SubscriptionResolver<Array<ResolversTypes['initiative_edits']>, "initiative_edits", ParentType, ContextType, RequireFields<Subscription_RootInitiative_EditsArgs, never>>;
   initiative_edits_aggregate?: SubscriptionResolver<ResolversTypes['initiative_edits_aggregate'], "initiative_edits_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Edits_AggregateArgs, never>>;
-  initiative_edits_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_edits']>, "initiative_edits_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Edits_By_PkArgs, 'id'>>;
+  initiative_edits_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_edits']>, "initiative_edits_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Edits_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_expenses?: SubscriptionResolver<Array<ResolversTypes['initiative_expenses']>, "initiative_expenses", ParentType, ContextType, RequireFields<Subscription_RootInitiative_ExpensesArgs, never>>;
   initiative_expenses_aggregate?: SubscriptionResolver<ResolversTypes['initiative_expenses_aggregate'], "initiative_expenses_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Expenses_AggregateArgs, never>>;
-  initiative_expenses_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_expenses']>, "initiative_expenses_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Expenses_By_PkArgs, 'id'>>;
+  initiative_expenses_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_expenses']>, "initiative_expenses_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Expenses_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_info?: SubscriptionResolver<Array<ResolversTypes['initiative_info']>, "initiative_info", ParentType, ContextType, RequireFields<Subscription_RootInitiative_InfoArgs, never>>;
   initiative_info_aggregate?: SubscriptionResolver<ResolversTypes['initiative_info_aggregate'], "initiative_info_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Info_AggregateArgs, never>>;
-  initiative_info_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_info']>, "initiative_info_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Info_By_PkArgs, 'id'>>;
+  initiative_info_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_info']>, "initiative_info_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Info_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_members?: SubscriptionResolver<Array<ResolversTypes['initiative_members']>, "initiative_members", ParentType, ContextType, RequireFields<Subscription_RootInitiative_MembersArgs, never>>;
   initiative_members_aggregate?: SubscriptionResolver<ResolversTypes['initiative_members_aggregate'], "initiative_members_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Members_AggregateArgs, never>>;
-  initiative_members_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_members']>, "initiative_members_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Members_By_PkArgs, 'id'>>;
+  initiative_members_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_members']>, "initiative_members_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Members_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_poll_votes?: SubscriptionResolver<Array<ResolversTypes['initiative_poll_votes']>, "initiative_poll_votes", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Poll_VotesArgs, never>>;
   initiative_poll_votes_aggregate?: SubscriptionResolver<ResolversTypes['initiative_poll_votes_aggregate'], "initiative_poll_votes_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Poll_Votes_AggregateArgs, never>>;
-  initiative_poll_votes_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_poll_votes']>, "initiative_poll_votes_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Poll_Votes_By_PkArgs, 'id'>>;
+  initiative_poll_votes_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_poll_votes']>, "initiative_poll_votes_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Poll_Votes_By_PkArgs, 'id' | 'initiative_id' | 'poll_id'>>;
   initiative_polls?: SubscriptionResolver<Array<ResolversTypes['initiative_polls']>, "initiative_polls", ParentType, ContextType, RequireFields<Subscription_RootInitiative_PollsArgs, never>>;
   initiative_polls_aggregate?: SubscriptionResolver<ResolversTypes['initiative_polls_aggregate'], "initiative_polls_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Polls_AggregateArgs, never>>;
-  initiative_polls_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_polls']>, "initiative_polls_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Polls_By_PkArgs, 'id'>>;
+  initiative_polls_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_polls']>, "initiative_polls_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Polls_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_post_reactions?: SubscriptionResolver<Array<ResolversTypes['initiative_post_reactions']>, "initiative_post_reactions", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Post_ReactionsArgs, never>>;
   initiative_post_reactions_aggregate?: SubscriptionResolver<ResolversTypes['initiative_post_reactions_aggregate'], "initiative_post_reactions_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Post_Reactions_AggregateArgs, never>>;
-  initiative_post_reactions_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_post_reactions']>, "initiative_post_reactions_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Post_Reactions_By_PkArgs, 'id'>>;
+  initiative_post_reactions_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_post_reactions']>, "initiative_post_reactions_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Post_Reactions_By_PkArgs, 'id' | 'initiative_id' | 'post_id'>>;
   initiative_posts?: SubscriptionResolver<Array<ResolversTypes['initiative_posts']>, "initiative_posts", ParentType, ContextType, RequireFields<Subscription_RootInitiative_PostsArgs, never>>;
   initiative_posts_aggregate?: SubscriptionResolver<ResolversTypes['initiative_posts_aggregate'], "initiative_posts_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Posts_AggregateArgs, never>>;
-  initiative_posts_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_posts']>, "initiative_posts_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Posts_By_PkArgs, 'id'>>;
+  initiative_posts_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_posts']>, "initiative_posts_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Posts_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_projects?: SubscriptionResolver<Array<ResolversTypes['initiative_projects']>, "initiative_projects", ParentType, ContextType, RequireFields<Subscription_RootInitiative_ProjectsArgs, never>>;
   initiative_projects_aggregate?: SubscriptionResolver<ResolversTypes['initiative_projects_aggregate'], "initiative_projects_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Projects_AggregateArgs, never>>;
-  initiative_projects_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_projects']>, "initiative_projects_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Projects_By_PkArgs, 'id'>>;
-  initiative_subscriptions?: SubscriptionResolver<Array<ResolversTypes['initiative_subscriptions']>, "initiative_subscriptions", ParentType, ContextType, RequireFields<Subscription_RootInitiative_SubscriptionsArgs, never>>;
-  initiative_subscriptions_aggregate?: SubscriptionResolver<ResolversTypes['initiative_subscriptions_aggregate'], "initiative_subscriptions_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Subscriptions_AggregateArgs, never>>;
-  initiative_subscriptions_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_subscriptions']>, "initiative_subscriptions_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Subscriptions_By_PkArgs, 'id'>>;
+  initiative_projects_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_projects']>, "initiative_projects_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Projects_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_tags?: SubscriptionResolver<Array<ResolversTypes['initiative_tags']>, "initiative_tags", ParentType, ContextType, RequireFields<Subscription_RootInitiative_TagsArgs, never>>;
   initiative_tags_aggregate?: SubscriptionResolver<ResolversTypes['initiative_tags_aggregate'], "initiative_tags_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Tags_AggregateArgs, never>>;
-  initiative_tags_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_tags']>, "initiative_tags_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Tags_By_PkArgs, 'id'>>;
+  initiative_tags_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_tags']>, "initiative_tags_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Tags_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_tasks?: SubscriptionResolver<Array<ResolversTypes['initiative_tasks']>, "initiative_tasks", ParentType, ContextType, RequireFields<Subscription_RootInitiative_TasksArgs, never>>;
   initiative_tasks_aggregate?: SubscriptionResolver<ResolversTypes['initiative_tasks_aggregate'], "initiative_tasks_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Tasks_AggregateArgs, never>>;
   initiative_tasks_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_tasks']>, "initiative_tasks_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Tasks_By_PkArgs, 'id' | 'initiative_id'>>;
-  initiative_threads?: SubscriptionResolver<Array<ResolversTypes['initiative_threads']>, "initiative_threads", ParentType, ContextType, RequireFields<Subscription_RootInitiative_ThreadsArgs, never>>;
-  initiative_threads_aggregate?: SubscriptionResolver<ResolversTypes['initiative_threads_aggregate'], "initiative_threads_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Threads_AggregateArgs, never>>;
-  initiative_threads_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_threads']>, "initiative_threads_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Threads_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_visits?: SubscriptionResolver<Array<ResolversTypes['initiative_visits']>, "initiative_visits", ParentType, ContextType, RequireFields<Subscription_RootInitiative_VisitsArgs, never>>;
   initiative_visits_aggregate?: SubscriptionResolver<ResolversTypes['initiative_visits_aggregate'], "initiative_visits_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Visits_AggregateArgs, never>>;
-  initiative_visits_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_visits']>, "initiative_visits_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Visits_By_PkArgs, 'id'>>;
+  initiative_visits_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_visits']>, "initiative_visits_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Visits_By_PkArgs, 'id' | 'initiative_id'>>;
   initiative_volunteers?: SubscriptionResolver<Array<ResolversTypes['initiative_volunteers']>, "initiative_volunteers", ParentType, ContextType, RequireFields<Subscription_RootInitiative_VolunteersArgs, never>>;
   initiative_volunteers_aggregate?: SubscriptionResolver<ResolversTypes['initiative_volunteers_aggregate'], "initiative_volunteers_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Volunteers_AggregateArgs, never>>;
-  initiative_volunteers_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_volunteers']>, "initiative_volunteers_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Volunteers_By_PkArgs, 'id'>>;
+  initiative_volunteers_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiative_volunteers']>, "initiative_volunteers_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiative_Volunteers_By_PkArgs, 'id' | 'initiative_id'>>;
   initiatives?: SubscriptionResolver<Array<ResolversTypes['initiatives']>, "initiatives", ParentType, ContextType, RequireFields<Subscription_RootInitiativesArgs, never>>;
   initiatives_aggregate?: SubscriptionResolver<ResolversTypes['initiatives_aggregate'], "initiatives_aggregate", ParentType, ContextType, RequireFields<Subscription_RootInitiatives_AggregateArgs, never>>;
   initiatives_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['initiatives']>, "initiatives_by_pk", ParentType, ContextType, RequireFields<Subscription_RootInitiatives_By_PkArgs, 'id'>>;
@@ -25066,6 +25923,8 @@ export type Subscription_RootResolvers<ContextType = any, ParentType extends Res
   org_tags?: SubscriptionResolver<Array<ResolversTypes['org_tags']>, "org_tags", ParentType, ContextType, RequireFields<Subscription_RootOrg_TagsArgs, never>>;
   org_tags_aggregate?: SubscriptionResolver<ResolversTypes['org_tags_aggregate'], "org_tags_aggregate", ParentType, ContextType, RequireFields<Subscription_RootOrg_Tags_AggregateArgs, never>>;
   org_tags_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['org_tags']>, "org_tags_by_pk", ParentType, ContextType, RequireFields<Subscription_RootOrg_Tags_By_PkArgs, 'id'>>;
+  org_visits?: SubscriptionResolver<Array<ResolversTypes['org_visits']>, "org_visits", ParentType, ContextType, RequireFields<Subscription_RootOrg_VisitsArgs, never>>;
+  org_visits_aggregate?: SubscriptionResolver<ResolversTypes['org_visits_aggregate'], "org_visits_aggregate", ParentType, ContextType, RequireFields<Subscription_RootOrg_Visits_AggregateArgs, never>>;
   orgs?: SubscriptionResolver<Array<ResolversTypes['orgs']>, "orgs", ParentType, ContextType, RequireFields<Subscription_RootOrgsArgs, never>>;
   orgs_aggregate?: SubscriptionResolver<ResolversTypes['orgs_aggregate'], "orgs_aggregate", ParentType, ContextType, RequireFields<Subscription_RootOrgs_AggregateArgs, never>>;
   orgs_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['orgs']>, "orgs_by_pk", ParentType, ContextType, RequireFields<Subscription_RootOrgs_By_PkArgs, 'id'>>;
@@ -25091,6 +25950,12 @@ export type Subscription_RootResolvers<ContextType = any, ParentType extends Res
   tenders?: SubscriptionResolver<Array<ResolversTypes['tenders']>, "tenders", ParentType, ContextType, RequireFields<Subscription_RootTendersArgs, never>>;
   tenders_aggregate?: SubscriptionResolver<ResolversTypes['tenders_aggregate'], "tenders_aggregate", ParentType, ContextType, RequireFields<Subscription_RootTenders_AggregateArgs, never>>;
   tenders_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['tenders']>, "tenders_by_pk", ParentType, ContextType, RequireFields<Subscription_RootTenders_By_PkArgs, 'id'>>;
+  user_settings?: SubscriptionResolver<Array<ResolversTypes['user_settings']>, "user_settings", ParentType, ContextType, RequireFields<Subscription_RootUser_SettingsArgs, never>>;
+  user_settings_aggregate?: SubscriptionResolver<ResolversTypes['user_settings_aggregate'], "user_settings_aggregate", ParentType, ContextType, RequireFields<Subscription_RootUser_Settings_AggregateArgs, never>>;
+  user_settings_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['user_settings']>, "user_settings_by_pk", ParentType, ContextType, RequireFields<Subscription_RootUser_Settings_By_PkArgs, 'user_id'>>;
+  user_subscriptions?: SubscriptionResolver<Array<ResolversTypes['user_subscriptions']>, "user_subscriptions", ParentType, ContextType, RequireFields<Subscription_RootUser_SubscriptionsArgs, never>>;
+  user_subscriptions_aggregate?: SubscriptionResolver<ResolversTypes['user_subscriptions_aggregate'], "user_subscriptions_aggregate", ParentType, ContextType, RequireFields<Subscription_RootUser_Subscriptions_AggregateArgs, never>>;
+  user_subscriptions_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['user_subscriptions']>, "user_subscriptions_by_pk", ParentType, ContextType, RequireFields<Subscription_RootUser_Subscriptions_By_PkArgs, 'id'>>;
   users?: SubscriptionResolver<Array<ResolversTypes['users']>, "users", ParentType, ContextType, RequireFields<Subscription_RootUsersArgs, never>>;
   users_aggregate?: SubscriptionResolver<ResolversTypes['users_aggregate'], "users_aggregate", ParentType, ContextType, RequireFields<Subscription_RootUsers_AggregateArgs, never>>;
   users_by_pk?: SubscriptionResolver<Maybe<ResolversTypes['users']>, "users_by_pk", ParentType, ContextType, RequireFields<Subscription_RootUsers_By_PkArgs, 'id'>>;
@@ -25287,9 +26152,89 @@ export interface TimestamptzScalarConfig extends GraphQLScalarTypeConfig<Resolve
   name: 'timestamptz';
 }
 
-export interface TimetzScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['timetz'], any> {
-  name: 'timetz';
-}
+export type User_SettingsResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_settings'] = ResolversParentTypes['user_settings']> = {
+  email_notifications?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  push_notifications?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['users'], ParentType, ContextType>;
+  user_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_Settings_AggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_settings_aggregate'] = ResolversParentTypes['user_settings_aggregate']> = {
+  aggregate?: Resolver<Maybe<ResolversTypes['user_settings_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['user_settings']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_Settings_Aggregate_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_settings_aggregate_fields'] = ResolversParentTypes['user_settings_aggregate_fields']> = {
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType, RequireFields<User_Settings_Aggregate_FieldsCountArgs, never>>;
+  max?: Resolver<Maybe<ResolversTypes['user_settings_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<ResolversTypes['user_settings_min_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_Settings_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_settings_max_fields'] = ResolversParentTypes['user_settings_max_fields']> = {
+  user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_Settings_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_settings_min_fields'] = ResolversParentTypes['user_settings_min_fields']> = {
+  user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_Settings_Mutation_ResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_settings_mutation_response'] = ResolversParentTypes['user_settings_mutation_response']> = {
+  affected_rows?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<ResolversTypes['user_settings']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_SubscriptionsResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_subscriptions'] = ResolversParentTypes['user_subscriptions']> = {
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  platform?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  service?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  subscription?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['users']>, ParentType, ContextType>;
+  user_id?: Resolver<ResolversTypes['uuid'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_Subscriptions_AggregateResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_subscriptions_aggregate'] = ResolversParentTypes['user_subscriptions_aggregate']> = {
+  aggregate?: Resolver<Maybe<ResolversTypes['user_subscriptions_aggregate_fields']>, ParentType, ContextType>;
+  nodes?: Resolver<Array<ResolversTypes['user_subscriptions']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_Subscriptions_Aggregate_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_subscriptions_aggregate_fields'] = ResolversParentTypes['user_subscriptions_aggregate_fields']> = {
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType, RequireFields<User_Subscriptions_Aggregate_FieldsCountArgs, never>>;
+  max?: Resolver<Maybe<ResolversTypes['user_subscriptions_max_fields']>, ParentType, ContextType>;
+  min?: Resolver<Maybe<ResolversTypes['user_subscriptions_min_fields']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_Subscriptions_Max_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_subscriptions_max_fields'] = ResolversParentTypes['user_subscriptions_max_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  platform?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  service?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  subscription?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_Subscriptions_Min_FieldsResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_subscriptions_min_fields'] = ResolversParentTypes['user_subscriptions_min_fields']> = {
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  platform?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  service?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  subscription?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<ResolversTypes['uuid']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type User_Subscriptions_Mutation_ResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['user_subscriptions_mutation_response'] = ResolversParentTypes['user_subscriptions_mutation_response']> = {
+  affected_rows?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  returning?: Resolver<Array<ResolversTypes['user_subscriptions']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
 
 export type UsersResolvers<ContextType = any, ParentType extends ResolversParentTypes['users'] = ResolversParentTypes['users']> = {
   account?: Resolver<Maybe<ResolversTypes['auth_accounts']>, ParentType, ContextType>;
@@ -25327,8 +26272,9 @@ export type UsersResolvers<ContextType = any, ParentType extends ResolversParent
   posts_aggregate?: Resolver<ResolversTypes['initiative_posts_aggregate'], ParentType, ContextType, RequireFields<UsersPosts_AggregateArgs, never>>;
   projects?: Resolver<Array<ResolversTypes['initiative_projects']>, ParentType, ContextType, RequireFields<UsersProjectsArgs, never>>;
   projects_aggregate?: Resolver<ResolversTypes['initiative_projects_aggregate'], ParentType, ContextType, RequireFields<UsersProjects_AggregateArgs, never>>;
-  subscriptions?: Resolver<Array<ResolversTypes['initiative_subscriptions']>, ParentType, ContextType, RequireFields<UsersSubscriptionsArgs, never>>;
-  subscriptions_aggregate?: Resolver<ResolversTypes['initiative_subscriptions_aggregate'], ParentType, ContextType, RequireFields<UsersSubscriptions_AggregateArgs, never>>;
+  settings?: Resolver<Maybe<ResolversTypes['user_settings']>, ParentType, ContextType>;
+  subscriptions?: Resolver<Array<ResolversTypes['user_subscriptions']>, ParentType, ContextType, RequireFields<UsersSubscriptionsArgs, never>>;
+  subscriptions_aggregate?: Resolver<ResolversTypes['user_subscriptions_aggregate'], ParentType, ContextType, RequireFields<UsersSubscriptions_AggregateArgs, never>>;
   tasks?: Resolver<Array<ResolversTypes['initiative_tasks']>, ParentType, ContextType, RequireFields<UsersTasksArgs, never>>;
   tasks_aggregate?: Resolver<ResolversTypes['initiative_tasks_aggregate'], ParentType, ContextType, RequireFields<UsersTasks_AggregateArgs, never>>;
   tenders?: Resolver<Array<ResolversTypes['tenders']>, ParentType, ContextType, RequireFields<UsersTendersArgs, never>>;
@@ -25472,12 +26418,26 @@ export type Resolvers<ContextType = any> = {
   entry_visits_var_pop_fields?: Entry_Visits_Var_Pop_FieldsResolvers<ContextType>;
   entry_visits_var_samp_fields?: Entry_Visits_Var_Samp_FieldsResolvers<ContextType>;
   entry_visits_variance_fields?: Entry_Visits_Variance_FieldsResolvers<ContextType>;
+  file_types?: File_TypesResolvers<ContextType>;
+  file_types_aggregate?: File_Types_AggregateResolvers<ContextType>;
+  file_types_aggregate_fields?: File_Types_Aggregate_FieldsResolvers<ContextType>;
+  file_types_max_fields?: File_Types_Max_FieldsResolvers<ContextType>;
+  file_types_min_fields?: File_Types_Min_FieldsResolvers<ContextType>;
+  file_types_mutation_response?: File_Types_Mutation_ResponseResolvers<ContextType>;
   files?: FilesResolvers<ContextType>;
   files_aggregate?: Files_AggregateResolvers<ContextType>;
   files_aggregate_fields?: Files_Aggregate_FieldsResolvers<ContextType>;
+  files_avg_fields?: Files_Avg_FieldsResolvers<ContextType>;
   files_max_fields?: Files_Max_FieldsResolvers<ContextType>;
   files_min_fields?: Files_Min_FieldsResolvers<ContextType>;
   files_mutation_response?: Files_Mutation_ResponseResolvers<ContextType>;
+  files_stddev_fields?: Files_Stddev_FieldsResolvers<ContextType>;
+  files_stddev_pop_fields?: Files_Stddev_Pop_FieldsResolvers<ContextType>;
+  files_stddev_samp_fields?: Files_Stddev_Samp_FieldsResolvers<ContextType>;
+  files_sum_fields?: Files_Sum_FieldsResolvers<ContextType>;
+  files_var_pop_fields?: Files_Var_Pop_FieldsResolvers<ContextType>;
+  files_var_samp_fields?: Files_Var_Samp_FieldsResolvers<ContextType>;
+  files_variance_fields?: Files_Variance_FieldsResolvers<ContextType>;
   float8?: GraphQLScalarType;
   geography?: GraphQLScalarType;
   geography_columns?: Geography_ColumnsResolvers<ContextType>;
@@ -25696,12 +26656,6 @@ export type Resolvers<ContextType = any> = {
   initiative_projects_var_pop_fields?: Initiative_Projects_Var_Pop_FieldsResolvers<ContextType>;
   initiative_projects_var_samp_fields?: Initiative_Projects_Var_Samp_FieldsResolvers<ContextType>;
   initiative_projects_variance_fields?: Initiative_Projects_Variance_FieldsResolvers<ContextType>;
-  initiative_subscriptions?: Initiative_SubscriptionsResolvers<ContextType>;
-  initiative_subscriptions_aggregate?: Initiative_Subscriptions_AggregateResolvers<ContextType>;
-  initiative_subscriptions_aggregate_fields?: Initiative_Subscriptions_Aggregate_FieldsResolvers<ContextType>;
-  initiative_subscriptions_max_fields?: Initiative_Subscriptions_Max_FieldsResolvers<ContextType>;
-  initiative_subscriptions_min_fields?: Initiative_Subscriptions_Min_FieldsResolvers<ContextType>;
-  initiative_subscriptions_mutation_response?: Initiative_Subscriptions_Mutation_ResponseResolvers<ContextType>;
   initiative_tags?: Initiative_TagsResolvers<ContextType>;
   initiative_tags_aggregate?: Initiative_Tags_AggregateResolvers<ContextType>;
   initiative_tags_aggregate_fields?: Initiative_Tags_Aggregate_FieldsResolvers<ContextType>;
@@ -25730,12 +26684,6 @@ export type Resolvers<ContextType = any> = {
   initiative_tasks_var_pop_fields?: Initiative_Tasks_Var_Pop_FieldsResolvers<ContextType>;
   initiative_tasks_var_samp_fields?: Initiative_Tasks_Var_Samp_FieldsResolvers<ContextType>;
   initiative_tasks_variance_fields?: Initiative_Tasks_Variance_FieldsResolvers<ContextType>;
-  initiative_threads?: Initiative_ThreadsResolvers<ContextType>;
-  initiative_threads_aggregate?: Initiative_Threads_AggregateResolvers<ContextType>;
-  initiative_threads_aggregate_fields?: Initiative_Threads_Aggregate_FieldsResolvers<ContextType>;
-  initiative_threads_max_fields?: Initiative_Threads_Max_FieldsResolvers<ContextType>;
-  initiative_threads_min_fields?: Initiative_Threads_Min_FieldsResolvers<ContextType>;
-  initiative_threads_mutation_response?: Initiative_Threads_Mutation_ResponseResolvers<ContextType>;
   initiative_visits?: Initiative_VisitsResolvers<ContextType>;
   initiative_visits_aggregate?: Initiative_Visits_AggregateResolvers<ContextType>;
   initiative_visits_aggregate_fields?: Initiative_Visits_Aggregate_FieldsResolvers<ContextType>;
@@ -25842,6 +26790,20 @@ export type Resolvers<ContextType = any> = {
   org_tags_var_pop_fields?: Org_Tags_Var_Pop_FieldsResolvers<ContextType>;
   org_tags_var_samp_fields?: Org_Tags_Var_Samp_FieldsResolvers<ContextType>;
   org_tags_variance_fields?: Org_Tags_Variance_FieldsResolvers<ContextType>;
+  org_visits?: Org_VisitsResolvers<ContextType>;
+  org_visits_aggregate?: Org_Visits_AggregateResolvers<ContextType>;
+  org_visits_aggregate_fields?: Org_Visits_Aggregate_FieldsResolvers<ContextType>;
+  org_visits_avg_fields?: Org_Visits_Avg_FieldsResolvers<ContextType>;
+  org_visits_max_fields?: Org_Visits_Max_FieldsResolvers<ContextType>;
+  org_visits_min_fields?: Org_Visits_Min_FieldsResolvers<ContextType>;
+  org_visits_mutation_response?: Org_Visits_Mutation_ResponseResolvers<ContextType>;
+  org_visits_stddev_fields?: Org_Visits_Stddev_FieldsResolvers<ContextType>;
+  org_visits_stddev_pop_fields?: Org_Visits_Stddev_Pop_FieldsResolvers<ContextType>;
+  org_visits_stddev_samp_fields?: Org_Visits_Stddev_Samp_FieldsResolvers<ContextType>;
+  org_visits_sum_fields?: Org_Visits_Sum_FieldsResolvers<ContextType>;
+  org_visits_var_pop_fields?: Org_Visits_Var_Pop_FieldsResolvers<ContextType>;
+  org_visits_var_samp_fields?: Org_Visits_Var_Samp_FieldsResolvers<ContextType>;
+  org_visits_variance_fields?: Org_Visits_Variance_FieldsResolvers<ContextType>;
   orgs?: OrgsResolvers<ContextType>;
   orgs_aggregate?: Orgs_AggregateResolvers<ContextType>;
   orgs_aggregate_fields?: Orgs_Aggregate_FieldsResolvers<ContextType>;
@@ -25917,7 +26879,18 @@ export type Resolvers<ContextType = any> = {
   tenders_variance_fields?: Tenders_Variance_FieldsResolvers<ContextType>;
   timestamp?: GraphQLScalarType;
   timestamptz?: GraphQLScalarType;
-  timetz?: GraphQLScalarType;
+  user_settings?: User_SettingsResolvers<ContextType>;
+  user_settings_aggregate?: User_Settings_AggregateResolvers<ContextType>;
+  user_settings_aggregate_fields?: User_Settings_Aggregate_FieldsResolvers<ContextType>;
+  user_settings_max_fields?: User_Settings_Max_FieldsResolvers<ContextType>;
+  user_settings_min_fields?: User_Settings_Min_FieldsResolvers<ContextType>;
+  user_settings_mutation_response?: User_Settings_Mutation_ResponseResolvers<ContextType>;
+  user_subscriptions?: User_SubscriptionsResolvers<ContextType>;
+  user_subscriptions_aggregate?: User_Subscriptions_AggregateResolvers<ContextType>;
+  user_subscriptions_aggregate_fields?: User_Subscriptions_Aggregate_FieldsResolvers<ContextType>;
+  user_subscriptions_max_fields?: User_Subscriptions_Max_FieldsResolvers<ContextType>;
+  user_subscriptions_min_fields?: User_Subscriptions_Min_FieldsResolvers<ContextType>;
+  user_subscriptions_mutation_response?: User_Subscriptions_Mutation_ResponseResolvers<ContextType>;
   users?: UsersResolvers<ContextType>;
   users_aggregate?: Users_AggregateResolvers<ContextType>;
   users_aggregate_fields?: Users_Aggregate_FieldsResolvers<ContextType>;
@@ -25934,14 +26907,14 @@ export type DirectiveResolvers<ContextType = any> = {
 
 export const DeleteSubscription = gql`
     mutation deleteSubscription($id: String!) {
-  delete_initiative_subscriptions_by_pk(id: $id) {
+  delete_user_subscriptions_by_pk(id: $id) {
     id
   }
 }
     `;
 export const DeleteWebSubscription = gql`
     mutation deleteWebSubscription($subscription_id: String!) {
-  delete_initiative_subscriptions_by_pk(id: $subscription_id) {
+  delete_user_subscriptions_by_pk(id: $subscription_id) {
     id
   }
 }
@@ -25990,14 +26963,14 @@ export type DeleteSubscriptionMutationVariables = Exact<{
 }>;
 
 
-export type DeleteSubscriptionMutation = { delete_initiative_subscriptions_by_pk?: { id: string } | null | undefined };
+export type DeleteSubscriptionMutation = { delete_user_subscriptions_by_pk?: { id: string } | null | undefined };
 
 export type DeleteWebSubscriptionMutationVariables = Exact<{
   subscription_id: Scalars['String'];
 }>;
 
 
-export type DeleteWebSubscriptionMutation = { delete_initiative_subscriptions_by_pk?: { id: string } | null | undefined };
+export type DeleteWebSubscriptionMutation = { delete_user_subscriptions_by_pk?: { id: string } | null | undefined };
 
 export type SubscribedMembersQueryVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -26016,14 +26989,14 @@ export type UserQuery = { user?: { id: any, display_name?: string | null | undef
 
 export const DeleteSubscriptionDocument = gql`
     mutation deleteSubscription($id: String!) {
-  delete_initiative_subscriptions_by_pk(id: $id) {
+  delete_user_subscriptions_by_pk(id: $id) {
     id
   }
 }
     `;
 export const DeleteWebSubscriptionDocument = gql`
     mutation deleteWebSubscription($subscription_id: String!) {
-  delete_initiative_subscriptions_by_pk(id: $subscription_id) {
+  delete_user_subscriptions_by_pk(id: $subscription_id) {
     id
   }
 }

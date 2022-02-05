@@ -75,6 +75,7 @@ export default function PostEditor({
         variables:{
           message,
           post_id: post.id,
+          initiative_id: initiative?.id,
           now: new Date()
         },
         refetchQueries: [ GetFilesDocument ]

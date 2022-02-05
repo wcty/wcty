@@ -2,7 +2,6 @@ mutation CreatePost(
   $message: String!
   $user_id: uuid!
   $initiative_id: uuid!
-  $thread_id: String!="main"
   $files: files_arr_rel_insert_input
 ){
   insert_initiative_posts_one(object: {
@@ -10,7 +9,6 @@ mutation CreatePost(
     message: $message,
     user_id: $user_id,
     initiative_id: $initiative_id,
-    thread_id: $thread_id,
     files: $files
   }){
     id

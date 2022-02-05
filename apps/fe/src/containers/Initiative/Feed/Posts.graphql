@@ -18,7 +18,6 @@ fragment Post on initiative_posts {
   modified_at
   message
   type
-  thread_id
   files {
     downloadable_url
     type

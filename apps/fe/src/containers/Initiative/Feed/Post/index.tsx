@@ -45,7 +45,7 @@ export default function Post({
   const user = useUser();
 
   const [deletePost, {error}] = useDeletePostMutation({
-    variables:{ post_id },
+    variables:{ post_id, initiative_id: initiative?.id },
     refetchQueries: [ GetFilesDocument ]
   });
 

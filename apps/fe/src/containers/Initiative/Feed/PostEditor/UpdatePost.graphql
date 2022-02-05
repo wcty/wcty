@@ -1,11 +1,13 @@
 mutation UpdatePost(
   $message: String!
   $post_id: bigint!
+  $initiative_id: uuid!
   $now: timestamptz!
 ){
   update_initiative_posts_by_pk (
     pk_columns: {
-      id: $post_id
+      id: $post_id,
+      initiative_id: $initiative_id
     }
     _set: {
       message: $message

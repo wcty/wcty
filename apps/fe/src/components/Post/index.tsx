@@ -54,15 +54,17 @@ export default function Post({
   const [deleteLike] = useDeleteLikeMutation({
     variables:{ 
       user_id: user?.id, 
-      post_id }
-  });
+      post_id,
+      initiative_id: initiative?.id
+    }});
 
   const [likePost] = useReactionToPostMutation({
     variables:{ 
       user_id: user?.id, 
       post_id, 
-      reaction: Reactions_Enum.Like },
-  });
+      reaction: Reactions_Enum.Like,
+      initiative_id: initiative?.id
+    }});
 
   const liked = !!reactions.find(reaction => reaction.user_id ===  user?.id);
   const [options, setOptions] = useState(false)

@@ -35,7 +35,8 @@ export default function DynamicInitiative() {
       post_id,
       initiative_id: id
     },
-    ssr: false
+    ssr: false,
+    skip: !user
   })
 
   const name = post?.initiative.name||'Initiative'
@@ -45,6 +46,10 @@ export default function DynamicInitiative() {
     post?.initiative?.infos[0].context||''
     ||'Initiative from Wecity platform'
   const image = post?.initiative?.image
+
+  if(!user){
+    return <>Loading...</>
+  }
 
 
   return <> 

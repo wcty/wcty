@@ -35,11 +35,11 @@ export default function DynamicInitiative(props:InitiativeProps) {
     </Head>
     {layout==='mobile' && <Burger style={{marginLeft:'1.5rem'}}/>}
     <Sidepanel/>
-    <FixedBottom>
+    {/* <FixedBottom> */}
       <ContentWrapper>
         <Initiative initiative={props.initiative}/>
       </ContentWrapper>
-    </FixedBottom>
+    {/* </FixedBottom> */}
   </>
 }
 

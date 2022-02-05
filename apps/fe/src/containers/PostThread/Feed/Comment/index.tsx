@@ -53,12 +53,12 @@ export default function Comment({
   const user = useUser();
   const router = useRouter();
 
-  const [deletePost, {error}] = useDeleteCommentMutation({
+  const [deleteComment, {error}] = useDeleteCommentMutation({
     variables:{ post_id, initiative_id, comment_id },
     refetchQueries: [ GetFilesDocument ]
   });
 
-  const [deleteLike] = useDeleteCommentLikeMutation({
+  const [deleteLike, {error: deleteError}] = useDeleteCommentLikeMutation({
     variables:{ 
       user_id: user?.id, 
       post_id,
@@ -66,14 +66,24 @@ export default function Comment({
       initiative_id 
     }});
 
-  const [likePost] = useReactionToCommentMutation({
+
+  const [likeComment, {error: likeError}] = useReactionToCommentMutation({
     variables:{ 
       user_id: user?.id, 
       post_id, 
       reaction: Reactions_Enum.Like,
       initiative_id,
-      id: comment_id 
+      comment_id 
     }});
+
+  console.log(error, deleteError, likeError, { 
+    user_id: user?.id, 
+    post_id, 
+    reaction: Reactions_Enum.Like,
+    initiative_id,
+    id: comment_id 
+  });
+
 
   const liked = !!reactions.find(reaction => reaction.user_id ===  user?.id);
   const [options, setOptions] = useState(false)
@@ -179,7 +189,7 @@ export default function Comment({
               <Button 
                 style={{pointerEvents:'all'}} 
                 onClick={()=>{ 
-                  deletePost(); 
+                  deleteComment(); 
                   setOptions(false); 
                   setDeletion(false);
                 }} 
@@ -212,7 +222,6 @@ export default function Comment({
             <ImageWrapper 
               key={key}
               url={v.url} 
-              width={v.width}
               minHeight={v.height}
               onClick={()=>{
                 setSidebarVisible(false)
@@ -247,7 +256,7 @@ export default function Comment({
           </Button>
         </div>
         <Likes liked={liked}>
-            <LikeIco onClick={()=>liked? deleteLike(): likePost() }/>
+            <LikeIco onClick={()=>liked? deleteLike(): likeComment() }/>
         </Likes>
       </Actions>
     </Container>

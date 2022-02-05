@@ -6,22 +6,40 @@ import { useCommentsSubscription, useFirstMemberQuery, PostPageQuery } from "gen
 import { useRouter } from "next/router";
 import { ArrowDown, CheckedChannels, CommentsContainer, Container, Footer } from "./styles";
 import { DateTime, DateTimeFormatOptions } from 'luxon'
-import { useLang, useUser } from "common";
+import { useLang, useLayout, useUser } from "common";
 import { Trans } from "@lingui/macro";
 import { Text, Title } from "@ui";
 import CommentCreation from "./CommentCreation";
+import { ArrowLeft } from "../styles";
 
 export default function Feed({ post }: PostPageQuery) {
-  const { id } = useRouter().query;
+  const router = useRouter();
+  const { id } = router.query;
+  const layout = useLayout();
   const user = useUser()
   const { data: { comments }={ comments:[] }, error } = useCommentsSubscription({variables:{
-    post_id:post?.id,
-    id: post?.initiative?.id,
-  }})
+      post_id:post?.id,
+      id: post?.initiative?.id,
+    },
+    skip: !user || !post?.id,
+  })
 
   return(
     <Container>
-      <Title h='h2' alignSelf='center' mb='4rem'>{post?.initiative.name}</Title>
+      <Title h='h2' alignSelf='center' alignContent='center' position='relative' mb='4rem'>{
+        layout==='mobile' && 
+          <ArrowLeft 
+            mr='0px'
+            style={{transform:'rotate(-45deg) translate(-10px,-10px)'}}
+            onClick={()=>{
+              router.push({
+                pathname: '/initiative/[id]', 
+                query: { id }
+              }, `/initiative/${id}`, { 
+                locale: router.locale 
+              }) 
+            }}/>
+      }{post?.initiative.name}</Title>
       {post?.initiative && <Post  {...{initiative: post.initiative, post}}/>}
       
       {comments.length===5 && 
@@ -31,7 +49,7 @@ export default function Feed({ post }: PostPageQuery) {
           alignItems='center' 
           mt='1rem' mb='1rem' 
           justifyContent='flex-start' 
-          display='flex'><ArrowDown/> See more comments</Text>}
+          display='flex'><ArrowDown/><Trans>See more comments</Trans></Text>}
       <CommentsContainer>
         { comments.map((comment,  key) => 
           <Comment {...{comment}} key={key}/>) } 

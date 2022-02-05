@@ -1,9 +1,7 @@
-import ClientOnly from "components/ClientOnly";
 import Join, { LoginToJoin } from "../Join";
-
 import Post from "components/Post";
 import PostCreation from "./PostCreation";
-import { usePostsSubscription, useFirstMemberQuery } from "generated";
+import { usePostsSubscription, useFirstMemberQuery, useInitiativeByPkQuery } from "generated";
 import { useRouter } from "next/router";
 import { CheckedChannels, Container, Footer } from "./styles";
 import { DateTime, DateTimeFormatOptions } from 'luxon'
@@ -13,8 +11,18 @@ import { useEffect, useRef, useState } from "react";
 import { atom, useRecoilState } from "recoil";
 import { Trans } from "@lingui/macro";
 
-export default function FeedBlock({ isMember=false, initiative:data }:{ isMember?:boolean } & InitiativeProps ) {
+export default function FeedBlock({ initiative:data }: InitiativeProps ) {
   const user = useUser()
+  const { data:dynamicData } = useInitiativeByPkQuery({
+    variables:{ 
+      id:data?.id, 
+      user_id:user?.id 
+    }, 
+    fetchPolicy:"cache-first", 
+    nextFetchPolicy:"cache-only"});
+
+  const isMember = !!dynamicData?.initiative?.isMember?.length
+
   const [initiative, setInitiative] = useRecoilState(FeedBlock.atom)
 
   useEffect(()=>{
@@ -22,14 +30,20 @@ export default function FeedBlock({ isMember=false, initiative:data }:{ isMember
       setInitiative(data)
     }
   },[data])
+
+  if(user===undefined){
+    return <>Loading...</>
+  }
+
+  if(user===null){
+    return <LoginToJoin/>
+  }
  
-  return  user ? (
-      isMember?
-        <ClientOnly>
-         {initiative && <Feed initiative={initiative}/>}
-        </ClientOnly>:
-        <Join/>
-    ): <LoginToJoin/> 
+  if(isMember && initiative){
+    return <Feed initiative={initiative}/>
+  }
+
+  return <Join/>
 }
 
 FeedBlock.atom = atom({
@@ -40,7 +54,7 @@ FeedBlock.atom = atom({
 function Feed({initiative}:InitiativeProps) {
   const { id } = useRouter().query;
   const user = useUser()
-  const { data:postsData, error } = usePostsSubscription({variables:{id}})
+  const { data:postsData, error } = usePostsSubscription({variables:{id}, skip: !user || !id})
 
   const { data } = useFirstMemberQuery({variables:{id}});
 

@@ -1,19 +1,19 @@
 mutation ReactionToComment (
-    $id: bigint!
+    $comment_id: bigint!
     $user_id: uuid!
     $post_id: bigint!
     $initiative_id: uuid!
     $reaction: reactions_enum!
 ) {
-    insert_initiative_post_reactions_one(object: {
-        id: $id,
+    insert_initiative_comment_reactions_one(object: {
+        comment_id: $comment_id,
         user_id: $user_id,
         type: $reaction,
         initiative_id: $initiative_id,
         post_id: $post_id
     },
     on_conflict: {
-      constraint: initiative_post_reactions_pkey,
+      constraint: initiative_comment_reactions_pkey,
       update_columns: []
     }){
         user_id

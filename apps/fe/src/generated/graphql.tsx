@@ -10445,6 +10445,7 @@ export type GetFilesQuery = { files: Array<{ id: any, downloadable_url?: string 
 export type DeleteLikeMutationVariables = Exact<{
   user_id: Scalars['uuid'];
   post_id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
 }>;
 
 
@@ -10462,6 +10463,7 @@ export type ReactionToPostMutationVariables = Exact<{
   user_id: Scalars['uuid'];
   post_id: Scalars['bigint'];
   reaction: Reactions_Enum;
+  initiative_id: Scalars['uuid'];
 }>;
 
 
@@ -10586,7 +10588,7 @@ export type DeleteCommentLikeMutationVariables = Exact<{
 export type DeleteCommentLikeMutation = { delete_initiative_comment_reactions?: { returning: Array<{ post_id: any, user_id?: any | null | undefined }> } | null | undefined };
 
 export type ReactionToCommentMutationVariables = Exact<{
-  id: Scalars['bigint'];
+  comment_id: Scalars['bigint'];
   user_id: Scalars['uuid'];
   post_id: Scalars['bigint'];
   initiative_id: Scalars['uuid'];
@@ -10594,7 +10596,7 @@ export type ReactionToCommentMutationVariables = Exact<{
 }>;
 
 
-export type ReactionToCommentMutation = { insert_initiative_post_reactions_one?: { user_id?: any | null | undefined, post_id: any, type?: Reactions_Enum | null | undefined } | null | undefined };
+export type ReactionToCommentMutation = { insert_initiative_comment_reactions_one?: { user_id?: any | null | undefined, post_id: any, type?: Reactions_Enum | null | undefined } | null | undefined };
 
 export type CreateCommentMutationVariables = Exact<{
   message: Scalars['String'];
@@ -11542,9 +11544,9 @@ export type GetFilesQueryHookResult = ReturnType<typeof useGetFilesQuery>;
 export type GetFilesLazyQueryHookResult = ReturnType<typeof useGetFilesLazyQuery>;
 export type GetFilesQueryResult = Apollo.QueryResult<GetFilesQuery, GetFilesQueryVariables>;
 export const DeleteLikeDocument = gql`
-    mutation DeleteLike($user_id: uuid!, $post_id: bigint!) {
+    mutation DeleteLike($user_id: uuid!, $post_id: bigint!, $initiative_id: uuid!) {
   delete_initiative_post_reactions(
-    where: {_and: [{post_id: {_eq: $post_id}}, {user_id: {_eq: $user_id}}]}
+    where: {_and: [{post_id: {_eq: $post_id}}, {user_id: {_eq: $user_id}}, {initiative_id: {_eq: $initiative_id}}]}
   ) {
     returning {
       post_id
@@ -11570,6 +11572,7 @@ export type DeleteLikeMutationFn = Apollo.MutationFunction<DeleteLikeMutation, D
  *   variables: {
  *      user_id: // value for 'user_id'
  *      post_id: // value for 'post_id'
+ *      initiative_id: // value for 'initiative_id'
  *   },
  * });
  */
@@ -11618,9 +11621,9 @@ export type DeletePostMutationHookResult = ReturnType<typeof useDeletePostMutati
 export type DeletePostMutationResult = Apollo.MutationResult<DeletePostMutation>;
 export type DeletePostMutationOptions = Apollo.BaseMutationOptions<DeletePostMutation, DeletePostMutationVariables>;
 export const ReactionToPostDocument = gql`
-    mutation ReactionToPost($user_id: uuid!, $post_id: bigint!, $reaction: reactions_enum!) {
+    mutation ReactionToPost($user_id: uuid!, $post_id: bigint!, $reaction: reactions_enum!, $initiative_id: uuid!) {
   insert_initiative_post_reactions_one(
-    object: {user_id: $user_id, type: $reaction, post_id: $post_id}
+    object: {user_id: $user_id, type: $reaction, post_id: $post_id, initiative_id: $initiative_id}
   ) {
     user_id
     post_id
@@ -11646,6 +11649,7 @@ export type ReactionToPostMutationFn = Apollo.MutationFunction<ReactionToPostMut
  *      user_id: // value for 'user_id'
  *      post_id: // value for 'post_id'
  *      reaction: // value for 'reaction'
+ *      initiative_id: // value for 'initiative_id'
  *   },
  * });
  */
@@ -12203,10 +12207,10 @@ export type DeleteCommentLikeMutationHookResult = ReturnType<typeof useDeleteCom
 export type DeleteCommentLikeMutationResult = Apollo.MutationResult<DeleteCommentLikeMutation>;
 export type DeleteCommentLikeMutationOptions = Apollo.BaseMutationOptions<DeleteCommentLikeMutation, DeleteCommentLikeMutationVariables>;
 export const ReactionToCommentDocument = gql`
-    mutation ReactionToComment($id: bigint!, $user_id: uuid!, $post_id: bigint!, $initiative_id: uuid!, $reaction: reactions_enum!) {
-  insert_initiative_post_reactions_one(
-    object: {id: $id, user_id: $user_id, type: $reaction, initiative_id: $initiative_id, post_id: $post_id}
-    on_conflict: {constraint: initiative_post_reactions_pkey, update_columns: []}
+    mutation ReactionToComment($comment_id: bigint!, $user_id: uuid!, $post_id: bigint!, $initiative_id: uuid!, $reaction: reactions_enum!) {
+  insert_initiative_comment_reactions_one(
+    object: {comment_id: $comment_id, user_id: $user_id, type: $reaction, initiative_id: $initiative_id, post_id: $post_id}
+    on_conflict: {constraint: initiative_comment_reactions_pkey, update_columns: []}
   ) {
     user_id
     post_id
@@ -12229,7 +12233,7 @@ export type ReactionToCommentMutationFn = Apollo.MutationFunction<ReactionToComm
  * @example
  * const [reactionToCommentMutation, { data, loading, error }] = useReactionToCommentMutation({
  *   variables: {
- *      id: // value for 'id'
+ *      comment_id: // value for 'comment_id'
  *      user_id: // value for 'user_id'
  *      post_id: // value for 'post_id'
  *      initiative_id: // value for 'initiative_id'

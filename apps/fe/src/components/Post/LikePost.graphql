@@ -2,11 +2,13 @@ mutation ReactionToPost (
     $user_id: uuid!
     $post_id: bigint!
     $reaction: reactions_enum!
+    $initiative_id: uuid!
 ) {
     insert_initiative_post_reactions_one(object: {
         user_id: $user_id,
         type: $reaction,
-        post_id: $post_id
+        post_id: $post_id,
+        initiative_id: $initiative_id
     }){
         user_id
         post_id

@@ -1,4 +1,5 @@
 import styled, {css} from "styled-components";
+import { layout, LayoutProps, position, PositionProps, space, SpaceProps } from "styled-system";
 
 export const Container = styled.div`
   ${p=>p.theme.layout==='desktop'?
@@ -29,11 +30,15 @@ CenterColumn = styled.div`
   margin-top: 2rem;
 `,
 
-ArrowLeft = styled.div`
+ArrowLeft = styled.div<LayoutProps & SpaceProps & PositionProps>`
   width: 12px;
   height: 12px;
   border-left: 1px solid ${props => props.theme.colors.label};
   border-top: 1px solid ${props => props.theme.colors.label};
   transform: rotate(-45deg) translate(-17px, -1px);
   margin-right: 24px;
+  cursor: pointer;
+  ${position}
+  ${layout}  
+  ${space}
 `

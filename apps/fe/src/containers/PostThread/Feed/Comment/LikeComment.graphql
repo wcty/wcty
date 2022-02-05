@@ -1,0 +1,23 @@
+mutation ReactionToComment (
+    $id: bigint!
+    $user_id: uuid!
+    $post_id: bigint!
+    $initiative_id: uuid!
+    $reaction: reactions_enum!
+) {
+    insert_initiative_post_reactions_one(object: {
+        id: $id,
+        user_id: $user_id,
+        type: $reaction,
+        initiative_id: $initiative_id,
+        post_id: $post_id
+    },
+    on_conflict: {
+      constraint: initiative_post_reactions_pkey,
+      update_columns: []
+    }){
+        user_id
+        post_id
+        type
+    }
+}

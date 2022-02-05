@@ -1,16 +1,16 @@
 import { Actions, CommentCounter,  Container, Content, ImageContainer, ImageWrapper, LikeCounter, Likes, Message, OptionsButton, OptionsMenu, Tags, DeletionMenu } from "./styles";
 import { ReactComponent as CommentIco } from '@assets/icons/comment.svg'
 import { ReactComponent as LikeIco} from '@assets/icons/like.svg'
-import { PostFragment, Reactions_Enum, useReactionToPostMutation, useDeleteLikeMutation, useDeletePostMutation, File_Types_Enum, GetFilesDocument } from "generated";
+import { PostFragment, Reactions_Enum, useReactionToPostMutation, useDeleteLikeMutation, useDeletePostMutation, File_Types_Enum, GetFilesDocument, PostInitiativeInfoFragment } from "generated";
 import { fixAvatar, useUser } from "common";
 import { Trans } from "@lingui/macro";
 import { Button, Author } from "@ui";
 import { useEffect, useState } from "react";
 import PostEditor from "../PostEditor";
-import { InitiativeProps } from "containers/Initiative";
 import { FullscreenCarousel, GalleryImage } from "components/Gallery";
 import { useRecoilState } from 'recoil';
 import Sidepanel from "containers/Sidepanel";
+import { useRouter } from "next/router";
 
 type ImageType = {
   url: string,
@@ -28,8 +28,9 @@ export default function Post({
   initiative, 
   post
 }: 
-  InitiativeProps & {
-    post: PostFragment 
+  {
+    post: PostFragment,
+    initiative: PostInitiativeInfoFragment
 }){
 
   const {
@@ -43,6 +44,7 @@ export default function Post({
   } = post;
 
   const user = useUser();
+  const router = useRouter();
 
   const [deletePost, {error}] = useDeletePostMutation({
     variables:{ post_id, initiative_id: initiative?.id },
@@ -219,7 +221,17 @@ export default function Post({
           <CommentCounter>
             <Trans>Comments:</Trans> {comments_aggregate?.aggregate?.count}
           </CommentCounter>
-          <Button customType="text" customSize="small">
+          <Button 
+            onClick={()=>{ 
+              router.push({
+                pathname: '/initiative/[id]/post/[post_id]', 
+                query: { id: initiative?.id, post_id: post_id }
+              }, `/initiative/${initiative?.id}/post/${post_id}`, { 
+                locale: router.locale 
+              }) 
+            }}
+            customType="text" 
+            customSize="small">
               <CommentIco/>
               <Trans>Comment</Trans>
           </Button>

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import CreatePost from "containers/Initiative/Feed/CreatePost";
+import CreatePost from "containers/Initiative/Feed/PostCreation";
 
 export default {
     title: 'Feed/CreatePost',

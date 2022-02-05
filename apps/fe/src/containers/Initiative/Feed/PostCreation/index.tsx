@@ -1,14 +1,18 @@
 import { Avatar, TextField, Button, IconButton } from "@ui";
 import { InputContent } from "./styles";
-import { Actions, Container } from "../Post/styles";
+import { Actions, Container } from "../../../../components/Post/styles";
 import { ReactComponent as VoteIco} from "@assets/icons/vote.svg";
 import { fixAvatar, useUser } from "common";
 import { useState } from "react";
 import { Trans } from '@lingui/macro'
-import { InitiativeProps } from "containers/Initiative";
-import PostEditor from "../PostEditor";
+import PostEditor from "../../../../components/PostEditor";
+import { PostInitiativeInfoFragment } from "generated";
 
-export default function CreatePost({initiative}:InitiativeProps){
+export default function CreatePost({
+  initiative
+}:{
+  initiative?: PostInitiativeInfoFragment | null
+}){
   
   const user = useUser();
   const [editorOpen, setEditorOpen] = useState(false);
@@ -33,7 +37,7 @@ export default function CreatePost({initiative}:InitiativeProps){
               onClick={()=>setEditorOpen(true)} 
               style={{alignSelf: 'start', marginTop:'0.5rem'}} 
               icon="send" 
-              size="small"/>
+              customSize="small"/>
         </InputContent>
         <Actions>
           <div/>

@@ -63,5 +63,6 @@ export type TextInputsProps = SpaceProps & LayoutProps & PositionProps & {
     })=>void,
   disabled?: boolean,
   onChange?: (e:ChangeEvent<HTMLInputElement>)=>void,
-  uploadedImages?: UploadedImage[]
+  uploadedImages?: UploadedImage[],
+  commentStyle?: boolean
 }

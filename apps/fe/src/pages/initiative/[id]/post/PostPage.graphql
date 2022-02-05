@@ -2,51 +2,116 @@ query PostPage(
   $initiative_id: uuid!,
   $post_id: bigint!
 ){
-  initiative_posts(
-    where: {_and:[
-      {
-        initiative_id:{_eq:$initiative_id}
-      },
-      {
-        id:{_eq:$post_id}
-      }
-    ]}
-  ) {
-    id
-    message
-    created_at
-    modified_at
-    user {
-      id
-      avatar_url
-      display_name
-    }
-    files {
-      created_at
-      downloadable_url
-      type
-    }
-    reactions {
-      type
-    }
+  post:initiative_posts_by_pk(
+    id: $post_id
+    initiative_id: $initiative_id
+  ){
+    ...Post
     comments {
-      id
-      created_at
-      # modified_at
-      message
-      user {
-        id
-        avatar_url
-        display_name
-      }
-      # files {
-      #   created_at
-      #   downloadable_url
-      #   type
-      # }
-      reactions {
-        type
-      }
+      ...Comment
+    }
+    initiative {
+      ...PostInitiativeInfo
+    }
+  }
+}
+
+fragment PostInitiativeInfo on initiatives {
+  id
+  name
+  image
+  infos(order_by: {approved_at: desc}, limit:1) {
+    problem
+    goal
+    context
+  }
+}
+
+fragment Comment on initiative_comments {
+  id
+  created_at
+  modified_at
+  message
+  post_id
+  parent_comment_id
+  initiative_id
+  user{
+    avatar_url
+    display_name
+    id
+  }
+  files {
+    downloadable_url
+    type
+    id
+  }
+  reactions {
+    type
+    user_id
+  }
+  comments_aggregate {
+    aggregate {
+      count
+    }
+  }
+  comments {
+    ...SubComment
+  }
+}
+
+fragment SubComment on initiative_comments {
+  id
+  created_at
+  modified_at
+  message
+  post_id
+  parent_comment_id
+  initiative_id
+  user{
+    avatar_url
+    display_name
+    id
+  }
+  files {
+    downloadable_url
+    type
+    id
+  }
+  reactions {
+    type
+    user_id
+  }
+  comments_aggregate {
+    aggregate {
+      count
+    }
+  }
+}
+
+fragment Post on initiative_posts {
+  id
+  type
+  created_at
+  modified_at
+  message
+  initiative_id
+  user{
+    avatar_url
+    display_name
+    id
+  }
+  files {
+    downloadable_url
+    type
+    id
+  }
+  reactions {
+    type
+    user_id
+  }
+  comments_aggregate {
+    aggregate {
+      count
     }
   }
 }

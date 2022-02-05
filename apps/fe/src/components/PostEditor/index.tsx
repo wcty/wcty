@@ -1,6 +1,6 @@
 import { Avatar, Text, TextArea, Button, IconButton, Loader } from "@ui";
 import { EditorContainer, EditorHeader, EditorWrapper, Names } from "./styles";
-import { File_Types_Enum, GetFilesDocument, PostFragment, useCreatePostMutation, useDeleteFilesMutation, useUpdatePostMutation } from "generated";
+import { File_Types_Enum, GetFilesDocument, PostFragment, PostInitiativeInfoFragment, useCreatePostMutation, useDeleteFilesMutation, useUpdatePostMutation } from "generated";
 import { fixAvatar, useUploader, useUser } from "common";
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/router";
@@ -14,9 +14,10 @@ export default function PostEditor({
   initiative,
   post
 }: 
-  InitiativeProps & {
+  {
     onClose:()=>void,
-    post?: PostFragment 
+    post?: PostFragment | null,
+    initiative?: PostInitiativeInfoFragment | null
   }
 ){
   const user = useUser();
@@ -49,7 +50,6 @@ export default function PostEditor({
   // console.log(deleteError, updateError)
   useEffect(()=>{
     if(error && deleteError && updateError){
-      console.log(error, deleteError, updateError)
       setLoading(false)
     }
   },[error, deleteError, updateError])
@@ -147,10 +147,11 @@ export default function PostEditor({
           {...{inputRef, onEmojiClick}} 
           {...{emojiOpen, setEmojiOpen}} 
           {...{uploadedImages}}
-          onImageSubmit={(e,o)=>onInputChange(e,{ ...o, keepSelected: true })}
+          value={message} 
           withImage 
           withEmoji 
-          value={message} 
+          onChange={(e:any)=>setMessage(e.target.value)}
+          onImageSubmit={(e,o)=>onInputChange(e,{ ...o, keepSelected: true })}
           images={filesData?.map(v=>v.blob)}
           deleteImage={(index, options)=>{
             const id = options?.id
@@ -164,8 +165,7 @@ export default function PostEditor({
                 }
               } as ChangeEvent<HTMLInputElement>)
             }
-          }}
-          onChange={(e:any)=>setMessage(e.target.value)}/>
+          }}/>
         <Button 
           disabled={loading} 
           mt='1rem' pr="3rem" pl="3rem" 

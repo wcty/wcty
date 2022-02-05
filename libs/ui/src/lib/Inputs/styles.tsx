@@ -107,13 +107,15 @@ TextInputParams = css`
   background: none;
 `,
 
-TextInput = styled.input`
+TextInput = styled.input<{ extendable?: boolean, commentStyle?: boolean  } & LayoutProps & FlexboxProps & PositionProps & SpaceProps>`
   ${TextInputParams}
   ${position}
   ${layout}
+  ${space}
+  ${flexbox}
 `,
 
-TextAreaInput = styled.textarea<{ extendable?: boolean } & LayoutProps & FlexboxProps & PositionProps & SpaceProps>`
+TextAreaInput = styled.textarea<{ extendable?: boolean, commentStyle?: boolean  } & LayoutProps & FlexboxProps & PositionProps & SpaceProps>`
   ${TextInputParams}
   ${position}
   ${layout}
@@ -127,6 +129,7 @@ TextAreaInput = styled.textarea<{ extendable?: boolean } & LayoutProps & Flexbox
       height: 8rem;
     }
   `}
+
 `,
 
 IconWrapper = styled.button<PositionProps & FlexboxProps & LayoutProps & SpaceProps>`

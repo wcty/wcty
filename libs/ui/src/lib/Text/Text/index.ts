@@ -8,16 +8,31 @@ const colors:colorTypes[] = Object.keys(theme.colors) as colorTypes[]
 
 
 export const 
-Text = styled.span<{semibold?:boolean, customColor?: colorTypes } & SpaceProps & FlexboxProps & LayoutProps & PositionProps >`
-  ${p=>p.semibold?
-    p.theme.font.body.semibold.t4:
-    p.theme.font.body.regular.t4 }
+Text = styled.span.attrs(({
+  button
+}:{
+  button?:boolean
+})=>(button?{as:'button'}:{}))
+<{ semibold?: boolean, customSize?: 't1'|'t2'|'t3'|'t4'|'t5', customColor?: colorTypes, button?: boolean } & SpaceProps & FlexboxProps & LayoutProps & PositionProps >`
+  ${({
+    semibold,
+    customSize='t4',
+    ...p
+  })=>semibold?
+    p.theme.font.body.semibold[customSize]:
+    p.theme.font.body.regular[customSize] }
   text-align: center; 
   ${p=>p.customColor && (
     colors.includes(p.customColor) ?
       css`color: ${p.theme.colors[p.customColor]};`:
       css`color: ${p.customColor};`
   )}
+  ${p=>p.button && css`
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+  `}
   >svg{
     margin-right: 8px;
   }

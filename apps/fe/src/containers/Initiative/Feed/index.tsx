@@ -1,8 +1,8 @@
 import ClientOnly from "components/ClientOnly";
 import Join, { LoginToJoin } from "../Join";
 
-import Post from "./Post";
-import CreatePost from "containers/Initiative/Feed/CreatePost";
+import Post from "components/Post";
+import PostCreation from "./PostCreation";
 import { usePostsSubscription, useFirstMemberQuery } from "generated";
 import { useRouter } from "next/router";
 import { CheckedChannels, Container, Footer } from "./styles";
@@ -53,11 +53,8 @@ function Feed({initiative}:InitiativeProps) {
 
   return(
     <Container>
-      <CheckedChannels>
-          {/* { channels } */}
-      </CheckedChannels>
-      <CreatePost {...{initiative}}/>
-      { [...postsData?.posts||[]].map((post,  key) => <Post  {...{initiative, post}} key={key}/>) }
+      <PostCreation {...{initiative}}/>
+      { initiative && [...postsData?.posts||[]].map((post,  key) => <Post  {...{initiative, post}} key={key}/>) }
       <Footer>
         <div>{date_created}</div>
         <div>{data?.initiative_members[0].user?.display_name + ' '} <Trans>created initiative</Trans></div>

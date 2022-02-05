@@ -2,12 +2,15 @@ mutation CreateComment(
   $message: String!
   $user_id: uuid!
   $initiative_id: uuid!
+  $post_id: bigint!
+  $parent_comment_id: bigint
 ){
-  insert_initiative_posts_one(object: {
-    type: message,
+  insert_initiative_comments_one(object: {
     message: $message,
     user_id: $user_id,
     initiative_id: $initiative_id,
+    post_id: $post_id,
+    parent_comment_id: $parent_comment_id 
   }){
     id
   }

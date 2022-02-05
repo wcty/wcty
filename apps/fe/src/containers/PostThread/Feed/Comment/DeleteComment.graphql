@@ -1,0 +1,22 @@
+mutation DeleteComment (
+    $post_id: bigint!,
+    $initiative_id: uuid!,
+    $comment_id: bigint!
+) {
+    delete_initiative_comments_by_pk (
+      id: $comment_id,
+      initiative_id: $initiative_id
+      post_id: $post_id
+    ){
+      id
+    }
+    delete_files(
+      where: { _and: [
+        { post_id:{_eq: $post_id} },
+        { initiative_id: {_eq: $initiative_id} },
+        { comment_id: {_eq: $comment_id} }
+      ]}
+    ) {
+      affected_rows
+    }
+}

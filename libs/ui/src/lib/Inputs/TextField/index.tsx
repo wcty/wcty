@@ -234,7 +234,7 @@ function FieldsWrapper(
           onClick={()=>setEmojiOpen?.(true)} 
           position='absolute' 
           right='5rem' 
-          bottom='1rem'>
+          bottom='1rem' >
             <SmileIcon/>
         </IconWrapper>}
       {withEmoji && emojiOpen && <EmojiWrapper>

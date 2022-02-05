@@ -4,7 +4,6 @@ import { Button } from "@ui";
 import { layout, LayoutProps } from 'styled-system';
 
 export const 
-
 Avatar = styled.div`
   flex-shrink: 0;
   margin-right: 7px;
@@ -16,7 +15,7 @@ Info  =  styled.div`
 `,
 
 Content = styled.div`
-  padding: 15px 19px 0 19px;
+  padding: 15px 19px 0 60px;
   ${props =>  props.theme.font.body.regular.t4};
   color: ${props  => props.theme.colors.body};
 `,
@@ -89,7 +88,7 @@ Chip = styled.div`
 `,
 
 Actions = styled.div`
-  padding: 15px 19px;
+  padding: 0px 19px 0px 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -101,8 +100,6 @@ Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${props =>  props.theme.colors.backgroundLighter};
-  box-shadow: 0px 0px 2px rgba(137, 150, 159, 0.1), 0px 2px 2px rgba(137, 150, 159, 0.1), 0px 1px 3px rgba(137, 150, 159, 0.1);
-  border-radius: 3px;
   margin-bottom: 6px;
   position: relative;
 `,

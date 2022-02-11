@@ -195,4 +195,9 @@ ImageWrapper = styled.div<{ url:string }& LayoutProps>`
   :hover{
     opacity: 0.975;
   }
+`,
+
+EditorContainer = styled.div`
+  margin-top: -0.5rem;
+  margin-left: calc(60px - 19px);
 `

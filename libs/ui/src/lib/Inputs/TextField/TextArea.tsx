@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { TextInput } from "../styles";
+import { TextAreaInput } from "../styles";
 import { FieldsWrapper } from "./FieldWrapper";
-import { TextInputsProps, TextFieldProps, CSSImageType, UploadedImage } from './types';
+import { TextInputsProps, CSSImageType, TextAreaProps, UploadedImage } from './types';
 
 
-export function TextField(props: TextInputsProps & TextFieldProps ){
+
+export function TextArea(props: TextInputsProps & TextAreaProps){
   const {
     withCancel,
     withImage,
@@ -17,8 +18,8 @@ export function TextField(props: TextInputsProps & TextFieldProps ){
     setEmojiOpen,
     inputRef,
     images,
-    commentStyle,
     deleteImage,
+    commentStyle,
     ...params
   } = props;
 
@@ -27,8 +28,9 @@ export function TextField(props: TextInputsProps & TextFieldProps ){
 
   return (
     <FieldsWrapper {...{...props, imageParams, setImageParams, uploads, setUploads}}>
-      <TextInput 
+      <TextAreaInput 
         {...params} 
+        rows={(imageParams?.length || uploads.length)? 1: props.rows} 
         height={(imageParams?.length || uploads.length)? '4rem': undefined} 
         ref={inputRef} />
     </FieldsWrapper> 

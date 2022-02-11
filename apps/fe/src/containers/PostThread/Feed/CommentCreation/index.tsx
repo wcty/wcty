@@ -1,22 +1,25 @@
-import { Avatar, TextField, Button, IconButton, TextArea } from "@ui";
-import { InputContent, Actions, Container } from "./styles";
+import { Avatar, TextField, IconButton } from "@ui";
+import { InputContent, Container } from "./styles";
 import { fixAvatar, useUser } from "common";
-import { useRef, useState } from "react";
-import { Trans } from '@lingui/macro'
+import { useEffect, useRef, useState } from "react";
 import { CommentFragment, PostPageQuery, useCreateCommentMutation } from "generated";
-import { IEmojiData } from "emoji-picker-react";
 import { useRouter } from "next/router";
 
-export default function CreatePost({ post }: PostPageQuery|{post: CommentFragment}){
+export default function CreateComment({ parent, comment }:{ parent: CommentFragment|PostPageQuery['post'], comment?:CommentFragment }){
   
   const user = useUser();
   const router = useRouter();
   const { id, post_id } = router.query;
   const [editorOpen, setEditorOpen] = useState(false);
-  const [message, setMessage] = useState(post?.message || '')
+  const [message, setMessage] = useState(comment?.message || '')
   const inputRef = useRef<HTMLTextAreaElement|any>();
   const [loading, setLoading] = useState(false)
-  const parent_comment_id = undefined;
+
+  let parent_comment_id;
+
+  if(parent && 'parent_comment_id' in parent){
+    parent_comment_id = parent?.id;
+  }
 
   const [addComment, { error }] = useCreateCommentMutation({
     variables:{
@@ -27,6 +30,18 @@ export default function CreatePost({ post }: PostPageQuery|{post: CommentFragmen
       message
     }
   });
+
+  useEffect(()=>{
+    window.onkeydown = (e)=>{
+      if(e.key === 'Enter' && (e.ctrlKey || e.metaKey) && message?.length >= 2){
+        addComment()
+        setMessage('')
+      }
+    }
+    return ()=>{
+      window.onkeydown = null
+    }
+  },[message])
 
   return (
       <>

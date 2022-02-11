@@ -42,7 +42,7 @@ export default function InitiativeCard({entry}:InitiativeProps){
             query: { id: entry.id },
             auth: auth.getJWTToken()
           }, `/initiative/${entry.id}`, { locale } )
-        setLoading(false)
+        // setLoading(false)
       }catch(e){
         setLoading(false)
       }

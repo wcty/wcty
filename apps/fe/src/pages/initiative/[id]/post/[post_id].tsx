@@ -47,7 +47,7 @@ export default function DynamicInitiative() {
     ||'Initiative from Wecity platform'
   const image = post?.initiative?.image
 
-  if(!user){
+  if(user===undefined){
     return <>Loading...</>
   }
 

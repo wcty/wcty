@@ -7,7 +7,7 @@ query PostPage(
     initiative_id: $initiative_id
   ){
     ...Post
-    comments {
+    comments(where: {parent_comment_id: {_is_null: true}}) {
       ...Comment
     }
     initiative {

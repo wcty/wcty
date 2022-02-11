@@ -8,7 +8,8 @@ subscription Comments($id: uuid, $post_id: bigint!, $limit: Int = 5){
         {
           post_id: {_eq: $post_id}
         }
-      ]
+      ],
+      parent_comment_id: {_is_null: true}
     }
     order_by: { created_at: asc },
     limit: $limit

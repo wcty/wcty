@@ -1,4 +1,4 @@
-import { Actions, CommentCounter,  Container, Content, ImageContainer, ImageWrapper, LikeCounter, Likes, Message, OptionsButton, OptionsMenu, Tags, DeletionMenu } from "./styles";
+import { Actions, CommentCounter,  Container, Content, ImageContainer, ImageWrapper, LikeCounter, Likes, Message, OptionsButton, OptionsMenu, Tags, DeletionMenu, EditorContainer } from "./styles";
 import { ReactComponent as CommentIco } from '@assets/icons/comment.svg'
 import { ReactComponent as LikeIco} from '@assets/icons/like.svg'
 import { 
@@ -8,7 +8,8 @@ import {
   useDeleteCommentMutation, 
   File_Types_Enum, 
   GetFilesDocument, 
-  CommentFragment 
+  CommentFragment, 
+  SubCommentFragment
 } from "generated";
 import { fixAvatar, useUser } from "common";
 import { Trans } from "@lingui/macro";
@@ -18,6 +19,7 @@ import { FullscreenCarousel, GalleryImage } from "components/Gallery";
 import { useRecoilState } from 'recoil';
 import Sidepanel from "containers/Sidepanel";
 import { useRouter } from "next/router";
+import CommentCreation from "../CommentCreation";
 
 type ImageType = {
   url: string,
@@ -31,11 +33,10 @@ type CSSImageType = {
   height: number|string
 }
 
-export default function Comment({
-  comment
-}: 
+export default function Comment({ comment, onReply }: 
   {
-    comment: CommentFragment,
+    comment: CommentFragment|SubCommentFragment,
+    onReply?: ()=>void
 }){
 
   const {
@@ -50,6 +51,7 @@ export default function Comment({
     ...props
   } = comment;
 
+  // console.log('comment', comment);
   const user = useUser();
   const router = useRouter();
 
@@ -75,15 +77,6 @@ export default function Comment({
       initiative_id,
       comment_id 
     }});
-
-  console.log(error, deleteError, likeError, { 
-    user_id: user?.id, 
-    post_id, 
-    reaction: Reactions_Enum.Like,
-    initiative_id,
-    id: comment_id 
-  });
-
 
   const liked = !!reactions.find(reaction => reaction.user_id ===  user?.id);
   const [options, setOptions] = useState(false)
@@ -243,12 +236,11 @@ export default function Comment({
           </CommentCounter>
           <Button 
             onClick={()=>{ 
-              router.push({
-                pathname: '/initiative/[id]/post/[post_id]', 
-                query: { id: initiative_id, post_id: post_id }
-              }, `/initiative/${initiative_id}/post/${post_id}`, { 
-                locale: router.locale 
-              }) 
+              if(onReply){
+                onReply()
+              }else{
+                setEditorOpen(true)
+              }
             }}
             customType="text" 
             customSize="small">
@@ -259,6 +251,13 @@ export default function Comment({
             <LikeIco onClick={()=>liked? deleteLike(): likeComment() }/>
         </Likes>
       </Actions>
+      { !comment?.parent_comment_id && 
+       'comments' in comment &&
+      <EditorContainer>
+        { comment?.comments.map((c,key) => 
+          <Comment {...{comment: c, key, onReply: ()=>setEditorOpen(true) }}/>) } 
+        {editorOpen && <CommentCreation parent={comment}/>}
+      </EditorContainer>}
     </Container>
     {fullscreen && 
       <FullscreenCarousel 

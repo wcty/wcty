@@ -5,8 +5,9 @@
 ——————————————
 This is urgent:
 ———————————————————
-  - Post edit and dialog for deletion
-  - Community moderation for new initiatives
+  - Comment of comments
+  - Smileys and images in comments
+  - Community moderation for new initiatives?
   - Login - debug, loading states, errors
   - Settings: emails, push, language
   - Posts and Comments

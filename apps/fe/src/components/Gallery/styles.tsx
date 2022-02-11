@@ -15,6 +15,8 @@ FullscreenCarouselWrapper = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
+  ${p=>p.theme.layout==='desktop' && css`
+    background-color: rgba(0,0,0,0.8);`}
   z-index: 100 !important;
   user-select: none;
   -moz-user-select: none;

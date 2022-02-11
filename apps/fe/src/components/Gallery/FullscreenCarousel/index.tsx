@@ -129,7 +129,8 @@ export function FullscreenCarousel({
         </CloseIcon>
         {onGalleryButtonClick && <GalleryIcon>
           <IconButton 
-            onClick={()=>onGalleryButtonClick(index)}             icon='gallery'
+            onClick={()=>onGalleryButtonClick(index)}             
+            icon='gallery'
             customType="secondary"
             customSize="small"/>
         </GalleryIcon>}

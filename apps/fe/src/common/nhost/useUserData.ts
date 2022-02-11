@@ -44,21 +44,29 @@ export function useUserData(retry: boolean = false) {
       }
     }
 
-    function Authorise(){
+    async function Authorise(){
+      setUser(undefined)
       const uid = auth.getClaim("x-hasura-user-id");
-      // console.log('Authorise', uid)
-
+      
       if(typeof uid==='string'){
         setUserId(uid)
         clear()
       }else if(iterations>=5){
         console.log('Exceeded retries')
         clear()
+        setUser(null)
         router.push('/login')
       }else{
         // console.log('Try again', iterations)
         iterations++;
       }
+
+      const authorised = await auth.isAuthenticatedAsync()
+      console.log('Authorised?', authorised)
+      if(!authorised){
+        setUser(null)
+      }
+
     }
 
     auth.onAuthStateChanged(loggedIn=>{

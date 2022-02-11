@@ -31,6 +31,8 @@ export default function FeedBlock({ initiative:data }: InitiativeProps ) {
     }
   },[data])
 
+  console.log('user:', user)
+
   if(user===undefined){
     return <>Loading...</>
   }

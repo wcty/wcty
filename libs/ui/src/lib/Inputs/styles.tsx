@@ -3,33 +3,50 @@ import { position, layout, space, PositionProps, LayoutProps, SpaceProps, flexbo
 import { InputHTMLAttributes } from 'react'
 
 export const 
-FieldWrapperParams = css`
+FieldWrapperParams = css<{ commentStyle?: boolean }>`
   height: 100%;
   width: 100%;
-  padding: 1rem 1.5rem 1rem 1.5rem;
-
-  /* background-color: white; */
   outline: none;
-  border-radius: 3px 3px 3px 3px;
-  border: 1px solid ${p=>p.theme.colors.line};
-  :hover{
+  ${({ commentStyle }) => commentStyle ? css`
+    padding: 0.6rem 1.5rem 0.6rem 1.5rem;
     background-color: ${p=>p.theme.colors.backgroundActive};
-    border: 1px solid ${p=>p.theme.colors.secondary};
-  }
-  :focus {
-    border: 1px solid ${p=>p.theme.colors.secondary};
-    color: ${p=>p.theme.colors.secondary};
-    background-color: #ffffff;
+    border-radius: 5px;
+    border: none;
     :hover{
+      background-color: ${p=>p.theme.colors.backgroundActive};
+      border: 1px solid ${p=>p.theme.colors.secondary};
+    }
+    :focus {
+      border: 1px solid ${p=>p.theme.colors.secondary};
+      color: ${p=>p.theme.colors.secondary};
+      background-color: #ffffff;
+      :hover{
+        background-color: #ffffff;
+      }
+    }
+  `: css`
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border-radius: 3px 3px 3px 3px;
+    border: 1px solid ${p=>p.theme.colors.line};
+    :hover{
+      background-color: ${p=>p.theme.colors.backgroundActive};
+      border: 1px solid ${p=>p.theme.colors.secondary};
+    }
+    :focus {
+      border: 1px solid ${p=>p.theme.colors.secondary};
+      color: ${p=>p.theme.colors.secondary};
+      background-color: #ffffff;
+      :hover{
+        background-color: #ffffff;
+      }
+    }
+    :focus-within {
       background-color: #ffffff;
     }
-  }
-  :focus-within {
-    background-color: #ffffff;
-  }
-  :active {
-    background-color: #ffffff;
-  }
+    :active {
+      background-color: #ffffff;
+    }
+  `}
 `,
 
 FieldWrapper = styled.div`

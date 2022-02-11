@@ -11,7 +11,7 @@ export type InitiativeProps = {
   initiative?:InitiativePublicByPkQuery['initiative']
 }
 
-export default function PostPage({post}:PostPageQuery) {
+export default function PostThread({post}:PostPageQuery) {
   const { id } = useRouter().query;
   const user = useUser()
   const router = useRouter()

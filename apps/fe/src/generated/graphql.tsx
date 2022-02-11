@@ -12290,7 +12290,7 @@ export type CreateCommentMutationOptions = Apollo.BaseMutationOptions<CreateComm
 export const CommentsDocument = gql`
     subscription Comments($id: uuid, $post_id: bigint!, $limit: Int = 5) {
   comments: initiative_comments(
-    where: {_and: [{initiative_id: {_eq: $id}}, {post_id: {_eq: $post_id}}]}
+    where: {_and: [{initiative_id: {_eq: $id}}, {post_id: {_eq: $post_id}}], parent_comment_id: {_is_null: true}}
     order_by: {created_at: asc}
     limit: $limit
   ) {
@@ -12735,7 +12735,7 @@ export const PostPageDocument = gql`
     query PostPage($initiative_id: uuid!, $post_id: bigint!) {
   post: initiative_posts_by_pk(id: $post_id, initiative_id: $initiative_id) {
     ...Post
-    comments {
+    comments(where: {parent_comment_id: {_is_null: true}}) {
       ...Comment
     }
     initiative {

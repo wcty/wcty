@@ -23,6 +23,7 @@ export default function Feed({ post }: PostPageQuery) {
     },
     skip: !user || !post?.id,
   })
+  console.log('comments:', comments);
 
   return(
     <Container>
@@ -53,7 +54,7 @@ export default function Feed({ post }: PostPageQuery) {
       <CommentsContainer>
         { comments.map((comment,  key) => 
           <Comment {...{comment}} key={key}/>) } 
-        <CommentCreation />
+        <CommentCreation parent={post}/>
       </CommentsContainer>
     </Container>
   )

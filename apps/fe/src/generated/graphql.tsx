@@ -10604,10 +10604,22 @@ export type CreateCommentMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
   post_id: Scalars['bigint'];
   parent_comment_id?: InputMaybe<Scalars['bigint']>;
+  files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
 }>;
 
 
 export type CreateCommentMutation = { insert_initiative_comments_one?: { id: any } | null | undefined };
+
+export type UpdateCommentMutationVariables = Exact<{
+  message: Scalars['String'];
+  post_id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  comment_id: Scalars['bigint'];
+  now: Scalars['timestamptz'];
+}>;
+
+
+export type UpdateCommentMutation = { update_initiative_comments_by_pk?: { id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined }, comments: Array<{ id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> } | null | undefined };
 
 export type CommentsSubscriptionVariables = Exact<{
   id?: InputMaybe<Scalars['uuid']>;
@@ -10873,7 +10885,7 @@ export const PostFragmentDoc = gql`
     display_name
     id
   }
-  files {
+  files(where: {comment_id: {_is_null: true}}) {
     downloadable_url
     type
     id
@@ -12249,9 +12261,9 @@ export type ReactionToCommentMutationHookResult = ReturnType<typeof useReactionT
 export type ReactionToCommentMutationResult = Apollo.MutationResult<ReactionToCommentMutation>;
 export type ReactionToCommentMutationOptions = Apollo.BaseMutationOptions<ReactionToCommentMutation, ReactionToCommentMutationVariables>;
 export const CreateCommentDocument = gql`
-    mutation CreateComment($message: String!, $user_id: uuid!, $initiative_id: uuid!, $post_id: bigint!, $parent_comment_id: bigint) {
+    mutation CreateComment($message: String!, $user_id: uuid!, $initiative_id: uuid!, $post_id: bigint!, $parent_comment_id: bigint, $files: files_arr_rel_insert_input) {
   insert_initiative_comments_one(
-    object: {message: $message, user_id: $user_id, initiative_id: $initiative_id, post_id: $post_id, parent_comment_id: $parent_comment_id}
+    object: {message: $message, user_id: $user_id, initiative_id: $initiative_id, post_id: $post_id, parent_comment_id: $parent_comment_id, files: $files}
   ) {
     id
   }
@@ -12277,6 +12289,7 @@ export type CreateCommentMutationFn = Apollo.MutationFunction<CreateCommentMutat
  *      initiative_id: // value for 'initiative_id'
  *      post_id: // value for 'post_id'
  *      parent_comment_id: // value for 'parent_comment_id'
+ *      files: // value for 'files'
  *   },
  * });
  */
@@ -12287,6 +12300,46 @@ export function useCreateCommentMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateCommentMutationHookResult = ReturnType<typeof useCreateCommentMutation>;
 export type CreateCommentMutationResult = Apollo.MutationResult<CreateCommentMutation>;
 export type CreateCommentMutationOptions = Apollo.BaseMutationOptions<CreateCommentMutation, CreateCommentMutationVariables>;
+export const UpdateCommentDocument = gql`
+    mutation UpdateComment($message: String!, $post_id: bigint!, $initiative_id: uuid!, $comment_id: bigint!, $now: timestamptz!) {
+  update_initiative_comments_by_pk(
+    pk_columns: {id: $comment_id, post_id: $post_id, initiative_id: $initiative_id}
+    _set: {message: $message, modified_at: $now}
+  ) {
+    ...Comment
+  }
+}
+    ${CommentFragmentDoc}`;
+export type UpdateCommentMutationFn = Apollo.MutationFunction<UpdateCommentMutation, UpdateCommentMutationVariables>;
+
+/**
+ * __useUpdateCommentMutation__
+ *
+ * To run a mutation, you first call `useUpdateCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCommentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCommentMutation, { data, loading, error }] = useUpdateCommentMutation({
+ *   variables: {
+ *      message: // value for 'message'
+ *      post_id: // value for 'post_id'
+ *      initiative_id: // value for 'initiative_id'
+ *      comment_id: // value for 'comment_id'
+ *      now: // value for 'now'
+ *   },
+ * });
+ */
+export function useUpdateCommentMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCommentMutation, UpdateCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateCommentMutation, UpdateCommentMutationVariables>(UpdateCommentDocument, options);
+      }
+export type UpdateCommentMutationHookResult = ReturnType<typeof useUpdateCommentMutation>;
+export type UpdateCommentMutationResult = Apollo.MutationResult<UpdateCommentMutation>;
+export type UpdateCommentMutationOptions = Apollo.BaseMutationOptions<UpdateCommentMutation, UpdateCommentMutationVariables>;
 export const CommentsDocument = gql`
     subscription Comments($id: uuid, $post_id: bigint!, $limit: Int = 5) {
   comments: initiative_comments(

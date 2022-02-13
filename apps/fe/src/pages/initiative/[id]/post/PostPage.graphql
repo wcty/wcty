@@ -100,7 +100,7 @@ fragment Post on initiative_posts {
     display_name
     id
   }
-  files {
+  files(where:{  comment_id: {_is_null: true} }) {
     downloadable_url
     type
     id

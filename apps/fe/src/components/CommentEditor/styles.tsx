@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { flexbox, FlexProps, layout, LayoutProps, position, PositionProps, space, SpaceProps } from 'styled-system';
 
 export const 
 InputContent =  styled.div`
@@ -20,11 +21,15 @@ Actions = styled.div`
   align-items: center;
 `,
 
-Container = styled.div`
+Container = styled.div<PositionProps&LayoutProps&SpaceProps&FlexProps>`
   width: 100%;    
   display: flex;
   flex-direction: column;
   border-radius: 3px;
   margin-bottom: 6px;
   position: relative;
+  ${position}
+  ${layout}
+  ${space}
+  ${flexbox}
 `

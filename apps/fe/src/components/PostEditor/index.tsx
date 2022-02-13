@@ -34,7 +34,7 @@ export default function PostEditor({
       setMessage(text);
   };
 
-  const {onInputChange, filesData, submit } = useUploader(initiative?.id)
+  const {onInputChange, filesData, submit } = useUploader()
 
   const [addPost, { error }] = useCreatePostMutation()
   const [deletionFiles, setDeletionFiles] = useState<string[]>([])
@@ -66,7 +66,10 @@ export default function PostEditor({
       if(filesData?.length){
         const results = await submit({
           createRecord: true,
-          postId: post.id,
+          props:{
+            post_id: post.id,
+            initiative_id: initiative?.id
+          },
           multiple: true,
           keepSelected: true
         })

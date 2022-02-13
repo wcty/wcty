@@ -19,7 +19,8 @@ import { FullscreenCarousel, GalleryImage } from "components/Gallery";
 import { useRecoilState } from 'recoil';
 import Sidepanel from "containers/Sidepanel";
 import { useRouter } from "next/router";
-import CommentCreation from "../CommentCreation";
+import CommentCreation from "../CommentEditor";
+import useImages from "common/hooks/useImages";
 
 type ImageType = {
   url: string,
@@ -82,7 +83,8 @@ export default function Comment({ comment, onReply }:
   const [options, setOptions] = useState(false)
   const [deletion, setDeletion] = useState(false)
   const [editorOpen, setEditorOpen] = useState(false)
-  const [imageParams, setImageParams] = useState<CSSImageType[]>()
+  const [replyOpen, setReplyOpen] = useState(false)
+
   const [fullscreen, setFullscreen] = useState<{
     images: GalleryImage[],
     defaultIndex: number
@@ -90,46 +92,8 @@ export default function Comment({ comment, onReply }:
   
   const [_, setSidebarVisible] = useRecoilState(Sidepanel.visible)
 
-  useEffect(()=>{
+  const { imageParams } = useImages(files)
 
-    (async function getImageParams(){
-      const images = files
-        .filter(file => file.type === File_Types_Enum.Image)
-        .map(file => file.downloadable_url)
-
-      if(images){
-        const imagesObject:ImageType[] = []
-
-        for(let i=0; i<(images?.length||0); i++){
-          const url = images?.[i]
-          const imageObject:ImageType = await (new Promise((resolve, reject)=>{
-            var img = new Image();
-            img.onload = function(){
-              resolve({
-                url: url||'',
-                width:img.width,
-                height:img.height
-              })
-            }
-            img.src = url||'';
-          }))
-          imagesObject.push(imageObject)
-        }
-        const max = Math.max(...imagesObject?.map(v=>v.width))
-        const min = Math.min(...imagesObject?.map(v=>v.width))
-        const scaled:CSSImageType[] = imagesObject?.map(v=>{
-          const norm = (v.width-min)/(max-min)
-          const coeff = norm/v.width
-          return ({
-            ...v,
-            height: v.width*coeff*10 + '%',
-            width: norm*10 + '%'
-          })
-        })
-        setImageParams(scaled)
-      }
-    })()
-  },[files])
 
   return(<>
     <Container onClick={()=>options && setOptions(!options)} >
@@ -204,11 +168,13 @@ export default function Comment({ comment, onReply }:
           </DeletionMenu>}
       </>}
       <Content>
-        <Message>{
+        {editorOpen ?
+         <CommentCreation noAvatar ml='-2rem' width='calc(100% + 4rem)' comment={comment} onClose={()=>setEditorOpen(false)}/>:
+         <Message>{
           message?.replaceAll(
             '\\n', `
           `)
-        }</Message>
+        }</Message>}
       {imageParams?.length ? 
         <ImageContainer>
           {imageParams?.map((v,key)=>
@@ -239,7 +205,7 @@ export default function Comment({ comment, onReply }:
               if(onReply){
                 onReply()
               }else{
-                setEditorOpen(true)
+                setReplyOpen(true)
               }
             }}
             customType="text" 
@@ -251,12 +217,13 @@ export default function Comment({ comment, onReply }:
             <LikeIco onClick={()=>liked? deleteLike(): likeComment() }/>
         </Likes>
       </Actions>
+
       { !comment?.parent_comment_id && 
        'comments' in comment &&
       <EditorContainer>
         { comment?.comments.map((c,key) => 
-          <Comment {...{comment: c, key, onReply: ()=>setEditorOpen(true) }}/>) } 
-        {editorOpen && <CommentCreation parent={comment}/>}
+          <Comment {...{comment: c, key, onReply: ()=>setReplyOpen(true) }}/>) } 
+        {replyOpen && <CommentCreation parent={comment}/>}
       </EditorContainer>}
     </Container>
     {fullscreen && 

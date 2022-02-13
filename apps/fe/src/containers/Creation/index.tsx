@@ -37,7 +37,7 @@ export default function Creation() {
     timeUpdated: Date.now()
   })
 
-  const { onInputChange, submit, results, filesData } = useUploader(initiative.id)
+  const { onInputChange, submit, results, filesData } = useUploader()
   const { url=undefined, path=undefined } = results?.[0] || {}
 
   console.log(filesData)

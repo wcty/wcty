@@ -70,7 +70,10 @@ export default function Creation({
             onClick={async ()=>{
               setLoading(true)
                 const results = await submit({
-                  createRecord: false
+                  createRecord: false,
+                  props:{
+                    initiative_id: initiative.id
+                  }
                 })
                 await insert({variables:{
                   initiative:{

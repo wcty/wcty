@@ -160,7 +160,7 @@ export function FieldsWrapper(
             as='div' 
             position='absolute' 
             right='2rem' 
-            bottom='1rem'>
+            bottom={commentStyle?'0.65rem':'1rem'}>
               <PIcon/>
           </IconWrapper>
         </FileInput>}
@@ -170,10 +170,10 @@ export function FieldsWrapper(
           onClick={()=>setEmojiOpen?.(true)} 
           position='absolute' 
           right='5rem' 
-          bottom='1rem' >
+          bottom={commentStyle?'0.65rem':'1rem'}>
             <SmileIcon/>
         </IconWrapper>}
-      {withEmoji && emojiOpen && <EmojiWrapper>
+      {withEmoji && emojiOpen && <EmojiWrapper commentStyle>
         {onEmojiClick && <Picker onEmojiClick={(e,d)=>{onEmojiClick?.(e,d); setEmojiOpen?.(false)}} />}
       </EmojiWrapper>}
     </FieldWrapper>

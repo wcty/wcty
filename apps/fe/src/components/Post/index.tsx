@@ -11,6 +11,7 @@ import { FullscreenCarousel, GalleryImage } from "components/Gallery";
 import { useRecoilState } from 'recoil';
 import Sidepanel from "containers/Sidepanel";
 import { useRouter } from "next/router";
+import useImages from "common/hooks/useImages";
 
 type ImageType = {
   url: string,
@@ -70,53 +71,13 @@ export default function Post({
   const [options, setOptions] = useState(false)
   const [deletion, setDeletion] = useState(false)
   const [editorOpen, setEditorOpen] = useState(false)
-  const [imageParams, setImageParams] = useState<CSSImageType[]>()
   const [fullscreen, setFullscreen] = useState<{
     images: GalleryImage[],
     defaultIndex: number
   }>()
   const [_, setSidebarVisible] = useRecoilState(Sidepanel.visible)
 
-  useEffect(()=>{
-
-    (async function getImageParams(){
-      const images = files
-        .filter(file => file.type === File_Types_Enum.Image)
-        .map(file => file.downloadable_url)
-
-      if(images){
-        const imagesObject:ImageType[] = []
-
-        for(let i=0; i<(images?.length||0); i++){
-          const url = images?.[i]
-          const imageObject:ImageType = await (new Promise((resolve, reject)=>{
-            var img = new Image();
-            img.onload = function(){
-              resolve({
-                url: url||'',
-                width:img.width,
-                height:img.height
-              })
-            }
-            img.src = url||'';
-          }))
-          imagesObject.push(imageObject)
-        }
-        const max = Math.max(...imagesObject?.map(v=>v.width))
-        const min = Math.min(...imagesObject?.map(v=>v.width))
-        const scaled:CSSImageType[] = imagesObject?.map(v=>{
-          const norm = (v.width-min)/(max-min)
-          const coeff = norm/v.width
-          return ({
-            ...v,
-            height: v.width*coeff*10 + '%',
-            width: norm*10 + '%'
-          })
-        })
-        setImageParams(scaled)
-      }
-    })()
-  },[files])
+  const { imageParams } = useImages(files)
 
   return(<>
     {editorOpen && <PostEditor {...{initiative, post}} onClose={()=>setEditorOpen(false)} /> }

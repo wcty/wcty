@@ -5,26 +5,22 @@
 ——————————————
 This is urgent:
 ———————————————————
-  - Comment of comments
   - Smileys and images in comments
-  - Community moderation for new initiatives?
-  - Login - debug, loading states, errors
-  - Settings: emails, push, language
-  - Posts and Comments
+  - Edit comments
   - Private Messages
   - User profile
-  - Photo Gallery
   - User-list of initiative
   - Notifications in Browser and Email
   - Login and magic link login - account activation
+  - Login - debug, loading states, errors
+  - Settings: emails, push, language
   - Geolocation request + Push request
   - Error handling
   - Remove sender from notification addresses
-  - About button in menu
 
 —————————————————
 This is for later times 
-  - Fix i18n system
+  - Community moderation for new initiatives?
   - Tasks and expenses 
   - Voting - polls
   - Channels 

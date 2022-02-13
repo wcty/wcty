@@ -8,6 +8,7 @@ import { useNhostAuth } from '@nhost/react-auth'
 
 export * from './useUploader'
 export * from './usePushNotifications'
+export * from './useImages'
 
 export function useUser(){
   const [user, setUser] = useRecoilState(atoms.user)

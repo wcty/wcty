@@ -1,0 +1,21 @@
+mutation UpdateComment(
+  $message: String!
+  $post_id: bigint!
+  $initiative_id: uuid!
+  $comment_id: bigint!
+  $now: timestamptz!
+){
+  update_initiative_comments_by_pk (
+    pk_columns: {
+      id: $comment_id,
+      post_id: $post_id,
+      initiative_id: $initiative_id
+    }
+    _set: {
+      message: $message
+      modified_at: $now
+    }
+  ){
+    ...Comment
+  }
+}

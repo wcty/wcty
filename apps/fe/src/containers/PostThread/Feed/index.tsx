@@ -1,5 +1,5 @@
 import Post from "components/Post";
-import Comment from "containers/PostThread/Feed/Comment";
+import Comment from "components/Comment";
 
 import CreatePost from "containers/Initiative/Feed/PostCreation";
 import { useCommentsSubscription, useFirstMemberQuery, PostPageQuery } from "generated";
@@ -9,7 +9,7 @@ import { DateTime, DateTimeFormatOptions } from 'luxon'
 import { useLang, useLayout, useUser } from "common";
 import { Trans } from "@lingui/macro";
 import { Text, Title } from "@ui";
-import CommentCreation from "./CommentCreation";
+import CommentCreation from "../../../components/CommentEditor";
 import { ArrowLeft } from "../styles";
 
 export default function Feed({ post }: PostPageQuery) {

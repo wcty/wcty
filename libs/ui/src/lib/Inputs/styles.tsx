@@ -185,12 +185,20 @@ IconWrapper = styled.button<PositionProps & FlexboxProps & LayoutProps & SpacePr
   ${flexbox}
 `,
 
-EmojiWrapper = styled.div`
+EmojiWrapper = styled.div<{commentStyle?: boolean}>`
   position: absolute;
   bottom: 1.5rem;
   right: 1.5rem;
   overflow: visible;
   min-width: 250px;
+  ${p=>p.commentStyle && css`
+    display: flex;
+    align-items: flex-end !important;
+    justify-content: start !important;
+    /* padding-bottom: 0.5rem !important; */
+    transform: translateY(1rem);
+    margin-right: -4rem !important;
+  `}
 `,
 
 FileInput = styled.label.attrs(

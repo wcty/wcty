@@ -14,24 +14,25 @@ We.city is a web app to:
 
 #### Amazing open source tech that we use:
 
-  ###### Backend services and data management:
-  Nextjs
-  Nx by NRWL
-  Hasura GraphQL Engine, to generate all our api's: https://hasura.io/docs/latest/graphql/core/index.html
-  NHost Hasura Backend Plus, to authorise users and store files on remote server: https://github.com/nhost/hasura-backend-plus
-  NHost JS SDK, to authorise and upload files from browser: https://docs.nhost.io/libraries/nhost-js-sdk
-  Apollo Client, to consume our api's from browser: https://www.apollographql.com/docs/react/
-  Recoil, to manage state in React app: https://recoiljs.org/
+###### Backend services and data management:
+- Nextjs
+- Nx by NRWL
+- Hasura GraphQL Engine, to generate all our api's: https://hasura.io/docs/latest/graphql/core/index.html
+- NHost Hasura Backend Plus, to authorise users and store files on remote server: https://github.com/nhost/hasura-backend-plus
+- NHost JS SDK, to authorise and upload files from browser: https://docs.nhost.io/libraries/nhost-js-sdk
+- Apollo Client, to consume our api's from browser: https://www.apollographql.com/docs/react/
+- Recoil, to manage state in React app: https://recoiljs.org/
 
-  ###### Maps
-  Urbica React Map GL, to wrap Mapbox GL JS in components: https://urbica.github.io/react-map-gl/
-  Mapbox GL JS, to render beautiful maps: https://docs.mapbox.com/mapbox-gl-js/api/
-  Urbica Martin, to serve vector tiles for our maps from our database: https://martin.urbica.co/
+###### Maps
+- Urbica React Map GL, to wrap Mapbox GL JS in components: https://urbica.github.io/react-map-gl/
+- Mapbox GL JS, to render beautiful maps: https://docs.mapbox.com/mapbox-gl-js/api/
+- Urbica Martin, to serve vector tiles for our maps from our database: https://martin.urbica.co/
 
-  ###### User Interfaces 
-  Styled-components
-  React-Spring, to make nice animations: https://www.react-spring.io/
-  React-Swipeable-Views, to swipe our initiative cards.
+###### User Interfaces 
+- Styled-components
+- React-Spring, to make nice animations: https://www.react-spring.io/
+- React-Swipeable-Views, to swipe our initiative cards.
+
 
 #### For whom?
 
@@ -53,10 +54,10 @@ Initiative consists of public page, with the general description, current tasks 
 
 The map also features markers for organisations and individuals providing goods or services for civic initiatives. They can optionally show up in the same feed as initiatives, and be swiped among them or separately one-by-one in an order defined by proximity to the user. Upon selecting one, the profile of the organisation will be shown, as well as the list of the goods or services, that it is capable to provide. They can be reposted by the user, as new initiatives, or proposed as tasks in the existing ones. Similarly organisation can be invited to make a proposal in certain initiative, in the response to one of its declared tasks.
 
-Matching will happen in two ways — organisations or individuals can look through civic initiatives around, and propose them their goods or services, or the members of the initiative can look through organisations, and invite them to help out. The last screen is a Crowdfunding page, where members of the initiative can collect resources to order voted goods or services. It is the final phase of the initiative development, after which comes the actual ordering, implementation and reporting in the group chat. The members of the initiative can share the link to it with their friends or colleagues to find support, or to invite certain organisations to submit their proposal for a certin task. 
+Matching will happen in two ways — organisations or individuals can look through civic initiatives around, and propose them their goods or services, or the members of the initiative can look through organisations, and invite them to help out. The last screen is a Crowdfunding page, where members of the initiative can collect resources to order voted goods or services. It is the final phase of the initiative development, after which comes the actual ordering, implementation and reporting in the group chat. The members of the initiative can share the link to it with their friends or colleagues to find support, or to invite certain organisations to submit their proposal for a certain task. 
 
 <div align="center">
-  <img width="50%" src="/public/assets/groups_min.png" />
+  <img width="50%" src="/apps/fe/public/assets/groups_min.png" />
 </div>
 
 #### What problem does the project address?  

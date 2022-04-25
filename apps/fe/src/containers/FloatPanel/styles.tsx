@@ -252,7 +252,7 @@ SearchResults = styled.button`
   box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
   border-radius: 3px;
   &[data-active=true]{
-    min-height: 120px;
+    min-height: 60px;
     max-height: 300px;
     opacity: 1;
   }

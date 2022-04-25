@@ -18,9 +18,10 @@ export default function ListRow({ data:v, onClick:_onClick }:{
   
   function onClick(){
     const description = 
-      v.infos[0].problem? (v.infos[0].problem + '\n'):'' + 
-      v.infos[0].goal? (v.infos[0].goal + '\n'):'' + 
-      v.infos[0].context||''
+      v.infos?.[0].problem? (v.infos?.[0].problem + '\n'):'' + 
+      v.infos?.[0].goal? (v.infos?.[0].goal + '\n'):'' + 
+      v.infos?.[0].context||''
+
     setSelected({
       id: v.id,
       type: 'Feature',
@@ -51,8 +52,8 @@ export default function ListRow({ data:v, onClick:_onClick }:{
   return <ListItem {...{onClick}}>
     <img src={v.image+'?w=30&h=30&q=90'}/>
     <div>
-      <span>{v.name}</span>
-      <span className='address'>{v?.geometry?.coordinates? address: ''}</span>
+      <span style={{textAlign:'start'}}>{v.name}</span>
+      <span style={{textAlign:'start'}} className='address'>{v?.geometry?.coordinates? address: ''}</span>
     </div>
   </ListItem>
 }

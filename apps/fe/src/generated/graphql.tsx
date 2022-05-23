@@ -10442,6 +10442,59 @@ export type GetFilesQueryVariables = Exact<{
 
 export type GetFilesQuery = { files: Array<{ id: any, downloadable_url?: string | null | undefined, type: File_Types_Enum, post_id?: any | null | undefined, created_at?: any | null | undefined, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }> };
 
+export type DeleteCommentMutationVariables = Exact<{
+  post_id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  comment_id: Scalars['bigint'];
+}>;
+
+
+export type DeleteCommentMutation = { delete_initiative_comments_by_pk?: { id: any } | null | undefined, delete_files?: { affected_rows: number } | null | undefined };
+
+export type DeleteCommentLikeMutationVariables = Exact<{
+  user_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
+  comment_id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+}>;
+
+
+export type DeleteCommentLikeMutation = { delete_initiative_comment_reactions?: { returning: Array<{ post_id: any, user_id?: any | null | undefined }> } | null | undefined };
+
+export type ReactionToCommentMutationVariables = Exact<{
+  comment_id: Scalars['bigint'];
+  user_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  reaction: Reactions_Enum;
+}>;
+
+
+export type ReactionToCommentMutation = { insert_initiative_comment_reactions_one?: { user_id?: any | null | undefined, post_id: any, type?: Reactions_Enum | null | undefined } | null | undefined };
+
+export type CreateCommentMutationVariables = Exact<{
+  message: Scalars['String'];
+  user_id: Scalars['uuid'];
+  initiative_id: Scalars['uuid'];
+  post_id: Scalars['bigint'];
+  parent_comment_id?: InputMaybe<Scalars['bigint']>;
+  files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
+}>;
+
+
+export type CreateCommentMutation = { insert_initiative_comments_one?: { id: any } | null | undefined };
+
+export type UpdateCommentMutationVariables = Exact<{
+  message: Scalars['String'];
+  post_id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
+  comment_id: Scalars['bigint'];
+  now: Scalars['timestamptz'];
+}>;
+
+
+export type UpdateCommentMutation = { update_initiative_comments_by_pk?: { id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined }, comments: Array<{ id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> } | null | undefined };
+
 export type DeleteLikeMutationVariables = Exact<{
   user_id: Scalars['uuid'];
   post_id: Scalars['bigint'];
@@ -10533,13 +10586,15 @@ export type DeleteInitiativeMemberMutationVariables = Exact<{
 
 export type DeleteInitiativeMemberMutation = { delete_initiative_members?: { affected_rows: number } | null | undefined };
 
+export type MembersPreviewFragment = { user_id?: any | null | undefined, user?: { avatar_url?: string | null | undefined } | null | undefined };
+
 export type InitiativeByPkQueryVariables = Exact<{
   id: Scalars['uuid'];
   user_id?: InputMaybe<Scalars['uuid']>;
 }>;
 
 
-export type InitiativeByPkQuery = { initiative?: { id: any, isMember: Array<{ user_id?: any | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
+export type InitiativeByPkQuery = { initiative?: { id: any, isMember: Array<{ user_id?: any | null | undefined }>, members: Array<{ user_id?: any | null | undefined, user?: { avatar_url?: string | null | undefined } | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
 
 export type CheckTaskMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -10567,59 +10622,6 @@ export type TasksQueryVariables = Exact<{
 
 
 export type TasksQuery = { initiative_tasks: Array<{ id: number, description?: string | null | undefined, volunteers_needed?: any | null | undefined, status?: Task_Statuses_Enum | null | undefined, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } }> };
-
-export type DeleteCommentMutationVariables = Exact<{
-  post_id: Scalars['bigint'];
-  initiative_id: Scalars['uuid'];
-  comment_id: Scalars['bigint'];
-}>;
-
-
-export type DeleteCommentMutation = { delete_initiative_comments_by_pk?: { id: any } | null | undefined, delete_files?: { affected_rows: number } | null | undefined };
-
-export type DeleteCommentLikeMutationVariables = Exact<{
-  user_id: Scalars['uuid'];
-  post_id: Scalars['bigint'];
-  comment_id: Scalars['bigint'];
-  initiative_id: Scalars['uuid'];
-}>;
-
-
-export type DeleteCommentLikeMutation = { delete_initiative_comment_reactions?: { returning: Array<{ post_id: any, user_id?: any | null | undefined }> } | null | undefined };
-
-export type ReactionToCommentMutationVariables = Exact<{
-  comment_id: Scalars['bigint'];
-  user_id: Scalars['uuid'];
-  post_id: Scalars['bigint'];
-  initiative_id: Scalars['uuid'];
-  reaction: Reactions_Enum;
-}>;
-
-
-export type ReactionToCommentMutation = { insert_initiative_comment_reactions_one?: { user_id?: any | null | undefined, post_id: any, type?: Reactions_Enum | null | undefined } | null | undefined };
-
-export type CreateCommentMutationVariables = Exact<{
-  message: Scalars['String'];
-  user_id: Scalars['uuid'];
-  initiative_id: Scalars['uuid'];
-  post_id: Scalars['bigint'];
-  parent_comment_id?: InputMaybe<Scalars['bigint']>;
-  files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
-}>;
-
-
-export type CreateCommentMutation = { insert_initiative_comments_one?: { id: any } | null | undefined };
-
-export type UpdateCommentMutationVariables = Exact<{
-  message: Scalars['String'];
-  post_id: Scalars['bigint'];
-  initiative_id: Scalars['uuid'];
-  comment_id: Scalars['bigint'];
-  now: Scalars['timestamptz'];
-}>;
-
-
-export type UpdateCommentMutation = { update_initiative_comments_by_pk?: { id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined }, comments: Array<{ id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> } | null | undefined };
 
 export type CommentsSubscriptionVariables = Exact<{
   id?: InputMaybe<Scalars['uuid']>;
@@ -10757,6 +10759,14 @@ export const InitiativeFieldsFragmentDoc = gql`
   created_at
   members {
     user_id
+  }
+}
+    `;
+export const MembersPreviewFragmentDoc = gql`
+    fragment MembersPreview on initiative_members {
+  user_id
+  user {
+    avatar_url
   }
 }
     `;
@@ -11555,6 +11565,213 @@ export function useGetFilesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<G
 export type GetFilesQueryHookResult = ReturnType<typeof useGetFilesQuery>;
 export type GetFilesLazyQueryHookResult = ReturnType<typeof useGetFilesLazyQuery>;
 export type GetFilesQueryResult = Apollo.QueryResult<GetFilesQuery, GetFilesQueryVariables>;
+export const DeleteCommentDocument = gql`
+    mutation DeleteComment($post_id: bigint!, $initiative_id: uuid!, $comment_id: bigint!) {
+  delete_initiative_comments_by_pk(
+    id: $comment_id
+    initiative_id: $initiative_id
+    post_id: $post_id
+  ) {
+    id
+  }
+  delete_files(
+    where: {_and: [{post_id: {_eq: $post_id}}, {initiative_id: {_eq: $initiative_id}}, {comment_id: {_eq: $comment_id}}]}
+  ) {
+    affected_rows
+  }
+}
+    `;
+export type DeleteCommentMutationFn = Apollo.MutationFunction<DeleteCommentMutation, DeleteCommentMutationVariables>;
+
+/**
+ * __useDeleteCommentMutation__
+ *
+ * To run a mutation, you first call `useDeleteCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteCommentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteCommentMutation, { data, loading, error }] = useDeleteCommentMutation({
+ *   variables: {
+ *      post_id: // value for 'post_id'
+ *      initiative_id: // value for 'initiative_id'
+ *      comment_id: // value for 'comment_id'
+ *   },
+ * });
+ */
+export function useDeleteCommentMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCommentMutation, DeleteCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteCommentMutation, DeleteCommentMutationVariables>(DeleteCommentDocument, options);
+      }
+export type DeleteCommentMutationHookResult = ReturnType<typeof useDeleteCommentMutation>;
+export type DeleteCommentMutationResult = Apollo.MutationResult<DeleteCommentMutation>;
+export type DeleteCommentMutationOptions = Apollo.BaseMutationOptions<DeleteCommentMutation, DeleteCommentMutationVariables>;
+export const DeleteCommentLikeDocument = gql`
+    mutation DeleteCommentLike($user_id: uuid!, $post_id: bigint!, $comment_id: bigint!, $initiative_id: uuid!) {
+  delete_initiative_comment_reactions(
+    where: {_and: [{initiative_id: {_eq: $initiative_id}}, {post_id: {_eq: $post_id}}, {user_id: {_eq: $user_id}}, {comment_id: {_eq: $comment_id}}]}
+  ) {
+    returning {
+      post_id
+      user_id
+    }
+  }
+}
+    `;
+export type DeleteCommentLikeMutationFn = Apollo.MutationFunction<DeleteCommentLikeMutation, DeleteCommentLikeMutationVariables>;
+
+/**
+ * __useDeleteCommentLikeMutation__
+ *
+ * To run a mutation, you first call `useDeleteCommentLikeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteCommentLikeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteCommentLikeMutation, { data, loading, error }] = useDeleteCommentLikeMutation({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *      post_id: // value for 'post_id'
+ *      comment_id: // value for 'comment_id'
+ *      initiative_id: // value for 'initiative_id'
+ *   },
+ * });
+ */
+export function useDeleteCommentLikeMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCommentLikeMutation, DeleteCommentLikeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteCommentLikeMutation, DeleteCommentLikeMutationVariables>(DeleteCommentLikeDocument, options);
+      }
+export type DeleteCommentLikeMutationHookResult = ReturnType<typeof useDeleteCommentLikeMutation>;
+export type DeleteCommentLikeMutationResult = Apollo.MutationResult<DeleteCommentLikeMutation>;
+export type DeleteCommentLikeMutationOptions = Apollo.BaseMutationOptions<DeleteCommentLikeMutation, DeleteCommentLikeMutationVariables>;
+export const ReactionToCommentDocument = gql`
+    mutation ReactionToComment($comment_id: bigint!, $user_id: uuid!, $post_id: bigint!, $initiative_id: uuid!, $reaction: reactions_enum!) {
+  insert_initiative_comment_reactions_one(
+    object: {comment_id: $comment_id, user_id: $user_id, type: $reaction, initiative_id: $initiative_id, post_id: $post_id}
+    on_conflict: {constraint: initiative_comment_reactions_pkey, update_columns: []}
+  ) {
+    user_id
+    post_id
+    type
+  }
+}
+    `;
+export type ReactionToCommentMutationFn = Apollo.MutationFunction<ReactionToCommentMutation, ReactionToCommentMutationVariables>;
+
+/**
+ * __useReactionToCommentMutation__
+ *
+ * To run a mutation, you first call `useReactionToCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useReactionToCommentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [reactionToCommentMutation, { data, loading, error }] = useReactionToCommentMutation({
+ *   variables: {
+ *      comment_id: // value for 'comment_id'
+ *      user_id: // value for 'user_id'
+ *      post_id: // value for 'post_id'
+ *      initiative_id: // value for 'initiative_id'
+ *      reaction: // value for 'reaction'
+ *   },
+ * });
+ */
+export function useReactionToCommentMutation(baseOptions?: Apollo.MutationHookOptions<ReactionToCommentMutation, ReactionToCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ReactionToCommentMutation, ReactionToCommentMutationVariables>(ReactionToCommentDocument, options);
+      }
+export type ReactionToCommentMutationHookResult = ReturnType<typeof useReactionToCommentMutation>;
+export type ReactionToCommentMutationResult = Apollo.MutationResult<ReactionToCommentMutation>;
+export type ReactionToCommentMutationOptions = Apollo.BaseMutationOptions<ReactionToCommentMutation, ReactionToCommentMutationVariables>;
+export const CreateCommentDocument = gql`
+    mutation CreateComment($message: String!, $user_id: uuid!, $initiative_id: uuid!, $post_id: bigint!, $parent_comment_id: bigint, $files: files_arr_rel_insert_input) {
+  insert_initiative_comments_one(
+    object: {message: $message, user_id: $user_id, initiative_id: $initiative_id, post_id: $post_id, parent_comment_id: $parent_comment_id, files: $files}
+  ) {
+    id
+  }
+}
+    `;
+export type CreateCommentMutationFn = Apollo.MutationFunction<CreateCommentMutation, CreateCommentMutationVariables>;
+
+/**
+ * __useCreateCommentMutation__
+ *
+ * To run a mutation, you first call `useCreateCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCommentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createCommentMutation, { data, loading, error }] = useCreateCommentMutation({
+ *   variables: {
+ *      message: // value for 'message'
+ *      user_id: // value for 'user_id'
+ *      initiative_id: // value for 'initiative_id'
+ *      post_id: // value for 'post_id'
+ *      parent_comment_id: // value for 'parent_comment_id'
+ *      files: // value for 'files'
+ *   },
+ * });
+ */
+export function useCreateCommentMutation(baseOptions?: Apollo.MutationHookOptions<CreateCommentMutation, CreateCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCommentMutation, CreateCommentMutationVariables>(CreateCommentDocument, options);
+      }
+export type CreateCommentMutationHookResult = ReturnType<typeof useCreateCommentMutation>;
+export type CreateCommentMutationResult = Apollo.MutationResult<CreateCommentMutation>;
+export type CreateCommentMutationOptions = Apollo.BaseMutationOptions<CreateCommentMutation, CreateCommentMutationVariables>;
+export const UpdateCommentDocument = gql`
+    mutation UpdateComment($message: String!, $post_id: bigint!, $initiative_id: uuid!, $comment_id: bigint!, $now: timestamptz!) {
+  update_initiative_comments_by_pk(
+    pk_columns: {id: $comment_id, post_id: $post_id, initiative_id: $initiative_id}
+    _set: {message: $message, modified_at: $now}
+  ) {
+    ...Comment
+  }
+}
+    ${CommentFragmentDoc}`;
+export type UpdateCommentMutationFn = Apollo.MutationFunction<UpdateCommentMutation, UpdateCommentMutationVariables>;
+
+/**
+ * __useUpdateCommentMutation__
+ *
+ * To run a mutation, you first call `useUpdateCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCommentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCommentMutation, { data, loading, error }] = useUpdateCommentMutation({
+ *   variables: {
+ *      message: // value for 'message'
+ *      post_id: // value for 'post_id'
+ *      initiative_id: // value for 'initiative_id'
+ *      comment_id: // value for 'comment_id'
+ *      now: // value for 'now'
+ *   },
+ * });
+ */
+export function useUpdateCommentMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCommentMutation, UpdateCommentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateCommentMutation, UpdateCommentMutationVariables>(UpdateCommentDocument, options);
+      }
+export type UpdateCommentMutationHookResult = ReturnType<typeof useUpdateCommentMutation>;
+export type UpdateCommentMutationResult = Apollo.MutationResult<UpdateCommentMutation>;
+export type UpdateCommentMutationOptions = Apollo.BaseMutationOptions<UpdateCommentMutation, UpdateCommentMutationVariables>;
 export const DeleteLikeDocument = gql`
     mutation DeleteLike($user_id: uuid!, $post_id: bigint!, $initiative_id: uuid!) {
   delete_initiative_post_reactions(
@@ -11973,6 +12190,9 @@ export const InitiativeByPkDocument = gql`
     isMember: members(where: {user_id: {_eq: $user_id}}) {
       user_id
     }
+    members(limit: 5) {
+      ...MembersPreview
+    }
     members_aggregate {
       aggregate {
         count
@@ -11980,7 +12200,7 @@ export const InitiativeByPkDocument = gql`
     }
   }
 }
-    `;
+    ${MembersPreviewFragmentDoc}`;
 
 /**
  * __useInitiativeByPkQuery__
@@ -12133,213 +12353,6 @@ export function useTasksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Task
 export type TasksQueryHookResult = ReturnType<typeof useTasksQuery>;
 export type TasksLazyQueryHookResult = ReturnType<typeof useTasksLazyQuery>;
 export type TasksQueryResult = Apollo.QueryResult<TasksQuery, TasksQueryVariables>;
-export const DeleteCommentDocument = gql`
-    mutation DeleteComment($post_id: bigint!, $initiative_id: uuid!, $comment_id: bigint!) {
-  delete_initiative_comments_by_pk(
-    id: $comment_id
-    initiative_id: $initiative_id
-    post_id: $post_id
-  ) {
-    id
-  }
-  delete_files(
-    where: {_and: [{post_id: {_eq: $post_id}}, {initiative_id: {_eq: $initiative_id}}, {comment_id: {_eq: $comment_id}}]}
-  ) {
-    affected_rows
-  }
-}
-    `;
-export type DeleteCommentMutationFn = Apollo.MutationFunction<DeleteCommentMutation, DeleteCommentMutationVariables>;
-
-/**
- * __useDeleteCommentMutation__
- *
- * To run a mutation, you first call `useDeleteCommentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteCommentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteCommentMutation, { data, loading, error }] = useDeleteCommentMutation({
- *   variables: {
- *      post_id: // value for 'post_id'
- *      initiative_id: // value for 'initiative_id'
- *      comment_id: // value for 'comment_id'
- *   },
- * });
- */
-export function useDeleteCommentMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCommentMutation, DeleteCommentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteCommentMutation, DeleteCommentMutationVariables>(DeleteCommentDocument, options);
-      }
-export type DeleteCommentMutationHookResult = ReturnType<typeof useDeleteCommentMutation>;
-export type DeleteCommentMutationResult = Apollo.MutationResult<DeleteCommentMutation>;
-export type DeleteCommentMutationOptions = Apollo.BaseMutationOptions<DeleteCommentMutation, DeleteCommentMutationVariables>;
-export const DeleteCommentLikeDocument = gql`
-    mutation DeleteCommentLike($user_id: uuid!, $post_id: bigint!, $comment_id: bigint!, $initiative_id: uuid!) {
-  delete_initiative_comment_reactions(
-    where: {_and: [{initiative_id: {_eq: $initiative_id}}, {post_id: {_eq: $post_id}}, {user_id: {_eq: $user_id}}, {comment_id: {_eq: $comment_id}}]}
-  ) {
-    returning {
-      post_id
-      user_id
-    }
-  }
-}
-    `;
-export type DeleteCommentLikeMutationFn = Apollo.MutationFunction<DeleteCommentLikeMutation, DeleteCommentLikeMutationVariables>;
-
-/**
- * __useDeleteCommentLikeMutation__
- *
- * To run a mutation, you first call `useDeleteCommentLikeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteCommentLikeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteCommentLikeMutation, { data, loading, error }] = useDeleteCommentLikeMutation({
- *   variables: {
- *      user_id: // value for 'user_id'
- *      post_id: // value for 'post_id'
- *      comment_id: // value for 'comment_id'
- *      initiative_id: // value for 'initiative_id'
- *   },
- * });
- */
-export function useDeleteCommentLikeMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCommentLikeMutation, DeleteCommentLikeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteCommentLikeMutation, DeleteCommentLikeMutationVariables>(DeleteCommentLikeDocument, options);
-      }
-export type DeleteCommentLikeMutationHookResult = ReturnType<typeof useDeleteCommentLikeMutation>;
-export type DeleteCommentLikeMutationResult = Apollo.MutationResult<DeleteCommentLikeMutation>;
-export type DeleteCommentLikeMutationOptions = Apollo.BaseMutationOptions<DeleteCommentLikeMutation, DeleteCommentLikeMutationVariables>;
-export const ReactionToCommentDocument = gql`
-    mutation ReactionToComment($comment_id: bigint!, $user_id: uuid!, $post_id: bigint!, $initiative_id: uuid!, $reaction: reactions_enum!) {
-  insert_initiative_comment_reactions_one(
-    object: {comment_id: $comment_id, user_id: $user_id, type: $reaction, initiative_id: $initiative_id, post_id: $post_id}
-    on_conflict: {constraint: initiative_comment_reactions_pkey, update_columns: []}
-  ) {
-    user_id
-    post_id
-    type
-  }
-}
-    `;
-export type ReactionToCommentMutationFn = Apollo.MutationFunction<ReactionToCommentMutation, ReactionToCommentMutationVariables>;
-
-/**
- * __useReactionToCommentMutation__
- *
- * To run a mutation, you first call `useReactionToCommentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useReactionToCommentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [reactionToCommentMutation, { data, loading, error }] = useReactionToCommentMutation({
- *   variables: {
- *      comment_id: // value for 'comment_id'
- *      user_id: // value for 'user_id'
- *      post_id: // value for 'post_id'
- *      initiative_id: // value for 'initiative_id'
- *      reaction: // value for 'reaction'
- *   },
- * });
- */
-export function useReactionToCommentMutation(baseOptions?: Apollo.MutationHookOptions<ReactionToCommentMutation, ReactionToCommentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<ReactionToCommentMutation, ReactionToCommentMutationVariables>(ReactionToCommentDocument, options);
-      }
-export type ReactionToCommentMutationHookResult = ReturnType<typeof useReactionToCommentMutation>;
-export type ReactionToCommentMutationResult = Apollo.MutationResult<ReactionToCommentMutation>;
-export type ReactionToCommentMutationOptions = Apollo.BaseMutationOptions<ReactionToCommentMutation, ReactionToCommentMutationVariables>;
-export const CreateCommentDocument = gql`
-    mutation CreateComment($message: String!, $user_id: uuid!, $initiative_id: uuid!, $post_id: bigint!, $parent_comment_id: bigint, $files: files_arr_rel_insert_input) {
-  insert_initiative_comments_one(
-    object: {message: $message, user_id: $user_id, initiative_id: $initiative_id, post_id: $post_id, parent_comment_id: $parent_comment_id, files: $files}
-  ) {
-    id
-  }
-}
-    `;
-export type CreateCommentMutationFn = Apollo.MutationFunction<CreateCommentMutation, CreateCommentMutationVariables>;
-
-/**
- * __useCreateCommentMutation__
- *
- * To run a mutation, you first call `useCreateCommentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateCommentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createCommentMutation, { data, loading, error }] = useCreateCommentMutation({
- *   variables: {
- *      message: // value for 'message'
- *      user_id: // value for 'user_id'
- *      initiative_id: // value for 'initiative_id'
- *      post_id: // value for 'post_id'
- *      parent_comment_id: // value for 'parent_comment_id'
- *      files: // value for 'files'
- *   },
- * });
- */
-export function useCreateCommentMutation(baseOptions?: Apollo.MutationHookOptions<CreateCommentMutation, CreateCommentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateCommentMutation, CreateCommentMutationVariables>(CreateCommentDocument, options);
-      }
-export type CreateCommentMutationHookResult = ReturnType<typeof useCreateCommentMutation>;
-export type CreateCommentMutationResult = Apollo.MutationResult<CreateCommentMutation>;
-export type CreateCommentMutationOptions = Apollo.BaseMutationOptions<CreateCommentMutation, CreateCommentMutationVariables>;
-export const UpdateCommentDocument = gql`
-    mutation UpdateComment($message: String!, $post_id: bigint!, $initiative_id: uuid!, $comment_id: bigint!, $now: timestamptz!) {
-  update_initiative_comments_by_pk(
-    pk_columns: {id: $comment_id, post_id: $post_id, initiative_id: $initiative_id}
-    _set: {message: $message, modified_at: $now}
-  ) {
-    ...Comment
-  }
-}
-    ${CommentFragmentDoc}`;
-export type UpdateCommentMutationFn = Apollo.MutationFunction<UpdateCommentMutation, UpdateCommentMutationVariables>;
-
-/**
- * __useUpdateCommentMutation__
- *
- * To run a mutation, you first call `useUpdateCommentMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateCommentMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateCommentMutation, { data, loading, error }] = useUpdateCommentMutation({
- *   variables: {
- *      message: // value for 'message'
- *      post_id: // value for 'post_id'
- *      initiative_id: // value for 'initiative_id'
- *      comment_id: // value for 'comment_id'
- *      now: // value for 'now'
- *   },
- * });
- */
-export function useUpdateCommentMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCommentMutation, UpdateCommentMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateCommentMutation, UpdateCommentMutationVariables>(UpdateCommentDocument, options);
-      }
-export type UpdateCommentMutationHookResult = ReturnType<typeof useUpdateCommentMutation>;
-export type UpdateCommentMutationResult = Apollo.MutationResult<UpdateCommentMutation>;
-export type UpdateCommentMutationOptions = Apollo.BaseMutationOptions<UpdateCommentMutation, UpdateCommentMutationVariables>;
 export const CommentsDocument = gql`
     subscription Comments($id: uuid, $post_id: bigint!, $limit: Int = 5) {
   comments: initiative_comments(

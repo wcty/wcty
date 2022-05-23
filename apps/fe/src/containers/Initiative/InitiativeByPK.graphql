@@ -1,9 +1,19 @@
+fragment MembersPreview on initiative_members{
+  user_id
+  user {
+    avatar_url
+  }
+}
+
 query InitiativeByPK($id:uuid!, $user_id:uuid="00000000-0000-0000-0000-000000000000"){
   initiative:initiatives_by_pk(id:$id){
     id
     # name
     isMember:members(where:{user_id:{_eq:$user_id}}){
       user_id
+    }
+    members(limit: 5){
+      ...MembersPreview
     }
     members_aggregate {
       aggregate {

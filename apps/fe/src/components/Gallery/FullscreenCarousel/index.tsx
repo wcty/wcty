@@ -6,6 +6,7 @@ import type { SlideRenderProps } from 'react-swipeable-views-utils';
 import { slideRenderer } from "./slideRenderer"
 import { ReactComponent as Initiative } from '@assets/icons/initiative.svg'
 import { Trans } from "@lingui/macro";
+import { useRouter } from "next/router";
 
 
 export type GalleryImage = {
@@ -39,6 +40,8 @@ export function FullscreenCarousel({
 
   const [index, setIndex] = useState(defaultIndex || 0)
   const layout = useLayout()
+  const router = useRouter()
+  const { id } = router.query
   function onChangeIndex(i:number){
     if(i>=0 && i<=images.length-1){
       setIndex(i)
@@ -81,6 +84,15 @@ export function FullscreenCarousel({
                 top='2rem'
                 left='2rem'
                 style={{opacity:0.8}}
+                onClick={()=>{
+                  onClose()
+                  router.push({
+                    pathname: '/initiative/[id]/post/[post_id]', 
+                    query: { id, post_id: images[index].post_id }
+                  }, `/initiative/${id}/post/${images[index].post_id}`, { 
+                    locale: router.locale 
+                  }) 
+                }}
                 customSize="small"
                 customType="secondary">
                 <Trans>Go to the image's post</Trans>

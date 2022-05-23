@@ -11,6 +11,7 @@ import 'simplebar/dist/simplebar.min.css';
 import { ReactComponent as Initiative } from '@assets/icons/initiative.svg'
 import { Trans } from "@lingui/macro";
 import { atom } from "recoil";
+import { useRouter } from "next/router";
 
 
 export function Library({
@@ -34,6 +35,8 @@ export function Library({
       setIndex(i)
     }
   }
+  const router = useRouter()
+  const { id } = router.query
 
   const { height, ref } = useSize();
   
@@ -78,6 +81,15 @@ export function Library({
           </div>
           {images[index]?.post_id && <Button
             mr='2rem'
+            onClick={()=>{
+              onClose()
+              router.push({
+                pathname: '/initiative/[id]/post/[post_id]', 
+                query: { id, post_id: images[index].post_id }
+              }, `/initiative/${id}/post/${images[index].post_id}`, { 
+                locale: router.locale 
+              }) 
+            }}
             customType="outlined">
               <Trans>Go to the image's post</Trans>
           </Button>}

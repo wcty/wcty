@@ -1,5 +1,5 @@
 import { useAddress, useGeolocation,  useLang,  useLayout, useUser } from "common";
-import { Header, Icon, MetricsRow, ShareJoin, Stats } from "./styles";
+import { Header, Icon, MetricsRow, ShareJoin, Stats, Member, MembersContainer, MenuSection, MenuButton } from "./styles";
 
 import { format } from 'd3-format'
 import { DateTime, DateTimeFormatOptions } from 'luxon'
@@ -9,8 +9,16 @@ import distance from "@turf/distance";
 import { useRouter } from "next/router";
 import { Button } from "@ui";
 import { InitiativeProps } from "..";
-import { InitiativeByPkDocument, useDeleteInitiativeMemberMutation, useDeleteInitiativeMutation, useInitiativeByPkQuery } from "generated";
+import { InitiativeByPkDocument, InitiativeByPkQuery, InitiativeByPkQueryResult, MembersPreviewFragment, useDeleteInitiativeMemberMutation, useDeleteInitiativeMutation, useInitiativeByPkQuery } from "generated";
 import { t, Trans } from '@lingui/macro'
+import { ReactComponent as Time } from '@assets/icons/time.svg'
+import { ReactComponent as Distance } from '@assets/icons/distance.svg'
+import { ReactComponent as Initiative } from '@assets/icons/initiative.svg'
+import { ReactComponent as Home } from '@assets/icons/home.svg'
+import { ReactComponent as Mail } from '@assets/icons/mail.svg'
+import { ReactComponent as Layers } from '@assets/icons/layers.svg'
+import User from '@assets/icons/user.png'
+import { OptionsButton } from "components/Post/styles";
 
 const formatMeters = format(',.2r')
 
@@ -18,13 +26,24 @@ function copyToClipboard(text:string) {
   window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
 }
 
-function PeopleLocation({count, distance}: {count:number, distance?:number}) {
+function PeopleLocation({count, distance, members}: {count:number, distance?:number, members:MembersPreviewFragment[] }) {
 
   return <>
     <div><Icon><People/></Icon>{count}</div>
+    <MembersContainer >
+      { members.map((m,key)=>
+        <Member 
+          onError={(e:any) => { e.target.src=User; } }
+          src={m.user?.avatar_url||''} 
+          {...{key}}/>) }
+      <OptionsButton
+        style={{position: 'sticky', marginLeft: '-7px'}}
+        customType='secondary' 
+        customSize='small'/>
+    </MembersContainer>
     { distance && 
       <div>
-        <Icon><Location/></Icon>
+        <Icon><Distance/></Icon>
         { distance<1000?
           formatMeters(distance) + t`m from me`:
           formatMeters(distance/1000) + t`km from me`
@@ -67,7 +86,8 @@ function Buttons({isMember=false, isOnlyMember=false, id=''}){
 
 export default function HeaderComponent({initiative}:InitiativeProps) {
   const layout = useLayout()
-  const { id } = useRouter().query;
+  const router = useRouter()
+  const { id } = router.query;
   const user = useUser()
   
   const loc = useGeolocation()
@@ -92,22 +112,36 @@ export default function HeaderComponent({initiative}:InitiativeProps) {
   return <>
       {layout==='desktop' ? 
         <Stats>
-          <PeopleLocation count={initiative?.members_aggregate.aggregate?.count||1} distance={dist}/>
-          <div>{address}</div>
-          <div><Trans>Initiative created at</Trans> {' ' + dt}</div>
+          <PeopleLocation members={data?.initiative?.members||[]} count={initiative?.members_aggregate.aggregate?.count||1} distance={dist}/>
+          <div><Icon><Location/></Icon>{address}</div>
+          <div><Icon><Time/></Icon><Trans>Initiative created at</Trans> {' ' + dt}</div>
         </Stats>:
         <MetricsRow>
-          <PeopleLocation count={initiative?.members_aggregate.aggregate?.count||1} distance={dist}/>
+          <PeopleLocation members={data?.initiative?.members||[]} count={initiative?.members_aggregate.aggregate?.count||1} distance={dist}/>
         </MetricsRow> 
       }
       <Header>
-        {layout==='mobile'&& <div>{address}</div> }
-        <h2>{initiative?.name }</h2>
+        {layout==='mobile'&& <div><Icon><Location/></Icon>{address}</div> }
+        <h2>{layout==='desktop'&&<Initiative style={{marginRight:'1rem'}}/>}{initiative?.name }</h2>
         {layout==='mobile'?
-          <div><Trans>Initiative created</Trans>{' ' + dt}</div>:
-          <Buttons {...{isMember, isOnlyMember}}/>
+          <div><Icon><Time/></Icon><Trans>Initiative created</Trans>{' ' + dt}</div>:
+          (!isMember && <Buttons {...{isMember, isOnlyMember}}/>)
         }
       </Header>
+      {layout==='desktop' && isMember && <MenuSection>
+        <div style={{display:'flex', height:'100%'}}>
+          <MenuButton active={!router.pathname.includes('chats')&&!router.pathname.includes('layers')}><Home/></MenuButton>
+          <MenuButton active={router.pathname.includes('chats')}><Mail/></MenuButton>
+          <MenuButton active={router.pathname.includes('layers')}><Layers/></MenuButton>
+        </div>
+        <Buttons {...{isMember, isOnlyMember}}/>
+      </MenuSection>}
       {layout==='mobile'&& <Buttons {...{isMember}}/> }
+
+      {layout==='mobile' && isMember && <MenuSection>
+          <MenuButton active={!router.pathname.includes('chats')&&!router.pathname.includes('layers')}><Home/></MenuButton>
+          <MenuButton active={router.pathname.includes('chats')}><Mail/></MenuButton>
+          <MenuButton active={router.pathname.includes('layers')}><Layers/></MenuButton>
+      </MenuSection>}
   </>
 }

@@ -20,10 +20,50 @@ Header = styled.div`
   }
 `,
 
+MenuSection = styled.div`
+${p=>p.theme.layout==='desktop'?
+  css<{}>`
+    display: flex;
+    border-bottom: 1px solid black;
+    width: 100%;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+    >div{
+      display: flex;
+      height: 100%;
+    }
+  `:
+  css<{}>`
+    display: flex;
+    position: fixed; 
+    bottom:0; 
+    width: 100vw;
+    z-index: 1;
+    background: white;
+    height: 45px;
+    justify-content: space-evenly;
+  `}
+`,
+
+MenuButton = styled.div<{active?:boolean}>`
+  height: 100%;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  :hover{
+    background-color: rgba(0,0,0,0.1);
+  }
+  ${p=>p.active && css<{}>`border-bottom: 4px solid black;`}
+`,
+
 ShareJoin = styled.div`
   display: flex;
   border-radius: 3px;
   overflow: hidden;  
+  align-items: center;
   >button{
     ${p=>p.theme.font.body.semibold.t4}
     display: flex;
@@ -83,7 +123,7 @@ MetricsRow = styled.div`
 `,
 
 Icon = styled.span`
-  margin-right: 0.2rem;
+  margin-right: 0.4rem;
 `,
 
 Stats = styled.div`
@@ -94,4 +134,26 @@ Stats = styled.div`
     ${p=>p.theme.font.body.regular.t5}
     margin-right: 2rem;
   }
+`,
+
+Member = styled.img`
+  width: 30px;
+  height: 30px;
+  position: relative;
+  border-radius: 50%;
+  :not(:first-child){
+    margin-left: -15px;
+  }
+`,
+
+MembersContainer = styled.div`
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 30px; 
+  margin-right: 1rem;
+  ${p=>p.theme.layout==='mobile' ? 
+    css<{}>`margin-top: -3px;`:
+    css<{}>`margin-top: -10px;`}
+  cursor: pointer;
 `

@@ -4653,7 +4653,13 @@ export type Initiative_Tags_Variance_Order_By = {
   id?: InputMaybe<Order_By>;
 };
 
-/** columns and relationships of "initiative_tasks" */
+/**
+ * Proposed and approved tasks
+ *
+ *
+ * columns and relationships of "initiative_tasks"
+ *
+ */
 export type Initiative_Tasks = {
   created_at: Scalars['timestamptz'];
   description?: Maybe<Scalars['String']>;
@@ -4676,7 +4682,13 @@ export type Initiative_Tasks = {
 };
 
 
-/** columns and relationships of "initiative_tasks" */
+/**
+ * Proposed and approved tasks
+ *
+ *
+ * columns and relationships of "initiative_tasks"
+ *
+ */
 export type Initiative_TasksVolunteersArgs = {
   distinct_on?: InputMaybe<Array<Initiative_Volunteers_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -4686,7 +4698,13 @@ export type Initiative_TasksVolunteersArgs = {
 };
 
 
-/** columns and relationships of "initiative_tasks" */
+/**
+ * Proposed and approved tasks
+ *
+ *
+ * columns and relationships of "initiative_tasks"
+ *
+ */
 export type Initiative_TasksVolunteers_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Initiative_Volunteers_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -5232,7 +5250,13 @@ export type Initiative_Visits_Variance_Order_By = {
   id?: InputMaybe<Order_By>;
 };
 
-/** columns and relationships of "initiative_volunteers" */
+/**
+ * Assignment of initiative member to the initiative task
+ *
+ *
+ * columns and relationships of "initiative_volunteers"
+ *
+ */
 export type Initiative_Volunteers = {
   id: Scalars['bigint'];
   /** An object relationship */
@@ -5326,6 +5350,8 @@ export type Initiative_Volunteers_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_volunteers" */
 export enum Initiative_Volunteers_Constraint {
+  /** unique or primary key constraint */
+  InitiativeVolunteersInitiativeIdUserIdTaskIdKey = 'initiative_volunteers_initiative_id_user_id_task_id_key',
   /** unique or primary key constraint */
   InitiativeVolunteersPkey = 'initiative_volunteers_pkey'
 }
@@ -10729,6 +10755,13 @@ export type InitiativePublicByPkQueryVariables = Exact<{
 
 export type InitiativePublicByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, geometry?: any | null | undefined, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }>, tasks: Array<{ id: number, status?: Task_Statuses_Enum | null | undefined, description?: string | null | undefined, volunteers_needed?: any | null | undefined, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } }>, donations_aggregate: { aggregate?: { count: number, sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, expenses: Array<{ status?: string | null | undefined, amount: any, currency?: string | null | undefined, description?: string | null | undefined, link?: string | null | undefined, link_name?: string | null | undefined }>, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
 
+export type MembersPageQueryVariables = Exact<{
+  initiative_id: Scalars['uuid'];
+}>;
+
+
+export type MembersPageQuery = { members: Array<{ id: number, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }>, initiator: Array<{ id: number, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }>, initiative?: { name?: string | null | undefined } | null | undefined };
+
 export type PostPageQueryVariables = Exact<{
   initiative_id: Scalars['uuid'];
   post_id: Scalars['bigint'];
@@ -12797,6 +12830,71 @@ export function useInitiativePublicByPkLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type InitiativePublicByPkQueryHookResult = ReturnType<typeof useInitiativePublicByPkQuery>;
 export type InitiativePublicByPkLazyQueryHookResult = ReturnType<typeof useInitiativePublicByPkLazyQuery>;
 export type InitiativePublicByPkQueryResult = Apollo.QueryResult<InitiativePublicByPkQuery, InitiativePublicByPkQueryVariables>;
+export const MembersPageDocument = gql`
+    query MembersPage($initiative_id: uuid!) {
+  members: initiative_members(where: {initiative_id: {_eq: $initiative_id}}) {
+    id
+    volunteers_aggregate {
+      aggregate {
+        count
+      }
+    }
+    donations_aggregate {
+      aggregate {
+        count
+      }
+    }
+    user {
+      id
+      avatar_url
+      display_name
+    }
+  }
+  initiator: initiative_members(
+    limit: 1
+    order_by: {created_at: asc}
+    where: {initiative_id: {_eq: $initiative_id}}
+  ) {
+    id
+    user {
+      id
+      avatar_url
+      display_name
+    }
+  }
+  initiative: initiatives_by_pk(id: $initiative_id) {
+    name
+  }
+}
+    `;
+
+/**
+ * __useMembersPageQuery__
+ *
+ * To run a query within a React component, call `useMembersPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMembersPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMembersPageQuery({
+ *   variables: {
+ *      initiative_id: // value for 'initiative_id'
+ *   },
+ * });
+ */
+export function useMembersPageQuery(baseOptions: Apollo.QueryHookOptions<MembersPageQuery, MembersPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MembersPageQuery, MembersPageQueryVariables>(MembersPageDocument, options);
+      }
+export function useMembersPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MembersPageQuery, MembersPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MembersPageQuery, MembersPageQueryVariables>(MembersPageDocument, options);
+        }
+export type MembersPageQueryHookResult = ReturnType<typeof useMembersPageQuery>;
+export type MembersPageLazyQueryHookResult = ReturnType<typeof useMembersPageLazyQuery>;
+export type MembersPageQueryResult = Apollo.QueryResult<MembersPageQuery, MembersPageQueryVariables>;
 export const PostPageDocument = gql`
     query PostPage($initiative_id: uuid!, $post_id: bigint!) {
   post: initiative_posts_by_pk(id: $post_id, initiative_id: $initiative_id) {

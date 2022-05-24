@@ -39,7 +39,7 @@ export default function Description({initiative}:InitiativeProps) {
       <div>
         <GaugeBlock>
           <Gauge percent={x.to(x => x)} radius={(width && width>=480 && layout!=='desktop')? width*0.0125*6 : layout==='desktop'? 60 : 35 }/>
-          <h3><Trans>Implemented of the project</Trans></h3>
+          <h3 style={{textAlign:'center'}}><Trans>Implemented of the project</Trans></h3>
         </GaugeBlock>
         <>
           <CollectedSum 

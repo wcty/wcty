@@ -1,0 +1,50 @@
+query MembersPage(
+  $initiative_id: uuid!
+){
+  members: initiative_members(
+    where: {
+      initiative_id: {
+        _eq: $initiative_id
+      }
+    }
+  ){
+    id
+    volunteers_aggregate {
+      aggregate {
+        count
+      }
+    }
+    donations_aggregate {
+      aggregate {
+        count
+      }
+    }
+    user{
+      id
+      avatar_url
+      display_name
+    }
+  }
+  initiator: initiative_members(
+    limit: 1,
+    order_by: {created_at: asc},
+    where: {
+      initiative_id: {
+        _eq: $initiative_id
+      }
+    }
+  ){
+    id
+    user{
+      id
+      avatar_url
+      display_name
+    }
+  }
+  initiative: initiatives_by_pk (
+    id: $initiative_id
+  ){
+    name
+  }
+}
+

@@ -1,6 +1,7 @@
 import styled, {css} from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   ${p=>p.theme.layout==='desktop'?
   css<{}>`
     width: 960px;

@@ -34683,7 +34683,7 @@
       {
         "kind": "OBJECT",
         "name": "initiative_tasks",
-        "description": "columns and relationships of \"initiative_tasks\"",
+        "description": "Proposed and approved tasks\n\n\ncolumns and relationships of \"initiative_tasks\"\n",
         "fields": [
           {
             "name": "created_at",
@@ -38791,7 +38791,7 @@
       {
         "kind": "OBJECT",
         "name": "initiative_volunteers",
-        "description": "columns and relationships of \"initiative_volunteers\"",
+        "description": "Assignment of initiative member to the initiative task\n\n\ncolumns and relationships of \"initiative_volunteers\"\n",
         "fields": [
           {
             "name": "id",
@@ -39573,6 +39573,12 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
+          {
+            "name": "initiative_volunteers_initiative_id_user_id_task_id_key",
+            "description": "unique or primary key constraint",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "initiative_volunteers_pkey",
             "description": "unique or primary key constraint",

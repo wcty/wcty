@@ -9,7 +9,7 @@ import distance from "@turf/distance";
 import { useRouter } from "next/router";
 import { Button } from "@ui";
 import { InitiativeProps } from "..";
-import { InitiativeByPkDocument, InitiativeByPkQuery, InitiativeByPkQueryResult, MembersPreviewFragment, useDeleteInitiativeMemberMutation, useDeleteInitiativeMutation, useInitiativeByPkQuery } from "generated";
+import { InitiativeByPkDocument, MembersPreviewFragment, useDeleteInitiativeMemberMutation, useDeleteInitiativeMutation, useInitiativeByPkQuery } from "generated";
 import { t, Trans } from '@lingui/macro'
 import { ReactComponent as Time } from '@assets/icons/time.svg'
 import { ReactComponent as Distance } from '@assets/icons/distance.svg'
@@ -27,10 +27,20 @@ function copyToClipboard(text:string) {
 }
 
 function PeopleLocation({count, distance, members}: {count:number, distance?:number, members:MembersPreviewFragment[] }) {
+  const router = useRouter()
+  const { id } = router.query
 
   return <>
     <div><Icon><People/></Icon>{count}</div>
-    <MembersContainer >
+    <MembersContainer onClick={()=>{
+      router.push({
+          pathname: `/initiative/[id]/members`, 
+          query: { id }
+        }, 
+        `/initiative/${id}/members`, 
+        { locale: router.locale }
+      )
+    }}>
       { members.map((m,key)=>
         <Member 
           onError={(e:any) => { e.target.src=User; } }
@@ -107,7 +117,7 @@ export default function HeaderComponent({initiative}:InitiativeProps) {
     
   const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
   const isMember = !!data?.initiative?.isMember?.length
-  const isOnlyMember = data?.initiative?.members_aggregate.aggregate?.count === 1 && isMember
+  const isOnlyMember = data?.initiative?.members_aggregate?.aggregate?.count === 1 && isMember
 
   return <>
       {layout==='desktop' ? 
@@ -132,7 +142,7 @@ export default function HeaderComponent({initiative}:InitiativeProps) {
         <div style={{display:'flex', height:'100%'}}>
           <MenuButton active={!router.pathname.includes('chats')&&!router.pathname.includes('layers')}><Home/></MenuButton>
           <MenuButton active={router.pathname.includes('chats')}><Mail/></MenuButton>
-          <MenuButton active={router.pathname.includes('layers')}><Layers/></MenuButton>
+          <MenuButton onClick={()=>router.push('/')}><Layers/></MenuButton>
         </div>
         <Buttons {...{isMember, isOnlyMember}}/>
       </MenuSection>}
@@ -141,7 +151,7 @@ export default function HeaderComponent({initiative}:InitiativeProps) {
       {layout==='mobile' && isMember && <MenuSection>
           <MenuButton active={!router.pathname.includes('chats')&&!router.pathname.includes('layers')}><Home/></MenuButton>
           <MenuButton active={router.pathname.includes('chats')}><Mail/></MenuButton>
-          <MenuButton active={router.pathname.includes('layers')}><Layers/></MenuButton>
+          <MenuButton onClick={()=>router.push('/')}><Layers/></MenuButton>
       </MenuSection>}
   </>
 }

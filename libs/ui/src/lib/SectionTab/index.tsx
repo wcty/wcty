@@ -6,7 +6,7 @@ export interface ISectionTabProps extends ISectionTab {}
 export function SectionTab(props : ISectionTabProps) {
     return(
         <Container {...props}>
-            {props.label}
+            <span>{props.label}</span>
         </Container>
     )
 }

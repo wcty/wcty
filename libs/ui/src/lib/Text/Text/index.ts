@@ -21,7 +21,7 @@ Text = styled.span.attrs(({
   })=>semibold?
     p.theme.font.body.semibold[customSize]:
     p.theme.font.body.regular[customSize] }
-  text-align: center; 
+  /* text-align: center;  */
   ${p=>p.customColor && (
     colors.includes(p.customColor) ?
       css`color: ${p.theme.colors[p.customColor]};`:

@@ -64,7 +64,8 @@ export default function Join() {
           taskChecked &&
           taskIds.length>0
         )? taskIds.map(v=>({
-          task_id: v
+          task_id: v,
+          role: 'Volunteer',
         })):[],
     },
     refetchQueries: [InitiativeByPkDocument]

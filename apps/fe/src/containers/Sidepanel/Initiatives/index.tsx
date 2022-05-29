@@ -25,6 +25,7 @@ export default function InitiativesDrawer(){
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
   const [slideIndex, setSlideIndex] = useRecoilState(Slides.index)
   const [viewport, setViewport] = useRecoilState(atoms.viewport)
+  const [selected, setSelected] = useRecoilState(atoms.selected)
 
   const layout = useLayout()
 
@@ -56,11 +57,61 @@ export default function InitiativesDrawer(){
       <List>
         {initiatives?.initiatives.map((v,key)=>
           layout==='desktop'? 
-          <ListRow onClick={()=>setOpen(false)} data={{...v, type: 'initiative'}} {...{key}}/>:
           <ListRow onClick={
             ()=>{
               setOpen(false)
               setFocus(v.geometry.coordinates)
+              setSelected({
+                id: v.id,
+                type: 'Feature',
+                source: 'initiative',
+                geometry: v.geometry,
+                properties: {
+                  name: v.name||'',
+                  image: v.image||'',
+                  description:  
+                    v.infos?.[0].problem? (v.infos?.[0].problem + '\n'):'' + 
+                    v.infos?.[0].goal? (v.infos?.[0].goal + '\n'):'' + 
+                    v.infos?.[0].context||'',
+                  created_at: v.created_at,
+                  id: v.id,
+                  modified_at: '',
+                  address: '',
+                  type: 'initiative'
+                }
+              })
+              setViewport({
+                longitude: v.geometry.coordinates[0],
+                latitude: v.geometry.coordinates[1],
+                zoom: 16,
+                viewportChangeMethod: 'easeTo'
+              })
+              setSlideIndex(0)
+            }
+          } data={{...v, type: 'initiative'}} {...{key}}/>:
+          <ListRow onClick={
+            ()=>{
+              setOpen(false)
+              setFocus(v.geometry.coordinates)
+              setSelected({
+                id: v.id,
+                type: 'Feature',
+                source: 'initiative',
+                geometry: v.geometry,
+                properties: {
+                  name: v.name||'',
+                  image: v.image||'',
+                  description:  
+                    v.infos?.[0].problem? (v.infos?.[0].problem + '\n'):'' + 
+                    v.infos?.[0].goal? (v.infos?.[0].goal + '\n'):'' + 
+                    v.infos?.[0].context||'',
+                  created_at: v.created_at,
+                  id: v.id,
+                  modified_at: '',
+                  address: '',
+                  type: 'initiative'
+                }
+              })
               setViewport({
                 longitude: v.geometry.coordinates[0],
                 latitude: v.geometry.coordinates[1],

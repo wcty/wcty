@@ -7,15 +7,28 @@ import { useRouter } from 'next/router'
 import { ButtonBack, Header, Toolbox, Grid, Tile } from './styles'
 import { ReactComponent as SearchIcon } from '@assets/icons/search.svg'
 import { ReactComponent as CancelIcon } from '@assets/icons/cancel.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ReactComponent as WecityText } from '@assets/icons/wecity-text.svg'
+import { useRecoilState } from 'recoil'
+import Sidebar from "containers/Sidepanel";
+import { useLayout } from 'common'
+
 
 export default function Members({data}:{data:MembersPageQuery}){
   const router = useRouter()
   const { id } = router.query
   const [keyword, setKeyword] = useState('')
   const [selected, setSelected] = useState<string[]>([])
+  const [,setVisible] = useRecoilState(Sidebar.visible)
+  const layout = useLayout()
 
+  useEffect(()=>{
+    if(layout==='mobile'){
+      setVisible(false)
+    }else{
+      setVisible(true)
+    }
+  },[layout])
   //keyword: `%${keyword}%`
 
   const getRoles = (m: MembersPageQuery['members'][number])=>{
@@ -82,16 +95,16 @@ export default function Members({data}:{data:MembersPageQuery}){
         <SectionTab label={t`Donator`} active={selected.includes('Donator')} onClick={()=>onTab('Donator')}/>
         <SectionTab label={t`Contractor`} active={selected.includes('Contractor')} onClick={()=>onTab('Contractor')}/>
       </div>
-      <div style={{width:'310px'}}>
-      <FieldWrapper>
-        <SearchInput style={{boxShadow:'none'}}
-          type='text' 
-          value={keyword} 
-          onChange={(e)=>setKeyword(e.target.value)} 
-          placeholder={t`Search`}/>
-        <div><SearchIcon/></div>
-        <div><button onClick={()=>setKeyword('')}><CancelIcon/></button></div>
-      </FieldWrapper>
+      <div className='search'>
+        <FieldWrapper>
+          <SearchInput style={{boxShadow:'none'}}
+            type='text' 
+            value={keyword} 
+            onChange={(e)=>setKeyword(e.target.value)} 
+            placeholder={t`Search`}/>
+          <div><SearchIcon/></div>
+          <div><button onClick={()=>setKeyword('')}><CancelIcon/></button></div>
+        </FieldWrapper>
       </div>
     </Toolbox>
     <Grid>

@@ -12698,7 +12698,7 @@ export type LastEntriesQueryHookResult = ReturnType<typeof useLastEntriesQuery>;
 export type LastEntriesLazyQueryHookResult = ReturnType<typeof useLastEntriesLazyQuery>;
 export type LastEntriesQueryResult = Apollo.QueryResult<LastEntriesQuery, LastEntriesQueryVariables>;
 export const NearbyEntriesDocument = gql`
-    query NearbyEntries($location: geometry!, $limit: Int = null, $offset: Int = 0, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false, $type: [String!] = ["organization", "initiative"]) {
+    query NearbyEntries($location: geometry!, $limit: Int = null, $offset: Int = 0, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500000.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false, $type: [String!] = ["organization", "initiative"]) {
   entries_nearby(
     offset: $offset
     limit: $limit

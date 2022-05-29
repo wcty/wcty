@@ -19,6 +19,7 @@ export default function Search(){
   const layout = useLayout()
   const {data} = useSearchResultsQuery({variables:{layers,keyword: `%${keyword}%`}})
   const [searchResults, setSearchResults] = useState(data)
+  const [selected, setSelected] = useRecoilState(atoms.selected)
 
   useEffect(()=>{
     if(data?.entries && data.entries.length>0){
@@ -44,8 +45,6 @@ export default function Search(){
       <SearchResults data-active={!!keyword}>
         {searchResults?.entries.map((v,key)=>
           <ListRow onClick={
-            layout==='desktop'?
-            ()=>setKeyword(''):
             ()=>{
               console.log('search',v)
               setKeyword('')
@@ -55,6 +54,22 @@ export default function Search(){
                 latitude: v.geometry.coordinates[1],
                 zoom: 16,
                 viewportChangeMethod: 'easeTo'
+              })
+              setSelected({
+                id: v.id,
+                type: 'Feature',
+                source: 'initiative',
+                geometry: v.geometry,
+                properties: {
+                  name: v.name||'',
+                  image: v.image||'',
+                  description:'',
+                  created_at: v.created_at,
+                  id: v.id,
+                  modified_at: '',
+                  address: '',
+                  type: v.type
+                }
               })
               setSlideIndex(0)
             }

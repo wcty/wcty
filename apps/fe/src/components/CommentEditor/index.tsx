@@ -150,7 +150,7 @@ export default function CommentEditor({
       <>
       <Container {...props}>
         <InputContent> 
-            {!noAvatar && <Avatar customSize={'small'} picture={
+            {!noAvatar && <Avatar s={'small'} picture={
               fixAvatar(user?.avatar_url)
             }/>}
             <TextField
@@ -185,7 +185,7 @@ export default function CommentEditor({
               onClick={submitComent} 
               style={{alignSelf: 'start', marginTop:'0.5rem'}} 
               icon="send" 
-              customSize="small"/>
+              s="small"/>
         </InputContent>
       </Container>
       {fullscreen && 

@@ -53,7 +53,7 @@ export default function RegisterWithEmail (){
               })
             }
           }}>
-          <Text color="white" semibold ><Trans>Continue</Trans></Text>
+          <Text c="backgroundLighter" semibold ><Trans>Continue</Trans></Text>
         </Button>
         </FormControl>
         <Link href="/register" >

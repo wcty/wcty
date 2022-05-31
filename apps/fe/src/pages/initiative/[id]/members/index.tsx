@@ -3,7 +3,7 @@ import { Burger, ContentWrapper } from 'styles'
 import Sidepanel from 'containers/Sidepanel'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { useMembersPageQuery, usePostPageQuery } from 'generated'
+import { useMembersPageQuery } from 'generated'
 import DefaultInitiativeCover from '@assets/images/wecity_chat_512.png'
 import { GetServerSideProps } from 'next'
 import { FixedBottom } from 'react-fixed-bottom'
@@ -22,7 +22,6 @@ export default function DynamicInitiativeMembers() {
   
 
   useEffect(()=>{
-    console.log('user', user)
     if(user===null){
       cookies.set('callbackUrl', {pathname, query}, { path: '/' });
       router.push('/login')
@@ -30,10 +29,10 @@ export default function DynamicInitiativeMembers() {
   },[user])
 
 
-  const { id, post_id } = router.query
+  const { id } = router.query
   const { data } = useMembersPageQuery({
     variables: {
-      initiative_id: id
+      initiative_id: id,
     },
     ssr: false,
     skip: !user

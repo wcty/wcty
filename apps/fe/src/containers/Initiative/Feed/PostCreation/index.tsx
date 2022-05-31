@@ -23,7 +23,7 @@ export default function CreatePost({
 
       <Container>
         <InputContent> 
-            <Avatar customSize={'small'} picture={
+            <Avatar s={'small'} picture={
               fixAvatar(user?.avatar_url)
             }/>
             <TextField 
@@ -37,11 +37,11 @@ export default function CreatePost({
               onClick={()=>setEditorOpen(true)} 
               style={{alignSelf: 'start', marginTop:'0.5rem'}} 
               icon="send" 
-              customSize="small"/>
+              s="small"/>
         </InputContent>
         <Actions>
           <div/>
-          <Button customType='text' customSize='small'><VoteIco/><Trans>Create poll</Trans></Button>
+          <Button t='text' s='small'><VoteIco/><Trans>Create poll</Trans></Button>
         </Actions>
       </Container>
       </>

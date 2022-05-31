@@ -1,0 +1,45 @@
+query InitiativesAll{
+  initiatives {
+    id
+    name
+    volunteers{
+      role
+    }
+    members(order_by: {created_at: asc}){
+      id
+      user_id
+      created_at
+      volunteers{
+        role
+        task {
+          id
+          description
+          status
+        }
+      }
+      donations{
+        amount
+      }
+
+    }
+  }
+}
+
+mutation AddVolunteers($users:[initiative_volunteers_insert_input!]!){
+  insert_initiative_volunteers(objects: $users) {
+    returning {
+      id
+      user_id
+      initiative_id
+      role
+    }
+  }
+}
+
+mutation AddTasks($task:initiative_tasks_insert_input!){
+  insert_initiative_tasks_one(object: $task) {
+    id
+    user_id
+    initiative_id
+  }
+}

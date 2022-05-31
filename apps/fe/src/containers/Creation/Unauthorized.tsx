@@ -29,7 +29,7 @@ export default function Creation() {
             router.push('/login')
           }
         }><Trans>Register</Trans></Button>
-        <Button customType='outlined' onClick={
+        <Button t='outlined' onClick={
           (e)=>{
             cookies.set('callbackUrl', {pathname, query}, { path: '/' });
             e.preventDefault()

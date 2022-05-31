@@ -60,7 +60,7 @@ export default function Creation({
           </LocationCard>}
         <div>
           <Button 
-            customType='outlined' 
+            t='outlined' 
             onClick={()=>
               editable?
                 setEditable(false):

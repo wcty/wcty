@@ -61,7 +61,7 @@ export default function Creation({
         <div>
           <Button 
             disabled={loading}
-            customType='outlined' 
+            t='outlined' 
             onClick={()=>setIndex(index-1)}>
               <Trans>Back</Trans>
           </Button>

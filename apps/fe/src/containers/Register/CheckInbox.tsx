@@ -36,7 +36,7 @@ export default function RegisterWithEmail (){
             e.preventDefault()
             router.push('/')
           }}>
-          <Text color="white" semibold ><Trans>Ok</Trans></Text>
+          <Text c="backgroundLighter" semibold ><Trans>Ok</Trans></Text>
         </Button>
         <Image src={Pigeon}/>
     </CenterPanel>

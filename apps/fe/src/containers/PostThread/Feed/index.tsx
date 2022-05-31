@@ -27,7 +27,7 @@ export default function Feed({ post }: PostPageQuery) {
 
   return(
     <Container>
-      <Title h='h2' alignSelf='center' alignContent='center' position='relative' mb='4rem'>{
+      <Title s='h2' alignSelf='center' alignContent='center' position='relative' mb='4rem'>{
         layout==='mobile' && 
           <ArrowLeft 
             mr='0px'
@@ -46,7 +46,7 @@ export default function Feed({ post }: PostPageQuery) {
       {comments.length===5 && 
         <Text 
           button
-          customColor="label" 
+          c="label" 
           alignItems='center' 
           mt='1rem' mb='1rem' 
           justifyContent='flex-start' 

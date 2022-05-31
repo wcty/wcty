@@ -65,7 +65,7 @@ export default function Members({data}:{data:MembersPageQuery}){
     if(m?.volunteers_aggregate?.aggregate?.count && selected.includes('Volunteer')){
       criterium = criterium || true
     }
-    if(m?.donations_aggregate?.aggregate?.count && selected.includes('Donator')){
+    if(m?.donations_aggregate?.aggregate?.count && selected.includes('Donor')){
       criterium = criterium || true
     }
     return criterium
@@ -84,15 +84,15 @@ export default function Members({data}:{data:MembersPageQuery}){
       )
       }}/>
       <div>
-        <Title h='h3' mb='3px'><Trans>Members:</Trans> {data.members.length}</Title>
-        <Text customSize='t4' mb='1rem' customColor='label' style={{textAlign:'start'}}>{data?.initiative?.name}</Text>
+        <Title s='h3' mb='3px'><Trans>Members:</Trans> {data.members.length}</Title>
+        <Text s='t4' mb='1rem' c='label' style={{textAlign:'start'}}>{data?.initiative?.name}</Text>
       </div>
     </Header>
     <Toolbox>
       <div>
         <SectionTab label={t`Initiator`} active={selected.includes('Initiator')} onClick={()=>onTab('Initiator')}/>
         <SectionTab label={t`Volunteer`} active={selected.includes('Volunteer')} onClick={()=>onTab('Volunteer')}/>
-        <SectionTab label={t`Donator`} active={selected.includes('Donator')} onClick={()=>onTab('Donator')}/>
+        <SectionTab label={t`Donor`} active={selected.includes('Donor')} onClick={()=>onTab('Donor')}/>
         <SectionTab label={t`Contractor`} active={selected.includes('Contractor')} onClick={()=>onTab('Contractor')}/>
       </div>
       <div className='search'>
@@ -114,11 +114,19 @@ export default function Members({data}:{data:MembersPageQuery}){
             .includes(keyword.toUpperCase()))
         .filter(filter)
         .map((m, key)=>
-        <Tile {...{key}}>
+        <Tile {...{key}} onClick={()=>{
+          router.push({
+              pathname: `/initiative/[id]/members/[user_id]`, 
+              query: { id, user_id: m.user?.id }
+            }, 
+            `/initiative/${id}/members/${m.user?.id}`, 
+            { locale: router.locale }
+          )
+        }}>
           <img src={m.user?.avatar_url||''} alt={m.user?.display_name||''}/>
           <div style={{justifyContent:'center'}}>
-            <Text semibold customSize='t2'>{m.user?.display_name}</Text>
-            <Text customSize='t4' customColor='label'>{getRoles(m)}</Text>
+            <Text semibold s='t2'>{m.user?.display_name}</Text>
+            <Text s='t4' c='label'>{getRoles(m)}</Text>
           </div>
         </Tile>
       )}

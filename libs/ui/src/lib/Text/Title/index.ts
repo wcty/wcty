@@ -9,17 +9,17 @@ const colors:colorTypes[] = Object.keys(theme.colors) as colorTypes[]
 type TitleTypes = 'h1'|'h2'|'h3'|'h4'|'h5'
 
 export const 
-Title = styled.span.attrs((p:{h:TitleTypes})=>({
-  as: p.h
-}))<{bold?:boolean, h?:TitleTypes, customColor?: colorTypes } & SpaceProps & FlexboxProps & LayoutProps & PositionProps >`
-  ${({ bold, h='h4', ...p })=>bold?
-    p.theme.font.title.monobold[h]:
-    p.theme.font.title.mono[h] }
+Title = styled.span.attrs((p:{s:TitleTypes})=>({
+  as: p.s
+}))<{bold?:boolean, s?:TitleTypes, c?: colorTypes } & SpaceProps & FlexboxProps & LayoutProps & PositionProps >`
+  ${({ bold, s='h4', ...p })=>bold?
+    p.theme.font.title.monobold[s]:
+    p.theme.font.title.mono[s] }
   text-align: center; 
-  ${p=>p.customColor && (
-    colors.includes(p.customColor) ?
-      css`color: ${p.theme.colors[p.customColor]};`:
-      css`color: ${p.customColor};`
+  ${p=>p.c && (
+    colors.includes(p.c) ?
+      css`color: ${p.theme.colors[p.c]};`:
+      css`color: ${p.c};`
   )}
   display: flex;
   align-items: center;

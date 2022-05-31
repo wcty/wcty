@@ -4,23 +4,23 @@ import styled , {css}from 'styled-components'
 export interface IAvatar {
   picture?:  string;
   name?: string;
-  customSize?: 'small' | 'medium' | 'large'
+  s?: 'small' | 'medium' | 'large'
 }
 
 export const Avatar = styled.div
   .attrs(({
     picture = UserIcon, 
     name = 'userpic',  
-    customSize  = 'medium'
+    s  = 'medium'
   }:IAvatar)=>({
-    customSize, name, picture,
+    s, name, picture,
     children: <img src={picture} alt={name}/>,
   }))`
       flex-shrink: 0;
       margin-right: 7px;
       border-radius: 50%;
       overflow: hidden;
-      ${({customSize}) => handleSize[customSize!]};
+      ${({s}) => handleSize[s!]};
       & > img  {
           width: 100%;
           height: 100%;

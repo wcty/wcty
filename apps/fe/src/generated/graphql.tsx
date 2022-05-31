@@ -4673,6 +4673,7 @@ export type Initiative_Tasks = {
   status?: Maybe<Task_Statuses_Enum>;
   /** An object relationship */
   user?: Maybe<Users>;
+  /** Created by */
   user_id?: Maybe<Scalars['uuid']>;
   /** An array relationship */
   volunteers: Array<Initiative_Volunteers>;
@@ -4819,6 +4820,7 @@ export type Initiative_Tasks_Insert_Input = {
   poll?: InputMaybe<Initiative_Polls_Obj_Rel_Insert_Input>;
   poll_id?: InputMaybe<Scalars['Int']>;
   status?: InputMaybe<Task_Statuses_Enum>;
+  /** Created by */
   user_id?: InputMaybe<Scalars['uuid']>;
   volunteers?: InputMaybe<Initiative_Volunteers_Arr_Rel_Insert_Input>;
   volunteers_needed?: InputMaybe<Scalars['numeric']>;
@@ -4831,6 +4833,7 @@ export type Initiative_Tasks_Max_Fields = {
   id?: Maybe<Scalars['Int']>;
   initiative_id?: Maybe<Scalars['uuid']>;
   poll_id?: Maybe<Scalars['Int']>;
+  /** Created by */
   user_id?: Maybe<Scalars['uuid']>;
   volunteers_needed?: Maybe<Scalars['numeric']>;
 };
@@ -4842,6 +4845,7 @@ export type Initiative_Tasks_Max_Order_By = {
   id?: InputMaybe<Order_By>;
   initiative_id?: InputMaybe<Order_By>;
   poll_id?: InputMaybe<Order_By>;
+  /** Created by */
   user_id?: InputMaybe<Order_By>;
   volunteers_needed?: InputMaybe<Order_By>;
 };
@@ -4853,6 +4857,7 @@ export type Initiative_Tasks_Min_Fields = {
   id?: Maybe<Scalars['Int']>;
   initiative_id?: Maybe<Scalars['uuid']>;
   poll_id?: Maybe<Scalars['Int']>;
+  /** Created by */
   user_id?: Maybe<Scalars['uuid']>;
   volunteers_needed?: Maybe<Scalars['numeric']>;
 };
@@ -4864,6 +4869,7 @@ export type Initiative_Tasks_Min_Order_By = {
   id?: InputMaybe<Order_By>;
   initiative_id?: InputMaybe<Order_By>;
   poll_id?: InputMaybe<Order_By>;
+  /** Created by */
   user_id?: InputMaybe<Order_By>;
   volunteers_needed?: InputMaybe<Order_By>;
 };
@@ -4940,6 +4946,7 @@ export type Initiative_Tasks_Set_Input = {
   initiative_id?: InputMaybe<Scalars['uuid']>;
   poll_id?: InputMaybe<Scalars['Int']>;
   status?: InputMaybe<Task_Statuses_Enum>;
+  /** Created by */
   user_id?: InputMaybe<Scalars['uuid']>;
   volunteers_needed?: InputMaybe<Scalars['numeric']>;
 };
@@ -5262,7 +5269,7 @@ export type Initiative_Volunteers = {
   /** An object relationship */
   initiative: Initiatives;
   initiative_id: Scalars['uuid'];
-  role?: Maybe<Scalars['String']>;
+  role?: Maybe<Roles_Enum>;
   /** An object relationship */
   task?: Maybe<Initiative_Tasks>;
   task_id: Scalars['Int'];
@@ -5341,7 +5348,7 @@ export type Initiative_Volunteers_Bool_Exp = {
   id?: InputMaybe<Bigint_Comparison_Exp>;
   initiative?: InputMaybe<Initiatives_Bool_Exp>;
   initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
-  role?: InputMaybe<String_Comparison_Exp>;
+  role?: InputMaybe<Roles_Enum_Comparison_Exp>;
   task?: InputMaybe<Initiative_Tasks_Bool_Exp>;
   task_id?: InputMaybe<Int_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
@@ -5367,7 +5374,7 @@ export type Initiative_Volunteers_Insert_Input = {
   id?: InputMaybe<Scalars['bigint']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
-  role?: InputMaybe<Scalars['String']>;
+  role?: InputMaybe<Roles_Enum>;
   task?: InputMaybe<Initiative_Tasks_Obj_Rel_Insert_Input>;
   task_id?: InputMaybe<Scalars['Int']>;
   user_id?: InputMaybe<Scalars['uuid']>;
@@ -5377,7 +5384,6 @@ export type Initiative_Volunteers_Insert_Input = {
 export type Initiative_Volunteers_Max_Fields = {
   id?: Maybe<Scalars['bigint']>;
   initiative_id?: Maybe<Scalars['uuid']>;
-  role?: Maybe<Scalars['String']>;
   task_id?: Maybe<Scalars['Int']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
@@ -5386,7 +5392,6 @@ export type Initiative_Volunteers_Max_Fields = {
 export type Initiative_Volunteers_Max_Order_By = {
   id?: InputMaybe<Order_By>;
   initiative_id?: InputMaybe<Order_By>;
-  role?: InputMaybe<Order_By>;
   task_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -5395,7 +5400,6 @@ export type Initiative_Volunteers_Max_Order_By = {
 export type Initiative_Volunteers_Min_Fields = {
   id?: Maybe<Scalars['bigint']>;
   initiative_id?: Maybe<Scalars['uuid']>;
-  role?: Maybe<Scalars['String']>;
   task_id?: Maybe<Scalars['Int']>;
   user_id?: Maybe<Scalars['uuid']>;
 };
@@ -5404,7 +5408,6 @@ export type Initiative_Volunteers_Min_Fields = {
 export type Initiative_Volunteers_Min_Order_By = {
   id?: InputMaybe<Order_By>;
   initiative_id?: InputMaybe<Order_By>;
-  role?: InputMaybe<Order_By>;
   task_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -5460,7 +5463,7 @@ export enum Initiative_Volunteers_Select_Column {
 export type Initiative_Volunteers_Set_Input = {
   id?: InputMaybe<Scalars['bigint']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
-  role?: InputMaybe<Scalars['String']>;
+  role?: InputMaybe<Roles_Enum>;
   task_id?: InputMaybe<Scalars['Int']>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -8537,6 +8540,22 @@ export type Reactions_Enum_Comparison_Exp = {
   _nin?: InputMaybe<Array<Reactions_Enum>>;
 };
 
+export enum Roles_Enum {
+  Contractor = 'Contractor',
+  Donor = 'Donor',
+  Initiator = 'Initiator',
+  Volunteer = 'Volunteer'
+}
+
+/** Boolean expression to compare columns of type "roles_enum". All fields are combined with logical 'AND'. */
+export type Roles_Enum_Comparison_Exp = {
+  _eq?: InputMaybe<Roles_Enum>;
+  _in?: InputMaybe<Array<Roles_Enum>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _neq?: InputMaybe<Roles_Enum>;
+  _nin?: InputMaybe<Array<Roles_Enum>>;
+};
+
 export type St_D_Within_Geography_Input = {
   distance: Scalars['Float'];
   from: Scalars['geography'];
@@ -9892,6 +9911,7 @@ export enum User_Subscriptions_Update_Column {
 
 /** columns and relationships of "users" */
 export type Users = {
+  about?: Maybe<Scalars['String']>;
   avatar_url?: Maybe<Scalars['String']>;
   /** An array relationship */
   comment_reactions: Array<Initiative_Comment_Reactions>;
@@ -9901,7 +9921,9 @@ export type Users = {
   comments: Array<Initiative_Comments>;
   /** An aggregate relationship */
   comments_aggregate: Initiative_Comments_Aggregate;
+  contact_email?: Maybe<Scalars['String']>;
   created_at: Scalars['timestamptz'];
+  current_location?: Maybe<Scalars['String']>;
   display_name?: Maybe<Scalars['String']>;
   /** An array relationship */
   donations: Array<Initiative_Donations>;
@@ -9911,8 +9933,10 @@ export type Users = {
   edits: Array<Initiative_Edits>;
   /** An array relationship */
   expenses: Array<Initiative_Expenses>;
+  facebook_account?: Maybe<Scalars['String']>;
   /** An array relationship */
   files: Array<Files>;
+  github_account?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   /** An array relationship */
   initiative_infos: Array<Initiative_Info>;
@@ -9926,6 +9950,8 @@ export type Users = {
   initiative_volunteers: Array<Initiative_Volunteers>;
   /** An aggregate relationship */
   initiative_volunteers_aggregate: Initiative_Volunteers_Aggregate;
+  instagram_account?: Maybe<Scalars['String']>;
+  mobile_phone?: Maybe<Scalars['String']>;
   /** An array relationship */
   org_members: Array<Org_Members>;
   /** An array relationship */
@@ -9946,11 +9972,14 @@ export type Users = {
   tasks: Array<Initiative_Tasks>;
   /** An aggregate relationship */
   tasks_aggregate: Initiative_Tasks_Aggregate;
+  telegram_account?: Maybe<Scalars['String']>;
   /** An array relationship */
   tenders: Array<Tenders>;
+  twitter_account?: Maybe<Scalars['String']>;
   updated_at: Scalars['timestamptz'];
   /** An array relationship */
   votes: Array<Initiative_Poll_Votes>;
+  whatsapp_account?: Maybe<Scalars['String']>;
 };
 
 
@@ -10218,20 +10247,27 @@ export type Users_Bool_Exp = {
   _and?: InputMaybe<Array<Users_Bool_Exp>>;
   _not?: InputMaybe<Users_Bool_Exp>;
   _or?: InputMaybe<Array<Users_Bool_Exp>>;
+  about?: InputMaybe<String_Comparison_Exp>;
   avatar_url?: InputMaybe<String_Comparison_Exp>;
   comment_reactions?: InputMaybe<Initiative_Comment_Reactions_Bool_Exp>;
   comments?: InputMaybe<Initiative_Comments_Bool_Exp>;
+  contact_email?: InputMaybe<String_Comparison_Exp>;
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  current_location?: InputMaybe<String_Comparison_Exp>;
   display_name?: InputMaybe<String_Comparison_Exp>;
   donations?: InputMaybe<Initiative_Donations_Bool_Exp>;
   edits?: InputMaybe<Initiative_Edits_Bool_Exp>;
   expenses?: InputMaybe<Initiative_Expenses_Bool_Exp>;
+  facebook_account?: InputMaybe<String_Comparison_Exp>;
   files?: InputMaybe<Files_Bool_Exp>;
+  github_account?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   initiative_infos?: InputMaybe<Initiative_Info_Bool_Exp>;
   initiative_members?: InputMaybe<Initiative_Members_Bool_Exp>;
   initiative_visits?: InputMaybe<Initiative_Visits_Bool_Exp>;
   initiative_volunteers?: InputMaybe<Initiative_Volunteers_Bool_Exp>;
+  instagram_account?: InputMaybe<String_Comparison_Exp>;
+  mobile_phone?: InputMaybe<String_Comparison_Exp>;
   org_members?: InputMaybe<Org_Members_Bool_Exp>;
   org_projects?: InputMaybe<Org_Projects_Bool_Exp>;
   post_reactions?: InputMaybe<Initiative_Post_Reactions_Bool_Exp>;
@@ -10240,9 +10276,12 @@ export type Users_Bool_Exp = {
   settings?: InputMaybe<User_Settings_Bool_Exp>;
   subscriptions?: InputMaybe<User_Subscriptions_Bool_Exp>;
   tasks?: InputMaybe<Initiative_Tasks_Bool_Exp>;
+  telegram_account?: InputMaybe<String_Comparison_Exp>;
   tenders?: InputMaybe<Tenders_Bool_Exp>;
+  twitter_account?: InputMaybe<String_Comparison_Exp>;
   updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   votes?: InputMaybe<Initiative_Poll_Votes_Bool_Exp>;
+  whatsapp_account?: InputMaybe<String_Comparison_Exp>;
 };
 
 /** response of any mutation on the table "users" */
@@ -10255,20 +10294,27 @@ export type Users_Mutation_Response = {
 
 /** Ordering options when selecting data from "users". */
 export type Users_Order_By = {
+  about?: InputMaybe<Order_By>;
   avatar_url?: InputMaybe<Order_By>;
   comment_reactions_aggregate?: InputMaybe<Initiative_Comment_Reactions_Aggregate_Order_By>;
   comments_aggregate?: InputMaybe<Initiative_Comments_Aggregate_Order_By>;
+  contact_email?: InputMaybe<Order_By>;
   created_at?: InputMaybe<Order_By>;
+  current_location?: InputMaybe<Order_By>;
   display_name?: InputMaybe<Order_By>;
   donations_aggregate?: InputMaybe<Initiative_Donations_Aggregate_Order_By>;
   edits_aggregate?: InputMaybe<Initiative_Edits_Aggregate_Order_By>;
   expenses_aggregate?: InputMaybe<Initiative_Expenses_Aggregate_Order_By>;
+  facebook_account?: InputMaybe<Order_By>;
   files_aggregate?: InputMaybe<Files_Aggregate_Order_By>;
+  github_account?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   initiative_infos_aggregate?: InputMaybe<Initiative_Info_Aggregate_Order_By>;
   initiative_members_aggregate?: InputMaybe<Initiative_Members_Aggregate_Order_By>;
   initiative_visits_aggregate?: InputMaybe<Initiative_Visits_Aggregate_Order_By>;
   initiative_volunteers_aggregate?: InputMaybe<Initiative_Volunteers_Aggregate_Order_By>;
+  instagram_account?: InputMaybe<Order_By>;
+  mobile_phone?: InputMaybe<Order_By>;
   org_members_aggregate?: InputMaybe<Org_Members_Aggregate_Order_By>;
   org_projects_aggregate?: InputMaybe<Org_Projects_Aggregate_Order_By>;
   post_reactions_aggregate?: InputMaybe<Initiative_Post_Reactions_Aggregate_Order_By>;
@@ -10277,9 +10323,12 @@ export type Users_Order_By = {
   settings?: InputMaybe<User_Settings_Order_By>;
   subscriptions_aggregate?: InputMaybe<User_Subscriptions_Aggregate_Order_By>;
   tasks_aggregate?: InputMaybe<Initiative_Tasks_Aggregate_Order_By>;
+  telegram_account?: InputMaybe<Order_By>;
   tenders_aggregate?: InputMaybe<Tenders_Aggregate_Order_By>;
+  twitter_account?: InputMaybe<Order_By>;
   updated_at?: InputMaybe<Order_By>;
   votes_aggregate?: InputMaybe<Initiative_Poll_Votes_Aggregate_Order_By>;
+  whatsapp_account?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: users */
@@ -10290,22 +10339,52 @@ export type Users_Pk_Columns_Input = {
 /** select columns of table "users" */
 export enum Users_Select_Column {
   /** column name */
+  About = 'about',
+  /** column name */
   AvatarUrl = 'avatar_url',
+  /** column name */
+  ContactEmail = 'contact_email',
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  CurrentLocation = 'current_location',
+  /** column name */
   DisplayName = 'display_name',
+  /** column name */
+  FacebookAccount = 'facebook_account',
+  /** column name */
+  GithubAccount = 'github_account',
   /** column name */
   Id = 'id',
   /** column name */
-  UpdatedAt = 'updated_at'
+  InstagramAccount = 'instagram_account',
+  /** column name */
+  MobilePhone = 'mobile_phone',
+  /** column name */
+  TelegramAccount = 'telegram_account',
+  /** column name */
+  TwitterAccount = 'twitter_account',
+  /** column name */
+  UpdatedAt = 'updated_at',
+  /** column name */
+  WhatsappAccount = 'whatsapp_account'
 }
 
 /** input type for updating data in table "users" */
 export type Users_Set_Input = {
+  about?: InputMaybe<Scalars['String']>;
   avatar_url?: InputMaybe<Scalars['String']>;
+  contact_email?: InputMaybe<Scalars['String']>;
+  current_location?: InputMaybe<Scalars['String']>;
   display_name?: InputMaybe<Scalars['String']>;
+  facebook_account?: InputMaybe<Scalars['String']>;
+  github_account?: InputMaybe<Scalars['String']>;
+  instagram_account?: InputMaybe<Scalars['String']>;
+  mobile_phone?: InputMaybe<Scalars['String']>;
+  telegram_account?: InputMaybe<Scalars['String']>;
+  twitter_account?: InputMaybe<Scalars['String']>;
   updated_at?: InputMaybe<Scalars['timestamptz']>;
+  whatsapp_account?: InputMaybe<Scalars['String']>;
 };
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
@@ -10760,7 +10839,17 @@ export type MembersPageQueryVariables = Exact<{
 }>;
 
 
-export type MembersPageQuery = { members: Array<{ id: number, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }>, initiator: Array<{ id: number, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }>, initiative?: { name?: string | null | undefined } | null | undefined };
+export type MembersPageQuery = { members: Array<{ id: number, created_at: any, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, initiative: { name?: string | null | undefined, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, initiated: { aggregate?: { count: number } | null | undefined } }>, initiator: Array<{ id: number, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }>, initiative?: { name?: string | null | undefined } | null | undefined };
+
+export type MemberPageQueryVariables = Exact<{
+  user_id: Scalars['uuid'];
+  id: Scalars['uuid'];
+}>;
+
+
+export type MemberPageQuery = { member: Array<{ id: number, created_at: any, user?: { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> } | null | undefined, initiative: { name?: string | null | undefined, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, initiated: { aggregate?: { count: number } | null | undefined } }> };
+
+export type MemberInfoFragment = { id: number, created_at: any, initiative: { name?: string | null | undefined, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, initiated: { aggregate?: { count: number } | null | undefined } };
 
 export type PostPageQueryVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -10782,6 +10871,21 @@ export type InitiativesSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type InitiativesSitemapQuery = { initiatives: Array<{ id: any }> };
+
+export type UserPageQueryVariables = Exact<{
+  user_id: Scalars['uuid'];
+}>;
+
+
+export type UserPageQuery = { user?: { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> } | null | undefined };
+
+export type UserInfoFragment = { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> };
+
+export type UserInitiativesInfoFragment = { donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined } };
+
+export type UserOrganizationsInfoFragment = { org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> };
+
+export type UserContactInfoFragment = { facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined };
 
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {
@@ -10838,6 +10942,31 @@ export const EntryCardFragmentDoc = gql`
   type
   members_count
   modified_at
+}
+    `;
+export const MemberInfoFragmentDoc = gql`
+    fragment MemberInfo on initiative_members {
+  id
+  created_at
+  initiative {
+    name
+    created_at
+  }
+  volunteers_aggregate {
+    aggregate {
+      count
+    }
+  }
+  donations_aggregate {
+    aggregate {
+      count
+    }
+  }
+  initiated: volunteers_aggregate(where: {role: {_eq: Initiator}}) {
+    aggregate {
+      count
+    }
+  }
 }
     `;
 export const PostInitiativeInfoFragmentDoc = gql`
@@ -10944,6 +11073,75 @@ export const PostFragmentDoc = gql`
   }
 }
     `;
+export const UserInitiativesInfoFragmentDoc = gql`
+    fragment UserInitiativesInfo on users {
+  donated_total: donations_aggregate {
+    aggregate {
+      sum {
+        amount
+      }
+    }
+  }
+  tasks_total: tasks_aggregate {
+    aggregate {
+      count
+    }
+  }
+  tasks_completed: tasks_aggregate(where: {status: {_eq: COMPLETED}}) {
+    aggregate {
+      count
+    }
+  }
+  initiatives_total: initiative_members_aggregate {
+    aggregate {
+      count
+    }
+  }
+  initiated_count: initiative_volunteers_aggregate(
+    where: {role: {_eq: Initiator}}
+  ) {
+    aggregate {
+      count
+    }
+  }
+}
+    `;
+export const UserOrganizationsInfoFragmentDoc = gql`
+    fragment UserOrganizationsInfo on users {
+  org_members {
+    org {
+      name
+    }
+    role
+  }
+}
+    `;
+export const UserContactInfoFragmentDoc = gql`
+    fragment UserContactInfo on users {
+  facebook_account
+  instagram_account
+  telegram_account
+  whatsapp_account
+  github_account
+  twitter_account
+  about
+  current_location
+}
+    `;
+export const UserInfoFragmentDoc = gql`
+    fragment UserInfo on users {
+  id
+  created_at
+  updated_at
+  display_name
+  avatar_url
+  ...UserInitiativesInfo
+  ...UserOrganizationsInfo
+  ...UserContactInfo
+}
+    ${UserInitiativesInfoFragmentDoc}
+${UserOrganizationsInfoFragmentDoc}
+${UserContactInfoFragmentDoc}`;
 export const UserDocument = gql`
     query User($user_id: uuid!) {
   users_by_pk(id: $user_id) {
@@ -12833,17 +13031,7 @@ export type InitiativePublicByPkQueryResult = Apollo.QueryResult<InitiativePubli
 export const MembersPageDocument = gql`
     query MembersPage($initiative_id: uuid!) {
   members: initiative_members(where: {initiative_id: {_eq: $initiative_id}}) {
-    id
-    volunteers_aggregate {
-      aggregate {
-        count
-      }
-    }
-    donations_aggregate {
-      aggregate {
-        count
-      }
-    }
+    ...MemberInfo
     user {
       id
       avatar_url
@@ -12866,7 +13054,7 @@ export const MembersPageDocument = gql`
     name
   }
 }
-    `;
+    ${MemberInfoFragmentDoc}`;
 
 /**
  * __useMembersPageQuery__
@@ -12895,6 +13083,49 @@ export function useMembersPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type MembersPageQueryHookResult = ReturnType<typeof useMembersPageQuery>;
 export type MembersPageLazyQueryHookResult = ReturnType<typeof useMembersPageLazyQuery>;
 export type MembersPageQueryResult = Apollo.QueryResult<MembersPageQuery, MembersPageQueryVariables>;
+export const MemberPageDocument = gql`
+    query MemberPage($user_id: uuid!, $id: uuid!) {
+  member: initiative_members(
+    where: {_and: [{user_id: {_eq: $user_id}}, {initiative_id: {_eq: $id}}]}
+    limit: 1
+  ) {
+    user {
+      ...UserInfo
+    }
+    ...MemberInfo
+  }
+}
+    ${UserInfoFragmentDoc}
+${MemberInfoFragmentDoc}`;
+
+/**
+ * __useMemberPageQuery__
+ *
+ * To run a query within a React component, call `useMemberPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMemberPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMemberPageQuery({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useMemberPageQuery(baseOptions: Apollo.QueryHookOptions<MemberPageQuery, MemberPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MemberPageQuery, MemberPageQueryVariables>(MemberPageDocument, options);
+      }
+export function useMemberPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MemberPageQuery, MemberPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MemberPageQuery, MemberPageQueryVariables>(MemberPageDocument, options);
+        }
+export type MemberPageQueryHookResult = ReturnType<typeof useMemberPageQuery>;
+export type MemberPageLazyQueryHookResult = ReturnType<typeof useMemberPageLazyQuery>;
+export type MemberPageQueryResult = Apollo.QueryResult<MemberPageQuery, MemberPageQueryVariables>;
 export const PostPageDocument = gql`
     query PostPage($initiative_id: uuid!, $post_id: bigint!) {
   post: initiative_posts_by_pk(id: $post_id, initiative_id: $initiative_id) {
@@ -12973,6 +13204,41 @@ export function useInitiativesSitemapLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type InitiativesSitemapQueryHookResult = ReturnType<typeof useInitiativesSitemapQuery>;
 export type InitiativesSitemapLazyQueryHookResult = ReturnType<typeof useInitiativesSitemapLazyQuery>;
 export type InitiativesSitemapQueryResult = Apollo.QueryResult<InitiativesSitemapQuery, InitiativesSitemapQueryVariables>;
+export const UserPageDocument = gql`
+    query UserPage($user_id: uuid!) {
+  user: users_by_pk(id: $user_id) {
+    ...UserInfo
+  }
+}
+    ${UserInfoFragmentDoc}`;
+
+/**
+ * __useUserPageQuery__
+ *
+ * To run a query within a React component, call `useUserPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserPageQuery({
+ *   variables: {
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useUserPageQuery(baseOptions: Apollo.QueryHookOptions<UserPageQuery, UserPageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserPageQuery, UserPageQueryVariables>(UserPageDocument, options);
+      }
+export function useUserPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserPageQuery, UserPageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserPageQuery, UserPageQueryVariables>(UserPageDocument, options);
+        }
+export type UserPageQueryHookResult = ReturnType<typeof useUserPageQuery>;
+export type UserPageLazyQueryHookResult = ReturnType<typeof useUserPageLazyQuery>;
+export type UserPageQueryResult = Apollo.QueryResult<UserPageQuery, UserPageQueryVariables>;
 export type entriesKeySpecifier = ('address' | 'created_at' | 'description' | 'geom' | 'id' | 'image' | 'members_count' | 'modified_at' | 'name' | 'type' | entriesKeySpecifier)[];
 export type entriesFieldPolicy = {
 	address?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -13836,19 +14102,17 @@ export type initiative_volunteers_avg_fieldsFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	task_id?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_volunteers_max_fieldsKeySpecifier = ('id' | 'initiative_id' | 'role' | 'task_id' | 'user_id' | initiative_volunteers_max_fieldsKeySpecifier)[];
+export type initiative_volunteers_max_fieldsKeySpecifier = ('id' | 'initiative_id' | 'task_id' | 'user_id' | initiative_volunteers_max_fieldsKeySpecifier)[];
 export type initiative_volunteers_max_fieldsFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
-	role?: FieldPolicy<any> | FieldReadFunction<any>,
 	task_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_volunteers_min_fieldsKeySpecifier = ('id' | 'initiative_id' | 'role' | 'task_id' | 'user_id' | initiative_volunteers_min_fieldsKeySpecifier)[];
+export type initiative_volunteers_min_fieldsKeySpecifier = ('id' | 'initiative_id' | 'task_id' | 'user_id' | initiative_volunteers_min_fieldsKeySpecifier)[];
 export type initiative_volunteers_min_fieldsFieldPolicy = {
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
-	role?: FieldPolicy<any> | FieldReadFunction<any>,
 	task_id?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>
 };
@@ -14331,20 +14595,25 @@ export type user_subscriptions_mutation_responseFieldPolicy = {
 	affected_rows?: FieldPolicy<any> | FieldReadFunction<any>,
 	returning?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type usersKeySpecifier = ('avatar_url' | 'comment_reactions' | 'comment_reactions_aggregate' | 'comments' | 'comments_aggregate' | 'created_at' | 'display_name' | 'donations' | 'donations_aggregate' | 'edits' | 'expenses' | 'files' | 'id' | 'initiative_infos' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_visits' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'org_members' | 'org_projects' | 'post_reactions' | 'post_reactions_aggregate' | 'posts' | 'projects' | 'settings' | 'subscriptions' | 'tasks' | 'tasks_aggregate' | 'tenders' | 'updated_at' | 'votes' | usersKeySpecifier)[];
+export type usersKeySpecifier = ('about' | 'avatar_url' | 'comment_reactions' | 'comment_reactions_aggregate' | 'comments' | 'comments_aggregate' | 'contact_email' | 'created_at' | 'current_location' | 'display_name' | 'donations' | 'donations_aggregate' | 'edits' | 'expenses' | 'facebook_account' | 'files' | 'github_account' | 'id' | 'initiative_infos' | 'initiative_members' | 'initiative_members_aggregate' | 'initiative_visits' | 'initiative_volunteers' | 'initiative_volunteers_aggregate' | 'instagram_account' | 'mobile_phone' | 'org_members' | 'org_projects' | 'post_reactions' | 'post_reactions_aggregate' | 'posts' | 'projects' | 'settings' | 'subscriptions' | 'tasks' | 'tasks_aggregate' | 'telegram_account' | 'tenders' | 'twitter_account' | 'updated_at' | 'votes' | 'whatsapp_account' | usersKeySpecifier)[];
 export type usersFieldPolicy = {
+	about?: FieldPolicy<any> | FieldReadFunction<any>,
 	avatar_url?: FieldPolicy<any> | FieldReadFunction<any>,
 	comment_reactions?: FieldPolicy<any> | FieldReadFunction<any>,
 	comment_reactions_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	comments?: FieldPolicy<any> | FieldReadFunction<any>,
 	comments_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
+	contact_email?: FieldPolicy<any> | FieldReadFunction<any>,
 	created_at?: FieldPolicy<any> | FieldReadFunction<any>,
+	current_location?: FieldPolicy<any> | FieldReadFunction<any>,
 	display_name?: FieldPolicy<any> | FieldReadFunction<any>,
 	donations?: FieldPolicy<any> | FieldReadFunction<any>,
 	donations_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
 	edits?: FieldPolicy<any> | FieldReadFunction<any>,
 	expenses?: FieldPolicy<any> | FieldReadFunction<any>,
+	facebook_account?: FieldPolicy<any> | FieldReadFunction<any>,
 	files?: FieldPolicy<any> | FieldReadFunction<any>,
+	github_account?: FieldPolicy<any> | FieldReadFunction<any>,
 	id?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_infos?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_members?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -14352,6 +14621,8 @@ export type usersFieldPolicy = {
 	initiative_visits?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_volunteers?: FieldPolicy<any> | FieldReadFunction<any>,
 	initiative_volunteers_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
+	instagram_account?: FieldPolicy<any> | FieldReadFunction<any>,
+	mobile_phone?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_members?: FieldPolicy<any> | FieldReadFunction<any>,
 	org_projects?: FieldPolicy<any> | FieldReadFunction<any>,
 	post_reactions?: FieldPolicy<any> | FieldReadFunction<any>,
@@ -14362,9 +14633,12 @@ export type usersFieldPolicy = {
 	subscriptions?: FieldPolicy<any> | FieldReadFunction<any>,
 	tasks?: FieldPolicy<any> | FieldReadFunction<any>,
 	tasks_aggregate?: FieldPolicy<any> | FieldReadFunction<any>,
+	telegram_account?: FieldPolicy<any> | FieldReadFunction<any>,
 	tenders?: FieldPolicy<any> | FieldReadFunction<any>,
+	twitter_account?: FieldPolicy<any> | FieldReadFunction<any>,
 	updated_at?: FieldPolicy<any> | FieldReadFunction<any>,
-	votes?: FieldPolicy<any> | FieldReadFunction<any>
+	votes?: FieldPolicy<any> | FieldReadFunction<any>,
+	whatsapp_account?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type users_mutation_responseKeySpecifier = ('affected_rows' | 'returning' | users_mutation_responseKeySpecifier)[];
 export type users_mutation_responseFieldPolicy = {

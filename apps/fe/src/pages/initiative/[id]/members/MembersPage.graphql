@@ -8,17 +8,7 @@ query MembersPage(
       }
     }
   ){
-    id
-    volunteers_aggregate {
-      aggregate {
-        count
-      }
-    }
-    donations_aggregate {
-      aggregate {
-        count
-      }
-    }
+    ...MemberInfo
     user{
       id
       avatar_url

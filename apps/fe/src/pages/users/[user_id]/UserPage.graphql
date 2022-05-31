@@ -1,0 +1,67 @@
+query UserPage($user_id: uuid!) {
+  user:users_by_pk(id: $user_id) {
+    ...UserInfo
+  }
+}
+
+fragment UserInfo on users{
+  id
+  created_at
+  updated_at
+  display_name
+  avatar_url
+  ...UserInitiativesInfo
+  ...UserOrganizationsInfo
+  ...UserContactInfo
+}
+
+fragment UserInitiativesInfo on users{
+  donated_total: donations_aggregate {
+    aggregate {
+      sum {
+        amount
+      }
+    }
+  }
+  tasks_total: tasks_aggregate {
+    aggregate {
+      count
+    }
+  }
+  tasks_completed: tasks_aggregate(where: {status:{_eq:COMPLETED}}) {
+    aggregate {
+      count
+    }
+  }
+  initiatives_total: initiative_members_aggregate {
+    aggregate {
+      count
+    }
+  }
+  initiated_count: initiative_volunteers_aggregate(where: {role:{_eq:Initiator}}) {
+    aggregate {
+      count
+    }
+  }
+  
+}
+
+fragment UserOrganizationsInfo on users{
+  org_members{
+    org {
+      name
+    }
+    role
+  }
+}
+
+fragment UserContactInfo on users{
+  facebook_account
+  instagram_account
+  telegram_account
+  whatsapp_account
+  github_account
+  twitter_account
+  about
+  current_location
+}

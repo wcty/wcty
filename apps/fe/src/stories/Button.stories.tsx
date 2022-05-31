@@ -14,7 +14,7 @@ export default {
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 
 Primary.args = {
-  customType: 'secondary',
+  t: 'secondary',
   size: 'large'
 };
 

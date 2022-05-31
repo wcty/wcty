@@ -41,5 +41,24 @@ module.exports = {
         },
       },
     },
+    misc: {
+      schema: "libs/misc/generated/graphql.schema.json",
+      documents: [
+        "libs/misc/*.graphql",
+        "libs/misc/**/*.graphql",
+        "libs/misc/**/**/*.graphql",
+        "libs/misc/**/**/**/*.graphql"
+      ],
+      extensions: {
+        endpoints: {
+          default: {
+            url: 'https://gql.weee.city/v1/graphql',
+            headers: {
+              "X-Hasura-Admin-Secret": `${process.env.HASURA_GRAPHQL_ADMIN_SECRET}`,
+            }
+          },
+        },
+      },
+    },
   },
 }

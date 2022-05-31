@@ -68,15 +68,15 @@ export function FullscreenCarousel({
               <IconButton 
                 onClick={()=>onClose()} 
                 icon='close'
-                customType="secondary"
-                customSize="small"/>
+                t="secondary"
+                s="small"/>
             </CloseIcon>
             {onGalleryButtonClick && <GalleryIcon>
               <IconButton 
                 onClick={()=>onGalleryButtonClick(index)} 
                 icon='gallery'
-                customType="secondary"
-                customSize="small"/>
+                t="secondary"
+                s="small"/>
             </GalleryIcon>}
             {withPostButton && images[index].post_id &&
               <Button 
@@ -93,18 +93,18 @@ export function FullscreenCarousel({
                     locale: router.locale 
                   }) 
                 }}
-                customSize="small"
-                customType="secondary">
+                s="small"
+                t="secondary">
                 <Trans>Go to the image's post</Trans>
               </Button>}
           </ImageContainer>
           {withBottomPanel && <>
             <BottomPanel>
-              <Title h='h4' bold m='0.3rem 2rem' alignItems='center' >
+              <Title s='h4' bold m='0.3rem 2rem' alignItems='center' >
                 <Initiative style={{transform:'scale(0.6)', width:'22px', margin: 0, marginLeft:'-5px'}}/>
                 {header}
               </Title>
-              <Divider m='0' customColor="titleActive" height='1px'/>
+              <Divider m='0' c="titleActive" height='1px'/>
               <Author 
                 p='0px 2rem'
                 flex='1 1 auto'
@@ -136,15 +136,15 @@ export function FullscreenCarousel({
           <IconButton 
             onClick={()=>onClose()} 
             icon='close'
-            customType="secondary"
-            customSize="small"/>
+            t="secondary"
+            s="small"/>
         </CloseIcon>
         {onGalleryButtonClick && <GalleryIcon>
           <IconButton 
             onClick={()=>onGalleryButtonClick(index)}             
             icon='gallery'
-            customType="secondary"
-            customSize="small"/>
+            t="secondary"
+            s="small"/>
         </GalleryIcon>}
       </>}
     </FullscreenCarouselWrapper>

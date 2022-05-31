@@ -24,8 +24,8 @@ const variants = {
 
 interface  IconButtonProps {
   icon?: keyof typeof variants;
-  customSize?: 'small' |  'medium' |  'large',
-  customType?: 'primary' | 'secondary' | 'outlined' | 'subtle' | 'text'
+  s?: 'small' |  'medium' |  'large',
+  t?: 'primary' | 'secondary' | 'outlined' | 'subtle' | 'text'
 }
 
 const small = css<{}>`
@@ -50,8 +50,8 @@ const handleSize =  {
 }
 
 export const IconButton =  styled.div.attrs(
-  ({icon = 'send', customSize = 'medium'}: IconButtonProps)=>
-  ({customSize, children: variants[icon]}))<IconButtonProps & FlexboxProps & SpaceProps & LayoutProps & PositionProps>`
+  ({icon = 'send', s = 'medium'}: IconButtonProps)=>
+  ({s, children: variants[icon]}))<IconButtonProps & FlexboxProps & SpaceProps & LayoutProps & PositionProps>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,8 +74,8 @@ export const IconButton =  styled.div.attrs(
     &:disabled {
         background-color: ${props => props.theme.colors.body};
     }
-    ${({customSize})  => handleSize[customSize!]}
-    ${({customType = 'primary', theme})=>theme.buttonTypes[customType]};
+    ${({s})  => handleSize[s!]}
+    ${({t = 'primary', theme})=>theme.buttonTypes[t]};
 
     ${position}
     ${layout}

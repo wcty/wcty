@@ -141,6 +141,7 @@ Member = styled.img`
   height: 30px;
   position: relative;
   border-radius: 50%;
+  background-color: ${p=>p.theme.colors.primary};
   :not(:first-child){
     margin-left: -15px;
   }

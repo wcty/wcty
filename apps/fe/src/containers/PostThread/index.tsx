@@ -31,7 +31,7 @@ export default function PostThread({post}:PostPageQuery) {
                 locale: router.locale 
               }) 
             }}
-            customSize="t5" 
+            s="t5" 
             position='absolute' 
             top='5rem' 
             left='8rem'>

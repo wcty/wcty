@@ -42,6 +42,41 @@ export default function InitiativesDrawer(){
   },[data, myData, user])
   const router = useRouter()
   const isEntryCreation = router.pathname.includes('/create-initiative')
+  const isInitiative = router.pathname.includes('/initiative')
+
+  function onClick(v:NonNullable<typeof initiatives>['initiatives'][number]){
+    setOpen(false)
+    setFocus(v.geometry.coordinates)
+    setSelected({
+      id: v.id,
+      type: 'Feature',
+      source: 'initiative',
+      geometry: v.geometry,
+      properties: {
+        name: v.name||'',
+        image: v.image||'',
+        description:  
+          v.infos?.[0].problem? (v.infos?.[0].problem + '\n'):'' + 
+          v.infos?.[0].goal? (v.infos?.[0].goal + '\n'):'' + 
+          v.infos?.[0].context||'',
+        created_at: v.created_at,
+        id: v.id,
+        modified_at: '',
+        address: '',
+        type: 'initiative'
+      }
+    })
+    setViewport({
+      longitude: v.geometry.coordinates[0],
+      latitude: v.geometry.coordinates[1],
+      zoom: 16,
+      viewportChangeMethod: 'easeTo'
+    })
+    setSlideIndex(0)
+    if(isInitiative){
+      router.push({pathname: `/initiative/[id]`, query: { id: v.id }}, `/initiative/${v.id}`, { locale: router.locale })
+    }
+  }
 
   return <>
     <div>
@@ -56,70 +91,9 @@ export default function InitiativesDrawer(){
       </UserIconRow>
       <List>
         {initiatives?.initiatives.map((v,key)=>
-          layout==='desktop'? 
           <ListRow onClick={
-            ()=>{
-              setOpen(false)
-              setFocus(v.geometry.coordinates)
-              setSelected({
-                id: v.id,
-                type: 'Feature',
-                source: 'initiative',
-                geometry: v.geometry,
-                properties: {
-                  name: v.name||'',
-                  image: v.image||'',
-                  description:  
-                    v.infos?.[0].problem? (v.infos?.[0].problem + '\n'):'' + 
-                    v.infos?.[0].goal? (v.infos?.[0].goal + '\n'):'' + 
-                    v.infos?.[0].context||'',
-                  created_at: v.created_at,
-                  id: v.id,
-                  modified_at: '',
-                  address: '',
-                  type: 'initiative'
-                }
-              })
-              setViewport({
-                longitude: v.geometry.coordinates[0],
-                latitude: v.geometry.coordinates[1],
-                zoom: 16,
-                viewportChangeMethod: 'easeTo'
-              })
-              setSlideIndex(0)
-            }
-          } data={{...v, type: 'initiative'}} {...{key}}/>:
-          <ListRow onClick={
-            ()=>{
-              setOpen(false)
-              setFocus(v.geometry.coordinates)
-              setSelected({
-                id: v.id,
-                type: 'Feature',
-                source: 'initiative',
-                geometry: v.geometry,
-                properties: {
-                  name: v.name||'',
-                  image: v.image||'',
-                  description:  
-                    v.infos?.[0].problem? (v.infos?.[0].problem + '\n'):'' + 
-                    v.infos?.[0].goal? (v.infos?.[0].goal + '\n'):'' + 
-                    v.infos?.[0].context||'',
-                  created_at: v.created_at,
-                  id: v.id,
-                  modified_at: '',
-                  address: '',
-                  type: 'initiative'
-                }
-              })
-              setViewport({
-                longitude: v.geometry.coordinates[0],
-                latitude: v.geometry.coordinates[1],
-                zoom: 16,
-                viewportChangeMethod: 'easeTo'
-              })
-              setSlideIndex(0)
-          }} data={{...v, type: 'initiative'}} {...{key}}/>
+            ()=>onClick(v)
+          } data={{...v, type: 'initiative'}} {...{key}}/>
         )}
       </List>
     </div>

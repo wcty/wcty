@@ -1,6 +1,6 @@
 import {  useUser } from 'common';
 import { Button, Checkbox, TextArea, TextField } from "@ui";
-import { InitiativeByPkDocument, useJoinMutation, useTasksQuery } from 'generated';
+import { InitiativeByPkDocument, Roles_Enum, useJoinMutation, useTasksQuery } from 'generated';
 import { useEffect, useState } from 'react';
 import { Container, DonationMenu, Form, TaskSelection } from './styles';
 import { useRouter } from 'next/router';
@@ -55,7 +55,7 @@ export default function Join() {
         )? [{
           description: taskDescription,
           volunteers: {data:[{
-            role: 'Initiator',
+            role: Roles_Enum.Initiator,
             user_id: user?.id
           }]}
         }]:[],
@@ -65,7 +65,7 @@ export default function Join() {
           taskIds.length>0
         )? taskIds.map(v=>({
           task_id: v,
-          role: 'Volunteer',
+          role: Roles_Enum.Volunteer,
         })):[],
     },
     refetchQueries: [InitiativeByPkDocument]
@@ -177,8 +177,8 @@ export default function Join() {
           placeholder={t`Suggest a relevant task for the initiative that you can perform`}/>
         <div>
           <Button
-            customSize='medium'
-            customType='primary'
+            s='medium'
+            t='primary'
             disabled={ disabled }
             onClick={(e)=>{
               if(user){ 

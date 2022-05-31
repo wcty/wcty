@@ -90,12 +90,12 @@ export default function Post({
         date={new Date(props.created_at)}/>      
       {author?.id===user?.id && <>
         <OptionsButton
-          customType='secondary' 
+          t='secondary' 
           onClick={()=>{
             setOptions(!options)
             setDeletion(false)
           }} 
-          customSize='small'/>
+          s='small'/>
         
         {options && 
           <OptionsMenu >
@@ -107,7 +107,7 @@ export default function Post({
                 setOptions(false); 
               }} 
               width='100%' 
-              customType='secondary'>
+              t='secondary'>
                 <Trans>Edit</Trans>
             </Button>
             <Button 
@@ -117,7 +117,7 @@ export default function Post({
                 setOptions(false); 
               }} 
               width='100%' 
-              customType='secondary'>
+              t='secondary'>
                 <Trans>Delete</Trans>
             </Button>
           </OptionsMenu>}
@@ -136,7 +136,7 @@ export default function Post({
                   setDeletion(false);
                 }} 
                 width='100%' 
-                customType='primary'>
+                t='primary'>
                   <Trans>Delete</Trans>
               </Button>
               <Button 
@@ -146,7 +146,7 @@ export default function Post({
                   setDeletion(false);
                 }} 
                 width='100%' 
-                customType='outlined'>
+                t='outlined'>
                   <Trans>Return</Trans>
               </Button>
             </div>
@@ -193,8 +193,8 @@ export default function Post({
                 locale: router.locale 
               }) 
             }}
-            customType="text" 
-            customSize="small">
+            t="text" 
+            s="small">
               <CommentIco/>
               <Trans>Comment</Trans>
           </Button>

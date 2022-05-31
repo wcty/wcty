@@ -1,0 +1,35 @@
+query MemberPage($user_id: uuid!, $id: uuid!) {
+  member: initiative_members(where: {_and:[
+    {user_id: {_eq: $user_id}},
+    {initiative_id: {_eq: $id}}
+  ]}, limit: 1) {
+    user {
+      ...UserInfo
+    }
+    ...MemberInfo
+  }
+}
+
+fragment MemberInfo on initiative_members{
+  id
+  created_at
+  initiative {
+    name
+    created_at
+  }
+  volunteers_aggregate {
+    aggregate {
+      count
+    }
+  }
+  donations_aggregate {
+    aggregate {
+      count
+    }
+  }
+  initiated: volunteers_aggregate(where: {role:{_eq:Initiator}}) {
+    aggregate {
+      count
+    }
+  }
+}

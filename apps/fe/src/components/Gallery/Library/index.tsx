@@ -62,8 +62,8 @@ export function Library({
             <IconButton 
               onClick={()=>onFullscreenButtonClick(index)} 
               icon='fullscreen'
-              customType="secondary"
-              customSize="small"/>
+              t="secondary"
+              s="small"/>
           </FullscreenIcon>}
         </ImageContainer>
         <BottomPanel>
@@ -77,7 +77,7 @@ export function Library({
                 new Date(images[index].created_at!) : 
                 undefined }
             />
-            <Title h='h4'><Initiative/>{header}</Title>
+            <Title s='h4'><Initiative/>{header}</Title>
           </div>
           {images[index]?.post_id && <Button
             mr='2rem'
@@ -90,14 +90,14 @@ export function Library({
                 locale: router.locale 
               }) 
             }}
-            customType="outlined">
+            t="outlined">
               <Trans>Go to the image's post</Trans>
           </Button>}
         </BottomPanel>
 
       </CarouselWrapper>}
       <LibraryTiles {...{ref}}>
-        <Title h='h3' 
+        <Title s='h3' 
           position="absolute" 
           top={layout==='desktop'?'0.8rem':'0rem'}>Photos</Title>
         {layout==='mobile' && 
@@ -105,7 +105,7 @@ export function Library({
             position="absolute" 
             top='3rem' 
             alignItems='center' 
-            customColor='label'
+            c='label'
             display='flex'>
               <Initiative style={{transform:'scale(0.6)', width:'22px', margin: 0, marginLeft:'-5px'}}/>{header}
           </Text>}
@@ -113,8 +113,8 @@ export function Library({
           <IconButton 
             onClick={()=>onClose()} 
             icon='close'
-            customType="secondary"
-            customSize="small"/>
+            t="secondary"
+            s="small"/>
         </CloseIcon>
         <SimpleBar
           autoHide={true}

@@ -137,12 +137,12 @@ export default function PostEditor({
               <Text semibold>
                 {user?.display_name}
               </Text>
-              <Text customColor='label'>
+              <Text c='label'>
                 {initiative?.name||''}
               </Text>
             </Names>
           </div>
-          <IconButton customSize="small" position='absolute' top='2rem' right='2rem' customType="secondary" icon="close" onClick={onClose}/>
+          <IconButton s="small" position='absolute' top='2rem' right='2rem' t="secondary" icon="close" onClick={onClose}/>
         </EditorHeader>
         <TextArea 
           disabled={loading}
@@ -172,7 +172,7 @@ export default function PostEditor({
         <Button 
           disabled={loading} 
           mt='1rem' pr="3rem" pl="3rem" 
-          customSize="large" 
+          s="large" 
           onClick={submitPost} 
           aria-disabled={message.length<2}>
             {post? 

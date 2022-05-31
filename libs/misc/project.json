@@ -1,0 +1,22 @@
+{
+  "root": "libs/misc",
+  "sourceRoot": "libs/misc",
+  "projectType": "application",
+  "targets": {
+    "gql": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "libs/misc",
+        "command": "NODE_NO_WARNINGS=1 dotenv -- graphql-codegen --config codegen.yml"
+      }
+    },
+    "gql-watch": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "libs/misc",
+        "command": "NODE_NO_WARNINGS=1 dotenv -- graphql-codegen --config codegen.yml --watch --silent"
+      }
+    }
+  },
+  "tags": []
+}

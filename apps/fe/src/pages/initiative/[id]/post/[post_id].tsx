@@ -21,7 +21,6 @@ export default function DynamicInitiative() {
   
 
   useEffect(()=>{
-    console.log('user', user)
     if(user===null){
       cookies.set('callbackUrl', {pathname, query}, { path: '/' });
       router.push('/login')

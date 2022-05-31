@@ -3,14 +3,14 @@ import { Header, Icon, MetricsRow, ShareJoin, Stats, Member, MembersContainer, M
 
 import { format } from 'd3-format'
 import { DateTime, DateTimeFormatOptions } from 'luxon'
-import { ReactComponent as People } from '@assets/icons/popupPeople.svg'
-import { ReactComponent as Location } from '@assets/icons/popupLocation.svg'
 import distance from "@turf/distance";
 import { useRouter } from "next/router";
 import { Button } from "@ui";
 import { InitiativeProps } from "..";
 import { InitiativeByPkDocument, MembersPreviewFragment, useDeleteInitiativeMemberMutation, useDeleteInitiativeMutation, useInitiativeByPkQuery } from "generated";
 import { t, Trans } from '@lingui/macro'
+import { ReactComponent as People } from '@assets/icons/popupPeople.svg'
+import { ReactComponent as Location } from '@assets/icons/popupLocation.svg'
 import { ReactComponent as Time } from '@assets/icons/time.svg'
 import { ReactComponent as Distance } from '@assets/icons/distance.svg'
 import { ReactComponent as Initiative } from '@assets/icons/initiative.svg'
@@ -43,13 +43,13 @@ function PeopleLocation({count, distance, members}: {count:number, distance?:num
     }}>
       { members.map((m,key)=>
         <Member 
-          onError={(e:any) => { e.target.src=User; } }
+          onError={(e:any) => { e.target.src=User.src; } }
           src={m.user?.avatar_url||''} 
           {...{key}}/>) }
       <OptionsButton
         style={{position: 'sticky', marginLeft: '-7px'}}
-        customType='secondary' 
-        customSize='small'/>
+        t='secondary' 
+        s='small'/>
     </MembersContainer>
     { distance && 
       <div>
@@ -78,7 +78,7 @@ function Buttons({isMember=false, isOnlyMember=false, id=''}){
     <ShareJoin>
       <Button 
         onClick={()=>copyToClipboard(window.location.href)}
-        customType="outlined"><Trans>Share</Trans></Button>
+        t="outlined"><Trans>Share</Trans></Button>
       { !isMember && <Button><Trans>Join</Trans></Button> }
       { isOnlyMember ?
        <Button onClick={async ()=>{

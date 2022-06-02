@@ -13,6 +13,11 @@ fragment UserInfo on users{
   ...UserInitiativesInfo
   ...UserOrganizationsInfo
   ...UserContactInfo
+  initiative_members(limit: 5, order_by: {created_at: desc}) {
+    initiative{
+      ...InitiativeCard
+    }
+  }
 }
 
 fragment UserInitiativesInfo on users{

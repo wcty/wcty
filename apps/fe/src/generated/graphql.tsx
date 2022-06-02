@@ -10847,7 +10847,7 @@ export type MemberPageQueryVariables = Exact<{
 }>;
 
 
-export type MemberPageQuery = { member: Array<{ id: number, created_at: any, user?: { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> } | null | undefined, initiative: { name?: string | null | undefined, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, initiated: { aggregate?: { count: number } | null | undefined } }> };
+export type MemberPageQuery = { member: Array<{ id: number, created_at: any, user?: { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, initiative_members: Array<{ initiative: { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> } | null | undefined, initiative: { name?: string | null | undefined, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, initiated: { aggregate?: { count: number } | null | undefined } }> };
 
 export type MemberInfoFragment = { id: number, created_at: any, initiative: { name?: string | null | undefined, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, initiated: { aggregate?: { count: number } | null | undefined } };
 
@@ -10877,9 +10877,9 @@ export type UserPageQueryVariables = Exact<{
 }>;
 
 
-export type UserPageQuery = { user?: { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> } | null | undefined };
+export type UserPageQuery = { user?: { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, initiative_members: Array<{ initiative: { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> } | null | undefined };
 
-export type UserInfoFragment = { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> };
+export type UserInfoFragment = { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, initiative_members: Array<{ initiative: { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> };
 
 export type UserInitiativesInfoFragment = { donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined } };
 
@@ -10904,20 +10904,6 @@ export const MembersPreviewFragmentDoc = gql`
   user_id
   user {
     avatar_url
-  }
-}
-    `;
-export const InitiativeCardFragmentDoc = gql`
-    fragment InitiativeCard on initiatives {
-  id
-  image
-  name
-  geometry: geom
-  created_at
-  infos(order_by: {approved_at: desc}, limit: 1) {
-    problem
-    goal
-    context
   }
 }
     `;
@@ -11128,6 +11114,20 @@ export const UserContactInfoFragmentDoc = gql`
   current_location
 }
     `;
+export const InitiativeCardFragmentDoc = gql`
+    fragment InitiativeCard on initiatives {
+  id
+  image
+  name
+  geometry: geom
+  created_at
+  infos(order_by: {approved_at: desc}, limit: 1) {
+    problem
+    goal
+    context
+  }
+}
+    `;
 export const UserInfoFragmentDoc = gql`
     fragment UserInfo on users {
   id
@@ -11138,10 +11138,16 @@ export const UserInfoFragmentDoc = gql`
   ...UserInitiativesInfo
   ...UserOrganizationsInfo
   ...UserContactInfo
+  initiative_members(limit: 5, order_by: {created_at: desc}) {
+    initiative {
+      ...InitiativeCard
+    }
+  }
 }
     ${UserInitiativesInfoFragmentDoc}
 ${UserOrganizationsInfoFragmentDoc}
-${UserContactInfoFragmentDoc}`;
+${UserContactInfoFragmentDoc}
+${InitiativeCardFragmentDoc}`;
 export const UserDocument = gql`
     query User($user_id: uuid!) {
   users_by_pk(id: $user_id) {

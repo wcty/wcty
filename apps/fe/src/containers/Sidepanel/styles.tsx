@@ -1,4 +1,5 @@
 import styled, {css} from "styled-components";
+import User from '@assets/icons/user.png'
 
 export const 
 SidepanelWrapper = styled.div<{open:false|'wide'|'menu'}>`
@@ -120,6 +121,18 @@ UserPhoto = styled.img`
   background-color: grey;
   cursor: pointer;
   border-radius: 20px;
+  overflow: hidden;
+  :before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-image: url(${User.src});
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-color: white;
+  }
 `,
 
 UserIconRow = styled.div`

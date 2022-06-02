@@ -14,6 +14,8 @@ import { atom, useRecoilState } from 'recoil'
 import MenuHeader from './MenuHeader'
 import { useRouter } from 'next/router'
 import Cookies from 'universal-cookie';
+import User from '@assets/icons/user.png'
+
 const cookies = new Cookies();
 
 export default function Sidepanel (){
@@ -70,8 +72,8 @@ export default function Sidepanel (){
                 `http://graph.facebook.com/${
                   new URL(user.avatar_url).searchParams.get('asid')
                 }/picture?type=large&redirect=true&width=50&height=50`:
-                user.avatar_url||''
-              }/>: <UserIcon/>}
+                user.avatar_url||User.src
+              } />: <UserIcon/>}
             </UserIconCell>
             {tabs(!!user, isEntryCreation).map((v,key)=>
               <IconCell {...{key,...props(v.key),

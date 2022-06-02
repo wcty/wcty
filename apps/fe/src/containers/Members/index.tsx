@@ -12,6 +12,7 @@ import { ReactComponent as WecityText } from '@assets/icons/wecity-text.svg'
 import { useRecoilState } from 'recoil'
 import Sidebar from "containers/Sidepanel";
 import { useLayout } from 'common'
+import User from '@assets/icons/user.png'
 
 
 export default function Members({data}:{data:MembersPageQuery}){
@@ -123,7 +124,7 @@ export default function Members({data}:{data:MembersPageQuery}){
             { locale: router.locale }
           )
         }}>
-          <img src={m.user?.avatar_url||''} alt={m.user?.display_name||''}/>
+          <img src={m.user?.avatar_url||User.src} alt={m.user?.display_name||''}/>
           <div style={{justifyContent:'center'}}>
             <Text semibold s='t2'>{m.user?.display_name}</Text>
             <Text s='t4' c='label'>{getRoles(m)}</Text>

@@ -115,9 +115,11 @@ export default function HeaderComponent({initiative}:InitiativeProps) {
     .setLocale(lang)
     .toLocaleString(f)
     
-  const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-only"});
+  const { data } = useInitiativeByPkQuery({variables:{id,user_id:user?.id}, fetchPolicy:"cache-first"});
   const isMember = !!data?.initiative?.isMember?.length
   const isOnlyMember = data?.initiative?.members_aggregate?.aggregate?.count === 1 && isMember
+
+  console.log(data)
 
   return <>
       {layout==='desktop' ? 

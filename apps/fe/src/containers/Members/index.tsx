@@ -82,7 +82,7 @@ export default function Members({data}:{data:MembersPageQuery}){
         }, 
         `/initiative/${id}`, 
         { locale: router.locale }
-      )
+      ).then(()=>setVisible(true))
       }}/>
       <div>
         <Title s='h3' mb='3px'><Trans>Members:</Trans> {data.members.length}</Title>

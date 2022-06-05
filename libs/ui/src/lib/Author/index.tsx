@@ -9,18 +9,21 @@ export function Author ({
   roles,
   name,
   date,
+  onClick,
   ...props
 }:{
   picture?: string,
   roles?: string[],
   name?: string,
-  date?: Date
+  date?: Date,
+  onClick?: () => void
 } & SpaceProps & LayoutProps & PositionProps & FlexboxProps){
 
   return (
-    <AuthorContainer {...props}>
-      <Avatar picture={fixAvatar(picture)}/>
+    <AuthorContainer {...props} onClick={onClick}>
+      <Avatar picture={fixAvatar(picture)} onClick={onClick}/>
       <UserInfo 
+        onClick={onClick}
         roles={roles}
         name={name}  
         date={date}/>

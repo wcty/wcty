@@ -23,7 +23,7 @@ export type GalleryImage = {
 export function FullscreenCarousel({
   images, 
   defaultIndex,
-  onClose = ()=>{},
+  onClose = ()=>{return},
   onGalleryButtonClick,
   withBottomPanel,
   withPostButton,
@@ -95,7 +95,7 @@ export function FullscreenCarousel({
                 }}
                 s="small"
                 t="secondary">
-                <Trans>Go to the image's post</Trans>
+                <Trans>Go to the image&apos;s post</Trans>
               </Button>}
           </ImageContainer>
           {withBottomPanel && <>
@@ -109,6 +109,15 @@ export function FullscreenCarousel({
                 p='0px 2rem'
                 flex='1 1 auto'
                 alignItems='center'
+                onClick={
+                  ()=>router.push({
+                      pathname: `/initiative/[id]/members/[user_id]`, 
+                      query: { id, user_id: images[index]?.user?.id }
+                    }, 
+                    `/initiative/${id}/members/${images[index]?.user?.id}`, 
+                    { locale: router.locale }
+                  )
+                }
                 name={images[index]?.user?.display_name || ''}
                 picture={images[index]?.user?.avatar_url || ''}
                 date={

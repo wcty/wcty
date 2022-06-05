@@ -35,7 +35,17 @@ export default function MenuHeader ({props}:MenuHeaderProps){
     <UserIconRow {...{...props('enter'),onClick:()=>{
         const { pathname, query } = router
         cookies.set('callbackUrl', { pathname, query }, { path: '/' }); 
-        if(!user){ router.push('/login') } 
+        if(!user){ 
+          router.push('/login') 
+        }else{
+          router.push({
+              pathname: `/users/[user_id]`, 
+              query: { user_id: user.id }
+            }, 
+            `/users/${user.id}`, 
+            { locale: router.locale }
+          )
+        }
 
       }}}>
       {user? 
@@ -64,7 +74,17 @@ export default function MenuHeader ({props}:MenuHeaderProps){
         setOpen(false)
         const { pathname, query } = router
         cookies.set('callbackUrl', { pathname, query }, { path: '/' }); 
-        if(!user){ router.push('/login') } 
+        if(!user){ 
+          router.push('/login') 
+        }else{
+          router.push({
+              pathname: `/users/[user_id]`, 
+              query: { user_id: user.id }
+            }, 
+            `/users/${user.id}`, 
+            { locale: router.locale }
+          )
+        }
       }}}>
       {user? 
         <span style={{textTransform:'uppercase'}}>

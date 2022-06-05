@@ -13,6 +13,12 @@ AuthorContainer  = styled.div<LayoutProps & FlexboxProps & SpaceProps & Position
 
 Name = styled.div`
   ${props => props.theme.font.body.semibold.t5};
+  :hover{
+    text-decoration: underline;
+  }
+  :active{
+    text-decoration: underline;
+  }
 `,
 
 Roles = styled.div`

@@ -72,6 +72,15 @@ export function Library({
               p='0px 2rem'
               name={images[index]?.user?.display_name || ''}
               picture={images[index]?.user?.avatar_url || ''}
+              onClick={
+                ()=>router.push({
+                    pathname: `/initiative/[id]/members/[user_id]`, 
+                    query: { id, user_id: images[index]?.user?.id }
+                  }, 
+                  `/initiative/${id}/members/${images[index]?.user?.id}`, 
+                  { locale: router.locale }
+                )
+              }
               date={
                 images?.[index]?.created_at ? 
                 new Date(images[index].created_at!) : 

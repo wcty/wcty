@@ -94,12 +94,22 @@ export default function Comment({ comment, onReply }:
 
   const { imageParams } = useImages(files)
 
+  const { id } = router.query
 
   return(<>
     <Container onClick={()=>options && setOptions(!options)} >
       <Author
         ml='1.5rem'
         mt='1.5rem'
+        onClick={
+          ()=>router.push({
+              pathname: `/initiative/[id]/members/[user_id]`, 
+              query: { id, user_id: author?.id }
+            }, 
+            `/initiative/${id}/members/${author?.id}`, 
+            { locale: router.locale }
+          )
+        }
         picture={fixAvatar(author?.avatar_url)}
         name={author?.display_name||''}  
         date={new Date(props.created_at)}/>      
@@ -222,7 +232,7 @@ export default function Comment({ comment, onReply }:
        'comments' in comment &&
       <EditorContainer>
         { comment?.comments.map((c,key) => 
-          <Comment {...{comment: c, key, onReply: ()=>setReplyOpen(true) }}/>) } 
+          <Comment key={key} {...{comment: c, onReply: ()=>setReplyOpen(true) }}/>) } 
         {replyOpen && <CommentCreation parent={comment}/>}
       </EditorContainer>}
     </Container>

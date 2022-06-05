@@ -75,6 +75,8 @@ export default function InitiativesDrawer(){
     setSlideIndex(0)
     if(isInitiative){
       router.push({pathname: `/initiative/[id]`, query: { id: v.id }}, `/initiative/${v.id}`, { locale: router.locale })
+    }else{
+      router.push('/', `/`, { locale: router.locale })
     }
   }
 

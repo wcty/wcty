@@ -78,6 +78,7 @@ export default function Post({
   const [_, setSidebarVisible] = useRecoilState(Sidepanel.visible)
 
   const { imageParams } = useImages(files)
+  const { id } = router.query
 
   return(<>
     {editorOpen && <PostEditor {...{initiative, post}} onClose={()=>setEditorOpen(false)} /> }
@@ -86,6 +87,15 @@ export default function Post({
         ml='1.5rem'
         mt='1.5rem'
         picture={fixAvatar(author?.avatar_url)}
+        onClick={
+          ()=>router.push({
+              pathname: `/initiative/[id]/members/[user_id]`, 
+              query: { id, user_id: author?.id }
+            }, 
+            `/initiative/${id}/members/${author?.id}`, 
+            { locale: router.locale }
+          )
+        }
         name={author?.display_name||''}  
         date={new Date(props.created_at)}/>      
       {author?.id===user?.id && <>

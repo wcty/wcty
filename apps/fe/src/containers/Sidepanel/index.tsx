@@ -76,7 +76,7 @@ export default function Sidepanel (){
               } />: <UserIcon/>}
             </UserIconCell>
             {tabs(!!user, isEntryCreation).map((v,key)=>
-              <IconCell {...{key,...props(v.key),
+              <IconCell key={key} {...{...props(v.key),
                 ...(v.key==='initiativeMap'&&{ 
                   onClick:()=>{
                     setOpen(false);
@@ -110,7 +110,7 @@ export default function Sidepanel (){
           <div>
             <MenuHeader {...{props}}/>
             {tabs(!!user, isEntryCreation).map((v,key)=>
-              <IconRow {...{key,...props(v.key), 
+              <IconRow key={key} {...{...props(v.key), 
                 ...(v.key==='initiativeMap'&&{
                   onClick:()=>{
                     setOpen(false);

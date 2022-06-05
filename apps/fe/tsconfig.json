@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": "src/",
-    "typeRoots": ["src/types", "src/common/types", "node_modules/@types"],
+    "typeRoots": ["src/types", "src/common/types", "node_modules/@types", "@ui/common/types"],
     "strict": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "preserve",

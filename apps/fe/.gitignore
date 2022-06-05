@@ -8,6 +8,7 @@
 
 # production
 /build
+tsconfig.tsbuildinfo
 
 # stuff
 /etc

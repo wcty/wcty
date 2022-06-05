@@ -54,7 +54,7 @@ export function Images({initiative}:InitiativeProps) {
         </button>
         <Grid>
           {data?.files.map((v,key)=>
-            <Img {...{key}} 
+            <Img key={key} 
               onClick={()=>{
                 setGallery({
                   defaultIndex: key,

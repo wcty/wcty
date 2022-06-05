@@ -10405,14 +10405,14 @@ export type UserQueryVariables = Exact<{
 }>;
 
 
-export type UserQuery = { users_by_pk?: { id: any, avatar_url?: string | null | undefined, created_at: any, display_name?: string | null | undefined, subscriptions: Array<{ id: string, subscription: string, service?: string | null | undefined }> } | null | undefined };
+export type UserQuery = { users_by_pk?: { id: any, avatar_url?: string | null, created_at: any, display_name?: string | null, subscriptions: Array<{ id: string, subscription: string, service?: string | null }> } | null };
 
 export type AddSubscriptionMutationVariables = Exact<{
   subscription: User_Subscriptions_Insert_Input;
 }>;
 
 
-export type AddSubscriptionMutation = { insert_user_subscriptions_one?: { id: string } | null | undefined };
+export type AddSubscriptionMutation = { insert_user_subscriptions_one?: { id: string } | null };
 
 export type AddInitiativeMutationVariables = Exact<{
   geom: Scalars['geometry'];
@@ -10425,7 +10425,7 @@ export type AddInitiativeMutationVariables = Exact<{
 }>;
 
 
-export type AddInitiativeMutation = { insert_initiatives_one?: { created_at: any, geom?: any | null | undefined, id: any, image?: string | null | undefined, name?: string | null | undefined } | null | undefined };
+export type AddInitiativeMutation = { insert_initiatives_one?: { created_at: any, geom?: any | null, id: any, image?: string | null, name?: string | null } | null };
 
 export type AddInitiativeMemberMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -10433,7 +10433,7 @@ export type AddInitiativeMemberMutationVariables = Exact<{
 }>;
 
 
-export type AddInitiativeMemberMutation = { insert_initiative_members_one?: { user_id?: any | null | undefined, initiative_id: any } | null | undefined };
+export type AddInitiativeMemberMutation = { insert_initiative_members_one?: { user_id?: any | null, initiative_id: any } | null };
 
 export type AddInitiativeVisitMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -10441,9 +10441,9 @@ export type AddInitiativeVisitMutationVariables = Exact<{
 }>;
 
 
-export type AddInitiativeVisitMutation = { insert_initiative_visits_one?: { initiative: { id: any } } | null | undefined };
+export type AddInitiativeVisitMutation = { insert_initiative_visits_one?: { initiative: { id: any } } | null };
 
-export type InitiativeFieldsFragment = { geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> };
+export type InitiativeFieldsFragment = { geom?: any | null, name?: string | null, id: any, image?: string | null, created_at: any, members: Array<{ user_id?: any | null }> };
 
 export type InitiativesNearbyQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -10457,7 +10457,7 @@ export type InitiativesNearbyQueryVariables = Exact<{
 }>;
 
 
-export type InitiativesNearbyQuery = { initiatives_nearby: Array<{ geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> }> };
+export type InitiativesNearbyQuery = { initiatives_nearby: Array<{ geom?: any | null, name?: string | null, id: any, image?: string | null, created_at: any, members: Array<{ user_id?: any | null }> }> };
 
 export type MyInitiativesNearbyQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -10471,7 +10471,7 @@ export type MyInitiativesNearbyQueryVariables = Exact<{
 }>;
 
 
-export type MyInitiativesNearbyQuery = { initiatives_nearby: Array<{ geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> }> };
+export type MyInitiativesNearbyQuery = { initiatives_nearby: Array<{ geom?: any | null, name?: string | null, id: any, image?: string | null, created_at: any, members: Array<{ user_id?: any | null }> }> };
 
 export type InitiativesLastVisitedQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']>;
@@ -10481,42 +10481,42 @@ export type InitiativesLastVisitedQueryVariables = Exact<{
 }>;
 
 
-export type InitiativesLastVisitedQuery = { initiative_visits: Array<{ visited_at?: any | null | undefined, initiative: { geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> } }> };
+export type InitiativesLastVisitedQuery = { initiative_visits: Array<{ visited_at?: any | null, initiative: { geom?: any | null, name?: string | null, id: any, image?: string | null, created_at: any, members: Array<{ user_id?: any | null }> } }> };
 
 export type InitiativeQueryVariables = Exact<{
   initiative_id: Scalars['uuid'];
 }>;
 
 
-export type InitiativeQuery = { initiatives_by_pk?: { geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> } | null | undefined };
+export type InitiativeQuery = { initiatives_by_pk?: { geom?: any | null, name?: string | null, id: any, image?: string | null, created_at: any, members: Array<{ user_id?: any | null }> } | null };
 
 export type MyInitiativesQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyInitiativesQuery = { initiatives: Array<{ geom?: any | null | undefined, name?: string | null | undefined, id: any, image?: string | null | undefined, created_at: any, members: Array<{ user_id?: any | null | undefined }> }> };
+export type MyInitiativesQuery = { initiatives: Array<{ geom?: any | null, name?: string | null, id: any, image?: string | null, created_at: any, members: Array<{ user_id?: any | null }> }> };
 
 export type InitiativeInfoQueryVariables = Exact<{
   initiative_id: Scalars['uuid'];
 }>;
 
 
-export type InitiativeInfoQuery = { initiative_info: Array<{ context?: string | null | undefined, goal?: string | null | undefined, problem?: string | null | undefined }> };
+export type InitiativeInfoQuery = { initiative_info: Array<{ context?: string | null, goal?: string | null, problem?: string | null }> };
 
 export type FilesQueryVariables = Exact<{
   limit: Scalars['Int'];
 }>;
 
 
-export type FilesQuery = { files: Array<{ id: any, created_at?: any | null | undefined, file_path?: string | null | undefined, downloadable_url?: string | null | undefined }> };
+export type FilesQuery = { files: Array<{ id: any, created_at?: any | null, file_path?: string | null, downloadable_url?: string | null }> };
 
 export type S_GetFilesSubscriptionVariables = Exact<{
   limit: Scalars['Int'];
 }>;
 
 
-export type S_GetFilesSubscription = { files: Array<{ id: any, created_at?: any | null | undefined, file_path?: string | null | undefined, downloadable_url?: string | null | undefined }> };
+export type S_GetFilesSubscription = { files: Array<{ id: any, created_at?: any | null, file_path?: string | null, downloadable_url?: string | null }> };
 
 export type UpdateFileMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -10524,28 +10524,28 @@ export type UpdateFileMutationVariables = Exact<{
 }>;
 
 
-export type UpdateFileMutation = { update_files_by_pk?: { id: any } | null | undefined };
+export type UpdateFileMutation = { update_files_by_pk?: { id: any } | null };
 
 export type InsertFileMutationVariables = Exact<{
   file: Files_Insert_Input;
 }>;
 
 
-export type InsertFileMutation = { insert_files_one?: { id: any } | null | undefined };
+export type InsertFileMutation = { insert_files_one?: { id: any } | null };
 
 export type DeleteFilesMutationVariables = Exact<{
   where: Files_Bool_Exp;
 }>;
 
 
-export type DeleteFilesMutation = { delete_files?: { affected_rows: number } | null | undefined };
+export type DeleteFilesMutation = { delete_files?: { affected_rows: number } | null };
 
 export type GetFilesQueryVariables = Exact<{
   where: Files_Bool_Exp;
 }>;
 
 
-export type GetFilesQuery = { files: Array<{ id: any, downloadable_url?: string | null | undefined, type: File_Types_Enum, post_id?: any | null | undefined, created_at?: any | null | undefined, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }> };
+export type GetFilesQuery = { files: Array<{ id: any, downloadable_url?: string | null, type: File_Types_Enum, post_id?: any | null, created_at?: any | null, user?: { id: any, avatar_url?: string | null, display_name?: string | null } | null }> };
 
 export type DeleteCommentMutationVariables = Exact<{
   post_id: Scalars['bigint'];
@@ -10554,7 +10554,7 @@ export type DeleteCommentMutationVariables = Exact<{
 }>;
 
 
-export type DeleteCommentMutation = { delete_initiative_comments_by_pk?: { id: any } | null | undefined, delete_files?: { affected_rows: number } | null | undefined };
+export type DeleteCommentMutation = { delete_initiative_comments_by_pk?: { id: any } | null, delete_files?: { affected_rows: number } | null };
 
 export type DeleteCommentLikeMutationVariables = Exact<{
   user_id: Scalars['uuid'];
@@ -10564,7 +10564,7 @@ export type DeleteCommentLikeMutationVariables = Exact<{
 }>;
 
 
-export type DeleteCommentLikeMutation = { delete_initiative_comment_reactions?: { returning: Array<{ post_id: any, user_id?: any | null | undefined }> } | null | undefined };
+export type DeleteCommentLikeMutation = { delete_initiative_comment_reactions?: { returning: Array<{ post_id: any, user_id?: any | null }> } | null };
 
 export type ReactionToCommentMutationVariables = Exact<{
   comment_id: Scalars['bigint'];
@@ -10575,7 +10575,7 @@ export type ReactionToCommentMutationVariables = Exact<{
 }>;
 
 
-export type ReactionToCommentMutation = { insert_initiative_comment_reactions_one?: { user_id?: any | null | undefined, post_id: any, type?: Reactions_Enum | null | undefined } | null | undefined };
+export type ReactionToCommentMutation = { insert_initiative_comment_reactions_one?: { user_id?: any | null, post_id: any, type?: Reactions_Enum | null } | null };
 
 export type CreateCommentMutationVariables = Exact<{
   message: Scalars['String'];
@@ -10587,7 +10587,7 @@ export type CreateCommentMutationVariables = Exact<{
 }>;
 
 
-export type CreateCommentMutation = { insert_initiative_comments_one?: { id: any } | null | undefined };
+export type CreateCommentMutation = { insert_initiative_comments_one?: { id: any } | null };
 
 export type UpdateCommentMutationVariables = Exact<{
   message: Scalars['String'];
@@ -10598,7 +10598,7 @@ export type UpdateCommentMutationVariables = Exact<{
 }>;
 
 
-export type UpdateCommentMutation = { update_initiative_comments_by_pk?: { id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined }, comments: Array<{ id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> } | null | undefined };
+export type UpdateCommentMutation = { update_initiative_comments_by_pk?: { id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null }, comments: Array<{ id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } }> } | null };
 
 export type DeleteLikeMutationVariables = Exact<{
   user_id: Scalars['uuid'];
@@ -10607,7 +10607,7 @@ export type DeleteLikeMutationVariables = Exact<{
 }>;
 
 
-export type DeleteLikeMutation = { delete_initiative_post_reactions?: { returning: Array<{ post_id: any, user_id?: any | null | undefined }> } | null | undefined };
+export type DeleteLikeMutation = { delete_initiative_post_reactions?: { returning: Array<{ post_id: any, user_id?: any | null }> } | null };
 
 export type DeletePostMutationVariables = Exact<{
   post_id: Scalars['bigint'];
@@ -10615,7 +10615,7 @@ export type DeletePostMutationVariables = Exact<{
 }>;
 
 
-export type DeletePostMutation = { delete_initiative_posts_by_pk?: { id: any } | null | undefined, delete_files?: { affected_rows: number } | null | undefined };
+export type DeletePostMutation = { delete_initiative_posts_by_pk?: { id: any } | null, delete_files?: { affected_rows: number } | null };
 
 export type ReactionToPostMutationVariables = Exact<{
   user_id: Scalars['uuid'];
@@ -10625,7 +10625,7 @@ export type ReactionToPostMutationVariables = Exact<{
 }>;
 
 
-export type ReactionToPostMutation = { insert_initiative_post_reactions_one?: { user_id?: any | null | undefined, post_id: any, type?: Reactions_Enum | null | undefined } | null | undefined };
+export type ReactionToPostMutation = { insert_initiative_post_reactions_one?: { user_id?: any | null, post_id: any, type?: Reactions_Enum | null } | null };
 
 export type CreatePostMutationVariables = Exact<{
   message: Scalars['String'];
@@ -10635,7 +10635,7 @@ export type CreatePostMutationVariables = Exact<{
 }>;
 
 
-export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | null | undefined };
+export type CreatePostMutation = { insert_initiative_posts_one?: { id: any } | null };
 
 export type UpdatePostMutationVariables = Exact<{
   message: Scalars['String'];
@@ -10645,14 +10645,14 @@ export type UpdatePostMutationVariables = Exact<{
 }>;
 
 
-export type UpdatePostMutation = { update_initiative_posts_by_pk?: { id: any, type: Post_Types_Enum, created_at: any, modified_at: any, message?: string | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
+export type UpdatePostMutation = { update_initiative_posts_by_pk?: { id: any, type: Post_Types_Enum, created_at: any, modified_at: any, message?: string | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } } | null };
 
 export type InsertInitiativeMutationVariables = Exact<{
   initiative: Initiatives_Insert_Input;
 }>;
 
 
-export type InsertInitiativeMutation = { insert_initiatives_one?: { id: any } | null | undefined };
+export type InsertInitiativeMutation = { insert_initiatives_one?: { id: any } | null };
 
 export type SearchResultsQueryVariables = Exact<{
   layers?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
@@ -10660,28 +10660,28 @@ export type SearchResultsQueryVariables = Exact<{
 }>;
 
 
-export type SearchResultsQuery = { entries: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
+export type SearchResultsQuery = { entries: Array<{ id?: any | null, image?: string | null, name?: string | null, created_at?: any | null, description?: string | null, type?: string | null, members_count?: any | null, modified_at?: any | null, geometry?: any | null }> };
 
 export type FirstMemberQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type FirstMemberQuery = { initiative_members: Array<{ created_at: any, user?: { display_name?: string | null | undefined, avatar_url?: string | null | undefined } | null | undefined }> };
+export type FirstMemberQuery = { initiative_members: Array<{ created_at: any, user?: { display_name?: string | null, avatar_url?: string | null } | null }> };
 
 export type PostsSubscriptionVariables = Exact<{
   id?: InputMaybe<Scalars['uuid']>;
 }>;
 
 
-export type PostsSubscription = { posts: Array<{ id: any, type: Post_Types_Enum, created_at: any, modified_at: any, message?: string | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
+export type PostsSubscription = { posts: Array<{ id: any, type: Post_Types_Enum, created_at: any, modified_at: any, message?: string | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } }> };
 
 export type DeleteInitiativeMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DeleteInitiativeMutation = { delete_initiatives_by_pk?: { name?: string | null | undefined } | null | undefined };
+export type DeleteInitiativeMutation = { delete_initiatives_by_pk?: { name?: string | null } | null };
 
 export type DeleteInitiativeMemberMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -10689,9 +10689,9 @@ export type DeleteInitiativeMemberMutationVariables = Exact<{
 }>;
 
 
-export type DeleteInitiativeMemberMutation = { delete_initiative_members?: { affected_rows: number } | null | undefined };
+export type DeleteInitiativeMemberMutation = { delete_initiative_members?: { affected_rows: number } | null };
 
-export type MembersPreviewFragment = { user_id?: any | null | undefined, user?: { avatar_url?: string | null | undefined } | null | undefined };
+export type MembersPreviewFragment = { user_id?: any | null, user?: { avatar_url?: string | null } | null };
 
 export type InitiativeByPkQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -10699,7 +10699,7 @@ export type InitiativeByPkQueryVariables = Exact<{
 }>;
 
 
-export type InitiativeByPkQuery = { initiative?: { id: any, isMember: Array<{ user_id?: any | null | undefined }>, members: Array<{ user_id?: any | null | undefined, user?: { avatar_url?: string | null | undefined } | null | undefined }>, members_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
+export type InitiativeByPkQuery = { initiative?: { id: any, isMember: Array<{ user_id?: any | null }>, members: Array<{ user_id?: any | null, user?: { avatar_url?: string | null } | null }>, members_aggregate: { aggregate?: { count: number } | null } } | null };
 
 export type CheckTaskMutationVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -10708,7 +10708,7 @@ export type CheckTaskMutationVariables = Exact<{
 }>;
 
 
-export type CheckTaskMutation = { update_initiative_tasks_by_pk?: { id: number } | null | undefined };
+export type CheckTaskMutation = { update_initiative_tasks_by_pk?: { id: number } | null };
 
 export type JoinMutationVariables = Exact<{
   userId: Scalars['uuid'];
@@ -10719,14 +10719,14 @@ export type JoinMutationVariables = Exact<{
 }>;
 
 
-export type JoinMutation = { insert_initiative_members?: { affected_rows: number } | null | undefined };
+export type JoinMutation = { insert_initiative_members?: { affected_rows: number } | null };
 
 export type TasksQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type TasksQuery = { initiative_tasks: Array<{ id: number, description?: string | null | undefined, volunteers_needed?: any | null | undefined, status?: Task_Statuses_Enum | null | undefined, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } }> };
+export type TasksQuery = { initiative_tasks: Array<{ id: number, description?: string | null, volunteers_needed?: any | null, status?: Task_Statuses_Enum | null, volunteers_aggregate: { aggregate?: { count: number } | null } }> };
 
 export type CommentsSubscriptionVariables = Exact<{
   id?: InputMaybe<Scalars['uuid']>;
@@ -10735,13 +10735,13 @@ export type CommentsSubscriptionVariables = Exact<{
 }>;
 
 
-export type CommentsSubscription = { comments: Array<{ id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined }, comments: Array<{ id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> }> };
+export type CommentsSubscription = { comments: Array<{ id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null }, comments: Array<{ id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } }> }> };
 
-export type InitiativeCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> };
+export type InitiativeCardFragment = { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> };
 
-export type OrganizationCardFragment = { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined };
+export type OrganizationCardFragment = { id: any, image?: string | null, name?: string | null, created_at: any, description?: string | null, geometry?: any | null };
 
-export type EntryCardFragment = { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined };
+export type EntryCardFragment = { id?: any | null, image?: string | null, name?: string | null, created_at?: any | null, description?: string | null, type?: string | null, members_count?: any | null, modified_at?: any | null, geometry?: any | null };
 
 export type InitiativesNearbyListQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -10755,14 +10755,14 @@ export type InitiativesNearbyListQueryVariables = Exact<{
 }>;
 
 
-export type InitiativesNearbyListQuery = { initiatives: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> }> };
+export type InitiativesNearbyListQuery = { initiatives: Array<{ id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> }> };
 
 export type MyInitiativeListQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyInitiativeListQuery = { initiatives: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> }> };
+export type MyInitiativeListQuery = { initiatives: Array<{ id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> }> };
 
 export type OrganizationNearbyListQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -10776,21 +10776,21 @@ export type OrganizationNearbyListQueryVariables = Exact<{
 }>;
 
 
-export type OrganizationNearbyListQuery = { orgs: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
+export type OrganizationNearbyListQuery = { orgs: Array<{ id: any, image?: string | null, name?: string | null, created_at: any, description?: string | null, geometry?: any | null }> };
 
 export type MyOrganizationListQueryVariables = Exact<{
   user_id: Scalars['uuid'];
 }>;
 
 
-export type MyOrganizationListQuery = { orgs: Array<{ id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, description?: string | null | undefined, geometry?: any | null | undefined }> };
+export type MyOrganizationListQuery = { orgs: Array<{ id: any, image?: string | null, name?: string | null, created_at: any, description?: string | null, geometry?: any | null }> };
 
 export type SettingsSubscriptionVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type SettingsSubscription = { settings?: { email_notifications?: boolean | null | undefined, push_notifications?: boolean | null | undefined } | null | undefined };
+export type SettingsSubscription = { settings?: { email_notifications?: boolean | null, push_notifications?: boolean | null } | null };
 
 export type UpdateSettingsMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -10799,7 +10799,7 @@ export type UpdateSettingsMutationVariables = Exact<{
 }>;
 
 
-export type UpdateSettingsMutation = { settings?: { setting: Array<{ email_notifications?: boolean | null | undefined, push_notifications?: boolean | null | undefined }> } | null | undefined };
+export type UpdateSettingsMutation = { settings?: { setting: Array<{ email_notifications?: boolean | null, push_notifications?: boolean | null }> } | null };
 
 export type LastEntriesQueryVariables = Exact<{
   limit?: InputMaybe<Scalars['Int']>;
@@ -10809,7 +10809,7 @@ export type LastEntriesQueryVariables = Exact<{
 }>;
 
 
-export type LastEntriesQuery = { entry_visits: Array<{ visited_at?: any | null | undefined, entry?: { id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined } | null | undefined }> };
+export type LastEntriesQuery = { entry_visits: Array<{ visited_at?: any | null, entry?: { id?: any | null, image?: string | null, name?: string | null, created_at?: any | null, description?: string | null, type?: string | null, members_count?: any | null, modified_at?: any | null, geometry?: any | null } | null }> };
 
 export type NearbyEntriesQueryVariables = Exact<{
   location: Scalars['geometry'];
@@ -10825,21 +10825,21 @@ export type NearbyEntriesQueryVariables = Exact<{
 }>;
 
 
-export type NearbyEntriesQuery = { entries_nearby: Array<{ id?: any | null | undefined, image?: string | null | undefined, name?: string | null | undefined, created_at?: any | null | undefined, description?: string | null | undefined, type?: string | null | undefined, members_count?: any | null | undefined, modified_at?: any | null | undefined, geometry?: any | null | undefined }> };
+export type NearbyEntriesQuery = { entries_nearby: Array<{ id?: any | null, image?: string | null, name?: string | null, created_at?: any | null, description?: string | null, type?: string | null, members_count?: any | null, modified_at?: any | null, geometry?: any | null }> };
 
 export type InitiativePublicByPkQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type InitiativePublicByPkQuery = { initiative?: { id: any, name?: string | null | undefined, address?: string | null | undefined, modified_at?: any | null | undefined, created_at: any, image?: string | null | undefined, geometry?: any | null | undefined, members_aggregate: { aggregate?: { count: number } | null | undefined }, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }>, tasks: Array<{ id: number, status?: Task_Statuses_Enum | null | undefined, description?: string | null | undefined, volunteers_needed?: any | null | undefined, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } }>, donations_aggregate: { aggregate?: { count: number, sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, expenses: Array<{ status?: string | null | undefined, amount: any, currency?: string | null | undefined, description?: string | null | undefined, link?: string | null | undefined, link_name?: string | null | undefined }>, volunteers_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
+export type InitiativePublicByPkQuery = { initiative?: { id: any, name?: string | null, address?: string | null, modified_at?: any | null, created_at: any, image?: string | null, geometry?: any | null, members_aggregate: { aggregate?: { count: number } | null }, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }>, tasks: Array<{ id: number, status?: Task_Statuses_Enum | null, description?: string | null, volunteers_needed?: any | null, volunteers_aggregate: { aggregate?: { count: number } | null } }>, donations_aggregate: { aggregate?: { count: number, sum?: { amount?: any | null } | null } | null }, expenses: Array<{ status?: string | null, amount: any, currency?: string | null, description?: string | null, link?: string | null, link_name?: string | null }>, volunteers_aggregate: { aggregate?: { count: number } | null } } | null };
 
 export type MembersPageQueryVariables = Exact<{
   initiative_id: Scalars['uuid'];
 }>;
 
 
-export type MembersPageQuery = { members: Array<{ id: number, created_at: any, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined, initiative: { name?: string | null | undefined, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, initiated: { aggregate?: { count: number } | null | undefined } }>, initiator: Array<{ id: number, user?: { id: any, avatar_url?: string | null | undefined, display_name?: string | null | undefined } | null | undefined }>, initiative?: { name?: string | null | undefined } | null | undefined };
+export type MembersPageQuery = { members: Array<{ id: number, created_at: any, user?: { id: any, avatar_url?: string | null, display_name?: string | null } | null, initiative: { name?: string | null, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null }, donations_aggregate: { aggregate?: { count: number } | null }, initiated: { aggregate?: { count: number } | null } }>, initiator: Array<{ id: number, user?: { id: any, avatar_url?: string | null, display_name?: string | null } | null }>, initiative?: { name?: string | null } | null };
 
 export type MemberPageQueryVariables = Exact<{
   user_id: Scalars['uuid'];
@@ -10847,9 +10847,9 @@ export type MemberPageQueryVariables = Exact<{
 }>;
 
 
-export type MemberPageQuery = { member: Array<{ id: number, created_at: any, user?: { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, initiative_members: Array<{ initiative: { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> } | null | undefined, initiative: { name?: string | null | undefined, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, initiated: { aggregate?: { count: number } | null | undefined } }> };
+export type MemberPageQuery = { member: Array<{ id: number, created_at: any, user?: { id: any, created_at: any, updated_at: any, display_name?: string | null, avatar_url?: string | null, facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null, initiative_members: Array<{ initiative: { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null }, org_members: Array<{ role?: string | null, org?: { name?: string | null } | null }> } | null, initiative: { name?: string | null, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null }, donations_aggregate: { aggregate?: { count: number } | null }, initiated: { aggregate?: { count: number } | null } }> };
 
-export type MemberInfoFragment = { id: number, created_at: any, initiative: { name?: string | null | undefined, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null | undefined }, donations_aggregate: { aggregate?: { count: number } | null | undefined }, initiated: { aggregate?: { count: number } | null | undefined } };
+export type MemberInfoFragment = { id: number, created_at: any, initiative: { name?: string | null, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null }, donations_aggregate: { aggregate?: { count: number } | null }, initiated: { aggregate?: { count: number } | null } };
 
 export type PostPageQueryVariables = Exact<{
   initiative_id: Scalars['uuid'];
@@ -10857,15 +10857,15 @@ export type PostPageQueryVariables = Exact<{
 }>;
 
 
-export type PostPageQuery = { post?: { id: any, type: Post_Types_Enum, created_at: any, modified_at: any, message?: string | null | undefined, initiative_id: any, comments: Array<{ id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined }, comments: Array<{ id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> }>, initiative: { id: any, name?: string | null | undefined, image?: string | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> }, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } } | null | undefined };
+export type PostPageQuery = { post?: { id: any, type: Post_Types_Enum, created_at: any, modified_at: any, message?: string | null, initiative_id: any, comments: Array<{ id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null }, comments: Array<{ id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } }> }>, initiative: { id: any, name?: string | null, image?: string | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> }, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } } | null };
 
-export type PostInitiativeInfoFragment = { id: any, name?: string | null | undefined, image?: string | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> };
+export type PostInitiativeInfoFragment = { id: any, name?: string | null, image?: string | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> };
 
-export type CommentFragment = { id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined }, comments: Array<{ id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } }> };
+export type CommentFragment = { id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null }, comments: Array<{ id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } }> };
 
-export type SubCommentFragment = { id: any, created_at: any, modified_at?: any | null | undefined, message?: string | null | undefined, post_id: any, parent_comment_id?: any | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
+export type SubCommentFragment = { id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } };
 
-export type PostFragment = { id: any, type: Post_Types_Enum, created_at: any, modified_at: any, message?: string | null | undefined, initiative_id: any, user?: { avatar_url?: string | null | undefined, display_name?: string | null | undefined, id: any } | null | undefined, files: Array<{ downloadable_url?: string | null | undefined, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null | undefined, user_id?: any | null | undefined }>, comments_aggregate: { aggregate?: { count: number } | null | undefined } };
+export type PostFragment = { id: any, type: Post_Types_Enum, created_at: any, modified_at: any, message?: string | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } };
 
 export type InitiativesSitemapQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -10877,15 +10877,15 @@ export type UserPageQueryVariables = Exact<{
 }>;
 
 
-export type UserPageQuery = { user?: { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, initiative_members: Array<{ initiative: { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> } | null | undefined };
+export type UserPageQuery = { user?: { id: any, created_at: any, updated_at: any, display_name?: string | null, avatar_url?: string | null, facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null, initiative_members: Array<{ initiative: { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null }, org_members: Array<{ role?: string | null, org?: { name?: string | null } | null }> } | null };
 
-export type UserInfoFragment = { id: any, created_at: any, updated_at: any, display_name?: string | null | undefined, avatar_url?: string | null | undefined, facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined, initiative_members: Array<{ initiative: { id: any, image?: string | null | undefined, name?: string | null | undefined, created_at: any, geometry?: any | null | undefined, infos: Array<{ problem?: string | null | undefined, goal?: string | null | undefined, context?: string | null | undefined }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined }, org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> };
+export type UserInfoFragment = { id: any, created_at: any, updated_at: any, display_name?: string | null, avatar_url?: string | null, facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null, initiative_members: Array<{ initiative: { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null }, org_members: Array<{ role?: string | null, org?: { name?: string | null } | null }> };
 
-export type UserInitiativesInfoFragment = { donated_total: { aggregate?: { sum?: { amount?: any | null | undefined } | null | undefined } | null | undefined }, tasks_total: { aggregate?: { count: number } | null | undefined }, tasks_completed: { aggregate?: { count: number } | null | undefined }, initiatives_total: { aggregate?: { count: number } | null | undefined }, initiated_count: { aggregate?: { count: number } | null | undefined } };
+export type UserInitiativesInfoFragment = { donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null } };
 
-export type UserOrganizationsInfoFragment = { org_members: Array<{ role?: string | null | undefined, org?: { name?: string | null | undefined } | null | undefined }> };
+export type UserOrganizationsInfoFragment = { org_members: Array<{ role?: string | null, org?: { name?: string | null } | null }> };
 
-export type UserContactInfoFragment = { facebook_account?: string | null | undefined, instagram_account?: string | null | undefined, telegram_account?: string | null | undefined, whatsapp_account?: string | null | undefined, github_account?: string | null | undefined, twitter_account?: string | null | undefined, about?: string | null | undefined, current_location?: string | null | undefined };
+export type UserContactInfoFragment = { facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null };
 
 export const InitiativeFieldsFragmentDoc = gql`
     fragment InitiativeFields on initiatives {

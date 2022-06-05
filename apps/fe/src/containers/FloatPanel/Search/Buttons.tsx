@@ -20,7 +20,7 @@ export default function Buttons(){
   return <>
     <ButtonWrapper>
       {atoms.layers_list.map((v,key)=>
-        <button {...{key}}
+        <button key={key}
           children={dict[v]}
           onClick={()=>
             setLayers(

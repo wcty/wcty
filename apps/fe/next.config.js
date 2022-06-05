@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-check
 const withPWA = require('next-pwa')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
@@ -30,7 +31,7 @@ intercept(interceptStdout)
 /**
  * @type {import('next').NextConfig}
  **/
- const nextConfig = {
+const nextConfig = {
   nx: {
     // Set this to true if you would like to to use SVGR
     // See: https://github.com/gregberge/svgr
@@ -38,10 +39,9 @@ intercept(interceptStdout)
   },
   reactStrictMode: true,
   generateBuildId: () => 'build',
-  experimental: {
-    reactRoot: true,
-    styledComponents: true
-  },
+  // experimental: {
+  //   reactRoot: true
+  // },
   webpack: (config, options) => {
     config.resolve.fallback = { fs: false, path: false, os: false, module: false };
     config.module.rules.push({
@@ -57,12 +57,15 @@ intercept(interceptStdout)
   pwa: {
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
+  },
+  compiler:{
+    styledComponents: true
   }
 }
 
 if(process.env.ANALYZE === 'true'){
   module.exports = withBundleAnalyzer(nextConfig)
 }else{
-  //@ts-ignore
+  // @ts-ignore
   module.exports = withNx(withPWA(nextConfig))
 }

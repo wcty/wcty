@@ -58,6 +58,13 @@
         "cwd": "apps/fe",
         "command": "node scripts/tilespecs.js"
       }
+    },
+    "type-check": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "cwd": "apps/fe",
+        "command": "tsc --noEmit"
+      }
     }
   },
   "tags": []

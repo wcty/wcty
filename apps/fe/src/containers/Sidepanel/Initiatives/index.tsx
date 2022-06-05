@@ -93,7 +93,7 @@ export default function InitiativesDrawer(){
         {initiatives?.initiatives.map((v,key)=>
           <ListRow onClick={
             ()=>onClick(v)
-          } data={{...v, type: 'initiative'}} {...{key}}/>
+          } data={{...v, type: 'initiative'}} key={key}/>
         )}
       </List>
     </div>

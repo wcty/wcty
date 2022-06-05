@@ -19,24 +19,24 @@ export const cookies = new Cookies();
 
 
 export const toJSON = (date:Date)=>{
-  var timezoneOffsetInHours = -(date.getTimezoneOffset() / 60); //UTC minus local time
-  var sign = timezoneOffsetInHours >= 0 ? '+' : '-';
-  var leadingZero = (Math.abs(timezoneOffsetInHours) < 10) ? '0' : '';
+  const timezoneOffsetInHours = -(date.getTimezoneOffset() / 60); //UTC minus local time
+  const sign = timezoneOffsetInHours >= 0 ? '+' : '-';
+  const leadingZero = (Math.abs(timezoneOffsetInHours) < 10) ? '0' : '';
 
   //It's a bit unfortunate that we need to construct a new Date instance 
   //(we don't want _date_ Date instance to be modified)
-  var correctedDate = new Date(date.getFullYear(), date.getMonth(), 
+  const correctedDate = new Date(date.getFullYear(), date.getMonth(), 
       date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), 
       date.getMilliseconds());
   correctedDate.setHours(date.getHours() + timezoneOffsetInHours);
-  var iso = correctedDate.toISOString().replace('Z', '');
+  const iso = correctedDate.toISOString().replace('Z', '');
 
   return iso + sign + leadingZero + Math.abs(timezoneOffsetInHours).toString() + ':00';
 }
 
 export function reverseArray(arr:any[]) {
-  var newArray = [];
-  for (var i = arr.length - 1; i >= 0; i--) {
+  const newArray = [];
+  for (let i = arr.length - 1; i >= 0; i--) {
     newArray.push(arr[i]);
   }
   return newArray;

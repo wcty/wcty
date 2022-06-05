@@ -24,12 +24,11 @@ export type IndexProps = {index:number, setIndex:(index:number)=>void}
 
 export default function Intro() {
   const router = useRouter()
-  const user = useUser()
   const [index, setIndex] = useState(0)
   const pages = [
-    <Welcome {...{index, setIndex}}/>,
-    <LocationAccess {...{index, setIndex}}/>,
-    <Explore {...{index, setIndex}}/>
+    <Welcome key={0} {...{index, setIndex}}/>,
+    <LocationAccess key={1} {...{index, setIndex}}/>,
+    <Explore key={2} {...{index, setIndex}}/>
   ]
 
   return (
@@ -44,7 +43,7 @@ export default function Intro() {
             setIndex(index+1)
           }>
           <IconButton 
-            onClick={()=>{}} 
+            onClick={()=>{return}} 
             icon='arrow-right'/>
         </RightArrow>
       </Wrapper>
@@ -60,7 +59,7 @@ function Circles({count=3,index=0, setIndex=(val:number)=>{}}){
     <svg height={(radius+stroke)*2}>
       <g>
         {Array(count).fill(0).map((_,key)=>
-          <circle {...{key}} 
+          <circle key={key} 
             r={radius} 
             cx={radius+stroke+(key*(radius+stroke+padding)*2)} 
             cy={radius+stroke}

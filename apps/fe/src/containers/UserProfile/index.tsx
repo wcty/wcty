@@ -159,7 +159,7 @@ export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFra
                 <Org style={{transform:'scale(1.4)'}}/>
               </Icon>
               <Text s='t5' c='titleActive'><Trans>Member in:</Trans></Text>
-              <Text s='t4' semibold c='titleActive'><Trans>{org_count} org's</Trans></Text>
+              <Text s='t4' semibold c='titleActive'><Trans>{org_count} org&apos;s</Trans></Text>
             </Slide>
           </SlideWrapper>
  
@@ -167,7 +167,7 @@ export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFra
         <Pagination dots={3} index={index} onChangeIndex={onChangeIndex} />
         <Title bold s='h5' mt='1rem' ml='2rem'>{t`Participant of initiatives:`}</Title>
         <InitiativeList>
-          {userInfo.initiative_members.map((m,key)=><ListRow {...{key}} data={{...m.initiative, type:'initiative'}} onClick={
+          {userInfo.initiative_members.map((m,key)=><ListRow key={key} data={{...m.initiative, type:'initiative'}} onClick={
             ()=>{        
               setFocus(m.initiative.geometry.coordinates)
               setViewport({
@@ -205,8 +205,8 @@ export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFra
             {userInfo.current_location && 
               <div><Location style={{transform:'scale(1.5)'}}/><Text>{userInfo.current_location}</Text></div>}
             <div><Time style={{transform:'scale(1.2)'}}/><Text>On the platform since {registered_since}</Text></div>
-            {userInfo.org_members.map(o=>
-              <div><Org/><Text>Member of {o.org?.name}</Text></div>)}
+            {userInfo.org_members.map((o,key)=>
+              <div key={key}><Org/><Text>Member of {o.org?.name}</Text></div>)}
             {userInfo.instagram_account &&
               <div><Insta/><Text>{userInfo.instagram_account}</Text></div>}
             {userInfo.facebook_account && 
@@ -214,15 +214,15 @@ export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFra
             {userInfo.telegram_account && 
               <div><Tg/><Text>{userInfo.telegram_account}</Text></div>}
             <Text s='t5' semibold mb='1rem'>About:</Text>
-            <Text s='t4' style={{lineHeight:'1.5rem'}}>{userInfo.about||<>{userInfo.display_name} <Trans>didn't fill «About» section in his profile yet ;(</Trans></>}</Text>
+            <Text s='t4' style={{lineHeight:'1.5rem'}}>{userInfo.about||<>{userInfo.display_name} <Trans>didn&apos;t fill «About» section in his profile yet ;(</Trans></>}</Text>
       </ContactSection>
     </Content>
   </Container>
 }
 
-function Pagination({dots=3, index=0, onChangeIndex=(v:number)=>{} }) {
+function Pagination({dots=3, index=0, onChangeIndex=(v:number)=>{return} }) {
 
   return <Dots>
-    {[...Array(3)].map((v,i)=><Dot active={i===index} onClick={()=>onChangeIndex(i)}/>)}
+    {[...Array(3)].map((v,i)=><Dot key={i} active={i===index} onClick={()=>onChangeIndex(i)}/>)}
   </Dots>
 }

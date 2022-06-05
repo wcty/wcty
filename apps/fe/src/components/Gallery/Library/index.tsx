@@ -18,7 +18,7 @@ export function Library({
   images, 
   defaultIndex,
   header,
-  onClose = ()=>{},
+  onClose = ()=>{return},
   onFullscreenButtonClick
 }:{
   images: GalleryImage[],
@@ -91,7 +91,7 @@ export function Library({
               }) 
             }}
             t="outlined">
-              <Trans>Go to the image's post</Trans>
+              <Trans>Go to the image&apos;s post</Trans>
           </Button>}
         </BottomPanel>
 
@@ -122,7 +122,7 @@ export function Library({
         >
         <Grid >
           {images.map((v,key)=>
-            <ImageThumb {...{key}} 
+            <ImageThumb key={key} 
               onClick={()=>{
                 setIndex(key) 
                 layout  === 'mobile' && onFullscreenButtonClick?.(key) 

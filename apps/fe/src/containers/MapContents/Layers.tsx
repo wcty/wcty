@@ -38,7 +38,7 @@ export default function MapContents({map}:{map:Map}){
       source='entries'
       source-layer='public.entries'
       type='symbol'
-      onClick={({features})=>{
+      onClick={({features}:any)=>{
         const feature = JSON.parse(JSON.stringify(features[0])) as typeof features[number]
         if(feature.id!==selected?.id){
           setViewport({

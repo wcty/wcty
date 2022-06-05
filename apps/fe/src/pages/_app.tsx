@@ -75,7 +75,6 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
               <MapContext.Provider value={{map:undefined}}>
                 <ThemeProvider {...{theme:{...theme, layout} }}>
                     <GlobalStyle />
-                    <Fonts/>
                     <ClientSetup/>
                     <I18nProvider i18n={i18n}>
                         <Component {...pageProps} />

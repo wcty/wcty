@@ -1,8 +1,25 @@
 import { atom } from 'recoil';
 import Cookies from 'universal-cookie'
-import type { FeatureProps, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl';
 import type { AnimationOptions } from 'mapbox-gl';
 import { UserQuery } from 'generated';
+import { Viewport, ViewportChangeMethod } from '@urbica/react-map-gl/src/components/MapGL';
+
+type Specs = import('common/types/map-feature-types').Specs
+
+type FeatureProps<T extends Specs[keyof Specs]> = {
+  features: {
+    sourceLayer: T['id']
+    id: string|undefined
+    source: T['table']
+    properties: T['properties']
+    state: {
+      [state:string]:string|number|undefined
+    }
+    type: "Feature"
+    layer: any
+    geometry: GeoJSON.Point
+  }[]
+} 
 
 const cookies = new Cookies()
 
@@ -31,7 +48,7 @@ export const viewport = atom({
     zoom:15,
     viewportChangeMethod: 'flyTo'
   } as Viewport & { 
-    viewportChangeMethod?: ViewportChangeMethodProps,
+    viewportChangeMethod?: ViewportChangeMethod,
     viewportChangeOptions?: AnimationOptions
   }, 
 })

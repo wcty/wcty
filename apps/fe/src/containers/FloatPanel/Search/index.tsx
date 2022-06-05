@@ -73,7 +73,7 @@ export default function Search(){
               })
               setSlideIndex(0)
             }
-          } data={v as any} {...{key}} />
+          } data={v as any} key={key} />
         )}
       </SearchResults>
     </SearchWrapper>

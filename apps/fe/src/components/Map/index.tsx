@@ -1,4 +1,4 @@
-import MapGL, { AttributionControl, FeatureProps, MapContext, Specs, Viewport, ViewportChangeMethodProps } from '@urbica/react-map-gl'
+import MapGL, { AttributionControl, MapContext } from '@urbica/react-map-gl'
 import type { Map as MapType } from 'mapbox-gl'
 import { atoms, mapboxToken, useLang } from 'common'
 import { useRecoilState } from 'recoil'
@@ -62,6 +62,7 @@ export default function Map({children}:{children?:ReactNode}){
             <AttributionControl
               compact={true}
               position='bottom-left'
+              customAttribution={`© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>`}
             />
             <>{ children }</>
             <LoadIcons />
@@ -76,7 +77,7 @@ export default function Map({children}:{children?:ReactNode}){
 Map.Context = ContextProvider
 
 function ContextSetter (){
-  const map:MapType = useContext(MapContext)
+  const map = useContext(MapContext)
   const context = useContext(Map.Context)
 
   useEffect(()=>{

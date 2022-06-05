@@ -28,7 +28,7 @@ export default function RegisterWithEmail (){
         </Header>
         <Text mb="2rem">
           <Trans>
-            Click the link we've sent to {credentials.email? credentials.email: 'your email' } to complete your account set-up.
+            Click the link we&apos;ve sent to {credentials.email? credentials.email: 'your email' } to complete your account set-up.
           </Trans>
         </Text>
         <Button style={{background: 'black', padding: '0 2rem', marginBottom: '2rem'}}

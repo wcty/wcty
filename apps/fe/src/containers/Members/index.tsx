@@ -115,7 +115,7 @@ export default function Members({data}:{data:MembersPageQuery}){
             .includes(keyword.toUpperCase()))
         .filter(filter)
         .map((m, key)=>
-        <Tile {...{key}} onClick={()=>{
+        <Tile key={key} onClick={()=>{
           router.push({
               pathname: `/initiative/[id]/members/[user_id]`, 
               query: { id, user_id: m.user?.id }

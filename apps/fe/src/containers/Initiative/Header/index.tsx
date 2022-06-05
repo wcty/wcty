@@ -45,7 +45,7 @@ function PeopleLocation({count, distance, members}: {count:number, distance?:num
         <Member 
           onError={(e:any) => { e.target.src=User.src; } }
           src={m.user?.avatar_url||''} 
-          {...{key}}/>) }
+          key={key}/>) }
       <OptionsButton
         style={{position: 'sticky', marginLeft: '-7px'}}
         t='secondary' 

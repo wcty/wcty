@@ -41,7 +41,6 @@ mongo_initiatives*
 !.env.project
 .env.development
 
-.next
 .next/*
 
 **/public/workbox-*.js

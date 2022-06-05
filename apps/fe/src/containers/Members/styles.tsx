@@ -105,6 +105,8 @@ Tile = styled.div`
   >img{
     border-radius: 50%;
     margin-right: 1rem;
+    width: 60px;
+    height: 60px;
   }
   >div{
     display: flex;

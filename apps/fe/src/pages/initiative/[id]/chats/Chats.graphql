@@ -1,0 +1,28 @@
+query Chats($user_id:uuid!, $initiative_id:uuid!) {
+  initiative_chats(
+    where: {
+      members:{
+        user_id:{_eq:$user_id}
+      }
+      initiative_id: {_eq:$initiative_id}
+    }
+    order_by: {
+      messages_aggregate:{
+        max:{modified_at:desc}
+      }
+    }
+  ){
+    id
+    members{
+      user {
+        id
+        display_name
+        avatar_url
+      }
+    }
+  }
+  initiative:initiatives_by_pk(id: $initiative_id) {
+    id
+    name
+  }
+}

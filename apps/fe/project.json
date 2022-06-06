@@ -35,7 +35,7 @@
     "start": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "nx tiles fe && nx serve fe & nx gql-watch fe"
+        "command": "nx serve fe & nx gql-watch fe"
       }
     },
     "gql": {

@@ -15,6 +15,7 @@ query MembersPage(
       display_name
     }
   }
+  
   initiator: initiative_members(
     limit: 1,
     order_by: {created_at: asc},

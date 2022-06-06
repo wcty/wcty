@@ -1,0 +1,43 @@
+subscription ChatFeed($chat_id:bigint){
+  initiative_chat_messages(
+    where: {
+      chat_id:{_eq:$chat_id}
+    }
+    order_by: {
+      created_at: desc
+    }
+  ){
+    message
+    created_at
+    modified_at
+    files{
+      downloadable_url
+      name
+    }
+    user {
+      display_name
+      avatar_url
+    }
+  }
+}
+
+query ChatFiles($chat_id:bigint){
+  files(
+    where: {
+      chat_id:{_eq:$chat_id}
+    }
+    order_by: {
+      created_at: desc
+    }
+    limit: 20
+  ){
+    type
+    url:downloadable_url
+    name
+    user {
+      id
+      display_name
+      avatar_url
+    }
+  }
+}

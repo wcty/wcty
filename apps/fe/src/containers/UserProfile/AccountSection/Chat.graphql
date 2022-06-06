@@ -1,0 +1,39 @@
+mutation UpsertChat(
+  $initiative_id:uuid!, 
+  $members: [initiative_chat_members_insert_input!]!
+){
+  insert_initiative_chats_one(
+    object: {
+      initiative_id: $initiative_id
+      members:{
+        data:$members, 
+        on_conflict:{
+          constraint: initiative_chat_members_pkey
+          update_columns: []
+        }
+      }
+    } 
+    on_conflict: {
+      update_columns:[],
+      constraint: initiative_chats_pkey
+    }
+  ){
+    id
+  }
+}
+
+query Chat(
+  $initiative_id: uuid!, 
+  $me: uuid!, 
+  $member: uuid!
+) {
+  initiative_chats(
+    where: {_and:[
+      {initiative_id: {_eq: $initiative_id}}, 
+      {members: {user_id: {_eq: $member}}},
+      {members: {user_id: {_eq: $me}}}
+    ]}
+  ) {
+    id
+  }
+}

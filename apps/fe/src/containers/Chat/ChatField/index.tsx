@@ -23,7 +23,7 @@ export default function ChatField({chatList, feed, chatFiles}:{chatList:ChatsQue
   return <>
     <ChatContainer>
       <ChatListHeading>
-        <Title s='h4' m='0.5rem 0'><Trans>{members?.[0].user.display_name}</Trans></Title>
+        <Title s='h4' m='0.5rem 0'>{members?.[0].user.display_name}</Title>
         <br/>
       </ChatListHeading>
       <ChatWrapper>

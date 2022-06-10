@@ -1,0 +1,19 @@
+mutation UpdateMessage(
+  $message: String!
+  $chat_id: bigint!
+  $id: bigint!
+  $now: timestamptz!
+){
+  update_initiative_chat_messages_by_pk (
+    pk_columns: {
+      id: $id,
+      chat_id: $chat_id
+    }
+    _set: {
+      message: $message
+      modified_at: $now
+    }
+  ){
+    ...Message
+  }
+}

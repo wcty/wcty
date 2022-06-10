@@ -23,15 +23,6 @@ ChatList = styled.div`
   }
 `,
 
-ChatListHeading = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 60px;
-  justify-content: center;
-  border-bottom: 1.5px solid black;
-  margin: 0 1rem;
-`,
-
 ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -45,4 +36,13 @@ ChatWrapper = styled.div`
   flex: 1 1 auto;
   width: 100%;
   border-left: 0.8px solid rgba(0,0,0,0.2);
+`,
+
+ChatListHeading = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 60px;
+  justify-content: center;
+  border-bottom: 1.5px solid black;
+  margin: 0 1rem;
 `

@@ -38,7 +38,7 @@ CommentsContainer = styled.div`
   border-radius: 3px;
   background-color: ${props =>  props.theme.colors.backgroundLighter};
   box-shadow: 0px 0px 2px rgba(137, 150, 159, 0.1), 0px 2px 2px rgba(137, 150, 159, 0.1), 0px 1px 3px rgba(137, 150, 159, 0.1);
-  > :last-child :not(:first-child){
+  >div:last-child:not(:first-child){
     margin-top: -1rem;
   }
 `

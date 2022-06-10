@@ -7,17 +7,24 @@ subscription ChatFeed($chat_id:bigint){
       created_at: desc
     }
   ){
-    message
-    created_at
-    modified_at
-    files{
-      downloadable_url
-      name
-    }
-    user {
-      display_name
-      avatar_url
-    }
+    ...Message
+  }
+}
+
+fragment Message on initiative_chat_messages{
+  id
+  message
+  created_at
+  chat_id
+  modified_at
+  files{
+    downloadable_url
+    name
+  }
+  user {
+    id
+    display_name
+    avatar_url
   }
 }
 

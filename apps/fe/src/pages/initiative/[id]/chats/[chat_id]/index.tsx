@@ -44,7 +44,7 @@ export default function DynamicChat() {
     variables: {
       chat_id,
     },
-    skip: !user
+    skip: !user,
   })
 
   const { data:chatFiles } = useChatFilesQuery({
@@ -54,6 +54,8 @@ export default function DynamicChat() {
     ssr: false,
     skip: !user
   })
+
+  console.log(chatList)
   
   const members = chatList?.initiative_chats.find(chat=>String(chat.id)===chat_id)?.members.filter(member=>member?.user?.id!==user?.id)
   const name = members?.[0]? `${members?.[0].user.display_name}'s chat`: 'Your chats'

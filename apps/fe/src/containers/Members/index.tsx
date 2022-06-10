@@ -4,7 +4,7 @@ import { FieldWrapper, SearchInput } from 'containers/FloatPanel/styles'
 import { Container } from 'containers/Initiative/styles'
 import { MembersPageQuery } from 'generated'
 import { useRouter } from 'next/router'
-import { ButtonBack, Header, Toolbox, Grid, Tile } from './styles'
+import { ButtonBack, Header, Toolbox, Grid, Tile, UserAvatar } from './styles'
 import { ReactComponent as SearchIcon } from '@assets/icons/search.svg'
 import { ReactComponent as CancelIcon } from '@assets/icons/cancel.svg'
 import { useEffect, useState } from 'react'
@@ -123,8 +123,8 @@ export default function Members({data}:{data:MembersPageQuery}){
             `/initiative/${id}/members/${m.user?.id}`, 
             { locale: router.locale }
           )
-        }}>
-          <img src={m.user?.avatar_url||User.src} alt={m.user?.display_name||''}/>
+        }}>  
+          <UserAvatar src={m.user?.avatar_url||User.src} alt={m.user?.display_name||''}/>
           <div style={{justifyContent:'center'}}>
             <Text semibold s='t2'>{m.user?.display_name}</Text>
             <Text s='t4' c='label'>{getRoles(m)}</Text>

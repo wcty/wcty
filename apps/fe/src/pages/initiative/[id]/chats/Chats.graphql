@@ -14,6 +14,9 @@ query Chats($user_id:uuid!, $initiative_id:uuid!) {
   ){
     id
     members{
+      initiative_member {
+        ...MemberInfo
+      }
       user {
         id
         display_name
@@ -21,7 +24,7 @@ query Chats($user_id:uuid!, $initiative_id:uuid!) {
       }
     }
   }
-  initiative:initiatives_by_pk(id: $initiative_id) {
+  initiative: initiatives_by_pk(id: $initiative_id) {
     id
     name
   }

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import User from '@assets/icons/user.png'
 
 export const
 AccountSection = styled.div`
@@ -23,7 +24,7 @@ Avatar = styled.div<{src:string}>`
   margin-bottom: 2rem;
   background-image: url(${p=>p.src});
   background-size: contain;
-  background-color:red;
+  background-color: white;
   height:0;
   ${p=>p.theme.layout==='desktop'?
   css`

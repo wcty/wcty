@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-
+import User from '@assets/icons/user_full.png'
 
 export const
 Header = styled.div`
@@ -119,4 +119,18 @@ Tile = styled.div`
   css`
     padding: 1rem;
   `}
+`,
+
+UserAvatar = styled.img`
+  :before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    background-image: url(${User.src});
+    background-size: 60px 60px;
+    background-repeat: no-repeat;
+    background-color: #f4eadd;
+  }
 `

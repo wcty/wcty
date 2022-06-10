@@ -824,8 +824,13 @@ export type I18n_Variance_Order_By = {
  */
 export type Initiative_Chat_Members = {
   /** An object relationship */
-  chat: Initiative_Chats;
+  chat?: Maybe<Initiative_Chats>;
   chat_id: Scalars['bigint'];
+  /** An object relationship */
+  initiative: Initiatives;
+  initiative_id: Scalars['uuid'];
+  /** An object relationship */
+  initiative_member?: Maybe<Initiative_Members>;
   /** An object relationship */
   user: Users;
   user_id: Scalars['uuid'];
@@ -865,6 +870,9 @@ export type Initiative_Chat_Members_Bool_Exp = {
   _or?: InputMaybe<Array<Initiative_Chat_Members_Bool_Exp>>;
   chat?: InputMaybe<Initiative_Chats_Bool_Exp>;
   chat_id?: InputMaybe<Bigint_Comparison_Exp>;
+  initiative?: InputMaybe<Initiatives_Bool_Exp>;
+  initiative_id?: InputMaybe<Uuid_Comparison_Exp>;
+  initiative_member?: InputMaybe<Initiative_Members_Bool_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
   user_id?: InputMaybe<Uuid_Comparison_Exp>;
 };
@@ -884,18 +892,23 @@ export type Initiative_Chat_Members_Inc_Input = {
 export type Initiative_Chat_Members_Insert_Input = {
   chat?: InputMaybe<Initiative_Chats_Obj_Rel_Insert_Input>;
   chat_id?: InputMaybe<Scalars['bigint']>;
+  initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
+  initiative_id?: InputMaybe<Scalars['uuid']>;
+  initiative_member?: InputMaybe<Initiative_Members_Obj_Rel_Insert_Input>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "initiative_chat_members" */
 export type Initiative_Chat_Members_Max_Order_By = {
   chat_id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
 /** order by min() on columns of table "initiative_chat_members" */
 export type Initiative_Chat_Members_Min_Order_By = {
   chat_id?: InputMaybe<Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
 
@@ -918,6 +931,9 @@ export type Initiative_Chat_Members_On_Conflict = {
 export type Initiative_Chat_Members_Order_By = {
   chat?: InputMaybe<Initiative_Chats_Order_By>;
   chat_id?: InputMaybe<Order_By>;
+  initiative?: InputMaybe<Initiatives_Order_By>;
+  initiative_id?: InputMaybe<Order_By>;
+  initiative_member?: InputMaybe<Initiative_Members_Order_By>;
   user?: InputMaybe<Users_Order_By>;
   user_id?: InputMaybe<Order_By>;
 };
@@ -925,6 +941,7 @@ export type Initiative_Chat_Members_Order_By = {
 /** primary key columns input for table: initiative_chat_members */
 export type Initiative_Chat_Members_Pk_Columns_Input = {
   chat_id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
   user_id: Scalars['uuid'];
 };
 
@@ -933,12 +950,15 @@ export enum Initiative_Chat_Members_Select_Column {
   /** column name */
   ChatId = 'chat_id',
   /** column name */
+  InitiativeId = 'initiative_id',
+  /** column name */
   UserId = 'user_id'
 }
 
 /** input type for updating data in table "initiative_chat_members" */
 export type Initiative_Chat_Members_Set_Input = {
   chat_id?: InputMaybe<Scalars['bigint']>;
+  initiative_id?: InputMaybe<Scalars['uuid']>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
 
@@ -966,6 +986,8 @@ export type Initiative_Chat_Members_Sum_Order_By = {
 export enum Initiative_Chat_Members_Update_Column {
   /** column name */
   ChatId = 'chat_id',
+  /** column name */
+  InitiativeId = 'initiative_id',
   /** column name */
   UserId = 'user_id'
 }
@@ -1330,7 +1352,7 @@ export type Initiative_Chats_Bool_Exp = {
 /** unique or primary key constraints on table "initiative_chats" */
 export enum Initiative_Chats_Constraint {
   /** unique or primary key constraint */
-  InitiativeChatsIdKey = 'initiative_chats_id_key',
+  InitiativeChatsIdInitiativeIdKey = 'initiative_chats_id_initiative_id_key',
   /** unique or primary key constraint */
   InitiativeChatsPkey = 'initiative_chats_pkey'
 }
@@ -3573,6 +3595,13 @@ export type Initiative_Members_Mutation_Response = {
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Initiative_Members>;
+};
+
+/** input type for inserting object relation for remote table "initiative_members" */
+export type Initiative_Members_Obj_Rel_Insert_Input = {
+  data: Initiative_Members_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Initiative_Members_On_Conflict>;
 };
 
 /** on_conflict condition type for table "initiative_members" */
@@ -7014,6 +7043,7 @@ export type Mutation_RootDelete_Initiative_Chat_MembersArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Initiative_Chat_Members_By_PkArgs = {
   chat_id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
   user_id: Scalars['uuid'];
 };
 
@@ -8885,6 +8915,7 @@ export type Query_RootInitiative_Chat_MembersArgs = {
 
 export type Query_RootInitiative_Chat_Members_By_PkArgs = {
   chat_id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
   user_id: Scalars['uuid'];
 };
 
@@ -9703,6 +9734,7 @@ export type Subscription_RootInitiative_Chat_MembersArgs = {
 
 export type Subscription_RootInitiative_Chat_Members_By_PkArgs = {
   chat_id: Scalars['bigint'];
+  initiative_id: Scalars['uuid'];
   user_id: Scalars['uuid'];
 };
 
@@ -11552,6 +11584,26 @@ export type UpdateCommentMutationVariables = Exact<{
 
 export type UpdateCommentMutation = { update_initiative_comments_by_pk?: { id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null }, comments: Array<{ id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } }> } | null };
 
+export type CreateMessageMutationVariables = Exact<{
+  message: Scalars['String'];
+  user_id: Scalars['uuid'];
+  chat_id: Scalars['bigint'];
+  files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
+}>;
+
+
+export type CreateMessageMutation = { insert_initiative_chat_messages_one?: { id: any } | null };
+
+export type UpdateMessageMutationVariables = Exact<{
+  message: Scalars['String'];
+  chat_id: Scalars['bigint'];
+  id: Scalars['bigint'];
+  now: Scalars['timestamptz'];
+}>;
+
+
+export type UpdateMessageMutation = { update_initiative_chat_messages_by_pk?: { id: any, message: string, created_at?: any | null, chat_id: any, modified_at?: any | null, files: Array<{ downloadable_url?: string | null, name?: string | null }>, user: { id: any, display_name?: string | null, avatar_url?: string | null } } | null };
+
 export type DeleteLikeMutationVariables = Exact<{
   user_id: Scalars['uuid'];
   post_id: Scalars['bigint'];
@@ -11809,14 +11861,16 @@ export type ChatsQueryVariables = Exact<{
 }>;
 
 
-export type ChatsQuery = { initiative_chats: Array<{ id: any, members: Array<{ user: { id: any, display_name?: string | null, avatar_url?: string | null } }> }>, initiative?: { id: any, name?: string | null } | null };
+export type ChatsQuery = { initiative_chats: Array<{ id: any, members: Array<{ initiative_member?: { id: number, created_at: any, initiative: { name?: string | null, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null }, donations_aggregate: { aggregate?: { count: number } | null }, initiated: { aggregate?: { count: number } | null } } | null, user: { id: any, display_name?: string | null, avatar_url?: string | null } }> }>, initiative?: { id: any, name?: string | null } | null };
 
 export type ChatFeedSubscriptionVariables = Exact<{
   chat_id?: InputMaybe<Scalars['bigint']>;
 }>;
 
 
-export type ChatFeedSubscription = { initiative_chat_messages: Array<{ message: string, created_at?: any | null, modified_at?: any | null, files: Array<{ downloadable_url?: string | null, name?: string | null }>, user: { display_name?: string | null, avatar_url?: string | null } }> };
+export type ChatFeedSubscription = { initiative_chat_messages: Array<{ id: any, message: string, created_at?: any | null, chat_id: any, modified_at?: any | null, files: Array<{ downloadable_url?: string | null, name?: string | null }>, user: { id: any, display_name?: string | null, avatar_url?: string | null } }> };
+
+export type MessageFragment = { id: any, message: string, created_at?: any | null, chat_id: any, modified_at?: any | null, files: Array<{ downloadable_url?: string | null, name?: string | null }>, user: { id: any, display_name?: string | null, avatar_url?: string | null } };
 
 export type ChatFilesQueryVariables = Exact<{
   chat_id?: InputMaybe<Scalars['bigint']>;
@@ -11919,6 +11973,24 @@ export const EntryCardFragmentDoc = gql`
   type
   members_count
   modified_at
+}
+    `;
+export const MessageFragmentDoc = gql`
+    fragment Message on initiative_chat_messages {
+  id
+  message
+  created_at
+  chat_id
+  modified_at
+  files {
+    downloadable_url
+    name
+  }
+  user {
+    id
+    display_name
+    avatar_url
+  }
 }
     `;
 export const MemberInfoFragmentDoc = gql`
@@ -13000,6 +13072,83 @@ export function useUpdateCommentMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateCommentMutationHookResult = ReturnType<typeof useUpdateCommentMutation>;
 export type UpdateCommentMutationResult = Apollo.MutationResult<UpdateCommentMutation>;
 export type UpdateCommentMutationOptions = Apollo.BaseMutationOptions<UpdateCommentMutation, UpdateCommentMutationVariables>;
+export const CreateMessageDocument = gql`
+    mutation CreateMessage($message: String!, $user_id: uuid!, $chat_id: bigint!, $files: files_arr_rel_insert_input) {
+  insert_initiative_chat_messages_one(
+    object: {message: $message, user_id: $user_id, chat_id: $chat_id, files: $files}
+  ) {
+    id
+  }
+}
+    `;
+export type CreateMessageMutationFn = Apollo.MutationFunction<CreateMessageMutation, CreateMessageMutationVariables>;
+
+/**
+ * __useCreateMessageMutation__
+ *
+ * To run a mutation, you first call `useCreateMessageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMessageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createMessageMutation, { data, loading, error }] = useCreateMessageMutation({
+ *   variables: {
+ *      message: // value for 'message'
+ *      user_id: // value for 'user_id'
+ *      chat_id: // value for 'chat_id'
+ *      files: // value for 'files'
+ *   },
+ * });
+ */
+export function useCreateMessageMutation(baseOptions?: Apollo.MutationHookOptions<CreateMessageMutation, CreateMessageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateMessageMutation, CreateMessageMutationVariables>(CreateMessageDocument, options);
+      }
+export type CreateMessageMutationHookResult = ReturnType<typeof useCreateMessageMutation>;
+export type CreateMessageMutationResult = Apollo.MutationResult<CreateMessageMutation>;
+export type CreateMessageMutationOptions = Apollo.BaseMutationOptions<CreateMessageMutation, CreateMessageMutationVariables>;
+export const UpdateMessageDocument = gql`
+    mutation UpdateMessage($message: String!, $chat_id: bigint!, $id: bigint!, $now: timestamptz!) {
+  update_initiative_chat_messages_by_pk(
+    pk_columns: {id: $id, chat_id: $chat_id}
+    _set: {message: $message, modified_at: $now}
+  ) {
+    ...Message
+  }
+}
+    ${MessageFragmentDoc}`;
+export type UpdateMessageMutationFn = Apollo.MutationFunction<UpdateMessageMutation, UpdateMessageMutationVariables>;
+
+/**
+ * __useUpdateMessageMutation__
+ *
+ * To run a mutation, you first call `useUpdateMessageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateMessageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateMessageMutation, { data, loading, error }] = useUpdateMessageMutation({
+ *   variables: {
+ *      message: // value for 'message'
+ *      chat_id: // value for 'chat_id'
+ *      id: // value for 'id'
+ *      now: // value for 'now'
+ *   },
+ * });
+ */
+export function useUpdateMessageMutation(baseOptions?: Apollo.MutationHookOptions<UpdateMessageMutation, UpdateMessageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateMessageMutation, UpdateMessageMutationVariables>(UpdateMessageDocument, options);
+      }
+export type UpdateMessageMutationHookResult = ReturnType<typeof useUpdateMessageMutation>;
+export type UpdateMessageMutationResult = Apollo.MutationResult<UpdateMessageMutation>;
+export type UpdateMessageMutationOptions = Apollo.BaseMutationOptions<UpdateMessageMutation, UpdateMessageMutationVariables>;
 export const DeleteLikeDocument = gql`
     mutation DeleteLike($user_id: uuid!, $post_id: bigint!, $initiative_id: uuid!) {
   delete_initiative_post_reactions(
@@ -14109,6 +14258,9 @@ export const ChatsDocument = gql`
   ) {
     id
     members {
+      initiative_member {
+        ...MemberInfo
+      }
       user {
         id
         display_name
@@ -14121,7 +14273,7 @@ export const ChatsDocument = gql`
     name
   }
 }
-    `;
+    ${MemberInfoFragmentDoc}`;
 
 /**
  * __useChatsQuery__
@@ -14157,20 +14309,10 @@ export const ChatFeedDocument = gql`
     where: {chat_id: {_eq: $chat_id}}
     order_by: {created_at: desc}
   ) {
-    message
-    created_at
-    modified_at
-    files {
-      downloadable_url
-      name
-    }
-    user {
-      display_name
-      avatar_url
-    }
+    ...Message
   }
 }
-    `;
+    ${MessageFragmentDoc}`;
 
 /**
  * __useChatFeedSubscription__
@@ -14520,10 +14662,13 @@ export type i18n_categoriesFieldPolicy = {
 	category?: FieldPolicy<any> | FieldReadFunction<any>,
 	i18ns?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type initiative_chat_membersKeySpecifier = ('chat' | 'chat_id' | 'user' | 'user_id' | initiative_chat_membersKeySpecifier)[];
+export type initiative_chat_membersKeySpecifier = ('chat' | 'chat_id' | 'initiative' | 'initiative_id' | 'initiative_member' | 'user' | 'user_id' | initiative_chat_membersKeySpecifier)[];
 export type initiative_chat_membersFieldPolicy = {
 	chat?: FieldPolicy<any> | FieldReadFunction<any>,
 	chat_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_id?: FieldPolicy<any> | FieldReadFunction<any>,
+	initiative_member?: FieldPolicy<any> | FieldReadFunction<any>,
 	user?: FieldPolicy<any> | FieldReadFunction<any>,
 	user_id?: FieldPolicy<any> | FieldReadFunction<any>
 };

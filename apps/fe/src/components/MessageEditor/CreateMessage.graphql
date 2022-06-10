@@ -1,0 +1,15 @@
+mutation CreateMessage(
+  $message: String!
+  $user_id: uuid!
+  $chat_id: bigint!
+  $files: files_arr_rel_insert_input
+){
+  insert_initiative_chat_messages_one(object: {
+    message: $message,
+    user_id: $user_id,
+    chat_id: $chat_id,
+    files: $files
+  }){
+    id
+  }
+}

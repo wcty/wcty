@@ -1,5 +1,5 @@
 mutation UpsertChat(
-  $initiative_id:uuid!, 
+  $initiative_id: uuid!, 
   $members: [initiative_chat_members_insert_input!]!
 ){
   insert_initiative_chats_one(
@@ -7,18 +7,18 @@ mutation UpsertChat(
       initiative_id: $initiative_id
       members:{
         data:$members, 
-        on_conflict:{
+        on_conflict: {
           constraint: initiative_chat_members_pkey
           update_columns: []
         }
       }
     } 
     on_conflict: {
-      update_columns:[],
+      update_columns: [],
       constraint: initiative_chats_pkey
     }
   ){
-    id
+    id 
   }
 }
 

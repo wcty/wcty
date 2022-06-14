@@ -1018,7 +1018,7 @@ export type Initiative_Chat_Messages = {
   id: Scalars['bigint'];
   message: Scalars['String'];
   modified_at?: Maybe<Scalars['timestamptz']>;
-  reply_to: Scalars['bigint'];
+  reply_to?: Maybe<Scalars['bigint']>;
   /** An object relationship */
   user: Users;
   user_id: Scalars['uuid'];

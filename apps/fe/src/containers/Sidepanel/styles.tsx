@@ -260,7 +260,7 @@ List = styled.div`
   width: 100%;
   max-height: calc(100vh - 50px);
   position: relative;
-  overflow: scroll;
+  overflow-y: scroll;
   padding-bottom: 1rem;
 `,
 
@@ -318,4 +318,12 @@ BottomPanel = styled.div`
     background-color: white;
     ${props=>props.theme.font.body.regular.t4}
   }
+`,
+
+ListContainer = styled.div`
+  width: 100%;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  position: relative;
 `

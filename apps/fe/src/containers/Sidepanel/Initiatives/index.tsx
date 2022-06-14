@@ -1,5 +1,5 @@
 import { atoms,  useLayout, useUser } from 'common';
-import { UserIconRow, List } from "../styles";
+import { UserIconRow, List, ListContainer } from "../styles";
 import { useInitiativesNearbyListQuery, useMyInitiativeListQuery } from "generated";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
@@ -81,7 +81,7 @@ export default function InitiativesDrawer(){
   }
 
   return <>
-    <div>
+    <ListContainer>
       <UserIconRow>
           <span>
             {layout==='mobile' && <BurgerFab/>}
@@ -98,6 +98,6 @@ export default function InitiativesDrawer(){
           } data={{...v, type: 'initiative'}} key={key}/>
         )}
       </List>
-    </div>
+    </ListContainer>
   </>
 }

@@ -12,6 +12,10 @@ import { t, Trans } from '@lingui/macro';
 import { useUser } from 'common';
 import User from '@assets/icons/user.png'
 import { useRouter } from 'next/router';
+import { ButtonBack } from 'containers/Members/styles';
+import { useLayout } from '@ui/common';
+import Sidebar from "containers/Sidepanel";
+import { useRecoilState } from 'recoil';
 
 export const getRoles = (m: MemberInfoFragment)=>{
   const roles = []
@@ -34,6 +38,7 @@ export default function ChatCatalog({chatList}:{chatList:ChatsQuery}){
   const user = useUser()
   const router = useRouter()
   const { id, chat_id } = router.query
+  const layout = useLayout();
 
   const [getChat] = useChatLazyQuery()
   const [upsertChat] = useUpsertChatMutation()
@@ -66,10 +71,17 @@ export default function ChatCatalog({chatList}:{chatList:ChatsQuery}){
   return <>
     <ChatList>
       <ChatListHeading>
-        <Title s='h4' m='0.5rem 0'><Trans>Messages</Trans></Title>
-        <InitiativeLink onClick={()=>router.push(`/initiative/${id}`)}>
-          <Text s='t5' c='label'>{chatList?.initiative?.name}</Text>
-        </InitiativeLink>
+        {layout==='mobile' && 
+        <ButtonBack onClick={()=>{
+          router.back()
+        }}/>}
+        <div style={{flex:'1 1 auto', textAlign:layout==='desktop'?'start':'center'}}>
+          <Title s='h4' m='0.5rem 0' width='100%' justifyContent={layout==='desktop'?'start':'center'}><Trans>Messages</Trans></Title>
+          <InitiativeLink onClick={()=>router.push(`/initiative/${id}`)}>
+            <Text s='t5' c='label'>{chatList?.initiative?.name}</Text>
+          </InitiativeLink>
+        </div>
+        {layout==='mobile' && <div style={{width:'4rem'}}/>}
       </ChatListHeading>
       <div className='search'>
         <FieldWrapper>

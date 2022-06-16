@@ -5,8 +5,9 @@ ChatList = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  max-width: 300px;
-  margin-top: 60px;
+  ${p=>p.theme.layout==='desktop'?
+  css`max-width: 300px; margin-top: 60px;`:
+  css`max-width: 100%;`}
   /* padding-right: 1rem; */
   .search{
     margin-top: 1.5rem;

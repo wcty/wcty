@@ -1,11 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const 
 ChatsWrapper = styled.div`
   display: flex;
   width: 100%;
   min-height: 100vh;
-  padding-left: 100px;
+  ${p=>p.theme.layout==='desktop'?
+  css`padding-left: 100px;`:
+  css`padding-left: unset;`}
 `,
 
 ChatList = styled.div`
@@ -23,26 +25,11 @@ ChatList = styled.div`
   }
 `,
 
-ChatContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  margin-top: 60px;
-`,
-
-ChatWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  width: 100%;
-  border-left: 0.8px solid rgba(0,0,0,0.2);
-`,
 
 ChatListHeading = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 60px;
-  justify-content: center;
-  border-bottom: 1.5px solid black;
-  margin: 0 1rem;
+  display: flex;  
+  border-bottom: 1px solid black;
+  ${p=>p.theme.layout==='desktop'?
+  css`margin: 0 1rem; height: 60px; flex-direction: column; justify-content: center;`:
+  css`padding: 0 2rem; align-items:center; height: 72px;`}
 `

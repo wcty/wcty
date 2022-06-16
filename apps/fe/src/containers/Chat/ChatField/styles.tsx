@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const 
 
@@ -6,7 +6,10 @@ ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  margin-top: 60px;
+  position: relative;
+  ${p=>p.theme.layout==='desktop'?
+  css`margin-top: 60px;`:
+  css`margin-top: 0px;`}
 `,
 
 ChatWrapper = styled.div`
@@ -20,8 +23,10 @@ ChatWrapper = styled.div`
 
 EditorContainer = styled.div`
   background-color: white;
-  margin: 0 1rem;
   box-shadow: 2px -1px 4px rgba(0,0,0,0.05);
+  ${p=>p.theme.layout==='desktop'?
+  css`margin: 0 1rem;`:
+  css`margin: 0;`}
 `,
 
 MessageContainer = styled.div`
@@ -29,9 +34,11 @@ MessageContainer = styled.div`
   padding: 1rem;
   align-self: start;
   margin: 0rem 1rem 1rem 0rem;
-  max-width: 70%;
   display: flex;
   border-radius: 15px;
+  ${p=>p.theme.layout==='desktop'?
+  css`max-width: 70%;`:
+  css`max-width: 85%;`}
 `,
 
 UserMessageContainer = styled.div`
@@ -39,9 +46,11 @@ UserMessageContainer = styled.div`
   padding: 1rem;
   align-self: end;
   margin: 0rem 0rem 1rem 1rem;
-  max-width: 70%;
   display: flex;
   border-radius: 15px;
+  ${p=>p.theme.layout==='desktop'?
+  css`max-width: 70%;`:
+  css`max-width: 85%;`}
 `,
 
 TimeStamp = styled.div`

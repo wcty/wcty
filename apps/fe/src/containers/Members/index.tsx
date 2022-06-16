@@ -76,13 +76,8 @@ export default function Members({data}:{data:MembersPageQuery}){
     <div style={{position:'absolute', top:'5rem', left: '-140px', transform:'scale(1.5)'}}><WecityText/></div>
     <Header>
       <ButtonBack onClick={()=>{
-        router.push({
-          pathname: `/initiative/[id]`, 
-          query: { id }
-        }, 
-        `/initiative/${id}`, 
-        { locale: router.locale }
-      ).then(()=>setVisible(true))
+        router.back()
+        setVisible(true)
       }}/>
       <div>
         <Title s='h3' mb='3px'><Trans>Members:</Trans> {data.members.length}</Title>

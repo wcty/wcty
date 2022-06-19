@@ -6,7 +6,7 @@ import LocationIcon from './LocationIcon'
 import LoadIcons from './LoadIcons'
 import Satellite from './Satellite'
 import mapStyle from './mapStyle.json'
-import { ReactNode, Suspense, useContext, useEffect, useState } from 'react'
+import { ReactNode, startTransition, Suspense, useContext, useEffect, useState } from 'react'
 // import { MapGL } from './styles'
 import { useRouter } from 'next/router'
 import ContextProvider from './ContextProvider'
@@ -46,7 +46,7 @@ export default function Map({children}:{children?:ReactNode}){
           locale={lang}
           refreshExpiredTiles={true}
           onLoad={()=>{
-            setLoaded(true)
+            startTransition(()=> setLoaded(true))
           }}
           // hash
           {...viewport}

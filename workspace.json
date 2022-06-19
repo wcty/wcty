@@ -5,7 +5,8 @@
     "assets": "libs/assets",
     "be": "apps/be",
     "fe": "apps/fe",
-    "ui": "libs/ui",
-    "misc": "libs/misc"
+    "misc": "libs/misc",
+    "native": "apps/native",
+    "ui": "libs/ui"
   }
 }

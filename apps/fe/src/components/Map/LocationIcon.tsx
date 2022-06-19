@@ -1,9 +1,11 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { Suspense, useContext, useEffect, useRef, useState, useTransition } from 'react'
 import { Source, Layer, MapContext } from '@urbica/react-map-gl'
-import { Map as MapType, CustomLayerInterface } from 'mapbox-gl'
+import { Map as MapType, CustomLayerInterface, GeoJSONSource } from 'mapbox-gl'
 import { useGeolocation } from 'common'
 import { useRouter } from 'next/router'
 import Map from './'
+import { theme } from '@ui/common'
+import { colorToRgba } from '@react-spring/shared'
 
 type PulsingDot = CustomLayerInterface & {
   width:number,
@@ -13,7 +15,7 @@ type PulsingDot = CustomLayerInterface & {
 }
 
 const pulsingDot = (map:MapType):PulsingDot =>{
-  var size = 60;
+  const size = 60;
   
   // implementation of CustomLayerInterface to draw a pulsing dot icon on the map
   // see https://docs.mapbox.com/mapbox-gl-js/api/#customlayerinterface for more info
@@ -28,7 +30,7 @@ const pulsingDot = (map:MapType):PulsingDot =>{
 
     // get rendering context for the map canvas when layer is added to the map
     onAdd: function() {
-      var canvas = document.createElement('canvas');
+      const canvas = document.createElement('canvas');
       canvas.width = this.width;
       canvas.height = this.height;
       this.context = canvas.getContext('2d')||undefined;
@@ -36,49 +38,51 @@ const pulsingDot = (map:MapType):PulsingDot =>{
     
     // called once before every frame where the icon will be used
     render: function() {
-      var duration = 1000;
-      var t = (performance.now() % duration) / duration;
+      const duration = 3000;
+      const t = (performance.now() % duration) / duration;
       
-      var radius = (size / 2) * 0.5;
-      var outerRadius = (size / 2) * 0.7 * t + radius;
-      var context = this.context!!;
+      const radius = (size / 2) * 0.5;
+      const outerRadius = (size / 2) * 0.7 * t + radius;
+      const context = this.context;
       
-      // draw outer circle
-      context.clearRect(0, 0, this.width, this.height);
-      context.beginPath();
-      context.arc(
-        this.width / 2,
-        this.height / 2,
-        outerRadius,
-        0,
-        Math.PI * 2
-      );
-      context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';
-      context.fill();
-      
-      // draw inner circle
-      context.beginPath();
-      context.arc(
-        this.width / 2,
-        this.height / 2,
-        radius,
-        0,
-        Math.PI * 2
-      );
-      context.fillStyle = 'rgba(255, 100, 100, 1)';
-      context.strokeStyle = 'white';
-      context.lineWidth = 2 + 4 * (1 - t);
-      context.fill();
-      context.stroke();
-      
-      // update this image's data with data from the canvas
-      this.data = context.getImageData(
-        0,
-        0,
-        this.width,
-        this.height
-      ).data;
-      
+      if(context){
+        // draw outer circle
+        context.clearRect(0, 0, this.width, this.height);
+        context.beginPath();
+        context.arc(
+          this.width / 2,
+          this.height / 2,
+          outerRadius,
+          0,
+          Math.PI * 2
+        );
+        context.fillStyle = colorToRgba(theme.colors.secondary).replace(' 1)', (1 - t) + ')');
+        context.fill();
+        
+        // draw inner circle
+        context.beginPath();
+        context.arc(
+          this.width / 2,
+          this.height / 2,
+          radius,
+          0,
+          Math.PI * 2
+        );
+        context.fillStyle = colorToRgba(theme.colors.secondary);
+        context.strokeStyle = 'white';
+        context.lineWidth = 2 + 4 * (1 - t);
+        context.fill();
+        context.stroke();
+        
+        // update this image's data with data from the canvas
+        this.data = context.getImageData(
+          0,
+          0,
+          this.width,
+          this.height
+        ).data;
+      }
+
       // continuously repaint the map, resulting in the smooth animation of the dot
       map.triggerRepaint();
       
@@ -88,24 +92,25 @@ const pulsingDot = (map:MapType):PulsingDot =>{
   }
 }
 
-export default ()=>{
+export default function UsePulsingDot (){
   const location = useGeolocation()
   const loadedRef = useRef(false)
   const [loaded, setLoaded] = useState(false)
   const context = useContext(Map.Context)
-
+  const [isPending, startTransition] = useTransition();
+  
   useEffect(()=>{
     if(context.map){
       const map = context.map
       if(map && !loaded && !loadedRef.current ){
         map.addImage('pulsing-dot', pulsingDot(map), { pixelRatio: 2 });
         loadedRef.current=true
-        setLoaded(true)  
+        startTransition(()=>{ setLoaded(true) })
       }
     }
   },[context.map])
-
-  return null
+  
+  return (loaded && context.map) ? <PointsLayer map={context.map}/>: null
 }
 
 
@@ -134,20 +139,21 @@ function PointsLayer({map}:{map:MapType}){
   },[map])
 
   useEffect(()=>{
-    // @ts-ignore
-    map.getSource('points')?.setData({
-      type: 'FeatureCollection',
-      features: location?[
-        {
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: [location.longitude, location.latitude]
-          },
-          properties:{}
-        }
-      ]:[]
-    })
+    const source = map.getSource('points')
+    if('setData' in source)
+      source.setData({
+        type: 'FeatureCollection',
+        features: location?[
+          {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [location.longitude, location.latitude]
+            },
+            properties:{}
+          }
+        ]:[]
+      })
   },[map, location])
 
   return <>

@@ -6,7 +6,7 @@ import LocationIcon from './LocationIcon'
 import LoadIcons from './LoadIcons'
 import Satellite from './Satellite'
 import mapStyle from './mapStyle.json'
-import { ReactNode, useContext, useEffect, useState } from 'react'
+import { ReactNode, Suspense, useContext, useEffect, useState } from 'react'
 // import { MapGL } from './styles'
 import { useRouter } from 'next/router'
 import ContextProvider from './ContextProvider'
@@ -67,7 +67,7 @@ export default function Map({children}:{children?:ReactNode}){
             <>{ children }</>
             <LoadIcons />
             <>{ satellite && <Satellite /> }</>
-            <LocationIcon />
+            <Suspense fallback={null}><LocationIcon /></Suspense>
           </>}
         </MapGL>
       </>

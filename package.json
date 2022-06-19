@@ -8,7 +8,8 @@
     "test": "nx test",
     "extract": "NODE_ENV=development yarn lingui extract --overwrite",
     "compile": "yarn lingui compile",
-    "storybook": "nx run ui:storybook"
+    "storybook": "nx run ui:storybook",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -72,6 +73,8 @@
     "@babel/plugin-transform-flow-strip-types": "^7.17.12",
     "@babel/preset-flow": "^7.17.12",
     "@babel/preset-typescript": "7.17.12",
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
     "@graphql-codegen/cli": "2.6.2",
     "@graphql-codegen/fragment-matcher": "^3.2.1",
     "@graphql-codegen/introspection": "^2.1.1",
@@ -84,6 +87,7 @@
     "@graphql-codegen/typescript-react-apollo": "^3.2.14",
     "@graphql-codegen/typescript-resolvers": "2.6.4",
     "@graphql-codegen/urql-introspection": "^2.1.1",
+    "@jscutlery/semver": "^2.25.2",
     "@lingui/cli": "^3.13.3",
     "@lingui/loader": "^3.13.3",
     "@lingui/macro": "^3.13.3",
@@ -153,6 +157,7 @@
     "form-data": "^4.0.0",
     "get-file-object-from-local-path": "^1.0.2",
     "get-port": "^6.1.2",
+    "husky": "^8.0.0",
     "iv": "^0.0.1",
     "jest": "28.1.0",
     "json-to-graphql-query": "^2.2.4",

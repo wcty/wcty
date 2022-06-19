@@ -12,7 +12,6 @@ import { ThemeProvider } from 'styled-components'
 import { InMemoryCache } from '@apollo/client';
 import * as nhost from 'common/nhost'
 import MapContext from 'components/Map/ContextProvider'
-import ClientOnly from 'components/ClientOnly'
 import Head from 'next/head'
 import { i18n } from '@lingui/core'
 import { initTranslation } from 'common'

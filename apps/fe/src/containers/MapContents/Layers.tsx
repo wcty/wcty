@@ -51,7 +51,7 @@ export default function MapContents({map}:{map:Map}){
       />
     </>:<>
     <>
-    <Layer
+    {map.getSource('entries') && <Layer
         id='entries-dummy'
         source='entries'
         source-layer='public.entries'
@@ -63,7 +63,8 @@ export default function MapContents({map}:{map:Map}){
           ['all', [ 'case', ['==',['get','type'],'initiative'], true, false]]:
           ['all', ['case', ['==',['get','type'],'organization'], true, false]]
         }
-      />
+      />}
+      {map.getSource('entries-clusters') &&<> 
       <Layer
         id='entries-clusters'
         source='entries-clusters'
@@ -175,6 +176,7 @@ export default function MapContents({map}:{map:Map}){
           ['all', ['!', ['has', 'point_count']], ['case', ['==',['get','type'],'organization'], true, false]]
         }
       />
+      </>}
     </>
 
     <>{ selected && selected?.geometry?.coordinates && layout==='desktop' && cluster.features.find(f=>f?.properties?.id===selected.id) &&

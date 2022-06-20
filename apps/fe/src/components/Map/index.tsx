@@ -44,6 +44,7 @@ export default function Map({children}:{children?:ReactNode}){
           attributionControl={false}
           cursorStyle={cursor}
           locale={lang}
+          minZoom={2}
           refreshExpiredTiles={true}
           onLoad={()=>{
             startTransition(()=> setLoaded(true))
@@ -67,7 +68,9 @@ export default function Map({children}:{children?:ReactNode}){
             <>{ children }</>
             <LoadIcons />
             <>{ satellite && <Satellite /> }</>
-            <Suspense fallback={null}><LocationIcon /></Suspense>
+            <Suspense fallback={null}>
+              <LocationIcon />
+            </Suspense>
           </>}
         </MapGL>
       </>

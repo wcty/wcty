@@ -117,47 +117,8 @@ export default function UsePulsingDot (){
 function PointsLayer({map}:{map:MapType}){
   const location = useGeolocation()
 
-  useEffect(()=>{
-    if(!map.getSource('points')){
-      map.addSource('points', {
-        type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: location?[
-            {
-              type: 'Feature',
-              geometry: {
-                type: 'Point',
-                coordinates: [location.longitude, location.latitude]
-              },
-              properties:{}
-            }
-          ]:[]
-        }
-      })
-    }
-  },[map])
-
-  useEffect(()=>{
-    const source = map.getSource('points')
-    if('setData' in source)
-      source.setData({
-        type: 'FeatureCollection',
-        features: location?[
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Point',
-              coordinates: [location.longitude, location.latitude]
-            },
-            properties:{}
-          }
-        ]:[]
-      })
-  },[map, location])
-
   return <>
-    {/* <Source
+    <Source
       id='points'
       type='geojson'
       data={{
@@ -173,8 +134,8 @@ function PointsLayer({map}:{map:MapType}){
           }
         ]:[]
       }}
-    /> */}
-    {map.getSource('points') && <Layer
+    />
+    <Layer
       id='points'
       type='symbol'
       source='points'
@@ -182,6 +143,6 @@ function PointsLayer({map}:{map:MapType}){
         'icon-image': 'pulsing-dot',
       }}
       before='markers'
-    />}
+    />
   </>
 }

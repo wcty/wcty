@@ -923,20 +923,8 @@
         "type": "line",
         "paint": {
             "line-color": "#555",
-            "line-width": {
-                "base": 1.5,
-                "stops": [
-                    [
-                        11,
-                        5
-                    ],
-                    [
-                        17,
-                        55
-                    ]
-                ]
-            },
-            "line-opacity": 0.6
+            "line-width": 1,
+            "line-opacity": 0.3
         },
         "filter": [
             "all",

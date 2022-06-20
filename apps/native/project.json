@@ -1,5 +1,5 @@
 {
-  "root": "apps/native",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/native/src",
   "projectType": "application",
   "targets": {
@@ -93,7 +93,7 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "cwd": "apps/native",
-        "commands":["eas submit"]
+        "commands": ["eas submit"]
       }
     }
   },

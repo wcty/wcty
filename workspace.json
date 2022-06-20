@@ -8,5 +8,6 @@
     "misc": "libs/misc",
     "native": "apps/native",
     "ui": "libs/ui"
-  }
+  },
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

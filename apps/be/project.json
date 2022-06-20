@@ -1,14 +1,12 @@
 {
-  "root": "apps/be",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/be/src",
   "projectType": "application",
   "targets": {
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": [
-          "nx deploy admin"
-        ]
+        "commands": ["nx deploy admin"]
       }
     },
     "serve": {
@@ -42,13 +40,11 @@
           "docker-compose -f apps/be/docker-compose.yml restart postgres"
         ]
       }
-    },    
+    },
     "unmount": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": [
-          "docker-compose -f apps/be/docker-compose.yml down"
-        ]
+        "commands": ["docker-compose -f apps/be/docker-compose.yml down"]
       }
     },
     "start": {
@@ -62,9 +58,7 @@
     "stop": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": [
-          "docker-compose -f apps/be/docker-compose.mac.yml down"
-        ]
+        "commands": ["docker-compose -f apps/be/docker-compose.mac.yml down"]
       }
     }
   },

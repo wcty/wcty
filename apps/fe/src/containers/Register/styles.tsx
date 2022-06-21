@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components"
+import { flexbox, FlexProps, layout, LayoutProps, position, PositionProps, space, SpaceProps } from 'styled-system';
 
 export const 
 FormControl = styled.form`
@@ -29,7 +30,7 @@ HeaderCover = styled.div<{bg:string}>`
   justify-content: center;
 `,
 
-TextField = styled.input`
+TextField = styled.input<PositionProps&LayoutProps&SpaceProps&FlexProps>`
   outline: none;
   border: 1px solid rgba(0,0,0,0.3);
   background: rgba(255,255,255,0.6);
@@ -37,6 +38,10 @@ TextField = styled.input`
   width: 100%;
   -webkit-box-shadow: 0 0 0 30px rgba(0,0,0,0) inset !important;
   padding-left: 1rem;
+  ${position}
+  ${layout}
+  ${space}
+  ${flexbox}
 `,
 
 Label = styled.label`

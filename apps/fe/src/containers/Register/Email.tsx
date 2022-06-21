@@ -16,15 +16,9 @@ const cookies = new Cookies()
 export default function RegisterWithEmail (){
   const [credentials, setCredentials] = useRecoilState(atoms.credentialsLogin)
   const router = useRouter()
-  const layout = useLayout()
-  const loginMethod = cookies.get('loginMethod')
+  const withPassword = !!router.query?.withPassword
   const [error, setError] = useState<any>('')
-  //cookies.set('loginMethod', lm, { path: '/' });
-  useEffect(()=>{
-    if(error){
-      console.log('Error: ', error)
-    }
-  },[error])
+
 
   return (
     <CenterPanel onClose={()=>router.push('/')}>
@@ -32,22 +26,34 @@ export default function RegisterWithEmail (){
           <Trans>Join with email</Trans>
         </Header>
         <Text mb="2rem">
-          <Trans>Enter your email address to create an account</Trans>
+        {withPassword ?
+          <Trans>Enter email and password to create an account</Trans>:
+          <Trans>Enter your email address to create an account</Trans>}
         </Text>
       <FormControl>
         <TextField 
           id="email" 
           type="text"
           placeholder="Your e-mail"
-          value={credentials.email}
+          value={credentials.email||''}
           onChange={(e)=>setCredentials({...credentials, email:e.target.value})}
         />
+        {withPassword && <TextField 
+          mt='1rem'
+          id="password" 
+          type="password"
+          placeholder="Your password"
+          value={credentials.password||''}
+          onChange={(e)=>setCredentials({...credentials, password:e.target.value})}
+        />}
         <Button style={{background: 'black'}}
           onClick={(e)=>{
             e.preventDefault()
             if( credentials.email ) {
               auth.register(credentials).then(()=>{
-                router.push('/register/check-email')
+                withPassword?
+                  router.push('/register/check-email'):
+                  router.push('/register/check-email')
               }).catch((err)=>{
                 setError(err)
               })
@@ -56,6 +62,11 @@ export default function RegisterWithEmail (){
           <Text c="backgroundLighter" semibold ><Trans>Continue</Trans></Text>
         </Button>
         </FormControl>
+        <Text mt="1rem">
+        {!withPassword ?
+            <a href="#" onClick={()=>router.push('/register/email?withPassword=1', undefined, {shallow:true})}><Trans>Register with password instead</Trans></a>:
+            <a href="#" onClick={()=>router.push('/register/email', undefined, {shallow:true})}><Trans>Register without password instead</Trans></a>}
+        </Text>
         <Link href="/register" >
           <a>
             <Text mt="5rem" style={{display:'flex', alignItems:'center'}}>

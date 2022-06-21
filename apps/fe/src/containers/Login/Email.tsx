@@ -16,6 +16,8 @@ const cookies = new Cookies()
 export default function Login (){
   const [credentials, setCredentials] = useRecoilState(atoms.credentialsLogin)
   const router = useRouter()
+  const withPassword = !!router.query?.withPassword
+
   const [error, setError] = useState<any>('')
   //cookies.set('loginMethod', lm, { path: '/' });
   useEffect(()=>{
@@ -23,14 +25,16 @@ export default function Login (){
       console.log('Error: ', error)
     }
   },[error])
-
+  
   return (
     <CenterPanel onClose={()=>router.push('/')}>
         <Header>
           <Trans>Login with email</Trans>
         </Header>
         <Text mb="2rem">
-          <Trans>Enter your email address to log in</Trans>
+          {withPassword ?
+          <Trans>Enter email and password to log in</Trans>:
+          <Trans>Enter your email address to log in</Trans>}
         </Text>
       <FormControl>
         <TextField 
@@ -40,20 +44,37 @@ export default function Login (){
           value={credentials.email}
           onChange={(e)=>setCredentials({...credentials, email:e.target.value})}
         />
+        {withPassword && <TextField 
+          mt='1rem'
+          id="password" 
+          type="password"
+          placeholder="Your password"
+          value={credentials.password}
+          onChange={(e)=>setCredentials({...credentials, password:e.target.value})}
+        />}
         <Button style={{background: 'black'}}
           onClick={(e)=>{
             e.preventDefault()
             if( credentials.email ) {
               auth.login(credentials).then(()=>{
-                router.push('/login/check-email')
+                withPassword?
+                  router.push('/'):
+                  router.push('/login/check-email')
               }).catch((err)=>{
                 setError(err)
               })
             }
           }}>
-          <Text color="white" semibold ><Trans>Continue</Trans></Text>
+          <Text c="backgroundLighter" semibold >
+              <Trans>Continue</Trans>
+          </Text>
         </Button>
         </FormControl>
+        <Text mt="1rem">
+        {!withPassword ?
+            <a href="#" onClick={()=>router.push('/login/email?withPassword=1', undefined, {shallow:true})}><Trans>Login with password instead</Trans></a>:
+            <a href="#" onClick={()=>router.push('/login/email', undefined, {shallow:true})}><Trans>Login without password instead</Trans></a>}
+        </Text>
         <Link href="/login" >
           <a>
             <Text mt="5rem" style={{display:'flex', alignItems:'center'}}>

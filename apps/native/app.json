@@ -17,7 +17,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "city.weee",
-      "buildNumber": "1.0.0",
+      "buildNumber": "1.0.1",
       "infoPlist": {
         "NSLocationAlwaysAndWhenInUseUsageDescription": "This app uses the location data to show the most relevant initiatives and organizations in your vicinity.",
         "NSLocationAlwaysUsageDescription": "This app uses the location data to show the most relevant initiatives and organizations in your vicinity.",

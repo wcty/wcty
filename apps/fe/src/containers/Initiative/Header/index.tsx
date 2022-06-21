@@ -142,8 +142,8 @@ export default function HeaderComponent({initiative}:InitiativeProps) {
       </Header>
       {layout==='desktop' && isMember && <MenuSection>
         <div style={{display:'flex', height:'100%'}}>
-          <MenuButton active={!router.pathname.includes('chats')&&!router.pathname.includes('layers')}><Home/></MenuButton>
-          <MenuButton active={router.pathname.includes('chats')}><Mail/></MenuButton>
+          <MenuButton active={!router.pathname.includes('chats')&&!router.pathname.includes('layers')&&!router.pathname.includes('chats')}><Home/></MenuButton>
+          <MenuButton onClick={()=>router.push(`/initiative/${id}/chats`)} active={router.pathname.includes('chats')}><Mail/></MenuButton>
           <MenuButton onClick={()=>router.push('/')}><Layers/></MenuButton>
         </div>
         <Buttons {...{isMember, isOnlyMember}}/>
@@ -151,8 +151,8 @@ export default function HeaderComponent({initiative}:InitiativeProps) {
       {layout==='mobile'&& <Buttons {...{isMember}}/> }
 
       {layout==='mobile' && isMember && <MenuSection>
-          <MenuButton active={!router.pathname.includes('chats')&&!router.pathname.includes('layers')}><Home/></MenuButton>
-          <MenuButton active={router.pathname.includes('chats')}><Mail/></MenuButton>
+          <MenuButton active={!router.pathname.includes('chats')&&!router.pathname.includes('layers')&&!router.pathname.includes('chats')}><Home/></MenuButton>
+          <MenuButton onClick={()=>router.push(`/initiative/${id}/chats`)} active={router.pathname.includes('chats')}><Mail/></MenuButton>
           <MenuButton onClick={()=>router.push('/')}><Layers/></MenuButton>
       </MenuSection>}
   </>

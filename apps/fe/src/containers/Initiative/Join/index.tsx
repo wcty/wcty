@@ -142,7 +142,7 @@ export default function Join() {
         {tasks?.initiative_tasks && 
           <TaskSelection>
             <span><Trans>Choose one of the tasks you can perform, or suggest your own.</Trans></span>
-            {tasks?.initiative_tasks.map((t,key)=>
+            {tasks?.initiative_tasks.filter(t=>t.description!=='Create initiative').map((t,key)=>
               <span key={key}>
                 <Checkbox 
                   checked={commitments.task.ids.includes(t.id)}

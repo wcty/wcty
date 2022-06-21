@@ -8,14 +8,14 @@ const Layers = lazy(()=>import('./Layers'));
 export function waitForFeatures(func: ()=>MapboxGeoJSONFeature[]|null){
 
   return new Promise<MapboxGeoJSONFeature[]>((resolve) => {
-    (function iter(f: ()=>MapboxGeoJSONFeature[]|null, iterations=0){
+    (function iter(f: ()=>MapboxGeoJSONFeature[]|null, prev:MapboxGeoJSONFeature[]|null, iterations){
       const features = f();
-      if(!features?.length && iterations<10){
-        setTimeout(()=>iter(f, iterations+1), 500)
+      if((JSON.stringify(prev)!==JSON.stringify(features) || !features?.length) && iterations<10){
+        setTimeout(()=>iter(f, features, iterations+1), 500)
       }else{
         resolve(features||[])
       }
-    })(func)
+    })(func, [], 0)
   })
 }
 

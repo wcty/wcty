@@ -51,7 +51,7 @@ const nextConfig = {
     return config;
   },
   i18n: {
-    locales: ['uk', 'en', 'pseudo'],
+    locales: ['en', 'uk', 'pseudo'],
     defaultLocale: 'en'
   },
   pwa: {

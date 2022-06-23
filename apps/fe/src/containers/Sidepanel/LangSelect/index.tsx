@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 import { t } from '@lingui/macro'
 
 type LOCALES = 'en' | 'uk' | 'pseudo'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export default function LangSelect ({toggleDrawer, ...props}:any){
     const router = useRouter()
@@ -28,6 +30,7 @@ export default function LangSelect ({toggleDrawer, ...props}:any){
         console.log('locale changed', locale)
         changed.current = true
         //const {pathname, asPath, query} = router
+        cookies.set('NEXT_LOCALE', locale, { path: '/' })
         router.push(router.pathname, router.asPath, { locale }).then(() => {
           changed.current = false
         })

@@ -1,5 +1,5 @@
 {
-  "root": "apps/admin",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/admin/src",
   "projectType": "application",
   "targets": {
@@ -11,10 +11,7 @@
         "main": "apps/admin/src/main.ts",
         "tsConfig": "apps/admin/tsconfig.app.json",
         "generatePackageJson": true,
-        "assets": [
-          "apps/admin/src/mail-templates",
-          "apps/admin/src/packages"
-        ]
+        "assets": ["apps/admin/src/mail-templates", "apps/admin/src/packages"]
       },
       "configurations": {
         "production": {
@@ -51,7 +48,7 @@
         "command": "node package-maker"
       }
     },
-    "dockerize":{
+    "dockerize": {
       "executor": "@nx-tools/nx-docker:build",
       "options": {
         "push": false,
@@ -61,10 +58,7 @@
     "deploy": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": [
-          "nx run admin:build:production",
-          "nx dockerize admin"
-        ],
+        "commands": ["nx run admin:build:production", "nx dockerize admin"],
         "parallel": false
       }
     },

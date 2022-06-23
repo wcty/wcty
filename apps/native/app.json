@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "We.City",
+    "slug": "wcty",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/Wecity_icon_white_512.png",
+    "splash": {
+      "image": "./assets/Wecity_icon_white_512.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "city.weee",
+      "buildNumber": "1.0.1",
+      "infoPlist": {
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app uses the location data to show the most relevant initiatives and organizations in your vicinity.",
+        "NSLocationAlwaysUsageDescription": "This app uses the location data to show the most relevant initiatives and organizations in your vicinity.",
+        "NSLocationWhenInUseUsageDescription": "This app uses the location data to show the most relevant initiatives and organizations in your vicinity."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/Wecity_icon_white_512.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "city.weee",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./assets/favicon.ico"
+    }
+  }
+}

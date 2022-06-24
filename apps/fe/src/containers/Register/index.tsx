@@ -7,6 +7,8 @@ import Cookies from 'universal-cookie'
 import {ReactComponent as GoogleIcon} from '@assets/icons/google.svg'
 import {ReactComponent as FbIcon} from '@assets/icons/fb.svg'
 import {ReactComponent as EmailIcon} from '@assets/icons/email.svg'
+import {ReactComponent as AppleIcon} from '@assets/icons/apple-logo.svg'
+
 import { Trans } from '@lingui/macro'
 import Link from "next/link";
 import Pigeon from '@assets/images/pigeon-03.png'
@@ -49,6 +51,16 @@ export default function Register (){
             <Text semibold><Trans>Sign up with Facebook</Trans></Text>
           </Button>
           <Button 
+            id="Apple"
+            onClick={(e)=>{
+              e.preventDefault() 
+              cookies.set('loginMethod', 'Apple', { path: '/' });     
+              auth.login({ provider: 'apple' })
+          }}>
+            <AppleIcon/>
+            <Text semibold><Trans>Sign up with Apple</Trans></Text>
+          </Button>
+          <Button 
             id="Email"
             onClick={(e)=>{
               e.preventDefault()  
@@ -63,8 +75,8 @@ export default function Register (){
           </Text>
           <Text mt="3rem">
             <Trans>
-              Click "Sign Up" to agree to Wecity's <a href="/privacy_policy.pdf">Terms of Service</a>
-              and acknowledge that Wecity's <a href="/privacy_policy.pdf">Privacy Policy</a> applies to you.
+              Click &quot;Sign Up&quot; to agree to Wecity&apos;s <a href="/privacy_policy.pdf">Terms of Service</a>
+              and acknowledge that Wecity&apos;s <a href="/privacy_policy.pdf">Privacy Policy</a> applies to you.
             </Trans>
           </Text>
         </FormControl>

@@ -7,6 +7,7 @@ import Cookies from 'universal-cookie'
 import {ReactComponent as GoogleIcon} from '@assets/icons/google.svg'
 import {ReactComponent as FbIcon} from '@assets/icons/fb.svg'
 import {ReactComponent as EmailIcon} from '@assets/icons/email.svg'
+import {ReactComponent as AppleIcon} from '@assets/icons/apple-logo.svg'
 import { Trans } from '@lingui/macro'
 import { Divider } from "./styles";
 import Link from "next/link";
@@ -52,6 +53,17 @@ export default function Login (){
             <Text semibold><Trans>Log in with Facebook</Trans></Text>
           </Button>,
           <Button 
+            key="Apple"
+            id="Apple"
+            onClick={(e)=>{
+              e.preventDefault() 
+              cookies.set('loginMethod', 'Apple', { path: '/' });     
+              auth.login({ provider: 'apple' })
+          }}>
+            <AppleIcon/>
+            <Text semibold><Trans>Log in with Apple</Trans></Text>
+          </Button>,
+          <Button 
             key="Email"
             id="Email"
             onClick={(e)=>{
@@ -69,8 +81,8 @@ export default function Login (){
           </Text>
           <Text mt="3rem">
             <Trans>
-              Click "Log In" to agree to Wecity's <a href="/privacy_policy.pdf">Terms of Service</a>
-              and acknowledge that Wecity's <a href="/privacy_policy.pdf">Privacy Policy</a> applies to you.
+              Click &quot;Log In&quot; to agree to Wecity&apos;s <a href="/privacy_policy.pdf">Terms of Service</a>
+              and acknowledge that Wecity&apos;s <a href="/privacy_policy.pdf">Privacy Policy</a> applies to you.
             </Trans>
           </Text>
         </FormControl>

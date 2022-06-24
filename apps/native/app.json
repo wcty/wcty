@@ -5,6 +5,10 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/Wecity_icon_white_512.png",
+    "locales": {
+      "en": "./locales/en.json",
+      "uk": "./locales/uk.json"
+    },
     "splash": {
       "image": "./assets/Wecity_icon_white_512.png",
       "resizeMode": "contain",
@@ -17,8 +21,14 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "city.weee",
-      "buildNumber": "1.0.1",
+      "buildNumber": "1.0.3",
       "infoPlist": {
+        "UIBackgroundModes": [
+          "location"
+        ],
+        "CFBundleLocalizations" : ["en","uk"],
+        "CFBundleDevelopmentRegion" : "en",
+        "CFBundleAllowMixedLocalizations": true,
         "NSLocationAlwaysAndWhenInUseUsageDescription": "This app uses the location data to show the most relevant initiatives and organizations in your vicinity.",
         "NSLocationAlwaysUsageDescription": "This app uses the location data to show the most relevant initiatives and organizations in your vicinity.",
         "NSLocationWhenInUseUsageDescription": "This app uses the location data to show the most relevant initiatives and organizations in your vicinity."

@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Deploy
-      uses: germanmitish/action-ssh@master
+      uses: hermanmitish/action-ssh@master
       env:
         DB_LOGIN: ${{ secrets.DB_LOGIN }}
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
@@ -42,6 +42,11 @@ jobs:
         HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
         PG_VOLUME: ${{ secrets.PG_VOLUME }}
         REDIRECT_URL_SUCCESS: ${{ secrets.REDIRECT_URL_SUCCESS }}
+        APPLE_CLIENT_ID: '${{ secrets.APPLE_CLIENT_ID }}'
+        APPLE_TEAM_ID: '${{ secrets.APPLE_TEAM_ID }}'
+        APPLE_KEY_ID: '${{ secrets.APPLE_KEY_ID }}'
+        APPLE_PRIVATE_KEY: '${{ secrets.APPLE_PRIVATE_KEY }}'
+
       with:
         hosts: ${{ secrets.HOST }}
         privateKey: ${{ secrets.KEY }}

@@ -76,7 +76,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
         >
           <RecoilRoot>
               <MapContext.Provider value={{map:undefined}}>
-                <ThemeProvider {...{theme:{...theme, layout, isWebView: isWebView.current } }}>
+                <ThemeProvider {...{theme:{...theme, layout, isWebView } }}>
                     <GlobalStyle />
                     <ClientSetup/>
                     <I18nProvider i18n={i18n}>

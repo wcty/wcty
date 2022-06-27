@@ -20,8 +20,10 @@ import { useEffect, useRef } from 'react'
 import { I18nProvider } from '@lingui/react'
 import { en, uk } from 'make-plural'
 import ClientSetup from "common/ClientSetup";
+import Cookie from 'universal-cookie'
 
 initTranslation(i18n)
+const cookies = new Cookie()
 
 export default function AppWrapper({ Component, pageProps }:AppProps) {
   const layout = useLayout()
@@ -38,7 +40,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
 
   useEffect(() => {
     //initTranslation(i18n)
-    isWebView.current = navigator.userAgent.includes('[VW;]')
+    isWebView.current = navigator.userAgent.includes('VW') || cookies.get('webview')
     i18n.loadLocaleData(locale, { plurals: locale==='en'?en:locale==='uk'?uk:en })
     // console.log('Loaded plurals', locale)
   },[])

@@ -36,9 +36,8 @@ export default function App() {
             headers:{ 
               webview: 'true', 
               'Accept-Language': deviceLanguage||'en', 
-              Cookie: `NEXT_LOCALE=${deviceLanguage||'en'}` 
+              Cookie: `NEXT_LOCALE=${deviceLanguage||'en'}; webview=true` 
             } }} 
-          style={{ marginTop:26 }} 
           userAgent={Platform.OS === 'android' ? 'Chrome/18.0.1025.133 Mobile Safari/535.19 [WV;]' : 'AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 [WV;]'}/>
       </View>
     </>

@@ -16,7 +16,7 @@ import Head from 'next/head'
 import { i18n } from '@lingui/core'
 import { initTranslation } from 'common'
 import { useRouter } from 'next/router'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { I18nProvider } from '@lingui/react'
 import { en, uk } from 'make-plural'
 import ClientSetup from "common/ClientSetup";
@@ -30,7 +30,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
   const router = useRouter()
   const locale = router.locale || router.defaultLocale || 'en'
   const firstRender = useRef(true)
-  const isWebView = useRef(false)
+  const [isWebView, setIsWebView] = useState(false)
 
   if (pageProps.translation && firstRender.current) {
     i18n.load(locale, pageProps.translation)
@@ -40,7 +40,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
 
   useEffect(() => {
     //initTranslation(i18n)
-    isWebView.current = navigator.userAgent.includes('VW') || cookies.get('webview')
+    setIsWebView(navigator.userAgent.includes('VW') || !!cookies.get('webview'))
     i18n.loadLocaleData(locale, { plurals: locale==='en'?en:locale==='uk'?uk:en })
     // console.log('Loaded plurals', locale)
   },[])

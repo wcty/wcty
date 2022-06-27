@@ -21,7 +21,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "city.weee",
-      "buildNumber": "1.0.3",
+      "buildNumber": "1.0.4",
       "infoPlist": {
         "CFBundleLocalizations" : ["en","uk"],
         "CFBundleDevelopmentRegion" : "en",

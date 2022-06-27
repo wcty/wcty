@@ -28,7 +28,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
   const router = useRouter()
   const locale = router.locale || router.defaultLocale || 'en'
   const firstRender = useRef(true)
-  const isWebView = useRef(new Navigator().userAgent.includes('[VW;]'))
+  const isWebView = useRef(false)
 
   if (pageProps.translation && firstRender.current) {
     i18n.load(locale, pageProps.translation)
@@ -38,6 +38,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
 
   useEffect(() => {
     //initTranslation(i18n)
+    isWebView.current = new Navigator().userAgent.includes('[VW;]')
     i18n.loadLocaleData(locale, { plurals: locale==='en'?en:locale==='uk'?uk:en })
     // console.log('Loaded plurals', locale)
   },[])

@@ -1,6 +1,6 @@
 
 
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle, css } from 'styled-components'
 import BurgerFab from "containers/FloatPanel/BurgerFab";
 
 export const GlobalStyle = createGlobalStyle`
@@ -106,7 +106,10 @@ ContentWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: ${props => props.theme.colors.primary}
+  background-color: ${props => props.theme.colors.primary};
+  ${p=>p.theme.isWebView && css`
+    padding-top: 26px;
+  `}
 `,
 
 Burger = styled.div.attrs({
@@ -116,6 +119,9 @@ Burger = styled.div.attrs({
   top: 29px;
   left: 0;
   z-index: 1;
+  ${p=>p.theme.isWebView && css`
+    top: calc(29px + 26px);
+  `}
 `,
 
 Center = styled.div`

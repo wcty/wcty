@@ -1,12 +1,10 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   View,
   StatusBar,
   Platform,
-  NativeModules,
-  TouchableOpacity,
-  Text
+  NativeModules
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 
@@ -18,50 +16,14 @@ import * as Location from 'expo-location';
 i18n.locale = Localization.locale;
 i18n.fallbacks = true;
 
-const LOCATION_TASK_NAME = 'background-location-task';
-
-const requestPermissions = async () => {
-  const { status } = await Location.requestPermissionsAsync();
-  if (status === 'granted') {
-    await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
-      accuracy: Location.Accuracy.Balanced,
-    });
-  }
-};
-
-const PermissionsButton = () => (
-  <TouchableOpacity onPress={requestPermissions}>
-    <Text>Enable background location</Text>
-  </TouchableOpacity>
-);
-
-TaskManager.defineTask(LOCATION_TASK_NAME, ({ data, error }) => {
-  if (error) {
-    // Error occurred - check `error.message` for more details.
-    return;
-  }
-  if (data) {
-    const { locations } = data;
-    // do something with the locations captured in the background
-  }
-});
+const deviceLanguage =
+      Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale ||
+          NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+        : NativeModules.I18nManager.localeIdentifier;
 
 export default function App() {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-  
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
-  }, []);
 
   return (
     <>
@@ -73,8 +35,8 @@ export default function App() {
             uri: 'https://weee.city/', 
             headers:{ 
               webview: 'true', 
-              'Accept-Language': Localization.locale||'en', 
-              Cookie: `NEXT_LOCALE=${Localization.locale||'en'}` 
+              'Accept-Language': deviceLanguage||'en', 
+              Cookie: `NEXT_LOCALE=${deviceLanguage||'en'}` 
             } }} 
           style={{ marginTop:26 }} 
           userAgent={Platform.OS === 'android' ? 'Chrome/18.0.1025.133 Mobile Safari/535.19 [WV;]' : 'AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 [WV;]'}/>

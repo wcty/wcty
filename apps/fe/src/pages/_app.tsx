@@ -28,7 +28,8 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
   const router = useRouter()
   const locale = router.locale || router.defaultLocale || 'en'
   const firstRender = useRef(true)
-  
+  const isWebView = useRef(new Navigator().userAgent.includes('[VW;]'))
+
   if (pageProps.translation && firstRender.current) {
     i18n.load(locale, pageProps.translation)
     i18n.activate(locale)
@@ -72,7 +73,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
         >
           <RecoilRoot>
               <MapContext.Provider value={{map:undefined}}>
-                <ThemeProvider {...{theme:{...theme, layout} }}>
+                <ThemeProvider {...{theme:{...theme, layout, isWebView: isWebView.current } }}>
                     <GlobalStyle />
                     <ClientSetup/>
                     <I18nProvider i18n={i18n}>

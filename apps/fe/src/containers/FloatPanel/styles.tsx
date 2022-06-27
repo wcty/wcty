@@ -5,12 +5,15 @@ Wrapper = styled.div`
   position: absolute;
   top: 2rem;
   ${p=>p.theme.layout==='desktop'?
-  css<{}>`
+  css`
     right: 2.5rem;
   `:
-  css<{}>`
+  css`
     right: 18px;
     left: 18px;
+  `}
+  ${p=>p.theme.isWebView && css`
+    top: calc(2rem + 26px);
   `}
   height: 29px;
   display: flex;
@@ -18,7 +21,7 @@ Wrapper = styled.div`
 
 Fab = styled.button`
   ${p=>p.theme.layout==='mobile'?
-  css<{}>`
+  css`
     &:first-child{
       margin-right: 18px;
     }
@@ -30,7 +33,7 @@ Fab = styled.button`
       margin-right: 18px;
     }
   `:
-  css<{}>`
+  css`
     height: 100%;
   `}
   width: 29px;
@@ -61,10 +64,10 @@ Fab = styled.button`
 SearchWrapper = styled.div`
   position: relative;
   ${p=>p.theme.layout==='mobile'?
-  css<{}>`
+  css`
     flex: 1 1 auto;
   `:
-  css<{}>`
+  css`
     margin-right: 2rem;
     width: calc(280px + 2rem);
   `}

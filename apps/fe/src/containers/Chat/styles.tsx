@@ -4,7 +4,7 @@ export const
 ChatsWrapper = styled.div`
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   ${p=>p.theme.layout==='desktop'?
   css`padding-left: 100px;`:
   css`padding-left: unset;`}

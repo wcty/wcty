@@ -269,6 +269,9 @@ LogoRow = styled.div`
   margin-left: -2rem;
   padding-left: 2rem;
   height: 58px;
+  ${p=>p.theme.isWebView && css`
+    height: calc(58px + 26px);
+  `}
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -276,6 +279,9 @@ LogoRow = styled.div`
   border-bottom: 1px solid black;
   cursor: pointer;
   >span {
+    ${p=>p.theme.isWebView && css`
+      padding-top: 26px;
+    `}
     transform: translate(0px,0px);
     transition: transform 0.5s;
     ${props=>props.theme.font.body.regular.t3}
@@ -289,6 +295,10 @@ LogoRow = styled.div`
 CloseButton = styled.div`
   width: 58px;
   height: 58px;
+  ${p=>p.theme.isWebView && css`
+    height: calc(58px + 26px);
+    padding-top: 26px;
+  `}
   border-left: 1px solid black;
   display: flex;
   justify-content: center;

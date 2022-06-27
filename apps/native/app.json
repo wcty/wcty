@@ -23,9 +23,6 @@
       "bundleIdentifier": "city.weee",
       "buildNumber": "1.0.3",
       "infoPlist": {
-        "UIBackgroundModes": [
-          "location"
-        ],
         "CFBundleLocalizations" : ["en","uk"],
         "CFBundleDevelopmentRegion" : "en",
         "CFBundleAllowMixedLocalizations": true,
@@ -40,7 +37,11 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "city.weee",
-      "versionCode": 1
+      "versionCode": "1.0.3",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.ico"

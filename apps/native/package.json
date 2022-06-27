@@ -8,7 +8,7 @@
     "@nrwl/expo": "*",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
-    "@types/react": "*",
+    "@types/react": "~17.0.21",
     "expo": "*",
     "expo-dev-client": "*",
     "expo-localization": "~13.0.0",

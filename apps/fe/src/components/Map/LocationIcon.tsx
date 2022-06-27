@@ -135,7 +135,7 @@ function PointsLayer({map}:{map:MapType}){
         ]:[]
       }}
     />
-    <Layer
+    { map.getSource('points') && <Layer
       id='points'
       type='symbol'
       source='points'
@@ -143,6 +143,6 @@ function PointsLayer({map}:{map:MapType}){
         'icon-image': 'pulsing-dot',
       }}
       before='markers'
-    />
+    />}
   </>
 }

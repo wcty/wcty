@@ -21,7 +21,8 @@ import { I18nProvider } from '@lingui/react'
 import { en, uk } from 'make-plural'
 import ClientSetup from "common/ClientSetup";
 import Cookie from 'universal-cookie'
-
+import isUAWebView from 'is-ua-webview'
+import { UAParser } from 'ua-parser-js'
 initTranslation(i18n)
 const cookies = new Cookie()
 
@@ -40,7 +41,9 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
 
   useEffect(() => {
     //initTranslation(i18n)
-    setIsWebView(navigator.userAgent.includes('VW') || !!cookies.get('webview'))
+    const browser = (new UAParser()).getBrowser()?.name;
+    
+    setIsWebView(navigator.userAgent.includes('VW') || (!!cookies.get('webview')) || isUAWebView(navigator.userAgent) || browser === 'Chrome WebView')
     i18n.loadLocaleData(locale, { plurals: locale==='en'?en:locale==='uk'?uk:en })
     // console.log('Loaded plurals', locale)
   },[])

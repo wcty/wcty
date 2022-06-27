@@ -38,7 +38,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
 
   useEffect(() => {
     //initTranslation(i18n)
-    isWebView.current = new Navigator().userAgent.includes('[VW;]')
+    isWebView.current = navigator.userAgent.includes('[VW;]')
     i18n.loadLocaleData(locale, { plurals: locale==='en'?en:locale==='uk'?uk:en })
     // console.log('Loaded plurals', locale)
   },[])

@@ -1,7 +1,7 @@
 export default {
     "name": "We.City",
     "slug": "wcty",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/Wecity_icon_white_512.png",
     "locales": {
@@ -20,7 +20,7 @@ export default {
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "city.weee",
-      "buildNumber": "1.0.4",
+      "buildNumber": "1.0.5",
       "infoPlist": {
         "CFBundleLocalizations" : ["en","uk"],
         "CFBundleDevelopmentRegion" : "en",
@@ -36,7 +36,7 @@ export default {
         "backgroundColor": "#FFFFFF"
       },
       "package": "city.weee",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": [
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION"

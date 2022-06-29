@@ -81,7 +81,7 @@ export function FullscreenCarousel({
             {withPostButton && images[index].post_id &&
               <Button 
                 position='absolute'
-                top='2rem'
+                top={navigator.userAgent.includes('WV')? 'calc(2rem + 29px)': '2rem'}
                 left='2rem'
                 style={{opacity:0.8}}
                 onClick={()=>{

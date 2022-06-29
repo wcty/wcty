@@ -22,5 +22,8 @@
   },
   "cli": {
     "version": ">= 0.38.1"
+  },
+  "submit":{
+    "production":{"android":{"changesNotSentForReview": true}}
   }
 }

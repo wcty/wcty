@@ -19,10 +19,10 @@ export default class MyDocument extends Document {
       return {
         ...initialProps,
         styles: [
-          <>
+          <Fragment key={0}>
             {initialProps.styles}
             {sheet.getStyleElement()}
-          </>,
+          </Fragment>,
         ],
       } as DocumentInitialProps
     } finally {

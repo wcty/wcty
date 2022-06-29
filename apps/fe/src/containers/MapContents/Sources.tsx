@@ -12,6 +12,8 @@ export default function MapContents({map}:{map:Map}){
   const [cluster, setCluster] = useState<GeoJSON.FeatureCollection>({type: 'FeatureCollection', features: []})
 
   useEffect(()=>{
+    if(selected)
+    setCluster({type: 'FeatureCollection', features:[selected]})
     setTimeout(async ()=>{
       const features = await waitForFeatures(
         ()=>map?.getSource('entries') && map?.querySourceFeatures('entries', {sourceLayer:'public.entries'})

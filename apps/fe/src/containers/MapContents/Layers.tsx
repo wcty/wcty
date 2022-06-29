@@ -179,7 +179,11 @@ export default function MapContents({map}:{map:Map}){
       </>}
     </>
 
-    <>{ selected && selected?.geometry?.coordinates && layout==='desktop' && cluster.features.find(f=>f?.properties?.id===selected.id) &&
+    <>{ 
+      selected && 
+      selected?.geometry?.coordinates && 
+      layout==='desktop' && 
+      (cluster.features.find(f=>f?.properties?.id===selected.id) || !cluster.features.length) &&
       <Popup 
         closeButton={false} 
         closeOnClick={false}  

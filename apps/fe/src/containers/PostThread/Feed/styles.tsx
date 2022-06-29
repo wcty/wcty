@@ -4,6 +4,14 @@ export const
 Container = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
+`,
+
+Header = styled.div`
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex: 1 1 auto;
 `,
 
 CheckedChannels = styled.span`

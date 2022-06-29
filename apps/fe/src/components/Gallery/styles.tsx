@@ -51,6 +51,7 @@ LibraryTiles = styled.div`
   padding-top: 6rem;
   padding-bottom: 0rem;
   overflow: hidden;
+  ${p=>p.theme.isWebView && css`padding-top: calc(6rem + 29px);`}
 `,
 
 Grid = styled.div`
@@ -169,6 +170,8 @@ CloseIcon = styled.div`
   top: 2rem;
   cursor: pointer;
   opacity: 0.5;
+  ${p=>p.theme.isWebView && css`padding-top: 29px;`}
+
 `,
 
 GalleryIcon = styled.div`
@@ -177,6 +180,7 @@ GalleryIcon = styled.div`
   top: 6rem;
   cursor: pointer;
   opacity: 0.5;
+  ${p=>p.theme.isWebView && css`padding-top: 29px;`}
 `,
 
 FullscreenIcon = styled.div`

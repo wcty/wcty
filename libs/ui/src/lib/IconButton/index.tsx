@@ -28,17 +28,17 @@ interface  IconButtonProps {
   t?: 'primary' | 'secondary' | 'outlined' | 'subtle' | 'text'
 }
 
-const small = css<{}>`
+const small = css`
   width: 28px;
   height: 28px;
 `
 
-const medium = css<{}>`
+const medium = css`
   width: 48px;
   height: 48px;
 `
 
-const large = css<{}>`
+const large = css`
   width: 64px;
   height: 64px;
 `

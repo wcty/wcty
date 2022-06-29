@@ -336,4 +336,5 @@ ListContainer = styled.div`
   height: 100%;
   flex-direction: column;
   position: relative;
+  ${p=>p.theme.isWebView && css`padding-top: 29px;`}
 `

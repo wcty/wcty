@@ -1,5 +1,4 @@
-{
-  "expo": {
+export default {
     "name": "We.City",
     "slug": "wcty",
     "version": "1.0.0",
@@ -44,7 +43,9 @@
       ]
     },
     "web": {
-      "favicon": "./assets/favicon.ico"
+      "favicon": "./assets/Wecity_icon_white_512.png"
+    },
+    "extra": {
+      dev: process.env.ENV === 'development',
     }
-  }
 }

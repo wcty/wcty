@@ -108,11 +108,17 @@ export function Library({
       <LibraryTiles {...{ref}}>
         <Title s='h3' 
           position="absolute" 
-          top={layout==='desktop'?'0.8rem':'0rem'}>Photos</Title>
+          top={
+            layout==='desktop'?
+            '0.8rem':
+            navigator.userAgent.includes('WV')?
+            '29px':
+            '0rem'
+          }>Photos</Title>
         {layout==='mobile' && 
           <Text 
             position="absolute" 
-            top='3rem' 
+            top={navigator.userAgent.includes('WV')? 'calc(3rem + 29px)': '3rem' }
             alignItems='center' 
             c='label'
             display='flex'>

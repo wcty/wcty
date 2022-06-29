@@ -27,6 +27,7 @@ export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFra
     }else{
       setVisible(true)
     }
+    return ()=>setVisible(true)
   },[layout])
 
   return  <Container>

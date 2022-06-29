@@ -31,7 +31,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
   const router = useRouter()
   const locale = router.locale || router.defaultLocale || 'en'
   const firstRender = useRef(true)
-  const [isWebView, setIsWebView] = useState(false)
+  const isWebView = useRef(false)
 
   if (pageProps.translation && firstRender.current) {
     i18n.load(locale, pageProps.translation)
@@ -43,7 +43,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
     //initTranslation(i18n)
     const browser = (new UAParser()).getBrowser()?.name;
     
-    setIsWebView(navigator.userAgent.includes('VW') || (!!cookies.get('webview')) || isUAWebView(navigator.userAgent) || browser === 'Chrome WebView')
+    isWebView.current = navigator.userAgent.includes('WV')
     i18n.loadLocaleData(locale, { plurals: locale==='en'?en:locale==='uk'?uk:en })
     // console.log('Loaded plurals', locale)
   },[])
@@ -79,7 +79,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
         >
           <RecoilRoot>
               <MapContext.Provider value={{map:undefined}}>
-                <ThemeProvider {...{theme:{...theme, layout, isWebView } }}>
+                <ThemeProvider { ...{ theme: { ...theme, layout, isWebView: isWebView.current } }}>
                     <GlobalStyle />
                     <ClientSetup/>
                     <I18nProvider i18n={i18n}>

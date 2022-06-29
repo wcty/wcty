@@ -3,9 +3,11 @@ import { ArrowLeft, Body, CenterColumn, Container } from "./styles";
 import { InitiativePublicByPkQuery, PostPageQuery, useInitiativeByPkQuery } from "generated";
 import { useLayout, useUser } from "common";
 import Redirect from "components/Redirect";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { Text } from "@ui";
+import { useRecoilState } from "recoil";
+import Sidebar from "containers/Sidepanel";
 
 export type InitiativeProps = {
   initiative?:InitiativePublicByPkQuery['initiative']
@@ -16,6 +18,16 @@ export default function PostThread({post}:PostPageQuery) {
   const user = useUser()
   const router = useRouter()
   const layout = useLayout()
+  const [,setVisible] = useRecoilState(Sidebar.visible)
+
+  useEffect(()=>{
+    if(layout==='mobile'){
+      setVisible(false)
+    }else{
+      setVisible(true)
+    }
+    return ()=>setVisible(true)
+  },[layout])
   
   return (post && !post?.id)? 
     <Redirect to='/'/>  :(

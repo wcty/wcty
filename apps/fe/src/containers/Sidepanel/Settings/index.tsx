@@ -1,5 +1,5 @@
 import { useLayout, useUser } from 'common';
-import { UserIconRow, List } from "../styles";
+import { UserIconRow, List, ListContainer } from "../styles";
 import { useUpdateSettingsMutation } from "generated";
 import { useEffect, useState } from "react";
 import BurgerFab from 'containers/FloatPanel/BurgerFab';
@@ -33,7 +33,7 @@ export default function InitiativesDrawer(){
   },[data?.settings])
 
   return <>
-    <div>
+    <ListContainer>
       <UserIconRow>
         <span>
           {layout==='mobile' && <BurgerFab/>}
@@ -75,6 +75,6 @@ export default function InitiativesDrawer(){
               ><Trans>Enable push notifications</Trans></span>
       </Settings>
       </>}
-    </div>
+    </ListContainer>
   </>
 }

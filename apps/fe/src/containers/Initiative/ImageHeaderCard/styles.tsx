@@ -30,6 +30,10 @@ Image = styled.div.attrs((props:{
       width: 100%;
       height: 100%;
     }
+    ${p=>p.theme.isWebView && css`
+      height: calc(0.375 * 100vw + 29px);
+      margin-top: -29px;
+    `}
   `}
 `,
 

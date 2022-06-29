@@ -1,5 +1,5 @@
 import { atoms,  useLayout, useUser } from 'common';
-import { UserIconRow, List } from "../styles";
+import { UserIconRow, List, ListContainer } from "../styles";
 import { useMyOrganizationListQuery, useOrganizationNearbyListQuery } from "generated";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
@@ -41,7 +41,7 @@ export default function Organization(){
   },[data, myData, user])
 
   return <>
-    <div>
+    <ListContainer>
       <UserIconRow>
           <span>
             {layout==='mobile' && <BurgerFab/>}
@@ -69,6 +69,6 @@ export default function Organization(){
           }} data={{...v, infos:[{problem: v.description}], type: 'organization'}} key={key}/>
         )}
       </List>
-    </div>
+    </ListContainer>
   </>
 }

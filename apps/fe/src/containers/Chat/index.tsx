@@ -28,6 +28,7 @@ export default function Chat({chatList, feed, chatFiles}:{chatList:ChatsQuery, f
     }else{
       setVisible(true)
     }
+    return ()=>setVisible(true)
   },[layout])
 
   return <ChatsWrapper>

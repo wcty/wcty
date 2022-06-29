@@ -1,12 +1,9 @@
 import Post from "components/Post";
 import Comment from "components/Comment";
-
-import CreatePost from "containers/Initiative/Feed/PostCreation";
 import { useCommentsSubscription, useFirstMemberQuery, PostPageQuery } from "generated";
 import { useRouter } from "next/router";
-import { ArrowDown, CheckedChannels, CommentsContainer, Container, Footer } from "./styles";
-import { DateTime, DateTimeFormatOptions } from 'luxon'
-import { useLang, useLayout, useUser } from "common";
+import { ArrowDown, CommentsContainer, Container, Header } from "./styles";
+import {  useLayout, useUser } from "common";
 import { Trans } from "@lingui/macro";
 import { Text, Title } from "@ui";
 import CommentCreation from "../../../components/CommentEditor";
@@ -27,20 +24,25 @@ export default function Feed({ post }: PostPageQuery) {
 
   return(
     <Container>
-      <Title s='h2' alignSelf='center' alignContent='center' position='relative' mb='4rem'>{
-        layout==='mobile' && 
-          <ArrowLeft 
-            mr='0px'
-            style={{transform:'rotate(-45deg) translate(-10px,-10px)'}}
-            onClick={()=>{
-              router.push({
-                pathname: '/initiative/[id]', 
-                query: { id }
-              }, `/initiative/${id}`, { 
-                locale: router.locale 
-              }) 
-            }}/>
-      }{post?.initiative.name}</Title>
+      <Header>
+      {layout==='mobile' && 
+        <ArrowLeft 
+          ml='2rem'
+          mb='2rem'
+          style={{transform:'rotate(-45deg) translate(0px,0px)', overflow: 'visible', width: '1.5rem', height: '1.5rem'}}
+          onClick={()=>{
+            router.push({
+              pathname: '/initiative/[id]', 
+              query: { id }
+            }, `/initiative/${id}`, { 
+              locale: router.locale 
+            }) 
+          }}/>
+      }
+      <Title s='h2' alignSelf='center' alignContent='center' position='relative' mb='4rem' pr='3rem' flex='1 1 auto' justifyContent='center'>
+        {post?.initiative.name}
+      </Title>
+      </Header>
       {post?.initiative && <Post  {...{initiative: post.initiative, post}}/>}
       
       {comments.length===5 && 

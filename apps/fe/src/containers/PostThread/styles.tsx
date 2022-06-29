@@ -3,25 +3,29 @@ import { layout, LayoutProps, position, PositionProps, space, SpaceProps } from 
 
 export const Container = styled.div`
   ${p=>p.theme.layout==='desktop'?
-  css<{}>`
+  css`
     width: 960px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     overflow-x: visible;`:
-  css<{}>`
+  css`
     width: 100%;
     height: 100%;
     min-height: 100%;
     position: relative;
-    background-color: ${p=>p.theme.colors.primary};`
+    background-color: ${p=>p.theme.colors.primary};
+    ${p=>p.theme.isWebView && css`
+      padding-top: 26px;
+    `}
+  `
 }`,
 
 Body = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  ${p=>p.theme.layout==='desktop'&&css<{}>`display: flex;`}
+  ${p=>p.theme.layout==='desktop'&&css`display: flex;`}
 `,
 
 CenterColumn = styled.div`

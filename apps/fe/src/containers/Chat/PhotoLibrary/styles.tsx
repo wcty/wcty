@@ -29,4 +29,5 @@ ButtonContainer = styled.div`
   position: absolute;
   top: 2.38rem;
   left: 2rem;
+  ${p=>p.theme.isWebView && css`padding-top: 29px;`}
 `

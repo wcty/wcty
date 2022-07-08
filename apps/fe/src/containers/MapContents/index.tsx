@@ -10,8 +10,8 @@ export function waitForFeatures(func: ()=>MapboxGeoJSONFeature[]|null){
   return new Promise<MapboxGeoJSONFeature[]>((resolve) => {
     (function iter(f: ()=>MapboxGeoJSONFeature[]|null, prev:MapboxGeoJSONFeature[]|null, iterations){
       const features = f();
-      if((JSON.stringify(prev)!==JSON.stringify(features) || !features?.length) && iterations<10){
-        setTimeout(()=>iter(f, features, iterations+1), 500)
+      if((JSON.stringify(prev)!==JSON.stringify(features) || !features?.length) && iterations<20){
+        setTimeout(()=>iter(f, features, iterations+1), 250)
       }else{
         resolve(features||[])
       }
@@ -19,6 +19,19 @@ export function waitForFeatures(func: ()=>MapboxGeoJSONFeature[]|null){
   })
 }
 
+export function waitForLoaded(func: ()=>boolean){
+
+  return new Promise<boolean>((resolve) => {
+    (function iter(f: ()=>boolean, iterations:number){
+      const isLoaded = f();
+      if(!isLoaded && iterations<20){
+        setTimeout(()=>iter(f, iterations+1), 250)
+      }else{
+        resolve(true)
+      }
+    })(func, 0)
+  })
+}
 
 export default function MapContents(){
   return <>

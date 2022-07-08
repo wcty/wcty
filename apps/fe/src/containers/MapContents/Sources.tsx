@@ -3,7 +3,7 @@ import { atoms } from 'common';
 import { startTransition, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { Map, MapboxGeoJSONFeature } from 'mapbox-gl'
-import { waitForFeatures } from '.';
+import { waitForFeatures, waitForLoaded } from '.';
 
 export default function MapContents({map}:{map:Map}){
   const [selected] = useRecoilState(atoms.selected)
@@ -12,15 +12,20 @@ export default function MapContents({map}:{map:Map}){
   const [cluster, setCluster] = useState<GeoJSON.FeatureCollection>({type: 'FeatureCollection', features: []})
 
   useEffect(()=>{
-    if(selected)
-    setCluster({type: 'FeatureCollection', features:[selected]})
     setTimeout(async ()=>{
-      const features = await waitForFeatures(
-        ()=>map?.getSource('entries') && map?.querySourceFeatures('entries', {sourceLayer:'public.entries'})
+      const isLoaded = await waitForLoaded(
+        ()=>!!map?.getSource('entries')
       )
-      if(features)
-        startTransition(()=>setCluster({type: 'FeatureCollection', features}))
-    }, 250)
+      if(isLoaded){
+        const features = await waitForFeatures(
+          ()=>map?.querySourceFeatures('entries', {sourceLayer:'public.entries'})
+        )
+        // if(selected)
+        //   setCluster({type: 'FeatureCollection', features:[selected]})
+        if(features)
+          startTransition(()=>setCluster({type: 'FeatureCollection', features}))
+      }
+    }, 0)
   },[viewport, map, selected])
   
   return <>

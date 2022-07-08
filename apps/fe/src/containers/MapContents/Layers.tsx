@@ -64,7 +64,8 @@ export default function MapContents({map}:{map:Map}){
           ['all', ['case', ['==',['get','type'],'organization'], true, false]]
         }
       />}
-      {map.getSource('entries-clusters') &&<> 
+      {map.getSource('entries-clusters') && <> 
+      
       <Layer
         id='entries-clusters'
         source='entries-clusters'

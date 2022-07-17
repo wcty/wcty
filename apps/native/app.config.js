@@ -1,7 +1,7 @@
 export default {
     "name": "We.City",
     "slug": "wcty",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/Wecity_icon_white_512.png",
     "locales": {
@@ -20,7 +20,7 @@ export default {
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "city.weee",
-      "buildNumber": "1.0.5",
+      "buildNumber": "1.0.0",
       "infoPlist": {
         "CFBundleLocalizations" : ["en","uk"],
         "CFBundleDevelopmentRegion" : "en",
@@ -35,8 +35,9 @@ export default {
         "foregroundImage": "./assets/Wecity_icon_white_512.png",
         "backgroundColor": "#FFFFFF"
       },
+      "icon": "./assets/Wecity_icon_white_512.png",
       "package": "city.weee",
-      "versionCode": 3,
+      "versionCode": 0,
       "permissions": [
         "ACCESS_FINE_LOCATION",
         "ACCESS_COARSE_LOCATION"
@@ -44,8 +45,5 @@ export default {
     },
     "web": {
       "favicon": "./assets/Wecity_icon_white_512.png"
-    },
-    "extra": {
-      dev: process.env.ENV === 'development',
     }
 }

@@ -1,5 +1,5 @@
 import { ReactComponent as ArrowDropDown } from '@assets/icons/arrow-drop-down.svg'
-import {  useUser } from "common";
+import { useUserData } from '@nhost/nextjs';
 import { TasksDocument, Task_Statuses_Enum, useCheckTaskMutation, useTasksQuery } from "generated";
 import { useState } from "react";
 import { FinishedTasks, List, ProgressBar, Task } from "./styles";
@@ -9,7 +9,7 @@ import { Trans } from '@lingui/macro'
 
 export default function TaskList() {
   const { id } = useRouter().query;
-  const user = useUser()
+  const user = useUserData()
   const {data} = useTasksQuery({variables:{id}, fetchPolicy:"cache-first", nextFetchPolicy:"cache-only"});
   const [open, setOpen] = useState(true);
   const [check] = useCheckTaskMutation({refetchQueries: [TasksDocument]});

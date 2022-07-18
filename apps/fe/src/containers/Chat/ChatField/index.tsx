@@ -6,18 +6,18 @@ import { useRouter } from 'next/router';
 import { ChatListHeading } from '../styles';
 import { ChatWrapper, ChatContainer, EditorContainer, MessageContainer, UserMessageContainer, MessageWrapper, MessagesContainer, TimeStamp } from './styles'
 import { t, Trans } from '@lingui/macro';
-import { useLang, useSize, useUser } from 'common';
+import { useLang, useSize } from 'common';
 import MessageEditor from 'components/MessageEditor';
 import { DateTime, DateTimeFormatOptions } from 'luxon'
 import Chat from '..';
 import { useRecoilState } from 'recoil';
 import { useLayout } from '@ui/common';
-import Sidebar from "containers/Sidepanel";
 import { ButtonBack } from 'containers/Members/styles';
+import { useUserData } from '@nhost/nextjs';
 
 export default function ChatField({chatList, feed, chatFiles}:{chatList:ChatsQuery, feed?:ChatFeedSubscription, chatFiles?: ChatFilesQuery}){
 
-  const user = useUser()
+  const user = useUserData()
   const router = useRouter()
   const { id, chat_id } = router.query
   const lang = useLang()  

@@ -1,19 +1,20 @@
 import Post from "components/Post";
 import Comment from "components/Comment";
-import { useCommentsSubscription, useFirstMemberQuery, PostPageQuery } from "generated";
+import { useCommentsSubscription, PostPageQuery } from "generated";
 import { useRouter } from "next/router";
 import { ArrowDown, CommentsContainer, Container, Header } from "./styles";
-import {  useLayout, useUser } from "common";
+import {  useLayout } from "common";
 import { Trans } from "@lingui/macro";
 import { Text, Title } from "@ui";
 import CommentCreation from "../../../components/CommentEditor";
 import { ArrowLeft } from "../styles";
+import { useUserData } from '@nhost/nextjs';
 
 export default function Feed({ post }: PostPageQuery) {
   const router = useRouter();
   const { id } = router.query;
   const layout = useLayout();
-  const user = useUser()
+  const user = useUserData()
   const { data: { comments }={ comments:[] }, error } = useCommentsSubscription({variables:{
       post_id:post?.id,
       id: post?.initiative?.id,

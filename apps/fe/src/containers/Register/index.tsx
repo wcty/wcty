@@ -1,5 +1,5 @@
 import { CenterPanel } from "@ui";
-import { atoms, auth, useLayout } from 'common';
+import { atoms, useLayout } from 'common';
 import { useState } from "react";
 import { Button, FormControl, Header, HeaderCover } from "./styles";
 import { useRouter } from "next/router";
@@ -13,7 +13,7 @@ import { Trans } from '@lingui/macro'
 import Link from "next/link";
 import Pigeon from '@assets/images/pigeon-03.png'
 import { Text } from '@ui'
-
+import { useProviderLink } from '@nhost/nextjs'
 
 const cookies = new Cookies()
 
@@ -22,6 +22,7 @@ export default function Register (){
   const router = useRouter()
   const layout = useLayout()
   const loginMethod = cookies.get('loginMethod')
+  const { facebook, google, apple } = useProviderLink();
 
   return (
     <CenterPanel onClose={()=>router.push('/')}>
@@ -35,7 +36,7 @@ export default function Register (){
             onClick={(e)=>{
               e.preventDefault()
               cookies.set('loginMethod', 'Google', { path: '/' });
-              auth.login({ provider: 'google' })
+              router.push(google)
           }}> 
               <GoogleIcon/>
               <Text semibold><Trans>Sign up with Google</Trans></Text>
@@ -45,7 +46,7 @@ export default function Register (){
             onClick={(e)=>{
               e.preventDefault() 
               cookies.set('loginMethod', 'Facebook', { path: '/' });     
-              auth.login({ provider: 'facebook' })
+              router.push(facebook)
           }}>
             <FbIcon/>
             <Text semibold><Trans>Sign up with Facebook</Trans></Text>
@@ -55,7 +56,7 @@ export default function Register (){
             onClick={(e)=>{
               e.preventDefault() 
               cookies.set('loginMethod', 'Apple', { path: '/' });     
-              auth.login({ provider: 'apple' })
+              router.push(apple)
           }}>
             <AppleIcon/>
             <Text semibold><Trans>Sign up with Apple</Trans></Text>

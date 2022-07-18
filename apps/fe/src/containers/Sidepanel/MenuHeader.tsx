@@ -6,12 +6,14 @@ import { ReactComponent as WecityText } from '@assets/icons/wecity-text.svg'
 import { ReactComponent as AnonIcon } from '@assets/icons/anon-icon.svg'
 import { Trans } from '@lingui/macro'
 
-import { fixAvatar,  useLayout, useUser } from 'common'
+import { fixAvatar,  useLayout } from 'common'
 import { Tabs } from './tabs'
 import { useRecoilState } from 'recoil'
 import Sidepanel from '.'
 import { useRouter } from 'next/router'
 import Cookies from 'universal-cookie';
+import { useUserData } from '@nhost/nextjs';
+
 const cookies = new Cookies();
 
 type MenuHeaderProps = {
@@ -25,7 +27,7 @@ type MenuHeaderProps = {
 }
 
 export default function MenuHeader ({props}:MenuHeaderProps){
-  const user = useUser()
+  const user = useUserData()
   const router = useRouter()
   
   const [open, setOpen] = useRecoilState(Sidepanel.open)
@@ -50,7 +52,7 @@ export default function MenuHeader ({props}:MenuHeaderProps){
       }}}>
       {user? 
         <span style={{textTransform:'uppercase'}}>
-          {user.display_name}
+          {user.displayName}
         </span>:
       <>
         <span>
@@ -88,8 +90,8 @@ export default function MenuHeader ({props}:MenuHeaderProps){
       }}}>
       {user? 
         <span style={{textTransform:'uppercase'}}>
-          <img src={fixAvatar(user?.avatar_url)}/>
-          {user.display_name}
+          <img src={fixAvatar(user?.avatarUrl)}/>
+          {user.displayName}
         </span>:
       <>
         <span>

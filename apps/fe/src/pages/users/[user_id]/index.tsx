@@ -1,4 +1,4 @@
-import { loadTranslation, useLayout, useUser } from 'common'
+import { loadTranslation, NHOST_BACKEND_URL, useLayout, NhostProps } from 'common'
 import { Burger, ContentWrapper } from 'styles'
 import Sidepanel from 'containers/Sidepanel'
 import { useRouter } from 'next/router'
@@ -10,14 +10,22 @@ import { FixedBottom } from 'react-fixed-bottom'
 import { useEffect } from 'react'
 import Cookie from 'universal-cookie'
 import UserProfile from 'containers/UserProfile'
+import {
+  getNhostSession,
+  useAccessToken,
+  useAuthenticated,
+  useUserData
+} from '@nhost/nextjs'
 
 const cookies = new Cookie()
 
-export default function DynamicUser() {
+export default function DynamicUser(props:NhostProps) {
+  const isAuthenticated = useAuthenticated()
+  const user = useUserData()
+  const accessToken = useAccessToken()
   const router = useRouter()
   const {pathname, query} = router
   const layout = useLayout()
-  const user = useUser()
   
 
   useEffect(()=>{
@@ -76,11 +84,12 @@ export default function DynamicUser() {
 }
 
 export const getServerSideProps:GetServerSideProps = async (ctx) => {
+  const nhostSession = await getNhostSession(NHOST_BACKEND_URL, ctx)
 
   const translation = await loadTranslation(
     ctx.locale!,
     process.env.NODE_ENV === 'production'
   )
 
-  return { props: { translation } }
+  return { props: { translation, nhostSession } }
 }

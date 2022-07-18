@@ -31,11 +31,6 @@ const cookies = new Cookies()
 export const focalPoint = atom({
   key: 'userCursor',
   default: undefined as number[]|undefined
-}),
-
-user = atom({
-  key: 'user',
-  default: undefined as UserQuery['users_by_pk'],
 });
 
 const defaultFocus:number[]|undefined = cookies.get('focus')

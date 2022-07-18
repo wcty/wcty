@@ -1,4 +1,4 @@
-import { useAddress, useGeolocation,  useLang,  useLayout, useUser } from "common";
+import { useAddress, useGeolocation,  useLang,  useLayout } from "common";
 import { Header, Icon, MetricsRow, ShareJoin, Stats, Member, MembersContainer, MenuSection, MenuButton } from "./styles";
 
 import { format } from 'd3-format'
@@ -19,6 +19,7 @@ import { ReactComponent as Mail } from '@assets/icons/mail.svg'
 import { ReactComponent as Layers } from '@assets/icons/layers.svg'
 import User from '@assets/icons/user.png'
 import { OptionsButton } from "components/Post/styles";
+import { useUserData } from '@nhost/nextjs';
 
 const formatMeters = format(',.2r')
 
@@ -64,7 +65,7 @@ function PeopleLocation({count, distance, members}: {count:number, distance?:num
 
 function Buttons({isMember=false, isOnlyMember=false, id=''}){
   const router = useRouter()
-  const user = useUser()
+  const user = useUserData()
   const [deleteInitiative] = useDeleteInitiativeMutation({variables:{id:router.query.id}})
   const [leaveInitiative] = useDeleteInitiativeMemberMutation({
     variables:{ 
@@ -98,7 +99,7 @@ export default function HeaderComponent({initiative}:InitiativeProps) {
   const layout = useLayout()
   const router = useRouter()
   const { id } = router.query;
-  const user = useUser()
+  const user = useUserData()
   
   const loc = useGeolocation()
   const dist = initiative && loc && distance(

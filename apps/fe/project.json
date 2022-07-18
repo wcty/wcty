@@ -14,7 +14,10 @@
       "prebuild": "nx i18n fe && nx tiles fe && nx gql fe",
       "postbuild": "next-sitemap --configuration=production --output=./dist/apps/fe/sitemap.xml",
       "configurations": {
-        "production": {}
+        "production": {},
+        "development": {
+          "outputPath": "tmp/apps/fe"
+        }
       }
     },
     "serve": {

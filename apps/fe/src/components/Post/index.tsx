@@ -2,7 +2,7 @@ import { Actions, CommentCounter,  Container, Content, ImageContainer, ImageWrap
 import { ReactComponent as CommentIco } from '@assets/icons/comment.svg'
 import { ReactComponent as LikeIco} from '@assets/icons/like.svg'
 import { PostFragment, Reactions_Enum, useReactionToPostMutation, useDeleteLikeMutation, useDeletePostMutation, File_Types_Enum, GetFilesDocument, PostInitiativeInfoFragment } from "generated";
-import { fixAvatar, useUser } from "common";
+import { fixAvatar } from "common";
 import { Trans } from "@lingui/macro";
 import { Button, Author } from "@ui";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import { useRecoilState } from 'recoil';
 import Sidepanel from "containers/Sidepanel";
 import { useRouter } from "next/router";
 import useImages from "common/hooks/useImages";
+import { useUserData } from '@nhost/nextjs';
 
 type ImageType = {
   url: string,
@@ -44,7 +45,7 @@ export default function Post({
     ...props
   } = post;
 
-  const user = useUser();
+  const user = useUserData();
   const router = useRouter();
 
   const [deletePost, {error}] = useDeletePostMutation({

@@ -1,8 +1,9 @@
-import { usePushNotifications, useUser } from "common";
+import { usePushNotifications } from "common";
 import React from "react";
+import { useUserData } from '@nhost/nextjs';
 
 export default function PushNotificationDemo() {
-  const user = useUser()
+  const user = useUserData()
   const {
     isSupported,
     isSubscribed,

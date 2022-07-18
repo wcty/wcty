@@ -2,11 +2,12 @@ import { Avatar, TextField, Button, IconButton } from "@ui";
 import { InputContent } from "./styles";
 import { Actions, Container } from "../../../../components/Post/styles";
 import { ReactComponent as VoteIco} from "@assets/icons/vote.svg";
-import { fixAvatar, useUser } from "common";
+import { fixAvatar } from "common";
 import { useState } from "react";
 import { Trans } from '@lingui/macro'
 import PostEditor from "../../../../components/PostEditor";
 import { PostInitiativeInfoFragment } from "generated";
+import { useUserData } from '@nhost/nextjs';
 
 export default function CreatePost({
   initiative
@@ -14,7 +15,7 @@ export default function CreatePost({
   initiative?: PostInitiativeInfoFragment | null
 }){
   
-  const user = useUser();
+  const user = useUserData();
   const [editorOpen, setEditorOpen] = useState(false);
 
   return (
@@ -24,7 +25,7 @@ export default function CreatePost({
       <Container>
         <InputContent> 
             <Avatar s={'small'} picture={
-              fixAvatar(user?.avatar_url)
+              fixAvatar(user?.avatarUrl)
             }/>
             <TextField 
               onClick={()=>setEditorOpen(true)} 

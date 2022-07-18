@@ -1,4 +1,4 @@
-import {  useUser } from 'common';
+import { useUserData } from '@nhost/nextjs';
 import { Button, Checkbox, TextArea, TextField } from "@ui";
 import { InitiativeByPkDocument, Roles_Enum, useJoinMutation, useTasksQuery } from 'generated';
 import { useEffect, useState } from 'react';
@@ -9,7 +9,7 @@ import { position, layout } from 'styled-system'
 
 export default function Join() {
   const { id } = useRouter().query;
-  const user = useUser()
+  const user = useUserData()
   const { data:tasks, error } = useTasksQuery({variables:{id}, fetchPolicy:'cache-first', nextFetchPolicy: 'cache-only' })
   
   const [commitments, setCommitments] = useState({

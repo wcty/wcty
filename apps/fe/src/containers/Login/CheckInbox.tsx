@@ -1,6 +1,6 @@
 import { CenterPanel } from "@ui";
-import { atoms, auth, useLayout } from 'common';
-import { Button, FormControl, TextField, Label, Header } from "./styles";
+import { atoms, useLayout } from 'common';
+import { Button, Header } from "./styles";
 import { useRouter } from "next/router";
 import Cookies from 'universal-cookie'
 import { Trans } from '@lingui/macro'

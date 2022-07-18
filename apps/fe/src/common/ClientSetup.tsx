@@ -1,8 +1,8 @@
-import { useUserData } from "./nhost"
+import { useUserDataSetup } from "./useUserData"
 
 
 export default function ClientSetup(props:any){
-  useUserData()
+  useUserDataSetup()
   return null
 }
 

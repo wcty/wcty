@@ -1,3 +1,4 @@
+import { NhostSession } from '@nhost/nextjs';
 import { InitiativesLastVisitedQuery, InitiativesNearbyQuery } from 'generated';
 import type { SetterOrUpdater } from 'recoil';
 import Cookies from 'universal-cookie';
@@ -5,11 +6,18 @@ import Cookies from 'universal-cookie';
 export * from './recoil'
 export * from './hooks'
 export * from './functions'
-export * from './nhost'
 export * from './types'
 export * from './apollo'
 export * from './fonts'
 export * from './translations'
+
+export const NHOST_BACKEND_URL = 
+  origin === 'http://localhost:3000' ? 
+    'localhost:8080':
+    'https://api.weee.city'
+
+export type NhostProps = { initial: NhostSession }
+
 
 export const mapboxToken = 'pk.eyJ1Ijoic3dpdGNoOSIsImEiOiJjamozeGV2bnkxajV2M3FvNnpod3h4ODlpIn0.CTt2IXV8II6finbTlxEddg'
 

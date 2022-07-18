@@ -1,4 +1,4 @@
-import { atoms,  useLayout, useUser } from 'common';
+import { atoms,  useLayout } from 'common';
 import { UserIconRow, List, ListContainer } from "../styles";
 import { useInitiativesNearbyListQuery, useMyInitiativeListQuery } from "generated";
 import { useRecoilState } from "recoil";
@@ -9,9 +9,10 @@ import Slides from 'containers/Slides';
 import BurgerFab from 'containers/FloatPanel/BurgerFab';
 import { useRouter } from 'next/router';
 import { Trans } from '@lingui/macro'
+import { useUserData } from '@nhost/nextjs';
 
 export default function InitiativesDrawer(){
-  const user = useUser()
+  const user = useUserData()
   const [view] = useRecoilState(atoms.viewport)
   
   const location = {

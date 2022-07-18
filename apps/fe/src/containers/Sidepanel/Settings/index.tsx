@@ -1,4 +1,4 @@
-import { useLayout, useUser } from 'common';
+import { useLayout } from 'common';
 import { UserIconRow, List, ListContainer } from "../styles";
 import { useUpdateSettingsMutation } from "generated";
 import { useEffect, useState } from "react";
@@ -7,9 +7,10 @@ import { t, Trans } from '@lingui/macro'
 import { Checkbox } from '@ui';
 import { Settings } from './styles';
 import { useSettingsSubscription } from 'generated';
+import { useUserData } from '@nhost/nextjs';
 
 export default function InitiativesDrawer(){
-  const user = useUser()
+  const user = useUserData()
   const layout = useLayout()
 
   const { data, loading } = useSettingsSubscription({variables:{id: user?.id||''}});

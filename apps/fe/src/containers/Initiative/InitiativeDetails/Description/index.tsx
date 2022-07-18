@@ -1,4 +1,4 @@
-import {  useLayout, useSize, useUser } from "common";
+import {  useLayout, useSize } from "common";
 import { InitiativeByPkQuery, InitiativePublicByPkQuery } from "generated";
 import { ReactComponent as ArrowDropDown } from '@assets/icons/arrow-drop-down.svg'
 import { config, useSpring } from 'react-spring'
@@ -10,13 +10,14 @@ import getScore from "./getScore";
 import { useRouter } from "next/router";
 import { InitiativeProps } from "containers/Initiative";
 import { Trans } from '@lingui/macro'
+import { useUserData } from '@nhost/nextjs';
 
 
 export default function Description({initiative}:InitiativeProps) {
   const layout = useLayout()
 
   const { id } = useRouter().query;
-  const user = useUser()
+  const user = useUserData()
   const [open, setOpen] = useState(true)
 
   const { score, collected, required } = getScore(initiative)

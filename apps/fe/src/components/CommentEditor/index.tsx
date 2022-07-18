@@ -1,6 +1,6 @@
 import { Avatar, TextField, IconButton } from "@ui";
 import { InputContent, Container } from "./styles";
-import { fixAvatar, useUploader, useUser } from "common";
+import { fixAvatar, useUploader } from "common";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { CommentFragment, GetFilesDocument, PostPageQuery, SubCommentFragment, useCreateCommentMutation, useDeleteFilesMutation, useUpdateCommentMutation } from "generated";
 import { useRouter } from "next/router";
@@ -9,6 +9,7 @@ import { FullscreenCarousel, GalleryImage } from "components/Gallery";
 import { useRecoilState } from "recoil";
 import Sidepanel from "containers/Sidepanel";
 import { PositionProps, LayoutProps, SpaceProps, FlexProps } from "styled-system";
+import { useUserData } from '@nhost/nextjs';
 
 export default function CommentEditor({ 
   parent, 
@@ -23,7 +24,7 @@ export default function CommentEditor({
   noAvatar?:boolean
 } & PositionProps&LayoutProps&SpaceProps&FlexProps ){
   
-  const user = useUser();
+  const user = useUserData();
   const router = useRouter();
   const { id, post_id } = router.query;
   const [editorOpen, setEditorOpen] = useState(false);
@@ -151,7 +152,7 @@ export default function CommentEditor({
       <Container {...props}>
         <InputContent> 
             {!noAvatar && <Avatar s={'small'} picture={
-              fixAvatar(user?.avatar_url)
+              fixAvatar(user?.avatarUrl)
             }/>}
             <TextField
               onImageClick={()=>setEditorOpen(true)} 

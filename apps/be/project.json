@@ -51,14 +51,18 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "docker-compose -f apps/be/docker-compose.mac.yml up -d --always-recreate-deps"
-        ]
+          "yarn nx build admin --configuration=production",
+          "docker-compose -f apps/be/docker-compose.yml -f apps/be/docker-compose.dev.yml up -d --force-recreate --build --always-recreate-deps"
+        ],
+        "parallel": false
       }
     },
     "stop": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": ["docker-compose -f apps/be/docker-compose.mac.yml down"]
+        "commands": [
+          "docker-compose -f apps/be/docker-compose.mac.yml down"
+        ]
       }
     }
   },

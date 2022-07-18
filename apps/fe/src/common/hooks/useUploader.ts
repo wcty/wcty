@@ -1,8 +1,7 @@
-import { ChangeEvent, useState, MouseEvent, MouseEventHandler } from 'react'
-import { atoms, storage } from 'common'
+import { ChangeEvent, useState, MouseEventHandler } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import { useRecoilValue } from 'recoil'
-import { Files_Insert_Input, useInsertFileMutation, useUpdateFileMutation } from 'generated'
+import { Files_Insert_Input, useInsertFileMutation } from 'generated'
+import { useFileUpload, useUserData } from '@nhost/nextjs'
 
 type Handler = MouseEventHandler<HTMLButtonElement>
 
@@ -18,16 +17,24 @@ export type UploaderOptions = {
 export type Files = {file:File,blob:string}[]
 export type Result = {uuid?: string, url?:string, path?:string}
 export function useUploader() {
-
-  const user = useRecoilValue(atoms.user)
+  const {  add,
+    upload,
+    cancel,
+    isUploaded,
+    isUploading,
+    isError,
+    progress,
+    id,
+    bucketId,
+    name
+   } = useFileUpload();
+  const user = useUserData()
   const [ filesData, setFilesData ] = useState<Files | null>()
-  const [ progress, setProgress ] = useState<number[]>([])
   const [ results, setResults ] = useState<Result[]>([])
   const [ insertFile ] = useInsertFileMutation()
 
   const reset = () => {
     setFilesData(null)
-    setProgress([])
     setResults([])
   }
 
@@ -36,7 +43,7 @@ export function useUploader() {
     options?:UploaderOptions)=>{
     const files:Files = []
 
-    for(let file of e.target.files||[]){
+    for(const file of e.target.files||[]){
       files.push({
         file: file,
         blob: URL.createObjectURL(file)
@@ -79,11 +86,7 @@ export function useUploader() {
     const downloadable_url = `https://api.weee.city/storage/o${file_path_string}`;
     
     try{
-      await storage.put(file_path_string, fileData, null, (d: any) => {
-        const updatedProgress = [...progress]
-        updatedProgress[index] = (d.loaded / d.total) * 100
-        setProgress(updatedProgress);
-      });
+      await upload({file:fileData, name: file_path_string});
     }catch(e){
       console.log('Error uploading file', e)
     }

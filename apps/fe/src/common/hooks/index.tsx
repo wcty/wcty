@@ -1,19 +1,12 @@
 import { useState, useEffect, MutableRefObject, useRef, useLayoutEffect, useCallback, RefObject } from 'react'
 import { useRecoilState } from 'recoil'
-import { atoms, auth, mapboxToken } from 'common'
-import { useUserQuery } from 'generated'
+import { atoms, mapboxToken } from 'common'
 import { useRouter } from 'next/router'
-import { useNhostAuth } from '@nhost/react-auth'
 
 
 export * from './useUploader'
 export * from './usePushNotifications'
 export * from './useImages'
-
-export function useUser(){
-  const [user, setUser] = useRecoilState(atoms.user)
-  return user
-}
 
 const defaultSettings = {
   enableHighAccuracy: false,

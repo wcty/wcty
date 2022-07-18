@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from 'next/router'
 import Cookies from 'universal-cookie';
 import { GetStaticProps } from "next";
-import { auth, loadTranslation, useUserData } from "common";
+import { loadTranslation } from "common";
+import { useUserData } from "@nhost/nextjs";
+
 const cookies = new Cookies();
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
@@ -21,7 +23,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 export default function AuthSuccess(){
   const router = useRouter()
-  const { user } = useUserData(true)
+  const user = useUserData()
 
   useEffect(()=>{
     if(user){

@@ -1,16 +1,11 @@
 import 'resize-observer-polyfill/dist/ResizeObserver.global'
 import { AppProps } from 'next/app'
 import { GlobalStyle } from 'styles'
-import { cacheConfig, Fonts, memoize, useLayout } from 'common'
+import { cacheConfig, memoize, NHOST_BACKEND_URL, useLayout } from 'common'
 import { theme } from '@ui/common'
 import { RecoilRoot, } from 'recoil'
-import { NhostAuthProvider } from '@nhost/react-auth'
-import { NhostApolloProvider } from 'common'
-// import { NhostApolloProvider } from '@nhost/react-apollo'
-
 import { ThemeProvider } from 'styled-components'
 import { InMemoryCache } from '@apollo/client';
-import * as nhost from 'common/nhost'
 import MapContext from 'components/Map/ContextProvider'
 import Head from 'next/head'
 import { i18n } from '@lingui/core'
@@ -21,8 +16,18 @@ import { I18nProvider } from '@lingui/react'
 import { en, uk } from 'make-plural'
 import ClientSetup from "common/ClientSetup";
 import Cookie from 'universal-cookie'
-import isUAWebView from 'is-ua-webview'
 import { UAParser } from 'ua-parser-js'
+import { NhostClient, NhostNextProvider } from '@nhost/nextjs'
+import { NhostApolloProvider } from '@nhost/react-apollo'
+
+const origin = typeof window !=='undefined'? window.location.origin: 'https://weee.city'
+
+
+
+const nhost = new NhostClient({
+  backendUrl: NHOST_BACKEND_URL
+})
+
 initTranslation(i18n)
 const cookies = new Cookie()
 
@@ -70,13 +75,12 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
         <link rel="manifest" href="/manifest.json" />
         <title>We.City</title>
       </Head>
-      <NhostAuthProvider {...{nhost:nhost as any}}>
-        <NhostApolloProvider
-          {...{nhost}}
+      <NhostNextProvider nhost={nhost} initial={pageProps.nhostSession}>
+        <NhostApolloProvider 
           cache={new InMemoryCache( cacheConfig )}
           publicRole='anonymous'
-          graphqlUrl={`https://gql.weee.city/v1/graphql`}
-        >
+          // graphqlUrl={`https://gql.weee.city/v1/graphql`}
+          nhost={nhost}>
           <RecoilRoot>
               <MapContext.Provider value={{map:undefined}}>
                 <ThemeProvider { ...{ theme: { ...theme, layout, isWebView: isWebView.current } }}>
@@ -89,7 +93,7 @@ export default function AppWrapper({ Component, pageProps }:AppProps) {
               </MapContext.Provider>
           </RecoilRoot>
         </NhostApolloProvider>
-      </NhostAuthProvider>
+      </NhostNextProvider>
     </>
   )
 }

@@ -6,7 +6,8 @@ import { AccountSection, Avatar } from './styles'
 import UserDefault from '@assets/icons/user.png'
 import { useLang } from '@ui/common'
 import { DateTimeFormatOptions, DateTime } from 'luxon'
-import { useLayout, useUser } from 'common'
+import { useLayout } from 'common'
+import { useUserData } from '@nhost/nextjs';
 
 const getRoles = (m: MemberInfoFragment)=>{
   const roles = []
@@ -25,7 +26,7 @@ const getRoles = (m: MemberInfoFragment)=>{
 
 export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFragment, memberInfo?: MemberInfoFragment}) {
   const router = useRouter()
-  const user = useUser()
+  const user = useUserData()
 
   const { id, user_id } = router.query
   const layout = useLayout()

@@ -1,4 +1,4 @@
-import { loadTranslation, useLayout, useUser } from 'common'
+import { loadTranslation, NhostProps, NHOST_BACKEND_URL, useLayout } from 'common'
 import { Burger, ContentWrapper } from 'styles'
 import Sidepanel from 'containers/Sidepanel'
 import { useRouter } from 'next/router'
@@ -11,14 +11,23 @@ import { useEffect } from 'react'
 import Cookie from 'universal-cookie'
 import Members from 'containers/Members'
 import Chat from 'containers/Chat'
+import {
+  getNhostSession,
+  useAccessToken,
+  useAuthenticated,
+  useUserData
+} from '@nhost/nextjs'
 
 const cookies = new Cookie()
 
-export default function DynamicChat() {
+export default function DynamicChat(props:NhostProps) {
+  const isAuthenticated = useAuthenticated()
+  const user = useUserData()
+  const accessToken = useAccessToken()
+
   const router = useRouter()
   const {pathname, query} = router
   const layout = useLayout()
-  const user = useUser()
   
 
   useEffect(()=>{
@@ -90,11 +99,12 @@ export default function DynamicChat() {
 }
 
 export const getServerSideProps:GetServerSideProps = async (ctx) => {
+  const nhostSession = await getNhostSession(NHOST_BACKEND_URL, ctx)
 
   const translation = await loadTranslation(
     ctx.locale!,
     process.env.NODE_ENV === 'production'
   )
 
-  return { props: { translation } }
+  return { props: { translation, nhostSession } }
 }

@@ -1,4 +1,4 @@
-import { useUser } from "common";
+import { useUserData } from '@nhost/nextjs';
 import { useState } from "react";
 import Welcome from "./Welcome";
 import LocationAccess from "./LocationAccess";
@@ -51,7 +51,7 @@ export default function Intro() {
   )
 }
 
-function Circles({count=3,index=0, setIndex=(val:number)=>{}}){
+function Circles({count=3,index=0, setIndex=(val:number)=>{return}}){
   const stroke = 1
   const radius = 5
   const padding = 5

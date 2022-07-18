@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  caddy:
+    volumes:
+      - ./Caddyfile.dev:/etc/caddy/Caddyfile
+
+  wcty-admin:
+    build: 
+      context: ../../
+      dockerfile: ./apps/admin/Dockerfile
+
+  hasura:
+    ports:
+    - "8080:8080"

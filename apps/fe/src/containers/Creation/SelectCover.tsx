@@ -4,10 +4,12 @@ import { ReactComponent as Steps } from '@assets/icons/steps2.svg'
 import { Initiative } from ".";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Task_Statuses_Enum, useInsertInitiativeMutation } from "generated";
-import { UploaderOptions, Result, useUser } from "common";
+import { UploaderOptions, Result } from "common";
 import { useRouter } from "next/router";
 import { Trans, t } from '@lingui/macro'
 import { Loader } from "@ui";
+import { useUserData } from '@nhost/nextjs';
+
 
 export default function Creation({
   initiative,
@@ -26,7 +28,7 @@ export default function Creation({
   blob?: string
 }) {
   const router = useRouter()
-  const user = useUser()
+  const user = useUserData()
   const [insert, {error, data}] = useInsertInitiativeMutation()
   const [loading, setLoading] = useState(false)
   

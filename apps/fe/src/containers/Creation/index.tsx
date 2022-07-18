@@ -1,4 +1,4 @@
-import { atoms, useUploader, useUser } from "common";
+import { atoms, useUploader } from "common";
 import Unauthorized from "./Unauthorized";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -7,6 +7,7 @@ import SelectName from "./SelectName";
 import SelectCover from "./SelectCover";
 import { v4 as uuidv4 } from 'uuid'
 import { CreationContainer } from "./styles";
+import { useUserData } from '@nhost/nextjs';
 
 export type Initiative = {
   address: string,
@@ -22,7 +23,7 @@ export type Initiative = {
 }
 
 export default function Creation() {
-  const user = useUser()
+  const user = useUserData()
   const [viewport] = useRecoilState(atoms.viewport)
 
   const [initiative, setInitiative] = useState<Initiative>({

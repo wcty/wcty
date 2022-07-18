@@ -9,7 +9,7 @@ import { ReactComponent as SearchIcon } from '@assets/icons/search.svg'
 import { FieldWrapper, SearchInput } from 'containers/FloatPanel/styles'
 import { ReactComponent as CancelIcon } from '@assets/icons/cancel.svg'
 import { t, Trans } from '@lingui/macro';
-import { useUser } from 'common';
+import { useUserData } from '@nhost/nextjs';
 import User from '@assets/icons/user.png'
 import { useRouter } from 'next/router';
 import { ButtonBack } from 'containers/Members/styles';
@@ -35,7 +35,7 @@ export const getRoles = (m: MemberInfoFragment)=>{
 export default function ChatCatalog({chatList}:{chatList:ChatsQuery}){
 
   const [keyword, setKeyword] = useState('')
-  const user = useUser()
+  const user = useUserData()
   const router = useRouter()
   const { id, chat_id } = router.query
   const layout = useLayout();

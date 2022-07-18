@@ -1,4 +1,4 @@
-import {  useLayout, useUser } from "common";
+import {  useLayout } from "common";
 import { InitiativePublicByPkQuery } from "generated";
 import { Block } from "./styles";
 import {ReactComponent as Flag} from "@assets/icons/flag.svg"
@@ -7,10 +7,11 @@ import {ReactComponent as BuildCircle} from "@assets/icons/build_circle.svg"
 import { useRouter } from "next/router";
 import { InitiativeProps } from "containers/Initiative";
 import { Trans } from '@lingui/macro'
+import { useUserData } from '@nhost/nextjs';
 
 export default function Information({initiative}:InitiativeProps) {
   const { id } = useRouter().query;
-  const user = useUser()
+  const user = useUserData()
   
   return initiative?.infos?.[0]? <div>
     {initiative.infos[0].problem && <Block>

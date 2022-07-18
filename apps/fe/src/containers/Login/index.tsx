@@ -1,6 +1,5 @@
 import { CenterPanel } from "@ui";
-import { auth, insert, useLayout } from 'common';
-import { useState } from "react";
+import { insert } from 'common';
 import { Button, FormControl, Header } from "./styles";
 import { useRouter } from "next/router";
 import Cookies from 'universal-cookie'
@@ -12,6 +11,8 @@ import { Trans } from '@lingui/macro'
 import { Divider } from "./styles";
 import Link from "next/link";
 import { Text } from '@ui'
+import { useProviderLink } from '@nhost/nextjs'
+
 
 const cookies = new Cookies()
 
@@ -19,6 +20,7 @@ const cookies = new Cookies()
 export default function Login (){
   const router = useRouter()
   const loginMethod = cookies.get('loginMethod')
+  const { facebook, google, apple } = useProviderLink();
 
   return (
     <CenterPanel onClose={()=>{console.log('redirect'); router.push('/')}}>
@@ -36,7 +38,7 @@ export default function Login (){
             onClick={(e)=>{
               e.preventDefault()
               cookies.set('loginMethod', 'Google', { path: '/' });
-              auth.login({ provider: 'google' })
+              router.push(google)
           }}> 
               <GoogleIcon/>
               <Text semibold><Trans>Log in with Google</Trans></Text>
@@ -47,7 +49,7 @@ export default function Login (){
             onClick={(e)=>{
               e.preventDefault() 
               cookies.set('loginMethod', 'Facebook', { path: '/' });     
-              auth.login({ provider: 'facebook' })
+              router.push(facebook)
           }}>
             <FbIcon/>
             <Text semibold><Trans>Log in with Facebook</Trans></Text>
@@ -58,7 +60,7 @@ export default function Login (){
             onClick={(e)=>{
               e.preventDefault() 
               cookies.set('loginMethod', 'Apple', { path: '/' });     
-              auth.login({ provider: 'apple' })
+              router.push(apple)
           }}>
             <AppleIcon/>
             <Text semibold><Trans>Log in with Apple</Trans></Text>

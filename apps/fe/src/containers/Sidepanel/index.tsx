@@ -4,7 +4,7 @@ import { ReactComponent as UserIcon } from '@assets/icons/user.svg'
 import { ReactComponent as LogoutIcon } from '@assets/icons/logout.svg'
 import { Trans } from '@lingui/macro'
 import { useState, useEffect } from 'react'
-import { atoms, auth,  client,  useLayout, useUser } from 'common'
+import { atoms, client,  useLayout } from 'common'
 import LangSelect from './LangSelect'
 import { tabs, Tabs } from './tabs'
 import Organizations from './Organizations'
@@ -15,11 +15,12 @@ import MenuHeader from './MenuHeader'
 import { useRouter } from 'next/router'
 import Cookies from 'universal-cookie';
 import User from '@assets/icons/user.png'
+import { useUserData, useSignOut } from '@nhost/nextjs'
 
 const cookies = new Cookies();
 
 export default function Sidepanel (){
-  const user = useUser()
+  const user = useUserData()
 
   const router = useRouter()
   const isEntryCreation = router.pathname.includes('/create-initiative')
@@ -32,6 +33,8 @@ export default function Sidepanel (){
   const [visible, setVisible] = useRecoilState(Sidepanel.visible)
   const layout = useLayout()
   
+  const { signOut } = useSignOut()
+
   function props(key:Tabs[number]['key']){
     return ({
       'data-selected':selected===key,
@@ -68,11 +71,11 @@ export default function Sidepanel (){
                 if(!user){router.push('/login')} 
             }}}>
               {user? <UserPhoto src={
-                user.avatar_url?.includes("platform-lookaside.fbsbx")?
+                user.avatarUrl?.includes("platform-lookaside.fbsbx")?
                 `http://graph.facebook.com/${
-                  new URL(user.avatar_url).searchParams.get('asid')
+                  new URL(user.avatarUrl).searchParams.get('asid')
                 }/picture?type=large&redirect=true&width=50&height=50`:
-                user.avatar_url||User.src
+                user.avatarUrl||User.src
               } />: <UserIcon/>}
             </UserIconCell>
             {tabs(!!user, isEntryCreation).map((v,key)=>
@@ -137,7 +140,7 @@ export default function Sidepanel (){
           {user&&
             <UserIconRow style={{border:'none'}} 
             {...{...props('exit'),
-              onClick:()=>{auth.logout();}}}>
+              onClick:()=>{signOut()}}}>
                 <span>
                   <Trans>Logout</Trans>
                 </span>

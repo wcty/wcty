@@ -2,14 +2,14 @@ import { atoms } from "common";
 import { useAddSubscriptionMutation } from "generated";
 import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { useUser } from ".";
 import { apn, wp } from "../functions";
 import UAParser from "ua-parser-js"
+import { useUserData } from "@nhost/nextjs";
 
 
 export function usePushNotifications() {
   const [sub, setSub] = useState<{
-    subscription: PushSubscription | null | {},
+    subscription: PushSubscription | null | unknown,
     id: string | null,
     service: 'web' | 'apn' | null,
   }>({
@@ -29,7 +29,7 @@ export function usePushNotifications() {
   }|null>(null);
 
   const [ add, {  error:addingError } ] = useAddSubscriptionMutation()
-  const user = useUser();
+  const user = useUserData();
 
   function upsertSub(subInfo: typeof sub){
     // console.log('upsert')
@@ -77,7 +77,7 @@ export function usePushNotifications() {
           subInfo = existingSubscription && subId? {
             id: subId, 
             subscription: existingSubscription,
-            service:'web' as 'web'
+            service:'web' as const
           }: null;
         }else{
           const subscriptionId = await apn.checkAPNPermission();
@@ -86,7 +86,7 @@ export function usePushNotifications() {
             subInfo = {
               id: subscriptionId,
               subscription: {},
-              service: 'apn' as 'apn'
+              service: 'apn' as const
             };
           }else{
             subscriptionId && setError(subscriptionId);

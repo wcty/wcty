@@ -1,5 +1,5 @@
 import { CenterPanel } from "@ui";
-import { atoms, auth, useLayout } from 'common';
+import { atoms, useLayout } from 'common';
 import { useState, useEffect } from "react";
 import { Button, FormControl, TextField, Label, Header } from "./styles";
 import { useRouter } from "next/router";
@@ -9,6 +9,7 @@ import {ReactComponent as ArrowLeft} from '@assets/icons/arrow-left2.svg'
 import Link from "next/link";
 import { useRecoilState } from "recoil";
 import { Text } from '@ui'
+import { useSignInEmailPassword, useSignInEmailPasswordless } from "@nhost/nextjs";
 
 const cookies = new Cookies()
 
@@ -17,14 +18,24 @@ export default function Login (){
   const [credentials, setCredentials] = useRecoilState(atoms.credentialsLogin)
   const router = useRouter()
   const withPassword = !!router.query?.withPassword
+  const { signInEmailPassword, isLoading, isSuccess, needsEmailVerification, isError, error } = useSignInEmailPassword()
+  const { signInEmailPasswordless, isSuccess:ok } = useSignInEmailPasswordless()
 
-  const [error, setError] = useState<any>('')
-  //cookies.set('loginMethod', lm, { path: '/' });
   useEffect(()=>{
     if(error){
       console.log('Error: ', error)
     }
   },[error])
+
+  if(isSuccess||ok){
+    withPassword?
+      router.push('/'):
+      router.push('/login/check-email')
+  }
+
+  if(needsEmailVerification){
+    router.push('/login/check-email')
+  }
   
   return (
     <CenterPanel onClose={()=>router.push('/')}>
@@ -56,13 +67,13 @@ export default function Login (){
           onClick={(e)=>{
             e.preventDefault()
             if( credentials.email ) {
-              auth.login(credentials).then(()=>{
-                withPassword?
-                  router.push('/'):
-                  router.push('/login/check-email')
-              }).catch((err)=>{
-                setError(err)
-              })
+              if(withPassword){
+                if(credentials.email && credentials.password){
+                  signInEmailPassword(credentials.email, credentials.password)
+                }
+              }else{
+                signInEmailPasswordless(credentials.email)
+              }
             }
           }}>
           <Text c="backgroundLighter" semibold >

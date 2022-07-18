@@ -1,5 +1,5 @@
 import { Center, LocationCard } from "./styles";
-import { atoms, useAddress,  useUser } from "common";
+import { atoms, useAddress } from "common";
 import { ReactComponent as Steps } from '@assets/icons/steps.svg'
 import { ReactComponent as Location } from '@assets/icons/popupLocation.svg'
 import { ReactComponent as Pen } from '@assets/icons/pen.svg'
@@ -10,6 +10,7 @@ import { TextField, Button } from "@ui";
 import { Initiative } from ".";
 import { useRouter } from "next/router";
 import { Trans, t } from '@lingui/macro'
+import { useUserData } from '@nhost/nextjs';
 
 export default function Creation({
   initiative,
@@ -21,7 +22,7 @@ export default function Creation({
   index:number, setIndex:(index:number) => void
 }) {
   
-  const user = useUser()
+  const user = useUserData()
   const router = useRouter()
   const [viewport, setViewport] = useRecoilState(atoms.viewport)
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)

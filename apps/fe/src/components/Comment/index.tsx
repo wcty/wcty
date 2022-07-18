@@ -1,5 +1,4 @@
 import { Actions, CommentCounter,  Container, Content, ImageContainer, ImageWrapper, LikeCounter, Likes, Message, OptionsButton, OptionsMenu, Tags, DeletionMenu, EditorContainer } from "./styles";
-import { ReactComponent as CommentIco } from '@assets/icons/comment.svg'
 import { ReactComponent as LikeIco} from '@assets/icons/like.svg'
 import { 
   Reactions_Enum, 
@@ -11,7 +10,7 @@ import {
   CommentFragment, 
   SubCommentFragment
 } from "generated";
-import { fixAvatar, useUser } from "common";
+import { fixAvatar } from "common";
 import { Trans } from "@lingui/macro";
 import { Button, Author } from "@ui";
 import { useEffect, useState } from "react";
@@ -21,6 +20,7 @@ import Sidepanel from "containers/Sidepanel";
 import { useRouter } from "next/router";
 import CommentCreation from "../CommentEditor";
 import useImages from "common/hooks/useImages";
+import { useUserData } from '@nhost/nextjs';
 
 type ImageType = {
   url: string,
@@ -53,7 +53,7 @@ export default function Comment({ comment, onReply }:
   } = comment;
 
   // console.log('comment', comment);
-  const user = useUser();
+  const user = useUserData();
   const router = useRouter();
 
   const [deleteComment, {error}] = useDeleteCommentMutation({

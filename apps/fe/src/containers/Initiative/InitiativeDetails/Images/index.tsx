@@ -1,4 +1,4 @@
-import {  useLayout, useUser } from "common";
+import {  useLayout } from "common";
 import { Container, Grid, Img } from "./styles";
 import { ReactComponent as MediaIcon } from "@assets/icons/media.svg"
 import { useRouter } from "next/router";
@@ -8,10 +8,12 @@ import { File_Types_Enum, useGetFilesQuery } from "generated";
 import { Library, FullscreenCarousel, GalleryImage } from "components/Gallery";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import Sidepanel from 'containers/Sidepanel'
+import { useUserData } from '@nhost/nextjs';
+import Sidepanel from 'containers/Sidepanel';
+
 export function Images({initiative}:InitiativeProps) {
   const { id } = useRouter().query;
-  const user = useUser()
+  const user = useUserData()
   const layout = useLayout()
   const { data } = useGetFilesQuery({
     variables:{

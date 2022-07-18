@@ -8,10 +8,11 @@ import { useEffect } from 'react'
 import { ReactComponent as WecityText } from '@assets/icons/wecity-text.svg'
 import { useRecoilState } from 'recoil'
 import Sidebar from "containers/Sidepanel";
-import { useLayout, useUser } from 'common'
+import { useLayout } from 'common'
 import AccountSection from './AccountSection'
 import InitiativeSection from './InitiativeSection'
 import ContactSection from './ContactSection'
+import { useUserData } from '@nhost/nextjs';
 
 
 export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFragment, memberInfo?: MemberInfoFragment}) {
@@ -19,7 +20,7 @@ export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFra
   const { id, user_id } = router.query
   const [,setVisible] = useRecoilState(Sidebar.visible)
   const layout = useLayout()
-  const user = useUser()
+  const user = useUserData()
 
   useEffect(()=>{
     if(layout==='mobile'){

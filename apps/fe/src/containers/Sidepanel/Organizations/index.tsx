@@ -1,4 +1,4 @@
-import { atoms,  useLayout, useUser } from 'common';
+import { atoms,  useLayout } from 'common';
 import { UserIconRow, List, ListContainer } from "../styles";
 import { useMyOrganizationListQuery, useOrganizationNearbyListQuery } from "generated";
 import { useRecoilState } from "recoil";
@@ -8,10 +8,11 @@ import Sidepanel from "..";
 import BurgerFab from 'containers/FloatPanel/BurgerFab';
 import Slides from 'containers/Slides';
 import { Trans } from '@lingui/macro'
+import { useUserData } from '@nhost/nextjs';
 
 export default function Organization(){
   const [view] = useRecoilState(atoms.viewport)
-  const user = useUser()
+  const user = useUserData()
   
   const location = {
     type: 'Point',

@@ -1,28 +1,28 @@
-import { useUserQuery } from "../../generated"
+import { useUserQuery } from "../generated"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
-import { auth } from "./"
-import { atoms } from "../recoil"
+import { atoms } from "./recoil"
+import { useAuthenticated, useUserData } from "@nhost/nextjs"
 
 
-export function useUserData(retry: boolean = false) {
+export function useUserDataSetup(retry = false) {
   // console.log('Use User Data')
-
-  const [user, setUser] = useRecoilState(atoms.user)
+  const isAuthenticated = useAuthenticated()
+  const user = useUserData()
   const [user_id, setUserId] = useState<string>()
 
   const { data:userData } = useUserQuery({variables:{user_id}, skip: !user_id})
   const router = useRouter()
 
   useEffect(()=>{
-    if(!user && userData && auth.isAuthenticated()){
-      setUser(userData?.users_by_pk)
+    if(!user && userData && isAuthenticated){
+      // setUser(userData?.users_by_pk)
       if(router.pathname==='/oauth/success'){
         router.push('/')
       }
     }
-  },[userData, user, auth.isAuthenticated])
+  },[userData, user, isAuthenticated])
 
 
   useEffect(()=>{
@@ -45,8 +45,8 @@ export function useUserData(retry: boolean = false) {
     }
 
     async function Authorise(){
-      setUser(undefined)
-      const uid = auth.getClaim("x-hasura-user-id");
+      // setUser(undefined)
+      const uid = user?.id;
       
       if(typeof uid==='string'){
         setUserId(uid)
@@ -54,32 +54,32 @@ export function useUserData(retry: boolean = false) {
       }else if(iterations>=5){
         console.log('Exceeded retries')
         clear()
-        setUser(null)
+        // setUser(null)
         router.push('/login')
       }else{
         // console.log('Try again', iterations)
         iterations++;
       }
 
-      const authorised = await auth.isAuthenticatedAsync()
-      console.log('Authorised?', authorised)
-      if(!authorised){
-        setUser(null)
-      }
+      // const authorised = await auth.isAuthenticatedAsync()
+      // console.log('Authorised?', authorised)
+      // if(!authorised){
+      //   setUser(null)
+      // }
 
     }
 
-    auth.onAuthStateChanged(loggedIn=>{
-      // console.log('auth state changed', loggedIn)
-      clear()
+    // auth.onAuthStateChanged(loggedIn=>{
+    //   // console.log('auth state changed', loggedIn)
+    //   clear()
       
-      if(!loggedIn){
-        setUser(null)
-        setUserId(undefined)
-      }else{
-       Authorise()
-      }
-    })
+    //   if(!loggedIn){
+    //     setUser(null)
+    //     setUserId(undefined)
+    //   }else{
+    //    Authorise()
+    //   }
+    // })
 
   },[])
 

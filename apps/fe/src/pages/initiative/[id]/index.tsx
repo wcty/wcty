@@ -1,4 +1,4 @@
-import { client, loadTranslation, useLayout } from 'common'
+import { client, loadTranslation, NHOST_BACKEND_URL, useLayout, NhostProps } from 'common'
 import Initiative, { InitiativeProps } from 'containers/Initiative'
 import { Burger, ContentWrapper } from 'styles'
 import Sidepanel from 'containers/Sidepanel'
@@ -7,11 +7,26 @@ import Head from 'next/head'
 import { InitiativePublicByPkDocument, InitiativePublicByPkQuery } from 'generated'
 import DefaultInitiativeCover from '@assets/images/wecity_chat_512.png'
 import { GetServerSideProps } from 'next'
-import { FixedBottom } from 'react-fixed-bottom'
 
-export default function DynamicInitiative(props:InitiativeProps) {
+import {
+  getNhostSession,
+  useAccessToken,
+  useAuthenticated,
+  useUserData
+} from '@nhost/nextjs'
+
+export default function DynamicInitiative(props:InitiativeProps & NhostProps) {
+  const isAuthenticated = useAuthenticated()
+  const user = useUserData()
+  const accessToken = useAccessToken()
+
   const router = useRouter()
   const layout = useLayout()
+
+  if (!isAuthenticated) {
+    return <div>User it not authenticated</div>
+  }
+
   const name = props.initiative?.name||'Initiative'
   const description = 
     props.initiative?.infos[0].problem? (props.initiative?.infos[0].problem + '\n'):'' + 
@@ -44,6 +59,8 @@ export default function DynamicInitiative(props:InitiativeProps) {
 }
 
 export const getServerSideProps:GetServerSideProps = async (ctx) => {
+  const nhostSession = await getNhostSession(NHOST_BACKEND_URL, ctx)
+
   const { req:{ cookies }, res, query } = ctx
   let initiative: InitiativePublicByPkQuery['initiative'] | undefined
   
@@ -59,5 +76,5 @@ export const getServerSideProps:GetServerSideProps = async (ctx) => {
     process.env.NODE_ENV === 'production'
   )
 
-  return { props: { initiative, translation } }
+  return { props: { initiative, translation, nhostSession } }
 }

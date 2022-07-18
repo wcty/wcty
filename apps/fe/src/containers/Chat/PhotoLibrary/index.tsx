@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { ReactComponent as Initiative } from '@assets/icons/initiative.svg'
 import { ButtonBack, UserAvatar } from 'containers/Members/styles';
 import { useRouter } from 'next/router';
-import { useLang, useUser } from 'common';
+import { useLang } from 'common';
 import User from '@assets/icons/user.png'
 import { ButtonContainer, Header, Library, LibraryWrapper } from './styles'
 import { getRoles } from '../ChatCatalog';
@@ -18,6 +18,8 @@ import { Trans } from '@lingui/macro';
 import Sidebar from "containers/Sidepanel";
 import { useRecoilState } from 'recoil'
 import Chat from '..';
+import { useUserData } from '@nhost/nextjs';
+
 export default function PhotoLibrary({chatList, chatFiles}:{chatList:ChatsQuery, feed?:ChatFeedSubscription, chatFiles?: ChatFilesQuery}){
 
   const { height, ref } = useSize();
@@ -25,7 +27,7 @@ export default function PhotoLibrary({chatList, chatFiles}:{chatList:ChatsQuery,
   const layout = useLayout()
   const router = useRouter()
   const { id, chat_id } = router.query
-  const user = useUser()
+  const user = useUserData()
   const [showMedia, setShowMedia] = useRecoilState(Chat.showMedia);
 
   const images = chatFiles?.files?.filter(f=>f.type===File_Types_Enum.Image)||[]

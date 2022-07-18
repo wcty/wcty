@@ -1,13 +1,14 @@
 import Feed from "./Feed";
 import { ArrowLeft, Body, CenterColumn, Container } from "./styles";
 import { InitiativePublicByPkQuery, PostPageQuery, useInitiativeByPkQuery } from "generated";
-import { useLayout, useUser } from "common";
+import { useLayout } from "common";
 import Redirect from "components/Redirect";
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { Text } from "@ui";
 import { useRecoilState } from "recoil";
 import Sidebar from "containers/Sidepanel";
+import { useUserData } from '@nhost/nextjs';
 
 export type InitiativeProps = {
   initiative?:InitiativePublicByPkQuery['initiative']
@@ -15,7 +16,7 @@ export type InitiativeProps = {
 
 export default function PostThread({post}:PostPageQuery) {
   const { id } = useRouter().query;
-  const user = useUser()
+  const user = useUserData()
   const router = useRouter()
   const layout = useLayout()
   const [,setVisible] = useRecoilState(Sidebar.visible)

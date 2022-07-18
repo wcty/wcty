@@ -1,13 +1,14 @@
-import { useLayout, useUser } from 'common';
+import { useLayout } from 'common';
 import { IconButton } from '@ui';
 import type { SlideRenderProps } from 'react-swipeable-views-utils';
 import { atom } from 'recoil';
 import { slideRenderer } from './slideRenderer';
 import { LeftArrow, RightArrow, SwipeableViews } from './styles';
 import useSlides from './useSlides';
+import { useUserData } from '@nhost/nextjs';
 
 export default function Slides(){
-  const user = useUser()
+  const user = useUserData()
   const layout = useLayout()
   const {index, onChangeIndex, nearbyEntries} = useSlides()
   

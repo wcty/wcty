@@ -5,14 +5,15 @@ import { usePostsSubscription, useFirstMemberQuery, useInitiativeByPkQuery } fro
 import { useRouter } from "next/router";
 import { CheckedChannels, Container, Footer } from "./styles";
 import { DateTime, DateTimeFormatOptions } from 'luxon'
-import { useLang, useUser } from "common";
+import { useLang } from "common";
 import { InitiativeProps } from "..";
 import { useEffect, useRef, useState } from "react";
 import { atom, useRecoilState } from "recoil";
 import { Trans } from "@lingui/macro";
+import { useUserData } from '@nhost/nextjs';
 
 export default function FeedBlock({ initiative:data }: InitiativeProps ) {
-  const user = useUser()
+  const user = useUserData()
   const { data:dynamicData } = useInitiativeByPkQuery({
     variables:{ 
       id:data?.id, 
@@ -53,7 +54,7 @@ FeedBlock.atom = atom({
 
 function Feed({initiative}:InitiativeProps) {
   const { id } = useRouter().query;
-  const user = useUser()
+  const user = useUserData()
   const { data:postsData, error } = usePostsSubscription({variables:{id}, skip: !user || !id})
 
   const { data } = useFirstMemberQuery({variables:{id}});

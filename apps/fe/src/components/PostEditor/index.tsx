@@ -1,16 +1,16 @@
 import { Avatar, Text, TextArea, Button, IconButton, Loader } from "@ui";
 import { EditorContainer, EditorHeader, EditorWrapper, Names } from "./styles";
 import { File_Types_Enum, GetFilesDocument, PostFragment, PostInitiativeInfoFragment, useCreatePostMutation, useDeleteFilesMutation, useUpdatePostMutation } from "generated";
-import { fixAvatar, useUploader, useUser } from "common";
+import { fixAvatar, useUploader } from "common";
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { InitiativeProps } from "containers/Initiative";
 import { IEmojiData } from "emoji-picker-react";
 import { Trans } from "@lingui/macro";
+import { useUserData } from '@nhost/nextjs';
 
 
 export default function PostEditor({
-  onClose = ()=>{}, 
+  onClose = ()=>{return}, 
   initiative,
   post
 }: 
@@ -20,7 +20,7 @@ export default function PostEditor({
     initiative?: PostInitiativeInfoFragment | null
   }
 ){
-  const user = useUser();
+  const user = useUserData();
   const { id } = useRouter().query;
   const [message, setMessage] = useState(post?.message || '')
   const [emojiOpen, setEmojiOpen] = useState(false);
@@ -131,11 +131,11 @@ export default function PostEditor({
         <EditorHeader>
           <div>
             <Avatar picture={
-              fixAvatar(user?.avatar_url)
+              fixAvatar(user?.avatarUrl)
             }/>
             <Names>
               <Text semibold>
-                {user?.display_name}
+                {user?.displayName}
               </Text>
               <Text c='label'>
                 {initiative?.name||''}

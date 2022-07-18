@@ -1,8 +1,5 @@
 import { useState, useEffect, MutableRefObject, useRef, useCallback, RefObject } from 'react'
-import { useRecoilState } from 'recoil'
 import { useRouter } from 'next/router'
-import { useNhostAuth } from '@nhost/react-auth'
-
 
 const defaultSettings = {
   enableHighAccuracy: false,
@@ -137,7 +134,7 @@ export const useSize = (): Size&Ref => {
       observer.observe(ref.current)
       return () => observer.disconnect()
     }
-    return () => {}
+    return () => {return}
   }, [ref, updateSize])
 
   return { ref, width, height }

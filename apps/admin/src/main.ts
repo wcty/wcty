@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { APPLICATION } from '@shared/config'
 import { app } from './server'
+import { gql } from 'graphql-tag'
 
 function delay(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms))

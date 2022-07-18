@@ -1,5 +1,5 @@
 import { CenterPanel } from "@ui";
-import { atoms, auth, useLayout } from 'common';
+import { atoms, useLayout } from 'common';
 import { useState } from "react";
 import { Button, FormControl, TextField, Label, Header } from "./styles";
 import { useRouter } from "next/router";

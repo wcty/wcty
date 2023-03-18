@@ -3,11 +3,10 @@ import { Title, Text, Button } from '@ui'
 import { UserInfoFragment, MemberInfoFragment } from 'generated'
 import { useRouter } from 'next/router'
 import { Dot, Dots, Icon, InitiativeList, InitiativeSection, Slide, SlideWrapper, SwipeableViews  } from './styles'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 import Sidebar from "containers/Sidepanel";
 import { atoms, useLayout } from 'common'
-import { ReactComponent as Org } from '@assets/icons/org_small.svg'
 import { ReactComponent as Paw } from '@assets/icons/paw.svg'
 import { ReactComponent as Tasks } from '@assets/icons/tasks.svg'
 import { ReactComponent as Gift } from '@assets/icons/gift.svg'
@@ -32,7 +31,6 @@ export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFra
   const completed_tasks = userInfo.tasks_completed.aggregate?.count
   const donated_money = userInfo.donated_total.aggregate?.sum?.amount
   const initiatied_count = userInfo.initiated_count.aggregate?.count
-  const org_count = userInfo.org_members.length
 
 
   return  <>
@@ -74,13 +72,7 @@ export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFra
             <Text s='t5' c='titleActive'><Trans>Initiated:</Trans></Text>
             <Text s='t4' semibold c='titleActive'><Trans>{initiatied_count} initiatives</Trans></Text>
           </Slide>
-          <Slide>
-            <Icon white>
-              <Org style={{transform:'scale(1.4)'}}/>
-            </Icon>
-            <Text s='t5' c='titleActive'><Trans>Member in:</Trans></Text>
-            <Text s='t4' semibold c='titleActive'><Trans>{org_count} org&apos;s</Trans></Text>
-          </Slide>
+          
         </SlideWrapper>
 
       </SwipeableViews>

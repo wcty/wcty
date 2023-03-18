@@ -102,6 +102,7 @@ Container = styled.div`
   background-color: ${props =>  props.theme.colors.backgroundLighter};
   box-shadow: 0px 0px 2px rgba(137, 150, 159, 0.1), 0px 2px 2px rgba(137, 150, 159, 0.1), 0px 1px 3px rgba(137, 150, 159, 0.1);
   border-radius: 3px;
+  padding-bottom: 1rem;
   margin-bottom: 6px;
   position: relative;
 `,

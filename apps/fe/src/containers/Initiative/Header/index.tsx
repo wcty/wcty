@@ -43,6 +43,7 @@ function PeopleLocation({count, distance, members}: {count:number, distance?:num
     }}>
       { members.map((m,key)=>
         <Member 
+          referrerPolicy="no-referrer"
           onError={(e:any) => { e.target.src=User.src; } }
           src={m.user?.avatar_url||''} 
           key={key}/>) }

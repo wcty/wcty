@@ -1,8 +1,6 @@
 import { ReactComponent as Initiatives } from '@assets/icons/initiatives.svg'
 import { ReactComponent as Settings } from '@assets/icons/settings.svg'
 import { ReactComponent as MapIcon } from '@assets/icons/map.svg'
-import { ReactComponent as OrgIcon } from '@assets/icons/orgs.svg'
-import { ReactComponent as ProjectIcon } from '@assets/icons/projects.svg'
 import { ReactElement } from 'react'
 import { t } from '@lingui/macro'
 
@@ -12,7 +10,7 @@ export type Tabs = readonly {
   icon: ReactElement
 }[]
 
-export const tabs = (user:boolean, creation:boolean=false)=>(
+export const tabs = (user:boolean, creation=false)=>(
   creation?
 [
   {
@@ -34,11 +32,6 @@ export const tabs = (user:boolean, creation:boolean=false)=>(
     icon: <Initiatives/>
   }, 
   {   
-    key: 'myOrganisations',
-    en: t`My organisations`,
-    icon: <OrgIcon/>
-  }, 
-  {   
     key: 'settings',
     en: t`Settings`,
     icon: <Settings/>
@@ -54,10 +47,5 @@ export const tabs = (user:boolean, creation:boolean=false)=>(
     key: 'initiatives',
     en: t`Initiatives`,
     icon: <Initiatives/>
-  }, 
-  {   
-    key: 'organisations',
-    en: t`Organisations`,
-    icon: <OrgIcon/>
   }
 ]) as Tabs

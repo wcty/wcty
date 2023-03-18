@@ -8,7 +8,6 @@ export default function Anonimous(){
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
   const [view, setViewport] = useRecoilState(atoms.viewport)
   const [selected, setSelected] = useRecoilState(atoms.selected)
-  const [layers, setLayers] = useRecoilState(atoms.layers)
   const layout = useLayout()
 
   useEffect(()=>{
@@ -23,7 +22,7 @@ export default function Anonimous(){
   }
   const [index, setIndex] = useRecoilState(Slides.index)
   const prevIndex = usePrevious(index)
-  const {data:nearbyEntries, fetchMore} = useNearbyEntriesQuery({variables:{location, limit: 5, type: layers }})
+  const {data:nearbyEntries, fetchMore} = useNearbyEntriesQuery({variables:{location, limit: 5, type: ['initiative'] }})
 
   useEffect(()=>{
     const len = nearbyEntries?.entries_nearby.length

@@ -4,28 +4,18 @@ fragment InitiativeCard on initiatives {
   name
   geometry: geom
   created_at
-  infos(order_by: {approved_at: desc}, limit: 1){
+  infos(order_by: { approved_at: desc }, limit: 1) {
     problem
     goal
     context
   }
 }
 
-
-fragment OrganizationCard on orgs {
-  id
-  image
-  name
-  geometry:geom
-  created_at
-  description
-}
-
 fragment EntryCard on entries {
   id
   image
   name
-  geometry:geom
+  geometry: geom
   created_at
   description
   type

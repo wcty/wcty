@@ -2,7 +2,7 @@ import { t, Trans } from '@lingui/macro'
 import { Title, Text, Button } from '@ui'
 import { UserInfoFragment, MemberInfoFragment, useUpsertChatMutation, useChatQuery } from 'generated'
 import { useRouter } from 'next/router'
-import { AccountSection, Avatar } from './styles'
+import { AccountSection, Avatar, AvatarContainer } from './styles'
 import UserDefault from '@assets/icons/user.png'
 import { useLang } from '@ui/common'
 import { DateTimeFormatOptions, DateTime } from 'luxon'
@@ -54,7 +54,7 @@ export default function UserProfile({userInfo, memberInfo}:{userInfo:UserInfoFra
 
   return  <>
     <AccountSection>
-      <Avatar src={userInfo.avatar_url||UserDefault?.src} />
+      <AvatarContainer><Avatar referrerPolicy="no-referrer" src={userInfo.avatar_url||UserDefault?.src} /></AvatarContainer>
       <Title s='h2'>{userInfo.display_name}</Title>
       {roles && <Text>{roles}</Text>}
       {memberInfo && 

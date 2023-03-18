@@ -18,14 +18,10 @@ AccountSection = styled.div`
   `}
 `,
 
-Avatar = styled.div<{src:string}>`
-  border-radius: 50%;
-  background-color: #f5f5f5;
+AvatarContainer = styled.div`
   margin-bottom: 2rem;
-  background-image: url(${p=>p.src});
-  background-size: contain;
-  background-color: white;
   height:0;
+  position:relative;
   ${p=>p.theme.layout==='desktop'?
   css`
     width:100%;
@@ -35,4 +31,15 @@ Avatar = styled.div<{src:string}>`
     width:33%;
     padding-bottom:33%;
   `}
+`,
+Avatar = styled.img`
+  border-radius: 50%;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 `

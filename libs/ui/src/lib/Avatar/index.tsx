@@ -14,12 +14,13 @@ export const Avatar = styled.div
     s  = 'medium'
   }:IAvatar)=>({
     s, name, picture,
-    children: <img src={picture} alt={name}/>,
+    children: <img referrerPolicy="no-referrer" src={picture} alt={name}/>,
   }))`
       flex-shrink: 0;
       margin-right: 7px;
       border-radius: 50%;
       overflow: hidden;
+      cursor: pointer;
       ${({s}) => handleSize[s!]};
       & > img  {
           width: 100%;
@@ -30,15 +31,15 @@ export const Avatar = styled.div
   `;
 
 const 
-small = css<{}>`
+small = css`
     width: 27px;
     height: 27px;
 `,
-medium = css<{}>`
+medium = css`
     width: 34px;
     height: 34px;
 `,
-large  = css<{}>`
+large  = css`
     width: 52px;
     height: 52px;
 `;

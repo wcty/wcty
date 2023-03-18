@@ -12,7 +12,6 @@ export default function MapContents({map}:{map:Map}){
   const [cursor, setCursor] = useRecoilState(atoms.cursor)
   const [selected, setSelected] = useRecoilState(atoms.selected)
   const [viewport, setViewport] = useRecoilState(atoms.viewport)
-  const [layers] = useRecoilState(atoms.layers)
   const layout = useLayout()
   const router = useRouter()
   const isEntryCreation = router.pathname.includes('/create-initiative')
@@ -57,12 +56,7 @@ export default function MapContents({map}:{map:Map}){
         source-layer='public.entries'
         type='circle'
         paint={{'circle-opacity': 0}}
-        filter={
-          layers.length===2? ['all',['!=',['id'],'']]:
-          layers.includes('initiative')?
-          ['all', [ 'case', ['==',['get','type'],'initiative'], true, false]]:
-          ['all', ['case', ['==',['get','type'],'organization'], true, false]]
-        }
+        filter={['all',['!=',['id'],'']]}
       />}
       {map.getSource('entries-clusters') && <> 
       
@@ -92,12 +86,7 @@ export default function MapContents({map}:{map:Map}){
             120, ['case', ['==', ['get', 'cluster_id'], hovered||''], 46, 45 ]
             ]
         }}
-        filter={
-          layers.length===2? ['all',['!=',['id'],''], ['has', 'point_count']]:
-          layers.includes('initiative')?
-          ['all', ['has', 'point_count'], [ 'case', ['==',['get','type'],'initiative'], true, false]]:
-          ['all', ['has', 'point_count'], [ 'case', ['==',['get','type'],'organization'], true, false]]
-        }
+        filter={['all',['!=',['id'],''], ['has', 'point_count']]}
       />
 
       <Layer 
@@ -155,7 +144,7 @@ export default function MapContents({map}:{map:Map}){
           'text-halo-color': 'white',   
         }}
         layout={{
-          'icon-image': ['case', ['==',['get', 'type'],'initiative'],'initiative','org'],
+          'icon-image': 'initiative',
           'icon-anchor': 'bottom-left',
           'icon-allow-overlap': true,
           'icon-ignore-placement': false,
@@ -170,12 +159,7 @@ export default function MapContents({map}:{map:Map}){
           'text-padding': 0,
           'text-offset': [0, 0]
         }}
-        filter={
-          layers.length===2? ['all',['!=',['id'],''], ['!', ['has', 'point_count']]]:
-          layers.includes('initiative')?
-          ['all', ['!', ['has', 'point_count']], [ 'case', ['==',['get','type'],'initiative'], true, false]]:
-          ['all', ['!', ['has', 'point_count']], ['case', ['==',['get','type'],'organization'], true, false]]
-        }
+        filter={['all',['!=',['id'],''], ['!', ['has', 'point_count']]]}
       />
       </>}
     </>

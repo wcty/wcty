@@ -360,7 +360,7 @@ export type Files_Bool_Exp = {
 
 /** unique or primary key constraints on table "files" */
 export enum Files_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   FilesPkey = 'files_pkey'
 }
 
@@ -815,13 +815,7 @@ export type I18n_Variance_Order_By = {
   id?: InputMaybe<Order_By>;
 };
 
-/**
- * Reference between user id and initiative chat id
- *
- *
- * columns and relationships of "initiative_chat_members"
- *
- */
+/** Reference between user id and initiative chat id */
 export type Initiative_Chat_Members = {
   /** An object relationship */
   chat?: Maybe<Initiative_Chats>;
@@ -879,7 +873,7 @@ export type Initiative_Chat_Members_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_chat_members" */
 export enum Initiative_Chat_Members_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "user_id", "chat_id", "initiative_id" */
   InitiativeChatMembersPkey = 'initiative_chat_members_pkey'
 }
 
@@ -1082,7 +1076,7 @@ export type Initiative_Chat_Messages_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_chat_messages" */
 export enum Initiative_Chat_Messages_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "chat_id", "id" */
   InitiativeChatMessagesPkey = 'initiative_chat_messages_pkey'
 }
 
@@ -1266,13 +1260,7 @@ export type Initiative_Chat_Messages_Variance_Order_By = {
   reply_to?: InputMaybe<Order_By>;
 };
 
-/**
- * Index of private chats within initiatives
- *
- *
- * columns and relationships of "initiative_chats"
- *
- */
+/** Index of private chats within initiatives */
 export type Initiative_Chats = {
   created_at: Scalars['timestamptz'];
   /** An array relationship */
@@ -1288,13 +1276,7 @@ export type Initiative_Chats = {
 };
 
 
-/**
- * Index of private chats within initiatives
- *
- *
- * columns and relationships of "initiative_chats"
- *
- */
+/** Index of private chats within initiatives */
 export type Initiative_ChatsFilesArgs = {
   distinct_on?: InputMaybe<Array<Files_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -1304,13 +1286,7 @@ export type Initiative_ChatsFilesArgs = {
 };
 
 
-/**
- * Index of private chats within initiatives
- *
- *
- * columns and relationships of "initiative_chats"
- *
- */
+/** Index of private chats within initiatives */
 export type Initiative_ChatsMembersArgs = {
   distinct_on?: InputMaybe<Array<Initiative_Chat_Members_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -1320,13 +1296,7 @@ export type Initiative_ChatsMembersArgs = {
 };
 
 
-/**
- * Index of private chats within initiatives
- *
- *
- * columns and relationships of "initiative_chats"
- *
- */
+/** Index of private chats within initiatives */
 export type Initiative_ChatsMessagesArgs = {
   distinct_on?: InputMaybe<Array<Initiative_Chat_Messages_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -1351,9 +1321,9 @@ export type Initiative_Chats_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_chats" */
 export enum Initiative_Chats_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativeChatsIdInitiativeIdKey = 'initiative_chats_id_initiative_id_key',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   InitiativeChatsPkey = 'initiative_chats_pkey'
 }
 
@@ -1533,7 +1503,7 @@ export type Initiative_Comment_Reactions_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_comment_reactions" */
 export enum Initiative_Comment_Reactions_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "comment_id", "post_id", "initiative_id", "id" */
   InitiativeCommentReactionsPkey = 'initiative_comment_reactions_pkey'
 }
 
@@ -1931,13 +1901,12 @@ export type Initiative_Comments_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_comments" */
 export enum Initiative_Comments_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "post_id", "initiative_id", "id" */
   InitiativeCommentPkey = 'initiative_comment_pkey'
 }
 
 /** input type for incrementing numeric columns in table "initiative_comments" */
 export type Initiative_Comments_Inc_Input = {
-  id?: InputMaybe<Scalars['bigint']>;
   parent_comment_id?: InputMaybe<Scalars['bigint']>;
   post_id?: InputMaybe<Scalars['bigint']>;
 };
@@ -1947,7 +1916,6 @@ export type Initiative_Comments_Insert_Input = {
   comments?: InputMaybe<Initiative_Comments_Arr_Rel_Insert_Input>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
   files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
-  id?: InputMaybe<Scalars['bigint']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   message?: InputMaybe<Scalars['String']>;
@@ -2077,7 +2045,6 @@ export enum Initiative_Comments_Select_Column {
 /** input type for updating data in table "initiative_comments" */
 export type Initiative_Comments_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
-  id?: InputMaybe<Scalars['bigint']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   message?: InputMaybe<Scalars['String']>;
   modified_at?: InputMaybe<Scalars['timestamptz']>;
@@ -2146,8 +2113,6 @@ export type Initiative_Comments_Sum_Order_By = {
 export enum Initiative_Comments_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
-  /** column name */
-  Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
@@ -2301,14 +2266,13 @@ export type Initiative_Donations_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_donations" */
 export enum Initiative_Donations_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativeDonationsPkey = 'initiative_donations_pkey'
 }
 
 /** input type for incrementing numeric columns in table "initiative_donations" */
 export type Initiative_Donations_Inc_Input = {
   amount?: InputMaybe<Scalars['numeric']>;
-  id?: InputMaybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "initiative_donations" */
@@ -2316,7 +2280,6 @@ export type Initiative_Donations_Insert_Input = {
   amount?: InputMaybe<Scalars['numeric']>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
   currency?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   recurrent?: InputMaybe<Scalars['Boolean']>;
@@ -2428,7 +2391,6 @@ export type Initiative_Donations_Set_Input = {
   amount?: InputMaybe<Scalars['numeric']>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
   currency?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   recurrent?: InputMaybe<Scalars['Boolean']>;
   status?: InputMaybe<Scalars['String']>;
@@ -2491,8 +2453,6 @@ export enum Initiative_Donations_Update_Column {
   CreatedAt = 'created_at',
   /** column name */
   Currency = 'currency',
-  /** column name */
-  Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
@@ -2613,15 +2573,14 @@ export type Initiative_Edits_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_edits" */
 export enum Initiative_Edits_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativeTasksPkey_1 = 'initiative_tasks_pkey_1',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "post_id" */
   UnqInitiativeEditsPostId = 'unq_initiative_edits_post_id'
 }
 
 /** input type for incrementing numeric columns in table "initiative_edits" */
 export type Initiative_Edits_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']>;
   info_id?: InputMaybe<Scalars['Int']>;
   poll_id?: InputMaybe<Scalars['Int']>;
   post_id?: InputMaybe<Scalars['bigint']>;
@@ -2630,7 +2589,6 @@ export type Initiative_Edits_Inc_Input = {
 /** input type for inserting data into table "initiative_edits" */
 export type Initiative_Edits_Insert_Input = {
   description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   info?: InputMaybe<Initiative_Info_Obj_Rel_Insert_Input>;
   info_id?: InputMaybe<Scalars['Int']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
@@ -2728,7 +2686,6 @@ export enum Initiative_Edits_Select_Column {
 /** input type for updating data in table "initiative_edits" */
 export type Initiative_Edits_Set_Input = {
   description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   info_id?: InputMaybe<Scalars['Int']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   poll_id?: InputMaybe<Scalars['Int']>;
@@ -2773,8 +2730,6 @@ export type Initiative_Edits_Sum_Order_By = {
 export enum Initiative_Edits_Update_Column {
   /** column name */
   Description = 'description',
-  /** column name */
-  Id = 'id',
   /** column name */
   InfoId = 'info_id',
   /** column name */
@@ -2890,16 +2845,15 @@ export type Initiative_Expenses_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_expenses" */
 export enum Initiative_Expenses_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativeTasksPkey_0 = 'initiative_tasks_pkey_0',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "post_id" */
   UnqInitiativeExpensesPostId = 'unq_initiative_expenses_post_id'
 }
 
 /** input type for incrementing numeric columns in table "initiative_expenses" */
 export type Initiative_Expenses_Inc_Input = {
   amount?: InputMaybe<Scalars['numeric']>;
-  id?: InputMaybe<Scalars['Int']>;
   poll_id?: InputMaybe<Scalars['Int']>;
   post_id?: InputMaybe<Scalars['bigint']>;
 };
@@ -2909,7 +2863,6 @@ export type Initiative_Expenses_Insert_Input = {
   amount?: InputMaybe<Scalars['numeric']>;
   currency?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   link?: InputMaybe<Scalars['String']>;
@@ -3023,7 +2976,6 @@ export type Initiative_Expenses_Set_Input = {
   amount?: InputMaybe<Scalars['numeric']>;
   currency?: InputMaybe<Scalars['String']>;
   description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   link?: InputMaybe<Scalars['String']>;
   link_name?: InputMaybe<Scalars['String']>;
@@ -3073,8 +3025,6 @@ export enum Initiative_Expenses_Update_Column {
   Currency = 'currency',
   /** column name */
   Description = 'description',
-  /** column name */
-  Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
@@ -3190,14 +3140,9 @@ export type Initiative_Info_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_info" */
 export enum Initiative_Info_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   PkInitiativeInfoId = 'pk_initiative_info_id'
 }
-
-/** input type for incrementing numeric columns in table "initiative_info" */
-export type Initiative_Info_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']>;
-};
 
 /** input type for inserting data into table "initiative_info" */
 export type Initiative_Info_Insert_Input = {
@@ -3206,7 +3151,6 @@ export type Initiative_Info_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   edits?: InputMaybe<Initiative_Edits_Arr_Rel_Insert_Input>;
   goal?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   modified_at?: InputMaybe<Scalars['timestamptz']>;
@@ -3307,7 +3251,6 @@ export type Initiative_Info_Set_Input = {
   context?: InputMaybe<Scalars['String']>;
   created_at?: InputMaybe<Scalars['timestamptz']>;
   goal?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   modified_at?: InputMaybe<Scalars['timestamptz']>;
   problem?: InputMaybe<Scalars['String']>;
@@ -3343,8 +3286,6 @@ export enum Initiative_Info_Update_Column {
   CreatedAt = 'created_at',
   /** column name */
   Goal = 'goal',
-  /** column name */
-  Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
@@ -3534,7 +3475,7 @@ export type Initiative_Members_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_members" */
 export enum Initiative_Members_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativeMemberPkey = 'initiative_member_pkey'
 }
 
@@ -3801,7 +3742,7 @@ export type Initiative_Poll_Votes_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_poll_votes" */
 export enum Initiative_Poll_Votes_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id", "poll_id" */
   PkInitiativePollVotesId = 'pk_initiative_poll_votes_id'
 }
 
@@ -4064,20 +4005,14 @@ export type Initiative_Polls_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_polls" */
 export enum Initiative_Polls_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativePollsPkey = 'initiative_polls_pkey'
 }
-
-/** input type for incrementing numeric columns in table "initiative_polls" */
-export type Initiative_Polls_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']>;
-};
 
 /** input type for inserting data into table "initiative_polls" */
 export type Initiative_Polls_Insert_Input = {
   edits?: InputMaybe<Initiative_Edits_Arr_Rel_Insert_Input>;
   expenses?: InputMaybe<Initiative_Expenses_Arr_Rel_Insert_Input>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   tasks?: InputMaybe<Initiative_Tasks_Arr_Rel_Insert_Input>;
@@ -4151,7 +4086,6 @@ export enum Initiative_Polls_Select_Column {
 
 /** input type for updating data in table "initiative_polls" */
 export type Initiative_Polls_Set_Input = {
-  id?: InputMaybe<Scalars['Int']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   user_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -4178,8 +4112,6 @@ export type Initiative_Polls_Sum_Order_By = {
 
 /** update columns of table "initiative_polls" */
 export enum Initiative_Polls_Update_Column {
-  /** column name */
-  Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
@@ -4292,9 +4224,9 @@ export type Initiative_Post_Reactions_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_post_reactions" */
 export enum Initiative_Post_Reactions_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "post_id", "initiative_id", "id" */
   InitiativePostReactionsPkey = 'initiative_post_reactions_pkey',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "user_id", "post_id" */
   InitiativePostReactionsUserIdPostIdKey = 'initiative_post_reactions_user_id_post_id_key'
 }
 
@@ -4662,16 +4594,11 @@ export type Initiative_Posts_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_posts" */
 export enum Initiative_Posts_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativeMessagePkey = 'initiative_message_pkey',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativePostsInitiativeIdIdKey = 'initiative_posts_initiative_id_id_key'
 }
-
-/** input type for incrementing numeric columns in table "initiative_posts" */
-export type Initiative_Posts_Inc_Input = {
-  id?: InputMaybe<Scalars['bigint']>;
-};
 
 /** input type for inserting data into table "initiative_posts" */
 export type Initiative_Posts_Insert_Input = {
@@ -4680,7 +4607,6 @@ export type Initiative_Posts_Insert_Input = {
   edits?: InputMaybe<Initiative_Edits_Arr_Rel_Insert_Input>;
   expenses?: InputMaybe<Initiative_Expenses_Arr_Rel_Insert_Input>;
   files?: InputMaybe<Files_Arr_Rel_Insert_Input>;
-  id?: InputMaybe<Scalars['bigint']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   message?: InputMaybe<Scalars['String']>;
@@ -4779,7 +4705,6 @@ export enum Initiative_Posts_Select_Column {
 /** input type for updating data in table "initiative_posts" */
 export type Initiative_Posts_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
-  id?: InputMaybe<Scalars['bigint']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   message?: InputMaybe<Scalars['String']>;
   modified_at?: InputMaybe<Scalars['timestamptz']>;
@@ -4811,8 +4736,6 @@ export type Initiative_Posts_Sum_Order_By = {
 export enum Initiative_Posts_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
-  /** column name */
-  Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
@@ -4925,16 +4848,15 @@ export type Initiative_Projects_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_projects" */
 export enum Initiative_Projects_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   PkInitiativeProjectsId = 'pk_initiative_projects_id',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "post_id" */
   UnqInitiativeProjectsPostId = 'unq_initiative_projects_post_id'
 }
 
 /** input type for incrementing numeric columns in table "initiative_projects" */
 export type Initiative_Projects_Inc_Input = {
   budget?: InputMaybe<Scalars['numeric']>;
-  id?: InputMaybe<Scalars['Int']>;
   post_id?: InputMaybe<Scalars['bigint']>;
   reference_project_id?: InputMaybe<Scalars['Int']>;
   tender_id?: InputMaybe<Scalars['bigint']>;
@@ -4945,7 +4867,6 @@ export type Initiative_Projects_Inc_Input = {
 export type Initiative_Projects_Insert_Input = {
   budget?: InputMaybe<Scalars['numeric']>;
   description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   org_id?: InputMaybe<Scalars['uuid']>;
@@ -5061,7 +4982,6 @@ export enum Initiative_Projects_Select_Column {
 export type Initiative_Projects_Set_Input = {
   budget?: InputMaybe<Scalars['numeric']>;
   description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   org_id?: InputMaybe<Scalars['uuid']>;
   post_id?: InputMaybe<Scalars['bigint']>;
@@ -5118,8 +5038,6 @@ export enum Initiative_Projects_Update_Column {
   Budget = 'budget',
   /** column name */
   Description = 'description',
-  /** column name */
-  Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
@@ -5220,7 +5138,7 @@ export type Initiative_Tags_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_tags" */
 export enum Initiative_Tags_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativeTagPkey = 'initiative_tag_pkey'
 }
 
@@ -5344,13 +5262,7 @@ export type Initiative_Tags_Variance_Order_By = {
   id?: InputMaybe<Order_By>;
 };
 
-/**
- * Proposed and approved tasks
- *
- *
- * columns and relationships of "initiative_tasks"
- *
- */
+/** Proposed and approved tasks */
 export type Initiative_Tasks = {
   created_at: Scalars['timestamptz'];
   description?: Maybe<Scalars['String']>;
@@ -5374,13 +5286,7 @@ export type Initiative_Tasks = {
 };
 
 
-/**
- * Proposed and approved tasks
- *
- *
- * columns and relationships of "initiative_tasks"
- *
- */
+/** Proposed and approved tasks */
 export type Initiative_TasksVolunteersArgs = {
   distinct_on?: InputMaybe<Array<Initiative_Volunteers_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -5390,13 +5296,7 @@ export type Initiative_TasksVolunteersArgs = {
 };
 
 
-/**
- * Proposed and approved tasks
- *
- *
- * columns and relationships of "initiative_tasks"
- *
- */
+/** Proposed and approved tasks */
 export type Initiative_TasksVolunteers_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Initiative_Volunteers_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
@@ -5490,13 +5390,12 @@ export type Initiative_Tasks_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_tasks" */
 export enum Initiative_Tasks_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativeTasksPkey = 'initiative_tasks_pkey'
 }
 
 /** input type for incrementing numeric columns in table "initiative_tasks" */
 export type Initiative_Tasks_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']>;
   poll_id?: InputMaybe<Scalars['Int']>;
   volunteers_needed?: InputMaybe<Scalars['numeric']>;
 };
@@ -5505,7 +5404,6 @@ export type Initiative_Tasks_Inc_Input = {
 export type Initiative_Tasks_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   poll?: InputMaybe<Initiative_Polls_Obj_Rel_Insert_Input>;
@@ -5633,7 +5531,6 @@ export enum Initiative_Tasks_Select_Column {
 export type Initiative_Tasks_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
   description?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['Int']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   poll_id?: InputMaybe<Scalars['Int']>;
   status?: InputMaybe<Task_Statuses_Enum>;
@@ -5704,8 +5601,6 @@ export enum Initiative_Tasks_Update_Column {
   CreatedAt = 'created_at',
   /** column name */
   Description = 'description',
-  /** column name */
-  Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
@@ -5814,9 +5709,9 @@ export type Initiative_Visits_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_visits" */
 export enum Initiative_Visits_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativeVisitsPkey = 'initiative_visits_pkey',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "user_id", "initiative_id" */
   UserInitiativeConstraint = 'user_initiative_constraint'
 }
 
@@ -5948,13 +5843,7 @@ export type Initiative_Visits_Variance_Order_By = {
   id?: InputMaybe<Order_By>;
 };
 
-/**
- * Assignment of initiative member to the initiative task
- *
- *
- * columns and relationships of "initiative_volunteers"
- *
- */
+/** Assignment of initiative member to the initiative task */
 export type Initiative_Volunteers = {
   id: Scalars['bigint'];
   /** An object relationship */
@@ -6048,9 +5937,9 @@ export type Initiative_Volunteers_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiative_volunteers" */
 export enum Initiative_Volunteers_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "user_id", "initiative_id", "task_id" */
   InitiativeVolunteersInitiativeIdUserIdTaskIdKey = 'initiative_volunteers_initiative_id_user_id_task_id_key',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "initiative_id", "id" */
   InitiativeVolunteersPkey = 'initiative_volunteers_pkey'
 }
 
@@ -6514,7 +6403,7 @@ export type Initiatives_Bool_Exp = {
 
 /** unique or primary key constraints on table "initiatives" */
 export enum Initiatives_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   InitiativePkey = 'initiative__pkey'
 }
 
@@ -7830,7 +7719,6 @@ export type Mutation_RootUpdate_Initiative_Expenses_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Initiative_InfoArgs = {
-  _inc?: InputMaybe<Initiative_Info_Inc_Input>;
   _set?: InputMaybe<Initiative_Info_Set_Input>;
   where: Initiative_Info_Bool_Exp;
 };
@@ -7838,7 +7726,6 @@ export type Mutation_RootUpdate_Initiative_InfoArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Initiative_Info_By_PkArgs = {
-  _inc?: InputMaybe<Initiative_Info_Inc_Input>;
   _set?: InputMaybe<Initiative_Info_Set_Input>;
   pk_columns: Initiative_Info_Pk_Columns_Input;
 };
@@ -7878,7 +7765,6 @@ export type Mutation_RootUpdate_Initiative_Poll_Votes_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Initiative_PollsArgs = {
-  _inc?: InputMaybe<Initiative_Polls_Inc_Input>;
   _set?: InputMaybe<Initiative_Polls_Set_Input>;
   where: Initiative_Polls_Bool_Exp;
 };
@@ -7886,7 +7772,6 @@ export type Mutation_RootUpdate_Initiative_PollsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Initiative_Polls_By_PkArgs = {
-  _inc?: InputMaybe<Initiative_Polls_Inc_Input>;
   _set?: InputMaybe<Initiative_Polls_Set_Input>;
   pk_columns: Initiative_Polls_Pk_Columns_Input;
 };
@@ -7910,7 +7795,6 @@ export type Mutation_RootUpdate_Initiative_Post_Reactions_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Initiative_PostsArgs = {
-  _inc?: InputMaybe<Initiative_Posts_Inc_Input>;
   _set?: InputMaybe<Initiative_Posts_Set_Input>;
   where: Initiative_Posts_Bool_Exp;
 };
@@ -7918,7 +7802,6 @@ export type Mutation_RootUpdate_Initiative_PostsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Initiative_Posts_By_PkArgs = {
-  _inc?: InputMaybe<Initiative_Posts_Inc_Input>;
   _set?: InputMaybe<Initiative_Posts_Set_Input>;
   pk_columns: Initiative_Posts_Pk_Columns_Input;
 };
@@ -10299,7 +10182,7 @@ export type Tags_Bool_Exp = {
 
 /** unique or primary key constraints on table "tags" */
 export enum Tags_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "tag" */
   TagsPkey = 'tags_pkey'
 }
 
@@ -10473,20 +10356,18 @@ export type Tenders_Bool_Exp = {
 
 /** unique or primary key constraints on table "tenders" */
 export enum Tenders_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   PkTendersId = 'pk_tenders_id'
 }
 
 /** input type for incrementing numeric columns in table "tenders" */
 export type Tenders_Inc_Input = {
-  id?: InputMaybe<Scalars['bigint']>;
   parent_project?: InputMaybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "tenders" */
 export type Tenders_Insert_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
-  id?: InputMaybe<Scalars['bigint']>;
   initiative?: InputMaybe<Initiatives_Obj_Rel_Insert_Input>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   org_id?: InputMaybe<Scalars['uuid']>;
@@ -10576,7 +10457,6 @@ export enum Tenders_Select_Column {
 /** input type for updating data in table "tenders" */
 export type Tenders_Set_Input = {
   created_at?: InputMaybe<Scalars['timestamptz']>;
-  id?: InputMaybe<Scalars['bigint']>;
   initiative_id?: InputMaybe<Scalars['uuid']>;
   org_id?: InputMaybe<Scalars['uuid']>;
   parent_project?: InputMaybe<Scalars['Int']>;
@@ -10611,8 +10491,6 @@ export type Tenders_Sum_Order_By = {
 export enum Tenders_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
-  /** column name */
-  Id = 'id',
   /** column name */
   InitiativeId = 'initiative_id',
   /** column name */
@@ -10676,7 +10554,7 @@ export type User_Settings_Bool_Exp = {
 
 /** unique or primary key constraints on table "user_settings" */
 export enum User_Settings_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "user_id" */
   UserSettingsPkey = 'user_settings_pkey'
 }
 
@@ -10742,13 +10620,7 @@ export enum User_Settings_Update_Column {
   UserId = 'user_id'
 }
 
-/**
- * Push subscriptions
- *
- *
- * columns and relationships of "user_subscriptions"
- *
- */
+/** Push subscriptions */
 export type User_Subscriptions = {
   id: Scalars['String'];
   platform?: Maybe<Scalars['String']>;
@@ -10781,7 +10653,7 @@ export type User_Subscriptions_Bool_Exp = {
 
 /** unique or primary key constraints on table "user_subscriptions" */
 export enum User_Subscriptions_Constraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   UserSubscriptionsPkey = 'user_subscriptions_pkey'
 }
 
@@ -11705,25 +11577,17 @@ export type InitiativeByPkQueryVariables = Exact<{
 
 export type InitiativeByPkQuery = { initiative?: { id: any, isMember: Array<{ user_id?: any | null }>, members: Array<{ user_id?: any | null, user?: { avatar_url?: string | null } | null }>, members_aggregate: { aggregate?: { count: number } | null } } | null };
 
-export type CheckTaskMutationVariables = Exact<{
-  initiative_id: Scalars['uuid'];
-  task_id: Scalars['Int'];
-  value?: Task_Statuses_Enum;
-}>;
-
-
-export type CheckTaskMutation = { update_initiative_tasks_by_pk?: { id: number } | null };
-
 export type JoinMutationVariables = Exact<{
   userId: Scalars['uuid'];
   id: Scalars['uuid'];
   donations: Array<Initiative_Donations_Insert_Input> | Initiative_Donations_Insert_Input;
   tasks: Array<Initiative_Tasks_Insert_Input> | Initiative_Tasks_Insert_Input;
   volunteers: Array<Initiative_Volunteers_Insert_Input> | Initiative_Volunteers_Insert_Input;
+  message: Scalars['String'];
 }>;
 
 
-export type JoinMutation = { insert_initiative_members?: { affected_rows: number } | null };
+export type JoinMutation = { insert_initiative_members?: { affected_rows: number } | null, insert_initiative_posts_one?: { id: any } | null };
 
 export type TasksQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -11742,8 +11606,6 @@ export type CommentsSubscriptionVariables = Exact<{
 export type CommentsSubscription = { comments: Array<{ id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null }, comments: Array<{ id: any, created_at: any, modified_at?: any | null, message?: string | null, post_id: any, parent_comment_id?: any | null, initiative_id: any, user?: { avatar_url?: string | null, display_name?: string | null, id: any } | null, files: Array<{ downloadable_url?: string | null, type: File_Types_Enum, id: any }>, reactions: Array<{ type?: Reactions_Enum | null, user_id?: any | null }>, comments_aggregate: { aggregate?: { count: number } | null } }> }> };
 
 export type InitiativeCardFragment = { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> };
-
-export type OrganizationCardFragment = { id: any, image?: string | null, name?: string | null, created_at: any, description?: string | null, geometry?: any | null };
 
 export type EntryCardFragment = { id?: any | null, image?: string | null, name?: string | null, created_at?: any | null, description?: string | null, type?: string | null, members_count?: any | null, modified_at?: any | null, geometry?: any | null };
 
@@ -11767,27 +11629,6 @@ export type MyInitiativeListQueryVariables = Exact<{
 
 
 export type MyInitiativeListQuery = { initiatives: Array<{ id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> }> };
-
-export type OrganizationNearbyListQueryVariables = Exact<{
-  location: Scalars['geometry'];
-  limit?: InputMaybe<Scalars['Int']>;
-  max_date?: InputMaybe<Scalars['timestamptz']>;
-  max_distance?: InputMaybe<Scalars['float8']>;
-  min_date?: InputMaybe<Scalars['timestamptz']>;
-  min_distance?: InputMaybe<Scalars['float8']>;
-  user_id?: InputMaybe<Scalars['uuid']>;
-  own?: InputMaybe<Scalars['Boolean']>;
-}>;
-
-
-export type OrganizationNearbyListQuery = { orgs: Array<{ id: any, image?: string | null, name?: string | null, created_at: any, description?: string | null, geometry?: any | null }> };
-
-export type MyOrganizationListQueryVariables = Exact<{
-  user_id: Scalars['uuid'];
-}>;
-
-
-export type MyOrganizationListQuery = { orgs: Array<{ id: any, image?: string | null, name?: string | null, created_at: any, description?: string | null, geometry?: any | null }> };
 
 export type SettingsSubscriptionVariables = Exact<{
   id: Scalars['uuid'];
@@ -11892,7 +11733,7 @@ export type MemberPageQueryVariables = Exact<{
 }>;
 
 
-export type MemberPageQuery = { member: Array<{ id: number, created_at: any, user?: { id: any, created_at: any, updated_at: any, display_name?: string | null, avatar_url?: string | null, facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null, initiative_members: Array<{ initiative: { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null }, org_members: Array<{ role?: string | null, org?: { name?: string | null } | null }> } | null, initiative: { name?: string | null, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null }, donations_aggregate: { aggregate?: { count: number } | null }, initiated: { aggregate?: { count: number } | null } }> };
+export type MemberPageQuery = { member: Array<{ id: number, created_at: any, user?: { id: any, created_at: any, updated_at: any, display_name?: string | null, avatar_url?: string | null, facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null, initiative_members: Array<{ initiative: { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null } } | null, initiative: { name?: string | null, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null }, donations_aggregate: { aggregate?: { count: number } | null }, initiated: { aggregate?: { count: number } | null } }> };
 
 export type MemberInfoFragment = { id: number, created_at: any, initiative: { name?: string | null, created_at: any }, volunteers_aggregate: { aggregate?: { count: number } | null }, donations_aggregate: { aggregate?: { count: number } | null }, initiated: { aggregate?: { count: number } | null } };
 
@@ -11922,13 +11763,11 @@ export type UserPageQueryVariables = Exact<{
 }>;
 
 
-export type UserPageQuery = { user?: { id: any, created_at: any, updated_at: any, display_name?: string | null, avatar_url?: string | null, facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null, initiative_members: Array<{ initiative: { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null }, org_members: Array<{ role?: string | null, org?: { name?: string | null } | null }> } | null };
+export type UserPageQuery = { user?: { id: any, created_at: any, updated_at: any, display_name?: string | null, avatar_url?: string | null, facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null, initiative_members: Array<{ initiative: { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null } } | null };
 
-export type UserInfoFragment = { id: any, created_at: any, updated_at: any, display_name?: string | null, avatar_url?: string | null, facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null, initiative_members: Array<{ initiative: { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null }, org_members: Array<{ role?: string | null, org?: { name?: string | null } | null }> };
+export type UserInfoFragment = { id: any, created_at: any, updated_at: any, display_name?: string | null, avatar_url?: string | null, facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null, initiative_members: Array<{ initiative: { id: any, image?: string | null, name?: string | null, created_at: any, geometry?: any | null, infos: Array<{ problem?: string | null, goal?: string | null, context?: string | null }> } }>, donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null } };
 
 export type UserInitiativesInfoFragment = { donated_total: { aggregate?: { sum?: { amount?: any | null } | null } | null }, tasks_total: { aggregate?: { count: number } | null }, tasks_completed: { aggregate?: { count: number } | null }, initiatives_total: { aggregate?: { count: number } | null }, initiated_count: { aggregate?: { count: number } | null } };
-
-export type UserOrganizationsInfoFragment = { org_members: Array<{ role?: string | null, org?: { name?: string | null } | null }> };
 
 export type UserContactInfoFragment = { facebook_account?: string | null, instagram_account?: string | null, telegram_account?: string | null, whatsapp_account?: string | null, github_account?: string | null, twitter_account?: string | null, about?: string | null, current_location?: string | null };
 
@@ -11950,16 +11789,6 @@ export const MembersPreviewFragmentDoc = gql`
   user {
     avatar_url
   }
-}
-    `;
-export const OrganizationCardFragmentDoc = gql`
-    fragment OrganizationCard on orgs {
-  id
-  image
-  name
-  geometry: geom
-  created_at
-  description
 }
     `;
 export const EntryCardFragmentDoc = gql`
@@ -12155,16 +11984,6 @@ export const UserInitiativesInfoFragmentDoc = gql`
   }
 }
     `;
-export const UserOrganizationsInfoFragmentDoc = gql`
-    fragment UserOrganizationsInfo on users {
-  org_members {
-    org {
-      name
-    }
-    role
-  }
-}
-    `;
 export const UserContactInfoFragmentDoc = gql`
     fragment UserContactInfo on users {
   facebook_account
@@ -12199,7 +12018,6 @@ export const UserInfoFragmentDoc = gql`
   display_name
   avatar_url
   ...UserInitiativesInfo
-  ...UserOrganizationsInfo
   ...UserContactInfo
   initiative_members(limit: 5, order_by: {created_at: desc}) {
     initiative {
@@ -12208,7 +12026,6 @@ export const UserInfoFragmentDoc = gql`
   }
 }
     ${UserInitiativesInfoFragmentDoc}
-${UserOrganizationsInfoFragmentDoc}
 ${UserContactInfoFragmentDoc}
 ${InitiativeCardFragmentDoc}`;
 export const UserDocument = gql`
@@ -13377,7 +13194,7 @@ export type InsertInitiativeMutationHookResult = ReturnType<typeof useInsertInit
 export type InsertInitiativeMutationResult = Apollo.MutationResult<InsertInitiativeMutation>;
 export type InsertInitiativeMutationOptions = Apollo.BaseMutationOptions<InsertInitiativeMutation, InsertInitiativeMutationVariables>;
 export const SearchResultsDocument = gql`
-    query SearchResults($layers: [String!] = ["initiative", "organization"], $keyword: String!) {
+    query SearchResults($layers: [String!] = ["initiative"], $keyword: String!) {
   entries(
     where: {_and: [{type: {_in: $layers}}, {_or: [{name: {_ilike: $keyword}}, {description: {_ilike: $keyword}}]}]}
     limit: 5
@@ -13607,50 +13424,17 @@ export function useInitiativeByPkLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type InitiativeByPkQueryHookResult = ReturnType<typeof useInitiativeByPkQuery>;
 export type InitiativeByPkLazyQueryHookResult = ReturnType<typeof useInitiativeByPkLazyQuery>;
 export type InitiativeByPkQueryResult = Apollo.QueryResult<InitiativeByPkQuery, InitiativeByPkQueryVariables>;
-export const CheckTaskDocument = gql`
-    mutation CheckTask($initiative_id: uuid!, $task_id: Int!, $value: task_statuses_enum! = PENDING) {
-  update_initiative_tasks_by_pk(
-    pk_columns: {id: $task_id, initiative_id: $initiative_id}
-    _set: {status: $value}
-  ) {
-    id
-  }
-}
-    `;
-export type CheckTaskMutationFn = Apollo.MutationFunction<CheckTaskMutation, CheckTaskMutationVariables>;
-
-/**
- * __useCheckTaskMutation__
- *
- * To run a mutation, you first call `useCheckTaskMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCheckTaskMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [checkTaskMutation, { data, loading, error }] = useCheckTaskMutation({
- *   variables: {
- *      initiative_id: // value for 'initiative_id'
- *      task_id: // value for 'task_id'
- *      value: // value for 'value'
- *   },
- * });
- */
-export function useCheckTaskMutation(baseOptions?: Apollo.MutationHookOptions<CheckTaskMutation, CheckTaskMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CheckTaskMutation, CheckTaskMutationVariables>(CheckTaskDocument, options);
-      }
-export type CheckTaskMutationHookResult = ReturnType<typeof useCheckTaskMutation>;
-export type CheckTaskMutationResult = Apollo.MutationResult<CheckTaskMutation>;
-export type CheckTaskMutationOptions = Apollo.BaseMutationOptions<CheckTaskMutation, CheckTaskMutationVariables>;
 export const JoinDocument = gql`
-    mutation Join($userId: uuid!, $id: uuid!, $donations: [initiative_donations_insert_input!]!, $tasks: [initiative_tasks_insert_input!]!, $volunteers: [initiative_volunteers_insert_input!]!) {
+    mutation Join($userId: uuid!, $id: uuid!, $donations: [initiative_donations_insert_input!]!, $tasks: [initiative_tasks_insert_input!]!, $volunteers: [initiative_volunteers_insert_input!]!, $message: String!) {
   insert_initiative_members(
     objects: {initiative_id: $id, user_id: $userId, donations: {data: $donations}, tasks: {data: $tasks}, volunteers: {data: $volunteers}}
   ) {
     affected_rows
+  }
+  insert_initiative_posts_one(
+    object: {type: message, message: $message, user_id: $userId, initiative_id: $id}
+  ) {
+    id
   }
 }
     `;
@@ -13674,6 +13458,7 @@ export type JoinMutationFn = Apollo.MutationFunction<JoinMutation, JoinMutationV
  *      donations: // value for 'donations'
  *      tasks: // value for 'tasks'
  *      volunteers: // value for 'volunteers'
+ *      message: // value for 'message'
  *   },
  * });
  */
@@ -13845,85 +13630,6 @@ export function useMyInitiativeListLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type MyInitiativeListQueryHookResult = ReturnType<typeof useMyInitiativeListQuery>;
 export type MyInitiativeListLazyQueryHookResult = ReturnType<typeof useMyInitiativeListLazyQuery>;
 export type MyInitiativeListQueryResult = Apollo.QueryResult<MyInitiativeListQuery, MyInitiativeListQueryVariables>;
-export const OrganizationNearbyListDocument = gql`
-    query OrganizationNearbyList($location: geometry!, $limit: Int = 20, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false) {
-  orgs: orgs_nearby(
-    args: {location: $location, own: $own, user_id: $user_id, max_date: $max_date, limit: $limit, max_distance: $max_distance, min_date: $min_date, min_distance: $min_distance}
-  ) {
-    ...OrganizationCard
-  }
-}
-    ${OrganizationCardFragmentDoc}`;
-
-/**
- * __useOrganizationNearbyListQuery__
- *
- * To run a query within a React component, call `useOrganizationNearbyListQuery` and pass it any options that fit your needs.
- * When your component renders, `useOrganizationNearbyListQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useOrganizationNearbyListQuery({
- *   variables: {
- *      location: // value for 'location'
- *      limit: // value for 'limit'
- *      max_date: // value for 'max_date'
- *      max_distance: // value for 'max_distance'
- *      min_date: // value for 'min_date'
- *      min_distance: // value for 'min_distance'
- *      user_id: // value for 'user_id'
- *      own: // value for 'own'
- *   },
- * });
- */
-export function useOrganizationNearbyListQuery(baseOptions: Apollo.QueryHookOptions<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>(OrganizationNearbyListDocument, options);
-      }
-export function useOrganizationNearbyListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>(OrganizationNearbyListDocument, options);
-        }
-export type OrganizationNearbyListQueryHookResult = ReturnType<typeof useOrganizationNearbyListQuery>;
-export type OrganizationNearbyListLazyQueryHookResult = ReturnType<typeof useOrganizationNearbyListLazyQuery>;
-export type OrganizationNearbyListQueryResult = Apollo.QueryResult<OrganizationNearbyListQuery, OrganizationNearbyListQueryVariables>;
-export const MyOrganizationListDocument = gql`
-    query MyOrganizationList($user_id: uuid!) {
-  orgs(where: {members: {user_id: {_eq: $user_id}}}) {
-    ...OrganizationCard
-  }
-}
-    ${OrganizationCardFragmentDoc}`;
-
-/**
- * __useMyOrganizationListQuery__
- *
- * To run a query within a React component, call `useMyOrganizationListQuery` and pass it any options that fit your needs.
- * When your component renders, `useMyOrganizationListQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMyOrganizationListQuery({
- *   variables: {
- *      user_id: // value for 'user_id'
- *   },
- * });
- */
-export function useMyOrganizationListQuery(baseOptions: Apollo.QueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
-      }
-export function useMyOrganizationListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyOrganizationListQuery, MyOrganizationListQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<MyOrganizationListQuery, MyOrganizationListQueryVariables>(MyOrganizationListDocument, options);
-        }
-export type MyOrganizationListQueryHookResult = ReturnType<typeof useMyOrganizationListQuery>;
-export type MyOrganizationListLazyQueryHookResult = ReturnType<typeof useMyOrganizationListLazyQuery>;
-export type MyOrganizationListQueryResult = Apollo.QueryResult<MyOrganizationListQuery, MyOrganizationListQueryVariables>;
 export const SettingsDocument = gql`
     subscription Settings($id: uuid!) {
   settings: user_settings_by_pk(user_id: $id) {
@@ -14042,7 +13748,7 @@ export type LastEntriesQueryHookResult = ReturnType<typeof useLastEntriesQuery>;
 export type LastEntriesLazyQueryHookResult = ReturnType<typeof useLastEntriesLazyQuery>;
 export type LastEntriesQueryResult = Apollo.QueryResult<LastEntriesQuery, LastEntriesQueryVariables>;
 export const NearbyEntriesDocument = gql`
-    query NearbyEntries($location: geometry!, $limit: Int = null, $offset: Int = 0, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500000.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false, $type: [String!] = ["organization", "initiative"]) {
+    query NearbyEntries($location: geometry!, $limit: Int = null, $offset: Int = 0, $max_date: timestamptz = "2999-01-01T00:00:00.000Z", $max_distance: float8 = 20037500000.0, $min_date: timestamptz = "1970-01-01T00:00:00.000Z", $min_distance: float8 = 0.0, $user_id: uuid, $own: Boolean = false, $type: [String!] = ["initiative"]) {
   entries_nearby(
     offset: $offset
     limit: $limit

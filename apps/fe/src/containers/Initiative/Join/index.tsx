@@ -67,6 +67,9 @@ export default function Join() {
           task_id: v,
           role: Roles_Enum.Volunteer,
         })):[],
+      message: donationChecked && taskChecked? (t`I am ready to donate and volunteer` + (taskDescription.length>0? `: ${taskDescription}` : ''))
+      : donationChecked? t`I am ready to donate` 
+      : taskChecked? (t`I am ready to volunteer` + + (taskDescription.length>0? `: ${taskDescription}` : '')) : ''
     },
     refetchQueries: [InitiativeByPkDocument]
   });
@@ -102,30 +105,13 @@ export default function Join() {
               ...commitments, 
               donation:{
                 ...commitments.donation,
-                checked: !commitments.donation.checked
+                checked: !commitments.donation.checked,
+                value: '1'
               }
             })}/>
           <Trans>I am ready to donate</Trans>
         </div>
-        <DonationMenu>
-          <TextField 
-            type='text'
-            value={commitments.donation.value||''}
-            onChange={(e)=>{
-              setCommitments({
-                ...commitments, 
-                donation:{
-                  ...commitments.donation,
-                  checked: e.target.value!=='',
-                  ...(
-                    isNaN(Number(e.target.value)) &&
-                    e.target.value!==''
-                  )?{}:{value: e.target.value}
-                }
-              })
-          }}
-            placeholder={t`Enter sum`}/>
-        </DonationMenu>
+        
         <div>
           <Checkbox 
               checked={commitments.task.checked}

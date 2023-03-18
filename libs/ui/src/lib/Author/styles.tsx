@@ -19,6 +19,7 @@ Name = styled.div`
   :active{
     text-decoration: underline;
   }
+  cursor: pointer;
 `,
 
 Roles = styled.div`

@@ -243,7 +243,7 @@ SearchResults = styled.button`
   border: none;
   padding: 0;
   position: absolute;
-  top: calc(58px + 8px);
+  top: calc(29px + 8px);
   min-height: 0px;
   max-height: 0px;
   opacity: 0;

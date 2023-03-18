@@ -4,10 +4,9 @@ import { ReactComponent as UserIcon } from '@assets/icons/user.svg'
 import { ReactComponent as LogoutIcon } from '@assets/icons/logout.svg'
 import { Trans } from '@lingui/macro'
 import { useState, useEffect } from 'react'
-import { atoms, auth,  client,  useLayout, useUser } from 'common'
+import { auth, useLayout, useUser } from 'common'
 import LangSelect from './LangSelect'
 import { tabs, Tabs } from './tabs'
-import Organizations from './Organizations'
 import Initiatives from './Initiatives'
 import Settings from './Settings'
 import { atom, useRecoilState } from 'recoil'
@@ -99,9 +98,7 @@ export default function Sidepanel (){
           {
             (selected==='myInitiatives'||selected==='initiatives')?
               <Initiatives/>:
-              (selected==='myOrganisations'||selected==='organisations')?
-              <Organizations/>:
-              (selected==='settings'||selected==='organisations')?
+              (selected==='settings')?
               <Settings/>:
               null
           }

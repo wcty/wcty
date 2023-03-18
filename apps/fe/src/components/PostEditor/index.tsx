@@ -10,7 +10,7 @@ import { Trans } from "@lingui/macro";
 
 
 export default function PostEditor({
-  onClose = ()=>{}, 
+  onClose = ()=>null, 
   initiative,
   post
 }: 

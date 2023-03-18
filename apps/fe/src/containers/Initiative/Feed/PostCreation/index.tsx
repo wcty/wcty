@@ -39,10 +39,7 @@ export default function CreatePost({
               icon="send" 
               s="small"/>
         </InputContent>
-        <Actions>
-          <div/>
-          <Button t='text' s='small'><VoteIco/><Trans>Create poll</Trans></Button>
-        </Actions>
+
       </Container>
       </>
   )

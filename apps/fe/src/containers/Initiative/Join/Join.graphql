@@ -1,24 +1,31 @@
 mutation Join(
-    $userId: uuid!
-    $id: uuid!
-    $donations: [initiative_donations_insert_input!]!
-    $tasks: [initiative_tasks_insert_input!]!
-    $volunteers: [initiative_volunteers_insert_input!]!
+  $userId: uuid!
+  $id: uuid!
+  $donations: [initiative_donations_insert_input!]!
+  $tasks: [initiative_tasks_insert_input!]!
+  $volunteers: [initiative_volunteers_insert_input!]!
+  $message: String!
+) {
+  insert_initiative_members(
+    objects: {
+      initiative_id: $id
+      user_id: $userId
+      donations: { data: $donations }
+      tasks: { data: $tasks }
+      volunteers: { data: $volunteers }
+    }
   ) {
-  insert_initiative_members(objects:{
-    initiative_id: $id
-    user_id: $userId
-    donations: {
-      data: $donations
-    }
-    tasks:{
-      data: $tasks
-    }
-    volunteers:{
-      data: $volunteers
-    }
-  }){
     affected_rows
   }
-}
 
+  insert_initiative_posts_one(
+    object: {
+      type: message
+      message: $message
+      user_id: $userId
+      initiative_id: $id
+    }
+  ) {
+    id
+  }
+}

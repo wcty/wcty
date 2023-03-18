@@ -24,7 +24,7 @@ type FeatureProps<T extends Specs[keyof Specs]> = {
 const cookies = new Cookies()
 
 /** 
- * This is a point, around which initiatives/organisations will be searched. 
+ * This is a point, around which initiatives will be searched. 
  * It could be set basing on the actual user location, initial viewport position,
  * or manually set upon user request.
 */
@@ -75,13 +75,6 @@ export type Entry = (
 export const selected = atom({
   key: 'mapSelected',
   default: null as Entry
-})
-
-export const layers_list = ['initiative', 'organization'] as ('initiative'|'organization')[]
-
-export const layers = atom({
-  key: 'mapLayers',
-  default: layers_list
 })
 
 export const isSubscribed = atom({

@@ -3,21 +3,19 @@ import { SearchInput, SearchWrapper, FieldWrapper, SearchResults } from "../styl
 import { ReactComponent as SearchIcon } from '@assets/icons/search.svg'
 import { ReactComponent as CancelIcon } from '@assets/icons/cancel.svg'
 import { useEffect, useState } from "react";
-import Buttons from "./Buttons";
 import { useSearchResultsQuery } from 'generated'
 import { useRecoilState } from "recoil";
 import ListRow from 'components/ListRow';
 import Slides from 'containers/Slides';
-import { t, Trans } from '@lingui/macro'
+import { t } from '@lingui/macro'
 
 export default function Search(){
   const [keyword, setKeyword] = useState('')
-  const [layers, setLayers] = useRecoilState(atoms.layers)
   const [focus, setFocus] = useRecoilState(atoms.focalPoint)
   const [slideIndex, setSlideIndex] = useRecoilState(Slides.index)
   const [viewport, setViewport] = useRecoilState(atoms.viewport)
   const layout = useLayout()
-  const {data} = useSearchResultsQuery({variables:{layers,keyword: `%${keyword}%`}})
+  const {data} = useSearchResultsQuery({variables:{layers:['initiative'],keyword: `%${keyword}%`}})
   const [searchResults, setSearchResults] = useState(data)
   const [selected, setSelected] = useRecoilState(atoms.selected)
 
@@ -32,7 +30,6 @@ export default function Search(){
   
   return <>
     <SearchWrapper>
-      <Buttons/>
       <FieldWrapper>
         <SearchInput 
           type='text' 

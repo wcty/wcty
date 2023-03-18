@@ -1,26 +1,25 @@
 query UserPage($user_id: uuid!) {
-  user:users_by_pk(id: $user_id) {
+  user: users_by_pk(id: $user_id) {
     ...UserInfo
   }
 }
 
-fragment UserInfo on users{
+fragment UserInfo on users {
   id
   created_at
   updated_at
   display_name
   avatar_url
   ...UserInitiativesInfo
-  ...UserOrganizationsInfo
   ...UserContactInfo
-  initiative_members(limit: 5, order_by: {created_at: desc}) {
-    initiative{
+  initiative_members(limit: 5, order_by: { created_at: desc }) {
+    initiative {
       ...InitiativeCard
     }
   }
 }
 
-fragment UserInitiativesInfo on users{
+fragment UserInitiativesInfo on users {
   donated_total: donations_aggregate {
     aggregate {
       sum {
@@ -33,7 +32,7 @@ fragment UserInitiativesInfo on users{
       count
     }
   }
-  tasks_completed: tasks_aggregate(where: {status:{_eq:COMPLETED}}) {
+  tasks_completed: tasks_aggregate(where: { status: { _eq: COMPLETED } }) {
     aggregate {
       count
     }
@@ -43,24 +42,16 @@ fragment UserInitiativesInfo on users{
       count
     }
   }
-  initiated_count: initiative_volunteers_aggregate(where: {role:{_eq:Initiator}}) {
+  initiated_count: initiative_volunteers_aggregate(
+    where: { role: { _eq: Initiator } }
+  ) {
     aggregate {
       count
     }
   }
-  
 }
 
-fragment UserOrganizationsInfo on users{
-  org_members{
-    org {
-      name
-    }
-    role
-  }
-}
-
-fragment UserContactInfo on users{
+fragment UserContactInfo on users {
   facebook_account
   instagram_account
   telegram_account

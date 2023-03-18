@@ -119,7 +119,7 @@ export default function Members({data}:{data:MembersPageQuery}){
             { locale: router.locale }
           )
         }}>  
-          <UserAvatar src={m.user?.avatar_url||User.src} alt={m.user?.display_name||''}/>
+          <UserAvatar referrerPolicy="no-referrer" src={m.user?.avatar_url||User.src} alt={m.user?.display_name||''}/>
           <div style={{justifyContent:'center'}}>
             <Text semibold s='t2'>{m.user?.display_name}</Text>
             <Text s='t4' c='label'>{getRoles(m)}</Text>

@@ -3739,7 +3739,7 @@
         "enumValues": [
           {
             "name": "files_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -7033,7 +7033,7 @@
       {
         "kind": "OBJECT",
         "name": "initiative_chat_members",
-        "description": "Reference between user id and initiative chat id\n\n\ncolumns and relationships of \"initiative_chat_members\"\n",
+        "description": "Reference between user id and initiative chat id",
         "fields": [
           {
             "name": "chat",
@@ -7515,7 +7515,7 @@
         "enumValues": [
           {
             "name": "initiative_chat_members_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"user_id\", \"chat_id\", \"initiative_id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -8930,7 +8930,7 @@
         "enumValues": [
           {
             "name": "initiative_chat_messages_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"chat_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -10153,7 +10153,7 @@
       {
         "kind": "OBJECT",
         "name": "initiative_chats",
-        "description": "Index of private chats within initiatives\n\n\ncolumns and relationships of \"initiative_chats\"\n",
+        "description": "Index of private chats within initiatives",
         "fields": [
           {
             "name": "created_at",
@@ -10685,13 +10685,13 @@
         "enumValues": [
           {
             "name": "initiative_chats_id_initiative_id_key",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "initiative_chats_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -11999,7 +11999,7 @@
         "enumValues": [
           {
             "name": "initiative_comment_reactions_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"comment_id\", \"post_id\", \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -14963,7 +14963,7 @@
         "enumValues": [
           {
             "name": "initiative_comment_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"post_id\", \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -14976,18 +14976,6 @@
         "description": "input type for incrementing numeric columns in table \"initiative_comments\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "parent_comment_id",
             "description": null,
@@ -15053,18 +15041,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "files_arr_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
               "ofType": null
             },
             "defaultValue": null,
@@ -16081,18 +16057,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "initiative_id",
             "description": null,
             "type": {
@@ -16555,12 +16519,6 @@
         "enumValues": [
           {
             "name": "created_at",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -17713,7 +17671,7 @@
         "enumValues": [
           {
             "name": "initiative_donations_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -17732,18 +17690,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -17791,18 +17737,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -18644,18 +18578,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "initiative_id",
             "description": null,
             "type": {
@@ -19010,12 +18932,6 @@
           },
           {
             "name": "currency",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -19922,13 +19838,13 @@
         "enumValues": [
           {
             "name": "initiative_tasks_pkey_1",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "unq_initiative_edits_post_id",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"post_id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -19941,18 +19857,6 @@
         "description": "input type for incrementing numeric columns in table \"initiative_edits\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "info_id",
             "description": null,
@@ -20006,18 +19910,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -20765,18 +20657,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "info_id",
             "description": null,
             "type": {
@@ -21099,12 +20979,6 @@
         "enumValues": [
           {
             "name": "description",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -22038,13 +21912,13 @@
         "enumValues": [
           {
             "name": "initiative_tasks_pkey_0",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "unq_initiative_expenses_post_id",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"post_id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -22063,18 +21937,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -22146,18 +22008,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -23043,18 +22893,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "initiative_id",
             "description": null,
             "type": {
@@ -23401,12 +23239,6 @@
           },
           {
             "name": "description",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -24303,34 +24135,11 @@
         "enumValues": [
           {
             "name": "pk_initiative_info_id",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "initiative_info_inc_input",
-        "description": "input type for incrementing numeric columns in table \"initiative_info\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -24393,18 +24202,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -25143,18 +24940,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "initiative_id",
             "description": null,
             "type": {
@@ -25315,12 +25100,6 @@
           },
           {
             "name": "goal",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -26788,7 +26567,7 @@
         "enumValues": [
           {
             "name": "initiative_member_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -28524,7 +28303,7 @@
         "enumValues": [
           {
             "name": "pk_initiative_poll_votes_id",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\", \"poll_id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -30407,34 +30186,11 @@
         "enumValues": [
           {
             "name": "initiative_polls_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "initiative_polls_inc_input",
-        "description": "input type for incrementing numeric columns in table \"initiative_polls\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -30461,18 +30217,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "initiative_expenses_arr_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -30977,18 +30721,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "initiative_id",
             "description": null,
             "type": {
@@ -31117,12 +30849,6 @@
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
-          {
-            "name": "id",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "initiative_id",
             "description": "column name",
@@ -31958,13 +31684,13 @@
         "enumValues": [
           {
             "name": "initiative_post_reactions_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"post_id\", \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "initiative_post_reactions_user_id_post_id_key",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"user_id\", \"post_id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -34637,40 +34363,17 @@
         "enumValues": [
           {
             "name": "initiative_message_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "initiative_posts_initiative_id_id_key",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "initiative_posts_inc_input",
-        "description": "input type for incrementing numeric columns in table \"initiative_posts\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -34733,18 +34436,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "files_arr_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
               "ofType": null
             },
             "defaultValue": null,
@@ -35477,18 +35168,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "initiative_id",
             "description": null,
             "type": {
@@ -35655,12 +35334,6 @@
         "enumValues": [
           {
             "name": "created_at",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -36556,13 +36229,13 @@
         "enumValues": [
           {
             "name": "pk_initiative_projects_id",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "unq_initiative_projects_post_id",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"post_id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -36581,18 +36254,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -36676,18 +36337,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -37597,18 +37246,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "initiative_id",
             "description": null,
             "type": {
@@ -38057,12 +37694,6 @@
           },
           {
             "name": "description",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -38796,7 +38427,7 @@
         "enumValues": [
           {
             "name": "initiative_tag_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -39488,7 +39119,7 @@
       {
         "kind": "OBJECT",
         "name": "initiative_tasks",
-        "description": "Proposed and approved tasks\n\n\ncolumns and relationships of \"initiative_tasks\"\n",
+        "description": "Proposed and approved tasks",
         "fields": [
           {
             "name": "created_at",
@@ -40566,7 +40197,7 @@
         "enumValues": [
           {
             "name": "initiative_tasks_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -40579,18 +40210,6 @@
         "description": "input type for incrementing numeric columns in table \"initiative_tasks\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "poll_id",
             "description": null,
@@ -40644,18 +40263,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null,
@@ -41584,18 +41191,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "initiative_id",
             "description": null,
             "type": {
@@ -42052,12 +41647,6 @@
           },
           {
             "name": "description",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -42838,13 +42427,13 @@
         "enumValues": [
           {
             "name": "initiative_visits_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "user_initiative_constraint",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"user_id\", \"initiative_id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -43596,7 +43185,7 @@
       {
         "kind": "OBJECT",
         "name": "initiative_volunteers",
-        "description": "Assignment of initiative member to the initiative task\n\n\ncolumns and relationships of \"initiative_volunteers\"\n",
+        "description": "Assignment of initiative member to the initiative task",
         "fields": [
           {
             "name": "id",
@@ -44380,13 +43969,13 @@
         "enumValues": [
           {
             "name": "initiative_volunteers_initiative_id_user_id_task_id_key",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"user_id\", \"initiative_id\", \"task_id\"",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "initiative_volunteers_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"initiative_id\", \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -47880,7 +47469,7 @@
         "enumValues": [
           {
             "name": "initiative__pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -54365,18 +53954,6 @@
             "description": "update data of the table: \"initiative_info\"",
             "args": [
               {
-                "name": "_inc",
-                "description": "increments the numeric columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "initiative_info_inc_input",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
                 "name": "_set",
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
@@ -54417,18 +53994,6 @@
             "name": "update_initiative_info_by_pk",
             "description": "update single row of the table: \"initiative_info\"",
             "args": [
-              {
-                "name": "_inc",
-                "description": "increments the numeric columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "initiative_info_inc_input",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
               {
                 "name": "_set",
                 "description": "sets the columns of the filtered rows to the given values",
@@ -54683,18 +54248,6 @@
             "description": "update data of the table: \"initiative_polls\"",
             "args": [
               {
-                "name": "_inc",
-                "description": "increments the numeric columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "initiative_polls_inc_input",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
                 "name": "_set",
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
@@ -54735,18 +54288,6 @@
             "name": "update_initiative_polls_by_pk",
             "description": "update single row of the table: \"initiative_polls\"",
             "args": [
-              {
-                "name": "_inc",
-                "description": "increments the numeric columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "initiative_polls_inc_input",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
               {
                 "name": "_set",
                 "description": "sets the columns of the filtered rows to the given values",
@@ -54895,18 +54436,6 @@
             "description": "update data of the table: \"initiative_posts\"",
             "args": [
               {
-                "name": "_inc",
-                "description": "increments the numeric columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "initiative_posts_inc_input",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
-              {
                 "name": "_set",
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
@@ -54947,18 +54476,6 @@
             "name": "update_initiative_posts_by_pk",
             "description": "update single row of the table: \"initiative_posts\"",
             "args": [
-              {
-                "name": "_inc",
-                "description": "increments the numeric columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "initiative_posts_inc_input",
-                  "ofType": null
-                },
-                "defaultValue": null,
-                "isDeprecated": false,
-                "deprecationReason": null
-              },
               {
                 "name": "_set",
                 "description": "sets the columns of the filtered rows to the given values",
@@ -73031,7 +72548,7 @@
         "enumValues": [
           {
             "name": "tags_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"tag\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -74284,7 +73801,7 @@
         "enumValues": [
           {
             "name": "pk_tenders_id",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -74297,18 +73814,6 @@
         "description": "input type for incrementing numeric columns in table \"tenders\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "parent_project",
             "description": null,
@@ -74338,18 +73843,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "timestamptz",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
               "ofType": null
             },
             "defaultValue": null,
@@ -74988,18 +74481,6 @@
             "deprecationReason": null
           },
           {
-            "name": "id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "bigint",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "initiative_id",
             "description": null,
             "type": {
@@ -75202,12 +74683,6 @@
         "enumValues": [
           {
             "name": "created_at",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -75677,7 +75152,7 @@
         "enumValues": [
           {
             "name": "user_settings_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"user_id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -76039,7 +75514,7 @@
       {
         "kind": "OBJECT",
         "name": "user_subscriptions",
-        "description": "Push subscriptions\n\n\ncolumns and relationships of \"user_subscriptions\"\n",
+        "description": "Push subscriptions",
         "fields": [
           {
             "name": "id",
@@ -76323,7 +75798,7 @@
         "enumValues": [
           {
             "name": "user_subscriptions_pkey",
-            "description": "unique or primary key constraint",
+            "description": "unique or primary key constraint on columns \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           }

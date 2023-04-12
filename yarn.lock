@@ -6799,10 +6799,10 @@
     "@typescript-eslint/types" "5.29.0"
     eslint-visitor-keys "^3.3.0"
 
-"@urbica/react-map-gl@^1.15.0":
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/@urbica/react-map-gl/-/react-map-gl-1.15.0.tgz#7de1413d9e8978924356192ee16b694c920846e1"
-  integrity sha512-RMj9mDrvuOgEh0ZLF9IHQsVgfgfBccyNsJ/ValjocUvvpP+DE10DbCpaz3pTOzksQpnuNo3NliaYvTHOQrlEzA==
+"@urbica/react-map-gl@^1.16.2":
+  version "1.16.2"
+  resolved "https://registry.yarnpkg.com/@urbica/react-map-gl/-/react-map-gl-1.16.2.tgz#f75f4a7f9172dcdaf92482034937279650e89889"
+  integrity sha512-qJE8/wAw3BH5Ys98vZuTwk9m7OLFcHllAzx9QNjPScgIMwtW5ZQSgfo2Xp1CWT3onY3t6stdLNop9jYAXZRtEw==
   optionalDependencies:
     "@mapbox/mapbox-gl-language" "^0.10.0"
     "@mapbox/mapbox-gl-traffic" "^1.0.2"

@@ -9,9 +9,9 @@ const intercept = require("intercept-stdout")
 
 // safely ignore recoil stdout warning messages 
 function interceptStdout(text) {
-  if(process.env.NODE_ENV === 'development'){
+  if (process.env.NODE_ENV === 'development') {
     if (
-      text.includes('Duplicate atom key')||
+      text.includes('Duplicate atom key') ||
       text.includes('GenerateSW has been called multiple times') ||
       // text.includes('Plurals for locale') ||
       text.includes('DeprecationWarning: Use of deprecated folder mapping "./"') ||
@@ -38,7 +38,7 @@ const nextConfig = {
     svgr: false,
   },
   reactStrictMode: true,
-  generateBuildId: () => 'build',
+  // generateBuildId: () => 'build',
   // experimental: {
   //   reactRoot: true
   // },
@@ -58,14 +58,14 @@ const nextConfig = {
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
   },
-  compiler:{
+  compiler: {
     styledComponents: true
   }
 }
 
-if(process.env.ANALYZE === 'true'){
+if (process.env.ANALYZE === 'true') {
   module.exports = withBundleAnalyzer(nextConfig)
-}else{
+} else {
   // @ts-ignore
   module.exports = withNx(withPWA(nextConfig))
 }

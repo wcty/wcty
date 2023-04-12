@@ -29,7 +29,7 @@
     "@turf/centroid": "^6.5.0",
     "@turf/distance": "^6.5.0",
     "@turf/points-within-polygon": "^6.5.0",
-    "@urbica/react-map-gl": "^1.15.0",
+    "@urbica/react-map-gl": "^1.16.2",
     "apn": "^2.2.0",
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",

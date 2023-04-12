@@ -52,3 +52,9 @@ query InitiativePublicByPK($id:uuid!){
     }
   }
 }
+
+query InitiativeBriefByPK($id:uuid!){
+  initiative:initiatives_by_pk(id:$id){
+    ...PostInitiativeInfo
+  }
+}

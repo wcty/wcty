@@ -1,0 +1,6 @@
+mutation UpdateCover($id:uuid!, $data:initiatives_set_input){
+  update_initiatives_by_pk(pk_columns: {id: $id}, _set: $data){
+    id
+    image
+  }
+}

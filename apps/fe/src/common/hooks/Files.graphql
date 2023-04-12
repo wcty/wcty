@@ -1,10 +1,7 @@
 # Files mutations:
 
 mutation updateFile($id: uuid!, $file: files_set_input) {
-  update_files_by_pk(
-    pk_columns: { id: $id }
-    _set: $file
-  ) {
+  update_files_by_pk(pk_columns: { id: $id }, _set: $file) {
     id
   }
 }
@@ -23,15 +20,19 @@ mutation deleteFiles($where: files_bool_exp!) {
 
 query getFiles($where: files_bool_exp!) {
   files(where: $where) {
-    id
-    downloadable_url
-    type
-    user {
-      id
-      avatar_url
-      display_name
-    }
-    post_id
-    created_at
+    ...File
   }
+}
+
+fragment File on files {
+  id
+  downloadable_url
+  type
+  user {
+    id
+    avatar_url
+    display_name
+  }
+  post_id
+  created_at
 }

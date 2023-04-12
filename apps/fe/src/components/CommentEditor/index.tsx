@@ -2,40 +2,43 @@ import { Avatar, TextField, IconButton } from "@ui";
 import { InputContent, Container } from "./styles";
 import { fixAvatar, useUploader, useUser } from "common";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import { CommentFragment, GetFilesDocument, PostPageQuery, SubCommentFragment, useCreateCommentMutation, useDeleteFilesMutation, useUpdateCommentMutation } from "generated";
+import { CommentFragment, GetFilesDocument, GetFilesWithStatsDocument, PostInitiativeInfoFragment, PostPageQuery, SubCommentFragment, useCreateCommentMutation, useDeleteFilesMutation, useUpdateCommentMutation } from "generated";
 import { useRouter } from "next/router";
 import type { IEmojiData } from "emoji-picker-react";
 import { FullscreenCarousel, GalleryImage } from "components/Gallery";
 import { useRecoilState } from "recoil";
 import Sidepanel from "containers/Sidepanel";
 import { PositionProps, LayoutProps, SpaceProps, FlexProps } from "styled-system";
+import { InitiativeProps } from "containers/Initiative";
 
-export default function CommentEditor({ 
-  parent, 
-  comment, 
-  onClose, 
+export default function CommentEditor({
+  parent,
+  comment,
+  onClose,
+  initiative,
   noAvatar,
   ...props
-}:{ 
-  parent?: CommentFragment|PostPageQuery['post'], 
-  comment?:CommentFragment|SubCommentFragment, 
-  onClose?:()=>void, 
-  noAvatar?:boolean
-} & PositionProps&LayoutProps&SpaceProps&FlexProps ){
-  
+}: {
+  parent?: CommentFragment | PostPageQuery['post'],
+  comment?: CommentFragment | SubCommentFragment,
+  onClose?: () => void,
+  initiative: InitiativeProps['initiative'] | PostInitiativeInfoFragment,
+  noAvatar?: boolean
+} & PositionProps & LayoutProps & SpaceProps & FlexProps) {
+
   const user = useUser();
   const router = useRouter();
   const { id, post_id } = router.query;
   const [editorOpen, setEditorOpen] = useState(false);
   const [message, setMessage] = useState(comment?.message || '')
-  const inputRef = useRef<HTMLInputElement|any>();
+  const inputRef = useRef<HTMLInputElement | any>();
   const [loading, setLoading] = useState(false)
   const [emojiOpen, setEmojiOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState<{
     images: GalleryImage[],
     defaultIndex: number
   }>()
-  
+
   const [_, setSidebarVisible] = useRecoilState(Sidepanel.visible)
   const [deletionFiles, setDeletionFiles] = useState<string[]>([])
 
@@ -43,18 +46,18 @@ export default function CommentEditor({
     const cursor = inputRef?.current?.selectionStart;
     const text =
       message.slice(0, cursor) + emojiObject.emoji + message.slice(cursor);
-      setMessage(text);
+    setMessage(text);
   };
 
-  const {onInputChange, filesData, reset, submit } = useUploader()
+  const { onInputChange, filesData, reset, submit } = useUploader()
 
   let parent_comment_id;
-  if(parent && 'parent_comment_id' in parent){
+  if (parent && 'parent_comment_id' in parent) {
     parent_comment_id = parent?.id;
   }
-  const [updateComment, { error:updateError }] = useUpdateCommentMutation()
+  const [updateComment, { error: updateError }] = useUpdateCommentMutation()
   const [addComment, { error }] = useCreateCommentMutation({
-    variables:{
+    variables: {
       initiative_id: id,
       post_id,
       parent_comment_id,
@@ -62,21 +65,21 @@ export default function CommentEditor({
       message
     }
   });
-  const [deleteFiles, { error:deleteError }] = useDeleteFilesMutation()
+  const [deleteFiles, { error: deleteError }] = useDeleteFilesMutation()
 
-  const submitComent = async ()=>{ 
-    if(comment){
+  const submitComent = async () => {
+    if (comment) {
       setLoading(true)
       // Here delete photos
       await deleteFiles({
-        variables:{where:{id:{_in:deletionFiles}}},
-        refetchQueries: [ GetFilesDocument ]
+        variables: { where: { id: { _in: deletionFiles } } },
+        refetchQueries: [GetFilesDocument, GetFilesWithStatsDocument]
       })
       // Here update post
-      if(filesData?.length){
+      if (filesData?.length) {
         const results = await submit({
           createRecord: true,
-          props:{
+          props: {
             post_id: comment.post_id,
             initiative_id: comment.initiative_id,
             comment_id: comment.id
@@ -86,24 +89,24 @@ export default function CommentEditor({
         })
       }
       await updateComment({
-        variables:{
+        variables: {
           message,
           post_id: comment.post_id,
           initiative_id: comment.initiative_id,
           comment_id: comment.id,
           now: new Date()
         },
-        refetchQueries: [ GetFilesDocument ]
+        refetchQueries: [GetFilesDocument, GetFilesWithStatsDocument]
       })
-      setMessage(''); 
+      setMessage('');
       onClose?.()
       reset();
-    }else{
+    } else {
       setLoading(true)
       const results = await submit({
         createRecord: false,
         multiple: true,
-        props:{
+        props: {
           post_id,
           initiative_id: id
         }
@@ -112,89 +115,90 @@ export default function CommentEditor({
       console.log('results', results)
 
       await addComment({
-        variables:{
-          initiative_id:id, 
+        variables: {
+          initiative_id: id,
           post_id,
-          user_id: user?.id, 
+          user_id: user?.id,
           message,
           files: {
-            data: 
-              results?.map(file=>({
+            data:
+              results?.map(file => ({
                 downloadable_url: file.url,
                 file_path: file.path,
                 user_id: user?.id,
-              }))||[]
+              })) || []
           }
         },
-        refetchQueries: [ GetFilesDocument ]
-      }); 
+        refetchQueries: [GetFilesDocument, GetFilesWithStatsDocument]
+      });
 
-      setMessage(''); 
+      setMessage('');
       reset();
     }
   }
 
-  useEffect(()=>{
-    window.onkeydown = (e)=>{
-      if(e.key === 'Enter' && (e.ctrlKey || e.metaKey) && message?.length >= 2){
+  useEffect(() => {
+    window.onkeydown = (e) => {
+      if (e.key === 'Enter' && (e.ctrlKey || e.metaKey) && message?.length >= 2) {
         addComment()
         setMessage('')
       }
     }
-    return ()=>{
+    return () => {
       window.onkeydown = null
     }
-  },[message])
+  }, [message])
 
   return (
-      <>
+    <>
       <Container {...props}>
-        <InputContent> 
-            {!noAvatar && <Avatar s={'small'} picture={
-              fixAvatar(user?.avatar_url)
-            }/>}
-            <TextField
-              onImageClick={()=>setEditorOpen(true)} 
-              extendable
-              height="1rem" 
-              disabled={loading}
-              value={message} 
-              withImage 
-              withEmoji
-              onClick={()=>setEmojiOpen(false)} 
-              {...{inputRef, onEmojiClick}} 
-              {...{emojiOpen, setEmojiOpen}} 
-              commentStyle
-              onChange={(e:any)=>setMessage(e.target.value)}
-              onImageSubmit={(e,o)=>onInputChange(e,{ ...o, keepSelected: true })}
-              images={filesData?.map(v=>v.blob)}
-              deleteImage={(index, options)=>{
-                const id = options?.id
-                if(id){
-                  setDeletionFiles([...deletionFiles, id])  
-                }else{
-                  const newFilesData = filesData?.filter((v, i)=>i!==index)
-                  onInputChange({
-                    target:{
-                      files: newFilesData?.map(v=>v.file) as unknown as FileList|null
-                    }
-                  } as ChangeEvent<HTMLInputElement>)
-                }
-              }}/>
-            <IconButton 
-              onClick={submitComent} 
-              style={{alignSelf: 'start', marginTop:'0.5rem'}} 
-              icon="send" 
-              s="small"/>
+        <InputContent>
+          {!noAvatar && <Avatar s={'small'} picture={
+            fixAvatar(user?.avatar_url)
+          } />}
+          <TextField
+            onImageClick={() => setEditorOpen(true)}
+            extendable
+            height="1rem"
+            disabled={loading}
+            value={message}
+            withImage
+            withEmoji
+            onClick={() => setEmojiOpen(false)}
+            {...{ inputRef, onEmojiClick }}
+            {...{ emojiOpen, setEmojiOpen }}
+            commentStyle
+            onChange={(e: any) => setMessage(e.target.value)}
+            onImageSubmit={(e, o) => onInputChange(e, { ...o, keepSelected: true })}
+            images={filesData?.map(v => v.blob)}
+            deleteImage={(index, options) => {
+              const id = options?.id
+              if (id) {
+                setDeletionFiles([...deletionFiles, id])
+              } else {
+                const newFilesData = filesData?.filter((v, i) => i !== index)
+                onInputChange({
+                  target: {
+                    files: newFilesData?.map(v => v.file) as unknown as FileList | null
+                  }
+                } as ChangeEvent<HTMLInputElement>)
+              }
+            }} />
+          <IconButton
+            onClick={submitComent}
+            style={{ alignSelf: 'start', marginTop: '0.5rem' }}
+            icon="send"
+            s="small" />
         </InputContent>
       </Container>
-      {fullscreen && 
-        <FullscreenCarousel 
-          {...fullscreen} 
-          onClose={()=>{
+      {fullscreen &&
+        <FullscreenCarousel
+          {...fullscreen}
+          initiative={initiative}
+          onClose={() => {
             setFullscreen(undefined)
             setSidebarVisible(true)
-        }} />}
-      </>
+          }} />}
+    </>
   )
 }

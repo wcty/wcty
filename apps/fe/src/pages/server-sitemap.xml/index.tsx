@@ -8,15 +8,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // const urls = await fetch('https//example.com/api')
   const initiatives = (await client.query<InitiativesSitemapQuery | undefined>({
     query: InitiativesSitemapDocument,
+    fetchPolicy: 'no-cache'
   }))?.data
-  ?.initiatives
-  ?.map((initiative) => ({
-    loc: 'https://weee.city/initiative/'+initiative.id,
-    lastmod: new Date().toISOString(),
-  })) as ISitemapField[]
+    ?.initiatives
+    ?.map((initiative) => ({
+      loc: 'https://weee.city/initiative/' + initiative.id,
+      lastmod: new Date().toISOString(),
+    })) as ISitemapField[]
 
   return getServerSideSitemap(ctx, initiatives)
 }
 
 // Default export to prevent next.js errors
-export default () => {}
+export default () => { }

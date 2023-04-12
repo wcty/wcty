@@ -10,6 +10,7 @@ export * from './types'
 export * from './apollo'
 export * from './fonts'
 export * from './translations'
+export * from './styled-functions'
 
 export const mapboxToken = 'pk.eyJ1Ijoic3dpdGNoOSIsImEiOiJjamozeGV2bnkxajV2M3FvNnpod3h4ODlpIn0.CTt2IXV8II6finbTlxEddg'
 

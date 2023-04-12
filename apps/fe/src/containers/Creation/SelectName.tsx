@@ -24,6 +24,7 @@ export default function Creation({
           value={initiative.name}
           onChange={(e)=>setInitiative({...initiative, name: e.target.value})}
           placeholder={t`Name of your initiative`}/>
+        <div css={`width: 100%; height: 1rem;`}/>
         <TextArea
           rows={3}
           withCancel

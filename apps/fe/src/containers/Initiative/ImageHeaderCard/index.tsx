@@ -12,7 +12,7 @@ export default function ImageHeader(props:ImageProps){
 
   return(
     <Image src={props.src}>
-      {layout==='mobile' ? <FilletButton onClick={()=>router.push('/')}/>: undefined}
+      <FilletButton onClick={()=>router.push('/')}/>
     </Image>
   )
 }

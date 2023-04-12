@@ -1,51 +1,51 @@
 import styled, { css } from 'styled-components'
-import { ReactComponent as OptionsIcon} from '@assets/icons/post-options.svg'
+import { ReactComponent as OptionsIcon } from '@assets/icons/post-options.svg'
 import { Button } from "@ui";
 import { layout, LayoutProps } from 'styled-system';
 
-export const 
-Avatar = styled.div`
+export const
+  Avatar = styled.div`
   flex-shrink: 0;
   margin-right: 7px;
 `,
 
-Info  =  styled.div`
+  Info = styled.div`
  display: flex;
  flex-direction: column;
 `,
 
-Content = styled.div`
+  Content = styled.div`
   padding: 15px 19px 0 19px;
-  ${props =>  props.theme.font.body.regular.t4};
-  color: ${props  => props.theme.colors.body};
-`,
-    
-
-Message = styled.div`
+  ${props => props.theme.font.body.regular.t4};
+  color: ${props => props.theme.colors.body};
 `,
 
-Tags = styled.div`
+
+  Message = styled.div`
+`,
+
+  Tags = styled.div`
   padding-top: 27px;
   color: ${props => props.theme.colors.label}
 `,
 
-CommentCounter = styled.div`
+  CommentCounter = styled.a`
   color: ${props => props.theme.colors.label}
 `,
 
-LikeCounter = styled.div`
+  LikeCounter = styled.div`
     padding-right: 4px;
 `,
 
-Likes  = styled.div<{ liked?: boolean }>`
+  Likes = styled.div<{ liked?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   color: ${p => p.theme.colors.label};
   >svg{
-    ${p=>p.liked? 
-      css`fill: ${p => p.theme.colors.titleActive};`:
+    ${p => p.liked ?
+      css`fill: ${p => p.theme.colors.titleActive};` :
       css`fill: ${p => p.theme.colors.label};`}
   }
   :hover {
@@ -69,14 +69,14 @@ Likes  = styled.div<{ liked?: boolean }>`
 `,
 
 
-CreateVote = styled.div`
+  CreateVote = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 `,
 
-Chip = styled.div`
+  Chip = styled.div`
   height: 19px;
   ${props => props.theme.font.body.regular.t5};
   color: ${props => props.theme.colors.label};
@@ -87,7 +87,7 @@ Chip = styled.div`
   margin-right: 10px;
 `,
 
-Actions = styled.div`
+  Actions = styled.div`
   padding: 15px 19px;
   display: flex;
   flex-direction: row;
@@ -95,11 +95,11 @@ Actions = styled.div`
   align-items: center;
 `,
 
-Container = styled.div`
+  Container = styled.div`
   width: 100%;    
   display: flex;
   flex-direction: column;
-  background-color: ${props =>  props.theme.colors.backgroundLighter};
+  background-color: ${props => props.theme.colors.backgroundLighter};
   box-shadow: 0px 0px 2px rgba(137, 150, 159, 0.1), 0px 2px 2px rgba(137, 150, 159, 0.1), 0px 1px 3px rgba(137, 150, 159, 0.1);
   border-radius: 3px;
   padding-bottom: 1rem;
@@ -107,9 +107,9 @@ Container = styled.div`
   position: relative;
 `,
 
-OptionsButton = styled(Button).attrs({
-  children: <OptionsIcon/>
-})`
+  OptionsButton = styled(Button).attrs({
+    children: <OptionsIcon />
+  })`
   padding: 0;
   width: 18px;
   height: 18px;
@@ -128,7 +128,7 @@ OptionsButton = styled(Button).attrs({
   }
 `,
 
-OptionsMenu = styled.div`
+  OptionsMenu = styled.div`
   z-index: 1;
   width: 144px;
   border-radius: 3px;
@@ -140,7 +140,7 @@ OptionsMenu = styled.div`
   box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
 `,
 
-DeletionMenu = styled.div`
+  DeletionMenu = styled.div`
   padding: 4rem;
   z-index: 1;
   width: 360px;
@@ -165,7 +165,7 @@ DeletionMenu = styled.div`
   }
 `,
 
-ImageContainer = styled.div`
+  ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 280px;
@@ -180,7 +180,7 @@ ImageContainer = styled.div`
   margin-top: 1.5rem;
 `,
 
-ImageWrapper = styled.div<{ url:string }& LayoutProps>`
+  ImageWrapper = styled.div<{ url: string } & LayoutProps>`
   min-width: 40%;
   cursor: pointer;
   ${layout}
@@ -190,7 +190,7 @@ ImageWrapper = styled.div<{ url:string }& LayoutProps>`
   font-weight: 900;
   font-size: 2rem;
   flex: 1 0 auto;
-  background-image: url(${p=>p.url});
+  background-image: url(${p => p.url});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

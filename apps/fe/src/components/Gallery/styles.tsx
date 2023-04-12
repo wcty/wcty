@@ -3,11 +3,13 @@ import styled, { css } from 'styled-components'
 import SwipeableViewsUnstyled from '@gromy/react-swipeable-views';
 //@ts-ignore
 import { virtualize } from '@gromy/react-swipeable-views-utils';
+import { ReactComponent as OptionsIcon } from '@assets/icons/post-options.svg'
+import { Button } from '@ui';
 
 const VirtualizeSwipeableViews = virtualize(SwipeableViewsUnstyled);
 
-export const 
-FullscreenCarouselWrapper = styled.div`
+export const
+  FullscreenCarouselWrapper = styled.div`
   display: flex;
   position: fixed;
   flex-direction: column;
@@ -15,7 +17,7 @@ FullscreenCarouselWrapper = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  ${p=>p.theme.layout==='desktop' && css`
+  ${p => p.theme.layout === 'desktop' && css`
     background-color: rgba(0,0,0,0.8);`}
   z-index: 100 !important;
   user-select: none;
@@ -25,7 +27,7 @@ FullscreenCarouselWrapper = styled.div`
   -o-user-select: none;
 `,
 
-LibraryWrapper = styled.div`
+  LibraryWrapper = styled.div`
   display: flex;
   position: fixed;
   top: 0;
@@ -40,7 +42,7 @@ LibraryWrapper = styled.div`
   -o-user-select: none;
 `,
 
-LibraryTiles = styled.div`
+  LibraryTiles = styled.div`
   display: flex;
   flex: 0 0 380px;
   background: white;
@@ -51,10 +53,10 @@ LibraryTiles = styled.div`
   padding-top: 6rem;
   padding-bottom: 0rem;
   overflow: hidden;
-  ${p=>p.theme.isWebView && css`padding-top: calc(6rem + 29px);`}
+  ${p => p.theme.isWebView && css`padding-top: calc(6rem + 29px);`}
 `,
 
-Grid = styled.div`
+  Grid = styled.div`
   padding-right: 1.5rem;
   width: 100%;
   height: fit-content;
@@ -66,15 +68,15 @@ Grid = styled.div`
   overflow: visible;
 `,
 
-ImageThumb = styled.div.attrs((p:{
-  src:string, alt:string, selected?: boolean
-})=>({
-  src: p.src,
-  alt: p.alt,
-  selected: p.selected
-}))`
+  ImageThumb = styled.div.attrs((p: {
+    src: string, alt: string, selected?: boolean
+  }) => ({
+    src: p.src,
+    alt: p.alt,
+    selected: p.selected
+  }))`
   position: relative;
-  background-image: url(${p=>p.src});
+  background-image: url(${p => p.src});
   background-size: cover;
   background-position: center;
   border-radius: 3px;
@@ -89,11 +91,11 @@ ImageThumb = styled.div.attrs((p:{
   :hover{
     opacity: 0.975;
   }
-  ${p=>p.selected && css`
-    box-shadow: 2px 2px 4px ${p=>p.theme.colors.label};`}
+  ${p => p.selected && css`
+    box-shadow: 2px 2px 4px ${p => p.theme.colors.label};`}
 `,
 
-CarouselWrapper = styled.div`
+  CarouselWrapper = styled.div`
   display: flex;
   flex: 1 1 auto;
   position: relative;
@@ -102,20 +104,20 @@ CarouselWrapper = styled.div`
   max-height: 100vh;
 `,
 
-BottomPanel = styled.div`
+  BottomPanel = styled.div`
   position: relative;
-  ${p=>p.theme.layout==='desktop'?
-    css`
+  ${p => p.theme.layout === 'desktop' ?
+      css`
       flex: 0 0 80px;
       align-items: center;
       justify-content: space-between;
     `:
-    css`
+      css`
       flex: 0 0 92px;
       flex-direction: column;
     `}
   display: flex;
-  background: ${p=>p.theme.colors.primary};
+  background: ${p => p.theme.colors.primary};
   position: relative;
   div:first-child{
     display: flex;
@@ -127,7 +129,7 @@ BottomPanel = styled.div`
   }
 `,
 
-ImageContainer = styled.div`
+  ImageContainer = styled.div`
   position: relative;
   display: flex;
   flex: 1 1 auto;
@@ -136,13 +138,13 @@ ImageContainer = styled.div`
   max-height: calc(100vh - 80px);
 `,
 
-Image = styled.img`
-  ${p=>p.theme.layout==='desktop'?
-    css`
+  Image = styled.img`
+  ${p => p.theme.layout === 'desktop' ?
+      css`
       height: 100%;
       max-width: 100%;
     `:
-    css`
+      css`
       width: 100%;
       max-height: 100%;
     `}
@@ -150,40 +152,40 @@ Image = styled.img`
   position: relative;
 `,
 
-LeftArrow = styled.div`
+  LeftArrow = styled.div`
   position: absolute;
   left: 2rem;
   top: 50%;
   cursor: pointer;
 `,
 
-RightArrow = styled.div`
+  RightArrow = styled.div`
   position: absolute;
   right: 2rem;
   top: 50%;
   cursor: pointer;
 `,
 
-CloseIcon = styled.div`
+  CloseIcon = styled.div`
   position: absolute;
   right: 2rem;
   top: 2rem;
   cursor: pointer;
   opacity: 0.5;
-  ${p=>p.theme.isWebView && css`padding-top: 29px;`}
+  ${p => p.theme.isWebView && css`padding-top: 29px;`}
 
 `,
 
-GalleryIcon = styled.div`
+  GalleryIcon = styled.div`
   position: absolute;
   right: 2rem;
   top: 6rem;
   cursor: pointer;
   opacity: 0.5;
-  ${p=>p.theme.isWebView && css`padding-top: 29px;`}
+  ${p => p.theme.isWebView && css`padding-top: 29px;`}
 `,
 
-FullscreenIcon = styled.div`
+  ConfigIcon = styled.div`
   position: absolute;
   right: 2rem;
   bottom: 2rem;
@@ -191,11 +193,19 @@ FullscreenIcon = styled.div`
   opacity: 0.5;
 `,
 
-SwipeableViews = styled(VirtualizeSwipeableViews).attrs({
-  style: {padding: '0 0px', overflowX: 'hidden', height: '100% !important'},
-  slideStyle: {padding: '0px 0px', overflow:'visible', display: 'flex', height: '100% !important', justifyContent: 'center', alignItems: 'center'},
-  resistance: true
-})`
+  FullscreenIcon = styled.div`
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  cursor: pointer;
+  opacity: 0.5;
+`,
+
+  SwipeableViews = styled(VirtualizeSwipeableViews).attrs({
+    style: { padding: '0 0px', overflowX: 'hidden', height: '100% !important' },
+    slideStyle: { padding: '0px 0px', overflow: 'visible', display: 'flex', height: '100% !important', justifyContent: 'center', alignItems: 'center' },
+    resistance: true
+  })`
   position: absolute;
   width: 100%;
   height: 100% !important;
@@ -215,6 +225,63 @@ SwipeableViews = styled(VirtualizeSwipeableViews).attrs({
         margin-right: 5px;
         background-color: #fff;
       }
+    }
+  }
+`,
+
+  OptionsButton = styled(Button).attrs({
+    children: <OptionsIcon />
+  })`
+  padding: 0;
+  width: 28;
+  height: 28;
+  position: absolute;
+  right: 2rem;
+  top: 0.5rem;
+  margin: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  >svg{
+    margin: 0px !important;
+  }
+`,
+
+  OptionsMenu = styled.div`
+  z-index: 1;
+  width: 144px;
+  border-radius: 3px;
+  position: absolute;
+  bottom: 3rem;
+  right: 2rem;
+  background-color: white;
+  padding: 0.5rem;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+`,
+
+  DeletionMenu = styled.div`
+  padding: 0.5rem;
+  z-index: 1;
+  width: 360px;
+  border-radius: 3px;
+  position: absolute;
+  /* top: 3.5rem;
+  right: 0; */
+  bottom: 3.5rem;
+  right: 2rem;
+  background-color: white;
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+  >div{
+    margin-top: 2rem;
+    display: flex;
+    >:last-child{
+      margin-left: 1rem;
+    }
+    >button{
+      justify-content: center;
     }
   }
 `

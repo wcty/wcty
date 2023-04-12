@@ -1,6 +1,6 @@
-import { css as css_, ThemedCssFunction } from "styled-components";
+import { css as css_, ThemedCssFunction } from 'styled-components';
 
-export const css = css_ as ThemedCssFunction<{}>
+export const css = css_ as ThemedCssFunction<{}>;
 
 // export const css = (strings:TemplateStringsArray, ...args:string[]) => {
 //   const result = [];
@@ -11,4 +11,3 @@ export const css = css_ as ThemedCssFunction<{}>
 //   console.log(result.join(''))
 //   return result.join('');
 // }
-

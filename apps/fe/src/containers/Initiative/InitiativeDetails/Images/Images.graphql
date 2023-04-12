@@ -1,0 +1,10 @@
+query getFilesWithStats($where: files_bool_exp!) {
+  files(where: $where, order_by: {created_at:desc}) {
+    ...File
+  }
+  files_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}

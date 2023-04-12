@@ -38,27 +38,26 @@ export default function Creation() {
   })
 
   const { onInputChange, submit, results, filesData } = useUploader()
-  const { url=undefined, path=undefined } = results?.[0] || {}
+  const { url = undefined, path = undefined } = results?.[0] || {}
 
-  console.log(filesData)
   const [index, setIndex] = useState(0)
-  
-  useEffect(()=>{
-    if(url&&path){
-      setInitiative({...initiative, url, path, timeUpdated: Date.now()})
-    }
-  },[url,path])
 
-  return (user?
+  useEffect(() => {
+    if (url && path) {
+      setInitiative({ ...initiative, url, path, timeUpdated: Date.now() })
+    }
+  }, [url, path])
+
+  return (user ?
     <CreationContainer>{
-      index===0?
-        <SelectAddress {...{initiative, setInitiative, index, setIndex}}/>:
-      index===1?
-        <SelectName {...{initiative, setInitiative, index, setIndex}}/>:
-      index===2?
-        <SelectCover {...{initiative, setInitiative, index, setIndex, onInputChange, submit, blob: filesData?.[0]?.blob}}/>:
-      null
-    }</CreationContainer>:  
-    <Unauthorized/>
+      index === 0 ?
+        <SelectAddress {...{ initiative, setInitiative, index, setIndex }} /> :
+        index === 1 ?
+          <SelectName {...{ initiative, setInitiative, index, setIndex }} /> :
+          index === 2 ?
+            <SelectCover {...{ initiative, setInitiative, index, setIndex, onInputChange, submit, blob: filesData?.[0]?.blob }} /> :
+            null
+    }</CreationContainer> :
+    <Unauthorized />
   )
 }

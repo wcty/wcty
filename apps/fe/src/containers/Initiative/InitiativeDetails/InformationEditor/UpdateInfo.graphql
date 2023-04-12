@@ -1,0 +1,24 @@
+mutation UpdateInfo(
+  $initiative_id: uuid!
+  $data: initiatives_set_input
+  $info: initiative_info_set_input
+){
+  update_initiatives_by_pk (
+    pk_columns: {
+      id: $initiative_id
+    }
+    _set: $data
+  ){
+    ...InitiativeCard
+  }
+  update_initiative_info(
+    where: {initiative_id:{_eq:$initiative_id}},
+    _set: $info
+  ){
+    returning {
+      context
+      goal
+      problem
+    }
+  }
+}

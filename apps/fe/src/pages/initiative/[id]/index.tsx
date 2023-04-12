@@ -7,25 +7,24 @@ import Head from 'next/head'
 import { InitiativePublicByPkDocument, InitiativePublicByPkQuery } from 'generated'
 import DefaultInitiativeCover from '@assets/images/wecity_chat_512.png'
 import { GetServerSideProps } from 'next'
-import { FixedBottom } from 'react-fixed-bottom'
 
-export default function DynamicInitiative(props:InitiativeProps) {
+export default function DynamicInitiative(props: InitiativeProps) {
   const router = useRouter()
   const layout = useLayout()
-  const name = props.initiative?.name||'Initiative'
-  const description = 
-    props.initiative?.infos[0].problem? (props.initiative?.infos[0].problem + '\n'):'' + 
-    props.initiative?.infos[0].goal? (props.initiative?.infos[0].goal + '\n'):'' + 
-    props.initiative?.infos[0].context||''
-    ||'Initiative from Wecity platform'
+  const name = props.initiative?.name || 'Initiative'
+  const description =
+    props.initiative?.infos[0].problem ? (props.initiative?.infos[0].problem + '\n') : '' +
+      props.initiative?.infos[0].goal ? (props.initiative?.infos[0].goal + '\n') : '' +
+      props.initiative?.infos[0].context || ''
+    || 'Initiative from Wecity platform'
   const image = props.initiative?.image
 
-  return <> 
+  return <>
     <Head>
       <title>{`${name} | Wecity`}</title>
       <meta name="description" content={description} />
       <meta property="og:type" content="article" />
-      <meta property="og:image" content={image? image+'?w=500&h=500&q=90' :DefaultInitiativeCover.src} />
+      <meta property="og:image" content={image ? image + '?w=500&h=500&q=90' : DefaultInitiativeCover.src} />
       <meta property="og:title" content={name} />
       <meta property="og:description" content={description} />
       <meta property="og:site_name" content="Wecity" />
@@ -33,24 +32,27 @@ export default function DynamicInitiative(props:InitiativeProps) {
       <meta property="twitter:title" content={name} />
       <meta property="twitter:description" content={description} />
     </Head>
-    {layout==='mobile' && <Burger style={{marginLeft:'1.5rem'}}/>}
-    <Sidepanel/>
+    {layout === 'mobile' && <Burger style={{ marginLeft: '1.5rem' }} />}
+    <Sidepanel />
     {/* <FixedBottom> */}
-      <ContentWrapper>
-        <Initiative initiative={props.initiative}/>
-      </ContentWrapper>
+    <ContentWrapper>
+      <Initiative initiative={props.initiative} />
+    </ContentWrapper>
     {/* </FixedBottom> */}
   </>
 }
 
-export const getServerSideProps:GetServerSideProps = async (ctx) => {
-  const { req:{ cookies }, res, query } = ctx
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+
+  const { req: { cookies }, res, query } = ctx
   let initiative: InitiativePublicByPkQuery['initiative'] | undefined
-  
-  if(query.id){
+
+  if (query.id) {
     initiative = (await client.query<InitiativePublicByPkQuery | undefined>({
       query: InitiativePublicByPkDocument,
-      variables:{id: query.id},
+      variables: { id: query.id },
+      fetchPolicy: 'no-cache',
+
     })).data?.initiative;
   }
 

@@ -1,6 +1,6 @@
 import Information from './Information';
 import { Images } from './Images';
-import { InitiativePublicByPkQuery } from 'generated';
+import { InitiativePublicByPkQuery, useInitiativeByPkQuery } from 'generated';
 import { Button, Text } from '@ui';
 import { Trans } from '@lingui/macro';
 import { ReactComponent as EditPen } from '@assets/icons/edit-pen.svg'
@@ -15,6 +15,11 @@ export default function InitiativeDetails(props: {
 }) {
   const [editor, setEditor] = useState(false)
   const user = useUser();
+  const { data } = useInitiativeByPkQuery({
+    variables: { id: props.initiative?.id, user_id: user?.id },
+    fetchPolicy: 'cache-first',
+  });
+  const isMember = !!data?.initiative?.isMember?.length;
 
   return (
     <>
@@ -24,7 +29,7 @@ export default function InitiativeDetails(props: {
           <ArrowDown />
         </div>
       </MobileOnly>
-      {user && <Button
+      {user && isMember && <Button
         t="secondary"
         s='small'
         css={`

@@ -9,46 +9,46 @@ import { ReactComponent as IG } from "@assets/icons/instagram.svg"
 import { Container } from 'containers/Initiative/styles'
 
 
-export default function About() { 
+export default function About() {
   const router = useRouter()
   const layout = useLayout()
 
-  return <> 
+  return <>
     <Container>
       <Wrapper>
-      <Block>
-        <div><Image src={frog_wcty} /></div>
-        <div>
-          <h3>Вітаємо!</h3>
-          <p>
-            Wecity — це онлайн платформа, яка має за мету змінити ваше місто на краще. Вона для тих, хто хотів би бачити позитивні зміни навколо себе, але не має часу, сил чи знань на те, щоби втілювати їх власноруч. Це платформа для громадського мережування навколо спільних міських проблем, визначення шляхів для їх вирішення, пошуку виконавців та колективного збору ресурсів. 
-            <br/><br/>
-            Наша мета довести всім, що змінювати навколишній світ — це легко, якщо робити це разом.
-          </p>
-        </div>
-      </Block>
-      <Block>
-        <div>
-          <h4>
-            Проєкт реалізується за підтримки доброчинців та партнерів
-          </h4>
-          <Image src={partners} />
-        </div>
-        <Footer>
+        <Block>
+          <div><Image src={frog_wcty} alt="Wecity logo" /></div>
           <div>
-            <p>Читай про останні новини платформи в соціальних мережах</p>
+            <h3>Вітаємо!</h3>
+            <p>
+              Wecity — це онлайн платформа, яка має за мету змінити ваше місто на краще. Вона для тих, хто хотів би бачити позитивні зміни навколо себе, але не має часу, сил чи знань на те, щоби втілювати їх власноруч. Це платформа для громадського мережування навколо спільних міських проблем, визначення шляхів для їх вирішення, пошуку виконавців та колективного збору ресурсів.
+              <br /><br />
+              Наша мета довести всім, що змінювати навколишній світ — це легко, якщо робити це разом.
+            </p>
+          </div>
+        </Block>
+        <Block>
+          <div>
+            <h4>
+              Проєкт реалізується за підтримки доброчинців та партнерів
+            </h4>
+            <Image src={partners} alt="Logos of partners" />
+          </div>
+          <Footer>
             <div>
-              <a href="https://www.facebook.com/we.city.platform"><FB/></a>
-              <a href="https://www.instagram.com/we.city.platform"><IG/></a>
+              <p>Читай про останні новини платформи в соціальних мережах</p>
+              <div>
+                <a href="https://www.facebook.com/we.city.platform"><FB /></a>
+                <a href="https://www.instagram.com/we.city.platform"><IG /></a>
+              </div>
             </div>
-          </div>
-          <div>
-            <p>Привітайся з нами — пиши на пошту hi@weee.city</p>
-            <div/>
-            <a href="privacy_policy.pdf">Політика конфіденційності</a>
-          </div>
-        </Footer>
-      </Block>
+            <div>
+              <p>Привітайся з нами — пиши на пошту hi@weee.city</p>
+              <div />
+              <a href="privacy_policy.pdf">Політика конфіденційності</a>
+            </div>
+          </Footer>
+        </Block>
       </Wrapper>
     </Container>
   </>

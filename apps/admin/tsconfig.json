@@ -31,5 +31,6 @@
     "strictNullChecks": true,
     "resolveJsonModule": false,
     "inlineSourceMap": true,
+    "skipLibCheck": true
   }
 }

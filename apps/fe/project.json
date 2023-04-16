@@ -1,4 +1,5 @@
 {
+  "name": "fe",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/fe",
   "projectType": "application",
@@ -14,7 +15,10 @@
       "prebuild": "nx i18n fe && nx tiles fe && nx gql fe",
       "postbuild": "next-sitemap --configuration=production --output=./dist/apps/fe/sitemap.xml",
       "configurations": {
-        "production": {}
+        "production": {},
+        "development": {
+          "outputPath": "apps/fe"
+        }
       }
     },
     "serve": {
@@ -33,34 +37,34 @@
       }
     },
     "start": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "nx serve fe & nx gql-watch fe"
       }
     },
     "gql": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/fe",
         "command": "NODE_NO_WARNINGS=1 dotenv -- graphql-codegen --config scripts/codegen.yml"
       }
     },
     "gql-watch": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/fe",
         "command": "NODE_NO_WARNINGS=1 dotenv -- graphql-codegen --config scripts/codegen.yml --watch"
       }
     },
     "tiles": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/fe",
         "command": "node scripts/tilespecs.js"
       }
     },
     "type-check": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/fe",
         "command": "tsc --noEmit"

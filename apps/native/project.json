@@ -1,4 +1,5 @@
 {
+  "name": "native",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/native/src",
   "projectType": "application",
@@ -17,7 +18,7 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "nx start native"
       }
@@ -71,8 +72,10 @@
       "options": {}
     },
     "eject": {
-      "executor": "@nrwl/expo:eject",
-      "options": {}
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx prebuild native"
+      }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -83,17 +86,56 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/native"],
+      "outputs": ["{workspaceRoot}/coverage/apps/native"],
       "options": {
         "jestConfig": "apps/native/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "submit": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/native",
         "commands": ["eas submit"]
+      }
+    },
+    "build": {
+      "executor": "@nrwl/expo:build",
+      "options": {}
+    },
+    "build-list": {
+      "executor": "@nrwl/expo:build-list",
+      "options": {}
+    },
+    "download": {
+      "executor": "@nrwl/expo:download",
+      "options": {
+        "output": "apps/native/dist"
+      }
+    },
+    "update": {
+      "executor": "@nrwl/expo:update",
+      "options": {}
+    },
+    "prebuild": {
+      "executor": "@nrwl/expo:prebuild",
+      "options": {}
+    },
+    "install": {
+      "executor": "@nrwl/expo:install",
+      "options": {}
+    },
+    "export": {
+      "executor": "@nrwl/expo:export",
+      "options": {
+        "platform": "all",
+        "outputDir": "../../dist/apps/native"
+      }
+    },
+    "export-web": {
+      "executor": "@nrwl/expo:export",
+      "options": {
+        "bundler": "webpack"
       }
     }
   },

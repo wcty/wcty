@@ -5,6 +5,12 @@ module.exports = {
   fallbackLocales: {
     default: 'en'
   },
+  extractBabelOptions: {
+    "presets": [
+      "@babel/preset-typescript",
+      "@babel/preset-react",
+    ],
+  },
   catalogs: [
     {
       path: '<rootDir>/apps/fe/src/common/translations/locales/{locale}/messages',

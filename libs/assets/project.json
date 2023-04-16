@@ -1,4 +1,5 @@
 {
+  "name": "assets",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/assets/src",
   "projectType": "library",
@@ -12,7 +13,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/assets"],
+      "outputs": ["{workspaceRoot}/coverage/libs/assets"],
       "options": {
         "jestConfig": "libs/assets/jest.config.js",
         "passWithNoTests": true

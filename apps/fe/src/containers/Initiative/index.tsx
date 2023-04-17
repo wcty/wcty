@@ -22,7 +22,7 @@ export default function Initiative({ initiative }: InitiativeProps) {
     <Redirect to="/" />
   ) : (
     <Container>
-      <ImageHeaderCard src={initiative?.image || ''} />
+      <ImageHeaderCard src={initiative?.image || ''} initiative={initiative} />
       <Header {...{ initiative }} />
       {layout === 'desktop' ? (
         <Body>

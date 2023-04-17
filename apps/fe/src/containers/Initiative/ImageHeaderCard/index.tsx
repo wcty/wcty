@@ -1,23 +1,32 @@
-import { desktop, mobile, useLayout } from "common";
+import { desktop, mobile, useLayout, useUser } from "common";
 import { useRouter } from "next/router";
 import { FilletButton, Image } from "./styles";
 import { ReactComponent as EditPen } from '@assets/icons/edit-pen.svg'
 import { css } from "styled-components";
 import { useRecoilState } from "recoil";
 import { editorAtom } from "../InitiativeDetails";
+import { InitiativePublicByPkQuery, useInitiativeByPkQuery } from "generated";
+import { InitiativeProps } from "..";
 
 interface ImageProps {
   src: string
 }
 
-export default function ImageHeader(props: ImageProps) {
+export default function ImageHeader(props: ImageProps & InitiativeProps) {
+  const user = useUser();
+  const { data } = useInitiativeByPkQuery({
+    variables: { id: props.initiative?.id, user_id: user?.id },
+    fetchPolicy: 'cache-first',
+  });
+  const isMember = !!data?.initiative?.isMember?.length;
+
   const router = useRouter()
   const [editor, setEditor] = useRecoilState(editorAtom)
 
   return (
     <Image src={props.src}>
       <>
-        <button
+        {isMember && <button
           onClick={() => setEditor(true)}
           css={`
             position: absolute;
@@ -41,7 +50,7 @@ export default function ImageHeader(props: ImageProps) {
             align-items: center;
           `}>
           <><EditPen /></>
-        </button>
+        </button>}
         <FilletButton onClick={() => router.push('/')} />
       </>
     </Image>

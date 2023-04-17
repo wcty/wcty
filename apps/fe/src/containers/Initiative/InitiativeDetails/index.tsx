@@ -8,12 +8,17 @@ import { ReactComponent as ArrowDown } from '@assets/icons/arrow-drop-down.svg'
 import { MobileOnly, mobile, useUser } from 'common';
 import { css } from 'styled-components';
 import InformationEditor from './InformationEditor'
-import { useState } from 'react';
+import { atom, useRecoilState } from 'recoil';
+
+export const editorAtom = atom({
+  key: 'editor',
+  default: false,
+})
 
 export default function InitiativeDetails(props: {
   initiative?: InitiativePublicByPkQuery['initiative'];
 }) {
-  const [editor, setEditor] = useState(false)
+  const [editor, setEditor] = useRecoilState(editorAtom)
   const user = useUser();
   const { data } = useInitiativeByPkQuery({
     variables: { id: props.initiative?.id, user_id: user?.id },
